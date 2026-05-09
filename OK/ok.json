@@ -212,12 +212,6 @@
             "timeout": 30
         },
         {
-            "key": "立播",
-            "name": "🌟立播┃弹幕",
-            "api": "./lib/drpymin2.js",
-            "ext": "./lib/libvio.js"
-        },
-        {
             "key": "热播多线",
             "name": "🎬热播┃多线",
             "type": 3,
