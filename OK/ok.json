@@ -212,6 +212,19 @@
             "timeout": 30
         },
         {
+            "key": "立播",
+            "name": "🌟立播┃秒播",
+            "type": 3,
+            "api": "csp_LibvioGuard",
+            "timeout": 10,
+            "searchable": 1,
+            "quickSearch": 1,
+            "changeable": 1,
+            "ext": {
+                "Cloud-drive": "tvfan/Cloud-drive.txt"
+            }
+        },
+        {
             "key": "热播多线",
             "name": "🎬热播┃多线",
             "type": 3,
