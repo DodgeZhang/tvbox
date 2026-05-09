@@ -1,6 +1,7 @@
 {
     "spider": "./lib/05081210.png;md5;8a8213eddbde0f6ec8bb00839e67521c",
     "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
+    "logo": "./images/logo.gif",
     "sites": [
         {
             "key": "豆瓣",
