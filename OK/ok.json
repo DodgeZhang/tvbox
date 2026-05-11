@@ -1,5 +1,5 @@
 {
-    "spider": "./jar/Ant.jar;md5;568546F5A864CBD732CF91A22C8A1B15",
+    "spider": "http://oss4liview.moji.com/thd_file/2026/01/26/0e8629c873fea38d04bc58cbeb28c3c5.jpg;md5;127ea82cb8bf8a82f0cf64da66e39b60",
     "wallpaper": "http://127.0.0.1:9978/proxy?do=wall",
     "logo": "./images/logo.jpg",
     "sites": [
@@ -1339,14 +1339,14 @@
     ],
     "parses": [
         {
-            "name": "xmflv",
-            "type": 0,
-            "url": "https://jx.xmflv.com/?url="
+            "name": "聚合1",
+            "type": 3,
+            "url": "Demo"
         },
         {
-            "name": "playm3u8",
-            "type": 0,
-            "url": "https://www.playm3u8.cn/jiexi.php?url="
+            "name": "聚合0",
+            "type": 3,
+            "url": "Web"
         },
         {
             "name": "ikun",
@@ -1354,9 +1354,14 @@
             "url": "https://jx.hls.one/?url="
         },
         {
-            "name": "77flv",
+            "name": "77",
             "type": 0,
             "url": "https://jx.77flv.cc/?url="
+        },
+        {
+            "name": "A6",
+            "type": 0,
+            "url": "https://pl.a6club.com/player/analysis.php?v="
         },
         {
             "name": "8090",
@@ -1364,24 +1369,39 @@
             "url": "https://www.8090g.cn/?url="
         },
         {
-            "name": "m3u8",
+            "name": "M3u8TV",
             "type": 0,
             "url": "https://jx.m3u8.tv/jiexi/?url="
         },
         {
-            "name": "ck",
+            "name": "CK",
             "type": 0,
             "url": "https://www.ckplayer.vip/jiexi/?url="
         },
         {
-            "name": "bd",
+            "name": "冰豆",
             "type": 0,
             "url": "https://bd.jx.cn/?url="
         },
         {
-            "name": "xymp4",
+            "name": "XY",
             "type": 0,
             "url": "https://jx.xymp4.cc/?url="
+        },
+        {
+            "name": "推荐",
+            "type": 1,
+            "url": "https://zy.qiaoji8.com/gouzi.php?url=94b07e0b2c0e8244&url="
+        },
+        {
+            "name": "臻享",
+            "type": 1,
+            "url": "https://150.138.78.37:4399/api?key=94b07e0b2c0e8244&url="
+        },
+        {
+            "name": "优选",
+            "type": 1,
+            "url": "http://1.94.221.189:88/algorithm.php?url="
         }
     ],
     "doh": [
