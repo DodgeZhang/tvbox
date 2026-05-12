@@ -9,6 +9,10 @@
             "name": "鱼妖(仿OK)"
         },
         {
+            "url": "https://gh-proxy.org/https://raw.githubusercontent.com/13109010503/tvbox/refs/heads/main/moyu/moyu.json",
+            "name": "摸鱼"
+        },
+        {
             "url": "https://gh-proxy.org/https://raw.githubusercontent.com/13109010503/tvbox/refs/heads/main/feimao/%E8%82%A5%E7%8C%AB.json",
             "name": "肥猫"
         },
@@ -19,6 +23,10 @@
         {
             "url": "https://gh-proxy.org/https://raw.githubusercontent.com/13109010503/tvbox/refs/heads/main/wangerxiao/%E7%8E%8B%E4%BA%8C%E5%B0%8F.json",
             "name": "王小二"
+        },
+        {
+            "url": "https://gh-proxy.org/https://raw.githubusercontent.com/13109010503/tvbox/refs/heads/main/aowu/aowu.json",
+            "name": "嗷呜"
         },
         {
             "url": "https://gh-proxy.org/https://raw.githubusercontent.com/13109010503/tvbox/refs/heads/main/zuosa/%E6%BD%87%E6%B4%92.json",
