@@ -1,5 +1,6 @@
 {
   "spider": "./05121412.png;md5;83707730185f34526db18ecbb7b48dfd",
+  "logo": "./img/logo.gif",
   "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
   "sites": [
     {
