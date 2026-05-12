@@ -1,4 +1,4 @@
-# tvbox自用接口
+# TVbox自用软件及接口
 
 ## TV盒子软件
 [takagen99版](https://github.com/o0HalfLife0o/TVBoxOSC/releases)
