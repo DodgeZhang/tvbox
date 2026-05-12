@@ -1,7 +1,6 @@
 {
-    "spider": "./lib/05081210.png;md5;8a8213eddbde0f6ec8bb00839e67521c",
-    "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
-    "logo": "./images/logo.gif",
+    "spider": "./jar/1.png;md5;efabd4f67802e0ecd9f3c1008c078f35",
+    "wallpaper": "./img/40.jpg",
     "sites": [
         {
             "key": "豆瓣",
@@ -59,7 +58,7 @@
             "name": "韩圈｜APP",
             "type": 3,
             "api": "csp_Hxq",
-            "ext": "https://fishapi.wya6.com/fish/fishhxq.php"
+            "ext": "./ext/2.php"
         },
         {
             "key": "天堂",
@@ -76,7 +75,7 @@
                 "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
                 "pkg": "com.dytiantang.one",
                 "host": "",
-                "site": "./lib/app_dyttandroid.txt",
+                "site": "https://dyttandroid04-1372779881.cos.ap-shanghai.myqcloud.com/app_dyttandroid.txt",
                 "version": "3.0.0.7",
                 "decrypt": "0"
             }
@@ -92,12 +91,12 @@
             "ext": {
                 "appName": "橘汁",
                 "publicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCr8SzZhjYy+rsya1K09t8d2K50pWFoBkgUqMpKOiW+3IEVKd4eTdvg9RSOjQ82kypL6R9BnsmrS1V8s4PVDwjQbUtYhTPPC9Hz16qY7rpD6m0d2vr09/UpWQ5uOy9PR0QTrsioveZ+DIe9jc3C+zBCu/kZSY/R8stwJoiitki3gwIDAQAB",
-                "dataKey": "RTRTUJZWWMO0ZWV6EFBOSURNCTK4PQ==",
+                "dataKey": "DGVQRUX5R1LWWDLHTGJSUKG1DJRVPQ==",
                 "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
-                "pkg": "com.tjjiangh.android",
+                "pkg": "com.lxf.snzlcgtzxyx",
                 "host": "",
-                "site": "./lib/az5.txt",
-                "version": "3.0.1.9",
+                "site": "https://123-1349250429.cos.ap-shanghai.myqcloud.com/app.txt",
+                "version": "3.0.2.1",
                 "decrypt": "1"
             }
         },
@@ -116,7 +115,7 @@
                 "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
                 "pkg": "com.muyue.tool",
                 "host": "",
-                "site": "./lib/az5307.txt",
+                "site": "https://vip.123pan.cn/1851089669/oss/az5.txt",
                 "version": "1.0.0.4",
                 "decrypt": "1"
             }
@@ -136,7 +135,7 @@
                 "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
                 "pkg": "com.juechufsh.android.xpg1",
                 "host": "",
-                "site": "./lib/app_xpg_android.txt",
+                "site": "https://xpgandroid03-1372779881.cos.ap-beijing.myqcloud.com/app_xpg_android.txt",
                 "version": "1.0.0.3",
                 "decrypt": "0"
             }
@@ -156,7 +155,7 @@
                 "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
                 "pkg": "com.bingewatch.android",
                 "host": "",
-                "site": "./lib/app_guwozhuijuandroid.txt",
+                "site": "https://guwoandroid-1372779881.cos.ap-guangzhou.myqcloud.com/app_guwozhuijuandroid.txt",
                 "version": "2.0.0.1",
                 "decrypt": "0"
             }
@@ -176,7 +175,7 @@
                 "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
                 "pkg": "com.st.standroid",
                 "host": "",
-                "site": "./lib/app_dyttandroid481.txt",
+                "site": "https://dyttandroid-1372779881.cos.ap-guangzhou.myqcloud.com/app_dyttandroid.txt",
                 "version": "5.0.0.1",
                 "decrypt": "0"
             }
@@ -189,7 +188,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "http://99cms.jj99.icu:8199/api.php/app/"
+            "ext": "./ext/3.json"
         },
         {
             "key": "奴娜",
@@ -199,7 +198,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "https://www.nntv.in/api.php/v1.vod"
+            "ext": "./ext/4.vod"
         },
         {
             "key": "闪影",
@@ -209,7 +208,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "http://38.47.213.61:41271/mogai_api.php/v1.vod"
+            "ext": "./ext/5.vod"
         },
         {
             "key": "超前",
@@ -219,7 +218,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "http://chaoqianys.top:91/api.php/app/"
+            "ext": "./ext/6.json"
         },
         {
             "key": "飞飞",
@@ -229,7 +228,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "https://qpcj.69mini.com/api.php/app/"
+            "ext": "./ext/7.json"
         },
         {
             "key": "云播",
@@ -240,6 +239,21 @@
             "changeable": 1,
             "ext": {
                 "host": "http://app.hktvyb.cc"
+            }
+        },
+        {
+            "key": "首发",
+            "name": "首发｜APP",
+            "type": 3,
+            "api": "csp_AppQi",
+            "searchable": 1,
+            "changeable": 1,
+            "ext": {
+                "site": "https://yun-1316442804.cos.ap-guangzhou.myqcloud.com/600.txt",
+                "dataKey": "FTgP4Gq8zPiqbt7M",
+                "dataIv": "FTgP4Gq8zPiqbt7M",
+                "init": "initV122",
+                "ua": "okhttp/3.10.0"
             }
         },
         {
@@ -266,7 +280,7 @@
             "searchable": 1,
             "changeable": 1,
             "ext": {
-                "site": "./lib/maotouyinghb.txt",
+                "site": "https://maotouyinghubei.oss-cn-wuhan-lr.aliyuncs.com/maotouyinghb.txt",
                 "dataKey": "zxPtEUDGVllIUhDB",
                 "dataIv": "zxPtEUDGVllIUhDB",
                 "ua": "okhttp/3.10.0"
@@ -280,11 +294,24 @@
             "searchable": 1,
             "changeable": 1,
             "ext": {
-                "site": "./lib/xly.txt",
+                "site": "https://xinlanyinghb.oss-cn-wuhan-lr.aliyuncs.com/xly.txt",
                 "dataKey": "ca94b06ca359d80e",
                 "dataIv": "ca94b06ca359d80e",
                 "init": "initV120",
                 "ua": "okhttp/3.10.0"
+            }
+        },
+        {
+            "key": "小鹿",
+            "name": "小鹿｜APP",
+            "type": 3,
+            "api": "csp_AppQi",
+            "searchable": 1,
+            "changeable": 1,
+            "ext": {
+                "url": "https://xiaolu.pwwhu.cn",
+                "dataKey": "x5Bep6Q78VCeYnPS",
+                "dataIv": "x5Bep6Q78VCeYnPS"
             }
         },
         {
@@ -321,7 +348,7 @@
             "searchable": 1,
             "changeable": 1,
             "ext": {
-                "url": "https://cms140.yhg.one/",
+                "url": "https://cms140.yhg.one",
                 "dataKey": "bM7iC9eA3oZ1nB7z",
                 "dataIv": "bM7iC9eA3oZ1nB7z"
             }
@@ -347,7 +374,7 @@
             "searchable": 1,
             "changeable": 1,
             "ext": {
-                "site": "./lib/get.txt",
+                "site": "https://mk1080.top/get.txt",
                 "dataKey": "c60d88b2eep53za8",
                 "dataIv": "c60d88b2eep53za8",
                 "token": "4181e508e7a17657d6a6246e70b1b13553e5ae9d8d287dc47000fb2df638dffa"
@@ -361,7 +388,7 @@
             "searchable": 1,
             "changeable": 1,
             "ext": {
-                "site": "./lib/9.txt",
+                "site": "https://gitee.com/wmmoliill/wimg/raw/master/img/bk/9.txt",
                 "dataKey": "88689667dce61725",
                 "dataIv": "88689667dce61725"
             }
@@ -374,7 +401,7 @@
             "searchable": 1,
             "changeable": 1,
             "ext": {
-                "site": "./lib/89.txt",
+                "site": "https://bind.315999.xyz/89.txt",
                 "dataKey": "#getapp@TMD@2025",
                 "dataIv": "#getapp@TMD@2025"
             }
@@ -400,29 +427,29 @@
             "key": "腾腾视频",
             "name": "腾腾｜视频",
             "type": 3,
-            "api": "https://pan.vma.cc/pan/down.php/ec67b9045d393737f073d2c9365533f0.js",
-            "ext": "./lib/TXSP.js"
+            "api": "./api/8.js",
+            "ext": "./ext/9.js"
         },
         {
             "key": "酷酷视频",
             "name": "酷酷｜视频",
             "type": 3,
-            "api": "https://pan.vma.cc/pan/down.php/ec67b9045d393737f073d2c9365533f0.js",
-            "ext": "./lib/YKSP.js"
+            "api": "./api/8.js",
+            "ext": "./ext/10.js"
         },
         {
             "key": "果果视频",
             "name": "果果｜视频",
             "type": 3,
-            "api": "https://pan.vma.cc/pan/down.php/ec67b9045d393737f073d2c9365533f0.js",
-            "ext": "./lib/MGSP.js"
+            "api": "./api/8.js",
+            "ext": "./ext/11.js"
         },
         {
             "key": "奇奇视频",
             "name": "奇奇｜视频",
             "type": 3,
-            "api": "https://pan.vma.cc/pan/down.php/ec67b9045d393737f073d2c9365533f0.js",
-            "ext": "./lib/AQY.js"
+            "api": "./api/8.js",
+            "ext": "./ext/12.js"
         },
         {
             "key": "三六零",
@@ -638,22 +665,6 @@
             "timeout": 60
         },
         {
-            "key": "清影",
-            "name": "清影｜4K",
-            "type": 3,
-            "api": "csp_PanWebShareQY",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "changeable": 1,
-            "ext": {
-                "site": [
-                    "http://www.revohd.com"
-                ]
-            },
-            "timeout": 60
-        },
-        {
             "key": "夸父",
             "name": "夸父｜4K",
             "type": 3,
@@ -778,7 +789,7 @@
             "key": "星芽短剧",
             "name": "星芽｜短剧",
             "type": 3,
-            "api": "./lib/apiv1797星芽短剧.py",
+            "api": "./api/13.py",
             "searchable": 1,
             "changeable": 1,
             "quickSearch": 1,
@@ -789,7 +800,7 @@
             "key": "剧王短剧",
             "name": "剧王｜短剧",
             "type": 3,
-            "api": "./lib/apiv1823剧王短剧.py",
+            "api": "./api/14.py",
             "searchable": 1,
             "changeable": 1,
             "quickSearch": 1,
@@ -810,21 +821,21 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "https://www.czzy89.com"
+            "ext": "./ext/15.json"
         },
         {
             "key": "金牌影视",
             "name": "金牌｜影视",
             "type": 3,
             "api": "csp_Jpys",
-            "ext": "https://m.610pkea.com,https://y2s52n7.com,https://m.hkybqufgh.com,https://m.sizhengxt.com,https://m.9zhoukj.com,https://m.sizhengxt.com,https://m.jiabaide.cn"
+            "ext": "./ext/16.cn"
         },
         {
             "key": "云播影视",
             "name": "云播｜影视",
             "type": 3,
             "api": "csp_Tvyb",
-            "ext": "http://www.tvyb03.com"
+            "ext": "./ext/17.json"
         },
         {
             "key": "瓜子影视",
@@ -837,14 +848,14 @@
             "name": "骚火｜影视",
             "type": 3,
             "api": "csp_SaoHuo",
-            "ext": "https://shdy5.us"
+            "ext": "./ext/18.json"
         },
         {
             "key": "农民影视",
             "name": "农民｜影视",
             "type": 3,
             "api": "csp_Wwys",
-            "ext": "https://vip.wwgz.cn:5200"
+            "ext": "./ext/19.json"
         },
         {
             "key": "爱看机器人",
@@ -860,28 +871,28 @@
             "name": "小镇｜影视",
             "type": 3,
             "api": "csp_XBPQ",
-            "ext": "./lib/XZYS.json"
+            "ext": "./ext/20.json"
         },
         {
             "key": "面包影视",
             "name": "面包｜影视",
             "type": 3,
             "api": "csp_XBPQ",
-            "ext": "./lib/MBYS.json"
+            "ext": "./ext/21.json"
         },
         {
             "key": "永乐影视",
             "name": "永乐｜影视",
             "type": 3,
             "api": "csp_XBPQ",
-            "ext": "./lib/YLYS.json"
+            "ext": "./ext/22.json"
         },
         {
             "key": "剧圈影视",
             "name": "剧圈｜影视",
             "type": 3,
             "api": "csp_XYQHiker",
-            "ext": "./lib/JQYS.json"
+            "ext": "./ext/23.json"
         },
         {
             "key": "1905",
@@ -900,14 +911,14 @@
             "style": {
                 "type": "list"
             },
-            "ext": "./lib/DLXFS.json"
+            "ext": "./ext/24.json"
         },
         {
             "key": "Anime1",
             "name": "A1｜动漫",
             "type": 3,
-            "api": "https://pan.vma.cc/pan/down.php/ec67b9045d393737f073d2c9365533f0.js",
-            "ext": "./lib/Anime1.js"
+            "api": "./api/8.js",
+            "ext": "./ext/25.js"
         },
         {
             "key": "漫国动漫",
@@ -916,7 +927,7 @@
             "searchable": 1,
             "api": "csp_AppSy",
             "ext": {
-                "site": "./lib/api.txt",
+                "site": "https://dm-1255775577.cos.ap-guangzhou.myqcloud.com/dmg/api.txt",
                 "siteKey": "rectangleadsadxa",
                 "listKey": "aassddwwxxllsx1x",
                 "parsesKey": "aassddwwxxllsx1x"
@@ -987,35 +998,35 @@
             "name": "巴士｜动漫",
             "type": 3,
             "api": "csp_XYQHiker",
-            "ext": "./lib/bsdm.json"
+            "ext": "./ext/26.json"
         },
         {
             "key": "花子动漫",
             "name": "花子｜动漫",
             "type": 3,
-            "api": "https://pan.vma.cc/pan/down.php/ec67b9045d393737f073d2c9365533f0.js",
-            "ext": "./lib/HZDM.js"
+            "api": "./api/8.js",
+            "ext": "./ext/27.js"
         },
         {
             "key": "爱动漫",
             "name": "爱动漫｜动漫",
             "type": 3,
-            "api": "./lib/apiv2347drpy2.min.js",
-            "ext": "./lib/ADM.js"
+            "api": "./api/28.js",
+            "ext": "./ext/29.js"
         },
         {
             "key": "路漫漫",
             "name": "路漫漫｜动漫",
             "type": 3,
-            "api": "https://pan.vma.cc/pan/down.php/ec67b9045d393737f073d2c9365533f0.js",
-            "ext": "./lib/LMM.js"
+            "api": "./api/8.js",
+            "ext": "./ext/30.js"
         },
         {
             "key": "去看吧",
             "name": "去看吧｜动漫",
             "type": 3,
-            "api": "https://pan.vma.cc/pan/down.php/ec67b9045d393737f073d2c9365533f0.js",
-            "ext": "./lib/QKB.js"
+            "api": "./api/8.js",
+            "ext": "./ext/31.js"
         },
         {
             "key": "荐片",
@@ -1028,7 +1039,7 @@
             "name": "修罗｜磁力",
             "api": "csp_Xlys",
             "type": 3,
-            "ext": "https://xl02.com.de"
+            "ext": "./ext/32.json"
         },
         {
             "key": "七味",
@@ -1060,7 +1071,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "https://www.xb6v.com"
+            "ext": "./ext/33.json"
         },
         {
             "key": "美剧迷",
@@ -1079,7 +1090,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "https://xunlei8.me"
+            "ext": "./ext/34.json"
         },
         {
             "key": "电影港",
@@ -1089,7 +1100,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "./lib/DYG.json"
+            "ext": "./ext/35.json"
         },
         {
             "key": "电影天堂",
@@ -1338,19 +1349,19 @@
             "key": "爱听音乐",
             "name": "爱听｜音乐",
             "type": 3,
-            "api": "./lib/apiv3107爱听音乐.py"
+            "api": "./api/36.py"
         },
         {
             "key": "网络直播",
             "name": "网络｜直播",
             "type": 3,
-            "api": "./lib/apiv3121WLZB.py"
+            "api": "./api/37.py"
         },
         {
             "key": "哔哩直播",
             "name": "哔哩｜直播",
             "type": 3,
-            "api": "./lib/apiv3135BLZB.py"
+            "api": "./api/38.py"
         },
         {
             "key": "哔哩合集",
@@ -1542,7 +1553,7 @@
             "name": "养生｜知识",
             "type": 3,
             "api": "csp_XBPQ",
-            "ext": "./lib/YST.json",
+            "ext": "./ext/39.json",
             "style": {
                 "type": "rect",
                 "ratio": 1.597
@@ -1559,7 +1570,7 @@
         }
     ],
     "lives": [
-        {}
+        []
     ],
     "parses": [
         {
