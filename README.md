@@ -7,4 +7,4 @@
 
 ## 接口短链
 
-<https://tinyurl.com/DodgeTVboxLink>
+[https://ourl.cn/XzPEc3](https://ourl.cn/XzPEc3)
