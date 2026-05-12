@@ -1,5 +1,5 @@
 {
-    "spider": "./lib/b216ded4a854a190ce9f6bd280aff779.jpg;md5;448a9f26f33109f6aa148971c3adab46",
+  "spider": "./fty.jar;md5;448a9f26f33109f6aa148971c3adab46",
     "wallpaper": "https://深色壁纸.xxooo.cf/",
     "sites": [
         {
@@ -402,7 +402,7 @@
             "key": "虎牙js",
             "name": "🐯虎牙┃直播",
             "type": 3,
-            "api": "./lib/apiv933drpy2.min.js",
+      "api": "./lib/drpy2.min.js",
             "ext": "./lib/虎牙.js",
             "style": {
                 "type": "rect",
@@ -418,7 +418,7 @@
             "key": "斗鱼js",
             "name": "🐟斗鱼┃直播",
             "type": 3,
-            "api": "./lib/apiv971drpy2.min.js",
+      "api": "./lib/drpy2.min.js",
             "ext": "./lib/斗鱼直播.js",
             "style": {
                 "type": "rect",
@@ -537,7 +537,7 @@
             "key": "dr_兔小贝",
             "name": "📚儿童┃启蒙",
             "type": 3,
-            "api": "./lib/apiv971drpy2.min.js",
+      "api": "./lib/drpy2.min.js",
             "ext": "./lib/兔小贝.js",
             "style": {
                 "type": "rect",
@@ -610,24 +610,6 @@
             "ext": {
                 "json": "./lib/c66a4b5356141c49fd45ec51568017b4.txt"
             }
-        },
-        {
-            "key": "fan",
-            "name": "导航 www.饭太硬.com",
-            "type": 3,
-            "api": "csp_XPathGuard",
-            "searchable": 1,
-            "quickSearch": 0,
-            "changeable": 0
-        },
-        {
-            "key": "cc",
-            "name": "请勿相信视频中广告",
-            "type": 3,
-            "api": "csp_XPathGuard",
-            "searchable": 1,
-            "quickSearch": 0,
-            "changeable": 0
         }
     ],
     "rules": [
