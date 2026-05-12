@@ -1,6 +1,6 @@
 {
-    "spider": "./jar/1.png;md5;efabd4f67802e0ecd9f3c1008c078f35",
-    "wallpaper": "./img/40.jpg",
+    "spider": "./jar/1.png;md5;83707730185f34526db18ecbb7b48dfd",
+    "wallpaper": "./img/36.jpg",
     "sites": [
         {
             "key": "豆瓣",
@@ -424,34 +424,6 @@
             }
         },
         {
-            "key": "腾腾视频",
-            "name": "腾腾｜视频",
-            "type": 3,
-            "api": "./api/8.js",
-            "ext": "./ext/9.js"
-        },
-        {
-            "key": "酷酷视频",
-            "name": "酷酷｜视频",
-            "type": 3,
-            "api": "./api/8.js",
-            "ext": "./ext/10.js"
-        },
-        {
-            "key": "果果视频",
-            "name": "果果｜视频",
-            "type": 3,
-            "api": "./api/8.js",
-            "ext": "./ext/11.js"
-        },
-        {
-            "key": "奇奇视频",
-            "name": "奇奇｜视频",
-            "type": 3,
-            "api": "./api/8.js",
-            "ext": "./ext/12.js"
-        },
-        {
             "key": "三六零",
             "name": "三六零｜视频",
             "type": 3,
@@ -789,7 +761,7 @@
             "key": "星芽短剧",
             "name": "星芽｜短剧",
             "type": 3,
-            "api": "./api/13.py",
+            "api": "./api/8.py",
             "searchable": 1,
             "changeable": 1,
             "quickSearch": 1,
@@ -800,7 +772,7 @@
             "key": "剧王短剧",
             "name": "剧王｜短剧",
             "type": 3,
-            "api": "./api/14.py",
+            "api": "./api/9.py",
             "searchable": 1,
             "changeable": 1,
             "quickSearch": 1,
@@ -821,21 +793,21 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "./ext/15.json"
+            "ext": "./ext/10.json"
         },
         {
             "key": "金牌影视",
             "name": "金牌｜影视",
             "type": 3,
             "api": "csp_Jpys",
-            "ext": "./ext/16.cn"
+            "ext": "./ext/11.cn"
         },
         {
             "key": "云播影视",
             "name": "云播｜影视",
             "type": 3,
             "api": "csp_Tvyb",
-            "ext": "./ext/17.json"
+            "ext": "./ext/12.json"
         },
         {
             "key": "瓜子影视",
@@ -848,14 +820,14 @@
             "name": "骚火｜影视",
             "type": 3,
             "api": "csp_SaoHuo",
-            "ext": "./ext/18.json"
+            "ext": "./ext/13.json"
         },
         {
             "key": "农民影视",
             "name": "农民｜影视",
             "type": 3,
             "api": "csp_Wwys",
-            "ext": "./ext/19.json"
+            "ext": "./ext/14.json"
         },
         {
             "key": "爱看机器人",
@@ -871,28 +843,28 @@
             "name": "小镇｜影视",
             "type": 3,
             "api": "csp_XBPQ",
-            "ext": "./ext/20.json"
+            "ext": "./ext/15.json"
         },
         {
             "key": "面包影视",
             "name": "面包｜影视",
             "type": 3,
             "api": "csp_XBPQ",
-            "ext": "./ext/21.json"
+            "ext": "./ext/16.json"
         },
         {
             "key": "永乐影视",
             "name": "永乐｜影视",
             "type": 3,
             "api": "csp_XBPQ",
-            "ext": "./ext/22.json"
+            "ext": "./ext/17.json"
         },
         {
             "key": "剧圈影视",
             "name": "剧圈｜影视",
             "type": 3,
             "api": "csp_XYQHiker",
-            "ext": "./ext/23.json"
+            "ext": "./ext/18.json"
         },
         {
             "key": "1905",
@@ -911,14 +883,14 @@
             "style": {
                 "type": "list"
             },
-            "ext": "./ext/24.json"
+            "ext": "./ext/19.json"
         },
         {
             "key": "Anime1",
             "name": "A1｜动漫",
             "type": 3,
-            "api": "./api/8.js",
-            "ext": "./ext/25.js"
+            "api": "./api/20.js",
+            "ext": "./ext/21.js"
         },
         {
             "key": "漫国动漫",
@@ -998,35 +970,35 @@
             "name": "巴士｜动漫",
             "type": 3,
             "api": "csp_XYQHiker",
-            "ext": "./ext/26.json"
+            "ext": "./ext/22.json"
         },
         {
             "key": "花子动漫",
             "name": "花子｜动漫",
             "type": 3,
-            "api": "./api/8.js",
-            "ext": "./ext/27.js"
+            "api": "./api/20.js",
+            "ext": "./ext/23.js"
         },
         {
             "key": "爱动漫",
             "name": "爱动漫｜动漫",
             "type": 3,
-            "api": "./api/28.js",
-            "ext": "./ext/29.js"
+            "api": "./api/24.js",
+            "ext": "./ext/25.js"
         },
         {
             "key": "路漫漫",
             "name": "路漫漫｜动漫",
             "type": 3,
-            "api": "./api/8.js",
-            "ext": "./ext/30.js"
+            "api": "./api/20.js",
+            "ext": "./ext/26.js"
         },
         {
             "key": "去看吧",
             "name": "去看吧｜动漫",
             "type": 3,
-            "api": "./api/8.js",
-            "ext": "./ext/31.js"
+            "api": "./api/20.js",
+            "ext": "./ext/27.js"
         },
         {
             "key": "荐片",
@@ -1039,7 +1011,7 @@
             "name": "修罗｜磁力",
             "api": "csp_Xlys",
             "type": 3,
-            "ext": "./ext/32.json"
+            "ext": "./ext/28.json"
         },
         {
             "key": "七味",
@@ -1071,7 +1043,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "./ext/33.json"
+            "ext": "./ext/29.json"
         },
         {
             "key": "美剧迷",
@@ -1090,7 +1062,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "./ext/34.json"
+            "ext": "./ext/30.json"
         },
         {
             "key": "电影港",
@@ -1100,7 +1072,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "./ext/35.json"
+            "ext": "./ext/31.json"
         },
         {
             "key": "电影天堂",
@@ -1349,19 +1321,19 @@
             "key": "爱听音乐",
             "name": "爱听｜音乐",
             "type": 3,
-            "api": "./api/36.py"
+            "api": "./api/32.py"
         },
         {
             "key": "网络直播",
             "name": "网络｜直播",
             "type": 3,
-            "api": "./api/37.py"
+            "api": "./api/33.py"
         },
         {
             "key": "哔哩直播",
             "name": "哔哩｜直播",
             "type": 3,
-            "api": "./api/38.py"
+            "api": "./api/34.py"
         },
         {
             "key": "哔哩合集",
@@ -1553,7 +1525,7 @@
             "name": "养生｜知识",
             "type": 3,
             "api": "csp_XBPQ",
-            "ext": "./ext/39.json",
+            "ext": "./ext/35.json",
             "style": {
                 "type": "rect",
                 "ratio": 1.597
