@@ -6,10 +6,10 @@
     "sites": [
         {
             "key": "豆瓣",
-            "name": "🤓公众号┃不会唱歌的鱼妖 (关注不迷路)",
+            "name": "🌟豆瓣|推荐",
             "type": 3,
             "api": "csp_AweSomeGuard",
-            "searchable": 0,
+            "searchable": 1,
             "changeable": 1,
             "ext": {
                 "sp": "Douban"
@@ -46,6 +46,171 @@
             "ext": {
                 "sp": "Local"
             }
+        },
+        {
+            "key": "玩偶弹幕版",
+            "name": "👽玩偶┃4K弹幕",
+            "type": 3,
+            "api": "csp_AweSomeGuard",
+            "searchable": 1,
+            "filterable": 1,
+            "changeable": 1,
+            "ext": {
+                "sp": "Wogg",
+                "danmu": true
+            },
+            "timeout": 30
+        },
+        {
+            "key": "木偶弹幕",
+            "name": "🤖木偶┃4K弹幕",
+            "type": 3,
+            "api": "csp_AweSomeGuard",
+            "searchable": 1,
+            "quickSearch": 1,
+            "changeable": 1,
+            "filterable": 1,
+            "ext": {
+                "sp": "Muou",
+                "danmu": true
+            },
+            "timeout": 25
+        },
+        {
+            "key": "蜡笔弹幕",
+            "name": "👠蜡笔┃4K弹幕",
+            "type": 3,
+            "api": "csp_AweSomeGuard",
+            "searchable": 1,
+            "quickSearch": 1,
+            "changeable": 1,
+            "filterable": 1,
+            "ext": {
+                "sp": "Labi",
+                "danmu": true
+            },
+            "timeout": 25
+        },
+        {
+            "key": "二小弹幕",
+            "name": "👦二小┃4K弹幕",
+            "type": 3,
+            "api": "csp_AweSomeGuard",
+            "searchable": 1,
+            "quickSearch": 1,
+            "changeable": 1,
+            "filterable": 1,
+            "ext": {
+                "sp": "ErXiao",
+                "danmu": true
+            },
+            "timeout": 25
+        },
+        {
+            "key": "双星",
+            "name": "⭐双星┃4K弹幕",
+            "type": 3,
+            "api": "csp_AweSomeGuard",
+            "searchable": 1,
+            "filterable": 1,
+            "changeable": 0,
+            "style": {
+                "type": "list"
+            },
+            "ext": {
+                "sp": "Star2",
+                "danmu": true
+            },
+            "timeout": 25
+        },
+        {
+            "key": "多多弹幕",
+            "name": "✨多多┃4K弹幕",
+            "type": 3,
+            "api": "csp_AweSomeGuard",
+            "searchable": 1,
+            "quickSearch": 1,
+            "changeable": 1,
+            "filterable": 1,
+            "ext": {
+                "sp": "DuoDuo",
+                "danmu": true
+            },
+            "timeout": 25
+        },
+        {
+            "key": "至臻弹幕",
+            "name": "💌至臻┃4K弹幕",
+            "type": 3,
+            "api": "csp_AweSomeGuard",
+            "searchable": 1,
+            "quickSearch": 1,
+            "changeable": 1,
+            "filterable": 1,
+            "ext": {
+                "sp": "ZhiZhen",
+                "danmu": true
+            },
+            "timeout": 25
+        },
+        {
+            "key": "虎斑弹幕",
+            "name": "🐯虎斑┃4K弹幕",
+            "type": 3,
+            "api": "csp_AweSomeGuard",
+            "searchable": 1,
+            "quickSearch": 1,
+            "changeable": 1,
+            "filterable": 1,
+            "ext": {
+                "sp": "HuBan",
+                "danmu": true
+            },
+            "timeout": 25
+        },
+        {
+            "key": "SeedHub弹幕",
+            "name": "🍀种子┃4K弹幕",
+            "type": 3,
+            "api": "csp_AweSomeGuard",
+            "searchable": 1,
+            "quickSearch": 1,
+            "changeable": 1,
+            "filterable": 1,
+            "ext": {
+                "sp": "SeedHub",
+                "danmu": true
+            },
+            "timeout": 25
+        },
+        {
+            "key": "云集",
+            "name": "🍊云集┃4K弹幕",
+            "type": 3,
+            "api": "csp_AweSomeGuard",
+            "searchable": 1,
+            "quickSearch": 1,
+            "changeable": 1,
+            "filterable": 1,
+            "ext": {
+                "sp": "YunJi",
+                "danmu": true
+            },
+            "timeout": 25
+        },
+        {
+            "key": "4K指南",
+            "name": "⭐指南┃4K原盘",
+            "type": 3,
+            "api": "csp_AweSomeGuard",
+            "searchable": 1,
+            "quickSearch": 0,
+            "changeable": 0,
+            "filterable": 0,
+            "ext": {
+                "sp": "Zn4k"
+            },
+            "timeout": 30
         },
         {
             "key": "热播多线",
@@ -213,171 +378,6 @@
                 "港台动漫",
                 "海外动漫"
             ]
-        },
-        {
-            "key": "二小弹幕",
-            "name": "👦二小┃4K弹幕",
-            "type": 3,
-            "api": "csp_AweSomeGuard",
-            "searchable": 1,
-            "quickSearch": 1,
-            "changeable": 1,
-            "filterable": 1,
-            "ext": {
-                "sp": "ErXiao",
-                "danmu": true
-            },
-            "timeout": 25
-        },
-        {
-            "key": "双星",
-            "name": "⭐双星┃4K弹幕",
-            "type": 3,
-            "api": "csp_AweSomeGuard",
-            "searchable": 1,
-            "filterable": 1,
-            "changeable": 0,
-            "style": {
-                "type": "list"
-            },
-            "ext": {
-                "sp": "Star2",
-                "danmu": true
-            },
-            "timeout": 25
-        },
-        {
-            "key": "玩偶弹幕版",
-            "name": "👽玩偶┃4K弹幕",
-            "type": 3,
-            "api": "csp_AweSomeGuard",
-            "searchable": 1,
-            "filterable": 1,
-            "changeable": 1,
-            "ext": {
-                "sp": "Wogg",
-                "danmu": true
-            },
-            "timeout": 30
-        },
-        {
-            "key": "蜡笔弹幕",
-            "name": "👠蜡笔┃4K弹幕",
-            "type": 3,
-            "api": "csp_AweSomeGuard",
-            "searchable": 1,
-            "quickSearch": 1,
-            "changeable": 1,
-            "filterable": 1,
-            "ext": {
-                "sp": "Labi",
-                "danmu": true
-            },
-            "timeout": 25
-        },
-        {
-            "key": "木偶弹幕",
-            "name": "🤖木偶┃4K弹幕",
-            "type": 3,
-            "api": "csp_AweSomeGuard",
-            "searchable": 1,
-            "quickSearch": 1,
-            "changeable": 1,
-            "filterable": 1,
-            "ext": {
-                "sp": "Muou",
-                "danmu": true
-            },
-            "timeout": 25
-        },
-        {
-            "key": "多多弹幕",
-            "name": "✨多多┃4K弹幕",
-            "type": 3,
-            "api": "csp_AweSomeGuard",
-            "searchable": 1,
-            "quickSearch": 1,
-            "changeable": 1,
-            "filterable": 1,
-            "ext": {
-                "sp": "DuoDuo",
-                "danmu": true
-            },
-            "timeout": 25
-        },
-        {
-            "key": "至臻弹幕",
-            "name": "💌至臻┃4K弹幕",
-            "type": 3,
-            "api": "csp_AweSomeGuard",
-            "searchable": 1,
-            "quickSearch": 1,
-            "changeable": 1,
-            "filterable": 1,
-            "ext": {
-                "sp": "ZhiZhen",
-                "danmu": true
-            },
-            "timeout": 25
-        },
-        {
-            "key": "虎斑弹幕",
-            "name": "🐯虎斑┃4K弹幕",
-            "type": 3,
-            "api": "csp_AweSomeGuard",
-            "searchable": 1,
-            "quickSearch": 1,
-            "changeable": 1,
-            "filterable": 1,
-            "ext": {
-                "sp": "HuBan",
-                "danmu": true
-            },
-            "timeout": 25
-        },
-        {
-            "key": "SeedHub弹幕",
-            "name": "🍀种子┃4K弹幕",
-            "type": 3,
-            "api": "csp_AweSomeGuard",
-            "searchable": 1,
-            "quickSearch": 1,
-            "changeable": 1,
-            "filterable": 1,
-            "ext": {
-                "sp": "SeedHub",
-                "danmu": true
-            },
-            "timeout": 25
-        },
-        {
-            "key": "云集",
-            "name": "🍊云集┃4K弹幕",
-            "type": 3,
-            "api": "csp_AweSomeGuard",
-            "searchable": 1,
-            "quickSearch": 1,
-            "changeable": 1,
-            "filterable": 1,
-            "ext": {
-                "sp": "YunJi",
-                "danmu": true
-            },
-            "timeout": 25
-        },
-        {
-            "key": "4K指南",
-            "name": "⭐指南┃4K原盘",
-            "type": 3,
-            "api": "csp_AweSomeGuard",
-            "searchable": 1,
-            "quickSearch": 0,
-            "changeable": 0,
-            "filterable": 0,
-            "ext": {
-                "sp": "Zn4k"
-            },
-            "timeout": 30
         },
         {
             "key": "盘他",
@@ -1340,14 +1340,14 @@
     ],
     "parses": [
         {
-            "name": "xmflv",
-            "type": 0,
-            "url": "https://jx.xmflv.com/?url="
+            "name": "聚合1",
+            "type": 3,
+            "url": "Demo"
         },
         {
-            "name": "playm3u8",
-            "type": 0,
-            "url": "https://www.playm3u8.cn/jiexi.php?url="
+            "name": "聚合0",
+            "type": 3,
+            "url": "Web"
         },
         {
             "name": "ikun",
@@ -1355,9 +1355,14 @@
             "url": "https://jx.hls.one/?url="
         },
         {
-            "name": "77flv",
+            "name": "77",
             "type": 0,
             "url": "https://jx.77flv.cc/?url="
+        },
+        {
+            "name": "A6",
+            "type": 0,
+            "url": "https://pl.a6club.com/player/analysis.php?v="
         },
         {
             "name": "8090",
@@ -1365,24 +1370,39 @@
             "url": "https://www.8090g.cn/?url="
         },
         {
-            "name": "m3u8",
+            "name": "M3u8TV",
             "type": 0,
             "url": "https://jx.m3u8.tv/jiexi/?url="
         },
         {
-            "name": "ck",
+            "name": "CK",
             "type": 0,
             "url": "https://www.ckplayer.vip/jiexi/?url="
         },
         {
-            "name": "bd",
+            "name": "冰豆",
             "type": 0,
             "url": "https://bd.jx.cn/?url="
         },
         {
-            "name": "xymp4",
+            "name": "XY",
             "type": 0,
             "url": "https://jx.xymp4.cc/?url="
+        },
+        {
+            "name": "推荐",
+            "type": 1,
+            "url": "https://zy.qiaoji8.com/gouzi.php?url=94b07e0b2c0e8244&url="
+        },
+        {
+            "name": "臻享",
+            "type": 1,
+            "url": "https://150.138.78.37:4399/api?key=94b07e0b2c0e8244&url="
+        },
+        {
+            "name": "优选",
+            "type": 1,
+            "url": "http://1.94.221.189:88/algorithm.php?url="
         }
     ],
     "doh": [
