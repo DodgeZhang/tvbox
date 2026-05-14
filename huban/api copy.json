@@ -3,7 +3,6 @@
 {
     "spider": "./spider.jar",
     "wallpaper": "https://xn--11x805d.xn--4kq62z5rby2qupq9ub.xyz/",
-    "logo": "./images/logo1.gif",
     "warningText": "仅作学习交流测试使用，配置或下载后请于24小时之内删除",
     "lives": [
         {
@@ -15,7 +14,7 @@
     "sites": [
         {
             "key": "drpy_js_豆瓣",
-            "name": "🌟豆瓣|首页",
+            "name": "导航|万事顺遂",
             "type": 3,
             "api": "csp_Douban",
             "ext": "./json/douban.json"
@@ -54,6 +53,50 @@
             "style": {
                 "type": "list"
             }
+        },
+        {
+            "key": "独播",
+            "name": "独播|弹幕",
+            "type": 3,
+            "api": "csp_Duboku"
+        },
+        {
+            "key": "muxi",
+            "name": "人人|弹幕",
+            "type": 3,
+            "api": "csp_HBrenren"
+        },
+        {
+            "key": "fishhxq",
+            "name": "韩圈|弹幕",
+            "type": 3,
+            "api": "csp_FishHxq",
+            "ext": "DyoqWQInJUMuGFdcDzo2Bjg3KgUuDwoENzYhHDhdUQEuUzRBDVAfHzsCBA8DJgYFDTFNHgAnKUg"
+        },
+        {
+            "key": "巴士",
+            "name": "巴士|弹幕",
+            "type": 3,
+            "api": "csp_Dm84"
+        },
+        {
+            "key": "全网",
+            "name": "全网|短剧",
+            "type": 4,
+            "api": "https://103.239.245.69:15151/duanju.php?type=dquark"
+        },
+        {
+            "key": "B站直播",
+            "name": "B站|直播",
+            "type": 3,
+            "api": "csp_BilibiliLive"
+        },
+        {
+            "key": "静月",
+            "name": "养生|京城",
+            "type": 3,
+            "api": "./api/drpy2.min.js",
+            "ext": "./js/养生.js"
         },
         {
             "key": "网盘虎斑",
@@ -151,50 +194,6 @@
             "ext": {
                 "site": "https://xhww.net"
             }
-        },
-        {
-            "key": "独播",
-            "name": "独播|弹幕",
-            "type": 3,
-            "api": "csp_Duboku"
-        },
-        {
-            "key": "muxi",
-            "name": "人人|弹幕",
-            "type": 3,
-            "api": "csp_HBrenren"
-        },
-        {
-            "key": "fishhxq",
-            "name": "韩圈|弹幕",
-            "type": 3,
-            "api": "csp_FishHxq",
-            "ext": "DyoqWQInJUMuGFdcDzo2Bjg3KgUuDwoENzYhHDhdUQEuUzRBDVAfHzsCBA8DJgYFDTFNHgAnKUg"
-        },
-        {
-            "key": "巴士",
-            "name": "巴士|弹幕",
-            "type": 3,
-            "api": "csp_Dm84"
-        },
-        {
-            "key": "全网",
-            "name": "全网|短剧",
-            "type": 4,
-            "api": "https://103.239.245.69:15151/duanju.php?type=dquark"
-        },
-        {
-            "key": "B站直播",
-            "name": "B站|直播",
-            "type": 3,
-            "api": "csp_BilibiliLive"
-        },
-        {
-            "key": "静月",
-            "name": "养生|京城",
-            "type": 3,
-            "api": "./api/drpy2.min.js",
-            "ext": "./js/养生.js"
         },
         {
             "key": "盼盼",
