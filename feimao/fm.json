@@ -3,7 +3,7 @@
 {
     "spider": "./spider.jar",
     "wallpaper": "https://深色壁纸.xxooo.cf/",
-    "logo": "http://hello.xn--z7x900a.com/fm.gif",
+    "logo": "./hmbb.gif",
     "sites": [
         {
             "key": "豆瓣",
