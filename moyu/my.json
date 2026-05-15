@@ -65,6 +65,23 @@
             }
         },
         {
+            "key": "FishZhizhen",
+            "name": "至臻｜4K",
+            "type": 3,
+            "api": "csp_FishCloud",
+            "searchable": 1,
+            "ext": {
+                "site": [
+                    "https://mihdr.top",
+                    "https://www.mihdr.top",
+                    "https://www.miqk.cc",
+                    "https://zhizhenpan.com/",
+                    "https://zhizhen8.click",
+                    "https://www.zhizhen8.click"
+                ]
+            }
+        },
+        {
             "key": "Libvio",
             "name": "立播｜4K",
             "type": 3,
@@ -144,23 +161,6 @@
                     "http://fmao.site",
                     "http://fmao.shop",
                     "http://xiaocgege.shop"
-                ]
-            }
-        },
-        {
-            "key": "FishZhizhen",
-            "name": "至臻｜4K",
-            "type": 3,
-            "api": "csp_FishCloud",
-            "searchable": 1,
-            "ext": {
-                "site": [
-                    "https://mihdr.top",
-                    "https://www.mihdr.top",
-                    "https://www.miqk.cc",
-                    "https://zhizhenpan.com/",
-                    "https://zhizhen8.click",
-                    "https://www.zhizhen8.click"
                 ]
             }
         },
