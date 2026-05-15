@@ -89,7 +89,13 @@
             "playerType": 2,
             "api": "csp_Wogg",
             "ext": {
-                "site": "https://wogg.xxooo.cf/"
+                "site": [
+                    "https://wogg.xxooo.cf",
+                    "https://woggpan.888484.xyz",
+                    "https://wogg.333232.xyz",
+                    "http://woggpan.xxooo.cf",
+                    "https://www.wogg.one"
+                ]
             }
         },
         {
