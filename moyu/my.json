@@ -34,7 +34,6 @@
             "key": "Wogg",
             "name": "玩偶｜4K",
             "type": 3,
-            "playerType": 2,
             "api": "csp_Wogg",
             "searchable": 1,
             "changeable": 1,
