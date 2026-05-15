@@ -10,8 +10,7 @@
 
 ## 接口短链
 
-[https://ourl.cn/XzPEc3](https://ourl.cn/XzPEc3)
-
+[https://ourl.cn/nZxVBT](https://ourl.cn/nZxVBT)
 ## 奇奇本地包下载
 
 
