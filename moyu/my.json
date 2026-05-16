@@ -9,7 +9,7 @@
             "key": "Douban",
             "name": "豆瓣｜推荐",
             "type": 3,
-            "api": "csp_Douban",
+            "api": "csp_DoubanFishGuard",
             "indexs": 1,
             "searchable": 0,
             "filterable": 1,
@@ -19,13 +19,13 @@
             "key": "FishConfig",
             "name": "设置｜中心",
             "type": 3,
-            "api": "csp_FishConfig"
+            "api": "csp_FishConfigFishGuard"
         },
         {
             "key": "YGP",
             "name": "新片｜预告",
             "type": 3,
-            "api": "csp_YGP",
+            "api": "csp_YGPFishGuard",
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1
@@ -34,7 +34,7 @@
             "key": "Wogg",
             "name": "玩偶｜4K",
             "type": 3,
-            "api": "csp_Wogg",
+            "api": "csp_WoggFishGuard",
             "searchable": 1,
             "changeable": 1,
             "filterable": 1,
@@ -53,7 +53,7 @@
             "key": "FishMuou",
             "name": "木偶｜4K",
             "type": 3,
-            "api": "csp_FishCloud",
+            "api": "csp_FishCloudFishGuard",
             "searchable": 1,
             "ext": {
                 "site": [
@@ -68,7 +68,7 @@
             "key": "FishZhizhen",
             "name": "至臻｜4K",
             "type": 3,
-            "api": "csp_FishCloud",
+            "api": "csp_FishCloudFishGuard",
             "searchable": 1,
             "ext": {
                 "site": [
@@ -85,7 +85,7 @@
             "key": "Libvio",
             "name": "立播｜4K",
             "type": 3,
-            "api": "csp_Libvio",
+            "api": "csp_LibvioFishGuard",
             "searchable": 1,
             "changeable": 1,
             "ext": {
@@ -101,7 +101,7 @@
             "key": "KZN",
             "name": "指南｜4K",
             "type": 3,
-            "api": "csp_KZN",
+            "api": "csp_KZNFishGuard",
             "searchable": 1,
             "changeable": 1
         },
@@ -109,7 +109,7 @@
             "key": "Qiwei",
             "name": "七味｜4K",
             "type": 3,
-            "api": "csp_Qiwei",
+            "api": "csp_QiweiFishGuard",
             "searchable": 1,
             "filterable": 0,
             "ext": {
@@ -128,7 +128,7 @@
             "key": "gying",
             "name": "观影｜4K",
             "type": 3,
-            "api": "csp_Gying",
+            "api": "csp_GyingFishGuard",
             "searchable": 1,
             "quickSearch": 0,
             "filterable": 0,
@@ -150,7 +150,7 @@
             "key": "FishLabi",
             "name": "蜡笔｜4K",
             "type": 3,
-            "api": "csp_FishCloud",
+            "api": "csp_FishCloudFishGuard",
             "searchable": 1,
             "ext": {
                 "site": [
@@ -168,7 +168,7 @@
             "key": "FishDuoduo",
             "name": "多多｜4K",
             "type": 3,
-            "api": "csp_FishCloud",
+            "api": "csp_FishCloudFishGuard",
             "searchable": 1,
             "ext": {
                 "site": [
@@ -182,7 +182,7 @@
             "key": "FishErxiao",
             "name": "二小｜4K",
             "type": 3,
-            "api": "csp_FishCloud",
+            "api": "csp_FishCloudFishGuard",
             "searchable": 1,
             "ext": {
                 "site": [
@@ -198,7 +198,7 @@
             "key": "FishHuban",
             "name": "虎斑｜4K",
             "type": 3,
-            "api": "csp_FishCloud",
+            "api": "csp_FishCloudFishGuard",
             "searchable": 1,
             "ext": {
                 "site": [
@@ -207,182 +207,10 @@
             }
         },
         {
-            "key": "ALLLive",
-            "name": "星河｜共影",
-            "type": 3,
-            "api": "csp_ALLLive",
-            "searchable": 1
-        },
-        {
-            "key": "FishPs",
-            "name": "鱼鱼｜盘搜",
-            "type": 3,
-            "api": "csp_FishPs",
-            "searchable": 1,
-            "filterable": 0
-        },
-        {
-            "key": "bili",
-            "name": "笔触｜琉璃",
-            "type": 3,
-            "api": "csp_Bili",
-            "searchable": 1,
-            "quickSearch": 1,
-            "ext": {
-                "cookie": ""
-            }
-        },
-        {
-            "key": "zhiqiu",
-            "name": "听风｜知秋",
-            "type": 3,
-            "api": "csp_zhiqiu",
-            "searchable": 1,
-            "ext": "https://fishapi.wya6.com/fish/zhiqiu.php"
-        },
-        {
-            "key": "fishhxq",
-            "name": "韩圈｜影视",
-            "type": 3,
-            "api": "csp_FishHxq",
-            "ext": "https://fishapi.wya6.com/fish/fishhxq.php"
-        },
-        {
-            "key": "Kan360",
-            "name": "流离｜寒鸦",
-            "type": 3,
-            "api": "csp_Kan360",
-            "searchable": 1,
-            "filterable": 1,
-            "ext": {
-                "filter": "https://open.wya6.com/d/down/2026/json/360.json",
-                "fishjx": [
-                    "https://jx.xmflv.com/?url="
-                ]
-            }
-        },
-        {
-            "key": "Rebo",
-            "name": "热播｜APP",
-            "type": 3,
-            "api": "csp_AppRJ",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 0,
-            "ext": {
-                "url": "http://v.rbotv.cn"
-            }
-        },
-        {
-            "key": "三秋影视",
-            "name": "三秋｜APP",
-            "api": "csp_App3Q",
-            "type": 3,
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 0
-        },
-        {
-            "key": "若寒",
-            "name": "若寒｜APP",
-            "type": 3,
-            "api": "csp_AppEy",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "AQRujO/5SnKoiRduCykqhbV9tdvERLolZv7pB+kGKsMHVROei4qksg/bCne63VY/XBMwYGiP8LX8StcJA9GE+RikzNprvURBWi9DUuMHogzHnnmKaJRyCH+KlExdU4D+y3XpcKYkW2AQ+mipyZ1HEOMSXJO7ZfjVg+CcMWywKbF1FnaNJ+4TLZkhvwWDunLQ7CDUaTbuu8jS4a8gQsNPLM7Ecpn1IP1cmigkW2LzEJ40Gdu1k0s245buvG/ttYP7SCnslX6aRPKWvU9Gbi6rNNu0sMfcz1f2w7HcCSNVGOOHiqG/fnvoaSHIFF7EmB+yc56lIBXicH3p15R+/bM4P9o77w+GHH4JWkSPbmO7Vp6S4BsIId1OrKuaItlXxdRD6IRv9QPzd8JglSVQjzDHMeVXoAaTzjbYVKG1WuPu0IiiVgSvr/ox1S4IoBw8t73VS3m7WdBDau/wJgneY3p5cj4rDNzA1SQFHChZ3sRjUA+4uUHy65Ve2qaRA5EzAfKWUPJHOIwj2XNh7g7ON426D6h6hPy/uUxBmVK/8j8UuF/SbTCKc168giq73b8/i1TMNijpwJIloU2xPG6j0Ai3yvef9VFXiN6pkHTTf8Bbo8qIMRXa4scWfS9VP9ajcGz4J2kv/TBfaGGLvcvZhbRD/Tg1v4H/qYh02Ye/JhBQpxQlS71T5kAovssYHZDAQbXvFQ=="
-        },
-        {
-            "key": "玄羽",
-            "name": "玄羽｜APP",
-            "type": 3,
-            "api": "csp_AppEy",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "AYkFcxAW1/H8qBIvCXg06UCsEeWycnMARrwHRXVUuhfhOvABG1rLyqTCA63FS6zxVyQH5XQKJEdiFxdaz9qv2hz8REyg4jJFbB8GBaqeZl8S2cJosjLkXBoJaAF906SjQKFQEv1Brx4siFRoPGf3kHf6G34yvSbSidrOeCp0gy8JC0z5A5h5EibJRKYb71kuWENBj5iKKJH6p4YBDTd1KuSkk8roF2SmoM3EnuZElODtmptP73kvrcx5gaePc4lGkhFacO554amj1ElueN8w6hkFSNGep3GvhWk03ysJ8uwDzoJ8jE/2QxxRkHpxin7q4BzJ06nElmlwGE0FIZVgmTy56l8JyDUVTyH9QXY8ElGNO8WPg1cfglIhkTVTrmnkKHk8aN75/5Gqa85HmiJhQL1yBMVh1XthrN9HLHiChU/NthakORMUlwN54hrt76d9BJeihYnpOCtCgKRXOpfgmTWJsPxpzJMYcEq/GKXoNGF2InF9E4OUNbqhS80BE4pSCn2UaxGjFo7WIhPOrx4JgN/DRjfmq+b37UeQVOjHdGtehYRhiYbDYB1F4+zrabSCa4LO2/QE2FqvNleAtlbCvGUwUPU9cVJmiqFRASffYKqaclISN0dvcejhJn5kLehWAA9icGXAGjIe2td+I6vKaXBka1cky4w99sCLbGLjGHjMzF2b++o25rs8yxo2D2WYAcDb19JLQ4kU+JYQasD4/DhkMH6W6NE8FvOOlhhaY5WEDVXevbvsNlPxd/HxE+F8Ews+CEUxeZNFFp6IPzw7KzU="
-        },
-        {
-            "key": "如兰",
-            "name": "如兰｜APP",
-            "type": 3,
-            "api": "csp_AppEy",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "AaeTmp/RhjlFhfvl9ftvxmADagoMA0JbssweeMNvggc74qDDjnFtMMoId6v25iR7TqMF0GiLKJFnrP4nZQ42n/O44e5moWmeYwerhYpuYiKHiimDjx7oxt+Hqxr5vtjh0yWMfnWvK/VVKsGhHjH6ejmNsyMGOrZzm3FdION/Gv/EgLPwWISHC+reUl8AtulbCvcqI4r5S3OGNIKJVe7HHLpOUaBQctVbEowHJTI0CYUpIp+EoLhByNSs+6x9V7KdZZuB5ARBoG6bOot7gYQECQxKLN7w3gUgp/bLf+Gmi0NG2u2tK31gqPuwJzgWmh2TmbxvEV5CVtK6pPkfpQDvPXQb1BXVkel58XiGNkiPsbeUyO7QST/vR9cP4O0vJJ6Kc5yO3rU5x87bysEPMlx1Tf/LOQAE/H63z41PhP9QwUHzwR5dTCdazsZ3EvKKpf7DvqrnJG8Nshui3HJ0cApzfV6F5t2As2D5FXInRHle0sSBNFdGqy3itkiCHbkSQna7UF4ant79EGzKUiaMVbwjRnY05gaP1638pWkQkE/TeD72PHTmrU1hx/R7kexvpyEgNp/ToyJb8L2xri5cwyjtSUaqUxfLaVcaJoRwv4rFpySaji3QcPOvvXf/kYLGGadD0vekWd3usTjaJOyRzDVpUDOLhjn5MvuSDLfd8zSsNeWIWX3xOhohSbhcgXYO/78LQPU0i2kICmXG5jRcUztUa1lBoXzo68kWUVgBxP1u3HKJebXD4GaPA44lrj3Ai96zFg=="
-        },
-        {
-            "key": "敛芳",
-            "name": "敛芳｜APP",
-            "type": 3,
-            "api": "csp_AppEy",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "AWknFymW1QKzSllAr8Xyu2C757hMHfJbRCntpfFfre6wRHfEIOHUNSTCyRBp03+VzozAIgD0SImEo1rfkMlDYRkK9IjTbpDjVOh99Wf1I4J5K8N2CrSYuolSbbp5Um9VGqD4hGXpmeMExotv1CSaaSHrxWnTu0WJPVY5vBaPi6ox96sz8WB1wTL6a6oQX+rEbrS4neeZ9No9wbLnleqaQBti1EDWDE3aKKxUYP7aVLdu/lVNLzmv803SXsxf6zbyzuaS7W8IOOcA/kkcwVlBE+JcTI0pzLrn1NkTycBhyN5erRjjQ95/GOjShccieCAOiLlVhoInwCvJ0Qg1/19DSbrvOBjWZ2SEiVkguGKQqtWuQH9ZQHuHDcLd6LnbUgdigf7QuhvYXSQI5CEvfXXs3qCGjbKqgHGBkG7b5f952nbptJDY95Qm42TNTIHypkN3k9o8QlBUXnd+ih8oBlwef/6ox/ISSUmU8xDnf4Oju4/dE+5cCI9VtUayx1PrPEL2jcX+BmUUdio1hBqN2bUHjdyysk7j7yKRjIRDZxuHJH6tZILJ++5360MkRDDixM85Ia+T7UpB0QbeLVFikJPo576VV7sd02kUuFx+eAhxGhAstPv2H+yTuy+uiJfemkEQUSQa2xF1Gd32H/4dJRKupgBHcy6MrTfOjIy7AOVJFlZAO3N9HMpsIvYYoTPIWvAdWHjmodTt7S6aCiLQYJtq4hMjn9C0kkvfnpWyBsLh+ioCvxy0gCZmz2Z+d/ARqVyHxQ=="
-        },
-        {
-            "key": "怀桑",
-            "name": "怀桑｜APP",
-            "type": 3,
-            "api": "csp_AppEy",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "AeHuBSFDbAg/ylzse3+sKJiOifGa2TAeXRasJGz6TZ4+yymVR+BWV6xdRKTQMKZsmNpjDEUyruZx8khwlylty5QHVyVgEc86h+xHEsgd8X9pWetfcI1JVnJVhzZB0ohjgKOd/fWvfmFCYNGyxzPHBxr8TNil5FRmEeExFJ9eG0/9Pb1LbacXSzxmEFaNBKY1qTkVGn3dvMF+l2Y0D53SVoDcNJBBV09c+amJ2gdzXJkQhOcZGNrHpbI2YZ8kSJY6+F7m9W2VReSe+K3Wk3GG2FdADAOY2VGcQIlzpdG1Vl8Elnlwtw32/ETisfMQfbo2NR2ObG1j7R80IEWsyMU7DxzbItGG1Rc+xKVWvyK4V/6lk/W83NkT++/IetW+YR5cz+hi5XjwoPdb+dWa+2VNlKXFfbJNcwAs34W3r0ArRdHUealTISR+llsOM66AliNbAu1VjRkRDXb0nFH8NdNaVfAvfVgYKvQzAY1s6jNQmk1SL0jIIq6+aDExiiO0DRgu/gD3PupsI/PRsTHjMfHmUAbQs87r0QRGS2EYa23Fi3oCZe5NczTAv7DMF8zTni24RCP8ex+hzCUTeRtWEEwy1lFdcxqpMx40+xl6ydmZRxMAia1CxygKCAITK1frNWVSTc5477fgat7uJqTVxpbkCwLIDuYWQzepWWFjQLfUqTSP9ghikjKNFK3QKIXA80RFuj30U9nqAEWJ91DXLp63+lI="
-        },
-        {
-            "key": "长泽",
-            "name": "长泽｜APP",
-            "type": 3,
-            "api": "csp_AppEy",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "AeljPqr62826qs6bzc6j9/RpTf5QqEVJa4b5H5OWsIYiMVQz3YGn42ihdsNCoQ1qLIRV4jal/W/zW1pKZYZ0RmoCuYh8eFjKQlrB6+iuxYA/b8wdMZt1uIIDQ3V8O4x+Wvio/epeb64UT81bzT4d/KmkXob57oV0DKhlk9v/UEnPdxVW5dePxXsRGUWQiuwVAJRl5cpv58UAS+MMaxvlwviCWYD/lfr+YU1z/30AKZ79JCX2YyCiWOzuu30r2HKYAPyg5mizKoX/9IsnW8qD/91OL0pU7v7Nz7EUbd47aRkgQQtAxPp7k8x11SE4RwODbNg496QYlseyXh/98aNEzxZ2QYC8dAg1ZD9TBHfqmWvStmJ5Hgh09OP/pvsCqbfHknWj+IpM700L8gFa+QsCVOF5In1wEW6nIpXymrGa5ojn6M5Abay4P6xcOVtcH4TSQshv7CmjTBdPzfrNVjwreJ3z1uULGIwhaTa1yFxFaYKaKZJm10Nnn7oxLgkd5MzZAPmAljAH8i46ovcPv5Vq+hq6muI98BQlv4ge0lWfwwJCxtjb0DMjuIZrmnRI12iMFkdG8+31iu5hj15v2GAE3vMs9tt8mpx+cjw0gPfoDHNDUn2Cui1eDi0X6TZ9X9U6v9JRMAsxnL9UO1098u5woVDpToRzwBv9TVI1SsW5R/T1AicCx66ZDG1oQZv1aOF1OSKcmQTxdrs0a1KT1/1D4YKfkL3jGKicvjJAFmTkLX4LlJMScSI0t4mxpNs4gF4G8CHgr6QCcHef9iuM/trTkmc="
-        },
-        {
-            "key": "琼林",
-            "name": "琼林｜APP",
-            "type": 3,
-            "api": "csp_AppGet",
-            "searchable": 1,
-            "changeable": 1,
-            "ext": "AVnc8GrQ60b99UNiByaoVBLi0nQIye9tIJpcatPQxKNejwWbESMtZqTSqvqu4Ta6bruCw3DXci6tk9xM6kX3ssDazlhQPK70UpwzMQMesOOv6BNwKiujCiDpSmZoaaDhsFuelCejTDy5OuTOA06RCzqauWujH6J7eQBNk9VCBHEFfOl+f81FzcbLyWsXEBZZCKgDBBZBpd0tPJ9AyFVPjGE="
-        },
-        {
-            "key": "厌离",
-            "name": "厌离｜APP",
-            "type": 3,
-            "api": "csp_AppGet",
-            "searchable": 1,
-            "changeable": 1,
-            "ext": "AdXcX8ru5Zl9wVSLOKeQ1kY7I7JxfWQCfFqX6dJ1sonNK5ihv7paSCYG497KQT+JVG3zl3/sj8zoR/uMfuapGBtRpjglYYlCzaGXjQ5hVVYGUuoSUUcEbCV22LAAo8fHgakvUH0PLIQeyBXSNcA82EUGWQNaS6luPJEBNj8Ly+Uv1YOnMmxtjTyqZZhTKJkO9CUVF37aNDG5t4fmM2eOA/A="
-        },
-        {
-            "key": "枫眠",
-            "name": "枫眠｜APP",
-            "type": 3,
-            "searchable": 1,
-            "changeable": 1,
-            "api": "csp_AppGet",
-            "ext": "ASMHPkmuZ3CO/NClj0tmMm6+eAespRDbvs3SHzlihurNEQ5i5S04bFidHFgIHh+7xoQusdbGBRTQh8vDeQlPQfaE2J2v/si9CU+d15PvpRVNqmPnqYifF3NSZG/8ThCtOYIXylbM5t4wTISNF0E75JF5qRewz0ZinZsp67CfthmvMObyuUCPCTxnx/ErDMZ7pW9OiT9QYQI/9yIISmcCEas="
-        },
-        {
-            "key": "思追",
-            "name": "思追丨APP",
-            "type": 3,
-            "api": "csp_AppGet",
-            "searchable": 1,
-            "changeable": 1,
-            "ext": "AXKrbZM79eMAGzneN3Wkitxcf6NgrYa8FRcHB2RFYrIa1DzrMAA3EZXW6am5C78oAR/IcCmhk7ghFpBqEJ8/VC63AO40BE4oVlRZpiP8nHBpCnKhO9Ve26VcA8pR6Hj5NaeQHhkhkHLBDW4qlc86fpzDMK0o7K0sPvglsUwQxl6I4IDKDzXlVF4su1fy63GpLqrj+BMY1G2OjVsC6G7XBRg="
-        },
-        {
             "key": "LeiJing",
             "name": "雷鲸｜4K",
             "type": 3,
-            "api": "csp_LeiJing",
+            "api": "csp_LeiJingFishGuard",
             "searchable": 1,
             "changeable": 1,
             "ext": {
@@ -398,7 +226,7 @@
             "key": "PanTa",
             "name": "盘它｜4K",
             "type": 3,
-            "api": "csp_PanTa",
+            "api": "csp_PanTaFishGuard",
             "searchable": 1,
             "changeable": 1
         },
@@ -406,7 +234,7 @@
             "key": "夸父",
             "name": "夸父｜4K",
             "type": 3,
-            "api": "csp_FishKF",
+            "api": "csp_FishKFFishGuard",
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
@@ -426,7 +254,7 @@
             "key": "ShuangXing",
             "name": "双星｜4K",
             "type": 3,
-            "api": "csp_ShuangXing",
+            "api": "csp_ShuangXingFishGuard",
             "searchable": 1,
             "quickSearch": 1,
             "changeable": 1,
@@ -439,7 +267,7 @@
             "key": "DianYingYunJi",
             "name": "云集｜4K",
             "type": 3,
-            "api": "csp_DianYingYunJi",
+            "api": "csp_DianYingYunJiFishGuard",
             "searchable": 1,
             "changeable": 1
         },
@@ -447,7 +275,7 @@
             "key": "YunPanBa",
             "name": "盘吧｜4K",
             "type": 3,
-            "api": "csp_YunPanBa",
+            "api": "csp_YunPanBaFishGuard",
             "searchable": 1,
             "ext": "https://yunpan6.com/"
         },
@@ -455,7 +283,7 @@
             "key": "YsSo",
             "name": "奕搜｜4K",
             "type": 3,
-            "api": "csp_YsSo",
+            "api": "csp_YsSoFishGuard",
             "searchable": 1,
             "ext": "https://ysso.cc"
         },
@@ -463,14 +291,14 @@
             "key": "SeedHub",
             "name": "SeedHub｜4K",
             "type": 3,
-            "api": "csp_SeedHub",
+            "api": "csp_SeedHubFishGuard",
             "searchable": 1
         },
         {
             "key": "CZ",
             "name": "厂长｜影视",
             "type": 3,
-            "api": "csp_CZ",
+            "api": "csp_CZFishGuard",
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 0,
@@ -480,7 +308,7 @@
             "key": "wencai",
             "name": "文才｜影视",
             "type": 3,
-            "api": "csp_WenCai",
+            "api": "csp_WenCaiFishGuard",
             "searchable": 1,
             "ext": "https://www.tjrongze.com,https://y2s52n7.com,https://m.hkybqufgh.com,https://m.sizhengxt.com,https://m.9zhoukj.com,https://m.jiabaide.cn"
         },
@@ -488,14 +316,14 @@
             "key": "Guazi",
             "name": "瓜子｜影视",
             "type": 3,
-            "api": "csp_Guazi",
+            "api": "csp_GuaziFishGuard",
             "searchable": 1
         },
         {
             "key": "Zxzj",
             "name": "在线｜影视",
             "type": 3,
-            "api": "csp_Zxzj",
+            "api": "csp_ZxzjFishGuard",
             "searchable": 1,
             "ext": "https://www.zxzjhd.com"
         },
@@ -503,7 +331,7 @@
             "key": "TvDy",
             "name": "天堂｜影视",
             "type": 3,
-            "api": "csp_TvDy",
+            "api": "csp_TvDyFishGuard",
             "searchable": 1,
             "filterable": 1
         },
@@ -511,7 +339,7 @@
             "key": "MqTv",
             "name": "麻雀｜影视",
             "type": 3,
-            "api": "csp_MqTv",
+            "api": "csp_MqTvFishGuard",
             "searchable": 1,
             "ext": "https://www.mqtv.cc"
         },
@@ -519,7 +347,7 @@
             "key": "Ikanbot",
             "name": "爱看｜影视",
             "type": 3,
-            "api": "csp_Ikanbot",
+            "api": "csp_IkanbotFishGuard",
             "searchable": 1,
             "filterable": 0,
             "ext": "{\"box\": \"TVBox\", \"danmu\": false}"
@@ -528,7 +356,7 @@
             "key": "Hema",
             "name": "河马｜短剧",
             "type": 3,
-            "api": "csp_Hema",
+            "api": "csp_HemaFishGuard",
             "searchable": 1,
             "quickSearch": 1,
             "类型": "短剧",
@@ -538,7 +366,7 @@
             "key": "FishDuanju",
             "name": "超级｜短剧",
             "type": 3,
-            "api": "csp_FishDuanju",
+            "api": "csp_FishDuanjuFishGuard",
             "searchable": 1,
             "quickSearch": 1,
             "类型": "短剧",
@@ -548,7 +376,7 @@
             "key": "HHkk",
             "name": "好看｜短剧",
             "type": 3,
-            "api": "csp_HHkk",
+            "api": "csp_HHkkFishGuard",
             "searchable": 1,
             "quickSearch": 1,
             "类型": "短剧",
@@ -559,14 +387,14 @@
             "name": "番薯丨动漫",
             "type": 3,
             "quickSearch": 1,
-            "api": "csp_AppGet",
-            "ext": "N5u2FS3i/elUFAoSVYBzne8+r0r/kX1E+KdfHQ6FVY6/wHmWZoFfjCv2f3YfjfSbJm0/trORuqYE1PzwW9Z2IT6SnMHG1Beaes3+9Ad9p9Dy7MPFARRTA33haDFOP4SZtpBkd4utjKPyprZNVKMxvA=="
+            "api": "csp_AppGetFishGuard",
+            "ext": "AYCBc+fWtk3Ww5c5E60Bo/WU/T4E6CeEycr4XI4G5qlbHuIqnYVSkEL3SU7CelK5Try8WfXhaNH+v57CAk7j2WsarjlyXV8uztVoM5+2qHrAlnCAla8ODUNhdN9dxGa8uKfX0x1ICKB+3HQfIKV9BRVGyFNO/xqOPnpLDK0+jGr/"
         },
         {
             "key": "XiFan",
             "name": "稀饭｜动漫",
             "type": 3,
-            "api": "csp_XiFan",
+            "api": "csp_XiFanFishGuard",
             "searchable": 1,
             "quickSearch": 1,
             "ext": {
@@ -577,27 +405,27 @@
             "key": "Manbo",
             "name": "曼波｜动漫",
             "type": 3,
-            "api": "csp_AppGet",
+            "api": "csp_AppGetFishGuard",
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "N5u2FS3i/elUFAoSVYBznRMvuK1KLSV1DN4HBOs//GWvWksCYwvNDoPf16hWOVsnftf5i6fmT2utdVhcCOZaQrECH9tmtsiG6f+4GP6h27DsVeuwTbSSbDAx+58B3Gtp"
+            "ext": "AUzH3yIWvgQkyhQw17uONTsfuN8PupZ/LJdr5C31Y/CWlzSNmarYI5kaJYN5c0p6+Oq0tXuTutQo9MHHytxulL5kmapDuAK5+2NTlpsUgBnr0tOamm69Fwb+jFDQ7VW46qf5EFY+Ea3PHzkpfeObKPM="
         },
         {
             "key": "Gugu",
             "name": "咕咕｜动漫",
             "type": 3,
-            "api": "csp_AppGet",
+            "api": "csp_AppGetFishGuard",
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "N5u2FS3i/elUFAoSVYBznXUeEAt3X+JD9YKl5MjJCWQR4USFFmoQtTGE0mJDLVeOv00lc599YBqQsYAl+dw0i/1Jq4wgCPncJOqYhT21G0n+faZ/AOCfRq6fnnZcQCfX"
+            "ext": "ARKK6LQnl4dB2QciLugEzZ8QD2WdbeK23tPAre1QOEbbL5BfB8cV39JNfSd2+Xhcqr/z+V5To0krLYHUX7NtRtwYBC44/9ayncZMomdbv4ZCBNOUsBEedUQx7SWf1J0pE0BsLG9QlR8tURwRwx/sqT0="
         },
         {
             "key": "Jianpian",
             "name": "荐片｜磁力",
             "type": 3,
-            "api": "csp_Jianpian",
+            "api": "csp_JianpianFishGuard",
             "searchable": 1,
             "filterable": 1
         },
@@ -605,7 +433,7 @@
             "key": "Xb6v",
             "name": "6 V｜磁力",
             "type": 3,
-            "api": "csp_Xb6v",
+            "api": "csp_Xb6vFishGuard",
             "searchable": 1,
             "filterable": 1
         },
@@ -613,14 +441,14 @@
             "key": "TGSou",
             "name": "糖果｜搜索",
             "type": 3,
-            "api": "csp_TGSou",
+            "api": "csp_TGSouFishGuard",
             "searchable": 1
         },
         {
             "key": "ChuXin",
             "name": "初心｜音乐",
             "type": 3,
-            "api": "csp_ChuXin",
+            "api": "csp_ChuXinFishGuard",
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 0
@@ -629,7 +457,7 @@
             "key": "aiting",
             "name": "爱听｜音乐",
             "type": 3,
-            "api": "csp_AiTingMusic",
+            "api": "csp_AiTingMusicFishGuard",
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 0
@@ -638,7 +466,7 @@
             "key": "Music24bit",
             "name": "无损｜音乐",
             "type": 3,
-            "api": "csp_Music24bit",
+            "api": "csp_Music24bitFishGuard",
             "searchable": 1,
             "changeable": 1,
             "ext": {
@@ -655,7 +483,7 @@
             "key": "TuXiaoBei",
             "name": "小兔｜少儿",
             "type": 3,
-            "api": "csp_TuXiaoBei",
+            "api": "csp_TuXiaoBeiFishGuard",
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 0
@@ -664,7 +492,7 @@
             "key": "BeiLeHu",
             "name": "小虎｜少儿",
             "type": 3,
-            "api": "csp_BeiLeHu",
+            "api": "csp_BeiLeHuFishGuard",
             "searchable": 0,
             "quickSearch": 0,
             "filterable": 0
@@ -673,7 +501,7 @@
             "key": "Kanqiu",
             "name": "看球｜体育",
             "type": 3,
-            "api": "csp_Kanqiu",
+            "api": "csp_KanqiuFishGuard",
             "searchable": 0,
             "filterable": 1,
             "indexs": 0,
@@ -686,7 +514,7 @@
             "key": "Sir88",
             "name": "超全｜体育",
             "type": 3,
-            "api": "csp_Sir88",
+            "api": "csp_Sir88FishGuard",
             "searchable": 0,
             "filterable": 1,
             "indexs": 0,
@@ -698,7 +526,7 @@
             "key": "TingBook",
             "name": "六月｜有声",
             "type": 3,
-            "api": "csp_TingBook",
+            "api": "csp_TingBookFishGuard",
             "searchable": 1,
             "indexs": 0,
             "ext": "https://app.365ting.com",
@@ -710,7 +538,7 @@
             "key": "TingBookJinXia",
             "name": "堇夏｜有声",
             "type": 3,
-            "api": "csp_TingBookJinXia",
+            "api": "csp_TingBookJinXiaFishGuard",
             "searchable": 1,
             "filterable": 1,
             "indexs": 0,
@@ -723,7 +551,7 @@
             "key": "Local",
             "name": "文件｜浏览",
             "type": 3,
-            "api": "csp_Local",
+            "api": "csp_LocalFishGuard",
             "searchable": 0,
             "changeable": 0,
             "indexs": 0,
@@ -735,19 +563,19 @@
             "key": "Market",
             "name": "网盘｜市场",
             "type": 3,
-            "api": "csp_Market",
+            "api": "csp_MarketFishGuard",
             "searchable": 0,
             "indexs": 0,
             "style": {
                 "type": "list"
             },
-            "ext": "KeJpmGBHNDNtao15t//le78AVNnA15NohxNlQzOy74KP4rP9PzNe6/JMxl2ealSMH+DMy3pMWGdoIgfZhbU6Gnwr6RCt2yx5qzhbchh4Dkea8uxJiFKZrXXX+78cGsE5xVesK28LUCDPGza58+ymXCFyviXGbf7VroGuGiCSI3O9U0RJIcWVbQWDQ2lWduKWYyFrlmEPQu3ePYFHUX8EGXDXMr15WH88JVlN7vnLqUhJv4qheq3TMcdceNQZ4e96eiWjAtdlSkOId644S2gQbHPsE1m68RxAx95ZTlMf0sGMFzsDp6MA9eQrbRP3sPWfW4I2nNxjTga+BbnLe5ES7TrsDfzJ7wCqjDAzW2LoHxxvnlJ7qrc+pWpKJARiszk+7dVLhNqhfjWY/i/GftEZiA71wbT4wul4QoPCmVrIYyaFWFxUaVHUVGrqEmw++js/87Xb8sawjnFXROsI6qK0+wRmiiGJ37nw0Dsyuxn7jUMYOpzEQFTlxq8Y3JcBGK8lGIcTrx0OTGwFH8Rhdsur4gdF4fxHM9BvKI5LFAO5wNSpAY429fskzXx97IsdI7HIeSQ+YY5Yir2ZnVeDDBK8qA=="
+            "ext": "AWmNzXUj5sW3E9cmHg7HzJYgcAvvRz30uYzOo5s+V+dNu26wvhfMrZXAaq9RcngbFaXU6gtq9etJ6nql9shxXjY567AyaX/mLQYkQNARHNfUnsxZ3sLFpUWallggHoCuAf0dAiLFsgi3T9KAB9sPHpuYrBF26N3YZX6a62CsVtBgqMXEP0Apg8s12I6R7dUOT0F6+Cr0+P3JmOcA98Ir/RkGi0AaWDwQSPtVOarYdbvhy1WzXn//N9hGjuXYhRnJgOmBiWPZAacCyxbFHLV0G/vjjbEXMK7fLa1KLdJ9RWWz9/Z0UevEdx2CEqTKsJFjD7WOxrsubZps5ylQj3ZQqBF0m9A8wBDhz2oksq5VrXsUolAHAKrNaz0t8K13IRbkxA3fYUH6v2YTzcz5HYrAz7McDNJyDfXLIw3bVwH+FU97"
         },
         {
             "key": "push_agent",
             "name": "推送｜接收",
             "type": 3,
-            "api": "csp_Push",
+            "api": "csp_PushFishGuard",
             "searchable": 0,
             "changeable": 0,
             "indexs": 0,
@@ -757,7 +585,7 @@
             "key": "Fishdrive",
             "name": "摸鱼｜媒体库",
             "type": 3,
-            "api": "csp_FishDrive",
+            "api": "csp_FishDriveFishGuard",
             "indexs": 0,
             "searchable": 1,
             "filterable": 1,
@@ -767,7 +595,7 @@
             "key": "Wallpaper",
             "name": "摸鱼｜壁纸库",
             "type": 3,
-            "api": "csp_Wallpaper",
+            "api": "csp_WallpaperFishGuard",
             "searchable": 0,
             "indexs": 0,
             "quickSearch": 0,

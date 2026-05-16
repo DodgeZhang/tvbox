@@ -69,7 +69,7 @@
                 "cookie": "http://127.0.0.1:9978/file/TVBox/qkcookie.txt",
                 "uccookie": "http://127.0.0.1:9978/file/TVBox/uccookie.txt",
                 "tuctoken": "http://127.0.0.1:9978/file/TVBox/tuctoken.txt",
-                "site": "https://103.239.245.69:16969/"
+                "site": "http://38.76.197.172:16969/"
             }
         },
         {
@@ -79,7 +79,7 @@
             "playerType": 2,
             "api": "csp_Mogg",
             "ext": {
-                "site": "https://103.239.245.69:12521/"
+                "site": "http://38.76.197.172:12521/"
             }
         },
         {
@@ -228,37 +228,37 @@
             "key": "xunlei",
             "name": "迅雷|推送",
             "type": 4,
-            "api": "https://103.239.245.69:15151/api.php?type=xunlei"
+            "api": "http://38.76.197.172:15151/api.php?type=xunlei"
         },
         {
             "key": "123",
             "name": "123|推送",
             "type": 4,
-            "api": "https://103.239.245.69:15151/api.php?type=123"
+            "api": "http://38.76.197.172:15151/api.php?type=123"
         },
         {
             "key": "夸克推送",
             "name": "夸克|推送",
             "type": 4,
-            "api": "https://103.239.245.69:15151/api.php?type=quark"
+            "api": "http://38.76.197.172:15151/api.php?type=quark"
         },
         {
             "key": "优惜",
             "name": "优惜|推送",
             "type": 4,
-            "api": "https://103.239.245.69:15151/api.php?type=uc"
+            "api": "http://38.76.197.172:15151/api.php?type=uc"
         },
         {
             "key": "百度",
             "name": "百度|推送",
             "type": 4,
-            "api": "https://103.239.245.69:15151/api.php?type=baidu"
+            "api": "http://38.76.197.172:15151/api.php?type=baidu"
         },
         {
             "key": "天翼",
             "name": "天翼|推送",
             "type": 4,
-            "api": "https://103.239.245.69:15151/api.php?type=tianyi"
+            "api": "http://38.76.197.172:15151/api.php?type=tianyi"
         },
         {
             "key": "茉莉",

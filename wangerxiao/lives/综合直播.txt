@@ -1,614 +1,966 @@
 #EXTM3U x-tvg-url="https://123.tv1288.xyz/2026.xml"
+#EXTINF:-1 tvg-name="CCTV1" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV1.png" group-title="浙江iptv",CCTV1
+http://183.129.255.66:8480/hls/1/index.m3u8
+#EXTINF:-1 tvg-name="CCTV2" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV2.png" group-title="浙江iptv",CCTV2
+http://183.129.255.66:8480/hls/2/index.m3u8
+#EXTINF:-1 tvg-name="CCTV3" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV3.png" group-title="浙江iptv",CCTV3
+http://183.129.255.66:8480/hls/3/index.m3u8
+#EXTINF:-1 tvg-name="CCTV4" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV4.png" group-title="浙江iptv",CCTV4
+http://183.129.255.66:8480/hls/4/index.m3u8
+#EXTINF:-1 tvg-name="CCTV5" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV5.png" group-title="浙江iptv",CCTV5
+http://183.129.255.66:8480/hls/5/index.m3u8
+#EXTINF:-1 tvg-name="CCTV5plus" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV5plus.png" group-title="浙江iptv",CCTV5+
+http://183.129.255.66:8480/hls/6/index.m3u8
+#EXTINF:-1 tvg-name="CCTV6" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV6.png" group-title="浙江iptv",CCTV6
+http://183.129.255.66:8480/hls/7/index.m3u8
+#EXTINF:-1 tvg-name="CCTV7" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV7.png" group-title="浙江iptv",CCTV7
+http://183.129.255.66:8480/hls/8/index.m3u8
+#EXTINF:-1 tvg-name="CCTV8" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV8.png" group-title="浙江iptv",CCTV8
+http://183.129.255.66:8480/hls/9/index.m3u8
+#EXTINF:-1 tvg-name="CCTV9" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV9.png" group-title="浙江iptv",CCTV9
+http://183.129.255.66:8480/hls/10/index.m3u8
+#EXTINF:-1 tvg-name="CCTV10" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV10.png" group-title="浙江iptv",CCTV10
+http://183.129.255.66:8480/hls/11/index.m3u8
+#EXTINF:-1 tvg-name="CCTV11" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV11.png" group-title="浙江iptv",CCTV11
+http://183.129.255.66:8480/hls/12/index.m3u8
+#EXTINF:-1 tvg-name="CCTV12" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV12.png" group-title="浙江iptv",CCTV12
+http://183.129.255.66:8480/hls/13/index.m3u8
+#EXTINF:-1 tvg-name="CCTV13" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV13.png" group-title="浙江iptv",CCTV13
+http://183.129.255.66:8480/hls/14/index.m3u8
+#EXTINF:-1 tvg-name="CCTV14" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV14.png" group-title="浙江iptv",CCTV14
+http://183.129.255.66:8480/hls/15/index.m3u8
+#EXTINF:-1 tvg-name="CCTV15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV15.png" group-title="浙江iptv",CCTV15
+http://183.129.255.66:8480/hls/16/index.m3u8
+#EXTINF:-1 tvg-name="CCTV16" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV16.png" group-title="浙江iptv",CCTV16
+http://183.129.255.66:8480/hls/17/index.m3u8
+#EXTINF:-1 tvg-name="CCTV17" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV17.png" group-title="浙江iptv",CCTV17
+http://183.129.255.66:8480/hls/18/index.m3u8
+#EXTINF:-1 tvg-name="HTV-1" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/HTV-1.png" group-title="浙江iptv",HTV-1
+http://183.129.255.66:8480/hls/19/index.m3u8
+#EXTINF:-1 tvg-name="HTV-2" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/HTV-2.png" group-title="浙江iptv",HTV-2
+http://183.129.255.66:8480/hls/20/index.m3u8
+#EXTINF:-1 tvg-name="HTV-3" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/HTV-3.png" group-title="浙江iptv",HTV-3
+http://183.129.255.66:8480/hls/21/index.m3u8
+#EXTINF:-1 tvg-name="HTV-4" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/HTV-4.png" group-title="浙江iptv",HTV-4
+http://183.129.255.66:8480/hls/22/index.m3u8
+#EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="浙江iptv",浙江少儿
+http://183.129.255.66:8480/hls/23/index.m3u8
+#EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="浙江iptv",之江频道
+http://183.129.255.66:8480/hls/24/index.m3u8
+#EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="浙江iptv",浙江新闻
+http://183.129.255.66:8480/hls/25/index.m3u8
+#EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="浙江iptv",经济生活
+http://183.129.255.66:8480/hls/26/index.m3u8
+#EXTINF:-1 tvg-name="Zhejiang" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Zhejiang.png" group-title="浙江iptv",浙江卫视
+http://183.129.255.66:8480/hls/27/index.m3u8
+#EXTINF:-1 tvg-name="Anhui" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Anhui.png" group-title="浙江iptv",安徽卫视
+http://183.129.255.66:8480/hls/28/index.m3u8
+#EXTINF:-1 tvg-name="Beijing" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Beijing.png" group-title="浙江iptv",北京卫视
+http://183.129.255.66:8480/hls/29/index.m3u8
+#EXTINF:-1 tvg-name="Dongfang" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Dongfang.png" group-title="浙江iptv",东方卫视
+http://183.129.255.66:8480/hls/30/index.m3u8
+#EXTINF:-1 tvg-name="Guangdong" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Guangdong.png" group-title="浙江iptv",广东卫视
+http://183.129.255.66:8480/hls/31/index.m3u8
+#EXTINF:-1 tvg-name="Hunan" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Hunan.png" group-title="浙江iptv",湖南卫视
+http://183.129.255.66:8480/hls/32/index.m3u8
+#EXTINF:-1 tvg-name="Jiangsu" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Jiangsu.png" group-title="浙江iptv",江苏卫视
+http://183.129.255.66:8480/hls/33/index.m3u8
+#EXTINF:-1 tvg-name="Shenzhen" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Shenzhen.png" group-title="浙江iptv",深圳卫视
+http://183.129.255.66:8480/hls/34/index.m3u8
+#EXTINF:-1 tvg-name="Shandong" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Shandong.png" group-title="浙江iptv",山东卫视
+http://183.129.255.66:8480/hls/35/index.m3u8
+#EXTINF:-1 tvg-name="Sichuan" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Sichuan.png" group-title="浙江iptv",四川卫视
+http://183.129.255.66:8480/hls/36/index.m3u8
+#EXTINF:-1 tvg-name="Chongqing" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Chongqing.png" group-title="浙江iptv",重庆卫视
+http://183.129.255.66:8480/hls/37/index.m3u8
+#EXTINF:-1 tvg-name="Henan" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Henan.png" group-title="浙江iptv",河南卫视
+http://183.129.255.66:8480/hls/38/index.m3u8
+#EXTINF:-1 tvg-name="Hebei" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Hebei.png" group-title="浙江iptv",河北卫视
+http://183.129.255.66:8480/hls/39/index.m3u8
+#EXTINF:-1 tvg-name="Yunnan" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Yunnan.png" group-title="浙江iptv",云南卫视
+http://183.129.255.66:8480/hls/40/index.m3u8
+#EXTINF:-1 tvg-name="Hubei" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Hubei.png" group-title="浙江iptv",湖北卫视
+http://183.129.255.66:8480/hls/41/index.m3u8
+#EXTINF:-1 tvg-name="Tianjin" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Tianjin.png" group-title="浙江iptv",天津卫视
+http://183.129.255.66:8480/hls/42/index.m3u8
+#EXTINF:-1 tvg-name="Shanxi" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Shanxi.png" group-title="浙江iptv",陕西卫视
+http://183.129.255.66:8480/hls/43/index.m3u8
+#EXTINF:-1 tvg-name="Jiangxi" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Jiangxi.png" group-title="浙江iptv",江西卫视
+http://183.129.255.66:8480/hls/44/index.m3u8
+#EXTINF:-1 tvg-name="Shanxi_" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Shanxi_.png" group-title="浙江iptv",山西卫视
+http://183.129.255.66:8480/hls/45/index.m3u8
+#EXTINF:-1 tvg-name="Liaoning" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Liaoning.png" group-title="浙江iptv",辽宁卫视
+http://183.129.255.66:8480/hls/46/index.m3u8
+#EXTINF:-1 tvg-name="Heilongjiang" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Heilongjiang.png" group-title="浙江iptv",黑龙江卫视
+http://183.129.255.66:8480/hls/47/index.m3u8
+#EXTINF:-1 tvg-name="Neimeng" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Neimeng.png" group-title="浙江iptv",内蒙古卫视
+http://183.129.255.66:8480/hls/48/index.m3u8
+#EXTINF:-1 tvg-name="Hunan10" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Hunan10.png" group-title="浙江iptv",金鹰卡通
+http://183.129.255.66:8480/hls/49/index.m3u8
+#EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="浙江iptv",重温经典
+http://183.129.255.66:8480/hls/50/index.m3u8
 #EXTINF:-1 tvg-name="CCTV1" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV1.png" group-title="咪咕央卫",CCTV1
-http://111.231.6.102:1234/608807420
+http://125.80.112.110:3005/608807420
 #EXTINF:-1 tvg-name="CCTV2" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV2.png" group-title="咪咕央卫",CCTV2
-http://111.231.6.102:1234/631780532
+http://125.80.112.110:3005/631780532
 #EXTINF:-1 tvg-name="CCTV3" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV3.png" group-title="咪咕央卫",CCTV3
-http://111.231.6.102:1234/624878271
+http://125.80.112.110:3005/624878271
 #EXTINF:-1 tvg-name="CCTV4" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV4.png" group-title="咪咕央卫",CCTV4
-http://111.231.6.102:1234/631780421
+http://125.80.112.110:3005/631780421
 #EXTINF:-1 tvg-name="CCTV5" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV5.png" group-title="咪咕央卫",CCTV5
-http://111.231.6.102:1234/641886683
+http://125.80.112.110:3005/641886683
 #EXTINF:-1 tvg-name="CCTV5plus" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV5plus.png" group-title="咪咕央卫",CCTV5+
-http://111.231.6.102:1234/641886773
+http://125.80.112.110:3005/641886773
 #EXTINF:-1 tvg-name="CCTV6" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV6.png" group-title="咪咕央卫",CCTV6
-http://111.231.6.102:1234/624878396
+http://125.80.112.110:3005/624878396
 #EXTINF:-1 tvg-name="CCTV7" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV7.png" group-title="咪咕央卫",CCTV7
-http://111.231.6.102:1234/673168121
+http://125.80.112.110:3005/673168121
 #EXTINF:-1 tvg-name="CCTV8" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV8.png" group-title="咪咕央卫",CCTV8
-http://111.231.6.102:1234/624878356
+http://125.80.112.110:3005/624878356
 #EXTINF:-1 tvg-name="CCTV9" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV9.png" group-title="咪咕央卫",CCTV9
-http://111.231.6.102:1234/673168140
+http://125.80.112.110:3005/673168140
 #EXTINF:-1 tvg-name="CCTV10" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV10.png" group-title="咪咕央卫",CCTV10
-http://111.231.6.102:1234/624878405
+http://125.80.112.110:3005/624878405
 #EXTINF:-1 tvg-name="CCTV11" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV11.png" group-title="咪咕央卫",CCTV11
-http://111.231.6.102:1234/667987558
+http://125.80.112.110:3005/667987558
 #EXTINF:-1 tvg-name="CCTV12" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV12.png" group-title="咪咕央卫",CCTV12
-http://111.231.6.102:1234/673168185
+http://125.80.112.110:3005/673168185
 #EXTINF:-1 tvg-name="CCTV13" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV13.png" group-title="咪咕央卫",CCTV13
-http://111.231.6.102:1234/608807423
+http://125.80.112.110:3005/608807423
 #EXTINF:-1 tvg-name="CCTV14" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV14.png" group-title="咪咕央卫",CCTV14
-http://111.231.6.102:1234/624878440
+http://125.80.112.110:3005/624878440
 #EXTINF:-1 tvg-name="CCTV15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV15.png" group-title="咪咕央卫",CCTV15
-http://111.231.6.102:1234/673168223
+http://125.80.112.110:3005/673168223
 #EXTINF:-1 tvg-name="CCTV17" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV17.png" group-title="咪咕央卫",CCTV17
-http://111.231.6.102:1234/673168256
+http://125.80.112.110:3005/673168256
 #EXTINF:-1 tvg-name="CCTV4" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV4.png" group-title="咪咕央卫",CCTV4欧洲
-http://111.231.6.102:1234/608807419
+http://125.80.112.110:3005/608807419
 #EXTINF:-1 tvg-name="CCTV4" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV4.png" group-title="咪咕央卫",CCTV4美洲
-http://111.231.6.102:1234/608807416
+http://125.80.112.110:3005/608807416
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",赛事最经典
-http://111.231.6.102:1234/646596895
+http://125.80.112.110:3005/646596895
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",体坛名栏汇
-http://111.231.6.102:1234/629943305
+http://125.80.112.110:3005/629943305
 #EXTINF:-1 tvg-name="shdy" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/shdy.png" group-title="咪咕央卫",四海钓鱼
-http://111.231.6.102:1234/637444975
+http://125.80.112.110:3005/637444975
 #EXTINF:-1 tvg-name="Guangdong10" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Guangdong10.png" group-title="咪咕央卫",大湾区卫视
-http://111.231.6.102:1234/608917627
+http://125.80.112.110:3005/608917627
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",陕西体育
-http://111.231.6.102:1234/956909356
+http://125.80.112.110:3005/956909356
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",辽宁体育
-http://111.231.6.102:1234/962067526
+http://125.80.112.110:3005/962067526
 #EXTINF:-1 tvg-name="Dongfang" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Dongfang.png" group-title="咪咕央卫",东方卫视
-http://111.231.6.102:1234/651632648
+http://125.80.112.110:3005/651632648
 #EXTINF:-1 tvg-name="Jiangsu" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Jiangsu.png" group-title="咪咕央卫",江苏卫视
-http://111.231.6.102:1234/623899368
+http://125.80.112.110:3005/623899368
 #EXTINF:-1 tvg-name="Guangdong" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Guangdong.png" group-title="咪咕央卫",广东卫视
-http://111.231.6.102:1234/608831231
+http://125.80.112.110:3005/608831231
 #EXTINF:-1 tvg-name="Beijing" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Beijing.png" group-title="咪咕央卫",北京卫视
-http://111.231.6.102:1234/630287636
+http://125.80.112.110:3005/630287636
 #EXTINF:-1 tvg-name="Liaoning" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Liaoning.png" group-title="咪咕央卫",辽宁卫视
-http://111.231.6.102:1234/630291707
+http://125.80.112.110:3005/630291707
 #EXTINF:-1 tvg-name="Hebei" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Hebei.png" group-title="咪咕央卫",河北卫视
-http://111.231.6.102:1234/962042070
+http://125.80.112.110:3005/962042070
 #EXTINF:-1 tvg-name="Jiangxi" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Jiangxi.png" group-title="咪咕央卫",江西卫视
-http://111.231.6.102:1234/783847495
+http://125.80.112.110:3005/783847495
 #EXTINF:-1 tvg-name="Shanxi" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Shanxi.png" group-title="咪咕央卫",陕西卫视
-http://111.231.6.102:1234/738910838
+http://125.80.112.110:3005/738910838
 #EXTINF:-1 tvg-name="Hubei" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Hubei.png" group-title="咪咕央卫",湖北卫视
-http://111.231.6.102:1234/947472496
+http://125.80.112.110:3005/947472496
 #EXTINF:-1 tvg-name="Nonglin" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Nonglin.png" group-title="咪咕央卫",农林卫视
-http://111.231.6.102:1234/956904896
+http://125.80.112.110:3005/956904896
 #EXTINF:-1 tvg-name="Bingtuan" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Bingtuan.png" group-title="咪咕央卫",兵团卫视
-http://111.231.6.102:1234/956923145
+http://125.80.112.110:3005/956923145
 #EXTINF:-1 tvg-name="Shanghai1" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Shanghai1.png" group-title="咪咕央卫",上海新闻综合
-http://111.231.6.102:1234/651632657
+http://125.80.112.110:3005/651632657
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",上视东方影视
-http://111.231.6.102:1234/617290047
+http://125.80.112.110:3005/617290047
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",公共新闻频道
-http://111.231.6.102:1234/626064693
+http://125.80.112.110:3005/626064693
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",盐城新闻综合
-http://111.231.6.102:1234/639731825
+http://125.80.112.110:3005/639731825
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",江阴新闻综合
-http://111.231.6.102:1234/955227979
+http://125.80.112.110:3005/955227979
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",南通新闻综合
-http://111.231.6.102:1234/955227985
+http://125.80.112.110:3005/955227985
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",宜兴新闻综合
-http://111.231.6.102:1234/955227996
+http://125.80.112.110:3005/955227996
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",溧水新闻综合
-http://111.231.6.102:1234/639737327
+http://125.80.112.110:3005/639737327
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",陕西银龄频道
-http://111.231.6.102:1234/956909362
+http://125.80.112.110:3005/956909362
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",陕西都市青春频道
-http://111.231.6.102:1234/956909358
+http://125.80.112.110:3005/956909358
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",陕西秦腔频道
-http://111.231.6.102:1234/956909303
+http://125.80.112.110:3005/956909303
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",陕西新闻资讯频道
-http://111.231.6.102:1234/956909289
+http://125.80.112.110:3005/956909289
 #EXTINF:-1 tvg-name="cftx" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/cftx.png" group-title="咪咕央卫",财富天下
-http://111.231.6.102:1234/956923159
+http://125.80.112.110:3005/956923159
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",辽宁公共频道
-http://111.231.6.102:1234/962045223
+http://125.80.112.110:3005/962045223
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",辽宁生活频道
-http://111.231.6.102:1234/962045226
+http://125.80.112.110:3005/962045226
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",辽宁影视剧频道
-http://111.231.6.102:1234/962067517
+http://125.80.112.110:3005/962067517
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",宁夏文旅频道
-http://111.231.6.102:1234/962067523
+http://125.80.112.110:3005/962067523
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",宁夏经济频道
-http://111.231.6.102:1234/962067520
+http://125.80.112.110:3005/962067520
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",经典香港电影
-http://111.231.6.102:1234/625703337
+http://125.80.112.110:3005/625703337
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",抗战经典影片
-http://111.231.6.102:1234/617432318
+http://125.80.112.110:3005/617432318
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",新片放映厅
-http://111.231.6.102:1234/619495952
+http://125.80.112.110:3005/619495952
 #EXTINF:-1 tvg-name="CHC" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CHC.png" group-title="咪咕央卫",CHC影迷电影
-http://111.231.6.102:1234/952383261
+http://125.80.112.110:3005/952383261
 #EXTINF:-1 tvg-name="CHC3" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CHC3.png" group-title="咪咕央卫",CHC动作电影
-http://111.231.6.102:1234/644368714
+http://125.80.112.110:3005/644368714
 #EXTINF:-1 tvg-name="CHC2" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CHC2.png" group-title="咪咕央卫",CHC家庭影院
-http://111.231.6.102:1234/644368373
+http://125.80.112.110:3005/644368373
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",和美乡途轮播台
-http://111.231.6.102:1234/713591450
+http://125.80.112.110:3005/713591450
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪咕央卫",最强综艺趴
-http://111.231.6.102:1234/629942228
-#EXTINF:-1 tvg-name=" VS  23:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  23:45.png" group-title="体育-昨天",意甲 拉齐奥VS国际米兰 全场回放（刘腾、贺宇） 23:45
-http://111.231.6.102:1234/964685532
-#EXTINF:-1 tvg-name=" VS 1-3 00:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 1-3 00:00.png" group-title="体育-昨天",伦敦团体世乒赛 中国台北男团VS日本男团 【回放】林昀儒1-3张本智和 00:00
-http://111.231.6.102:1234/964684318
-#EXTINF:-1 tvg-name=" VS 0-3 00:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 0-3 00:00.png" group-title="体育-昨天",伦敦团体世乒赛 中国台北男团VS日本男团 【回放】冯翊新0-3松岛辉空 00:00
-http://111.231.6.102:1234/964684707
-#EXTINF:-1 tvg-name=" VS 0-3 00:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 0-3 00:00.png" group-title="体育-昨天",伦敦团体世乒赛 中国台北男团VS日本男团 【回放】郭冠宏0-3户上隼辅 00:00
-http://111.231.6.102:1234/964684857
-#EXTINF:-1 tvg-name=" VS  00:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  00:00.png" group-title="体育-昨天",伦敦团体世乒赛 中国台北男团VS日本男团 全场回放（朱子恒） 00:00
-http://111.231.6.102:1234/964685055
-#EXTINF:-1 tvg-name=" VS CCTV5 00:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS CCTV5 00:00.png" group-title="体育-昨天",伦敦团体世乒赛 中国台北男团VS日本男团 全场回放（CCTV5） 00:00
-http://111.231.6.102:1234/964685646
-#EXTINF:-1 tvg-name=" VS  00:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  00:00.png" group-title="体育-昨天",伦敦团体世乒赛 中国台北男团VS日本男团 全场回放 00:00
-http://111.231.6.102:1234/964685741
-#EXTINF:-1 tvg-name=" VS  00:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  00:00.png" group-title="体育-昨天",伦敦团体世乒赛 中国台北男团VS日本男团 全场回放（英文解说） 00:00
-http://111.231.6.102:1234/964685772
-#EXTINF:-1 tvg-name="U17 U17VSU17  23:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/U17 U17VSU17  23:45.png" group-title="体育-昨天",U17亚洲杯 中国U17VS日本U17 全场回放（鹿中原、王宇） 23:45
-http://111.231.6.102:1234/964685231
-#EXTINF:-1 tvg-name=" VS  00:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  00:30.png" group-title="体育-昨天",英超 曼城VS布伦特福德 全场回放 00:30
-http://111.231.6.102:1234/964687266
-#EXTINF:-1 tvg-name=" VS  00:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  00:30.png" group-title="体育-昨天",英超 曼城VS布伦特福德 全场回放（詹俊、张路、李子琪） 00:30
-http://111.231.6.102:1234/964686170
-#EXTINF:-1 tvg-name=" VS  00:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  00:15.png" group-title="体育-昨天",德甲 沃尔夫斯堡VS拜仁慕尼黑 全场回放（胡小凡、张力） 00:15
-http://111.231.6.102:1234/964686561
-#EXTINF:-1 tvg-name=" VS  00:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  00:15.png" group-title="体育-昨天",德甲 沃尔夫斯堡VS拜仁慕尼黑 全场回放（鲁靖明） 00:15
-http://111.231.6.102:1234/964685651
-#EXTINF:-1 tvg-name=" VS  00:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  00:15.png" group-title="体育-昨天",西甲 马德里竞技VS塞尔塔 全场回放（孙雷、刘畅） 00:15
-http://111.231.6.102:1234/964685630
-#EXTINF:-1 tvg-name="U17 U17VSU17  00:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/U17 U17VSU17  00:15.png" group-title="体育-昨天",U17亚洲杯 卡塔尔U17VS印度尼西亚U17 全场回放（张昊泽） 00:15
-http://111.231.6.102:1234/964685593
-#EXTINF:-1 tvg-name="U17 U17VSU17  00:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/U17 U17VSU17  00:45.png" group-title="体育-昨天",U17亚洲杯 泰国U17VS沙特阿拉伯U17 全场回放（张天翼） 00:45
-http://111.231.6.102:1234/964685774
-#EXTINF:-1 tvg-name="U17 U17VSU17  01:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/U17 U17VSU17  01:15.png" group-title="体育-昨天",U17亚洲杯 缅甸U17VS塔吉克斯坦U17 全场回放 01:15
-http://111.231.6.102:1234/964687478
-#EXTINF:-1 tvg-name="U17 U17VSU17  01:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/U17 U17VSU17  01:15.png" group-title="体育-昨天",U17亚洲杯 缅甸U17VS塔吉克斯坦U17 全场回放（吴子越） 01:15
-http://111.231.6.102:1234/964687304
-#EXTINF:-1 tvg-name=" 2027  01:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 2027  01:55.png" group-title="体育-昨天",亚洲杯 2027沙特阿拉伯亚足联亚洲杯抽签仪式 全场回放（涂远） 01:55
-http://111.231.6.102:1234/964686026
-#EXTINF:-1 tvg-name=" VS 3-2 01:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 3-2 01:30.png" group-title="体育-昨天",伦敦团体世乒赛 中国男团VS法国男团 【回放】王楚钦3-2科顿 01:30
-http://111.231.6.102:1234/964686100
-#EXTINF:-1 tvg-name=" VS 0-3F 01:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 0-3F 01:30.png" group-title="体育-昨天",伦敦团体世乒赛 中国男团VS法国男团 【回放】林诗栋0-3F·勒布伦 01:30
-http://111.231.6.102:1234/964686270
-#EXTINF:-1 tvg-name=" VS 3-2A 01:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 3-2A 01:30.png" group-title="体育-昨天",伦敦团体世乒赛 中国男团VS法国男团 【回放】梁靖崑3-2A·勒布伦 01:30
-http://111.231.6.102:1234/964686643
-#EXTINF:-1 tvg-name=" VS 3-1F 01:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 3-1F 01:30.png" group-title="体育-昨天",伦敦团体世乒赛 中国男团VS法国男团 【回放】王楚钦3-1F·勒布伦 01:30
-http://111.231.6.102:1234/964687008
-#EXTINF:-1 tvg-name=" VS  01:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  01:30.png" group-title="体育-昨天",伦敦团体世乒赛 中国男团VS法国男团 全场回放（周泽昊、侯英超、程靖淇） 01:30
-http://111.231.6.102:1234/964687254
-#EXTINF:-1 tvg-name=" VS  01:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  01:30.png" group-title="体育-昨天",伦敦团体世乒赛 中国男团VS法国男团 全场回放（徐晨皓） 01:30
-http://111.231.6.102:1234/964687316
-#EXTINF:-1 tvg-name=" VS  01:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  01:30.png" group-title="体育-昨天",伦敦团体世乒赛 中国男团VS法国男团 全场回放 01:30
-http://111.231.6.102:1234/964687491
-#EXTINF:-1 tvg-name=" VS CCTV5 01:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS CCTV5 01:30.png" group-title="体育-昨天",伦敦团体世乒赛 中国男团VS法国男团 全场回放（CCTV5） 01:30
-http://111.231.6.102:1234/964688197
-#EXTINF:-1 tvg-name=" VS  01:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  01:30.png" group-title="体育-昨天",伦敦团体世乒赛 中国男团VS法国男团 全场回放（英文解说） 01:30
-http://111.231.6.102:1234/964687940
-#EXTINF:-1 tvg-name=" VS  02:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:30.png" group-title="体育-昨天",意甲 莱切VS尤文图斯 全场回放（吴桐、刘腾） 02:30
-http://111.231.6.102:1234/964687013
-#EXTINF:-1 tvg-name=" VS  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:45.png" group-title="体育-昨天",西甲 皇家社会VS皇家贝蒂斯 全场回放（兰子非） 02:45
-http://111.231.6.102:1234/964686858
-#EXTINF:-1 tvg-name="NBA VS  02:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS  02:55.png" group-title="体育-昨天",NBA 骑士VS活塞 全场回放（连睿、周鹏、裴优） 02:55
-http://111.231.6.102:1234/964687292
-#EXTINF:-1 tvg-name="NBA VS  02:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS  02:55.png" group-title="体育-昨天",NBA 骑士VS活塞 全场回放（吴博文） 02:55
-http://111.231.6.102:1234/964687321
-#EXTINF:-1 tvg-name="NBA VS  02:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS  02:55.png" group-title="体育-昨天",NBA 骑士VS活塞 全场回放（英文原声） 02:55
-http://111.231.6.102:1234/964687398
-#EXTINF:-1 tvg-name="UFC  TKO  04:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/UFC  TKO  04:50.png" group-title="体育-昨天",UFC数字赛 吧主终结狼王不败神话 约书亚TKO平良达郎强势卫冕 【主赛】（王琰博、郝俊、李景亮） 04:50
-http://111.231.6.102:1234/964691753
-#EXTINF:-1 tvg-name="UFC  TKO  04:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/UFC  TKO  04:50.png" group-title="体育-昨天",UFC数字赛 吧主终结狼王不败神话 约书亚TKO平良达郎强势卫冕 【主赛】（陈瑞阳、郑文祺） 04:50
-http://111.231.6.102:1234/964691657
-#EXTINF:-1 tvg-name="UFC  TKO  04:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/UFC  TKO  04:50.png" group-title="体育-昨天",UFC数字赛 吧主终结狼王不败神话 约书亚TKO平良达郎强势卫冕 【主赛】（英文原声） 04:50
-http://111.231.6.102:1234/964691710
-#EXTINF:-1 tvg-name="UFC  TKO  04:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/UFC  TKO  04:50.png" group-title="体育-昨天",UFC数字赛 吧主终结狼王不败神话 约书亚TKO平良达郎强势卫冕 【副赛】（王琰博、郝俊、李景亮） 04:50
-http://111.231.6.102:1234/964688868
-#EXTINF:-1 tvg-name="UFC  TKO  04:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/UFC  TKO  04:50.png" group-title="体育-昨天",UFC数字赛 吧主终结狼王不败神话 约书亚TKO平良达郎强势卫冕 【副赛】（陈瑞阳、郑文祺） 04:50
-http://111.231.6.102:1234/964688865
-#EXTINF:-1 tvg-name="UFC  TKO  04:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/UFC  TKO  04:50.png" group-title="体育-昨天",UFC数字赛 吧主终结狼王不败神话 约书亚TKO平良达郎强势卫冕 【副赛】（英文原声） 04:50
-http://111.231.6.102:1234/964688923
-#EXTINF:-1 tvg-name=" 2026 2026 06:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 2026 2026 06:45.png" group-title="体育-昨天",马拉松系列赛 资溪面包·2026第十一届大觉山半程马拉松 资溪面包·2026第十一届大觉山半程马拉松全场回放（赛场原声） 06:45
-http://111.231.6.102:1234/964689725
-#EXTINF:-1 tvg-name="NBA VS  18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS  18:00.png" group-title="体育-昨天",NBA 湖人VS雷霆 全场回放（庄宁宇、刘炜、陈正昊、廖昕阳） 18:00
-http://111.231.6.102:1234/964690711
-#EXTINF:-1 tvg-name="NBA VS  18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS  18:00.png" group-title="体育-昨天",NBA 湖人VS雷霆 全场回放（郑泽鹏） 18:00
-http://111.231.6.102:1234/964690441
-#EXTINF:-1 tvg-name="NBA VS  18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS  18:00.png" group-title="体育-昨天",NBA 湖人VS雷霆 全场回放（英文原声） 18:00
-http://111.231.6.102:1234/964690399
-#EXTINF:-1 tvg-name="WTA  / /1-2/ 12:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA  / /1-2/ 12:00.png" group-title="体育-昨天",WTA 梁恩硕女单夺冠 党一鸣/尤晓迪女双亚军 【回放】党一鸣/尤晓迪1-2李亚芯/叶秋语（赛场原声） 12:00
-http://111.231.6.102:1234/964698934
-#EXTINF:-1 tvg-name="WTA  / 1-2 12:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA  / 1-2 12:00.png" group-title="体育-昨天",WTA 梁恩硕女单夺冠 党一鸣/尤晓迪女双亚军 【回放】尤晓迪1-2梁恩硕（赛场原声） 12:00
-http://111.231.6.102:1234/964693638
-#EXTINF:-1 tvg-name="BWF - vs  2-1 12:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF - vs  2-1 12:00.png" group-title="体育-昨天",BWF 汤杯经典重映-中国 vs 印度 【回放】李诗沣2-1拉克什亚（鸿昆） 12:00
-http://111.231.6.102:1234/964481815
-#EXTINF:-1 tvg-name="BWF - vs  /2-1/ 12:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF - vs  /2-1/ 12:00.png" group-title="体育-昨天",BWF 汤杯经典重映-中国 vs 印度 【回放】梁伟铿/王昶2-1兰基雷迪/谢提（鸿昆） 12:00
-http://111.231.6.102:1234/964482950
-#EXTINF:-1 tvg-name="BWF - vs  1-2 12:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF - vs  1-2 12:00.png" group-title="体育-昨天",BWF 汤杯经典重映-中国 vs 印度 【回放】翁泓阳1-2阿尤什（鸿昆） 12:00
-http://111.231.6.102:1234/964484280
-#EXTINF:-1 tvg-name="BWF - vs  /2-0/ 12:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF - vs  /2-0/ 12:00.png" group-title="体育-昨天",BWF 汤杯经典重映-中国 vs 印度 【回放】何济霆/任翔宇2-0哈里哈兰/阿琼（鸿昆） 12:00
-http://111.231.6.102:1234/964484879
-#EXTINF:-1 tvg-name="BWF - vs  1-2 12:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF - vs  1-2 12:00.png" group-title="体育-昨天",BWF 汤杯经典重映-中国 vs 印度 【回放】陆光祖1-2普兰诺伊（鸿昆） 12:00
-http://111.231.6.102:1234/964486005
-#EXTINF:-1 tvg-name="BWF - vs  3-2 12:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF - vs  3-2 12:00.png" group-title="体育-昨天",BWF 汤杯经典重映-中国 vs 印度 【全场回放】中国3-2印度（鸿昆） 12:00
-http://111.231.6.102:1234/964486161
-#EXTINF:-1 tvg-name="  2026 14:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/  2026 14:00.png" group-title="体育-昨天",徽乒赛 “徽乒赛”滁州动感地带专场赛 2026安徽省乒乓球联赛滁州动感地带专场赛全场回放（赛场原声） 14:00
-http://111.231.6.102:1234/964696466
-#EXTINF:-1 tvg-name=" VS  4:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  4:55.png" group-title="体育-昨天",闽超 宁德队VS龙岩队 全场回放 4:55
-http://111.231.6.102:1234/964696862
-#EXTINF:-1 tvg-name=" VS  14:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  14:50.png" group-title="体育-昨天",中甲 陕西联合VS宁波职业足球俱乐部 全场回放（官方解说） 14:50
-http://111.231.6.102:1234/964697174
-#EXTINF:-1 tvg-name=" VS  14:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  14:50.png" group-title="体育-昨天",中甲 延边龙鼎VS广西恒宸 全场回放（官方解说） 14:50
-http://111.231.6.102:1234/964694623
-#EXTINF:-1 tvg-name=" VS  14:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  14:50.png" group-title="体育-昨天",中甲 大连鲲城VS广东广州豹足球俱乐部 全场回放（官方解说） 14:50
-http://111.231.6.102:1234/964696231
-#EXTINF:-1 tvg-name=" VS  5:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  5:00.png" group-title="体育-昨天",吴越杯 杭州队VS舟山队 全场回放 5:00
-http://111.231.6.102:1234/964696254
-#EXTINF:-1 tvg-name=" VS  5:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  5:00.png" group-title="体育-昨天",吴越杯 嘉兴队VS金华队 全场回放 5:00
-http://111.231.6.102:1234/964696234
-#EXTINF:-1 tvg-name=" VS  5:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  5:00.png" group-title="体育-昨天",吴越杯 衢州队VS台州队 全场回放 5:00
-http://111.231.6.102:1234/964696791
-#EXTINF:-1 tvg-name=" VS  5:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  5:00.png" group-title="体育-昨天",滇超 迪庆队VS丽江队 全场回放 5:00
-http://111.231.6.102:1234/964696323
-#EXTINF:-1 tvg-name=" VS  5:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  5:00.png" group-title="体育-昨天",滇超 大理队VS曲靖队 全场回放 5:00
-http://111.231.6.102:1234/964695020
-#EXTINF:-1 tvg-name=" VS  15:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  15:50.png" group-title="体育-昨天",中乙 长春喜都VS上海赛更达 全场回放（官方解说） 15:50
-http://111.231.6.102:1234/964696629
-#EXTINF:-1 tvg-name=" VS  15:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  15:50.png" group-title="体育-昨天",中乙 厦门飞鹭VS成都蓉城希拉谷 全场回放 15:50
-http://111.231.6.102:1234/964696851
-#EXTINF:-1 tvg-name=" BVSB  15:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ BVSB  15:50.png" group-title="体育-昨天",中乙 上海海港B队VS大连英博B队 全场回放 15:50
-http://111.231.6.102:1234/964704973
-#EXTINF:-1 tvg-name="ATP   0-2 16:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ATP   0-2 16:00.png" group-title="体育-昨天",ATP 权纯雨男单夺冠 小布抢七惜败 【回放】布云朝克特0-2权纯雨（赛场原声） 16:00
-http://111.231.6.102:1234/964696697
-#EXTINF:-1 tvg-name=" VS  6:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  6:00.png" group-title="体育-昨天",滇超 楚雄队VS怒江队 全场回放 6:00
-http://111.231.6.102:1234/964697191
-#EXTINF:-1 tvg-name=" VS  6:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  6:20.png" group-title="体育-昨天",贵州村超 安乐村足球队VS高硐村足球队 全场回放 6:20
-http://111.231.6.102:1234/964698536
-#EXTINF:-1 tvg-name=" VS  6:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  6:30.png" group-title="体育-昨天",滇超 保山队VS文山队 全场回放 6:30
-http://111.231.6.102:1234/964699387
-#EXTINF:-1 tvg-name=" VS  6:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  6:30.png" group-title="体育-昨天",滇超 玉溪队VS普洱队 全场回放 6:30
-http://111.231.6.102:1234/964699956
-#EXTINF:-1 tvg-name="WTA  2-0 0-2 17:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA  2-0 0-2 17:00.png" group-title="体育-昨天",WTA 斯瓦泰克横扫 莱巴金娜2-0伊埃拉 【回放】科恰雷托0-2斯瓦泰克（赛场原声） 17:00
-http://111.231.6.102:1234/964711173
-#EXTINF:-1 tvg-name="WTA  2-0 2-0 17:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA  2-0 2-0 17:00.png" group-title="体育-昨天",WTA 斯瓦泰克横扫 莱巴金娜2-0伊埃拉 【回放】大坂直美2-0施耐德（赛场原声） 17:00
-http://111.231.6.102:1234/964706797
-#EXTINF:-1 tvg-name="WTA  2-0 0-2 17:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA  2-0 0-2 17:00.png" group-title="体育-昨天",WTA 斯瓦泰克横扫 莱巴金娜2-0伊埃拉 【回放】伊埃拉0-2莱巴金娜（赛场原声） 17:00
-http://111.231.6.102:1234/964709884
-#EXTINF:-1 tvg-name="WTA  2-0 2-0 17:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA  2-0 2-0 17:00.png" group-title="体育-昨天",WTA 斯瓦泰克横扫 莱巴金娜2-0伊埃拉 【回放】佩古拉2-0马萨洛娃（赛场原声） 17:00
-http://111.231.6.102:1234/964701558
-#EXTINF:-1 tvg-name="WTA  2-0 2-0 17:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA  2-0 2-0 17:00.png" group-title="体育-昨天",WTA 斯瓦泰克横扫 莱巴金娜2-0伊埃拉 【回放】斯维托丽娜2-0巴普蒂斯特（赛场原声） 17:00
-http://111.231.6.102:1234/964698520
-#EXTINF:-1 tvg-name="WTA  2-0 0-2 17:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA  2-0 0-2 17:00.png" group-title="体育-昨天",WTA 斯瓦泰克横扫 莱巴金娜2-0伊埃拉 【回放】伊埃拉0-2莱巴金娜（英文原声） 17:00
-http://111.231.6.102:1234/964709824
-#EXTINF:-1 tvg-name="WTA  2-0 2-0 17:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA  2-0 2-0 17:00.png" group-title="体育-昨天",WTA 斯瓦泰克横扫 莱巴金娜2-0伊埃拉 【回放】大坂直美2-0施耐德（英文原声） 17:00
-http://111.231.6.102:1234/964706083
-#EXTINF:-1 tvg-name="WTA  2-0 2-0 17:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA  2-0 2-0 17:00.png" group-title="体育-昨天",WTA 斯瓦泰克横扫 莱巴金娜2-0伊埃拉 【回放】佩古拉2-0马萨洛娃（英文原声） 17:00
-http://111.231.6.102:1234/964701641
-#EXTINF:-1 tvg-name="WTA  2-0 2-0 17:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA  2-0 2-0 17:00.png" group-title="体育-昨天",WTA 斯瓦泰克横扫 莱巴金娜2-0伊埃拉 【回放】斯维托丽娜2-0巴普蒂斯特（英文原声） 17:00
-http://111.231.6.102:1234/964698533
-#EXTINF:-1 tvg-name=" VS  17:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  17:15.png" group-title="体育-昨天",中超 青岛西海岸VS武汉三镇 全场回放（鹿中原、贺宇） 17:15
-http://111.231.6.102:1234/964699036
-#EXTINF:-1 tvg-name=" VS  17:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  17:45.png" group-title="体育-昨天",中超 深圳新鹏城VS山东泰山 全场回放（孙雨轩、黄健翔、郭小仙儿） 17:45
-http://111.231.6.102:1234/964700048
-#EXTINF:-1 tvg-name=" VS 3-0 18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 3-0 18:00.png" group-title="体育-昨天",伦敦团体世乒赛 中国女团VS日本女团 【回放】王曼昱3-0早田希娜 18:00
-http://111.231.6.102:1234/964703928
-#EXTINF:-1 tvg-name=" VS 3-0 18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 3-0 18:00.png" group-title="体育-昨天",伦敦团体世乒赛 中国女团VS日本女团 【回放】孙颖莎3-0张本美和 18:00
-http://111.231.6.102:1234/964701888
-#EXTINF:-1 tvg-name=" VS 1-3 18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 1-3 18:00.png" group-title="体育-昨天",伦敦团体世乒赛 中国女团VS日本女团 【回放】蒯曼1-3桥本帆乃香 18:00
-http://111.231.6.102:1234/964700700
-#EXTINF:-1 tvg-name=" VS 3-0 18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 3-0 18:00.png" group-title="体育-昨天",伦敦团体世乒赛 中国女团VS日本女团 【回放】孙颖莎3-0早田希娜 18:00
-http://111.231.6.102:1234/964699000
-#EXTINF:-1 tvg-name=" VS 2-3 18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2-3 18:00.png" group-title="体育-昨天",伦敦团体世乒赛 中国女团VS日本女团 【回放】王曼昱2-3张本美和 18:00
-http://111.231.6.102:1234/964697280
-#EXTINF:-1 tvg-name=" VS  18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:00.png" group-title="体育-昨天",伦敦团体世乒赛 中国女团VS日本女团 全场回放（徐晨皓、侯英超、周泽昊） 18:00
-http://111.231.6.102:1234/964706726
-#EXTINF:-1 tvg-name=" VS  18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:00.png" group-title="体育-昨天",伦敦团体世乒赛 中国女团VS日本女团 全场回放（马特） 18:00
-http://111.231.6.102:1234/964706483
-#EXTINF:-1 tvg-name=" VS CCTV5 18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS CCTV5 18:00.png" group-title="体育-昨天",伦敦团体世乒赛 中国女团VS日本女团 全场回放（CCTV5） 18:00
-http://111.231.6.102:1234/964709952
-#EXTINF:-1 tvg-name=" VS  18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:00.png" group-title="体育-昨天",伦敦团体世乒赛 中国女团VS日本女团 全场回放 18:00
-http://111.231.6.102:1234/964708756
-#EXTINF:-1 tvg-name=" VS  18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:00.png" group-title="体育-昨天",伦敦团体世乒赛 中国女团VS日本女团 全场回放（英文解说） 18:00
-http://111.231.6.102:1234/964710162
-#EXTINF:-1 tvg-name="NBA NBA vs  G3  18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA NBA vs  G3  18:00.png" group-title="体育-昨天",NBA经典赛事 NBA季后赛精彩重播：雷霆 vs 湖人 G3 全场回放（庄宁宇、刘炜、陈正昊、廖昕阳） 18:00
-http://111.231.6.102:1234/964690711
-#EXTINF:-1 tvg-name=" VS  18:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:15.png" group-title="体育-昨天",意甲 维罗纳VS科莫 全场回放（涂远、马延峰） 18:15
-http://111.231.6.102:1234/964700736
-#EXTINF:-1 tvg-name=" VS  18:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:30.png" group-title="体育-昨天",贵州村超 富民村足球队VS腊酉村足球队 全场回放 18:30
-http://111.231.6.102:1234/964708993
-#EXTINF:-1 tvg-name=" VS  18:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:45.png" group-title="体育-昨天",中超 辽宁铁人楠波湾VS云南玉昆 全场回放（石庆圣、鲁靖明） 18:45
-http://111.231.6.102:1234/964703101
-#EXTINF:-1 tvg-name=" VS  18:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:50.png" group-title="体育-昨天",中甲 深圳青年人VS石家庄功夫 全场回放 18:50
-http://111.231.6.102:1234/964710442
-#EXTINF:-1 tvg-name=" VS  18:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:50.png" group-title="体育-昨天",中甲 深圳青年人VS石家庄功夫 全场回放 18:50
-http://111.231.6.102:1234/964710189
-#EXTINF:-1 tvg-name=" VS  19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:00.png" group-title="体育-昨天",闽超 漳州队VS平潭队 全场回放 19:00
-http://111.231.6.102:1234/964711057
-#EXTINF:-1 tvg-name=" VS  19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:00.png" group-title="体育-昨天",闽超 福州队VS南平队 全场回放 19:00
-http://111.231.6.102:1234/964710613
-#EXTINF:-1 tvg-name=" VS  19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:00.png" group-title="体育-昨天",闽超 厦门队VS泉州队 全场回放 19:00
-http://111.231.6.102:1234/964707636
-#EXTINF:-1 tvg-name="BA VS  19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS  19:00.png" group-title="体育-昨天",徽BA 宿州VS黄山 全场回放 19:00
-http://111.231.6.102:1234/964707436
-#EXTINF:-1 tvg-name="BA VS  19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS  19:00.png" group-title="体育-昨天",徽BA 池州VS蚌埠 全场回放 19:00
-http://111.231.6.102:1234/964709756
-#EXTINF:-1 tvg-name="BA VS  19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS  19:00.png" group-title="体育-昨天",徽BA 淮南VS芜湖 全场回放 19:00
-http://111.231.6.102:1234/964708805
-#EXTINF:-1 tvg-name="BA VS  19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS  19:00.png" group-title="体育-昨天",徽BA 安庆VS滁州 全场回放 19:00
-http://111.231.6.102:1234/964711318
-#EXTINF:-1 tvg-name="BA VS  19:16" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS  19:16.png" group-title="体育-昨天",粤BA 汕头VS深圳 全场回放 19:16
-http://111.231.6.102:1234/964710623
-#EXTINF:-1 tvg-name="BA VS  19:16" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS  19:16.png" group-title="体育-昨天",粤BA 梅州VS清远 全场回放 19:16
-http://111.231.6.102:1234/964709770
-#EXTINF:-1 tvg-name="BA VS  19:16" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS  19:16.png" group-title="体育-昨天",粤BA 汕尾VS潮州 全场回放 19:16
-http://111.231.6.102:1234/964707704
-#EXTINF:-1 tvg-name="BA VS  19:16" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS  19:16.png" group-title="体育-昨天",粤BA 东莞VS惠州 全场回放 19:16
-http://111.231.6.102:1234/964705731
-#EXTINF:-1 tvg-name="BA VS  19:16" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS  19:16.png" group-title="体育-昨天",粤BA 韶关VS揭阳 全场回放 19:16
-http://111.231.6.102:1234/964710619
-#EXTINF:-1 tvg-name="BA VS  19:16" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS  19:16.png" group-title="体育-昨天",粤BA 韶关VS揭阳 全场回放 19:16
-http://111.231.6.102:1234/964708015
-#EXTINF:-1 tvg-name="BA VS  19:16" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS  19:16.png" group-title="体育-昨天",粤BA 肇庆VS珠海 全场回放 19:16
-http://111.231.6.102:1234/964705762
-#EXTINF:-1 tvg-name="BA VS  19:16" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS  19:16.png" group-title="体育-昨天",粤BA 茂名VS云浮 全场回放 19:16
-http://111.231.6.102:1234/964710254
-#EXTINF:-1 tvg-name="BA VS  19:16" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS  19:16.png" group-title="体育-昨天",粤BA 中山VS湛江 全场回放 19:16
-http://111.231.6.102:1234/964710700
-#EXTINF:-1 tvg-name="BA VS 2026: vs 19:16" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS 2026: vs 19:16.png" group-title="体育-昨天",粤BA 佛山VS广州 2026广东省城市篮球联赛第七轮: 佛山vs广州 19:16
-http://111.231.6.102:1234/964087914
-#EXTINF:-1 tvg-name="BA VS  19:16" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS  19:16.png" group-title="体育-昨天",粤BA 江门VS阳江 全场回放 19:16
-http://111.231.6.102:1234/964707023
-#EXTINF:-1 tvg-name=" VS  19:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:20.png" group-title="体育-昨天",中甲 南通支云VS无锡吴钩 全场回放（官方解说） 19:20
-http://111.231.6.102:1234/964707509
-#EXTINF:-1 tvg-name=" VS  19:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:20.png" group-title="体育-昨天",中甲 佛山南狮VS苏州东吴 全场回放（官方解说） 19:20
-http://111.231.6.102:1234/964707334
-#EXTINF:-1 tvg-name=" VS  19:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:20.png" group-title="体育-昨天",中乙 兰州陇原竞技VS青岛红狮 全场回放 19:20
-http://111.231.6.102:1234/964708285
-#EXTINF:-1 tvg-name=" VS  19:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:20.png" group-title="体育-昨天",中乙 广东铭途VS湖北青年星 全场回放 19:20
-http://111.231.6.102:1234/964710277
-#EXTINF:-1 tvg-name=" VS  19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:30.png" group-title="体育-昨天",齐鲁超赛 淄博齐稷锐思达VS临沂队 全场回放 19:30
-http://111.231.6.102:1234/964710656
-#EXTINF:-1 tvg-name=" VS  19:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:15.png" group-title="体育-昨天",吴越杯 湖州队VS丽水队 全场回放 19:15
-http://111.231.6.102:1234/964710668
-#EXTINF:-1 tvg-name=" VS  19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:30.png" group-title="体育-昨天",赣超 宜春队VS萍乡队 全场回放 19:30
-http://111.231.6.102:1234/964709767
-#EXTINF:-1 tvg-name=" VS  19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:30.png" group-title="体育-昨天",赣超 九江队VS景德镇队 全场回放 19:30
-http://111.231.6.102:1234/964710833
-#EXTINF:-1 tvg-name=" VS  19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:30.png" group-title="体育-昨天",赣超 赣州市VS上饶市 全场回放 19:30
-http://111.231.6.102:1234/964709710
-#EXTINF:-1 tvg-name=" VS  19:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:20.png" group-title="体育-昨天",中超 浙江俱乐部绿城VS天津津门虎 全场回放（袁甲、冯潇霆） 19:20
-http://111.231.6.102:1234/964705233
-#EXTINF:-1 tvg-name=" VS  19:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:20.png" group-title="体育-昨天",中超 北京国安VS上海海港 全场回放（娄一晨、刘越、邵凌霄） 19:20
-http://111.231.6.102:1234/964709248
-#EXTINF:-1 tvg-name=" VS  18:35" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:35.png" group-title="体育-昨天",川超 乐山味道非常队VS绵阳九洲长虹队 全场回放 18:35
-http://111.231.6.102:1234/964708421
-#EXTINF:-1 tvg-name=" VS  18:35" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:35.png" group-title="体育-昨天",川超 宜宾长江首城队VS自贡灯城燊龙队 全场回放 18:35
-http://111.231.6.102:1234/964709096
-#EXTINF:-1 tvg-name=" VS  18:35" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:35.png" group-title="体育-昨天",川超 凉山好医生队VS达州川汉子队 全场回放 18:35
-http://111.231.6.102:1234/964709811
-#EXTINF:-1 tvg-name=" VS  18:35" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:35.png" group-title="体育-昨天",川超 成都锦城队VS南充丝绸源点队 全场回放 18:35
-http://111.231.6.102:1234/964710196
-#EXTINF:-1 tvg-name=" VS  19:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:45.png" group-title="体育-昨天",西甲 马略卡VS比利亚雷亚尔 全场回放（李霄、王宇） 19:45
-http://111.231.6.102:1234/964706331
-#EXTINF:-1 tvg-name=" VS  19:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:45.png" group-title="体育-昨天",中超 青岛海牛VS大连英博海发 全场回放（刘腾、徐云龙） 19:45
-http://111.231.6.102:1234/964706289
-#EXTINF:-1 tvg-name=" VS  20:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  20:30.png" group-title="体育-昨天",贵州村超 寿洞村足球队VS仁吉村村牛足球队 全场回放 20:30
-http://111.231.6.102:1234/964708032
-#EXTINF:-1 tvg-name=" VS  20:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  20:45.png" group-title="体育-昨天",英超 诺丁汉森林VS纽卡斯尔联 全场回放 20:45
-http://111.231.6.102:1234/964710823
-#EXTINF:-1 tvg-name=" VS  20:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  20:45.png" group-title="体育-昨天",英超 诺丁汉森林VS纽卡斯尔联 全场回放（黄航） 20:45
-http://111.231.6.102:1234/964708153
-#EXTINF:-1 tvg-name=" VS  20:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  20:45.png" group-title="体育-昨天",英超 水晶宫VS埃弗顿 全场回放 20:45
-http://111.231.6.102:1234/964710684
-#EXTINF:-1 tvg-name=" VS  20:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  20:45.png" group-title="体育-昨天",英超 水晶宫VS埃弗顿 全场回放（刘焕） 20:45
-http://111.231.6.102:1234/964707162
-#EXTINF:-1 tvg-name=" VS  20:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  20:45.png" group-title="体育-昨天",英超 伯恩利VS阿斯顿维拉 全场回放 20:45
-http://111.231.6.102:1234/964709909
-#EXTINF:-1 tvg-name=" VS  20:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  20:45.png" group-title="体育-昨天",英超 伯恩利VS阿斯顿维拉 全场回放（苗锟） 20:45
-http://111.231.6.102:1234/964707695
-#EXTINF:-1 tvg-name=" VS  20:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  20:45.png" group-title="体育-昨天",意甲 佛罗伦萨VS热那亚 全场回放（乔迁） 20:45
-http://111.231.6.102:1234/964708254
-#EXTINF:-1 tvg-name=" VS  20:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  20:45.png" group-title="体育-昨天",意甲 克雷莫内塞VS比萨 全场回放（吴奕博） 20:45
-http://111.231.6.102:1234/964708070
-#EXTINF:-1 tvg-name=" VS  21:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:15.png" group-title="体育-昨天",德甲 汉堡VS弗赖堡 全场回放（王子睿） 21:15
-http://111.231.6.102:1234/964709626
-#EXTINF:-1 tvg-name=" VS  22:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  22:00.png" group-title="体育-昨天",西甲 毕尔巴鄂竞技VS瓦伦西亚 全场回放（张天翼） 22:00
-http://111.231.6.102:1234/964709938
-#EXTINF:-1 tvg-name=" VS 3-2 23:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 3-2 23:20.png" group-title="体育-昨天",伦敦团体世乒赛 中国男团VS日本男团 【回放】梁靖崑3-2张本智和 23:20
-http://111.231.6.102:1234/964709507
-#EXTINF:-1 tvg-name=" VS 3-1 23:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 3-1 23:20.png" group-title="体育-昨天",伦敦团体世乒赛 中国男团VS日本男团 【回放】王楚钦3-1松岛辉空 23:20
-http://111.231.6.102:1234/964709882
-#EXTINF:-1 tvg-name=" VS 3-1 23:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 3-1 23:20.png" group-title="体育-昨天",伦敦团体世乒赛 中国男团VS日本男团 【回放】林诗栋3-1户上隼辅 23:20
-http://111.231.6.102:1234/964710455
-#EXTINF:-1 tvg-name=" VS  23:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  23:20.png" group-title="体育-昨天",伦敦团体世乒赛 中国男团VS日本男团 全场回放（陈玘、刘国正、周泽昊） 23:20
-http://111.231.6.102:1234/964710909
-#EXTINF:-1 tvg-name=" VS  23:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  23:20.png" group-title="体育-昨天",伦敦团体世乒赛 中国男团VS日本男团 全场回放（徐晨皓） 23:20
-http://111.231.6.102:1234/964710628
-#EXTINF:-1 tvg-name=" VS CCTV5 23:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS CCTV5 23:20.png" group-title="体育-昨天",伦敦团体世乒赛 中国男团VS日本男团 全场回放（CCTV5） 23:20
-http://111.231.6.102:1234/964711265
-#EXTINF:-1 tvg-name=" VS  23:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  23:20.png" group-title="体育-昨天",伦敦团体世乒赛 中国男团VS日本男团 全场回放（英文解说） 23:20
-http://111.231.6.102:1234/964711576
-#EXTINF:-1 tvg-name=" VS  23:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  23:20.png" group-title="体育-昨天",伦敦团体世乒赛 中国男团VS日本男团 全场回放 23:20
-http://111.231.6.102:1234/964711626
-#EXTINF:-1 tvg-name=" VS  23:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  23:15.png" group-title="体育-昨天",英超 西汉姆联VS阿森纳 全场回放（刘畅、颜强、程思钦） 23:15
-http://111.231.6.102:1234/964711108
-#EXTINF:-1 tvg-name=" VS  23:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  23:15.png" group-title="体育-昨天",英超 西汉姆联VS阿森纳 全场回放（陈凯冬、何辉） 23:15
-http://111.231.6.102:1234/964711344
-#EXTINF:-1 tvg-name=" VS  23:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  23:15.png" group-title="体育-昨天",德甲 科隆VS海登海姆 全场回放（赵宇） 23:15
-http://111.231.6.102:1234/964710503
-#EXTINF:-1 tvg-name=" VS  23:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  23:45.png" group-title="体育-今天",意甲 帕尔马VS罗马 全场回放 23:45
-http://111.231.6.102:1234/964710874
-#EXTINF:-1 tvg-name="U17 U17VSU17  23:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/U17 U17VSU17  23:45.png" group-title="体育-今天",U17亚洲杯 越南U17VS韩国U17 全场回放 23:45
-http://111.231.6.102:1234/964711285
-#EXTINF:-1 tvg-name="U17 U17VSU17  23:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/U17 U17VSU17  23:45.png" group-title="体育-今天",U17亚洲杯 越南U17VS韩国U17 全场回放（涂远） 23:45
-http://111.231.6.102:1234/964710877
-#EXTINF:-1 tvg-name=" VS  00:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  00:15.png" group-title="体育-今天",西甲 皇家奥维耶多VS赫塔菲 全场回放（孙雨轩） 00:15
-http://111.231.6.102:1234/964711234
-#EXTINF:-1 tvg-name="U17 U17VSU17  00:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/U17 U17VSU17  00:45.png" group-title="体育-今天",U17亚洲杯 印度U17VS乌兹别克斯坦U17 王子睿 00:45
-http://111.231.6.102:1234/964636421
-#EXTINF:-1 tvg-name="U17 U17VSU17  00:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/U17 U17VSU17  00:45.png" group-title="体育-今天",U17亚洲杯 印度U17VS乌兹别克斯坦U17 赛场原声 00:45
-http://111.231.6.102:1234/964636429
-#EXTINF:-1 tvg-name=" VS  01:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  01:15.png" group-title="体育-今天",德甲 美因茨VS柏林联 全场回放（李霄） 01:15
-http://111.231.6.102:1234/964711643
-#EXTINF:-1 tvg-name=" ACVS   02:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ ACVS   02:15.png" group-title="体育-今天",意甲 AC米兰VS亚特兰大 石庆圣 李彦 02:15
-http://111.231.6.102:1234/964637476
-#EXTINF:-1 tvg-name=" ACVS  02:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ ACVS  02:30.png" group-title="体育-今天",意甲 AC米兰VS亚特兰大 赛场原声 02:30
-http://111.231.6.102:1234/964637539
-#EXTINF:-1 tvg-name=" ACVS   02:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ ACVS   02:15.png" group-title="体育-今天",意甲 AC米兰VS亚特兰大 石庆圣 李彦 02:15
-http://111.231.6.102:1234/964637601
-#EXTINF:-1 tvg-name=" VS  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:45.png" group-title="体育-今天",法甲 摩纳哥VS里尔 涂远 02:45
-http://111.231.6.102:1234/964636876
-#EXTINF:-1 tvg-name=" VS  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:45.png" group-title="体育-今天",法甲 摩纳哥VS里尔 赛场原声 02:45
-http://111.231.6.102:1234/964636867
-#EXTINF:-1 tvg-name=" VS  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:45.png" group-title="体育-今天",法甲 昂热VS斯特拉斯堡 李永熙 02:45
-http://111.231.6.102:1234/964636895
-#EXTINF:-1 tvg-name=" VS  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:45.png" group-title="体育-今天",法甲 昂热VS斯特拉斯堡 赛场原声 02:45
-http://111.231.6.102:1234/964636882
-#EXTINF:-1 tvg-name=" VS  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:45.png" group-title="体育-今天",法甲 欧塞尔VS尼斯 盛斌 02:45
-http://111.231.6.102:1234/964636990
-#EXTINF:-1 tvg-name=" VS  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:45.png" group-title="体育-今天",法甲 欧塞尔VS尼斯 赛场原声 02:45
-http://111.231.6.102:1234/964636984
-#EXTINF:-1 tvg-name=" VS  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:45.png" group-title="体育-今天",法甲 图卢兹VS里昂 张天翼 02:45
-http://111.231.6.102:1234/964637017
-#EXTINF:-1 tvg-name=" VS  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:45.png" group-title="体育-今天",法甲 图卢兹VS里昂 赛场原声 02:45
-http://111.231.6.102:1234/964637000
-#EXTINF:-1 tvg-name=" VS  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:45.png" group-title="体育-今天",法甲 勒阿弗尔VS马赛 乔迁 02:45
-http://111.231.6.102:1234/964637025
-#EXTINF:-1 tvg-name=" VS  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:45.png" group-title="体育-今天",法甲 勒阿弗尔VS马赛 赛场原声 02:45
-http://111.231.6.102:1234/964637021
-#EXTINF:-1 tvg-name=" VS   02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS   02:45.png" group-title="体育-今天",法甲 巴黎圣日耳曼VS布雷斯特 鹿中原 王宇 02:45
-http://111.231.6.102:1234/964636737
-#EXTINF:-1 tvg-name=" VS  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:45.png" group-title="体育-今天",法甲 巴黎圣日耳曼VS布雷斯特 赛场原声 02:45
-http://111.231.6.102:1234/964636722
-#EXTINF:-1 tvg-name=" VS    02:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS    02:30.png" group-title="体育-今天",西甲 巴塞罗那VS皇家马德里 张昊泽 李欣 李子琪 02:30
-http://111.231.6.102:1234/964636567
-#EXTINF:-1 tvg-name=" VS   02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS   02:45.png" group-title="体育-今天",西甲 巴塞罗那VS皇家马德里 刘畅 贺宇 02:45
-http://111.231.6.102:1234/964636668
-#EXTINF:-1 tvg-name=" VS  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:45.png" group-title="体育-今天",西甲 巴塞罗那VS皇家马德里 赛场原声 02:45
-http://111.231.6.102:1234/964636686
-#EXTINF:-1 tvg-name=" VS   02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS   02:45.png" group-title="体育-今天",西甲 巴塞罗那VS皇家马德里 刘畅 贺宇 02:45
-http://111.231.6.102:1234/964636746
-#EXTINF:-1 tvg-name=" VS  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:45.png" group-title="体育-今天",法甲 梅斯VS洛里昂 刘一臻 02:45
-http://111.231.6.102:1234/964636951
-#EXTINF:-1 tvg-name=" VS  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:45.png" group-title="体育-今天",法甲 梅斯VS洛里昂 赛场原声 02:45
-http://111.231.6.102:1234/964636917
-#EXTINF:-1 tvg-name=" VS  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:45.png" group-title="体育-今天",法甲 梅斯VS洛里昂 赛场原声 02:45
-http://111.231.6.102:1234/964690215
-#EXTINF:-1 tvg-name=" VSFC  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VSFC  02:45.png" group-title="体育-今天",法甲 雷恩VS巴黎FC 邵煊 02:45
-http://111.231.6.102:1234/964636975
-#EXTINF:-1 tvg-name=" VSFC  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VSFC  02:45.png" group-title="体育-今天",法甲 雷恩VS巴黎FC 赛场原声 02:45
-http://111.231.6.102:1234/964636966
-#EXTINF:-1 tvg-name=" VSFC  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VSFC  02:45.png" group-title="体育-今天",法甲 雷恩VS巴黎FC 赛场原声 02:45
-http://111.231.6.102:1234/964690215
-#EXTINF:-1 tvg-name="NBA 76VS    03:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA 76VS    03:00.png" group-title="体育-今天",NBA 76人VS尼克斯 姜帆 季孟年 拜月宁 03:00
-http://111.231.6.102:1234/964608636
-#EXTINF:-1 tvg-name="NBA 76VS  03:25" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA 76VS  03:25.png" group-title="体育-今天",NBA 76人VS尼克斯 英文原声 03:25
-http://111.231.6.102:1234/964608587
-#EXTINF:-1 tvg-name="Zuffa zuffa6VS  06:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Zuffa zuffa6VS  06:00.png" group-title="体育-今天",Zuffa拳击 zuffa拳击第6期：莫斯利VS博哈丘克 李威蓄 06:00
-http://111.231.6.102:1234/964630022
-#EXTINF:-1 tvg-name="Zuffa zuffa6VS  06:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Zuffa zuffa6VS  06:00.png" group-title="体育-今天",Zuffa拳击 zuffa拳击第6期：莫斯利VS博哈丘克 英文原声 06:00
-http://111.231.6.102:1234/964629992
-#EXTINF:-1 tvg-name="NBA VS    07:10" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS    07:10.png" group-title="体育-今天",NBA 森林狼VS马刺 杨健 李根 闫宇峰 07:10
-http://111.231.6.102:1234/964608917
-#EXTINF:-1 tvg-name="NBA VS  07:25" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS  07:25.png" group-title="体育-今天",NBA 森林狼VS马刺 王晓晨 07:25
-http://111.231.6.102:1234/964608701
-#EXTINF:-1 tvg-name="NBA VS  07:25" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS  07:25.png" group-title="体育-今天",NBA 森林狼VS马刺 英文原声 07:25
-http://111.231.6.102:1234/964608688
-#EXTINF:-1 tvg-name="NBA VS  07:25" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS  07:25.png" group-title="体育-今天",NBA 森林狼VS马刺 智能字幕 07:25
-http://111.231.6.102:1234/964608680
-#EXTINF:-1 tvg-name=" undefined  106 08:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ undefined  106 08:00.png" group-title="体育-今天",咪咕体育日报 undefined 咪咕体育日报 第106期 08:00
-http://111.231.6.102:1234/964454976
-#EXTINF:-1 tvg-name="  3D 09:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/  3D 09:00.png" group-title="体育-今天",全国艺术体操锦标赛 成年集体与少年青年个人全能决赛上阵 3D全真视频 09:00
-http://111.231.6.102:1234/964632919
-#EXTINF:-1 tvg-name=" vs  10:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  10:00.png" group-title="体育-今天",全国青年篮球联赛 浙江稠州银行vs长沙勇胜 清流播出 10:00
-http://111.231.6.102:1234/964666025
-#EXTINF:-1 tvg-name=" vs  13:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  13:30.png" group-title="体育-今天",全国青年篮球联赛 浙江广厦vs苏科雄狮 清流播出 13:30
-http://111.231.6.102:1234/964666042
-#EXTINF:-1 tvg-name=" vs  13:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  13:30.png" group-title="体育-今天",全国青年篮球联赛 上海久事vs江苏肯帝亚 清流播出 13:30
-http://111.231.6.102:1234/964666045
-#EXTINF:-1 tvg-name=" vs  15:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  15:30.png" group-title="体育-今天",全国青年篮球联赛 新疆广汇vs深圳新世纪 清流播出 15:30
-http://111.231.6.102:1234/964666063
-#EXTINF:-1 tvg-name=" vs  15:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  15:30.png" group-title="体育-今天",全国青年篮球联赛 北京首钢vs广东宏远 清流播出 15:30
-http://111.231.6.102:1234/964666111
-#EXTINF:-1 tvg-name="WTA   17:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA   17:00.png" group-title="体育-今天",WTA 热血之战！大坂直美对决斯瓦泰克 赛场原声 17:00
-http://111.231.6.102:1234/964474273
-#EXTINF:-1 tvg-name="WTA   17:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA   17:00.png" group-title="体育-今天",WTA 热血之战！大坂直美对决斯瓦泰克 英文原声 17:00
-http://111.231.6.102:1234/964474384
-#EXTINF:-1 tvg-name=" vs  18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  18:00.png" group-title="体育-今天",全国青年篮球联赛 龙狮青年vs四川锦城 清流播出 18:00
-http://111.231.6.102:1234/964666078
-#EXTINF:-1 tvg-name="     19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/     19:00.png" group-title="体育-今天",伦敦团体世乒赛 刘国正、侯英超、周泽昊复盘世乒赛 刘国正 侯英超 周泽昊 19:00
-http://111.231.6.102:1234/964438055
-#EXTINF:-1 tvg-name=" vs  19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  19:30.png" group-title="体育-今天",全国青年篮球联赛 南京同曦vs青岛国信海天 清流播出 19:30
-http://111.231.6.102:1234/964666117
-#EXTINF:-1 tvg-name=" vs  20:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  20:00.png" group-title="体育-今天",全国青年篮球联赛 天津荣钢vs山西汾酒 清流播出 20:00
-http://111.231.6.102:1234/964666109
-#EXTINF:-1 tvg-name=" VS  02:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:30.png" group-title="体育-明天",意甲 那不勒斯VS博洛尼亚 石庆圣 02:30
-http://111.231.6.102:1234/964637620
-#EXTINF:-1 tvg-name=" VS  02:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:30.png" group-title="体育-明天",意甲 那不勒斯VS博洛尼亚 赛场原声 02:30
-http://111.231.6.102:1234/964637635
-#EXTINF:-1 tvg-name=" VS  02:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:30.png" group-title="体育-明天",意甲 那不勒斯VS博洛尼亚 石庆圣 02:30
-http://111.231.6.102:1234/964637645
-#EXTINF:-1 tvg-name=" VS    02:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS    02:30.png" group-title="体育-明天",英超 托特纳姆热刺VS利兹联 娄一晨 刘越 孙蕊 02:30
-http://111.231.6.102:1234/964636947
-#EXTINF:-1 tvg-name=" VS  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:45.png" group-title="体育-明天",英超 托特纳姆热刺VS利兹联 英文原声 02:45
-http://111.231.6.102:1234/964636878
-#EXTINF:-1 tvg-name=" VS  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:45.png" group-title="体育-明天",英超 托特纳姆热刺VS利兹联 赛场原声 02:45
-http://111.231.6.102:1234/964636869
-#EXTINF:-1 tvg-name=" VS    02:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS    02:30.png" group-title="体育-明天",英超 托特纳姆热刺VS利兹联 娄一晨 刘越 孙蕊 02:30
-http://111.231.6.102:1234/964636823
-#EXTINF:-1 tvg-name=" VS  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:45.png" group-title="体育-明天",英超 托特纳姆热刺VS利兹联 江忠德 02:45
-http://111.231.6.102:1234/964636812
-#EXTINF:-1 tvg-name=" VS  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:45.png" group-title="体育-明天",西甲 巴列卡诺VS吉罗纳 周楚雄 02:45
-http://111.231.6.102:1234/964636762
-#EXTINF:-1 tvg-name=" VS  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:45.png" group-title="体育-明天",西甲 巴列卡诺VS吉罗纳 赛场原声 02:45
-http://111.231.6.102:1234/964636798
-#EXTINF:-1 tvg-name="NBA VS    07:40" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS    07:40.png" group-title="体育-明天",NBA 骑士VS活塞 庄宁宇 张兆旭 徐咏 07:40
-http://111.231.6.102:1234/964608858
-#EXTINF:-1 tvg-name="NBA VS  07:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS  07:55.png" group-title="体育-明天",NBA 骑士VS活塞 大史 07:55
-http://111.231.6.102:1234/964608843
-#EXTINF:-1 tvg-name="NBA VS  07:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS  07:55.png" group-title="体育-明天",NBA 骑士VS活塞 英文原声 07:55
-http://111.231.6.102:1234/964608814
-#EXTINF:-1 tvg-name="NBA VS  07:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS  07:55.png" group-title="体育-明天",NBA 骑士VS活塞 智能字幕 07:55
-http://111.231.6.102:1234/964608809
-#EXTINF:-1 tvg-name=" undefined  107 08:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ undefined  107 08:00.png" group-title="体育-明天",咪咕体育日报 undefined 咪咕体育日报 第107期 08:00
-http://111.231.6.102:1234/964455012
-#EXTINF:-1 tvg-name="  3D 09:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/  3D 09:00.png" group-title="体育-明天",全国艺术体操锦标赛 高光不断！全能与单项决赛陆续开战 3D全真视频 09:00
-http://111.231.6.102:1234/964632937
-#EXTINF:-1 tvg-name="BWF  1 10:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF  1 10:00.png" group-title="体育-明天",BWF 泰国羽毛球公开赛第一日 1号场地 10:00
-http://111.231.6.102:1234/964693121
-#EXTINF:-1 tvg-name="BWF  2 10:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF  2 10:00.png" group-title="体育-明天",BWF 泰国羽毛球公开赛第一日 2号场地 10:00
-http://111.231.6.102:1234/964693150
-#EXTINF:-1 tvg-name="BWF  3 10:10" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF  3 10:10.png" group-title="体育-明天",BWF 泰国羽毛球公开赛第一日 3号场地 10:10
-http://111.231.6.102:1234/964693188
-#EXTINF:-1 tvg-name="BWF  4 10:10" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF  4 10:10.png" group-title="体育-明天",BWF 泰国羽毛球公开赛第一日 4号场地 10:10
-http://111.231.6.102:1234/964693203
-#EXTINF:-1 tvg-name="NBA VS    10:10" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS    10:10.png" group-title="体育-明天",NBA 湖人VS雷霆 杨健 曾令旭 李根 10:10
-http://111.231.6.102:1234/964609084
-#EXTINF:-1 tvg-name="NBA VS  10:25" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS  10:25.png" group-title="体育-明天",NBA 湖人VS雷霆 郑泽鹏 10:25
-http://111.231.6.102:1234/964609071
-#EXTINF:-1 tvg-name="NBA VS  10:25" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS  10:25.png" group-title="体育-明天",NBA 湖人VS雷霆 莫俊祺 10:25
-http://111.231.6.102:1234/964609043
-#EXTINF:-1 tvg-name="NBA VS  10:25" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS  10:25.png" group-title="体育-明天",NBA 湖人VS雷霆 洪荒 10:25
-http://111.231.6.102:1234/964609035
-#EXTINF:-1 tvg-name="NBA VS  10:25" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS  10:25.png" group-title="体育-明天",NBA 湖人VS雷霆 英文原声 10:25
-http://111.231.6.102:1234/964609000
-#EXTINF:-1 tvg-name="NBA VS  10:25" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS  10:25.png" group-title="体育-明天",NBA 湖人VS雷霆 智能字幕 10:25
-http://111.231.6.102:1234/964608969
-#EXTINF:-1 tvg-name=" vs  13:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  13:30.png" group-title="体育-明天",全国青年篮球联赛 长沙勇胜vs广东宏远 清流播出 13:30
-http://111.231.6.102:1234/964666188
-#EXTINF:-1 tvg-name=" vs  13:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  13:30.png" group-title="体育-明天",全国青年篮球联赛 苏科雄狮vs四川锦城 清流播出 13:30
-http://111.231.6.102:1234/964666122
-#EXTINF:-1 tvg-name=" vs  15:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  15:30.png" group-title="体育-明天",全国青年篮球联赛 浙江稠州银行vs江苏肯帝亚 清流播出 15:30
-http://111.231.6.102:1234/964666190
-#EXTINF:-1 tvg-name=" vs  15:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  15:30.png" group-title="体育-明天",全国青年篮球联赛 浙江广厦vs深圳新世纪 清流播出 15:30
-http://111.231.6.102:1234/964666144
-#EXTINF:-1 tvg-name=" vs  18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  18:00.png" group-title="体育-明天",全国青年篮球联赛 上海久事vs青岛国信海天 清流播出 18:00
-http://111.231.6.102:1234/964666225
-#EXTINF:-1 tvg-name=" vs  18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  18:00.png" group-title="体育-明天",全国青年篮球联赛 新疆广汇vs山西汾酒 清流播出 18:00
-http://111.231.6.102:1234/964666162
-#EXTINF:-1 tvg-name="     19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/     19:00.png" group-title="体育-明天",伦敦团体世乒赛 侯英超、程靖淇、徐晨皓与周冠达复盘世乒赛 侯英超 程靖淇 徐晨皓 19:00
-http://111.231.6.102:1234/964665525
-#EXTINF:-1 tvg-name="WTA WTA1/4  19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA WTA1/4  19:00.png" group-title="体育-明天",WTA WTA罗马站1/4决赛 赛场原声 19:00
-http://111.231.6.102:1234/964474289
-#EXTINF:-1 tvg-name="WTA WTA1/4  19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA WTA1/4  19:00.png" group-title="体育-明天",WTA WTA罗马站1/4决赛 英文原声 19:00
-http://111.231.6.102:1234/964474378
-#EXTINF:-1 tvg-name=" vs  20:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  20:00.png" group-title="体育-明天",全国青年篮球联赛 北京首钢vs南京同曦 清流播出 20:00
-http://111.231.6.102:1234/964666256
-#EXTINF:-1 tvg-name=" vs  20:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  20:00.png" group-title="体育-明天",全国青年篮球联赛 龙狮青年vs天津荣钢 清流播出 20:00
-http://111.231.6.102:1234/964666177
+http://125.80.112.110:3005/629942228
+#EXTINF:-1 tvg-name=" VS  00:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  00:45.png" group-title="体育0515",西甲 瓦伦西亚VS巴列卡诺 全场回放（张天翼） 00:45
+http://125.80.112.110:3005/964785677
+#EXTINF:-1 tvg-name=" VS  01:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  01:45.png" group-title="体育0515",西甲 吉罗纳VS皇家社会 全场回放（洪宇青） 01:45
+http://125.80.112.110:3005/964785843
+#EXTINF:-1 tvg-name=" VS  03:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  03:15.png" group-title="体育0515",西甲 皇家马德里VS皇家奥维耶多 全场回放（刘畅、孙雷） 03:15
+http://125.80.112.110:3005/964785983
+#EXTINF:-1 tvg-name="WTA  0-2 21:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA  0-2 21:00.png" group-title="体育0515",WTA 斯维托丽娜晋级决赛！高芙直落两盘 【回放】科斯蒂亚0-2高芙（胡力涛） 21:00
+http://125.80.112.110:3005/964780222
+#EXTINF:-1 tvg-name="WTA  1-2 21:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA  1-2 21:00.png" group-title="体育0515",WTA 斯维托丽娜晋级决赛！高芙直落两盘 【回放】斯瓦泰克1-2斯维托丽娜（宋光振） 21:00
+http://125.80.112.110:3005/964786338
+#EXTINF:-1 tvg-name="WTA  0-2 21:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA  0-2 21:00.png" group-title="体育0515",WTA 斯维托丽娜晋级决赛！高芙直落两盘 【回放】科斯蒂亚0-2高芙（赛场原声） 21:00
+http://125.80.112.110:3005/964780518
+#EXTINF:-1 tvg-name="WTA  1-2 21:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA  1-2 21:00.png" group-title="体育0515",WTA 斯维托丽娜晋级决赛！高芙直落两盘 【回放】斯瓦泰克1-2斯维托丽娜（赛场原声） 21:00
+http://125.80.112.110:3005/964786727
+#EXTINF:-1 tvg-name="WTA  0-2 21:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA  0-2 21:00.png" group-title="体育0515",WTA 斯维托丽娜晋级决赛！高芙直落两盘 【回放】科斯蒂亚0-2高芙（英文原声） 21:00
+http://125.80.112.110:3005/964780469
+#EXTINF:-1 tvg-name="WTA  1-2 21:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA  1-2 21:00.png" group-title="体育0515",WTA 斯维托丽娜晋级决赛！高芙直落两盘 【回放】斯瓦泰克1-2斯维托丽娜（英文原声） 21:00
+http://125.80.112.110:3005/964786295
+#EXTINF:-1 tvg-name="WTA VS  21:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA VS  21:00.png" group-title="体育0515",WTA 斯瓦泰克VS斯维托丽娜 全场回放（宋光振） 21:00
+http://125.80.112.110:3005/964786338
+#EXTINF:-1 tvg-name="WTA VS 1-2 21:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA VS 1-2 21:00.png" group-title="体育0515",WTA 斯瓦泰克VS斯维托丽娜 【回放】斯瓦泰克1-2斯维托丽娜（赛场原声） 21:00
+http://125.80.112.110:3005/964786727
+#EXTINF:-1 tvg-name="WTA VS 1-2 21:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA VS 1-2 21:00.png" group-title="体育0515",WTA 斯瓦泰克VS斯维托丽娜 【回放】斯瓦泰克1-2斯维托丽娜（英文原声） 21:00
+http://125.80.112.110:3005/964786295
+#EXTINF:-1 tvg-name="  DAY3 08:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/  DAY3 08:50.png" group-title="体育0515",武术散打世界杯 第十一届武术散打世界杯第三日 第十一届武术散打世界杯DAY3全场回放（官方解说） 08:50
+http://125.80.112.110:3005/964791642
+#EXTINF:-1 tvg-name="  DAY3 08:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/  DAY3 08:50.png" group-title="体育0515",武术散打世界杯 第十一届武术散打世界杯第三日 第十一届武术散打世界杯DAY3全场回放（赛场原声） 08:50
+http://125.80.112.110:3005/964791582
+#EXTINF:-1 tvg-name="   08:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/   08:50.png" group-title="体育0515",武术散打世界杯 第十一届武术散打世界杯第三日 第十一届武术散打世界杯第三日颁奖仪式全场回放 08:50
+http://125.80.112.110:3005/964791227
+#EXTINF:-1 tvg-name="BWF 4 2026BWFDay4 16:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF 4 2026BWFDay4 16:00.png" group-title="体育0515",BWF 国羽多线告捷！石宇奇三盘挺进4强 2026BWF泰国羽毛球公开赛Day4一号场地全场回放（英文解说）（二） 16:00
+http://125.80.112.110:3005/964810022
+#EXTINF:-1 tvg-name="BWF 4 2026BWFDay4 16:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF 4 2026BWFDay4 16:00.png" group-title="体育0515",BWF 国羽多线告捷！石宇奇三盘挺进4强 2026BWF泰国羽毛球公开赛Day4三号场地全场回放（赛场原声）（一） 16:00
+http://125.80.112.110:3005/964809968
+#EXTINF:-1 tvg-name="BWF 4 2026BWFDay4 16:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF 4 2026BWFDay4 16:00.png" group-title="体育0515",BWF 国羽多线告捷！石宇奇三盘挺进4强 2026BWF泰国羽毛球公开赛Day4一号场地全场回放（赛场原声）（二） 16:00
+http://125.80.112.110:3005/964809996
+#EXTINF:-1 tvg-name="BWF 4 2026BWF1/40-2 16:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF 4 2026BWF1/40-2 16:00.png" group-title="体育0515",BWF 国羽多线告捷！石宇奇三盘挺进4强 2026BWF泰国羽毛球公开赛男单1/4决赛回放：拉克什亚0-2昆拉武特（赛场原声） 16:00
+http://125.80.112.110:3005/964806512
+#EXTINF:-1 tvg-name="BWF 4 2-1 16:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF 4 2-1 16:00.png" group-title="体育0515",BWF 国羽多线告捷！石宇奇三盘挺进4强 【回放】石宇奇2-1渡边航贵（鸿昆） 16:00
+http://125.80.112.110:3005/964798184
+#EXTINF:-1 tvg-name="BWF 4 0-2 16:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF 4 0-2 16:00.png" group-title="体育0515",BWF 国羽多线告捷！石宇奇三盘挺进4强 【回放】宫崎友花0-2陈雨菲（鸿昆） 16:00
+http://125.80.112.110:3005/964796739
+#EXTINF:-1 tvg-name="BWF 4 /1-2/ 16:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF 4 /1-2/ 16:00.png" group-title="体育0515",BWF 国羽多线告捷！石宇奇三盘挺进4强 【回放】陈子睿/林煜杰1-2何济霆/任翔宇（朱胤丞） 16:00
+http://125.80.112.110:3005/964794201
+#EXTINF:-1 tvg-name="BWF 4 /2-0/ 16:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF 4 /2-0/ 16:00.png" group-title="体育0515",BWF 国羽多线告捷！石宇奇三盘挺进4强 【回放】程星/张驰2-0霜上雄一/保原彩夏（杨妮娜） 16:00
+http://125.80.112.110:3005/964798221
+#EXTINF:-1 tvg-name="BWF 4 /0-2/ 16:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF 4 /0-2/ 16:00.png" group-title="体育0515",BWF 国羽多线告捷！石宇奇三盘挺进4强 【回放】林芷均/杨筑云0-2鲍骊婧/曹梓涵（朱胤丞） 16:00
+http://125.80.112.110:3005/964795209
+#EXTINF:-1 tvg-name="BWF 4 /1-2/ 16:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF 4 /1-2/ 16:00.png" group-title="体育0515",BWF 国羽多线告捷！石宇奇三盘挺进4强 【回放】高家炫/魏雅欣1-2马蒂亚斯/博尔（杨妮娜） 16:00
+http://125.80.112.110:3005/964797891
+#EXTINF:-1 tvg-name="BWF 4 /2-0/ 16:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF 4 /2-0/ 16:00.png" group-title="体育0515",BWF 国羽多线告捷！石宇奇三盘挺进4强 【回放】朱一珺/李茜2-0古贺辉/斋藤夏（赛场原声） 16:00
+http://125.80.112.110:3005/964798020
+#EXTINF:-1 tvg-name="BWF 4 2-0 16:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF 4 2-0 16:00.png" group-title="体育0515",BWF 国羽多线告捷！石宇奇三盘挺进4强 【回放】安东森2-0苏力扬（赛场原声） 16:00
+http://125.80.112.110:3005/964798943
+#EXTINF:-1 tvg-name="BWF 4 1-2 16:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF 4 1-2 16:00.png" group-title="体育0515",BWF 国羽多线告捷！石宇奇三盘挺进4强 【回放】全奕镇1-2周天成（赛场原声） 16:00
+http://125.80.112.110:3005/964799198
+#EXTINF:-1 tvg-name="BWF 4 2-1 16:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF 4 2-1 16:00.png" group-title="体育0515",BWF 国羽多线告捷！石宇奇三盘挺进4强 【回放】山口茜2-1辛杜（赛场原声） 16:00
+http://125.80.112.110:3005/964794206
+#EXTINF:-1 tvg-name="BWF 4  16:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF 4  16:00.png" group-title="体育0515",BWF 国羽多线告捷！石宇奇三盘挺进4强 【全场回放】一号场地（赛场原声）（一） 16:00
+http://125.80.112.110:3005/964798543
+#EXTINF:-1 tvg-name="BWF 4  16:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF 4  16:00.png" group-title="体育0515",BWF 国羽多线告捷！石宇奇三盘挺进4强 【全场回放】一号场地（英文解说）（一） 16:00
+http://125.80.112.110:3005/964798173
+#EXTINF:-1 tvg-name="BWF 4  16:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF 4  16:00.png" group-title="体育0515",BWF 国羽多线告捷！石宇奇三盘挺进4强 【全场回放】二号场地（赛场原声）（一） 16:00
+http://125.80.112.110:3005/964797735
+#EXTINF:-1 tvg-name="BWF 4  16:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF 4  16:00.png" group-title="体育0515",BWF 国羽多线告捷！石宇奇三盘挺进4强 【全场回放】二号场地（赛场原声）（二） 16:00
+http://125.80.112.110:3005/964800362
+#EXTINF:-1 tvg-name="BWF 4  16:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF 4  16:00.png" group-title="体育0515",BWF 国羽多线告捷！石宇奇三盘挺进4强 【全场回放】三号场地（赛场原声）（二） 16:00
+http://125.80.112.110:3005/964798566
+#EXTINF:-1 tvg-name=" 81-61  13:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 81-61  13:30.png" group-title="体育0515",全国青年篮球联赛 青岛国信海天81-61北京首钢 全场回放（赛场原声） 13:30
+http://125.80.112.110:3005/964795250
+#EXTINF:-1 tvg-name=" 59-83  13:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 59-83  13:30.png" group-title="体育0515",全国青年篮球联赛 山西汾酒59-83龙狮青年 全场回放（赛场原声） 13:30
+http://125.80.112.110:3005/964794789
+#EXTINF:-1 tvg-name=" 1+1 2:10 13:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 1+1 2:10 13:55.png" group-title="体育0515",咪咕公司三人篮球赛 “幸福1+1”咪咕公司三人篮球赛暨集团三人篮球选拔赛 【冠、亚军决赛回放】咪咕音乐2:10咪咕视讯 13:55
+http://125.80.112.110:3005/964794114
+#EXTINF:-1 tvg-name=" 1+1 11:9 13:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 1+1 11:9 13:55.png" group-title="体育0515",咪咕公司三人篮球赛 “幸福1+1”咪咕公司三人篮球赛暨集团三人篮球选拔赛 【三、四名决赛回放】咪咕新空11:9咪咕数媒 13:55
+http://125.80.112.110:3005/964793992
+#EXTINF:-1 tvg-name=" 1+1 14:11 13:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 1+1 14:11 13:55.png" group-title="体育0515",咪咕公司三人篮球赛 “幸福1+1”咪咕公司三人篮球赛暨集团三人篮球选拔赛 【五、六名决赛回放】咪咕互娱14:11咪咕总部 13:55
+http://125.80.112.110:3005/964793558
+#EXTINF:-1 tvg-name=" 1+1 7:14 13:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 1+1 7:14 13:55.png" group-title="体育0515",咪咕公司三人篮球赛 “幸福1+1”咪咕公司三人篮球赛暨集团三人篮球选拔赛 【半决赛回放】咪咕数媒7:14咪咕视讯 13:55
+http://125.80.112.110:3005/964793004
+#EXTINF:-1 tvg-name=" 1+1 8:10 13:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 1+1 8:10 13:55.png" group-title="体育0515",咪咕公司三人篮球赛 “幸福1+1”咪咕公司三人篮球赛暨集团三人篮球选拔赛 【半决赛回放】咪咕新空8:10咪咕音乐 13:55
+http://125.80.112.110:3005/964793201
+#EXTINF:-1 tvg-name=" 1+1  13:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 1+1  13:55.png" group-title="体育0515",咪咕公司三人篮球赛 “幸福1+1”咪咕公司三人篮球赛暨集团三人篮球选拔赛 全场回放 13:55
+http://125.80.112.110:3005/964794631
+#EXTINF:-1 tvg-name="  2026Day2 10:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/  2026Day2 10:30.png" group-title="体育0515",全国体操锦标赛 广东队女子团体摘金 2026全国体操锦标赛Day2全场回放（官方解说）（三） 10:30
+http://125.80.112.110:3005/964811487
+#EXTINF:-1 tvg-name="  2026Day2 10:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/  2026Day2 10:30.png" group-title="体育0515",全国体操锦标赛 广东队女子团体摘金 2026全国体操锦标赛Day2全场回放（官方解说）（一） 10:30
+http://125.80.112.110:3005/964791208
+#EXTINF:-1 tvg-name="  2026Day2 10:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/  2026Day2 10:30.png" group-title="体育0515",全国体操锦标赛 广东队女子团体摘金 2026全国体操锦标赛Day2全场回放（官方解说）（二） 10:30
+http://125.80.112.110:3005/964796475
+#EXTINF:-1 tvg-name="   B  13:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/   B  13:55.png" group-title="体育0515",超三联赛 超三联赛 贵阳大区赛 B档小组赛下午场 全场回放（赛场原声） 13:55
+http://125.80.112.110:3005/964796431
+#EXTINF:-1 tvg-name="   B 18:19 13:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/   B 18:19 13:55.png" group-title="体育0515",超三联赛 超三联赛 贵阳大区赛 B档小组赛下午场 【回放】广东生涯18:19福州奇迹 13:55
+http://125.80.112.110:3005/964795184
+#EXTINF:-1 tvg-name="   B 21:12 13:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/   B 21:12 13:55.png" group-title="体育0515",超三联赛 超三联赛 贵阳大区赛 B档小组赛下午场 【回放】成都和众21:12湖北江鲟 13:55
+http://125.80.112.110:3005/964792788
+#EXTINF:-1 tvg-name="   B 12:21 13:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/   B 12:21 13:55.png" group-title="体育0515",超三联赛 超三联赛 贵阳大区赛 B档小组赛下午场 【回放】广东生涯12:21广东光正教育 13:55
+http://125.80.112.110:3005/964793319
+#EXTINF:-1 tvg-name="   B 21:13 13:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/   B 21:13 13:55.png" group-title="体育0515",超三联赛 超三联赛 贵阳大区赛 B档小组赛下午场 【回放】成都和众21:13江苏香江猛虎 13:55
+http://125.80.112.110:3005/964794334
+#EXTINF:-1 tvg-name=" 72-92  15:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 72-92  15:30.png" group-title="体育0515",全国青年篮球联赛 浙江稠州银行72-92南京同曦 全场回放（赛场原声） 15:30
+http://125.80.112.110:3005/964797950
+#EXTINF:-1 tvg-name=" 61-81  15:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 61-81  15:30.png" group-title="体育0515",全国青年篮球联赛 四川锦城61-81新疆广汇 全场回放（赛场原声） 15:30
+http://125.80.112.110:3005/964798642
+#EXTINF:-1 tvg-name=" VS  15:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  15:50.png" group-title="体育0515",足协杯 深圳二零二八VS陕西联合 全场回放（官方解说） 15:50
+http://125.80.112.110:3005/964798448
+#EXTINF:-1 tvg-name=" VS  6:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  6:20.png" group-title="体育0515",贵州村超 忠诚村足球队VS富民村足球队 全场回放 6:20
+http://125.80.112.110:3005/964798629
+#EXTINF:-1 tvg-name=" VS  16:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  16:20.png" group-title="体育0515",足协杯 大连可为VS南通支云 全场回放（赛场原声） 16:20
+http://125.80.112.110:3005/964799503
+#EXTINF:-1 tvg-name=" 100-74  18:01" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 100-74  18:01.png" group-title="体育0515",全国青年篮球联赛 江苏肯帝亚100-74长沙勇胜 全场回放（赛场原声） 18:01
+http://125.80.112.110:3005/964807041
+#EXTINF:-1 tvg-name=" 103-89  18:02" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 103-89  18:02.png" group-title="体育0515",全国青年篮球联赛 浙江广厦103-89天津荣钢 全场回放（赛场原声） 18:02
+http://125.80.112.110:3005/964808217
+#EXTINF:-1 tvg-name="NBA NBA vs  G4  18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA NBA vs  G4  18:00.png" group-title="体育0515",NBA经典赛事 NBA季后赛精彩重播：雷霆 vs 湖人 G4 全场回放（杨健、曾令旭、李根、佳依） 18:00
+http://125.80.112.110:3005/964739730
+#EXTINF:-1 tvg-name=" VS  18:32" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:32.png" group-title="体育0515",贵州村超 仁吉村村牛足球队VS党相村塔石羊瘪队 全场回放 18:32
+http://125.80.112.110:3005/964803791
+#EXTINF:-1 tvg-name=" VS  18:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:50.png" group-title="体育0515",蒙超联赛 呼和浩特队VS赤峰队 全场回放 18:50
+http://125.80.112.110:3005/964811457
+#EXTINF:-1 tvg-name=" 2-0 25/262:0 19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 2-0 25/262:0 19:00.png" group-title="体育0515",广西县超 北海市合浦县队2-0玉林市北流市队 25/26赛季广西县级足球超级联赛季军赛全场回放：北海市海城区队2:0玉林市北流市队（赛场原声） 19:00
+http://125.80.112.110:3005/964809837
+#EXTINF:-1 tvg-name="   B  18:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/   B  18:55.png" group-title="体育0515",超三联赛 超三联赛 贵阳大区赛 B档小组赛晚间场 全场回放（赛场原声） 18:55
+http://125.80.112.110:3005/964806653
+#EXTINF:-1 tvg-name="   B 20:18 18:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/   B 20:18 18:55.png" group-title="体育0515",超三联赛 超三联赛 贵阳大区赛 B档小组赛晚间场 【回放】福州奇迹20:18江苏湘江猛虎 18:55
+http://125.80.112.110:3005/964803664
+#EXTINF:-1 tvg-name="   B 11:21 18:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/   B 11:21 18:55.png" group-title="体育0515",超三联赛 超三联赛 贵阳大区赛 B档小组赛晚间场 【回放】湖北江鲟11:21广东生涯 18:55
+http://125.80.112.110:3005/964801710
+#EXTINF:-1 tvg-name="   B 21:15 18:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/   B 21:15 18:55.png" group-title="体育0515",超三联赛 超三联赛 贵阳大区赛 B档小组赛晚间场 【回放】广东光正教育21:15福州奇迹 18:55
+http://125.80.112.110:3005/964799559
+#EXTINF:-1 tvg-name="   B 14:10 18:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/   B 14:10 18:55.png" group-title="体育0515",超三联赛 超三联赛 贵阳大区赛 B档小组赛晚间场 【回放】湖北江鲟14:10江苏湘江猛虎 18:55
+http://125.80.112.110:3005/964798924
+#EXTINF:-1 tvg-name=" VS  19:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:15.png" group-title="体育0515",吴越杯 丽水队VS绍兴队 全场回放 19:15
+http://125.80.112.110:3005/964810040
+#EXTINF:-1 tvg-name=" VS  19:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:20.png" group-title="体育0515",足协杯 杭州临平吴越VS佛山南狮 全场回放 19:20
+http://125.80.112.110:3005/964811384
+#EXTINF:-1 tvg-name=" VS  19:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:20.png" group-title="体育0515",足协杯 青岛红狮VS南京城市 全场回放 19:20
+http://125.80.112.110:3005/964811115
+#EXTINF:-1 tvg-name=" VS  19:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:20.png" group-title="体育0515",足协杯 青岛红狮VS南京城市 全场回放 19:20
+http://125.80.112.110:3005/964811034
+#EXTINF:-1 tvg-name=" VS  19:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:20.png" group-title="体育0515",中超 天津津门虎VS成都蓉城 全场回放（刘腾、刘越） 19:20
+http://125.80.112.110:3005/964807484
+#EXTINF:-1 tvg-name=" VS  19:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:20.png" group-title="体育0515",中超 天津津门虎VS成都蓉城 全场回放（刘畅、贺宇、杨晨、李子琪） 19:20
+http://125.80.112.110:3005/964809164
+#EXTINF:-1 tvg-name=" VS  19:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:20.png" group-title="体育0515",中超 河南俱乐部彩陶坊VS深圳新鹏城 全场回放（袁甲、李毅） 19:20
+http://125.80.112.110:3005/964806879
+#EXTINF:-1 tvg-name=" VS  19:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:20.png" group-title="体育0515",中超 上海海港VS浙江俱乐部绿城 全场回放（娄一晨、李彦、姚安妮） 19:20
+http://125.80.112.110:3005/964806519
+#EXTINF:-1 tvg-name=" VS  19:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:45.png" group-title="体育0515",中超 大连英博海发VS青岛西海岸 全场回放（王伟、鲁靖明） 19:45
+http://125.80.112.110:3005/964807805
+#EXTINF:-1 tvg-name=" VS  19:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:45.png" group-title="体育0515",中超 北京国安VS青岛海牛 全场回放（张昊泽、徐阳、林梦鸽） 19:45
+http://125.80.112.110:3005/964808063
+#EXTINF:-1 tvg-name=" 92-93  20:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 92-93  20:00.png" group-title="体育0515",全国青年篮球联赛 广东宏远92-93上海久事 全场回放（赛场原声） 20:00
+http://125.80.112.110:3005/964809902
+#EXTINF:-1 tvg-name=" 76-94  20:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 76-94  20:00.png" group-title="体育0515",全国青年篮球联赛 深圳新世纪76-94苏科雄狮 全场回放（赛场原声） 20:00
+http://125.80.112.110:3005/964809668
+#EXTINF:-1 tvg-name=" VS  20:31" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  20:31.png" group-title="体育0515",贵州村超 安乐村足球队VS扒王村足球队 全场回放 20:31
+http://125.80.112.110:3005/964809728
+#EXTINF:-1 tvg-name=" GCL 2026LGCTDay1 22:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ GCL 2026LGCTDay1 22:50.png" group-title="体育0515",浪琴环球马术冠军赛 GCL团体赛：布拉格雄狮夺魁 2026LGCT浪琴环球马术冠军赛马德里站Day1全场回放（英文解说）（一） 22:50
+http://125.80.112.110:3005/964811721
+#EXTINF:-1 tvg-name=" GCL 2026LGCTDay1 22:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ GCL 2026LGCTDay1 22:50.png" group-title="体育0515",浪琴环球马术冠军赛 GCL团体赛：布拉格雄狮夺魁 2026LGCT浪琴环球马术冠军赛马德里站Day1全场回放（中文解说）（一） 22:50
+http://125.80.112.110:3005/964811674
+#EXTINF:-1 tvg-name=" GCL 2026LGCTDay1 22:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ GCL 2026LGCTDay1 22:50.png" group-title="体育0515",浪琴环球马术冠军赛 GCL团体赛：布拉格雄狮夺魁 2026LGCT浪琴环球马术冠军赛马德里站Day1全场回放（赛场原声）（一） 22:50
+http://125.80.112.110:3005/964811671
+#EXTINF:-1 tvg-name="U17 U17VSU17  23:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/U17 U17VSU17  23:45.png" group-title="体育0516",U17亚洲杯 日本U17VS塔吉克斯坦U17 全场回放（鹿中原） 23:45
+http://125.80.112.110:3005/964811662
+#EXTINF:-1 tvg-name=" VS    02:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS    02:30.png" group-title="体育0516",英超 阿斯顿维拉VS利物浦 詹俊 张路 林梦鸽 02:30
+http://125.80.112.110:3005/964787090
+#EXTINF:-1 tvg-name=" VS  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:45.png" group-title="体育0516",英超 阿斯顿维拉VS利物浦 英文原声 02:45
+http://125.80.112.110:3005/964787110
+#EXTINF:-1 tvg-name=" VS  02:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  02:45.png" group-title="体育0516",英超 阿斯顿维拉VS利物浦 赛场原声 02:45
+http://125.80.112.110:3005/964787115
+#EXTINF:-1 tvg-name=" VS    02:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS    02:30.png" group-title="体育0516",英超 阿斯顿维拉VS利物浦 詹俊 张路 林梦鸽 02:30
+http://125.80.112.110:3005/964787131
+#EXTINF:-1 tvg-name="NBA VS    06:35" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS    06:35.png" group-title="体育0516",NBA 骑士VS活塞 蔡凯臣 曾令旭 周鹏 06:35
+http://125.80.112.110:3005/964755836
+#EXTINF:-1 tvg-name="NBA VS  06:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS  06:55.png" group-title="体育0516",NBA 骑士VS活塞 英文原声 06:55
+http://125.80.112.110:3005/964755867
+#EXTINF:-1 tvg-name="NBA VS  06:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS  06:55.png" group-title="体育0516",NBA 骑士VS活塞 智能字幕 06:55
+http://125.80.112.110:3005/964755872
+#EXTINF:-1 tvg-name=" undefined  111 08:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ undefined  111 08:00.png" group-title="体育0516",咪咕体育日报 undefined 咪咕体育日报 第111期 08:00
+http://125.80.112.110:3005/964455156
+#EXTINF:-1 tvg-name="   09:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/   09:00.png" group-title="体育0516",中国体育舞蹈公开系列赛 全国体育舞蹈技术等级锦标赛 解说 09:00
+http://125.80.112.110:3005/964791196
+#EXTINF:-1 tvg-name="NBA VS    09:05" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS    09:05.png" group-title="体育0516",NBA 森林狼VS马刺 王冠证 刘家成 徐咏 09:05
+http://125.80.112.110:3005/964755896
+#EXTINF:-1 tvg-name="NBA VS  09:25" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS  09:25.png" group-title="体育0516",NBA 森林狼VS马刺 王晓晨 09:25
+http://125.80.112.110:3005/964755915
+#EXTINF:-1 tvg-name="NBA VS  09:25" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS  09:25.png" group-title="体育0516",NBA 森林狼VS马刺 英文原声 09:25
+http://125.80.112.110:3005/964755960
+#EXTINF:-1 tvg-name="NBA VS  09:25" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NBA VS  09:25.png" group-title="体育0516",NBA 森林狼VS马刺 智能字幕 09:25
+http://125.80.112.110:3005/964755996
+#EXTINF:-1 tvg-name=" Day5 1 09:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ Day5 1 09:30.png" group-title="体育0516",斯诺克 世界女子斯诺克锦标赛Day5 1号桌 09:30
+http://125.80.112.110:3005/964771750
+#EXTINF:-1 tvg-name=" Day5 2 09:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ Day5 2 09:30.png" group-title="体育0516",斯诺克 世界女子斯诺克锦标赛Day5 2号桌 09:30
+http://125.80.112.110:3005/964771844
+#EXTINF:-1 tvg-name="BWF  1 13:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF  1 13:00.png" group-title="体育0516",BWF 全军出击！石宇奇、陈雨菲领衔冲决赛 1号场地 13:00
+http://125.80.112.110:3005/964694471
+#EXTINF:-1 tvg-name="BWF  2 13:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF  2 13:00.png" group-title="体育0516",BWF 全军出击！石宇奇、陈雨菲领衔冲决赛 2号场地 13:00
+http://125.80.112.110:3005/964693373
+#EXTINF:-1 tvg-name="BWF  1 13:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF  1 13:00.png" group-title="体育0516",BWF 全军出击！石宇奇、陈雨菲领衔冲决赛 1号场地英文解说视角 13:00
+http://125.80.112.110:3005/964763144
+#EXTINF:-1 tvg-name="   A  12:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/   A  12:55.png" group-title="体育0516",超三联赛 超三联赛 贵阳大区赛 A档小组赛 解说 12:55
+http://125.80.112.110:3005/964753486
+#EXTINF:-1 tvg-name=" vs  13:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  13:30.png" group-title="体育0516",全国青年篮球联赛 青岛国信海天vs长沙勇胜 清流播出 13:30
+http://125.80.112.110:3005/964666555
+#EXTINF:-1 tvg-name=" vs  13:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  13:30.png" group-title="体育0516",全国青年篮球联赛 天津荣钢vs新疆广汇 清流播出 13:30
+http://125.80.112.110:3005/964666414
+#EXTINF:-1 tvg-name=" VS 2026: VS 14:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 14:20.png" group-title="体育0516",贵州村超 车江一村足球队VS阳光村足球队 2026赛季贵州村超联赛第三轮: 车江一村VS阳光村 14:20
+http://125.80.112.110:3005/964757278
+#EXTINF:-1 tvg-name=" VS 2026: VS 14:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 14:30.png" group-title="体育0516",齐鲁超赛 临沂队VS滨州创新队 2026山东省齐鲁足球超级联赛第三轮: 临沂队VS滨州创新队 14:30
+http://125.80.112.110:3005/964635390
+#EXTINF:-1 tvg-name=" VS 20261: VS 14:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 20261: VS 14:50.png" group-title="体育0516",蒙超联赛 呼伦贝尔队VS兴安盟队 2026赛季内蒙古足球超级联赛小组赛第1轮: 呼伦贝尔市VS兴安盟 14:50
+http://125.80.112.110:3005/964720847
+#EXTINF:-1 tvg-name=" VS  14:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  14:50.png" group-title="体育0516",足协杯 北京通州鹏瑞VS深圳青年人 解说 14:50
+http://125.80.112.110:3005/964768585
+#EXTINF:-1 tvg-name=" VS  14:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  14:50.png" group-title="体育0516",足协杯 北京通州鹏瑞VS深圳青年人 赛场原声 14:50
+http://125.80.112.110:3005/964768607
+#EXTINF:-1 tvg-name=" VS  14:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  14:50.png" group-title="体育0516",足协杯 聊城传奇绿业春VS宁波职业足球俱乐部 赛场原声 14:50
+http://125.80.112.110:3005/964768633
+#EXTINF:-1 tvg-name=" VS 2025/2026: VS 15:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2025/2026: VS 15:00.png" group-title="体育0516",滇超 丽江队VS楚雄队 2025/2026赛季云南省城市足球联赛第十三轮: 丽江队VS楚雄队 15:00
+http://125.80.112.110:3005/964770712
+#EXTINF:-1 tvg-name=" VS 202611vs 14:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 202611vs 14:30.png" group-title="体育0516",川超 南充丝绸源点队VS凉山好医生队 2026赛季四川省城市足球联赛第11轮：南充丝绸源点队vs凉山好医生队 14:30
+http://125.80.112.110:3005/963424483
+#EXTINF:-1 tvg-name=" VS  15:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  15:20.png" group-title="体育0516",足协杯 兰州陇原竞技VS梅州客家 赛场原声 15:20
+http://125.80.112.110:3005/964768675
+#EXTINF:-1 tvg-name=" VS  15:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  15:20.png" group-title="体育0516",足协杯 山西崇德荣海VS长春亚泰 赛场原声 15:20
+http://125.80.112.110:3005/964768692
+#EXTINF:-1 tvg-name=" VS  15:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  15:20.png" group-title="体育0516",足协杯 上海赛更达VS延边龙鼎 解说 15:20
+http://125.80.112.110:3005/964768638
+#EXTINF:-1 tvg-name=" VS  15:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  15:20.png" group-title="体育0516",足协杯 上海赛更达VS延边龙鼎 赛场原声 15:20
+http://125.80.112.110:3005/964768667
+#EXTINF:-1 tvg-name=" vs  15:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  15:30.png" group-title="体育0516",全国青年篮球联赛 浙江稠州银行vs北京首钢 清流播出 15:30
+http://125.80.112.110:3005/964666568
+#EXTINF:-1 tvg-name=" vs  15:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  15:30.png" group-title="体育0516",全国青年篮球联赛 浙江广厦vs龙狮青年 清流播出 15:30
+http://125.80.112.110:3005/964666440
+#EXTINF:-1 tvg-name=" VS 2026: vs 15:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: vs 15:50.png" group-title="体育0516",楚超 天门衣尚队VS武汉华工科技队 2026湖北省城市足球联赛第四轮: 天门衣尚vs武汉华工科技 15:50
+http://125.80.112.110:3005/964475907
+#EXTINF:-1 tvg-name=" VS 2026: VS 16:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 16:00.png" group-title="体育0516",齐鲁超赛 济宁港航VS东营队 2026山东省齐鲁足球超级联赛第三轮: 济宁港航VS东营队 16:00
+http://125.80.112.110:3005/964635397
+#EXTINF:-1 tvg-name=" VS 20261: VS 15:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 20261: VS 15:50.png" group-title="体育0516",蒙超联赛 巴彦淖尔队VS阿拉善队 2026赛季内蒙古足球超级联赛小组赛第1轮: 巴彦淖尔市VS阿拉善盟 15:50
+http://125.80.112.110:3005/964791321
+#EXTINF:-1 tvg-name="   16:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/   16:00.png" group-title="体育0516",全国体操锦标赛 男子个人全能决赛暨全能团体决赛 解说 16:00
+http://125.80.112.110:3005/964725311
+#EXTINF:-1 tvg-name=" VS 2026: VS 16:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 16:30.png" group-title="体育0516",贵州村超 北京交通大学中外大学生足球联队VS交通大学贵州校友联队 2026赛季贵州村超联赛友谊赛: 北京交通大学国际部队VS交通大学贵州校友联队 16:30
+http://125.80.112.110:3005/964757290
+#EXTINF:-1 tvg-name=" VS 2025/2026: VS 16:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2025/2026: VS 16:30.png" group-title="体育0516",滇超 临沧队VS迪庆队 2025/2026赛季云南省城市足球联赛第十三轮: 临沧队VS迪庆队 16:30
+http://125.80.112.110:3005/964770853
+#EXTINF:-1 tvg-name=" VS 2025/2026: VS 16:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2025/2026: VS 16:30.png" group-title="体育0516",滇超 文山队VS昭通队 2025/2026赛季云南省城市足球联赛第十三轮: 文山队VS昭通队 16:30
+http://125.80.112.110:3005/964770909
+#EXTINF:-1 tvg-name=" vs  18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  18:00.png" group-title="体育0516",全国青年篮球联赛 南京同曦vs上海久事 清流播出 18:00
+http://125.80.112.110:3005/964666592
+#EXTINF:-1 tvg-name=" vs  18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  18:00.png" group-title="体育0516",全国青年篮球联赛 山西汾酒vs苏科雄狮 清流播出 18:00
+http://125.80.112.110:3005/964666457
+#EXTINF:-1 tvg-name=" VS   18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS   18:00.png" group-title="体育0516",乒乓球欧冠 萨尔布吕肯VS博戈里亚达通 周冠达 程靖淇 18:00
+http://125.80.112.110:3005/964740053
+#EXTINF:-1 tvg-name=" VS  18:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:30.png" group-title="体育0516",乒乓球欧冠 萨尔布吕肯VS博戈里亚达通 赛场原声 18:30
+http://125.80.112.110:3005/964740042
+#EXTINF:-1 tvg-name=" VS A 18:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS A 18:30.png" group-title="体育0516",乒乓球欧冠 萨尔布吕肯VS博戈里亚达通 球员视角A 18:30
+http://125.80.112.110:3005/964773379
+#EXTINF:-1 tvg-name=" VS B 18:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS B 18:30.png" group-title="体育0516",乒乓球欧冠 萨尔布吕肯VS博戈里亚达通 球员视角B 18:30
+http://125.80.112.110:3005/964773404
+#EXTINF:-1 tvg-name=" vs 25/26: vs 18:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs 25/26: vs 18:30.png" group-title="体育0516",广西县超 柳州市柳南区队vs北海市海城区队 25/26赛季广西县级足球超级联赛决赛: 柳州市柳南区队vs北海市海城区队 18:30
+http://125.80.112.110:3005/964716602
+#EXTINF:-1 tvg-name=" VS 2026: VS 18:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 18:30.png" group-title="体育0516",贵州村超 黔东南队VS黔南队 2026赛季贵州村超联赛全省贵州村超赛: 黔东南队VS黔南队 18:30
+http://125.80.112.110:3005/964757306
+#EXTINF:-1 tvg-name=" VS 20261: VS 18:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 20261: VS 18:50.png" group-title="体育0516",蒙超联赛 通辽队VS锡林郭勒队 2026赛季内蒙古足球超级联赛小组赛第1轮: 通辽市VS锡林郭勒盟 18:50
+http://125.80.112.110:3005/964720875
+#EXTINF:-1 tvg-name=" VS   18:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS   18:45.png" group-title="体育0516",中超 武汉三镇VS辽宁铁人楠波湾 梁祥宇 张辛昕 18:45
+http://125.80.112.110:3005/964755451
+#EXTINF:-1 tvg-name=" VS  18:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:45.png" group-title="体育0516",中超 武汉三镇VS辽宁铁人楠波湾 赛场原声 18:45
+http://125.80.112.110:3005/964755437
+#EXTINF:-1 tvg-name=" VS 2026: vs 19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: vs 19:00.png" group-title="体育0516",闽超 泉州队VS漳州队 2026赛季福建省城市足球超级联赛第四轮: 泉州vs漳州 19:00
+http://125.80.112.110:3005/964756976
+#EXTINF:-1 tvg-name=" VS 2026: vs 19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: vs 19:00.png" group-title="体育0516",闽超 南平队VS厦门队 2026赛季福建省城市足球超级联赛第四轮: 南平vs厦门 19:00
+http://125.80.112.110:3005/964756978
+#EXTINF:-1 tvg-name=" VS 2026: vs 19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: vs 19:00.png" group-title="体育0516",闽超 三明队VS福州队 2026赛季福建省城市足球超级联赛第四轮: 三明vs福州 19:00
+http://125.80.112.110:3005/964756991
+#EXTINF:-1 tvg-name=" VS 2026: vs 19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: vs 19:00.png" group-title="体育0516",闽超 龙岩队VS莆田队 2026赛季福建省城市足球超级联赛第四轮: 龙岩vs莆田 19:00
+http://125.80.112.110:3005/964757053
+#EXTINF:-1 tvg-name=" VS 2026: vs 19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: vs 19:00.png" group-title="体育0516",闽超 平潭队VS宁德队 2026赛季福建省城市足球超级联赛第四轮: 平潭vs宁德 19:00
+http://125.80.112.110:3005/964757042
+#EXTINF:-1 tvg-name=" VS  18:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:50.png" group-title="体育0516",足协杯 广州蒲公英VS无锡吴钩 赛场原声 18:50
+http://125.80.112.110:3005/964768716
+#EXTINF:-1 tvg-name=" VS 2026: VS 19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 19:00.png" group-title="体育0516",齐鲁超赛 青岛青春VS日照队 2026山东省齐鲁足球超级联赛第三轮: 青岛青春VS日照队 19:00
+http://125.80.112.110:3005/964647188
+#EXTINF:-1 tvg-name=" VS : vs 19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS : vs 19:00.png" group-title="体育0516",疆超 吐鲁番队VS和田队 新疆足球超级联赛第一轮: 吐鲁番vs和田 19:00
+http://125.80.112.110:3005/964720953
+#EXTINF:-1 tvg-name="BA VS 2026: vs 19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS 2026: vs 19:00.png" group-title="体育0516",徽BA 淮北VS安庆 2026赛季安徽省城市篮球联赛第三轮: 淮北vs安庆 19:00
+http://125.80.112.110:3005/964742792
+#EXTINF:-1 tvg-name="BA VS 2026: vs 19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS 2026: vs 19:00.png" group-title="体育0516",徽BA 滁州VS淮南 2026赛季安徽省城市篮球联赛第三轮: 滁州vs淮南 19:00
+http://125.80.112.110:3005/964743112
+#EXTINF:-1 tvg-name="BA VS 2026: vs 19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS 2026: vs 19:00.png" group-title="体育0516",徽BA 芜湖VS池州 2026赛季安徽省城市篮球联赛第三轮: 芜湖vs池州 19:00
+http://125.80.112.110:3005/964742921
+#EXTINF:-1 tvg-name="BA VS 2026: vs 19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS 2026: vs 19:00.png" group-title="体育0516",徽BA 蚌埠VS宿州 2026赛季安徽省城市篮球联赛第三轮: 蚌埠vs宿州 19:00
+http://125.80.112.110:3005/964742969
+#EXTINF:-1 tvg-name="   A128B  18:25" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/   A128B  18:25.png" group-title="体育0516",超三联赛 超三联赛 贵阳大区赛 A档12晋8及B档决赛 解说 18:25
+http://125.80.112.110:3005/964753502
+#EXTINF:-1 tvg-name=" VS 2026: VS 19:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 19:15.png" group-title="体育0516",吴越杯 温州队VS杭州队 2026赛季浙江省城市足球联赛第九轮: 温州VS杭州 19:15
+http://125.80.112.110:3005/964724359
+#EXTINF:-1 tvg-name=" VS 2026: VS 19:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 19:15.png" group-title="体育0516",吴越杯 金华队VS湖州队 2026赛季浙江省城市足球联赛第九轮: 金华VS湖州 19:15
+http://125.80.112.110:3005/964724372
+#EXTINF:-1 tvg-name=" VS 20261: VS 19:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 20261: VS 19:20.png" group-title="体育0516",蒙超联赛 鄂尔多斯队VS包头队 2026赛季内蒙古足球超级联赛小组赛第1轮: 鄂尔多斯市VS包头市 19:20
+http://125.80.112.110:3005/964720889
+#EXTINF:-1 tvg-name="BA VS 2026: vs 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS 2026: vs 19:30.png" group-title="体育0516",粤BA 深圳VS梅州 2026广东省城市篮球联赛第八轮: 深圳vs梅州 19:30
+http://125.80.112.110:3005/964087715
+#EXTINF:-1 tvg-name="BA VS 2026: vs 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS 2026: vs 19:30.png" group-title="体育0516",粤BA 潮州VS东莞 2026广东省城市篮球联赛第八轮: 潮州vs东莞 19:30
+http://125.80.112.110:3005/964087831
+#EXTINF:-1 tvg-name="BA VS 2026: vs 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS 2026: vs 19:30.png" group-title="体育0516",粤BA 揭阳VS河源 2026广东省城市篮球联赛第八轮: 揭阳vs河源 19:30
+http://125.80.112.110:3005/964088012
+#EXTINF:-1 tvg-name="BA VS 2026: vs 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS 2026: vs 19:30.png" group-title="体育0516",粤BA 阳江VS肇庆 2026广东省城市篮球联赛第八轮: 阳江vs肇庆 19:30
+http://125.80.112.110:3005/964087206
+#EXTINF:-1 tvg-name="BA VS 2026: vs 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS 2026: vs 19:30.png" group-title="体育0516",粤BA 珠海VS茂名 2026广东省城市篮球联赛第八轮: 珠海vs茂名 19:30
+http://125.80.112.110:3005/964087312
+#EXTINF:-1 tvg-name="BA VS 2026: vs 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS 2026: vs 19:30.png" group-title="体育0516",粤BA 云浮VS中山 2026广东省城市篮球联赛第八轮: 云浮vs中山 19:30
+http://125.80.112.110:3005/964087400
+#EXTINF:-1 tvg-name="BA VS 2026: vs 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS 2026: vs 19:30.png" group-title="体育0516",粤BA 湛江VS佛山 2026广东省城市篮球联赛第八轮: 湛江vs佛山（普通话） 19:30
+http://125.80.112.110:3005/964087567
+#EXTINF:-1 tvg-name="BA VS  19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS  19:30.png" group-title="体育0516",粤BA 湛江VS佛山 粤语 19:30
+http://125.80.112.110:3005/964795233
+#EXTINF:-1 tvg-name="BA VS 2026: vs 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS 2026: vs 19:30.png" group-title="体育0516",粤BA 广州VS江门 2026广东省城市篮球联赛第八轮: 广州vs江门 19:30
+http://125.80.112.110:3005/964087654
+#EXTINF:-1 tvg-name=" VS 2026: VS 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 19:30.png" group-title="体育0516",粤超 梅州VS惠州 2026赛季广东省城市足球超级联赛第三轮: 梅州VS惠州 19:30
+http://125.80.112.110:3005/964216289
+#EXTINF:-1 tvg-name=" VS 2026: VS 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 19:30.png" group-title="体育0516",粤超 清远VS深圳 2026赛季广东省城市足球超级联赛第三轮: 清远VS深圳 19:30
+http://125.80.112.110:3005/964216326
+#EXTINF:-1 tvg-name=" VS 2026: VS 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 19:30.png" group-title="体育0516",粤超 河源VS韶关 2026赛季广东省城市足球超级联赛第三轮: 河源VS韶关（普通话） 19:30
+http://125.80.112.110:3005/964216345
+#EXTINF:-1 tvg-name=" VS  19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:30.png" group-title="体育0516",粤超 河源VS韶关 粤语 19:30
+http://125.80.112.110:3005/964791200
+#EXTINF:-1 tvg-name=" VS 2026: VS 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 19:30.png" group-title="体育0516",粤超 湛江VS江门 2026赛季广东省城市足球超级联赛第三轮: 湛江VS江门（普通话） 19:30
+http://125.80.112.110:3005/964216416
+#EXTINF:-1 tvg-name=" VS  19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:30.png" group-title="体育0516",粤超 湛江VS江门 粤语 19:30
+http://125.80.112.110:3005/964791229
+#EXTINF:-1 tvg-name=" VS 2026: VS 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 19:30.png" group-title="体育0516",粤超 肇庆VS云浮 2026赛季广东省城市足球超级联赛第三轮: 肇庆VS云浮（普通话） 19:30
+http://125.80.112.110:3005/964216446
+#EXTINF:-1 tvg-name=" VS  19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:30.png" group-title="体育0516",粤超 肇庆VS云浮 粤语 19:30
+http://125.80.112.110:3005/964791264
+#EXTINF:-1 tvg-name=" VS  19:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:20.png" group-title="体育0516",足协杯 榆林矿工旅投VS苏州东吴 解说 19:20
+http://125.80.112.110:3005/964768741
+#EXTINF:-1 tvg-name=" VS  19:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:20.png" group-title="体育0516",足协杯 榆林矿工旅投VS苏州东吴 赛场原声 19:20
+http://125.80.112.110:3005/964768747
+#EXTINF:-1 tvg-name=" VS 2026: VS 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 19:30.png" group-title="体育0516",齐鲁超赛 威海文旅集团队VS枣庄丰源轮胎队 2026山东省齐鲁足球超级联赛第三轮: 威海文旅集团队VS枣庄丰源轮胎队 19:30
+http://125.80.112.110:3005/964635432
+#EXTINF:-1 tvg-name=" VS 2026: VS 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 19:30.png" group-title="体育0516",齐鲁超赛 潍坊队VS菏泽队 2026山东省齐鲁足球超级联赛第三轮: 潍坊队VS菏泽队 19:30
+http://125.80.112.110:3005/964635459
+#EXTINF:-1 tvg-name=" VS 2026: VS 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 19:30.png" group-title="体育0516",赣超 上饶队VS九江队 2026赛季江西省城市足球超级联赛常规赛第三轮: 上饶VS九江 19:30
+http://125.80.112.110:3005/964742590
+#EXTINF:-1 tvg-name=" VS 2026: VS 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 19:30.png" group-title="体育0516",赣超 萍乡队VS抚州队 2026赛季江西省城市足球超级联赛常规赛第三轮: 萍乡VS抚州 19:30
+http://125.80.112.110:3005/964742667
+#EXTINF:-1 tvg-name=" VS    19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS    19:00.png" group-title="体育0516",中超 山东泰山VS重庆铜梁龙 李欣 徐云龙 郭小仙儿 19:00
+http://125.80.112.110:3005/964755571
+#EXTINF:-1 tvg-name=" VS  19:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:20.png" group-title="体育0516",中超 山东泰山VS重庆铜梁龙 石庆圣 19:20
+http://125.80.112.110:3005/964754957
+#EXTINF:-1 tvg-name=" VS  19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:30.png" group-title="体育0516",中超 山东泰山VS重庆铜梁龙 数智战术视角 19:30
+http://125.80.112.110:3005/964755499
+#EXTINF:-1 tvg-name=" VS 4K 19:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 4K 19:20.png" group-title="体育0516",中超 山东泰山VS重庆铜梁龙 4K赛场原声 19:20
+http://125.80.112.110:3005/964771514
+#EXTINF:-1 tvg-name=" VS 202611vs 18:35" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 202611vs 18:35.png" group-title="体育0516",川超 德阳重装队VS宜宾长江首城队 2026赛季四川省城市足球联赛第11轮：德阳重装队vs宜宾长江首城队 18:35
+http://125.80.112.110:3005/963424497
+#EXTINF:-1 tvg-name=" VS 202611vs 18:35" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 202611vs 18:35.png" group-title="体育0516",川超 达州川汉子队VS乐山味道非常队 2026赛季四川省城市足球联赛第11轮：达州川汉子队vs乐山味道非常队 18:35
+http://125.80.112.110:3005/963424511
+#EXTINF:-1 tvg-name=" VS  18:35" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:35.png" group-title="体育0516",川超 达州川汉子队VS乐山味道非常队 四川方言 18:35
+http://125.80.112.110:3005/964793127
+#EXTINF:-1 tvg-name=" VS 202611vs 18:35" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 202611vs 18:35.png" group-title="体育0516",川超 自贡灯城燊龙队VS成都锦城队 2026赛季四川省城市足球联赛第11轮：自贡灯城燊龙队vs成都锦城队 18:35
+http://125.80.112.110:3005/963424531
+#EXTINF:-1 tvg-name=" VS 2026: vs 19:25" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: vs 19:25.png" group-title="体育0516",楚超 十堰武当队VS恩施小土豆队 2026湖北省城市足球联赛第四轮: 十堰武当vs恩施小土豆 19:25
+http://125.80.112.110:3005/964476040
+#EXTINF:-1 tvg-name=" VS 2026: vs 19:25" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: vs 19:25.png" group-title="体育0516",楚超 黄冈队VS黄石队 2026湖北省城市足球联赛第四轮: 黄冈vs黄石 19:25
+http://125.80.112.110:3005/964476101
+#EXTINF:-1 tvg-name=" VS 2026: vs 19:25" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: vs 19:25.png" group-title="体育0516",楚超 宜昌东阳光队VS荆州恒隆队 2026湖北省城市足球联赛第四轮: 宜昌东阳光vs荆州恒隆 19:25
+http://125.80.112.110:3005/964476213
+#EXTINF:-1 tvg-name=" VS 2026: vs 19:25" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: vs 19:25.png" group-title="体育0516",楚超 咸宁外星人队VS荆门金龙泉队 2026湖北省城市足球联赛第四轮: 咸宁外星人vs荆门金龙泉 19:25
+http://125.80.112.110:3005/964476311
+#EXTINF:-1 tvg-name=" VS 2026: vs 19:25" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: vs 19:25.png" group-title="体育0516",楚超 襄阳东风风神队VS神农架队 2026湖北省城市足球联赛第四轮: 襄阳东风风神vs神农架 19:25
+http://125.80.112.110:3005/964476339
+#EXTINF:-1 tvg-name=" VS 2026: vs 19:25" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: vs 19:25.png" group-title="体育0516",楚超 潜江龙虾队VS孝感孝傲江湖队 2026湖北省城市足球联赛第四轮: 潜江龙虾vs孝感孝傲江湖 19:25
+http://125.80.112.110:3005/964476401
+#EXTINF:-1 tvg-name="CBA VS  19:35" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CBA VS  19:35.png" group-title="体育0516",CBA 浙江浙商证券VS深圳马可波罗 图文直播 19:35
+http://125.80.112.110:3005/964768058
+#EXTINF:-1 tvg-name=" VS 2025/2026: VS 19:35" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2025/2026: VS 19:35.png" group-title="体育0516",滇超 怒江队VS红河队 2025/2026赛季云南省城市足球联赛第十三轮: 怒江队VS红河队 19:35
+http://125.80.112.110:3005/964770930
+#EXTINF:-1 tvg-name=" VS 2025/2026: VS 19:35" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2025/2026: VS 19:35.png" group-title="体育0516",滇超 普洱队VS保山队 2025/2026赛季云南省城市足球联赛第十三轮: 普洱队VS保山队 19:35
+http://125.80.112.110:3005/964771293
+#EXTINF:-1 tvg-name=" VS 2025/2026: VS 19:35" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2025/2026: VS 19:35.png" group-title="体育0516",滇超 西双版纳队VS大理队 2025/2026赛季云南省城市足球联赛第十三轮: 西双版纳队VS大理队 19:35
+http://125.80.112.110:3005/964771279
+#EXTINF:-1 tvg-name=" VS 2025/2026: VS 19:35" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2025/2026: VS 19:35.png" group-title="体育0516",滇超 曲靖队VS玉溪队 2025/2026赛季云南省城市足球联赛第十三轮: 曲靖队VS玉溪队 19:35
+http://125.80.112.110:3005/964771305
+#EXTINF:-1 tvg-name=" VS  19:10" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:10.png" group-title="体育0516",苏超 常州队VS淮安队 清流播出 19:10
+http://125.80.112.110:3005/964755275
+#EXTINF:-1 tvg-name=" VS  19:10" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:10.png" group-title="体育0516",苏超 苏州队VS连云港队 清流播出 19:10
+http://125.80.112.110:3005/964755287
+#EXTINF:-1 tvg-name=" VS  19:10" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:10.png" group-title="体育0516",苏超 扬州队VS镇江队 清流播出 19:10
+http://125.80.112.110:3005/964755294
+#EXTINF:-1 tvg-name=" VS    19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS    19:30.png" group-title="体育0516",中超 云南玉昆VS上海申花 孙雨轩 黄健翔 程思钦 19:30
+http://125.80.112.110:3005/964754905
+#EXTINF:-1 tvg-name=" VS  19:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:45.png" group-title="体育0516",中超 云南玉昆VS上海申花 赛场原声 19:45
+http://125.80.112.110:3005/964754900
+#EXTINF:-1 tvg-name=" vs  20:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  20:00.png" group-title="体育0516",全国青年篮球联赛 广东宏远vs江苏肯帝亚 清流播出 20:00
+http://125.80.112.110:3005/964666604
+#EXTINF:-1 tvg-name=" vs  20:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  20:00.png" group-title="体育0516",全国青年篮球联赛 四川锦城vs深圳新世纪 清流播出 20:00
+http://125.80.112.110:3005/964666467
+#EXTINF:-1 tvg-name=" VS : vs 20:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS : vs 20:00.png" group-title="体育0516",疆超 喀什队VS阿克苏队 新疆足球超级联赛第一轮: 喀什vs阿克苏 20:00
+http://125.80.112.110:3005/964720936
+#EXTINF:-1 tvg-name=" VS  19:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:45.png" group-title="体育0516",英女超 布莱顿女足VS托特纳姆热刺女足 林梦鸽 19:45
+http://125.80.112.110:3005/964787484
+#EXTINF:-1 tvg-name=" VS  19:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:45.png" group-title="体育0516",英女超 布莱顿女足VS托特纳姆热刺女足 赛场原声 19:45
+http://125.80.112.110:3005/964787464
+#EXTINF:-1 tvg-name=" VS  19:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:45.png" group-title="体育0516",英女超 切尔西女足VS曼联女足 吴桐 19:45
+http://125.80.112.110:3005/964787453
+#EXTINF:-1 tvg-name=" VS  19:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:45.png" group-title="体育0516",英女超 切尔西女足VS曼联女足 赛场原声 19:45
+http://125.80.112.110:3005/964787442
+#EXTINF:-1 tvg-name=" VS  19:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:45.png" group-title="体育0516",英女超 埃弗顿女足VS莱斯特城女足 张天翼 19:45
+http://125.80.112.110:3005/964787411
+#EXTINF:-1 tvg-name=" VS  19:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:45.png" group-title="体育0516",英女超 埃弗顿女足VS莱斯特城女足 赛场原声 19:45
+http://125.80.112.110:3005/964787392
+#EXTINF:-1 tvg-name=" VS  19:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:45.png" group-title="体育0516",英女超 利物浦女足VS阿森纳女足 兰子非 19:45
+http://125.80.112.110:3005/964787364
+#EXTINF:-1 tvg-name=" VS  19:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:45.png" group-title="体育0516",英女超 利物浦女足VS阿森纳女足 赛场原声 19:45
+http://125.80.112.110:3005/964787348
+#EXTINF:-1 tvg-name=" VS  19:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:45.png" group-title="体育0516",英女超 伦敦城雌狮女足VS阿斯顿维拉女足 刘焕 19:45
+http://125.80.112.110:3005/964787332
+#EXTINF:-1 tvg-name=" VS  19:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:45.png" group-title="体育0516",英女超 伦敦城雌狮女足VS阿斯顿维拉女足 赛场原声 19:45
+http://125.80.112.110:3005/964787320
+#EXTINF:-1 tvg-name=" VS  19:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:45.png" group-title="体育0516",英女超 西汉姆联女足VS曼城女足 刘畅 19:45
+http://125.80.112.110:3005/964787295
+#EXTINF:-1 tvg-name=" VS  19:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:45.png" group-title="体育0516",英女超 西汉姆联女足VS曼城女足 赛场原声 19:45
+http://125.80.112.110:3005/964787270
+#EXTINF:-1 tvg-name=" VS : vs 21:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS : vs 21:00.png" group-title="体育0516",疆超 乌鲁木齐队VS克拉玛依队 新疆足球超级联赛第一轮: 乌鲁木齐vs克拉玛依 21:00
+http://125.80.112.110:3005/964720926
+#EXTINF:-1 tvg-name=" VS  21:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:15.png" group-title="体育0516",德甲 海登海姆VS美因茨 吴子越 21:15
+http://125.80.112.110:3005/964787923
+#EXTINF:-1 tvg-name=" VS  21:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:15.png" group-title="体育0516",德甲 海登海姆VS美因茨 赛场原声 21:15
+http://125.80.112.110:3005/964787908
+#EXTINF:-1 tvg-name=" VS  21:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:15.png" group-title="体育0516",德甲 圣保利VS沃尔夫斯堡 王子睿 21:15
+http://125.80.112.110:3005/964787162
+#EXTINF:-1 tvg-name=" VS  21:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:15.png" group-title="体育0516",德甲 圣保利VS沃尔夫斯堡 赛场原声 21:15
+http://125.80.112.110:3005/964787166
+#EXTINF:-1 tvg-name=" VS  21:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:15.png" group-title="体育0516",德甲 柏林联VS奥格斯堡 赵宇 21:15
+http://125.80.112.110:3005/964787875
+#EXTINF:-1 tvg-name=" VS  21:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:15.png" group-title="体育0516",德甲 柏林联VS奥格斯堡 赛场原声 21:15
+http://125.80.112.110:3005/964787855
+#EXTINF:-1 tvg-name=" VS  21:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:15.png" group-title="体育0516",德甲 门兴格拉德巴赫VS霍芬海姆 李霄 21:15
+http://125.80.112.110:3005/964787847
+#EXTINF:-1 tvg-name=" VS  21:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:15.png" group-title="体育0516",德甲 门兴格拉德巴赫VS霍芬海姆 赛场原声 21:15
+http://125.80.112.110:3005/964787833
+#EXTINF:-1 tvg-name=" VS   21:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS   21:00.png" group-title="体育0516",德甲 云达不莱梅VS多特蒙德 鲁靖明 秦游夏 21:00
+http://125.80.112.110:3005/964787810
+#EXTINF:-1 tvg-name=" VS  21:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:15.png" group-title="体育0516",德甲 云达不莱梅VS多特蒙德 赛场原声 21:15
+http://125.80.112.110:3005/964787789
+#EXTINF:-1 tvg-name=" VSRB  21:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VSRB  21:15.png" group-title="体育0516",德甲 弗赖堡VSRB莱比锡 马延峰 21:15
+http://125.80.112.110:3005/964787698
+#EXTINF:-1 tvg-name=" VSRB  21:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VSRB  21:15.png" group-title="体育0516",德甲 弗赖堡VSRB莱比锡 赛场原声 21:15
+http://125.80.112.110:3005/964787692
+#EXTINF:-1 tvg-name=" VS  21:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:15.png" group-title="体育0516",德甲 法兰克福VS斯图加特 刘洪新 21:15
+http://125.80.112.110:3005/964787673
+#EXTINF:-1 tvg-name=" VS  21:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:15.png" group-title="体育0516",德甲 法兰克福VS斯图加特 赛场原声 21:15
+http://125.80.112.110:3005/964787657
+#EXTINF:-1 tvg-name=" VS  21:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:15.png" group-title="体育0516",德甲 勒沃库森VS汉堡 刘洋 21:15
+http://125.80.112.110:3005/964787596
+#EXTINF:-1 tvg-name=" VS  21:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:15.png" group-title="体育0516",德甲 勒沃库森VS汉堡 赛场原声 21:15
+http://125.80.112.110:3005/964787581
+#EXTINF:-1 tvg-name=" VS   21:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS   21:00.png" group-title="体育0516",德甲 拜仁慕尼黑VS科隆 胡小凡 李彦 21:00
+http://125.80.112.110:3005/964787514
+#EXTINF:-1 tvg-name=" VS  21:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:15.png" group-title="体育0516",德甲 拜仁慕尼黑VS科隆 谭逸雄 21:15
+http://125.80.112.110:3005/964787498
+#EXTINF:-1 tvg-name=" VS 4K 21:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 4K 21:15.png" group-title="体育0516",德甲 拜仁慕尼黑VS科隆 4K赛场原声 21:15
+http://125.80.112.110:3005/964787491
+#EXTINF:-1 tvg-name=" VS  21:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:15.png" group-title="体育0516",德甲 拜仁慕尼黑VS科隆 谭逸雄 21:15
+http://125.80.112.110:3005/964787527
+#EXTINF:-1 tvg-name=" VS    21:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS    21:30.png" group-title="体育0516",足总杯 切尔西VS曼城 詹俊 刘越 李子琪 21:30
+http://125.80.112.110:3005/964774759
+#EXTINF:-1 tvg-name=" VS    21:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS    21:50.png" group-title="体育0516",足总杯 切尔西VS曼城 陈凯冬 何辉 陈熙荣 21:50
+http://125.80.112.110:3005/964774595
+#EXTINF:-1 tvg-name=" VS  21:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:45.png" group-title="体育0516",足总杯 切尔西VS曼城 英文原声 21:45
+http://125.80.112.110:3005/964774603
+#EXTINF:-1 tvg-name=" VS  21:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:45.png" group-title="体育0516",足总杯 切尔西VS曼城 赛场原声 21:45
+http://125.80.112.110:3005/964774677
+#EXTINF:-1 tvg-name=" VS  21:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:45.png" group-title="体育0516",足总杯 切尔西VS曼城 陈渤胄 21:45
+http://125.80.112.110:3005/964774773
+#EXTINF:-1 tvg-name=" VS    21:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS    21:30.png" group-title="体育0516",足总杯 切尔西VS曼城 詹俊 刘越 李子琪 21:30
+http://125.80.112.110:3005/964774790
+#EXTINF:-1 tvg-name=" -VS   21:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ -VS   21:30.png" group-title="体育0516",乒乓球欧冠 尼姆-蒙彼利埃VS杜塞尔多夫 朱子恒 侯英超 21:30
+http://125.80.112.110:3005/964740795
+#EXTINF:-1 tvg-name=" -VS  22:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ -VS  22:00.png" group-title="体育0516",乒乓球欧冠 尼姆-蒙彼利埃VS杜塞尔多夫 赛场原声 22:00
+http://125.80.112.110:3005/964740141
+#EXTINF:-1 tvg-name=" -VS A 22:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ -VS A 22:00.png" group-title="体育0516",乒乓球欧冠 尼姆-蒙彼利埃VS杜塞尔多夫 球员视角A 22:00
+http://125.80.112.110:3005/964773501
+#EXTINF:-1 tvg-name=" -VS B 22:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ -VS B 22:00.png" group-title="体育0516",乒乓球欧冠 尼姆-蒙彼利埃VS杜塞尔多夫 球员视角B 22:00
+http://125.80.112.110:3005/964773516
+#EXTINF:-1 tvg-name=" VS 2026: VS 22:10" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 22:10.png" group-title="体育0516",贵州村超 梦肢队VS大利村 2026赛季贵州村超联赛友谊赛: 梦肢队VS大利村 22:10
+http://125.80.112.110:3005/964757316
+#EXTINF:-1 tvg-name="WTA VS  23:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA VS  23:00.png" group-title="体育0516",WTA 高芙VS斯维托丽娜 单文强 23:00
+http://125.80.112.110:3005/964793673
+#EXTINF:-1 tvg-name="WTA VS  23:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA VS  23:00.png" group-title="体育0516",WTA 高芙VS斯维托丽娜 赛场原声 23:00
+http://125.80.112.110:3005/964474334
+#EXTINF:-1 tvg-name="WTA VS  23:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA VS  23:00.png" group-title="体育0516",WTA 高芙VS斯维托丽娜 英文原声 23:00
+http://125.80.112.110:3005/964474407
+#EXTINF:-1 tvg-name="U17 U17VSU17  23:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/U17 U17VSU17  23:45.png" group-title="体育0517",U17亚洲杯 乌兹别克斯坦U17VS韩国U17 吴子越 23:45
+http://125.80.112.110:3005/964788988
+#EXTINF:-1 tvg-name="U17 U17VSU17  23:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/U17 U17VSU17  23:45.png" group-title="体育0517",U17亚洲杯 乌兹别克斯坦U17VS韩国U17 赛场原声 23:45
+http://125.80.112.110:3005/964788685
+#EXTINF:-1 tvg-name="U17 U17VSU17  00:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/U17 U17VSU17  00:45.png" group-title="体育0517",U17亚洲杯 越南U17VS澳大利亚U17 王子睿 00:45
+http://125.80.112.110:3005/964788995
+#EXTINF:-1 tvg-name="U17 U17VSU17  00:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/U17 U17VSU17  00:45.png" group-title="体育0517",U17亚洲杯 越南U17VS澳大利亚U17 赛场原声 00:45
+http://125.80.112.110:3005/964788756
+#EXTINF:-1 tvg-name=" VS   01:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS   01:30.png" group-title="体育0517",亚冠二级 利雅得胜利VS大阪钢巴 涂远 鲁靖明 01:30
+http://125.80.112.110:3005/964774811
+#EXTINF:-1 tvg-name=" VS  01:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  01:30.png" group-title="体育0517",亚冠二级 利雅得胜利VS大阪钢巴 赛场原声 01:30
+http://125.80.112.110:3005/964774694
+#EXTINF:-1 tvg-name="UFC UFCVS   04:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/UFC UFCVS   04:55.png" group-title="体育0517",UFC格斗之夜 UFC格斗之夜：艾伦VS科斯塔 陈瑞阳 郑文祺 04:55
+http://125.80.112.110:3005/964790369
+#EXTINF:-1 tvg-name="UFC UFCVS  04:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/UFC UFCVS  04:55.png" group-title="体育0517",UFC格斗之夜 UFC格斗之夜：艾伦VS科斯塔 英文原声 04:55
+http://125.80.112.110:3005/964773327
+#EXTINF:-1 tvg-name="UFC UFCVS  04:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/UFC UFCVS  04:55.png" group-title="体育0517",UFC格斗之夜 UFC格斗之夜：艾伦VS科斯塔 智能字幕 04:55
+http://125.80.112.110:3005/964773359
+#EXTINF:-1 tvg-name=" 2026 2026 06:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 2026 2026 06:45.png" group-title="体育0517",马拉松系列赛 双星名人·2026青岛西海岸半程马拉松 双星名人·2026青岛西海岸半程马拉松 06:45
+http://125.80.112.110:3005/964756453
+#EXTINF:-1 tvg-name="IRONMAN 70.3 IRONMAN 70.3  07:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/IRONMAN 70.3 IRONMAN 70.3  07:00.png" group-title="体育0517",IRONMAN 70.3 IRONMAN 70.3上海崇明站 解说 07:00
+http://125.80.112.110:3005/964754947
+#EXTINF:-1 tvg-name=" 2026 2026 06:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 2026 2026 06:45.png" group-title="体育0517",逐马计划 2026蒙牛宁夏银川马拉松 2026蒙牛宁夏银川马拉松 06:45
+http://125.80.112.110:3005/964756469
+#EXTINF:-1 tvg-name=" 2026 2026 06:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 2026 2026 06:45.png" group-title="体育0517",马拉松系列赛 2026一汽红旗长春马拉松 2026一汽红旗长春马拉松 06:45
+http://125.80.112.110:3005/964756481
+#EXTINF:-1 tvg-name=" 2026 2026- 06:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 2026 2026- 06:45.png" group-title="体育0517",马拉松系列赛 2026一汽红旗长春马拉松 2026澜沧江-湄公河合作大理马拉松 06:45
+http://125.80.112.110:3005/964756487
+#EXTINF:-1 tvg-name=" 2026 2026 06:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 2026 2026 06:45.png" group-title="体育0517",马拉松系列赛 2026一汽红旗长春马拉松 2026安顺马拉松 06:45
+http://125.80.112.110:3005/964756528
+#EXTINF:-1 tvg-name=" 2026 2026 06:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 2026 2026 06:45.png" group-title="体育0517",马拉松系列赛 2026一汽红旗长春马拉松 2026青岛西海岸半程马拉松 06:45
+http://125.80.112.110:3005/964756453
+#EXTINF:-1 tvg-name=" 2026 2026 07:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 2026 2026 07:15.png" group-title="体育0517",马拉松系列赛 2026一汽红旗长春马拉松 2026北京大兴半程马拉松 07:15
+http://125.80.112.110:3005/964756492
+#EXTINF:-1 tvg-name=" 2026- 2026- 06:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 2026- 2026- 06:45.png" group-title="体育0517",马拉松系列赛 2026澜沧江-湄公河合作大理马拉松 2026澜沧江-湄公河合作大理马拉松 06:45
+http://125.80.112.110:3005/964756487
+#EXTINF:-1 tvg-name=" 2026 2026 06:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 2026 2026 06:45.png" group-title="体育0517",马拉松系列赛 2026安顺马拉松 2026安顺马拉松 06:45
+http://125.80.112.110:3005/964756528
+#EXTINF:-1 tvg-name=" 2026 2026 07:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ 2026 2026 07:15.png" group-title="体育0517",马拉松系列赛 中信银行·2026北京大兴半程马拉松 中信银行·2026北京大兴半程马拉松 07:15
+http://125.80.112.110:3005/964756492
+#EXTINF:-1 tvg-name=" undefined  112 08:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ undefined  112 08:00.png" group-title="体育0517",咪咕体育日报 undefined 咪咕体育日报 第112期 08:00
+http://125.80.112.110:3005/964455192
+#EXTINF:-1 tvg-name="   08:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/   08:30.png" group-title="体育0517",中国体育舞蹈公开系列赛 全国体育舞蹈技术等级锦标赛 解说 08:30
+http://125.80.112.110:3005/964791216
+#EXTINF:-1 tvg-name=" Day6 1 10:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ Day6 1 10:00.png" group-title="体育0517",斯诺克 世界女子斯诺克锦标赛Day6 1号桌 10:00
+http://125.80.112.110:3005/964771765
+#EXTINF:-1 tvg-name=" Day6 2 10:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ Day6 2 10:00.png" group-title="体育0517",斯诺克 世界女子斯诺克锦标赛Day6 2号桌 10:00
+http://125.80.112.110:3005/964771849
+#EXTINF:-1 tvg-name=" VS 2026: VS 10:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 10:20.png" group-title="体育0517",贵州村超 水尾村足球队VS色边村足球队 2026赛季贵州村超联赛第三轮: 水尾村VS色边村 10:20
+http://125.80.112.110:3005/964757324
+#EXTINF:-1 tvg-name=" VS 2026: VS 12:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 12:30.png" group-title="体育0517",贵州村超 寿洞村足球队VS场坝大河口将军岩队 2026赛季贵州村超联赛第三轮: 寿洞村VS场坝大河口将军岩队 12:30
+http://125.80.112.110:3005/964757334
+#EXTINF:-1 tvg-name="BWF  1 13:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF  1 13:00.png" group-title="体育0517",BWF 泰国羽毛球公开赛第六日 1号场地 13:00
+http://125.80.112.110:3005/964694477
+#EXTINF:-1 tvg-name="BWF  1 13:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BWF  1 13:00.png" group-title="体育0517",BWF 泰国羽毛球公开赛第六日 1号场地英文解说视角 13:00
+http://125.80.112.110:3005/964763148
+#EXTINF:-1 tvg-name=" vs  13:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  13:30.png" group-title="体育0517",全国青年篮球联赛 北京首钢vs长沙勇胜 清流播出 13:30
+http://125.80.112.110:3005/964666647
+#EXTINF:-1 tvg-name=" vs  13:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  13:30.png" group-title="体育0517",全国青年篮球联赛 龙狮青年vs苏科雄狮 清流播出 13:30
+http://125.80.112.110:3005/964666493
+#EXTINF:-1 tvg-name="   A  13:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/   A  13:55.png" group-title="体育0517",超三联赛 超三联赛 贵阳大区赛 A档四分之一决赛 字诚 13:55
+http://125.80.112.110:3005/964753521
+#EXTINF:-1 tvg-name=" VS 2026: VS 14:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 14:30.png" group-title="体育0517",贵州村超 党调村贵州村徒队VS平永村足球队 2026赛季贵州村超联赛第三轮: 党调村贵州村徒队VS平永村 14:30
+http://125.80.112.110:3005/964757341
+#EXTINF:-1 tvg-name=" VS 2026: VS 14:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 14:45.png" group-title="体育0517",吴越杯 台州队VS嘉兴队 2026赛季浙江省城市足球联赛第九轮: 台州VS嘉兴 14:45
+http://125.80.112.110:3005/964724384
+#EXTINF:-1 tvg-name=" VS  14:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  14:50.png" group-title="体育0517",足协杯 武汉联镇VS广东广州豹足球俱乐部 解说 14:50
+http://125.80.112.110:3005/964768839
+#EXTINF:-1 tvg-name=" VS  14:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  14:50.png" group-title="体育0517",足协杯 武汉联镇VS广东广州豹足球俱乐部 赛场原声 14:50
+http://125.80.112.110:3005/964768888
+#EXTINF:-1 tvg-name=" VS  14:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  14:50.png" group-title="体育0517",足协杯 上海泽天VS定南赣联 解说 14:50
+http://125.80.112.110:3005/964768791
+#EXTINF:-1 tvg-name=" VS  14:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  14:50.png" group-title="体育0517",足协杯 上海泽天VS定南赣联 赛场原声 14:50
+http://125.80.112.110:3005/964768826
+#EXTINF:-1 tvg-name=" VS  15:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  15:20.png" group-title="体育0517",足协杯 贵州栩烽棠VS石家庄功夫 赛场原声 15:20
+http://125.80.112.110:3005/964768901
+#EXTINF:-1 tvg-name=" VS 2026: VS 15:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 15:30.png" group-title="体育0517",齐鲁超赛 济南队VS烟台队 2026山东省齐鲁足球超级联赛第三轮: 济南队VS烟台队 15:30
+http://125.80.112.110:3005/964635450
+#EXTINF:-1 tvg-name=" vs  15:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  15:30.png" group-title="体育0517",全国青年篮球联赛 浙江稠州银行vs上海久事 清流播出 15:30
+http://125.80.112.110:3005/964666660
+#EXTINF:-1 tvg-name=" vs  15:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  15:30.png" group-title="体育0517",全国青年篮球联赛 天津荣钢vs深圳新世纪 清流播出 15:30
+http://125.80.112.110:3005/964666503
+#EXTINF:-1 tvg-name=" VS 20261: VS 15:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 20261: VS 15:50.png" group-title="体育0517",蒙超联赛 乌海队VS乌兰察布队 2026赛季内蒙古足球超级联赛小组赛第1轮: 乌海市VS乌兰察布市 15:50
+http://125.80.112.110:3005/964720922
+#EXTINF:-1 tvg-name="   16:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/   16:00.png" group-title="体育0517",全国体操锦标赛 女子个人全能决赛暨全能团体决赛 解说 16:00
+http://125.80.112.110:3005/964725301
+#EXTINF:-1 tvg-name=" VS 2026: VS 16:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 16:30.png" group-title="体育0517",贵州村超 小堡村足球队VS车江二村足球队 2026赛季贵州村超联赛第三轮: 小堡村VS车江二村 16:30
+http://125.80.112.110:3005/964757348
+#EXTINF:-1 tvg-name=" VS   18:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS   18:15.png" group-title="体育0517",意甲 罗马VS拉齐奥 鲁靖明 马延峰 18:15
+http://125.80.112.110:3005/964787812
+#EXTINF:-1 tvg-name=" VS  18:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:15.png" group-title="体育0517",意甲 罗马VS拉齐奥 赛场原声 18:15
+http://125.80.112.110:3005/964787802
+#EXTINF:-1 tvg-name=" VS   18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS   18:00.png" group-title="体育0517",意甲 尤文图斯VS佛罗伦萨 吴桐 刘腾 18:00
+http://125.80.112.110:3005/964787759
+#EXTINF:-1 tvg-name=" VS  18:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:15.png" group-title="体育0517",意甲 尤文图斯VS佛罗伦萨 赛场原声 18:15
+http://125.80.112.110:3005/964787732
+#EXTINF:-1 tvg-name=" VSAC   18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VSAC   18:00.png" group-title="体育0517",意甲 热那亚VSAC米兰 石庆圣 李彦 18:00
+http://125.80.112.110:3005/964787678
+#EXTINF:-1 tvg-name=" VSAC  18:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VSAC  18:15.png" group-title="体育0517",意甲 热那亚VSAC米兰 赛场原声 18:15
+http://125.80.112.110:3005/964787666
+#EXTINF:-1 tvg-name=" VSAC   18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VSAC   18:00.png" group-title="体育0517",意甲 热那亚VSAC米兰 石庆圣 李彦 18:00
+http://125.80.112.110:3005/964787715
+#EXTINF:-1 tvg-name=" VS  18:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:15.png" group-title="体育0517",意甲 科莫VS帕尔马 张昊泽 18:15
+http://125.80.112.110:3005/964787624
+#EXTINF:-1 tvg-name=" VS  18:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:15.png" group-title="体育0517",意甲 科莫VS帕尔马 赛场原声 18:15
+http://125.80.112.110:3005/964787610
+#EXTINF:-1 tvg-name=" VS  18:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:15.png" group-title="体育0517",意甲 比萨VS那不勒斯 乔迁 18:15
+http://125.80.112.110:3005/964787783
+#EXTINF:-1 tvg-name=" VS  18:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  18:15.png" group-title="体育0517",意甲 比萨VS那不勒斯 赛场原声 18:15
+http://125.80.112.110:3005/964787773
+#EXTINF:-1 tvg-name=" vs  18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  18:00.png" group-title="体育0517",全国青年篮球联赛 南京同曦vs江苏肯帝亚 清流播出 18:00
+http://125.80.112.110:3005/964666672
+#EXTINF:-1 tvg-name=" vs  18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  18:00.png" group-title="体育0517",全国青年篮球联赛 山西汾酒vs四川锦城 清流播出 18:00
+http://125.80.112.110:3005/964666520
+#EXTINF:-1 tvg-name=" VS : vs 18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS : vs 18:00.png" group-title="体育0517",疆超 博州队VS伊犁队 新疆足球超级联赛第一轮: 博州vs伊犁 18:00
+http://125.80.112.110:3005/964720964
+#EXTINF:-1 tvg-name=" VS : vs 18:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS : vs 18:00.png" group-title="体育0517",疆超 昌吉队VS阿勒泰队 新疆足球超级联赛第一轮: 昌吉vs阿勒泰 18:00
+http://125.80.112.110:3005/964720969
+#EXTINF:-1 tvg-name="WTA WTA500Day1  18:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA WTA500Day1  18:30.png" group-title="体育0517",WTA WTA500斯特拉斯堡站Day1 赛场原声 18:30
+http://125.80.112.110:3005/964754320
+#EXTINF:-1 tvg-name="WTA WTA500Day1  18:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/WTA WTA500Day1  18:30.png" group-title="体育0517",WTA WTA500斯特拉斯堡站Day1 英文原声 18:30
+http://125.80.112.110:3005/964754337
+#EXTINF:-1 tvg-name=" VS 2026: VS 18:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 18:30.png" group-title="体育0517",贵州村超 场坝龙泉井村队VS腊酉村足球队 2026赛季贵州村超联赛第三轮: 场坝龙泉井村VS腊酉村 18:30
+http://125.80.112.110:3005/964757358
+#EXTINF:-1 tvg-name=" VS : vs 19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS : vs 19:00.png" group-title="体育0517",疆超 克州队VS哈密队 新疆足球超级联赛第一轮: 克州vs哈密 19:00
+http://125.80.112.110:3005/964720976
+#EXTINF:-1 tvg-name="BA VS 2026: vs 19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS 2026: vs 19:00.png" group-title="体育0517",徽BA 黄山VS六安 2026赛季安徽省城市篮球联赛第三轮: 黄山vs六安 19:00
+http://125.80.112.110:3005/964743043
+#EXTINF:-1 tvg-name="BA VS 2026: vs 19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS 2026: vs 19:00.png" group-title="体育0517",徽BA 合肥VS宣城 2026赛季安徽省城市篮球联赛第三轮: 合肥vs宣城 19:00
+http://125.80.112.110:3005/964743082
+#EXTINF:-1 tvg-name="BA VS 2026: vs 19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS 2026: vs 19:00.png" group-title="体育0517",徽BA 铜陵VS亳州 2026赛季安徽省城市篮球联赛第三轮: 铜陵vs亳州 19:00
+http://125.80.112.110:3005/964743145
+#EXTINF:-1 tvg-name="BA VS 2026: vs 19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS 2026: vs 19:00.png" group-title="体育0517",徽BA 马鞍山VS阜阳 2026赛季安徽省城市篮球联赛第三轮: 马鞍山vs阜阳 19:00
+http://125.80.112.110:3005/964743160
+#EXTINF:-1 tvg-name="   A  18:55" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/   A  18:55.png" group-title="体育0517",超三联赛 超三联赛 贵阳大区赛 A档半决赛及决赛 蔡凯臣 18:55
+http://125.80.112.110:3005/964753537
+#EXTINF:-1 tvg-name=" VS 2026: VS 19:05" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 19:05.png" group-title="体育0517",吴越杯 舟山队VS衢州队 2026赛季浙江省城市足球联赛第九轮: 舟山VS衢州 19:05
+http://125.80.112.110:3005/964724394
+#EXTINF:-1 tvg-name=" VS    19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS    19:00.png" group-title="体育0517",英超 曼联VS诺丁汉森林 娄一晨 刘越 邵凌霄 19:00
+http://125.80.112.110:3005/964787305
+#EXTINF:-1 tvg-name=" VS   19:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS   19:20.png" group-title="体育0517",英超 曼联VS诺丁汉森林 陆毅隽 陈熙荣 19:20
+http://125.80.112.110:3005/964787543
+#EXTINF:-1 tvg-name=" VS  19:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:15.png" group-title="体育0517",英超 曼联VS诺丁汉森林 英文原声 19:15
+http://125.80.112.110:3005/964787594
+#EXTINF:-1 tvg-name=" VS  19:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:15.png" group-title="体育0517",英超 曼联VS诺丁汉森林 赛场原声 19:15
+http://125.80.112.110:3005/964787619
+#EXTINF:-1 tvg-name=" VS  19:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:15.png" group-title="体育0517",英超 曼联VS诺丁汉森林 洪荒 19:15
+http://125.80.112.110:3005/964787705
+#EXTINF:-1 tvg-name=" VS    19:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS    19:00.png" group-title="体育0517",英超 曼联VS诺丁汉森林 娄一晨 刘越 邵凌霄 19:00
+http://125.80.112.110:3005/964787716
+#EXTINF:-1 tvg-name="BA VS 2026: vs 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS 2026: vs 19:30.png" group-title="体育0517",粤BA 清远VS汕尾 2026广东省城市篮球联赛第八轮: 清远vs汕尾 19:30
+http://125.80.112.110:3005/964087777
+#EXTINF:-1 tvg-name="BA VS 2026: vs 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS 2026: vs 19:30.png" group-title="体育0517",粤BA 惠州VS韶关 2026广东省城市篮球联赛第八轮: 惠州vs韶关 19:30
+http://125.80.112.110:3005/964087947
+#EXTINF:-1 tvg-name=" VS 2026: VS 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 19:30.png" group-title="体育0517",粤超 广州VS茂名 2026赛季广东省城市足球超级联赛第三轮: 广州VS茂名（普通话） 19:30
+http://125.80.112.110:3005/964663067
+#EXTINF:-1 tvg-name=" VS  19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:30.png" group-title="体育0517",粤超 广州VS茂名 粤语 19:30
+http://125.80.112.110:3005/964791206
+#EXTINF:-1 tvg-name=" VS 2026: VS 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 19:30.png" group-title="体育0517",粤超 揭阳VS潮州 2026赛季广东省城市足球超级联赛第三轮: 揭阳VS潮州（普通话） 19:30
+http://125.80.112.110:3005/964216530
+#EXTINF:-1 tvg-name=" VS  19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:30.png" group-title="体育0517",粤超 揭阳VS潮州 潮汕话 19:30
+http://125.80.112.110:3005/964791274
+#EXTINF:-1 tvg-name=" VS 2026: VS 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 19:30.png" group-title="体育0517",粤超 珠海VS佛山 2026赛季广东省城市足球超级联赛第三轮: 珠海VS佛山（普通话） 19:30
+http://125.80.112.110:3005/964216556
+#EXTINF:-1 tvg-name=" VS  19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:30.png" group-title="体育0517",粤超 珠海VS佛山 粤语 19:30
+http://125.80.112.110:3005/964791280
+#EXTINF:-1 tvg-name=" VS 2026: VS 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 19:30.png" group-title="体育0517",粤超 阳江VS中山 2026赛季广东省城市足球超级联赛第三轮: 阳江VS中山（普通话） 19:30
+http://125.80.112.110:3005/964216576
+#EXTINF:-1 tvg-name=" VS  19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:30.png" group-title="体育0517",粤超 阳江VS中山 粤语 19:30
+http://125.80.112.110:3005/964791285
+#EXTINF:-1 tvg-name=" VS  19:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:20.png" group-title="体育0517",足协杯 江西庐山VS大连鲲城 赛场原声 19:20
+http://125.80.112.110:3005/964768925
+#EXTINF:-1 tvg-name=" VS  19:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:20.png" group-title="体育0517",足协杯 湖北青年星VS广西恒宸 解说 19:20
+http://125.80.112.110:3005/964768906
+#EXTINF:-1 tvg-name=" VS  19:20" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  19:20.png" group-title="体育0517",足协杯 湖北青年星VS广西恒宸 赛场原声 19:20
+http://125.80.112.110:3005/964768919
+#EXTINF:-1 tvg-name=" VS 2026: VS 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 19:30.png" group-title="体育0517",齐鲁超赛 泰安泰山城建队VS德州古贝春 2026山东省齐鲁足球超级联赛第三轮: 泰安泰山城建队VS德州古贝春 19:30
+http://125.80.112.110:3005/964635469
+#EXTINF:-1 tvg-name=" VS 2026: VS 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 19:30.png" group-title="体育0517",赣超 赣州队VS宜春队 2026赛季江西省城市足球超级联赛常规赛第三轮: 赣州VS宜春 19:30
+http://125.80.112.110:3005/964743252
+#EXTINF:-1 tvg-name=" VS 2026: VS 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 19:30.png" group-title="体育0517",赣超 景德镇队VS新余队 2026赛季江西省城市足球超级联赛常规赛第三轮: 景德镇VS新余 19:30
+http://125.80.112.110:3005/964742752
+#EXTINF:-1 tvg-name="BA VS 2026: VS 19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/BA VS 2026: VS 19:30.png" group-title="体育0517",赣BA 上饶VS萍乡 2026赛季江西省城市篮球联赛总决赛: 上饶VS萍乡 19:30
+http://125.80.112.110:3005/964743187
+#EXTINF:-1 tvg-name="CBA VS  19:35" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CBA VS  19:35.png" group-title="体育0517",CBA 上海久事VS北京北汽 图文直播 19:35
+http://125.80.112.110:3005/964768044
+#EXTINF:-1 tvg-name=" VS 2025/2026: VS 19:35" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2025/2026: VS 19:35.png" group-title="体育0517",滇超 昆明队VS德宏队 2025/2026赛季云南省城市足球联赛第十三轮: 昆明队VS德宏队 19:35
+http://125.80.112.110:3005/964771328
+#EXTINF:-1 tvg-name=" VS 2026: VS 20:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 20:00.png" group-title="体育0517",粤超 东莞VS汕头 2026赛季广东省城市足球超级联赛第三轮: 东莞VS汕头 20:00
+http://125.80.112.110:3005/964216481
+#EXTINF:-1 tvg-name="    19:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/    19:30.png" group-title="体育0517",乒乓球欧冠 决赛 周冠达 侯英超 19:30
+http://125.80.112.110:3005/964740234
+#EXTINF:-1 tvg-name="   20:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/   20:00.png" group-title="体育0517",乒乓球欧冠 决赛 赛场原声 20:00
+http://125.80.112.110:3005/964740221
+#EXTINF:-1 tvg-name="  A 20:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/  A 20:00.png" group-title="体育0517",乒乓球欧冠 决赛 球员视角A 20:00
+http://125.80.112.110:3005/964773524
+#EXTINF:-1 tvg-name="  B 20:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/  B 20:00.png" group-title="体育0517",乒乓球欧冠 决赛 球员视角B 20:00
+http://125.80.112.110:3005/964773545
+#EXTINF:-1 tvg-name=" vs  20:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  20:00.png" group-title="体育0517",全国青年篮球联赛 青岛国信海天vs广东宏远 清流播出 20:00
+http://125.80.112.110:3005/964666701
+#EXTINF:-1 tvg-name=" vs  20:00" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ vs  20:00.png" group-title="体育0517",全国青年篮球联赛 浙江广厦vs新疆广汇 清流播出 20:00
+http://125.80.112.110:3005/964666530
+#EXTINF:-1 tvg-name=" VS 2026: VS 20:30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS 2026: VS 20:30.png" group-title="体育0517",贵州村超 高硐村足球队VS俾吊岑村足球队 2026赛季贵州村超联赛第三轮: 高硐村VS俾吊岑村 20:30
+http://125.80.112.110:3005/964757361
+#EXTINF:-1 tvg-name=" VS   20:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS   20:45.png" group-title="体育0517",意甲 国际米兰VS维罗纳 刘腾 贺宇 20:45
+http://125.80.112.110:3005/964787175
+#EXTINF:-1 tvg-name=" VS  20:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  20:45.png" group-title="体育0517",意甲 国际米兰VS维罗纳 赛场原声 20:45
+http://125.80.112.110:3005/964787179
+#EXTINF:-1 tvg-name=" VS  21:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:45.png" group-title="体育0517",英超 狼队VS富勒姆 刘焕 21:45
+http://125.80.112.110:3005/964787922
+#EXTINF:-1 tvg-name=" VS  21:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:45.png" group-title="体育0517",英超 狼队VS富勒姆 英文原声 21:45
+http://125.80.112.110:3005/964787884
+#EXTINF:-1 tvg-name=" VS  21:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:45.png" group-title="体育0517",英超 狼队VS富勒姆 赛场原声 21:45
+http://125.80.112.110:3005/964787898
+#EXTINF:-1 tvg-name=" VS  21:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:45.png" group-title="体育0517",英超 利兹联VS布莱顿 苗锟 21:45
+http://125.80.112.110:3005/964787861
+#EXTINF:-1 tvg-name=" VS  21:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:45.png" group-title="体育0517",英超 利兹联VS布莱顿 英文原声 21:45
+http://125.80.112.110:3005/964787814
+#EXTINF:-1 tvg-name=" VS  21:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:45.png" group-title="体育0517",英超 利兹联VS布莱顿 赛场原声 21:45
+http://125.80.112.110:3005/964787823
+#EXTINF:-1 tvg-name=" VS  21:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:45.png" group-title="体育0517",英超 埃弗顿VS桑德兰 涂远 21:45
+http://125.80.112.110:3005/964787792
+#EXTINF:-1 tvg-name=" VS  21:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:45.png" group-title="体育0517",英超 埃弗顿VS桑德兰 英文原声 21:45
+http://125.80.112.110:3005/964787769
+#EXTINF:-1 tvg-name=" VS  21:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:45.png" group-title="体育0517",英超 埃弗顿VS桑德兰 赛场原声 21:45
+http://125.80.112.110:3005/964787779
+#EXTINF:-1 tvg-name=" VS  21:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:45.png" group-title="体育0517",英超 布伦特福德VS水晶宫 黄航 21:45
+http://125.80.112.110:3005/964787664
+#EXTINF:-1 tvg-name=" VS  21:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:45.png" group-title="体育0517",英超 布伦特福德VS水晶宫 英文原声 21:45
+http://125.80.112.110:3005/964787612
+#EXTINF:-1 tvg-name=" VS  21:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:45.png" group-title="体育0517",英超 布伦特福德VS水晶宫 赛场原声 21:45
+http://125.80.112.110:3005/964787625
+#EXTINF:-1 tvg-name=" VS  21:45" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ VS  21:45.png" group-title="体育0517",英超 布伦特福德VS水晶宫 黄航 21:45
+http://125.80.112.110:3005/964787706
+#EXTINF:-1 tvg-name=" LGCT  22:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ LGCT  22:50.png" group-title="体育0517",浪琴环球马术冠军赛 马德里站第三日（LGCT大奖赛） 赛场原声 22:50
+http://125.80.112.110:3005/964767815
+#EXTINF:-1 tvg-name=" LGCT  22:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ LGCT  22:50.png" group-title="体育0517",浪琴环球马术冠军赛 马德里站第三日（LGCT大奖赛） 英文解说 22:50
+http://125.80.112.110:3005/964789133
+#EXTINF:-1 tvg-name=" LGCT  22:50" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ LGCT  22:50.png" group-title="体育0517",浪琴环球马术冠军赛 马德里站第三日（LGCT大奖赛） 中文解说 22:50
+http://125.80.112.110:3005/964789144
 #EXTINF:-1 tvg-name="CCTV1" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV1.png" group-title="咪咕线路",CCTV1
 http://j.s.bkpcp.top/jj/cctv1
 #EXTINF:-1 tvg-name="CCTV2" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CCTV2.png" group-title="咪咕线路",CCTV2
@@ -693,10 +1045,8 @@ http://j.s.bkpcp.top/jj/ynws
 http://j.s.bkpcp.top/jj/gzws
 #EXTINF:-1 tvg-name="Sichuan" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Sichuan.png" group-title="咪咕线路",四川卫视
 http://j.s.bkpcp.top/jj/scws
-#EXTINF:-1 tvg-name="Guangdong5" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/Guangdong5.png" group-title="体育频道",广东体育
-https://gd.tv1288.xyz/hls/1/index.m3u8
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="体育频道",五星体育
-http://156.238.248.80:8100/live/a9fc6080659aa5463f2f60e92e0328e8?token=8520
+http://47.100.209.208:8100/live/a9fc6080659aa5463f2f60e92e0328e8?token=8520
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="体育频道",五星体育
 https://cdn15.163189.xyz/163189/9c893bb003e1c7de
 #EXTINF:-1 tvg-name="4K" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/4K.png" group-title="4K超高清",北京卫视4K
@@ -1404,87 +1754,87 @@ http://fuxin.yunjifei.top:999/tsfile/live/1015_1.m3u8?key=txiptv&playlive=1&auth
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="LN-酒店",高清电影
 http://fuxin.yunjifei.top:999/tsfile/live/1016_1.m3u8?key=txiptv&playlive=1&authid=0
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪-视-通",睛彩竞技
-http://156.238.248.80:8100/TVOD/3000000020000011528.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000020000011528.m3u8?token=8520
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪-视-通",睛彩篮球
-http://156.238.248.80:8100/TVOD/3000000020000011529.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000020000011529.m3u8?token=8520
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪-视-通",睛彩青少
-http://156.238.248.80:8100/TVOD/3000000020000011525.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000020000011525.m3u8?token=8520
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="咪-视-通",睛彩广场舞
-http://156.238.248.80:8100/TVOD/3000000020000011523.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000020000011523.m3u8?token=8520
 #EXTINF:-1 tvg-name="-1" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-1.png" group-title="咪-视-通",咪视频-1
-http://156.238.248.80:8100/TVOD/3000000001000005308.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000001000005308.m3u8?token=8520
 #EXTINF:-1 tvg-name="-2" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-2.png" group-title="咪-视-通",咪视频-2
-http://156.238.248.80:8100/TVOD/3000000001000005969.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000001000005969.m3u8?token=8520
 #EXTINF:-1 tvg-name="-3" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-3.png" group-title="咪-视-通",咪视频-3
-http://156.238.248.80:8100/TVOD/3000000001000007218.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000001000007218.m3u8?token=8520
 #EXTINF:-1 tvg-name="-4" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-4.png" group-title="咪-视-通",咪视频-4
-http://156.238.248.80:8100/TVOD/3000000001000008001.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000001000008001.m3u8?token=8520
 #EXTINF:-1 tvg-name="-5" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-5.png" group-title="咪-视-通",咪视频-5
-http://156.238.248.80:8100/TVOD/3000000001000008176.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000001000008176.m3u8?token=8520
 #EXTINF:-1 tvg-name="-6" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-6.png" group-title="咪-视-通",咪视频-6
-http://156.238.248.80:8100/TVOD/3000000001000008379.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000001000008379.m3u8?token=8520
 #EXTINF:-1 tvg-name="-7" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-7.png" group-title="咪-视-通",咪视频-7
-http://156.238.248.80:8100/TVOD/3000000001000010129.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000001000010129.m3u8?token=8520
 #EXTINF:-1 tvg-name="-8" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-8.png" group-title="咪-视-通",咪视频-8
-http://156.238.248.80:8100/TVOD/3000000001000010948.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000001000010948.m3u8?token=8520
 #EXTINF:-1 tvg-name="-9" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-9.png" group-title="咪-视-通",咪视频-9
-http://156.238.248.80:8100/TVOD/3000000001000028638.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000001000028638.m3u8?token=8520
 #EXTINF:-1 tvg-name="-10" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-10.png" group-title="咪-视-通",咪视频-10
-http://156.238.248.80:8100/TVOD/3000000001000031494.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000001000031494.m3u8?token=8520
 #EXTINF:-1 tvg-name="-11" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-11.png" group-title="咪-视-通",咪视频-11
-http://156.238.248.80:8100/TVOD/3000000010000005837.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000010000005837.m3u8?token=8520
 #EXTINF:-1 tvg-name="-12" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-12.png" group-title="咪-视-通",咪视频-12
-http://156.238.248.80:8100/TVOD/3000000020000011518.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000020000011518.m3u8?token=8520
 #EXTINF:-1 tvg-name="-13" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-13.png" group-title="咪-视-通",咪视频-13
-http://156.238.248.80:8100/TVOD/3000000020000011519.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000020000011519.m3u8?token=8520
 #EXTINF:-1 tvg-name="-14" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-14.png" group-title="咪-视-通",咪视频-14
-http://156.238.248.80:8100/TVOD/3000000020000011520.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000020000011520.m3u8?token=8520
 #EXTINF:-1 tvg-name="-15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-15.png" group-title="咪-视-通",咪视频-15
-http://156.238.248.80:8100/TVOD/3000000020000011521.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000020000011521.m3u8?token=8520
 #EXTINF:-1 tvg-name="-16" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-16.png" group-title="咪-视-通",咪视频-16
-http://156.238.248.80:8100/TVOD/3000000020000011522.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000020000011522.m3u8?token=8520
 #EXTINF:-1 tvg-name="-24" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-24.png" group-title="咪-视-通",咪视频-24
-http://156.238.248.80:8100/TVOD/3000000010000000097.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000010000000097.m3u8?token=8520
 #EXTINF:-1 tvg-name="-25" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-25.png" group-title="咪-视-通",咪视频-25
-http://156.238.248.80:8100/TVOD/3000000010000002019.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000010000002019.m3u8?token=8520
 #EXTINF:-1 tvg-name="-26" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-26.png" group-title="咪-视-通",咪视频-26
-http://156.238.248.80:8100/TVOD/3000000010000002809.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000010000002809.m3u8?token=8520
 #EXTINF:-1 tvg-name="-27" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-27.png" group-title="咪-视-通",咪视频-27
-http://156.238.248.80:8100/TVOD/3000000010000003915.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000010000003915.m3u8?token=8520
 #EXTINF:-1 tvg-name="-28" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-28.png" group-title="咪-视-通",咪视频-28
-http://156.238.248.80:8100/TVOD/3000000010000004193.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000010000004193.m3u8?token=8520
 #EXTINF:-1 tvg-name="-29" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-29.png" group-title="咪-视-通",咪视频-29
-http://156.238.248.80:8100/TVOD/3000000010000006077.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000010000006077.m3u8?token=8520
 #EXTINF:-1 tvg-name="-30" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-30.png" group-title="咪-视-通",咪视频-30
-http://156.238.248.80:8100/TVOD/3000000010000006658.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000010000006658.m3u8?token=8520
 #EXTINF:-1 tvg-name="-31" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-31.png" group-title="咪-视-通",咪视频-31
-http://156.238.248.80:8100/TVOD/3000000010000009788.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000010000009788.m3u8?token=8520
 #EXTINF:-1 tvg-name="-32" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-32.png" group-title="咪-视-通",咪视频-32
-http://156.238.248.80:8100/TVOD/3000000010000010833.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000010000010833.m3u8?token=8520
 #EXTINF:-1 tvg-name="-33" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-33.png" group-title="咪-视-通",咪视频-33
-http://156.238.248.80:8100/TVOD/3000000010000011297.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000010000011297.m3u8?token=8520
 #EXTINF:-1 tvg-name="-34" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-34.png" group-title="咪-视-通",咪视频-34
-http://156.238.248.80:8100/TVOD/3000000010000011518.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000010000011518.m3u8?token=8520
 #EXTINF:-1 tvg-name="-35" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-35.png" group-title="咪-视-通",咪视频-35
-http://156.238.248.80:8100/TVOD/3000000010000012558.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000010000012558.m3u8?token=8520
 #EXTINF:-1 tvg-name="-36" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-36.png" group-title="咪-视-通",咪视频-36
-http://156.238.248.80:8100/TVOD/3000000010000012616.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000010000012616.m3u8?token=8520
 #EXTINF:-1 tvg-name="-37" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-37.png" group-title="咪-视-通",咪视频-37
-http://156.238.248.80:8100/TVOD/3000000010000015470.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000010000015470.m3u8?token=8520
 #EXTINF:-1 tvg-name="-38" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-38.png" group-title="咪-视-通",咪视频-38
-http://156.238.248.80:8100/TVOD/3000000010000015560.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000010000015560.m3u8?token=8520
 #EXTINF:-1 tvg-name="-39" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-39.png" group-title="咪-视-通",咪视频-39
-http://156.238.248.80:8100/TVOD/3000000010000019839.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000010000019839.m3u8?token=8520
 #EXTINF:-1 tvg-name="-40" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-40.png" group-title="咪-视-通",咪视频-40
-http://156.238.248.80:8100/TVOD/3000000010000021904.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000010000021904.m3u8?token=8520
 #EXTINF:-1 tvg-name="-41" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-41.png" group-title="咪-视-通",咪视频-41
-http://156.238.248.80:8100/TVOD/3000000010000023434.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000010000023434.m3u8?token=8520
 #EXTINF:-1 tvg-name="-42" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-42.png" group-title="咪-视-通",咪视频-42
-http://156.238.248.80:8100/TVOD/3000000010000025380.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000010000025380.m3u8?token=8520
 #EXTINF:-1 tvg-name="-43" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-43.png" group-title="咪-视-通",咪视频-43
-http://156.238.248.80:8100/TVOD/3000000010000027691.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000010000027691.m3u8?token=8520
 #EXTINF:-1 tvg-name="-44" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/-44.png" group-title="咪-视-通",咪视频-44
-http://156.238.248.80:8100/TVOD/3000000010000031669.m3u8?token=8520
+http://47.100.209.208:8100/TVOD/3000000010000031669.m3u8?token=8520
 #EXTINF:-1 tvg-name="TVB1" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/TVB1.png" group-title="香港港台",翡翠台
 http://o11.163189.xyz/stream/tvb/fct/
 #EXTINF:-1 tvg-name="TVB PLUS" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/TVB PLUS.png" group-title="香港港台",TVB PLUS
@@ -1613,54 +1963,6 @@ http://cdn6.163189.xyz/163189/ch8
 http://cdn6.163189.xyz/163189/chu香港面包
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="港湾频道",中天新闻
 rtmp://vip.huahong.pro/live/xingjiaoge-ztxw2
-#EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="港湾频道",民視第一台
-http://156.238.248.80:5566/4gtv-live403/index.m3u8?token=SDzCnf82ZVmlnUsxT0jIYSUyIRFxUGz3eC1ayPBZ0NvI8ZsakxSQPXftWLdRLGhD&proxy=true
-#EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="港湾频道",民視第一台
-http://156.238.248.80:5566/4gtv-4gtv003/index.m3u8?token=SDzCnf82ZVmlnUsxT0jIYSUyIRFxUGz3eC1ayPBZ0NvI8ZsakxSQPXftWLdRLGhD&proxy=true
-#EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="港湾频道",民視台灣台
-http://156.238.248.80:5566/4gtv-live401/index.m3u8?token=SDzCnf82ZVmlnUsxT0jIYSUyIRFxUGz3eC1ayPBZ0NvI8ZsakxSQPXftWLdRLGhD&proxy=true
-#EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="港湾频道",民視台灣台
-http://156.238.248.80:5566/4gtv-4gtv001/index.m3u8?token=SDzCnf82ZVmlnUsxT0jIYSUyIRFxUGz3eC1ayPBZ0NvI8ZsakxSQPXftWLdRLGhD&proxy=true
-#EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="港湾频道",民視
-http://156.238.248.80:5566/4gtv-live215/index.m3u8?token=SDzCnf82ZVmlnUsxT0jIYSUyIRFxUGz3eC1ayPBZ0NvI8ZsakxSQPXftWLdRLGhD&proxy=true
-#EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="港湾频道",民視
-http://156.238.248.80:5566/4gtv-4gtv002/index.m3u8?token=SDzCnf82ZVmlnUsxT0jIYSUyIRFxUGz3eC1ayPBZ0NvI8ZsakxSQPXftWLdRLGhD&proxy=true
-#EXTINF:-1 tvg-name="ARIRANG" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ARIRANG.png" group-title="港湾频道",ARIRANG阿里郎頻道
-http://156.238.248.80:5566/4gtv-4gtv079/index.m3u8?token=SDzCnf82ZVmlnUsxT0jIYSUyIRFxUGz3eC1ayPBZ0NvI8ZsakxSQPXftWLdRLGhD&proxy=true
-#EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="港湾频道",原住民族電視台
-http://156.238.248.80:5566/4gtv-live014/index.m3u8?token=SDzCnf82ZVmlnUsxT0jIYSUyIRFxUGz3eC1ayPBZ0NvI8ZsakxSQPXftWLdRLGhD&proxy=true
-#EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="港湾频道",公視戲劇
-http://156.238.248.80:5566/4gtv-4gtv042/index.m3u8?token=SDzCnf82ZVmlnUsxT0jIYSUyIRFxUGz3eC1ayPBZ0NvI8ZsakxSQPXftWLdRLGhD&proxy=true
-#EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="港湾频道",民視影劇
-http://156.238.248.80:5566/litv-ftv09/index.m3u8?token=SDzCnf82ZVmlnUsxT0jIYSUyIRFxUGz3eC1ayPBZ0NvI8ZsakxSQPXftWLdRLGhD&proxy=true
-#EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="港湾频道",經典電影台
-http://156.238.248.80:5566/4gtv-live021/index.m3u8?token=SDzCnf82ZVmlnUsxT0jIYSUyIRFxUGz3eC1ayPBZ0NvI8ZsakxSQPXftWLdRLGhD&proxy=true
-#EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="港湾频道",民視綜藝
-http://156.238.248.80:5566/4gtv-4gtv004/index.m3u8?token=SDzCnf82ZVmlnUsxT0jIYSUyIRFxUGz3eC1ayPBZ0NvI8ZsakxSQPXftWLdRLGhD&proxy=true
-#EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="港湾频道",豬哥亮歌廳秀
-http://156.238.248.80:5566/4gtv-4gtv006/index.m3u8?token=SDzCnf82ZVmlnUsxT0jIYSUyIRFxUGz3eC1ayPBZ0NvI8ZsakxSQPXftWLdRLGhD&proxy=true
-#EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="港湾频道",民視旅遊
-http://156.238.248.80:5566/litv-ftv07/index.m3u8?token=SDzCnf82ZVmlnUsxT0jIYSUyIRFxUGz3eC1ayPBZ0NvI8ZsakxSQPXftWLdRLGhD&proxy=true
-#EXTINF:-1 tvg-name=" Rollor" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ Rollor.png" group-title="港湾频道",滾動力 Rollor
-http://156.238.248.80:5566/4gtv-live012/index.m3u8?token=SDzCnf82ZVmlnUsxT0jIYSUyIRFxUGz3eC1ayPBZ0NvI8ZsakxSQPXftWLdRLGhD&proxy=true
-#EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="港湾频道",經典卡通台
-http://156.238.248.80:5566/4gtv-live022/index.m3u8?token=SDzCnf82ZVmlnUsxT0jIYSUyIRFxUGz3eC1ayPBZ0NvI8ZsakxSQPXftWLdRLGhD&proxy=true
-#EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="港湾频道",精選動漫台
-http://156.238.248.80:5566/4gtv-live024/index.m3u8?token=SDzCnf82ZVmlnUsxT0jIYSUyIRFxUGz3eC1ayPBZ0NvI8ZsakxSQPXftWLdRLGhD&proxy=true
-#EXTINF:-1 tvg-name="ELTV" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/ELTV.png" group-title="港湾频道",ELTV生活英語台
-http://156.238.248.80:5566/of-litv-xinchuang20/index.m3u8?token=SDzCnf82ZVmlnUsxT0jIYSUyIRFxUGz3eC1ayPBZ0NvI8ZsakxSQPXftWLdRLGhD&proxy=true
-#EXTINF:-1 tvg-name="NHK " tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NHK .png" group-title="港湾频道",NHK 新聞資訊台
-http://156.238.248.80:5566/4gtv-live168/index.m3u8?token=SDzCnf82ZVmlnUsxT0jIYSUyIRFxUGz3eC1ayPBZ0NvI8ZsakxSQPXftWLdRLGhD&proxy=true
-#EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="港湾频道",民視新聞
-http://156.238.248.80:5566/4gtv-live413/index.m3u8?token=SDzCnf82ZVmlnUsxT0jIYSUyIRFxUGz3eC1ayPBZ0NvI8ZsakxSQPXftWLdRLGhD&proxy=true
-#EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="港湾频道",民視新聞
-http://156.238.248.80:5566/litv-ftv13/index.m3u8?token=SDzCnf82ZVmlnUsxT0jIYSUyIRFxUGz3eC1ayPBZ0NvI8ZsakxSQPXftWLdRLGhD&proxy=true
-#EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="港湾频道",半島國際新聞台
-http://156.238.248.80:5566/4gtv-live157/index.m3u8?token=SDzCnf82ZVmlnUsxT0jIYSUyIRFxUGz3eC1ayPBZ0NvI8ZsakxSQPXftWLdRLGhD&proxy=true
-#EXTINF:-1 tvg-name="CNBC Asia " tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/CNBC Asia .png" group-title="港湾频道",CNBC Asia 財經台
-http://156.238.248.80:5566/4gtv-live130/index.m3u8?token=SDzCnf82ZVmlnUsxT0jIYSUyIRFxUGz3eC1ayPBZ0NvI8ZsakxSQPXftWLdRLGhD&proxy=true
-#EXTINF:-1 tvg-name="DW" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/DW.png" group-title="港湾频道",DW德國之聲
-http://156.238.248.80:5566/4gtv-live071/index.m3u8?token=SDzCnf82ZVmlnUsxT0jIYSUyIRFxUGz3eC1ayPBZ0NvI8ZsakxSQPXftWLdRLGhD&proxy=true
 #EXTINF:-1 tvg-name="NOW" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/NOW.png" group-title="港湾频道",NOW新闻台
 http://cdn.163189.xyz/163189/now
 #EXTINF:-1 tvg-name="VIUTV" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/VIUTV.png" group-title="港湾频道",VIUTV
@@ -10241,8 +10543,6 @@ http://p8.vzan.com/slowlive/034028687228317362/live.m3u8
 http://play-hsbj.vzan.com/357534/505886811862583019/live.m3u8
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="🀅湖北",宜昌旅游生活
 http://liveplay.ycrmt.cn/sxgd/lysh.m3u8
-#EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="🀅广东",南山在线
-https://gd.tv1288.xyz/hls/18/index.m3u8
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="🀅广东",广州综合
 http://tencentplay.gztv.com/live/zonghes.m3u8?txSecret=f0147ae6453a80f5989f382368b72aad&txTime=18d00acf487
 #EXTINF:-1 tvg-name="" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/.png" group-title="🀅广东",广州综合
@@ -12683,7 +12983,7 @@ http://vd3.bdstatic.com/mda-mc7kjm87ud7vw1c8/hd/cae_h264_nowatermark/1615188038/
 http://vd4.bdstatic.com/mda-nf29yjvnrcqwwy2q/480p/h264/1654240313985806512/mda-nf29yjvnrcqwwy2q.mp4?auth_key=1655032564-0-0-747aa1c4fdd90716418995aa885348a7&bcevod_channel=searchbox_feed&pd=1&cd=0&pt=3&logid=2764614902&vid=9984932099035144842&abtest=all
 #EXTINF:-1 tvg-name="1100" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/1100.png" group-title="🆗乡村美食",1100买头羊
 http://vd4.bdstatic.com/mda-kghmm8wqwjvp97gm/hd/mda-kghmm8wqwjvp97gm.mp4?auth_key=1655032152-0-0-e46ffacd02ed77fb1e67b3ad5a8fcff0&bcevod_channel=searchbox_feed&pd=1&cd=0&pt=3&logid=2352305816&vid=17960476347117941562&abtest=all
-#EXTINF:-1 tvg-name="0511/10:27" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/0511/10:27.png" group-title="更新时间",抖音0511/10:27
+#EXTINF:-1 tvg-name="0516/9:15" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/0516/9:15.png" group-title="更新时间",抖音0516/9:15
 https://2025.xn--jfx065ba424q.top/1.m3u8
 #EXTINF:-1 tvg-name="1" tvg-logo="https://raw.githubusercontent.com/wanglindl/TVlogo/main/img/1.png" group-title="更新时间",盲盒点歌1
 https://2025.xn--jfx065ba424q.top/1.m3u8

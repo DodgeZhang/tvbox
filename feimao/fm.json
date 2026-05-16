@@ -43,9 +43,13 @@
             "filterable": 1,
             "ext": {
                 "site_urls": [
-                    "https://shandian.blog/",
-                    "https://sd.sduc.site"
+                    "http://shandian.blog/",
+                    "http://sd.sduc.site/"
                 ],
+                "threadinfo": {
+                    "chunksize": 512,
+                    "threads": 16
+                },
                 "url_key": "FeiMaoUC"
             }
         },
