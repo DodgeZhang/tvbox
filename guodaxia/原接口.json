@@ -1,5 +1,5 @@
 {
-  "spider": "https://gh-proxy.com/https://github.com/lemonguo121/BoxRes/raw/main/Myuse/lib/fm.jar",
+  "spider": "./spider.jar",
   "wallpaper": "http://饭太硬.top/深色壁纸/api.php",
   "lives": [
     {
@@ -1231,4 +1231,3 @@
     "cms.qdwght.com"
   ]
 }
-

@@ -1,5 +1,5 @@
 {
-  "spider": "./spider.jar",
+  "spider": "./lib/fm.jar",
   "wallpaper": "http://饭太硬.top/深色壁纸/api.php",
   "lives": [
     {
@@ -16,7 +16,7 @@
     {
       "name": "LIVE",
       "type": 0,
-      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/wwb521/live/refs/heads/main/tv.m3u",
+      "url": "./lib/tv.m3u",
       "playerType": 1,
       "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
       "logo": "https://live.fanmingming.com/tv/{name}.png"
@@ -24,7 +24,7 @@
     {
       "name": "LIVE_fan",
       "type": 0,
-      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/wwb521/live/main/tv.m3u",
+      "url": "./lib/tv53.m3u",
       "playerType": 1,
       "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
       "logo": "https://live.fanmingming.com/tv/{name}.png"
@@ -40,7 +40,7 @@
     {
       "name": "LIVE_Gather",
       "type": 0,
-      "url": "https://raw.githubusercontent.com/YanG-1989/m3u/refs/heads/main/Gather.m3u",
+      "url": "./lib/Gather.m3u",
       "playerType": 1,
       "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
       "logo": "https://live.fanmingming.com/tv/{name}.png"
@@ -48,7 +48,7 @@
     {
       "name": "LIVEfl",
       "type": 0,
-      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/zeee-u/lzh06/main/fl.m3u",
+      "url": "./lib/fl.m3u",
       "playerType": 1,
       "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
       "logo": "https://live.fanmingming.com/tv/{name}.png"
@@ -181,7 +181,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 0,
-      "ext": "./ext/saohuo.json"
+      "ext": "./lib/saohuo.json"
     },
     {
       "key": "视频采集3",
@@ -249,7 +249,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "./ext/dashixong.json"
+      "ext": "./lib/dashixong.json"
     },
     {
       "key": "csp_xpath_555",
@@ -259,7 +259,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "./ext/555.json"
+      "ext": "./lib/555.json"
     },
     {
       "key": "csp_xpath_海兔",
@@ -269,7 +269,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "./ext/haitu.json"
+      "ext": "./lib/haitu.json"
     },
     {
       "key": "csp_xpath_飞兔",
@@ -279,7 +279,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "./ext/feitu.json"
+      "ext": "./lib/feitu.json"
     },
     {
       "key": "csp_xpath_飞兔成人",
@@ -289,7 +289,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "./ext/feitucr.json"
+      "ext": "./lib/feitucr.json"
     },
     {
       "key": "本地",
@@ -461,11 +461,11 @@
       "key": "drpy_js_荐片",
       "name": "影视 | 荐片[js]",
       "type": 3,
-      "api": "./ext/drpy2.min.js",
+      "api": "./lib/apiv1015drpy2.min.js",
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "ext": "./ext/荐片.js",
+      "ext": "./lib/荐片.js",
       "timeout": 30
     },
     {
@@ -502,7 +502,7 @@
       "searchable": 1,
       "quickSearch": 0,
       "changeable": 0,
-      "ext": "./ext/bilibili.json"
+      "ext": "./lib/bilibili.json"
     },
     {
       "key": "Biliych",
@@ -517,7 +517,7 @@
       "searchable": 1,
       "quickSearch": 0,
       "changeable": 0,
-      "ext": "./ext/biliych.json"
+      "ext": "./lib/biliych.json"
     },
     {
       "key": "csp_KungFu404",
