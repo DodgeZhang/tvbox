@@ -28,7 +28,7 @@
 
 ## ★源接口：
 
-http://www.饭太硬.com/tv
+http://www.饭太硬.cc/tv
 （饭太硬）
 
 http://肥猫.net/
