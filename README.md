@@ -45,3 +45,6 @@ https://9877.kstore.space/ONE/one.json
 
 http://hb.小虎斑.site:25252/仅供测试
 （小虎斑）
+
+https://gh.xxooo.cf/https://raw.githubusercontent.com/supermeguo/BoxRes/main/Myuse/catcr.json
+（锅大侠）
