@@ -87,28 +87,6 @@
             "changeable": 1
         },
         {
-            "key": "gying",
-            "name": "🍿┃观影┃4K",
-            "type": 3,
-            "api": "csp_GyingFishGuard",
-            "searchable": 1,
-            "quickSearch": 0,
-            "filterable": 0,
-            "ext": {
-                "cookie": "",
-                "site": [
-                    "https://www.教父.com",
-                    "https://www.星际穿越.com",
-                    "https://www.楚门的世界.com",
-                    "https://www.泰坦尼克号.com",
-                    "https://www.盗梦空间.com",
-                    "https://www.肖申克的救赎.com",
-                    "https://www.阿甘正传.com",
-                    "https://www.黑客帝国.com"
-                ]
-            }
-        },
-        {
             "key": "FishLabi",
             "name": "🍬┃蜡笔┃4K",
             "type": 3,
