@@ -5,7 +5,7 @@
     "sites": [
         {
             "key": "Douban",
-            "name": "🍿┃豆瓣┃推荐",
+            "name": "🌕️┃豆瓣┃推荐",
             "type": 3,
             "api": "csp_DoubanFishGuard",
             "indexs": 1,
@@ -30,7 +30,7 @@
         },
         {
             "key": "Wogg",
-            "name": "👽┃玩偶┃4K",
+            "name": "👽️┃玩偶┃4K",
             "type": 3,
             "api": "csp_WoggFishGuard",
             "searchable": 1,
@@ -123,7 +123,7 @@
         },
         {
             "key": "FishDuoduo",
-            "name": "✨┃多多┃4K",
+            "name": "🍀┃多多┃4K",
             "type": 3,
             "api": "csp_FishCloudFishGuard",
             "searchable": 1,
@@ -160,6 +160,20 @@
             "ext": {
                 "site": [
                     "http://103.45.162.207:20720"
+                ]
+            }
+        },
+        {
+            "key": "SeedHub",
+            "name": "🌱┃Seed┃4K",
+            "type": 3,
+            "api": "csp_SeedHubFishGuard",
+            "searchable": 1,
+            "ext": {
+                "site": [
+                    "https://sidhub.cc",
+                    "https://seeduck.cc",
+                    "https://hubdog.cc"
                 ]
             }
         },
@@ -252,7 +266,7 @@
         },
         {
             "key": "wencai",
-            "name": "💮┃文才┃影视",
+            "name": "✏️┃文才┃影视",
             "type": 3,
             "api": "csp_WenCaiFishGuard",
             "searchable": 1,
@@ -370,7 +384,7 @@
         },
         {
             "key": "Gugu",
-            "name": "🕊️┃咕咕┃动漫",
+            "name": "🐤┃咕咕┃动漫",
             "type": 3,
             "api": "csp_AppGetFishGuard",
             "searchable": 1,
@@ -380,7 +394,7 @@
         },
         {
             "key": "Jianpian",
-            "name": "🍪┃荐片┃磁力",
+            "name": "🧲┃荐片┃磁力",
             "type": 3,
             "api": "csp_JianpianFishGuard",
             "searchable": 1,
@@ -388,7 +402,7 @@
         },
         {
             "key": "Xb6v",
-            "name": "🍪┃6V┃磁力",
+            "name": "🧲┃6V┃磁力",
             "type": 3,
             "api": "csp_Xb6vFishGuard",
             "searchable": 1,
@@ -403,7 +417,7 @@
         },
         {
             "key": "ChuXin",
-            "name": "💕┃初心┃音乐",
+            "name": "🎧┃初心┃音乐",
             "type": 3,
             "api": "csp_ChuXinFishGuard",
             "searchable": 1,
@@ -412,7 +426,7 @@
         },
         {
             "key": "aiting",
-            "name": "🎵┃爱听┃音乐",
+            "name": "🎧┃爱听┃音乐",
             "type": 3,
             "api": "csp_AiTingMusicFishGuard",
             "searchable": 1,
@@ -421,7 +435,7 @@
         },
         {
             "key": "Music24bit",
-            "name": "🎶┃无损┃音乐",
+            "name": "🎧┃无损┃音乐",
             "type": 3,
             "api": "csp_Music24bitFishGuard",
             "searchable": 1,
@@ -438,7 +452,7 @@
         },
         {
             "key": "TuXiaoBei",
-            "name": "🐇┃小兔┃少儿",
+            "name": "🐰┃小兔┃少儿",
             "type": 3,
             "api": "csp_TuXiaoBeiFishGuard",
             "searchable": 1,
@@ -447,7 +461,7 @@
         },
         {
             "key": "BeiLeHu",
-            "name": "🐯┃小虎┃少儿",
+            "name": "🐅┃小虎┃少儿",
             "type": 3,
             "api": "csp_BeiLeHuFishGuard",
             "searchable": 0,
@@ -456,7 +470,7 @@
         },
         {
             "key": "少儿教育",
-            "name": "🍭┃少儿┃教育",
+            "name": "🧒┃少儿┃教育",
             "type": 3,
             "api": "csp_BiliFishGuard",
             "style": {
@@ -472,7 +486,7 @@
         },
         {
             "key": "小学课堂",
-            "name": "📕┃小学┃课堂",
+            "name": "📚┃小学┃课堂",
             "type": 3,
             "api": "csp_BiliFishGuard",
             "style": {
@@ -488,7 +502,7 @@
         },
         {
             "key": "初中课堂",
-            "name": "📗┃初中┃课堂",
+            "name": "📐┃初中┃课堂",
             "type": 3,
             "api": "csp_BiliFishGuard",
             "style": {
@@ -504,7 +518,7 @@
         },
         {
             "key": "高中教育",
-            "name": "📘┃高中┃课堂",
+            "name": "🎓┃高中┃课堂",
             "type": 3,
             "api": "csp_BiliFishGuard",
             "style": {
@@ -533,7 +547,7 @@
         },
         {
             "key": "Sir88",
-            "name": "🏀┃超全┃体育",
+            "name": "🏅┃超全┃体育",
             "type": 3,
             "api": "csp_Sir88FishGuard",
             "searchable": 0,
@@ -554,7 +568,7 @@
         },
         {
             "key": "GuaziTY",
-            "name": "🥜┃瓜子┃体育",
+            "name": "🏅┃瓜子┃体育",
             "type": 3,
             "api": "csp_GuaziTYFishGuard",
             "searchable": 0,
@@ -563,7 +577,7 @@
         },
         {
             "key": "919TY",
-            "name": "🏀┃919┃体育",
+            "name": "🏅┃919┃体育",
             "type": 3,
             "api": "csp_C919TYFishGuard",
             "searchable": 0,
@@ -572,7 +586,7 @@
         },
         {
             "key": "TingBook",
-            "name": "🎐┃六月┃有声",
+            "name": "🎙️┃六月┃有声",
             "type": 3,
             "api": "csp_TingBookFishGuard",
             "searchable": 1,
@@ -584,7 +598,7 @@
         },
         {
             "key": "TingBookJinXia",
-            "name": "🌺┃堇夏┃有声",
+            "name": "🎙️┃堇夏┃有声",
             "type": 3,
             "api": "csp_TingBookJinXiaFishGuard",
             "searchable": 1,
@@ -597,7 +611,7 @@
         },
         {
             "key": "Local",
-            "name": "📂┃文件┃浏览",
+            "name": "📁┃文件┃浏览",
             "type": 3,
             "api": "csp_LocalFishGuard",
             "searchable": 0,
@@ -609,7 +623,7 @@
         },
         {
             "key": "Market",
-            "name": "🍥┃网盘┃市场",
+            "name": "💿┃网盘┃市场",
             "type": 3,
             "api": "csp_MarketFishGuard",
             "searchable": 0,
@@ -631,7 +645,7 @@
         },
         {
             "key": "Fishdrive",
-            "name": "🐟┃摸鱼┃媒体库",
+            "name": "🐠┃摸鱼┃媒体库",
             "type": 3,
             "api": "csp_FishDriveFishGuard",
             "indexs": 0,
@@ -641,7 +655,7 @@
         },
         {
             "key": "Wallpaper",
-            "name": "🌸┃摸鱼┃壁纸库",
+            "name": "🖼️┃摸鱼┃壁纸库",
             "type": 3,
             "api": "csp_WallpaperFishGuard",
             "searchable": 0,
