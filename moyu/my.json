@@ -172,35 +172,6 @@
             "filterable": 0
         },
         {
-            "key": "zhiqiu",
-            "name": "🍃┃听风┃知秋",
-            "type": 3,
-            "api": "csp_zhiqiuFishGuard",
-            "searchable": 1,
-            "ext": "http://www.小不点.com/api//2026/zhiqiu.php"
-        },
-        {
-            "key": "fishhxq",
-            "name": "🍡┃韩圈┃影视",
-            "type": 3,
-            "api": "csp_FishHxqFishGuard",
-            "ext": "http://www.小不点.com/api//2026/fishhxq.php"
-        },
-        {
-            "key": "Kan360",
-            "name": "🍭┃三六┃影视",
-            "type": 3,
-            "api": "csp_Kan360FishGuard",
-            "searchable": 1,
-            "filterable": 1,
-            "ext": {
-                "filter": "https://open.wya6.com/d/down/2026/json/360.json",
-                "fishjx": [
-                    "https://jx.xmflv.com/?url="
-                ]
-            }
-        },
-        {
             "key": "Rebo",
             "name": "🍓┃热播┃APP",
             "type": 3,
@@ -229,6 +200,35 @@
             "searchable": 1,
             "changeable": 1,
             "ext": "ASKjgwRNiR0Cm6kFKdNzI8WI/ic4PmwK3odgt8MhFQvbl3mhDbShb5bbTFTo7paa8t0h/eK0IaCgWFxjyrk9E3XEhEgnQl4lSED6Aai0eVzXMurDiNGdHxvF3VEUI6e4G/o4FILNazhcr7ECOwLDz/VhNAd/7G/VxdrrL+Dz0oAUiUsfLmy4DiP+aQrY1INXLXmkDb2xN5Ev3pZr7xs6XtM="
+        },
+        {
+            "key": "zhiqiu",
+            "name": "🍃┃听风┃知秋",
+            "type": 3,
+            "api": "csp_zhiqiuFishGuard",
+            "searchable": 1,
+            "ext": "http://www.小不点.com/api//2026/zhiqiu.php"
+        },
+        {
+            "key": "fishhxq",
+            "name": "🍡┃韩圈┃影视",
+            "type": 3,
+            "api": "csp_FishHxqFishGuard",
+            "ext": "http://www.小不点.com/api//2026/fishhxq.php"
+        },
+        {
+            "key": "Kan360",
+            "name": "🍭┃三六┃影视",
+            "type": 3,
+            "api": "csp_Kan360FishGuard",
+            "searchable": 1,
+            "filterable": 1,
+            "ext": {
+                "filter": "https://open.wya6.com/d/down/2026/json/360.json",
+                "fishjx": [
+                    "https://jx.xmflv.com/?url="
+                ]
+            }
         },
         {
             "key": "Wwys",
