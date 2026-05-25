@@ -71,11 +71,8 @@
             "changeable": 1,
             "ext": {
                 "site": [
-                    "https://www.libvio.in",
-                    "https://www.libvio.mov",
-                    "https://www.libvio.run",
-                    "https://www.libvio.la",
-                    "https://www.libvio.site"                ]
+                    "https://www.libvio.run"
+                ]
             }
         },
         {
