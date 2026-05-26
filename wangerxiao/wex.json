@@ -1,5 +1,3 @@
-//资源全部免费，仅供测试交流，请勿内置传播与转卖，微信公众号：奇奇资源库，交流Q群号码：90859992。
-
 {
     "spider": "./spider.jar",
     "wallpaper": "http://王二小放牛娃牛逼.999888987.xyz",
@@ -17,7 +15,7 @@
         },
         {
             "key": "Doubana",
-            "name": "🐮【更新日期:20260518】🐮",
+            "name": "🐮【更新日期:20260526】🐮",
             "type": 3,
             "api": "csp_NewDouBanGuard",
             "searchable": 0,
@@ -358,22 +356,6 @@
             "searchable": 1,
             "changeable": 1,
             "timeout": 120
-        },
-        {
-            "key": "BookWuWei",
-            "name": "🎃‍无忧┃听书🎃",
-            "type": 3,
-            "api": "csp_BookWuWeiGuard",
-            "searchable": 1,
-            "changeable": 1
-        },
-        {
-            "key": "BookTingShu",
-            "name": "🎃‍精品┃听书🎃",
-            "type": 3,
-            "api": "csp_BookTingShuGuard",
-            "searchable": 1,
-            "changeable": 1
         },
         {
             "key": "Book23TingShu",

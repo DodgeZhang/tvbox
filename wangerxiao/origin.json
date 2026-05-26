@@ -1,12 +1,11 @@
 {
-
-  "spider": "https://nos.netease.com/ysf/858bdee43c91d50ebc32c0064f25fd34.txt;md5;bd30c2690ef97e79ddfe843c1efa6105",
+  "spider": "https://nos.netease.com/ysf/9fdbdee0bf5b2c39d051ab2adbe2caf3.txt;md5;b65010f126553cb754b333fe1bef0567",
   "wallpaper": "http://王二小放牛娃牛逼.999888987.xyz",
   "logo": "https://storage.7x24cc.com/storage-server/presigned/ss1/a6-online-fileupload/newMediaFile/3CEAE9E_773_wexfnw_20250911190012684newMediaFile.gif",
   "sites": [
       {
       "key": "NewDouBan",
-      "name": "🐮【免费分享】🐮",
+      "name": "🐮【王二小放牛娃】🐮",
       "type": 3,
       "api": "csp_NewDouBanGuard",
       "searchable": 0,
@@ -16,7 +15,7 @@
     },
 	{
       "key": "Doubana",
-      "name": "🐮【更新日期:20260518】🐮",
+      "name": "🐮【更新日期:20260526】🐮",
       "type": 3,
       "api": "csp_NewDouBanGuard",
       "searchable": 0,
@@ -357,22 +356,6 @@
       "searchable": 1,
       "changeable": 1,
       "timeout": 120
-    },
-    {
-      "key": "BookWuWei",
-      "name": "🎃‍无忧┃听书🎃",
-      "type": 3,
-      "api": "csp_BookWuWeiGuard",
-      "searchable": 1,
-      "changeable": 1
-    },
-    {
-      "key": "BookTingShu",
-      "name": "🎃‍精品┃听书🎃",
-      "type": 3,
-      "api": "csp_BookTingShuGuard",
-      "searchable": 1,
-      "changeable": 1
     },
 	{
       "key": "Book23TingShu",
