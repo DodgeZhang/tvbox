@@ -11,7 +11,7 @@
             "indexs": 1,
             "searchable": 0,
             "filterable": 1,
-            "ext": "./json/doubanex.json"
+            "ext": "./json/douban.json"
         },
         {
             "key": "FishConfig",
