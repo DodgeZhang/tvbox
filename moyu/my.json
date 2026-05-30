@@ -185,17 +185,6 @@
             "filterable": 0
         },
         {
-            "key": "bili",
-            "name": "🎨┃笔触┃琉璃",
-            "type": 3,
-            "api": "csp_BiliFishGuard",
-            "searchable": 1,
-            "quickSearch": 1,
-            "ext": {
-                "cookie": ""
-            }
-        },
-        {
             "key": "Rebo",
             "name": "🔥┃热播┃APP",
             "type": 3,
