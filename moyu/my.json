@@ -415,6 +415,15 @@
             "searchable": 1
         },
         {
+            "key": "Buguyy",
+            "name": "🐦┃布谷┃音乐",
+            "type": 3,
+            "api": "csp_BuguyyFishGuard",
+            "searchable": 1,
+            "filterable": 1,
+            "changeable": 1
+        },
+        {
             "key": "ChuXin",
             "name": "🎧┃初心┃音乐",
             "type": 3,
