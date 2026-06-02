@@ -10,7 +10,7 @@
             "api": "csp_DoubanFishGuard",
             "indexs": 1,
             "searchable": 0,
-            "filterable": 1,
+            "filterable": 0,
             "ext": "./json/douban.json"
         },
         {
