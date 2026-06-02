@@ -77,14 +77,6 @@
             "timeout": 120
         },
         {
-            "key": "NewJuTou",
-            "name": "🍿剧透┃4K",
-            "type": 3,
-            "api": "csp_NewJuTouGuard",
-            "searchable": 1,
-            "changeable": 1
-        },
-        {
             "key": "NewHuBan",
             "name": "🐯虎斑┃4K",
             "type": 3,
