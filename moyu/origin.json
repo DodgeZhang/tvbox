@@ -1,5 +1,5 @@
 {
-  "spider": "https://tc-new.z.wiki/autoupload/iYHTWVx6T8RrCmqdGD6MOdiO_OyvX7mIgxFBfDMDErs/20260528/P57J/0X0/fish05281638.png;md5;afea948cae5fc55f7ea8ce7b82d41e6a",
+  "spider": "https://tc-new.z.wiki/autoupload/iYHTWVx6T8RrCmqdGD6MOdiO_OyvX7mIgxFBfDMDErs/20260602/M5WI/fish06020803.php;md5;edf5bdf28f7b62d8da5636c3e44cb464",
   "logo": "https://modelscope-resouces.oss-cn-zhangjiakou.aliyuncs.com/avatar%2Ff5309172-1af6-4c4f-a1c5-a4773a1cc718.gif",
   "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
   "sites": [
@@ -576,6 +576,15 @@
       "searchable": 1
     },
     {
+      "key": "Buguyy",
+      "name": "🐦┃布谷┃音乐",
+      "type": 3,
+      "api": "csp_BuguyyFishGuard",
+      "searchable": 1,
+      "filterable": 1,
+      "changeable": 1
+    },
+    {
       "key": "ChuXin",
       "name": "💕┃初心┃音乐",
       "type": 3,
@@ -828,7 +837,16 @@
       }
     }
   ],
-  "lives": [],
+  "lives": [
+    {
+      "name": "superiptv",
+      "type": 0,
+      "url": "http://127.0.0.1:5266/iptv.m3u",
+      "playerType": 2,
+      "epg": "http://diyp5.112114.xyz/?ch={name}&date={date}",
+      "logo": "https://epg.112114.xyz/logo/{name}.png"
+    }
+  ],
   "parses": [],
   "flags": [],
   "ijk": [
