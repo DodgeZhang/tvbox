@@ -126,14 +126,6 @@
             "changeable": 1
         },
         {
-            "key": "賤賤",
-            "name": "🧲贱片┃秒播",
-            "type": 3,
-            "api": "csp_WexJianPianGuard",
-            "searchable": 1,
-            "changeable": 1
-        },
-        {
             "key": "WexWenCai",
             "name": "✏️文才┃秒播",
             "type": 3,
@@ -196,6 +188,14 @@
             "api": "csp_WexXb6vGuard",
             "searchable": 1,
             "changeable": 0
+        },
+        {
+            "key": "賤賤",
+            "name": "🧲贱片┃秒播",
+            "type": 3,
+            "api": "csp_WexJianPianGuard",
+            "searchable": 1,
+            "changeable": 1
         },
         {
             "key": "WexIkanBot",
