@@ -939,6 +939,14 @@
             "type": 0,
             "url": "./lives/综合直播.txt",
             "ua": "bingcha/1.1 (mianfeifenxiang)"
+        },
+        {
+            "name": "superiptv",
+            "type": 0,
+            "url": "http://127.0.0.1:5266/iptv.m3u",
+            "playerType": 2,
+            "epg": "http://diyp5.112114.xyz/?ch={name}&date={date}",
+            "logo": "https://epg.112114.xyz/logo/{name}.png"
         }
     ],
     "headers": [
