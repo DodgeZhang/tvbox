@@ -1,7 +1,5 @@
-//资源全部免费，仅供测试交流，请勿内置传播与转卖，微信公众号：奇奇资源库，交流Q群号码：90859992。
-
 {
-    "spider": "./spider.jar",
+    "spider": "https://img.51shazhu.com/autoupload/gE6Y0Af2tjXBCNig6CtNDI12_FRYNb81z6UPhMWD8iI/20260601/yGCU/0X0/06010733.png;md5;2b962da64b0264b72347f29ef611e72d",
     "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
     "sites": [
         {
@@ -796,7 +794,7 @@
             "key": "星芽短剧",
             "name": "星芽｜短剧",
             "type": 3,
-            "api": "./api/星芽短剧.py",
+            "api": "./py/星芽短剧.py",
             "searchable": 1,
             "changeable": 1,
             "quickSearch": 1,
@@ -860,28 +858,28 @@
             "name": "小镇｜影视",
             "type": 3,
             "api": "csp_XBPQ",
-            "ext": "./json/XZYS.json"
+            "ext": "https://git.yylx.win/raw.githubusercontent.com/PizazzGY/NewTVBox/main/movie/json/XZYS.json"
         },
         {
             "key": "面包影视",
             "name": "面包｜影视",
             "type": 3,
             "api": "csp_XBPQ",
-            "ext": "./json/MBYS.json"
+            "ext": "https://git.yylx.win/raw.githubusercontent.com/PizazzGY/NewTVBox/main/movie/json/MBYS.json"
         },
         {
             "key": "永乐影视",
             "name": "永乐｜影视",
             "type": 3,
             "api": "csp_XBPQ",
-            "ext": "./json/YLYS.json"
+            "ext": "https://git.yylx.win/raw.githubusercontent.com/PizazzGY/NewTVBox/main/movie/json/YLYS.json"
         },
         {
             "key": "剧圈影视",
             "name": "剧圈｜影视",
             "type": 3,
             "api": "csp_XYQHiker",
-            "ext": "./json/JQYS.json"
+            "ext": "https://git.yylx.win/raw.githubusercontent.com/PizazzGY/NewTVBox/main/movie/json/JQYS.json"
         },
         {
             "key": "1905",
@@ -900,14 +898,14 @@
             "style": {
                 "type": "list"
             },
-            "ext": "./json/DLXFS.json"
+            "ext": "https://git.yylx.win/raw.githubusercontent.com/PizazzGY/NewTVBox/main/anime/json/DLXFS.json"
         },
         {
             "key": "Anime1",
             "name": "A1｜动漫",
             "type": 3,
-            "api": "./api/ec67b9045d393737f073d2c9365533f0.js",
-            "ext": "./js/Anime1.js"
+            "api": "https://pan.vma.cc/pan/down.php/ec67b9045d393737f073d2c9365533f0.js",
+            "ext": "https://git.yylx.win/raw.githubusercontent.com/PizazzGY/NewTVBox/main/anime/js/Anime1.js"
         },
         {
             "key": "漫国动漫",
@@ -975,21 +973,21 @@
             "name": "巴士｜动漫",
             "type": 3,
             "api": "csp_XYQHiker",
-            "ext": "./json/bsdm.json"
+            "ext": "https://git.yylx.win/raw.githubusercontent.com/PizazzGY/NewTVBox/main/anime/json/bsdm.json"
         },
         {
             "key": "路漫漫",
             "name": "路漫漫｜动漫",
             "type": 3,
-            "api": "./api/ec67b9045d393737f073d2c9365533f0.js",
-            "ext": "./js/LMM.js"
+            "api": "https://pan.vma.cc/pan/down.php/ec67b9045d393737f073d2c9365533f0.js",
+            "ext": "https://git.yylx.win/raw.githubusercontent.com/PizazzGY/NewTVBox/main/anime/js/LMM.js"
         },
         {
             "key": "去看吧",
             "name": "去看吧｜动漫",
             "type": 3,
-            "api": "./api/ec67b9045d393737f073d2c9365533f0.js",
-            "ext": "./js/QKB.js"
+            "api": "https://pan.vma.cc/pan/down.php/ec67b9045d393737f073d2c9365533f0.js",
+            "ext": "https://git.yylx.win/raw.githubusercontent.com/PizazzGY/NewTVBox/main/anime/js/QKB.js"
         },
         {
             "key": "荐片",
@@ -1063,7 +1061,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "./json/DYG.json"
+            "ext": "https://git.yylx.win/raw.githubusercontent.com/PizazzGY/NewTVBox/main/magnet/json/DYG.json"
         },
         {
             "key": "电影天堂",
@@ -1321,19 +1319,19 @@
             "key": "爱听音乐",
             "name": "爱听｜音乐",
             "type": 3,
-            "api": "./api/爱听音乐.py"
+            "api": "https://git.yylx.win/raw.githubusercontent.com/PizazzGY/NewTVBox/main/other/py/爱听音乐.py"
         },
         {
             "key": "网络直播",
             "name": "网络｜直播",
             "type": 3,
-            "api": "./api/WLZB.py"
+            "api": "https://git.yylx.win/raw.githubusercontent.com/PizazzGY/NewTVBox/main/webcast/py/WLZB.py"
         },
         {
             "key": "哔哩直播",
             "name": "哔哩｜直播",
             "type": 3,
-            "api": "./api/BLZB.py"
+            "api": "https://git.yylx.win/raw.githubusercontent.com/PizazzGY/NewTVBox/main/webcast/py/BLZB.py"
         },
         {
             "key": "哔哩合集",
@@ -1525,7 +1523,7 @@
             "name": "养生｜知识",
             "type": 3,
             "api": "csp_XBPQ",
-            "ext": "./json/YST.json",
+            "ext": "https://git.yylx.win/raw.githubusercontent.com/PizazzGY/NewTVBox/main/other/json/YST.json",
             "style": {
                 "type": "rect",
                 "ratio": 1.597
@@ -1542,10 +1540,7 @@
         }
     ],
     "lives": [
-        {
-            "name": "直播源",
-            "type": 0
-        }
+        {}
     ],
     "parses": [
         {
