@@ -30,7 +30,7 @@
         },
         {
             "key": "Wogg",
-            "name": "👽️┃玩偶┃4K网盘",
+            "name": "👽️┃玩偶┃4K",
             "type": 3,
             "api": "csp_WoggFishGuard",
             "searchable": 1,
@@ -49,7 +49,7 @@
         },
         {
             "key": "FishMuou",
-            "name": "🪵┃木偶┃4K网盘",
+            "name": "🪵┃木偶┃4K",
             "type": 3,
             "api": "csp_FishCloudFishGuard",
             "searchable": 1,
@@ -64,7 +64,7 @@
         },
         {
             "key": "Libvio",
-            "name": "🌟┃立播┃4K网盘",
+            "name": "🌟┃立播┃4K",
             "type": 3,
             "api": "csp_LibvioFishGuard",
             "searchable": 1,
@@ -79,7 +79,7 @@
         },
         {
             "key": "KZN",
-            "name": "🧭┃指南┃4K网盘",
+            "name": "🧭┃指南┃4K",
             "type": 3,
             "api": "csp_KZNFishGuard",
             "searchable": 1,
@@ -87,7 +87,7 @@
         },
         {
             "key": "FishLabi",
-            "name": "🖍️┃蜡笔┃4K网盘",
+            "name": "🖍️┃蜡笔┃4K",
             "type": 3,
             "api": "csp_FishCloudFishGuard",
             "searchable": 1,
@@ -105,7 +105,7 @@
         },
         {
             "key": "FishZhizhen",
-            "name": "💫┃至臻┃4K网盘",
+            "name": "💫┃至臻┃4K",
             "type": 3,
             "api": "csp_FishCloudFishGuard",
             "searchable": 1,
@@ -122,7 +122,7 @@
         },
         {
             "key": "FishDuoduo",
-            "name": "🍀┃多多┃4K网盘",
+            "name": "🍀┃多多┃4K",
             "type": 3,
             "api": "csp_FishCloudFishGuard",
             "searchable": 1,
@@ -136,7 +136,7 @@
         },
         {
             "key": "FishErxiao",
-            "name": "🍒┃二小┃4K网盘",
+            "name": "🍒┃二小┃4K",
             "type": 3,
             "api": "csp_FishCloudFishGuard",
             "searchable": 1,
@@ -152,7 +152,7 @@
         },
         {
             "key": "FishHuban",
-            "name": "🐯┃虎斑┃4K网盘",
+            "name": "🐯┃虎斑┃4K",
             "type": 3,
             "api": "csp_FishCloudFishGuard",
             "searchable": 1,
@@ -164,7 +164,7 @@
         },
         {
             "key": "SeedHub",
-            "name": "🌱┃Seed┃4K网盘",
+            "name": "🌱┃Seed┃4K",
             "type": 3,
             "api": "csp_SeedHubFishGuard",
             "searchable": 1,
