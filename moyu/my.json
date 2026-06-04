@@ -295,16 +295,6 @@
             "ext": "https://www.mqtv.cc"
         },
         {
-            "key": "SaoHuo",
-            "name": "🔥┃骚火┃影视",
-            "type": 3,
-            "api": "csp_SaoHuoFishGuard",
-            "searchable": 1,
-            "filterable": 1,
-            "changeable": 1,
-            "ext": "https://shdy5.us"
-        },
-        {
             "key": "Duboku",
             "name": "🏝️┃独播┃影视",
             "type": 3,
