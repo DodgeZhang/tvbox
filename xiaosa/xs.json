@@ -248,19 +248,6 @@
             "timeout": 60
         },
         {
-            "key": "即刻",
-            "name": "⏰即刻｜4K",
-            "type": 3,
-            "api": "csp_Jike",
-            "searchable": 1,
-            "quickSearch": 0,
-            "filterable": 0,
-            "style": {
-                "type": "list"
-            },
-            "timeout": 60
-        },
-        {
             "key": "双星",
             "name": "✨双星｜4K",
             "type": 3,
