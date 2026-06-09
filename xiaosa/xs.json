@@ -1,7 +1,7 @@
 {
     "spider": "./spider.jar",
     "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
-    "logo": "./img/logo5.gif",
+    "logo": "./img/logo4.gif",
     "sites": [
         {
             "key": "豆瓣",
@@ -39,7 +39,7 @@
         },
         {
             "key": "玩偶",
-            "name": "👽️玩偶｜4K",
+            "name": "👽玩偶｜4K",
             "type": 3,
             "api": "csp_Wogg",
             "searchable": 1,
@@ -48,11 +48,9 @@
             "changeable": 1,
             "ext": {
                 "site": [
+                    "https://www.wogg.net",
                     "https://wogg.xxooo.cf",
-                    "https://woggpan.888484.xyz",
-                    "https://wogg.333232.xyz",
-                    "http://woggpan.xxooo.cf",
-                    "https://www.wogg.one"
+                    "https://woggpan.xxooo.cf"
                 ]
             },
             "timeout": 60
@@ -106,11 +104,6 @@
                     "http://www.xiaocgege.shop",
                     "http://xiaocge.fun",
                     "http://feimo.fun",
-                    "https://feimao666.fun",
-                    "http://feimao888.fun",
-                    "http://www.labi88.sbs",
-                    "http://fmao.site",
-                    "http://fmao.shop",
                     "http://xiaocgege.shop"
                 ]
             },
@@ -129,10 +122,7 @@
                 "site": [
                     "https://mihdr.top",
                     "https://www.miqk.cc",
-                    "https://xiaomiai.site",
-                    "https://xiaomi666.fun",
-                    "https://www.mihdr.top",
-                    "https://www.zhizhenpan.fun"
+                    "https://www.mihdr.top"
                 ]
             },
             "timeout": 60
@@ -186,10 +176,8 @@
             "ext": {
                 "site": [
                     "https://www.2xiaopan.top",
-                    "https://2xiaopan.top",
                     "https://www.erxiaozhan.top",
-                    "https://www.2xiaozhan.top",
-                    "https://wexwp.cc"
+                    "https://www.2xiaozhan.top"
                 ]
             },
             "timeout": 60
@@ -296,7 +284,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "https://www.czzy89.com"
+            "ext": "https://cz01.vip"
         },
         {
             "key": "金牌影视",
@@ -328,18 +316,6 @@
                 "url": "https://www.cyfz.top",
                 "dataKey": "e72cdfd629e8895d",
                 "dataIv": "e72cdfd629e8895d"
-            }
-        },
-        {
-            "key": "番薯动漫",
-            "name": "🍠番薯丨动漫",
-            "type": 3,
-            "searchable": 1,
-            "api": "csp_AppGet",
-            "ext": {
-                "url": "https://new.app.bytegooty.com",
-                "dataKey": "N4yj7l7xKxHF4*gz",
-                "dataIv": "N4yj7l7xKxHF4*gz"
             }
         },
         {
@@ -420,13 +396,6 @@
             "type": 3
         },
         {
-            "key": "修罗",
-            "name": "🧲修罗｜磁力",
-            "api": "csp_Xlys",
-            "type": 3,
-            "ext": "https://xl02.com.de"
-        },
-        {
             "key": "七味",
             "name": "🧲七味｜磁力",
             "type": 3,
@@ -434,9 +403,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": {
-                "url": "https://www.qwnull.com,https://www.qwmkv.com,https://www.qwfilm.com,https://www.qnmp4.com,https://www.qnnull.com,https://www.qnhot.com,https://www.qncool.com"
-            }
+            "ext": "https://www.qwshow.com,https://www.qwmkv.com,https://www.qwfilm.com,https://www.qwfun.com,https://www.qnnull.com,https://www.qnnull.com"
         },
         {
             "key": "80S",
@@ -488,17 +455,8 @@
             "ext": "./json/DYG.json"
         },
         {
-            "key": "电影天堂",
-            "name": "🧲电影天堂｜磁力",
-            "type": 3,
-            "api": "csp_DyGod",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1
-        },
-        {
             "key": "阿里云盘",
-            "name": "💿阿里｜云盘",
+            "name": "☁️阿里｜云盘",
             "type": 3,
             "api": "csp_PanAli",
             "searchable": 0,
@@ -511,7 +469,7 @@
         },
         {
             "key": "夸克网盘",
-            "name": "💿夸克｜网盘",
+            "name": "☁️夸克｜网盘",
             "type": 3,
             "api": "csp_PanQuark",
             "searchable": 0,
@@ -524,7 +482,7 @@
         },
         {
             "key": "UC网盘",
-            "name": "💿UC｜网盘",
+            "name": "☁️UC｜网盘",
             "type": 3,
             "api": "csp_PanUC",
             "searchable": 0,
@@ -537,7 +495,7 @@
         },
         {
             "key": "百度网盘",
-            "name": "💿百度｜网盘",
+            "name": "☁️百度｜网盘",
             "type": 3,
             "api": "csp_PanBaidu",
             "searchable": 0,
@@ -550,7 +508,7 @@
         },
         {
             "key": "盘搜",
-            "name": "💿盘搜｜搜索",
+            "name": "☁️盘搜｜搜索",
             "type": 3,
             "api": "csp_PanSou",
             "searchable": 1,
@@ -872,9 +830,11 @@
         {
             "key": "养生堂",
             "name": "🧘‍♀️养生｜知识",
-            "type": 3,
-            "api": "csp_XBPQ",
-            "ext": "./json/YST.json",
+             "type": 3,
+            "api": "csp_YST",
+            "searchable": 0,
+            "quickSearch": 0,
+            "changeable": 0,
             "style": {
                 "type": "rect",
                 "ratio": 1.597

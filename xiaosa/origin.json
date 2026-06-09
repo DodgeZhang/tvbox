@@ -1,5 +1,5 @@
 {
-    "spider": "https://img.51shazhu.com/autoupload/gE6Y0Af2tjXBCNig6CtNDI12_FRYNb81z6UPhMWD8iI/20260601/yGCU/0X0/06010733.png;md5;2b962da64b0264b72347f29ef611e72d",
+    "spider": "https://img.51shazhu.com/autoupload/gE6Y0Af2tjXBCNig6CtNDI12_FRYNb81z6UPhMWD8iI/20260608/EMi5/0X0/06081106.png;md5;0a650d1c6eb2bfd63c8eb44b086fef9c",
     "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
     "sites": [
         {
@@ -61,6 +61,23 @@
             "ext": "http://www.小不点.com/api/2026/fishhxq.php"
         },
         {
+            "key": "无极99",
+            "name": "无极丨APP",
+            "type": 3,
+            "api": "csp_App99",
+            "ext": {
+                "host": "http://111.170.140.70:19987/app/bn",
+                "LoginPath": "/app/log",
+                "version": "",
+                "appkey": "c403317c2a2946659b0bcbabdd5de43a",
+                "versionName": "1.0.1",
+                "name": "无极影视",
+                "package": "com.wujiys.app",
+                "buildNumber": "2001",
+                "buildSignature": "A0859BDC35AD3E81D4051E2A4678C77C62773EDB3423DDF1DEFF94CB331D398E"
+            }
+        },
+        {
             "key": "听心99",
             "name": "听心｜APP",
             "type": 3,
@@ -106,22 +123,6 @@
                 "package": "com.android.packageinstaller",
                 "buildNumber": "2002",
                 "buildSignature": "A40DA80A59D170CAA950CF15C18C454D47A39B26989D8B640ECD745BA71BF5DC"
-            }
-        },
-        {
-            "key": "咕噜99",
-            "name": "咕噜丨APP",
-            "type": 3,
-            "api": "csp_App99",
-            "ext": {
-                "host": "http://103.45.132.22:19987/app/bn",
-                "LoginPath": "/app/log",
-                "appkey": "d1f0c269eab74d93821fffc9befdbbba",
-                "versionName": "1.9.5",
-                "name": "咕噜咕噜",
-                "package": "com.bd.tool.gulu",
-                "buildNumber": "2001",
-                "buildSignature": "B07C8F6DBEBD3ABEE6A4A4DE2BFBBF29A0AC3F984D532A39448EC3BF5DD36311"
             }
         },
         {
@@ -386,19 +387,6 @@
             }
         },
         {
-            "key": "映画",
-            "name": "映画｜APP",
-            "type": 3,
-            "api": "csp_AppGet",
-            "searchable": 1,
-            "changeable": 1,
-            "ext": {
-                "url": "https://cms140.yhg.one",
-                "dataKey": "bM7iC9eA3oZ1nB7z",
-                "dataIv": "bM7iC9eA3oZ1nB7z"
-            }
-        },
-        {
             "key": "王子",
             "name": "王子｜APP",
             "type": 3,
@@ -485,11 +473,9 @@
             "changeable": 1,
             "ext": {
                 "site": [
+                    "https://www.wogg.net",
                     "https://wogg.xxooo.cf",
-                    "https://woggpan.888484.xyz",
-                    "https://wogg.333232.xyz",
-                    "http://woggpan.xxooo.cf",
-                    "https://www.wogg.one"
+                    "https://woggpan.xxooo.cf"
                 ]
             },
             "timeout": 60
@@ -543,11 +529,6 @@
                     "http://www.xiaocgege.shop",
                     "http://xiaocge.fun",
                     "http://feimo.fun",
-                    "https://feimao666.fun",
-                    "http://feimao888.fun",
-                    "http://www.labi88.sbs",
-                    "http://fmao.site",
-                    "http://fmao.shop",
                     "http://xiaocgege.shop"
                 ]
             },
@@ -566,10 +547,7 @@
                 "site": [
                     "https://mihdr.top",
                     "https://www.miqk.cc",
-                    "https://xiaomiai.site",
-                    "https://xiaomi666.fun",
-                    "https://www.mihdr.top",
-                    "https://www.zhizhenpan.fun"
+                    "https://www.mihdr.top"
                 ]
             },
             "timeout": 60
@@ -623,10 +601,8 @@
             "ext": {
                 "site": [
                     "https://www.2xiaopan.top",
-                    "https://2xiaopan.top",
                     "https://www.erxiaozhan.top",
-                    "https://www.2xiaozhan.top",
-                    "https://wexwp.cc"
+                    "https://www.2xiaozhan.top"
                 ]
             },
             "timeout": 60
@@ -643,39 +619,6 @@
             "ext": {
                 "site": [
                     "http://38.76.197.172:16969"
-                ]
-            },
-            "timeout": 60
-        },
-        {
-            "key": "闪电",
-            "name": "闪电｜4K",
-            "type": 3,
-            "api": "csp_PanWebShare",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "changeable": 1,
-            "ext": {
-                "site": [
-                    "https://shandian.blog",
-                    "https://sd.sduc.site"
-                ]
-            },
-            "timeout": 60
-        },
-        {
-            "key": "夸克",
-            "name": "夸克｜4K",
-            "type": 3,
-            "api": "csp_PanWebShareKK",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "changeable": 1,
-            "ext": {
-                "site": [
-                    "https://www.quarktv.cc"
                 ]
             },
             "timeout": 60
@@ -780,6 +723,17 @@
             "timeout": 60
         },
         {
+            "key": "好看短剧",
+            "name": "好看｜短剧",
+            "type": 3,
+            "api": "csp_HaokanDJ",
+            "searchable": 1,
+            "changeable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "genre": "shortdrama"
+        },
+        {
             "key": "围观短剧",
             "name": "围观｜短剧",
             "type": 3,
@@ -815,7 +769,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "https://www.czzy89.com"
+            "ext": "https://cz01.vip"
         },
         {
             "key": "金牌影视",
@@ -825,10 +779,23 @@
             "ext": "https://y2s52n7.com,https://m.hkybqufgh.com,https://m.sizhengxt.com,https://m.9zhoukj.com,https://m.sizhengxt.com,https://m.jiabaide.cn"
         },
         {
+            "key": "修罗影视",
+            "name": "修罗｜影视",
+            "api": "csp_Xlys",
+            "type": 3,
+            "ext": "https://www.xlysw.ggff.net"
+        },
+        {
             "key": "瓜子影视",
             "name": "瓜子｜影视",
             "type": 3,
             "api": "csp_Gz360"
+        },
+        {
+            "key": "云播影视",
+            "name": "云播｜影视",
+            "type": 3,
+            "api": "csp_Tvyb"
         },
         {
             "key": "骚火影视",
@@ -933,18 +900,6 @@
             }
         },
         {
-            "key": "番薯动漫",
-            "name": "番薯丨动漫",
-            "type": 3,
-            "searchable": 1,
-            "api": "csp_AppGet",
-            "ext": {
-                "url": "https://new.app.bytegooty.com",
-                "dataKey": "N4yj7l7xKxHF4*gz",
-                "dataIv": "N4yj7l7xKxHF4*gz"
-            }
-        },
-        {
             "key": "曼波动漫",
             "name": "曼波｜动漫",
             "type": 3,
@@ -996,13 +951,6 @@
             "type": 3
         },
         {
-            "key": "修罗",
-            "name": "修罗｜磁力",
-            "api": "csp_Xlys",
-            "type": 3,
-            "ext": "https://xl02.com.de"
-        },
-        {
             "key": "七味",
             "name": "七味｜磁力",
             "type": 3,
@@ -1010,19 +958,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": {
-                "url": "https://www.qwnull.com,https://www.qwmkv.com,https://www.qwfilm.com,https://www.qnmp4.com,https://www.qnnull.com,https://www.qnhot.com,https://www.qncool.com"
-            }
-        },
-        {
-            "key": "80S",
-            "name": "80S｜磁力",
-            "type": 3,
-            "api": "csp_BLSGod",
-            "playerType": 1,
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1
+            "ext": "https://www.qwshow.com,https://www.qwmkv.com,https://www.qwfilm.com,https://www.qwfun.com,https://www.qnnull.com,https://www.qnnull.com"
         },
         {
             "key": "New6v",
@@ -1062,15 +998,6 @@
             "quickSearch": 1,
             "filterable": 1,
             "ext": "https://git.yylx.win/raw.githubusercontent.com/PizazzGY/NewTVBox/main/magnet/json/DYG.json"
-        },
-        {
-            "key": "电影天堂",
-            "name": "电影天堂｜磁力",
-            "type": 3,
-            "api": "csp_DyGod",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1
         },
         {
             "key": "阿里云盘",
@@ -1135,10 +1062,10 @@
             "timeout": 60
         },
         {
-            "key": "糖果",
-            "name": "糖果｜搜索",
+            "key": "古哥",
+            "name": "古哥｜搜索",
             "type": 3,
-            "api": "csp_TGSou",
+            "api": "csp_GugeSo",
             "searchable": 1,
             "quickSearch": 0,
             "filterable": 0,
@@ -1149,16 +1076,6 @@
             "name": "兄弟｜搜索",
             "type": 3,
             "api": "csp_XiongdiPan",
-            "searchable": 1,
-            "quickSearch": 0,
-            "filterable": 0,
-            "timeout": 60
-        },
-        {
-            "key": "九七",
-            "name": "九七｜搜索",
-            "type": 3,
-            "api": "csp_97Sou",
             "searchable": 1,
             "quickSearch": 0,
             "filterable": 0,
@@ -1522,8 +1439,10 @@
             "key": "养生堂",
             "name": "养生｜知识",
             "type": 3,
-            "api": "csp_XBPQ",
-            "ext": "https://git.yylx.win/raw.githubusercontent.com/PizazzGY/NewTVBox/main/other/json/YST.json",
+            "api": "csp_YST",
+            "searchable": 0,
+            "quickSearch": 0,
+            "changeable": 0,
             "style": {
                 "type": "rect",
                 "ratio": 1.597
