@@ -340,6 +340,17 @@
             "ext": "./js/QKB.js"
         },
         {
+            "key": "好看短剧",
+            "name": "好看｜短剧",
+            "type": 3,
+            "api": "csp_HaokanDJ",
+            "searchable": 1,
+            "changeable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "genre": "shortdrama"
+        },
+        {
             "key": "围观短剧",
             "name": "🍿围观｜短剧",
             "type": 3,
@@ -354,18 +365,7 @@
             "key": "星芽短剧",
             "name": "🍿星芽｜短剧",
             "type": 3,
-            "api": "./api/星芽短剧.py",
-            "searchable": 1,
-            "changeable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "genre": "shortdrama"
-        },
-        {
-            "key": "剧王短剧",
-            "name": "🍿剧王｜短剧",
-            "type": 3,
-            "api": "./api/剧王短剧.py",
+            "api": "./py/星芽短剧.py",
             "searchable": 1,
             "changeable": 1,
             "quickSearch": 1,
