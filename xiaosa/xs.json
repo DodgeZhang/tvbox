@@ -199,23 +199,6 @@
             "timeout": 60
         },
         {
-            "key": "闪电",
-            "name": "⚡闪电｜4K",
-            "type": 3,
-            "api": "csp_PanWebShare",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "changeable": 1,
-            "ext": {
-                "site": [
-                    "https://shandian.blog",
-                    "https://sd.sduc.site"
-                ]
-            },
-            "timeout": 60
-        },
-        {
             "key": "指南",
             "name": "🧭指南｜4K",
             "type": 3,
@@ -347,7 +330,7 @@
             "name": "🚌巴士｜动漫",
             "type": 3,
             "api": "csp_XYQHiker",
-            "ext": "./json/bsdm.json"
+            "ext": "https://git.yylx.win/raw.githubusercontent.com/PizazzGY/NewTVBox/main/anime/json/bsdm.json"
         },
         {
             "key": "去看吧",
@@ -406,16 +389,6 @@
             "ext": "https://www.qwshow.com,https://www.qwmkv.com,https://www.qwfilm.com,https://www.qwfun.com,https://www.qnnull.com,https://www.qnnull.com"
         },
         {
-            "key": "80S",
-            "name": "🧲80S｜磁力",
-            "type": 3,
-            "api": "csp_BLSGod",
-            "playerType": 1,
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1
-        },
-        {
             "key": "New6v",
             "name": "🧲New6V｜磁力",
             "type": 3,
@@ -424,15 +397,6 @@
             "quickSearch": 1,
             "filterable": 1,
             "ext": "https://www.xb6v.com"
-        },
-        {
-            "key": "美剧迷",
-            "name": "🧲美剧迷｜磁力",
-            "type": 3,
-            "api": "csp_MeijuMi",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1
         },
         {
             "key": "迅雷吧",
@@ -545,15 +509,6 @@
             }
         },
         {
-            "key": "咖啡体育",
-            "name": "🏅咖啡｜体育",
-            "type": 3,
-            "api": "csp_KafeiTY",
-            "style": {
-                "type": "list"
-            }
-        },
-        {
             "key": "919体育",
             "name": "🏅919｜体育",
             "type": 3,
@@ -564,7 +519,7 @@
         },
         {
             "key": "呦呦DJ",
-            "name": "🎛️呦呦｜DJ",
+            "name": "🎧呦呦｜DJ",
             "type": 3,
             "api": "csp_Djuu",
             "style": {
@@ -573,7 +528,7 @@
         },
         {
             "key": "轮回DJ",
-            "name": "🎛️轮回｜DJ",
+            "name": "🎧轮回｜DJ",
             "type": 3,
             "api": "csp_Djlh",
             "style": {
