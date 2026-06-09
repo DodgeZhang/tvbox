@@ -7,7 +7,7 @@
             "key": "Douban",
             "name": "🌕️┃豆瓣┃推荐",
             "type": 3,
-            "api": "csp_DoubanFishGuard",
+            "api": "csp_Douban",
             "indexs": 1,
             "searchable": 0,
             "filterable": 0,
@@ -17,13 +17,13 @@
             "key": "FishConfig",
             "name": "⚙️┃设置┃中心",
             "type": 3,
-            "api": "csp_FishConfigFishGuard"
+            "api": "csp_FishConfig"
         },
         {
             "key": "YGP",
             "name": "🌟┃新片┃预告",
             "type": 3,
-            "api": "csp_YGPFishGuard",
+            "api": "csp_YGP",
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1
@@ -32,7 +32,7 @@
             "key": "Wogg",
             "name": "👽️┃玩偶┃4K",
             "type": 3,
-            "api": "csp_WoggFishGuard",
+            "api": "csp_Wogg",
             "searchable": 1,
             "changeable": 1,
             "filterable": 1,
@@ -51,7 +51,7 @@
             "key": "FishMuou",
             "name": "🪵┃木偶┃4K",
             "type": 3,
-            "api": "csp_FishCloudFishGuard",
+            "api": "csp_FishCloud",
             "searchable": 1,
             "ext": {
                 "site": [
@@ -66,7 +66,7 @@
             "key": "Libvio",
             "name": "🌟┃立播┃4K",
             "type": 3,
-            "api": "csp_LibvioFishGuard",
+            "api": "csp_Libvio",
             "searchable": 1,
             "changeable": 1,
             "ext": {
@@ -81,7 +81,7 @@
             "key": "KZN",
             "name": "🧭┃指南┃4K",
             "type": 3,
-            "api": "csp_KZNFishGuard",
+            "api": "csp_KZN",
             "searchable": 1,
             "changeable": 1
         },
@@ -89,7 +89,7 @@
             "key": "FishLabi",
             "name": "🖍️┃蜡笔┃4K",
             "type": 3,
-            "api": "csp_FishCloudFishGuard",
+            "api": "csp_FishCloud",
             "searchable": 1,
             "ext": {
                 "site": [
@@ -107,7 +107,7 @@
             "key": "FishZhizhen",
             "name": "💫┃至臻┃4K",
             "type": 3,
-            "api": "csp_FishCloudFishGuard",
+            "api": "csp_FishCloud",
             "searchable": 1,
             "ext": {
                 "site": [
@@ -124,7 +124,7 @@
             "key": "FishDuoduo",
             "name": "🍀┃多多┃4K",
             "type": 3,
-            "api": "csp_FishCloudFishGuard",
+            "api": "csp_FishCloud",
             "searchable": 1,
             "ext": {
                 "site": [
@@ -138,7 +138,7 @@
             "key": "FishErxiao",
             "name": "🍒┃二小┃4K",
             "type": 3,
-            "api": "csp_FishCloudFishGuard",
+            "api": "csp_FishCloud",
             "searchable": 1,
             "ext": {
                 "site": [
@@ -154,7 +154,7 @@
             "key": "FishHuban",
             "name": "🐯┃虎斑┃4K",
             "type": 3,
-            "api": "csp_FishCloudFishGuard",
+            "api": "csp_FishCloud",
             "searchable": 1,
             "ext": {
                 "site": [
@@ -166,7 +166,7 @@
             "key": "SeedHub",
             "name": "🌱┃Seed┃4K",
             "type": 3,
-            "api": "csp_SeedHubFishGuard",
+            "api": "csp_SeedHub",
             "searchable": 1,
             "ext": {
                 "site": [
@@ -180,7 +180,7 @@
             "key": "FishPs",
             "name": "🐟┃鱼鱼┃盘搜",
             "type": 3,
-            "api": "csp_FishPsFishGuard",
+            "api": "csp_FishPs",
             "searchable": 1,
             "filterable": 0
         },
@@ -188,7 +188,7 @@
             "key": "Rebo",
             "name": "🔥┃热播┃APP",
             "type": 3,
-            "api": "csp_AppRJFishGuard",
+            "api": "csp_AppRJ",
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 0,
@@ -199,7 +199,7 @@
         {
             "key": "三秋影视",
             "name": "🍂┃三秋┃APP",
-            "api": "csp_App3QFishGuard",
+            "api": "csp_App3Q",
             "type": 3,
             "searchable": 1,
             "quickSearch": 1,
@@ -209,7 +209,7 @@
             "key": "思追",
             "name": "🌙┃思追┃APP",
             "type": 3,
-            "api": "csp_AppGetFishGuard",
+            "api": "csp_AppGet",
             "searchable": 1,
             "changeable": 1,
             "ext": "ASKjgwRNiR0Cm6kFKdNzI8WI/ic4PmwK3odgt8MhFQvbl3mhDbShb5bbTFTo7paa8t0h/eK0IaCgWFxjyrk9E3XEhEgnQl4lSED6Aai0eVzXMurDiNGdHxvF3VEUI6e4G/o4FILNazhcr7ECOwLDz/VhNAd/7G/VxdrrL+Dz0oAUiUsfLmy4DiP+aQrY1INXLXmkDb2xN5Ev3pZr7xs6XtM="
@@ -218,7 +218,7 @@
             "key": "zhiqiu",
             "name": "🍃┃听风┃知秋",
             "type": 3,
-            "api": "csp_zhiqiuFishGuard",
+            "api": "csp_zhiqiu",
             "searchable": 1,
             "ext": "http://www.小不点.com/api//2026/zhiqiu.php"
         },
@@ -226,14 +226,14 @@
             "key": "fishhxq",
             "name": "🇰🇷┃韩圈┃影视",
             "type": 3,
-            "api": "csp_FishHxqFishGuard",
+            "api": "csp_FishHxq",
             "ext": "http://www.小不点.com/api//2026/fishhxq.php"
         },
         {
             "key": "Kan360",
             "name": "☘️┃三六┃影视",
             "type": 3,
-            "api": "csp_Kan360FishGuard",
+            "api": "csp_Kan360",
             "searchable": 1,
             "filterable": 1,
             "ext": {
@@ -247,7 +247,7 @@
             "key": "Wwys",
             "name": "🍙┃糯米┃影视",
             "type": 3,
-            "api": "csp_WwysFishGuard",
+            "api": "csp_Wwys",
             "searchable": 1,
             "filterable": 1,
             "changeable": 1,
@@ -257,7 +257,7 @@
             "key": "CZ",
             "name": "🏭┃厂长┃影视",
             "type": 3,
-            "api": "csp_CZFishGuard",
+            "api": "csp_CZ",
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 0,
@@ -267,7 +267,7 @@
             "key": "wencai",
             "name": "✏️┃文才┃影视",
             "type": 3,
-            "api": "csp_WenCaiFishGuard",
+            "api": "csp_WenCai",
             "searchable": 1,
             "ext": "https://www.tjrongze.com,https://y2s52n7.com,https://m.hkybqufgh.com,https://m.sizhengxt.com,https://m.9zhoukj.com,https://m.jiabaide.cn"
         },
@@ -275,14 +275,14 @@
             "key": "Guazi",
             "name": "🍉┃瓜子┃影视",
             "type": 3,
-            "api": "csp_GuaziFishGuard",
+            "api": "csp_Guazi",
             "searchable": 1
         },
         {
             "key": "TvDy",
             "name": "🌈┃天堂┃影视",
             "type": 3,
-            "api": "csp_TvDyFishGuard",
+            "api": "csp_TvDy",
             "searchable": 1,
             "filterable": 1
         },
@@ -290,7 +290,7 @@
             "key": "MqTv",
             "name": "🐦┃麻雀┃影视",
             "type": 3,
-            "api": "csp_MqTvFishGuard",
+            "api": "csp_MqTv",
             "searchable": 1,
             "ext": "https://www.mqtv.cc"
         },
@@ -298,7 +298,7 @@
             "key": "Duboku",
             "name": "🏝️┃独播┃影视",
             "type": 3,
-            "api": "csp_DubokuFishGuard",
+            "api": "csp_Duboku",
             "searchable": 1,
             "filterable": 1,
             "changeable": 1
@@ -307,7 +307,7 @@
             "key": "Ikanbot",
             "name": "🥰┃爱看┃影视",
             "type": 3,
-            "api": "csp_IkanbotFishGuard",
+            "api": "csp_Ikanbot",
             "searchable": 1,
             "filterable": 0,
             "ext": "{\"box\": \"TVBox\", \"danmu\": false}"
@@ -316,7 +316,7 @@
             "key": "Hema",
             "name": "🦛┃河马┃短剧",
             "type": 3,
-            "api": "csp_HemaFishGuard",
+            "api": "csp_Hema",
             "searchable": 1,
             "quickSearch": 1,
             "genre": "shortdrama",
@@ -336,7 +336,7 @@
             "key": "HHkk",
             "name": "😍┃好看┃短剧",
             "type": 3,
-            "api": "csp_HHkkFishGuard",
+            "api": "csp_HHkk",
             "searchable": 1,
             "quickSearch": 1,
             "genre": "shortdrama",
@@ -347,14 +347,14 @@
             "name": "🍠┃番薯┃动漫",
             "type": 3,
             "quickSearch": 1,
-            "api": "csp_AppGetFishGuard",
+            "api": "csp_AppGet",
             "ext": "AYCBc+fWtk3Ww5c5E60Bo/WU/T4E6CeEycr4XI4G5qlbHuIqnYVSkEL3SU7CelK5Try8WfXhaNH+v57CAk7j2WsarjlyXV8uztVoM5+2qHrAlnCAla8ODUNhdN9dxGa8uKfX0x1ICKB+3HQfIKV9BRVGyFNO/xqOPnpLDK0+jGr/"
         },
         {
             "key": "XiFan",
             "name": "🥣┃稀饭┃动漫",
             "type": 3,
-            "api": "csp_XiFanFishGuard",
+            "api": "csp_XiFan",
             "searchable": 1,
             "quickSearch": 1,
             "ext": {
@@ -365,7 +365,7 @@
             "key": "Manbo",
             "name": "🌊┃曼波┃动漫",
             "type": 3,
-            "api": "csp_AppGetFishGuard",
+            "api": "csp_AppGet",
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
@@ -375,7 +375,7 @@
             "key": "Gugu",
             "name": "🐤┃咕咕┃动漫",
             "type": 3,
-            "api": "csp_AppGetFishGuard",
+            "api": "csp_AppGet",
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
@@ -385,7 +385,7 @@
             "key": "Jianpian",
             "name": "🧲┃荐片┃磁力",
             "type": 3,
-            "api": "csp_JianpianFishGuard",
+            "api": "csp_Jianpian",
             "searchable": 1,
             "filterable": 1
         },
@@ -393,7 +393,7 @@
             "key": "Xb6v",
             "name": "🧲┃6V┃磁力",
             "type": 3,
-            "api": "csp_Xb6vFishGuard",
+            "api": "csp_Xb6v",
             "searchable": 1,
             "filterable": 1
         },
@@ -401,14 +401,14 @@
             "key": "TGSou",
             "name": "🍬┃糖果┃搜索",
             "type": 3,
-            "api": "csp_TGSouFishGuard",
+            "api": "csp_TGSou",
             "searchable": 1
         },
         {
             "key": "Buguyy",
             "name": "🐦┃布谷┃音乐",
             "type": 3,
-            "api": "csp_BuguyyFishGuard",
+            "api": "csp_Buguyy",
             "searchable": 1,
             "filterable": 1,
             "changeable": 1
@@ -417,7 +417,7 @@
             "key": "ChuXin",
             "name": "🎧┃初心┃音乐",
             "type": 3,
-            "api": "csp_ChuXinFishGuard",
+            "api": "csp_ChuXin",
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 0
@@ -426,7 +426,7 @@
             "key": "aiting",
             "name": "🎧┃爱听┃音乐",
             "type": 3,
-            "api": "csp_AiTingMusicFishGuard",
+            "api": "csp_AiTingMusic",
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 0
@@ -435,7 +435,7 @@
             "key": "Music24bit",
             "name": "🎧┃无损┃音乐",
             "type": 3,
-            "api": "csp_Music24bitFishGuard",
+            "api": "csp_Music24bit",
             "searchable": 1,
             "changeable": 1,
             "ext": {
@@ -452,7 +452,7 @@
             "key": "TuXiaoBei",
             "name": "🐰┃小兔┃少儿",
             "type": 3,
-            "api": "csp_TuXiaoBeiFishGuard",
+            "api": "csp_TuXiaoBei",
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 0
@@ -461,7 +461,7 @@
             "key": "BeiLeHu",
             "name": "🐅┃小虎┃少儿",
             "type": 3,
-            "api": "csp_BeiLeHuFishGuard",
+            "api": "csp_BeiLeHu",
             "searchable": 0,
             "quickSearch": 0,
             "filterable": 0
@@ -470,7 +470,7 @@
             "key": "少儿教育",
             "name": "🧒┃少儿┃教育",
             "type": 3,
-            "api": "csp_BiliFishGuard",
+            "api": "csp_Bili",
             "style": {
                 "type": "rect",
                 "ratio": 1.597
@@ -486,7 +486,7 @@
             "key": "小学课堂",
             "name": "📚┃小学┃课堂",
             "type": 3,
-            "api": "csp_BiliFishGuard",
+            "api": "csp_Bili",
             "style": {
                 "type": "rect",
                 "ratio": 1.597
@@ -502,7 +502,7 @@
             "key": "初中课堂",
             "name": "📐┃初中┃课堂",
             "type": 3,
-            "api": "csp_BiliFishGuard",
+            "api": "csp_Bili",
             "style": {
                 "type": "rect",
                 "ratio": 1.597
@@ -518,7 +518,7 @@
             "key": "高中教育",
             "name": "🎓┃高中┃课堂",
             "type": 3,
-            "api": "csp_BiliFishGuard",
+            "api": "csp_Bili",
             "style": {
                 "type": "rect",
                 "ratio": 1.597
@@ -534,7 +534,7 @@
             "key": "Kanqiu",
             "name": "🏀┃看球┃体育",
             "type": 3,
-            "api": "csp_KanqiuFishGuard",
+            "api": "csp_Kanqiu",
             "searchable": 0,
             "filterable": 1,
             "indexs": 0,
@@ -547,7 +547,7 @@
             "key": "Sir88",
             "name": "🏅┃超全┃体育",
             "type": 3,
-            "api": "csp_Sir88FishGuard",
+            "api": "csp_Sir88",
             "searchable": 0,
             "filterable": 1,
             "indexs": 0,
@@ -559,7 +559,7 @@
             "key": "QiutongTY",
             "name": "🏀┃球通┃体育",
             "type": 3,
-            "api": "csp_QiutongTYFishGuard",
+            "api": "csp_QiutongTY",
             "searchable": 0,
             "filterable": 0,
             "changeable": 1
@@ -568,7 +568,7 @@
             "key": "GuaziTY",
             "name": "🏅┃瓜子┃体育",
             "type": 3,
-            "api": "csp_GuaziTYFishGuard",
+            "api": "csp_GuaziTY",
             "searchable": 0,
             "filterable": 0,
             "changeable": 1
@@ -577,7 +577,7 @@
             "key": "919TY",
             "name": "🏅┃919┃体育",
             "type": 3,
-            "api": "csp_C919TYFishGuard",
+            "api": "csp_C919TY",
             "searchable": 0,
             "filterable": 0,
             "changeable": 1
@@ -586,7 +586,7 @@
             "key": "TingBook",
             "name": "🎙️┃六月┃有声",
             "type": 3,
-            "api": "csp_TingBookFishGuard",
+            "api": "csp_TingBook",
             "searchable": 1,
             "indexs": 0,
             "ext": "https://app.365ting.com",
@@ -598,7 +598,7 @@
             "key": "TingBookJinXia",
             "name": "🎙️┃堇夏┃有声",
             "type": 3,
-            "api": "csp_TingBookJinXiaFishGuard",
+            "api": "csp_TingBookJinXia",
             "searchable": 1,
             "filterable": 1,
             "indexs": 0,
@@ -611,7 +611,7 @@
             "key": "Local",
             "name": "📁┃文件┃浏览",
             "type": 3,
-            "api": "csp_LocalFishGuard",
+            "api": "csp_Local",
             "searchable": 0,
             "changeable": 0,
             "indexs": 0,
@@ -623,7 +623,7 @@
             "key": "Market",
             "name": "💿┃网盘┃市场",
             "type": 3,
-            "api": "csp_MarketFishGuard",
+            "api": "csp_Market",
             "searchable": 0,
             "indexs": 0,
             "style": {
@@ -635,7 +635,7 @@
             "key": "push_agent",
             "name": "💌┃推送┃接收",
             "type": 3,
-            "api": "csp_PushFishGuard",
+            "api": "csp_Push",
             "searchable": 0,
             "changeable": 0,
             "indexs": 0,
@@ -645,7 +645,7 @@
             "key": "Fishdrive",
             "name": "🐠┃摸鱼┃媒体库",
             "type": 3,
-            "api": "csp_FishDriveFishGuard",
+            "api": "csp_FishDrive",
             "indexs": 0,
             "searchable": 1,
             "filterable": 1,
@@ -655,7 +655,7 @@
             "key": "Wallpaper",
             "name": "🖼️┃摸鱼┃壁纸库",
             "type": 3,
-            "api": "csp_WallpaperFishGuard",
+            "api": "csp_Wallpaper",
             "searchable": 0,
             "indexs": 0,
             "quickSearch": 0,
