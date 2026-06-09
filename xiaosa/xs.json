@@ -1,7 +1,7 @@
 {
     "spider": "./spider.jar",
     "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
-    "logo": "./img/logo4.gif",
+    "logo": "./img/logo3.gif",
     "sites": [
         {
             "key": "豆瓣",
