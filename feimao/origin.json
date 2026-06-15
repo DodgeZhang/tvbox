@@ -170,7 +170,7 @@
       "api": "csp_Jianpian",
       "type": 3,
       "playerType": "2",
-      "ext": "https://ev2089.zxbwv.com"
+            "ext": "https://api.ztcgi.com"
     },
     {
       "key": "csp_SaoHuo",
@@ -298,16 +298,20 @@
       }
     },
     {
-      "key": "drpy_js_310直播",
-      "name": "🏀┃体育┃直播",
+            "key": "瓜子",
+            "name": "🏀┃瓜子┃体育",
       "type": 3,
-      "api": "https://gitlab.com/fantaiying/ext/-/raw/main/drpy2.min.js",
-      "changeable": 0,
-      "gridview": 3,
+            "api": "csp_GuaziTY",
       "style": {
-        "type": "list"
+                "type": "rect",
+                "ratio": 1.333
       },
-      "ext": "https://img2.gelonghui.com/library/d6014-7a5d5b19-3fe5-456a-8335-925bc845606fnull"
+            "searchable": 0,
+            "quickSearch": 0,
+            "filterable": 1,
+            "timeout": 12,
+            "order_num": 0,
+            "changeable": 0
     },
     {
       "key": "米搜",
@@ -327,7 +331,7 @@
       "key": "儿童",
       "name": "📚┃儿童┃启蒙",
       "type": 3,
-      "api": "https://gh-proxy.net/https://raw.githubusercontent.com/fantaiying7/EXT/refs/heads/main/drpy2.min.js",
+            "api": "./api/drpy2.min.js",
       "searchable": 0,
       "quickSearch": 0,
       "changeable": 0,
@@ -335,7 +339,7 @@
         "type": "rect",
         "ratio": 1.597
       },
-      "ext": "https://gh-proxy.net/https://raw.githubusercontent.com/fantaiying7/EXT/refs/heads/main/%E5%85%94%E5%B0%8F%E8%B4%9D.js"
+            "ext": "./js/兔小贝.js"
     },
     {
       "key": "csp_少儿",
@@ -507,16 +511,13 @@
     {
       "name": "Kimentanm",
       "type": 0,
-      "url": "https://gh.llkk.cc/https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u",
-      "playerType": 2
+            "url": "./lives/Kimentanm.txt"
     },
     {
       "name": "develop202",
       "type": 0,
-      "url": "https://gh.llkk.cc/http://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/interface.txt",
-      "playerType": 2,
-      "epg": "http://diyp5.112114.xyz/?ch={name}&date={date}",
-      "logo": "https://epg.112114.xyz/logo/{name}.png"
+            "url": "./lives/develop202.txt",
+            "epg": "http://diyp5.112114.xyz/?ch={name}&date={date}"
     }
   ],
   "headers": [
