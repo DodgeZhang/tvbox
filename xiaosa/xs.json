@@ -254,6 +254,26 @@
             }
         },
         {
+            "key": "橘汁",
+            "name": "🍹橘汁｜APP",
+            "type": 3,
+            "api": "csp_AppDrama",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "ext": {
+                "appName": "橘汁",
+                "publicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCr8SzZhjYy+rsya1K09t8d2K50pWFoBkgUqMpKOiW+3IEVKd4eTdvg9RSOjQ82kypL6R9BnsmrS1V8s4PVDwjQbUtYhTPPC9Hz16qY7rpD6m0d2vr09/UpWQ5uOy9PR0QTrsioveZ+DIe9jc3C+zBCu/kZSY/R8stwJoiitki3gwIDAQAB",
+                "dataKey": "DGVQRUX5R1LWWDLHTGJSUKG1DJRVPQ==",
+                "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
+                "pkg": "com.lxf.snzlcgtzxyx",
+                "host": "",
+                "site": "https://123-1349250429.cos.ap-shanghai.myqcloud.com/app.txt",
+                "version": "3.0.2.1",
+                "decrypt": "1"
+            }
+        },
+        {
             "key": "厂长影视",
             "name": "🏭厂长｜影视",
             "type": 3,
@@ -748,7 +768,7 @@
         {
             "key": "养生堂",
             "name": "🧘‍♀️养生｜知识",
-             "type": 3,
+            "type": 3,
             "api": "csp_YST",
             "searchable": 0,
             "quickSearch": 0,
