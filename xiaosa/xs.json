@@ -1,5 +1,5 @@
 {
-    "spider": "./spider.jar",
+    "spider": "https://gh-proxy.org/https://github.com/DodgeZhang/tvbox/blob/main/xiaosa/spider.jar",
     "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
     "logo": "./img/logo5.gif",
     "sites": [
