@@ -45,6 +45,18 @@
             "name": "vox"
         },
         {
+            "url": "https://gh-proxy.org/https://raw.githubusercontent.com/DodgeZhang/tvbox/refs/heads/main/pg/pg.json",
+            "name": "PG"
+        },
+        {
+            "url": "https://gh-proxy.org/https://raw.githubusercontent.com/DodgeZhang/tvbox/refs/heads/main/zhenxin/zx.json",
+            "name": "真心"
+        },
+        {
+            "url": "https://gh-proxy.org/https://raw.githubusercontent.com/DodgeZhang/tvbox/refs/heads/main/haitun/ht.json",
+            "name": "海豚"
+        },
+        {
             "url": "https://gh-proxy.org/https://raw.githubusercontent.com/DodgeZhang/tvbox/refs/heads/main/huangju/hj.json",
             "name": "黄聚"
         },
