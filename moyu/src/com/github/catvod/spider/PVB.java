@@ -356,6 +356,65 @@ public final class PVB {
         }
     }
 
+    // ------------------------------------------------------------------
+    // FishConfig 控制台图标地址改写
+    // ------------------------------------------------------------------
+
+    private static final String OLD_ICON_BASE =
+            "https://tc-new.z.wiki/autoupload/k2fxc/configicon/";
+    // org.json 序列化会把 / 转义为 \/，需同时处理
+    private static final String OLD_ICON_BASE_ESC =
+            "https:\\/\\/tc-new.z.wiki\\/autoupload\\/k2fxc\\/configicon\\/";
+    private static final String FALLBACK_ICON_BASE =
+            "https://cnb.cool/dodgezhang/tvbox/-/git/raw/main/moyu/ico/";
+
+    /**
+     * FishConfig.categoryContent 返回前调用：把第三方图床的控制台图标地址
+     * 替换为线路自身 ico 目录（与 my.json 同级），使线路图标自包含。
+     */
+    public static String rewriteIcons(String json) {
+        if (json == null) return json;
+        if (json.indexOf(OLD_ICON_BASE) < 0 && json.indexOf(OLD_ICON_BASE_ESC) < 0) return json;
+        try {
+            String base = iconBase();
+            return json.replace(OLD_ICON_BASE, base)
+                    .replace(OLD_ICON_BASE_ESC, base.replace("/", "\\/"));
+        } catch (Throwable th) {
+            return json;
+        }
+    }
+
+    /** 跟随当前线路地址：<config 所在目录>/ico/；取不到时回退正式仓库地址。 */
+    private static String iconBase() {
+        String u = currentConfigUrl();
+        if (u != null) {
+            try {
+                int q = u.indexOf('?');
+                if (q >= 0) u = u.substring(0, q);
+                int h = u.indexOf('#');
+                if (h >= 0) u = u.substring(0, h);
+                int slash = u.lastIndexOf('/');
+                if (slash > 8) return u.substring(0, slash + 1) + "ico/";
+            } catch (Throwable ignored) {
+            }
+        }
+        return FALLBACK_ICON_BASE;
+    }
+
+    /** 反射读取宿主当前 VOD 线路地址（FongMi VodConfig.get().getUrl()）。 */
+    private static String currentConfigUrl() {
+        try {
+            ClassLoader cl = PVB.class.getClassLoader();
+            Class<?> vc = cl.loadClass("com.fongmi.android.tv.api.config.VodConfig");
+            Object cfg = vc.getMethod("get").invoke(null);
+            if (cfg == null) return null;
+            Object url = cfg.getClass().getMethod("getUrl").invoke(cfg);
+            return url == null ? null : url.toString();
+        } catch (Throwable th) {
+            return null;
+        }
+    }
+
     private static void sleep(long ms) {
         try {
             Thread.sleep(ms);

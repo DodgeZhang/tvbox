@@ -1,5 +1,5 @@
 {
-  "spider": "./jar/950055803_4_1788301315144_pvb-autogo.jar;md5;6ee5a4da5eab2c4926e95132e05c486c",
+  "spider": "./jar/950055803_4_1788301315144_pvb-autogo.jar;md5;5350c02ffc88f5155398c8d6a93addb9",
   "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
   "danmaku": "http://127.0.0.1:5266/danmu/webhtv?name={name}&episode={episode}",
   "sites": [
