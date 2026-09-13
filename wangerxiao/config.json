@@ -1,10 +1,10 @@
 {
-  "spider": "./jar/bb1543fe5a028b997b400057e2f24922.jpg;md5;9dafc2b90091283453be78a10fa57a5c",
+  "spider": "./jar/7674fec9301d0f7816450c5887f7c57a.jpg;md5;1fb3e6dd311c1203c034963e0cf4e1be",
   "wallpaper": "http://王二小放牛娃牛逼.999888987.xyz",
   "sites": [
     {
       "key": "Douban",
-      "name": "🐮【王二小放牛娃】🐮",
+      "name": "🐮【免费分享】🐮",
       "type": 3,
       "api": "csp_NewDouBanGuard",
       "indexs": 1,
@@ -15,7 +15,7 @@
     },
     {
       "key": "Doubanaaaa",
-      "name": "🐮【更新日期:20260901】🐮",
+      "name": "🐮【更新日期:20260911】🐮",
       "type": 3,
       "api": "csp_NewDouBanGuard",
       "indexs": 1,
@@ -49,15 +49,6 @@
       }
     },
     {
-      "key": "二小",
-      "name": "💓‍指南┃4K💓‍",
-      "type": 3,
-      "api": "csp_AiNewXiaoPanGuard",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0
-    },
-    {
       "key": "玩偶",
       "name": "💓‍玩偶┃4K💓‍",
       "type": 3,
@@ -80,24 +71,6 @@
       "name": "💓‍七味┃4K💓‍",
       "type": 3,
       "api": "csp_AiQwMkvGuard",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0
-    },
-    {
-      "key": "NewZhiZhen",
-      "name": "💓至臻┃4K💓",
-      "type": 3,
-      "api": "csp_AiNewZhiZhenGuard",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0
-    },
-    {
-      "key": "AiNewPanLian",
-      "name": "💓盘链┃4K💓",
-      "type": 3,
-      "api": "csp_AiNewPanLianGuard",
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 0
@@ -979,10 +952,10 @@
       "changeable": 0
     },
     {
-      "key": "SoHaoSo",
-      "name": "🎠好盘┃综合🎠",
+      "key": "SoKaKa",
+      "name": "🎠卡卡┃综合🎠",
       "type": 3,
-      "api": "csp_SoHaoSoGuard",
+      "api": "csp_SoKaKaGuard",
       "searchable": 1,
       "changeable": 0
     },
