@@ -4,13 +4,14 @@
 重温经典,http://38.75.136.137:98/gslb/dsdqpub/cwjd.m3u8?auth=testpub
 世界杯,http://120.76.248.139/live/bfgd/4200000064.m3u8
 世界杯+,http://120.76.248.139/live/bfgd/4200000246.m3u8
-世界杯++,http://183.129.255.66:8480/hls/17/index.m3u8
+世界杯++,http://www.frankgb.cn:4022/udp/239.49.8.31:8000
 酒醉的蝴蝶,https://i.uik.cc/view.php/87b3667199eafea0834ff27d2bd5c449.mp4
 酒醉的蝴蝶,https://mpimg.cn/view.php/87b3667199eafea0834ff27d2bd5c449.mp4
 小草口令9877 TAO TV,https://i.uik.cc/view.php/0bb3de0276d838610d458fd3379b33a0.mp4
 更多软件TAO管家,https://i.uik.cc/view.php/0bb3de0276d838610d458fd3379b33a0.mp4
 中国天气,https://live.chinacert.cftest5.cn/cnmg/live/959986621
 中国天气,http://119.233.255.62:1234/959986621
+中国天气,http://129.150.55.255:31905/959986621
 苏州4K,https://tylive.kan0512.com/norecord/csztv4k_4k.m3u8
 河北4K,https://event.pull.hebtv.com:443/live/live101.m3u8
 湖南4K,http://hlsal-ldvt.qing.mgtv.com/nn_live/nn_x64/dWlwPTEyNy4wLjAuMSZ1aWQ9cWluZy1jbXMmbm5fdGltZXpvbmU9OCZjZG5leF9pZD1hbF9obHNfbGR2dCZ1dWlkPTliODY4NmU5ZTM2YzYwMmMmZT02OTE0NjA0JnY9MSZpZD1ITldTWkdTVCZzPTcwN2RiYTc2YzJjNmJmMTQ4MmUyZGYzOWU2NWM3YWFi/HNWSZGST.m3u8
@@ -71,7 +72,171 @@ CETV2,http://120.76.248.139/live/bfgd/4200000492.m3u8
 西藏卫视,http://120.76.248.139/live/bfgd/4200000121.m3u8
 农林卫视,http://120.76.248.139/live/bfgd/4200000122.m3u8
 
+广东联通,#genre#
+CCTV1,http://smzb.bypbwxx.top/lvdou/zhibojm-yangshi.php?token=6607337aa8fa6d6cd9b46915384af2
+CCTV2,http://smzb.bypbwxx.top/lvdou/zhibojm-yangshi.php?token=8b1ef854627b2932a03253027be80a
+CCTV3,http://smzb.bypbwxx.top/lvdou/zhibojm-yangshi.php?token=946c9b8ad616a27881ba78b3e7f291
+CCTV4,http://smzb.bypbwxx.top/lvdou/zhibojm-yangshi.php?token=ce40011999fc355a79c9a11429fcf3
+CCTV5,http://smzb.bypbwxx.top/lvdou/zhibojm-yangshi.php?token=9325133686c3475a9ac1e1e1ad90dc
+CCTV5+,http://smzb.bypbwxx.top/lvdou/zhibojm-yangshi.php?token=36c4fdb7044799dbafba32758e6903
+CCTV6,http://smzb.bypbwxx.top/lvdou/zhibojm-yangshi.php?token=d2ae3660e2dc1987d37e10061e65d8
+CCTV7,http://smzb.bypbwxx.top/lvdou/zhibojm-yangshi.php?token=24ca971ed180c0b85d5988c883e05f
+CCTV8,http://smzb.bypbwxx.top/lvdou/zhibojm-yangshi.php?token=7641ec47b2d136a8fe776d57b48116
+CCTV9,http://smzb.bypbwxx.top/lvdou/zhibojm-yangshi.php?token=d15b0798d702921544c583379a08d7
+CCTV10,http://smzb.bypbwxx.top/lvdou/zhibojm-yangshi.php?token=9519a0b0cb6a577e6df6b1d7ab56d4
+CCTV11,http://smzb.bypbwxx.top/lvdou/zhibojm-yangshi.php?token=54010f13b62cf5195199b21319c45f
+CCTV12,http://smzb.bypbwxx.top/lvdou/zhibojm-yangshi.php?token=8a5d59f6aa673404ffa630e5132359
+CCTV13,http://smzb.bypbwxx.top/lvdou/zhibojm-yangshi.php?token=11221c7abf07bcddcbd9f7725341f2
+CCTV14,http://smzb.bypbwxx.top/lvdou/zhibojm-yangshi.php?token=8770d121e6e93b991fa0e2c0966a59
+CCTV15,http://smzb.bypbwxx.top/lvdou/zhibojm-yangshi.php?token=5fec3df34e3f435ce242458fb86a74
+CCTV17,http://smzb.bypbwxx.top/lvdou/zhibojm-yangshi.php?token=452cbfaa85399c3dec0931fa888652
+北京卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=236844036bf99dc93315e92b0e7c2e
+天津卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=c6908e83b743c16f66ce15e3980dad
+河北卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=f0dc71a1ee6d696e34b7b5ad698a9a
+山西卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=2cf22581b8a439ae76eea3a8e4edbf
+内蒙古卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=8b785dcbb44476f1990253a53541c9
+辽宁卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=7f26f659c6a6b9d5241c032ff7124c
+吉林卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=0606737fe446bda9841c32d96435cf
+黑龙江卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=02ccc806e2c2a48bc93c8b51e5fa83
+东方卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=686c3375c1924de4ce12857db6d1c3
+江苏卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=41f364a1f36f1e7625b070d487eaf2
+浙江卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=c79ad674991e06d5a440af7e66455f
+安徽卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=7795bb84dbda4acf48d6b44bca6748
+东南卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=e8a541baca26645adb29b75fa04796
+江西卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=e557f77c90953fdad282157d6c0da2
+山东卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=d0787ee989df92fc711830a0088cca
+河南卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=6ab561c477a9f3de17c725b3067ae3
+湖北卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=cba0ddb3025df53ce4255196c1a026
+湖南卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=f076bc079ef8dd2b555965201cc9b0
+广东卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=8d3f4fd6315174a3c3529ffb8d8e85
+广西卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=b7d7c4fa4106f21c79f5a14740b77b
+海南卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=820d861de497965c9393dc8bfcf2dd
+重庆卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=03b607528f65a8026d06544dacd973
+四川卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=69387da4efbaeb81a8cb31db6ff08a
+贵州卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=58562c3c333b9bfd16f4b11230b6a0
+云南卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=5a5ad4e047817840d02ba6266a7d4f
+西藏卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=a9316b2aec869ede0ebed0775f04fd
+陕西卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=a32b900b43a900a4dbcfc35478bc5e
+甘肃卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=56f338f40bb838f06c469ff7600515
+青海卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=e2f3355104f5f2c6dffeabac6d14c7
+宁夏卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=1aebcf48d1f1fc0d2dd9f385f8425f
+新疆卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=e26723c80fb928b4cdaba7a2778d1c
+兵团卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=e1f8ab6aa6a840c041990b4ff518b6
+深圳卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=dce8e33a5208f3e354ecec18a6ff56
+厦门卫视,http://smzb.bypbwxx.top/lvdou/zhibojm-weishi-ws.php?token=bdb67acda723b004eb34acee12d775
+
+
 浙江电信,#genre#
+CCTV1,http://36.110.54.118:866/hls/1/index.m3u8
+CCTV2,http://36.110.54.118:866/hls/2/index.m3u8
+CCTV3,http://36.110.54.118:866/hls/3/index.m3u8
+CCTV4,http://36.110.54.118:866/hls/4/index.m3u8
+CCTV5,http://36.110.54.118:866/hls/5/index.m3u8
+CCTV5+,http://36.110.54.118:866/hls/13/index.m3u8
+CCTV6,http://36.110.54.118:866/hls/6/index.m3u8
+CCTV7,http://36.110.54.118:866/hls/7/index.m3u8
+CCTV8,http://36.110.54.118:866/hls/8/index.m3u8
+CCTV9,http://36.110.54.118:866/hls/9/index.m3u8
+CCTV10,http://36.110.54.118:866/hls/10/index.m3u8
+CCTV12,http://36.110.54.118:866/hls/11/index.m3u8
+CCTV14,http://36.110.54.118:866/hls/12/index.m3u8
+CCTV1,http://112.92.129.95:9898/hls/18/index.m3u8
+CCTV2,http://112.92.129.95:9898/hls/19/index.m3u8
+CCTV3,http://112.92.129.95:9898/hls/20/index.m3u8
+CCTV4,http://112.92.129.95:9898/hls/21/index.m3u8
+CCTV5,http://112.92.129.95:9898/hls/22/index.m3u8
+CCTV5+,http://112.92.129.95:9898/hls/23/index.m3u8
+CCTV6,http://112.92.129.95:9898/hls/24/index.m3u8
+CCTV7,http://112.92.129.95:9898/hls/25/index.m3u8
+CCTV8,http://112.92.129.95:9898/hls/26/index.m3u8
+CCTV9,http://112.92.129.95:9898/hls/27/index.m3u8
+CCTV10,http://112.92.129.95:9898/hls/28/index.m3u8
+CCTV11,http://112.92.129.95:9898/hls/29/index.m3u8
+CCTV12,http://112.92.129.95:9898/hls/30/index.m3u8
+CCTV13,http://112.92.129.95:9898/hls/31/index.m3u8
+CCTV14,http://112.92.129.95:9898/hls/32/index.m3u8
+CCTV15,http://112.92.129.95:9898/hls/33/index.m3u8
+CCTV16,http://112.92.129.95:9898/hls/127/index.m3u8
+CCTV17,http://112.92.129.95:9898/hls/34/index.m3u8
+东方卫视,http://112.92.129.95:9898/hls/36/index.m3u8
+湖南卫视,http://112.92.129.95:9898/hls/35/index.m3u8
+湖北卫视,http://112.92.129.95:9898/hls/40/index.m3u8
+浙江卫视,http://112.92.129.95:9898/hls/55/index.m3u8
+江苏卫视,http://112.92.129.95:9898/hls/38/index.m3u8
+安徽卫视,http://112.92.129.95:9898/hls/39/index.m3u8
+江西卫视,http://112.92.129.95:9898/hls/48/index.m3u8
+北京卫视,http://112.92.129.95:9898/hls/37/index.m3u8
+天津卫视,http://112.92.129.95:9898/hls/43/index.m3u8
+河北卫视,http://112.92.129.95:9898/hls/46/index.m3u8
+河南卫视,http://112.92.129.95:9898/hls/66/index.m3u8
+山东卫视,http://112.92.129.95:9898/hls/41/index.m3u8
+黑龙江卫视,http://112.92.129.95:9898/hls/42/index.m3u8
+吉林卫视,http://112.92.129.95:9898/hls/58/index.m3u8
+辽宁卫视,http://112.92.129.95:9898/hls/45/index.m3u8
+贵州卫视,http://112.92.129.95:9898/hls/49/index.m3u8
+四川卫视,http://112.92.129.95:9898/hls/47/index.m3u8
+重庆卫视,http://112.92.129.95:9898/hls/44/index.m3u8
+大湾区卫视,http://112.92.129.95:9898/hls/8/index.m3u8
+广东卫视,http://112.92.129.95:9898/hls/1/index.m3u8
+广西卫视,http://112.92.129.95:9898/hls/64/index.m3u8
+深圳卫视,http://112.92.129.95:9898/hls/16/index.m3u8
+东南卫视,http://112.92.129.95:9898/hls/101/index.m3u8
+陕西卫视,http://112.92.129.95:9898/hls/57/index.m3u8
+宁夏卫视,http://112.92.129.95:9898/hls/68/index.m3u8
+新疆卫视,http://112.92.129.95:9898/hls/61/index.m3u8
+兵团卫视,http://112.92.129.95:9898/hls/77/index.m3u8
+内蒙古卫视,http://112.92.129.95:9898/hls/151/index.m3u8
+西藏卫视,http://112.92.129.95:9898/hls/65/index.m3u8
+CCTV1,http://www.frankgb.cn:4022/udp/239.49.8.19:9614
+CCTV2,http://www.frankgb.cn:4022/udp/239.49.8.50:9802
+CCTV3,http://www.frankgb.cn:4022/udp/239.49.8.74:8000
+CCTV4,http://www.frankgb.cn:4022/udp/239.49.8.51:9806
+CCTV5,http://www.frankgb.cn:4022/udp/239.49.8.75:8000
+CCTV5+,http://www.frankgb.cn:4022/udp/239.49.8.18:9610
+CCTV6,http://www.frankgb.cn:4022/udp/239.49.8.76:8000
+CCTV7,http://www.frankgb.cn:4022/udp/239.49.0.126:8000
+CCTV8,http://www.frankgb.cn:4022/udp/239.49.8.77:8000
+CCTV9,http://www.frankgb.cn:4022/udp/239.49.8.53:9814
+CCTV10,http://www.frankgb.cn:4022/udp/239.49.8.54:9818
+CCTV11,http://www.frankgb.cn:4022/udp/239.49.0.127:8000
+CCTV12,http://www.frankgb.cn:4022/udp/239.49.8.55:9822
+CCTV13,http://www.frankgb.cn:4022/udp/239.49.8.109:8000
+CCTV14,http://www.frankgb.cn:4022/udp/239.49.8.56:9826
+CCTV15,http://www.frankgb.cn:4022/udp/239.49.0.128:8000
+CCTV16,http://www.frankgb.cn:4022/udp/239.49.8.31:8000
+CCTV17,http://www.frankgb.cn:4022/udp/239.49.8.52:9810
+北京卫视,http://www.frankgb.cn:4022/udp/239.49.8.11:9414
+东方卫视,http://www.frankgb.cn:4022/udp/239.49.8.17:9606
+浙江卫视,http://www.frankgb.cn:4022/udp/239.49.8.20:9618
+湖南卫视,http://www.frankgb.cn:4022/udp/239.49.8.12:9418
+广东卫视,http://www.frankgb.cn:4022/udp/239.49.8.13:9422
+深圳卫视,http://www.frankgb.cn:4022/udp/239.49.8.15:9430
+四川卫视,http://www.frankgb.cn:4022/udp/239.49.8.110:8000
+山东卫视,http://www.frankgb.cn:4022/udp/239.49.8.7:9306
+山西卫视,http://www.frankgb.cn:4022/udp/239.49.1.55:8000
+天津卫视,http://www.frankgb.cn:4022/udp/239.49.8.35:8620
+安徽卫视,http://www.frankgb.cn:4022/udp/239.49.8.80:8000
+重庆卫视,http://www.frankgb.cn:4022/udp/239.49.8.57:9830
+东南卫视,http://www.frankgb.cn:4022/udp/239.49.8.112:8000
+河北卫视,http://www.frankgb.cn:4022/udp/239.49.8.114:8000
+湖北卫视,http://www.frankgb.cn:4022/udp/239.49.8.8:9632
+河南卫视,http://www.frankgb.cn:4022/udp/239.49.8.29:8000
+江西卫视,http://www.frankgb.cn:4022/udp/239.49.8.111:8000
+广西卫视,http://www.frankgb.cn:4022/udp/239.49.8.10:8000
+海南卫视,http://www.frankgb.cn:4022/udp/239.49.8.83:8000
+辽宁卫视,http://www.frankgb.cn:4022/udp/239.49.8.48:8000
+黑龙江卫视,http://www.frankgb.cn:4022/udp/239.49.8.14:9426
+吉林卫视,http://www.frankgb.cn:4022/udp/239.49.8.113:8000
+云南卫视,http://www.frankgb.cn:4022/udp/239.49.0.177:8000
+贵州卫视,http://www.frankgb.cn:4022/udp/239.49.8.49:8000
+甘肃卫视,http://www.frankgb.cn:4022/udp/239.49.0.250:8000
+青海卫视,http://www.frankgb.cn:4022/udp/239.49.0.81:8000
+宁夏卫视,http://www.frankgb.cn:4022/udp/239.49.1.60:8000
+三沙卫视,http://www.frankgb.cn:4022/udp/239.49.0.167:8000
+西藏卫视,http://www.frankgb.cn:4022/udp/239.49.1.56:8000
+新疆卫视,http://www.frankgb.cn:4022/udp/239.49.1.57:8000
+兵团卫视,http://www.frankgb.cn:4022/udp/239.49.1.58:8000
+
 CCTV1,http://183.129.255.66:8480/hls/1/index.m3u8
 CCTV2,http://183.129.255.66:8480/hls/2/index.m3u8
 CCTV3,http://183.129.255.66:8480/hls/3/index.m3u8
@@ -113,6 +278,131 @@ CCTV17,http://183.129.255.66:8480/hls/18/index.m3u8
 辽宁卫视,http://183.129.255.66:8480/hls/46/index.m3u8
 山西卫视,http://183.129.255.66:8480/hls/45/index.m3u8
 
+广东咪咕,#genre#
+中国天气,http://www.ikerobot.com:1234/959986621
+CCTV1,http://www.ikerobot.com:1234/608807420
+CCTV2,http://www.ikerobot.com:1234/631780532
+CCTV3,http://www.ikerobot.com:1234/624878271
+CCTV4,http://www.ikerobot.com:1234/631780421
+CCTV5,http://www.ikerobot.com:1234/641886683
+CCTV5+,http://www.ikerobot.com:1234/641886773
+CCTV6,http://www.ikerobot.com:1234/624878396
+CCTV7,http://www.ikerobot.com:1234/673168121
+CCTV8,http://www.ikerobot.com:1234/624878356
+CCTV9,http://www.ikerobot.com:1234/673168140
+CCTV10,http://www.ikerobot.com:1234/624878405
+CCTV11,http://www.ikerobot.com:1234/667987558
+CCTV12,http://www.ikerobot.com:1234/673168185
+CCTV13,http://www.ikerobot.com:1234/608807423
+CCTV14,http://www.ikerobot.com:1234/624878440
+CCTV15,http://www.ikerobot.com:1234/673168223
+CCTV17,http://www.ikerobot.com:1234/673168256
+CCTV4欧洲,http://www.ikerobot.com:1234/608807419
+CCTV4美洲,http://www.ikerobot.com:1234/608807416
+CGTN外语纪录,http://www.ikerobot.com:1234/609006487
+CGTN阿拉伯语,http://www.ikerobot.com:1234/609154345
+CGTN西班牙语,http://www.ikerobot.com:1234/609006450
+CGTN法语,http://www.ikerobot.com:1234/609006476
+CGTN俄语,http://www.ikerobot.com:1234/609006446
+老故事,http://www.ikerobot.com:1234/884121956
+发现之旅,http://www.ikerobot.com:1234/624878970
+中学生,http://www.ikerobot.com:1234/708869532
+CGTN,http://www.ikerobot.com:1234/609017205
+赛事最经典,http://www.ikerobot.com:1234/646596895
+体坛名栏汇,http://www.ikerobot.com:1234/629943305
+四海钓鱼,http://www.ikerobot.com:1234/637444975
+陕西体育休闲频道,http://www.ikerobot.com:1234/956909356
+24小时城市联赛轮播台,http://www.ikerobot.com:1234/915512915
+武术世界,http://www.ikerobot.com:1234/958475359
+快乐垂钓,http://www.ikerobot.com:1234/961930263
+东方卫视,http://www.ikerobot.com:1234/651632648
+江苏卫视,http://www.ikerobot.com:1234/623899368
+广东卫视,http://www.ikerobot.com:1234/608831231
+北京卫视,http://www.ikerobot.com:1234/630287636
+辽宁卫视,http://www.ikerobot.com:1234/630291707
+河北卫视,http://www.ikerobot.com:1234/962042070
+江西卫视,http://www.ikerobot.com:1234/783847495
+河南卫视,http://www.ikerobot.com:1234/790187291
+陕西卫视,http://www.ikerobot.com:1234/738910838
+大湾区卫视,http://www.ikerobot.com:1234/608917627
+湖北卫视,http://www.ikerobot.com:1234/947472496
+吉林卫视,http://www.ikerobot.com:1234/947472500
+青海卫视,http://www.ikerobot.com:1234/947472506
+东南卫视,http://www.ikerobot.com:1234/849116810
+海南卫视,http://www.ikerobot.com:1234/947472502
+海峡卫视,http://www.ikerobot.com:1234/849119120
+中国农林卫视,http://www.ikerobot.com:1234/956904896
+兵团卫视,http://www.ikerobot.com:1234/956923145
+宁夏卫视,http://www.ikerobot.com:1234/738910535
+重庆卫视,http://www.ikerobot.com:1234/738910914
+三沙卫视,http://www.ikerobot.com:1234/961023778
+上海新闻综合,http://www.ikerobot.com:1234/651632657
+上视东方影视,http://www.ikerobot.com:1234/617290047
+上海第一财经,http://www.ikerobot.com:1234/608780988
+南京新闻综合频道,http://www.ikerobot.com:1234/838109047
+南京教科频道,http://www.ikerobot.com:1234/838153729
+南京十八频道,http://www.ikerobot.com:1234/838151753
+体育休闲频道,http://www.ikerobot.com:1234/626064707
+江苏城市频道,http://www.ikerobot.com:1234/626064714
+江苏国际,http://www.ikerobot.com:1234/626064674
+江苏教育,http://www.ikerobot.com:1234/628008321
+江苏影视频道,http://www.ikerobot.com:1234/626064697
+江苏综艺频道,http://www.ikerobot.com:1234/626065193
+公共新闻频道,http://www.ikerobot.com:1234/626064693
+盐城新闻综合,http://www.ikerobot.com:1234/639731825
+淮安新闻综合,http://www.ikerobot.com:1234/639731826
+泰州新闻综合,http://www.ikerobot.com:1234/639731818
+连云港新闻综合,http://www.ikerobot.com:1234/639731715
+宿迁新闻综合,http://www.ikerobot.com:1234/639731832
+徐州新闻综合,http://www.ikerobot.com:1234/639731747
+优漫卡通频道,http://www.ikerobot.com:1234/626064703
+江阴新闻综合,http://www.ikerobot.com:1234/955227979
+南通新闻综合,http://www.ikerobot.com:1234/955227985
+宜兴新闻综合,http://www.ikerobot.com:1234/955227996
+溧水新闻综合,http://www.ikerobot.com:1234/639737327
+陕西银龄频道,http://www.ikerobot.com:1234/956909362
+陕西都市青春频道,http://www.ikerobot.com:1234/956909358
+陕西秦腔频道,http://www.ikerobot.com:1234/956909303
+陕西新闻资讯频道,http://www.ikerobot.com:1234/956909289
+财富天下,http://www.ikerobot.com:1234/956923159
+镇江新闻综合,http://www.ikerobot.com:1234/639731783
+海南广播电视总台新闻频道,http://www.ikerobot.com:1234/962067517
+海南广播电视总台自贸频道,http://www.ikerobot.com:1234/962045226
+海南广播电视总台社会与法频道,http://www.ikerobot.com:1234/962045223
+海南广播电视总台文旅频道,http://www.ikerobot.com:1234/962067526
+海南广播电视总台少儿频道,http://www.ikerobot.com:1234/962067523
+经典香港电影,http://www.ikerobot.com:1234/625703337
+抗战经典影片,http://www.ikerobot.com:1234/617432318
+新片放映厅,http://www.ikerobot.com:1234/619495952
+CHC影迷电影,http://www.ikerobot.com:1234/952383261
+CHC动作电影,http://www.ikerobot.com:1234/644368714
+CHC家庭影院,http://www.ikerobot.com:1234/644368373
+和美乡途轮播台,http://www.ikerobot.com:1234/713591450
+南方影视,http://www.ikerobot.com:1234/614961829
+中国航天“逆袭”之路,http://www.ikerobot.com:1234/713600957
+CETV1,http://www.ikerobot.com:1234/923287154
+CETV2,http://www.ikerobot.com:1234/923287211
+CETV4,http://www.ikerobot.com:1234/923287339
+山东教育,http://www.ikerobot.com:1234/609154353
+熊猫频道01,http://www.ikerobot.com:1234/609158151
+熊猫频道1,http://www.ikerobot.com:1234/608933610
+熊猫频道2,http://www.ikerobot.com:1234/608933640
+熊猫频道3,http://www.ikerobot.com:1234/608934619
+熊猫频道4,http://www.ikerobot.com:1234/608934721
+熊猫频道5,http://www.ikerobot.com:1234/608935104
+熊猫频道6,http://www.ikerobot.com:1234/608935797
+熊猫频道7,http://www.ikerobot.com:1234/609169286
+熊猫频道8,http://www.ikerobot.com:1234/609169287
+熊猫频道9,http://www.ikerobot.com:1234/609169226
+熊猫频道10,http://www.ikerobot.com:1234/609169285
+最强综艺趴,http://www.ikerobot.com:1234/629942228
+嘉佳卡通,http://www.ikerobot.com:1234/614952364
+经典动画大集合,http://www.ikerobot.com:1234/629942219
+新动漫,http://www.ikerobot.com:1234/961930269
+新动力量创一流,http://www.ikerobot.com:1234/713589837
+中华特产,http://www.ikerobot.com:1234/959986618
+环球旅游,http://www.ikerobot.com:1234/958475356
+梨园频道,http://www.ikerobot.com:1234/961930369
 
 江苏咪咕,#genre#
 中国天气,http://119.233.255.62:1234/959986621
@@ -240,7 +530,7 @@ CETV4,http://119.233.255.62:1234/923287339
 环球旅游,http://119.233.255.62:1234/958475356
 梨园频道,http://119.233.255.62:1234/961930369
 
-湖北咪咕,#genre#
+咪咕多线,#genre#
 中国天气,http://120.48.113.49:6006/959986621
 CCTV1,http://120.48.113.49:6006/608807420
 CCTV2,http://120.48.113.49:6006/631780532
@@ -365,134 +655,6 @@ CETV4,http://120.48.113.49:6006/923287339
 中华特产,http://120.48.113.49:6006/959986618
 环球旅游,http://120.48.113.49:6006/958475356
 梨园频道,http://120.48.113.49:6006/961930369
-
-甘肃咪咕,#genre#
-中国天气,https://live.chinacert.cftest5.cn/cnmg/live/959986621
-CCTV1,https://live.chinacert.cftest5.cn/cnmg/live/608807420
-CCTV2,https://live.chinacert.cftest5.cn/cnmg/live/631780532
-CCTV3,https://live.chinacert.cftest5.cn/cnmg/live/624878271
-CCTV4,https://live.chinacert.cftest5.cn/cnmg/live/631780421
-CCTV5,https://live.chinacert.cftest5.cn/cnmg/live/641886683
-CCTV5+,https://live.chinacert.cftest5.cn/cnmg/live/641886773
-CCTV6,https://live.chinacert.cftest5.cn/cnmg/live/624878396
-CCTV7,https://live.chinacert.cftest5.cn/cnmg/live/673168121
-CCTV8,https://live.chinacert.cftest5.cn/cnmg/live/624878356
-CCTV9,https://live.chinacert.cftest5.cn/cnmg/live/673168140
-CCTV10,https://live.chinacert.cftest5.cn/cnmg/live/624878405
-CCTV11,https://live.chinacert.cftest5.cn/cnmg/live/667987558
-CCTV12,https://live.chinacert.cftest5.cn/cnmg/live/673168185
-CCTV13,https://live.chinacert.cftest5.cn/cnmg/live/608807423
-CCTV14,https://live.chinacert.cftest5.cn/cnmg/live/624878440
-CCTV15,https://live.chinacert.cftest5.cn/cnmg/live/673168223
-CCTV17,https://live.chinacert.cftest5.cn/cnmg/live/673168256
-CCTV4欧洲,https://live.chinacert.cftest5.cn/cnmg/live/608807419
-CCTV4美洲,https://live.chinacert.cftest5.cn/cnmg/live/608807416
-CGTN外语纪录,https://live.chinacert.cftest5.cn/cnmg/live/609006487
-CGTN阿拉伯语,https://live.chinacert.cftest5.cn/cnmg/live/609154345
-CGTN西班牙语,https://live.chinacert.cftest5.cn/cnmg/live/609006450
-CGTN法语,https://live.chinacert.cftest5.cn/cnmg/live/609006476
-CGTN俄语,https://live.chinacert.cftest5.cn/cnmg/live/609006446
-老故事,https://live.chinacert.cftest5.cn/cnmg/live/884121956
-发现之旅,https://live.chinacert.cftest5.cn/cnmg/live/624878970
-中学生,https://live.chinacert.cftest5.cn/cnmg/live/708869532
-CGTN,https://live.chinacert.cftest5.cn/cnmg/live/609017205
-赛事最经典,https://live.chinacert.cftest5.cn/cnmg/live/646596895
-体坛名栏汇,https://live.chinacert.cftest5.cn/cnmg/live/629943305
-四海钓鱼,https://live.chinacert.cftest5.cn/cnmg/live/637444975
-陕西体育休闲频道,https://live.chinacert.cftest5.cn/cnmg/live/956909356
-24小时城市联赛轮播台,https://live.chinacert.cftest5.cn/cnmg/live/915512915
-武术世界,https://live.chinacert.cftest5.cn/cnmg/live/958475359
-快乐垂钓,https://live.chinacert.cftest5.cn/cnmg/live/961930263
-东方卫视,https://live.chinacert.cftest5.cn/cnmg/live/651632648
-江苏卫视,https://live.chinacert.cftest5.cn/cnmg/live/623899368
-广东卫视,https://live.chinacert.cftest5.cn/cnmg/live/608831231
-北京卫视,https://live.chinacert.cftest5.cn/cnmg/live/630287636
-辽宁卫视,https://live.chinacert.cftest5.cn/cnmg/live/630291707
-河北卫视,https://live.chinacert.cftest5.cn/cnmg/live/962042070
-江西卫视,https://live.chinacert.cftest5.cn/cnmg/live/783847495
-河南卫视,https://live.chinacert.cftest5.cn/cnmg/live/790187291
-陕西卫视,https://live.chinacert.cftest5.cn/cnmg/live/738910838
-大湾区卫视,https://live.chinacert.cftest5.cn/cnmg/live/608917627
-湖北卫视,https://live.chinacert.cftest5.cn/cnmg/live/947472496
-吉林卫视,https://live.chinacert.cftest5.cn/cnmg/live/947472500
-青海卫视,https://live.chinacert.cftest5.cn/cnmg/live/947472506
-东南卫视,https://live.chinacert.cftest5.cn/cnmg/live/849116810
-海南卫视,https://live.chinacert.cftest5.cn/cnmg/live/947472502
-海峡卫视,https://live.chinacert.cftest5.cn/cnmg/live/849119120
-中国农林卫视,https://live.chinacert.cftest5.cn/cnmg/live/956904896
-兵团卫视,https://live.chinacert.cftest5.cn/cnmg/live/956923145
-宁夏卫视,https://live.chinacert.cftest5.cn/cnmg/live/738910535
-重庆卫视,https://live.chinacert.cftest5.cn/cnmg/live/738910914
-三沙卫视,https://live.chinacert.cftest5.cn/cnmg/live/961023778
-上海新闻综合,https://live.chinacert.cftest5.cn/cnmg/live/651632657
-上视东方影视,https://live.chinacert.cftest5.cn/cnmg/live/617290047
-上海第一财经,https://live.chinacert.cftest5.cn/cnmg/live/608780988
-南京新闻综合频道,https://live.chinacert.cftest5.cn/cnmg/live/838109047
-南京教科频道,https://live.chinacert.cftest5.cn/cnmg/live/838153729
-南京十八频道,https://live.chinacert.cftest5.cn/cnmg/live/838151753
-体育休闲频道,https://live.chinacert.cftest5.cn/cnmg/live/626064707
-江苏城市频道,https://live.chinacert.cftest5.cn/cnmg/live/626064714
-江苏国际,https://live.chinacert.cftest5.cn/cnmg/live/626064674
-江苏教育,https://live.chinacert.cftest5.cn/cnmg/live/628008321
-江苏影视频道,https://live.chinacert.cftest5.cn/cnmg/live/626064697
-江苏综艺频道,https://live.chinacert.cftest5.cn/cnmg/live/626065193
-公共新闻频道,https://live.chinacert.cftest5.cn/cnmg/live/626064693
-盐城新闻综合,https://live.chinacert.cftest5.cn/cnmg/live/639731825
-淮安新闻综合,https://live.chinacert.cftest5.cn/cnmg/live/639731826
-泰州新闻综合,https://live.chinacert.cftest5.cn/cnmg/live/639731818
-连云港新闻综合,https://live.chinacert.cftest5.cn/cnmg/live/639731715
-宿迁新闻综合,https://live.chinacert.cftest5.cn/cnmg/live/639731832
-徐州新闻综合,https://live.chinacert.cftest5.cn/cnmg/live/639731747
-优漫卡通频道,https://live.chinacert.cftest5.cn/cnmg/live/626064703
-江阴新闻综合,https://live.chinacert.cftest5.cn/cnmg/live/955227979
-南通新闻综合,https://live.chinacert.cftest5.cn/cnmg/live/955227985
-宜兴新闻综合,https://live.chinacert.cftest5.cn/cnmg/live/955227996
-溧水新闻综合,https://live.chinacert.cftest5.cn/cnmg/live/639737327
-陕西银龄频道,https://live.chinacert.cftest5.cn/cnmg/live/956909362
-陕西都市青春频道,https://live.chinacert.cftest5.cn/cnmg/live/956909358
-陕西秦腔频道,https://live.chinacert.cftest5.cn/cnmg/live/956909303
-陕西新闻资讯频道,https://live.chinacert.cftest5.cn/cnmg/live/956909289
-财富天下,https://live.chinacert.cftest5.cn/cnmg/live/956923159
-镇江新闻综合,https://live.chinacert.cftest5.cn/cnmg/live/639731783
-海南广播电视总台新闻频道,https://live.chinacert.cftest5.cn/cnmg/live/962067517
-海南广播电视总台自贸频道,https://live.chinacert.cftest5.cn/cnmg/live/962045226
-海南广播电视总台社会与法频道,https://live.chinacert.cftest5.cn/cnmg/live/962045223
-海南广播电视总台文旅频道,https://live.chinacert.cftest5.cn/cnmg/live/962067526
-海南广播电视总台少儿频道,https://live.chinacert.cftest5.cn/cnmg/live/962067523
-经典香港电影,https://live.chinacert.cftest5.cn/cnmg/live/625703337
-抗战经典影片,https://live.chinacert.cftest5.cn/cnmg/live/617432318
-新片放映厅,https://live.chinacert.cftest5.cn/cnmg/live/619495952
-CHC影迷电影,https://live.chinacert.cftest5.cn/cnmg/live/952383261
-CHC动作电影,https://live.chinacert.cftest5.cn/cnmg/live/644368714
-CHC家庭影院,https://live.chinacert.cftest5.cn/cnmg/live/644368373
-和美乡途轮播台,https://live.chinacert.cftest5.cn/cnmg/live/713591450
-南方影视,https://live.chinacert.cftest5.cn/cnmg/live/614961829
-中国航天“逆袭”之路,https://live.chinacert.cftest5.cn/cnmg/live/713600957
-CETV1,https://live.chinacert.cftest5.cn/cnmg/live/923287154
-CETV2,https://live.chinacert.cftest5.cn/cnmg/live/923287211
-CETV4,https://live.chinacert.cftest5.cn/cnmg/live/923287339
-山东教育,https://live.chinacert.cftest5.cn/cnmg/live/609154353
-熊猫频道01,https://live.chinacert.cftest5.cn/cnmg/live/609158151
-熊猫频道1,https://live.chinacert.cftest5.cn/cnmg/live/608933610
-熊猫频道2,https://live.chinacert.cftest5.cn/cnmg/live/608933640
-熊猫频道3,https://live.chinacert.cftest5.cn/cnmg/live/608934619
-熊猫频道4,https://live.chinacert.cftest5.cn/cnmg/live/608934721
-熊猫频道5,https://live.chinacert.cftest5.cn/cnmg/live/608935104
-熊猫频道6,https://live.chinacert.cftest5.cn/cnmg/live/608935797
-熊猫频道7,https://live.chinacert.cftest5.cn/cnmg/live/609169286
-熊猫频道8,https://live.chinacert.cftest5.cn/cnmg/live/609169287
-熊猫频道9,https://live.chinacert.cftest5.cn/cnmg/live/609169226
-熊猫频道10,https://live.chinacert.cftest5.cn/cnmg/live/609169285
-最强综艺趴,https://live.chinacert.cftest5.cn/cnmg/live/629942228
-嘉佳卡通,https://live.chinacert.cftest5.cn/cnmg/live/614952364
-经典动画大集合,https://live.chinacert.cftest5.cn/cnmg/live/629942219
-新动漫,https://live.chinacert.cftest5.cn/cnmg/live/961930269
-新动力量创一流,https://live.chinacert.cftest5.cn/cnmg/live/713589837
-中华特产,https://live.chinacert.cftest5.cn/cnmg/live/959986618
-环球旅游,https://live.chinacert.cftest5.cn/cnmg/live/958475356
-梨园频道,https://live.chinacert.cftest5.cn/cnmg/live/961930369
-
-西藏咪咕,#genre#
 中国天气,http://222.213.105.65:7788/959986621
 CCTV1,http://222.213.105.65:7788/608807420
 CCTV2,http://222.213.105.65:7788/631780532
@@ -617,9 +779,6 @@ CETV4,http://222.213.105.65:7788/923287339
 中华特产,http://222.213.105.65:7788/959986618
 环球旅游,http://222.213.105.65:7788/958475356
 梨园频道,http://222.213.105.65:7788/961930369
-
-
-咪咕多线,#genre#
 中国天气,http://2280.eu.org:1234/959986621
 CCTV1,http://2280.eu.org:1234/608807420
 CCTV2,http://2280.eu.org:1234/631780532
@@ -744,254 +903,130 @@ CETV4,http://2280.eu.org:1234/923287339
 中华特产,http://2280.eu.org:1234/959986618
 环球旅游,http://2280.eu.org:1234/958475356
 梨园频道,http://2280.eu.org:1234/961930369
-中国天气,http://175.17.83.114:1234/959986621
-CCTV1,http://175.17.83.114:1234/608807420
-CCTV2,http://175.17.83.114:1234/631780532
-CCTV3,http://175.17.83.114:1234/624878271
-CCTV4,http://175.17.83.114:1234/631780421
-CCTV5,http://175.17.83.114:1234/641886683
-CCTV5+,http://175.17.83.114:1234/641886773
-CCTV6,http://175.17.83.114:1234/624878396
-CCTV7,http://175.17.83.114:1234/673168121
-CCTV8,http://175.17.83.114:1234/624878356
-CCTV9,http://175.17.83.114:1234/673168140
-CCTV10,http://175.17.83.114:1234/624878405
-CCTV11,http://175.17.83.114:1234/667987558
-CCTV12,http://175.17.83.114:1234/673168185
-CCTV13,http://175.17.83.114:1234/608807423
-CCTV14,http://175.17.83.114:1234/624878440
-CCTV15,http://175.17.83.114:1234/673168223
-CCTV17,http://175.17.83.114:1234/673168256
-CCTV4欧洲,http://175.17.83.114:1234/608807419
-CCTV4美洲,http://175.17.83.114:1234/608807416
-CGTN外语纪录,http://175.17.83.114:1234/609006487
-CGTN阿拉伯语,http://175.17.83.114:1234/609154345
-CGTN西班牙语,http://175.17.83.114:1234/609006450
-CGTN法语,http://175.17.83.114:1234/609006476
-CGTN俄语,http://175.17.83.114:1234/609006446
-老故事,http://175.17.83.114:1234/884121956
-发现之旅,http://175.17.83.114:1234/624878970
-中学生,http://175.17.83.114:1234/708869532
-CGTN,http://175.17.83.114:1234/609017205
-赛事最经典,http://175.17.83.114:1234/646596895
-体坛名栏汇,http://175.17.83.114:1234/629943305
-四海钓鱼,http://175.17.83.114:1234/637444975
-陕西体育休闲频道,http://175.17.83.114:1234/956909356
-24小时城市联赛轮播台,http://175.17.83.114:1234/915512915
-武术世界,http://175.17.83.114:1234/958475359
-快乐垂钓,http://175.17.83.114:1234/961930263
-东方卫视,http://175.17.83.114:1234/651632648
-江苏卫视,http://175.17.83.114:1234/623899368
-广东卫视,http://175.17.83.114:1234/608831231
-北京卫视,http://175.17.83.114:1234/630287636
-辽宁卫视,http://175.17.83.114:1234/630291707
-河北卫视,http://175.17.83.114:1234/962042070
-江西卫视,http://175.17.83.114:1234/783847495
-河南卫视,http://175.17.83.114:1234/790187291
-陕西卫视,http://175.17.83.114:1234/738910838
-大湾区卫视,http://175.17.83.114:1234/608917627
-湖北卫视,http://175.17.83.114:1234/947472496
-吉林卫视,http://175.17.83.114:1234/947472500
-青海卫视,http://175.17.83.114:1234/947472506
-东南卫视,http://175.17.83.114:1234/849116810
-海南卫视,http://175.17.83.114:1234/947472502
-海峡卫视,http://175.17.83.114:1234/849119120
-中国农林卫视,http://175.17.83.114:1234/956904896
-兵团卫视,http://175.17.83.114:1234/956923145
-宁夏卫视,http://175.17.83.114:1234/738910535
-重庆卫视,http://175.17.83.114:1234/738910914
-三沙卫视,http://175.17.83.114:1234/961023778
-上海新闻综合,http://175.17.83.114:1234/651632657
-上视东方影视,http://175.17.83.114:1234/617290047
-上海第一财经,http://175.17.83.114:1234/608780988
-南京新闻综合频道,http://175.17.83.114:1234/838109047
-南京教科频道,http://175.17.83.114:1234/838153729
-南京十八频道,http://175.17.83.114:1234/838151753
-体育休闲频道,http://175.17.83.114:1234/626064707
-江苏城市频道,http://175.17.83.114:1234/626064714
-江苏国际,http://175.17.83.114:1234/626064674
-江苏教育,http://175.17.83.114:1234/628008321
-江苏影视频道,http://175.17.83.114:1234/626064697
-江苏综艺频道,http://175.17.83.114:1234/626065193
-公共新闻频道,http://175.17.83.114:1234/626064693
-盐城新闻综合,http://175.17.83.114:1234/639731825
-淮安新闻综合,http://175.17.83.114:1234/639731826
-泰州新闻综合,http://175.17.83.114:1234/639731818
-连云港新闻综合,http://175.17.83.114:1234/639731715
-宿迁新闻综合,http://175.17.83.114:1234/639731832
-徐州新闻综合,http://175.17.83.114:1234/639731747
-优漫卡通频道,http://175.17.83.114:1234/626064703
-江阴新闻综合,http://175.17.83.114:1234/955227979
-南通新闻综合,http://175.17.83.114:1234/955227985
-宜兴新闻综合,http://175.17.83.114:1234/955227996
-溧水新闻综合,http://175.17.83.114:1234/639737327
-陕西银龄频道,http://175.17.83.114:1234/956909362
-陕西都市青春频道,http://175.17.83.114:1234/956909358
-陕西秦腔频道,http://175.17.83.114:1234/956909303
-陕西新闻资讯频道,http://175.17.83.114:1234/956909289
-财富天下,http://175.17.83.114:1234/956923159
-镇江新闻综合,http://175.17.83.114:1234/639731783
-海南广播电视总台新闻频道,http://175.17.83.114:1234/962067517
-海南广播电视总台自贸频道,http://175.17.83.114:1234/962045226
-海南广播电视总台社会与法频道,http://175.17.83.114:1234/962045223
-海南广播电视总台文旅频道,http://175.17.83.114:1234/962067526
-海南广播电视总台少儿频道,http://175.17.83.114:1234/962067523
-经典香港电影,http://175.17.83.114:1234/625703337
-抗战经典影片,http://175.17.83.114:1234/617432318
-新片放映厅,http://175.17.83.114:1234/619495952
-CHC影迷电影,http://175.17.83.114:1234/952383261
-CHC动作电影,http://175.17.83.114:1234/644368714
-CHC家庭影院,http://175.17.83.114:1234/644368373
-和美乡途轮播台,http://175.17.83.114:1234/713591450
-南方影视,http://175.17.83.114:1234/614961829
-中国航天“逆袭”之路,http://175.17.83.114:1234/713600957
-CETV1,http://175.17.83.114:1234/923287154
-CETV2,http://175.17.83.114:1234/923287211
-CETV4,http://175.17.83.114:1234/923287339
-山东教育,http://175.17.83.114:1234/609154353
-熊猫频道01,http://175.17.83.114:1234/609158151
-熊猫频道1,http://175.17.83.114:1234/608933610
-熊猫频道2,http://175.17.83.114:1234/608933640
-熊猫频道3,http://175.17.83.114:1234/608934619
-熊猫频道4,http://175.17.83.114:1234/608934721
-熊猫频道5,http://175.17.83.114:1234/608935104
-熊猫频道6,http://175.17.83.114:1234/608935797
-熊猫频道7,http://175.17.83.114:1234/609169286
-熊猫频道8,http://175.17.83.114:1234/609169287
-熊猫频道9,http://175.17.83.114:1234/609169226
-熊猫频道10,http://175.17.83.114:1234/609169285
-最强综艺趴,http://175.17.83.114:1234/629942228
-嘉佳卡通,http://175.17.83.114:1234/614952364
-经典动画大集合,http://175.17.83.114:1234/629942219
-新动漫,http://175.17.83.114:1234/961930269
-新动力量创一流,http://175.17.83.114:1234/713589837
-中华特产,http://175.17.83.114:1234/959986618
-环球旅游,http://175.17.83.114:1234/958475356
-梨园频道,http://175.17.83.114:1234/961930369
-中国天气,http://122.227.204.50:1905/959986621
-CCTV1,http://122.227.204.50:1905/608807420
-CCTV2,http://122.227.204.50:1905/631780532
-CCTV3,http://122.227.204.50:1905/624878271
-CCTV4,http://122.227.204.50:1905/631780421
-CCTV5,http://122.227.204.50:1905/641886683
-CCTV5+,http://122.227.204.50:1905/641886773
-CCTV6,http://122.227.204.50:1905/624878396
-CCTV7,http://122.227.204.50:1905/673168121
-CCTV8,http://122.227.204.50:1905/624878356
-CCTV9,http://122.227.204.50:1905/673168140
-CCTV10,http://122.227.204.50:1905/624878405
-CCTV11,http://122.227.204.50:1905/667987558
-CCTV12,http://122.227.204.50:1905/673168185
-CCTV13,http://122.227.204.50:1905/608807423
-CCTV14,http://122.227.204.50:1905/624878440
-CCTV15,http://122.227.204.50:1905/673168223
-CCTV17,http://122.227.204.50:1905/673168256
-CCTV4欧洲,http://122.227.204.50:1905/608807419
-CCTV4美洲,http://122.227.204.50:1905/608807416
-CGTN外语纪录,http://122.227.204.50:1905/609006487
-CGTN阿拉伯语,http://122.227.204.50:1905/609154345
-CGTN西班牙语,http://122.227.204.50:1905/609006450
-CGTN法语,http://122.227.204.50:1905/609006476
-CGTN俄语,http://122.227.204.50:1905/609006446
-老故事,http://122.227.204.50:1905/884121956
-发现之旅,http://122.227.204.50:1905/624878970
-中学生,http://122.227.204.50:1905/708869532
-CGTN,http://122.227.204.50:1905/609017205
-赛事最经典,http://122.227.204.50:1905/646596895
-体坛名栏汇,http://122.227.204.50:1905/629943305
-四海钓鱼,http://122.227.204.50:1905/637444975
-陕西体育休闲频道,http://122.227.204.50:1905/956909356
-24小时城市联赛轮播台,http://122.227.204.50:1905/915512915
-武术世界,http://122.227.204.50:1905/958475359
-快乐垂钓,http://122.227.204.50:1905/961930263
-东方卫视,http://122.227.204.50:1905/651632648
-江苏卫视,http://122.227.204.50:1905/623899368
-广东卫视,http://122.227.204.50:1905/608831231
-北京卫视,http://122.227.204.50:1905/630287636
-辽宁卫视,http://122.227.204.50:1905/630291707
-河北卫视,http://122.227.204.50:1905/962042070
-江西卫视,http://122.227.204.50:1905/783847495
-河南卫视,http://122.227.204.50:1905/790187291
-陕西卫视,http://122.227.204.50:1905/738910838
-大湾区卫视,http://122.227.204.50:1905/608917627
-湖北卫视,http://122.227.204.50:1905/947472496
-吉林卫视,http://122.227.204.50:1905/947472500
-青海卫视,http://122.227.204.50:1905/947472506
-东南卫视,http://122.227.204.50:1905/849116810
-海南卫视,http://122.227.204.50:1905/947472502
-海峡卫视,http://122.227.204.50:1905/849119120
-中国农林卫视,http://122.227.204.50:1905/956904896
-兵团卫视,http://122.227.204.50:1905/956923145
-宁夏卫视,http://122.227.204.50:1905/738910535
-重庆卫视,http://122.227.204.50:1905/738910914
-三沙卫视,http://122.227.204.50:1905/961023778
-上海新闻综合,http://122.227.204.50:1905/651632657
-上视东方影视,http://122.227.204.50:1905/617290047
-上海第一财经,http://122.227.204.50:1905/608780988
-南京新闻综合频道,http://122.227.204.50:1905/838109047
-南京教科频道,http://122.227.204.50:1905/838153729
-南京十八频道,http://122.227.204.50:1905/838151753
-体育休闲频道,http://122.227.204.50:1905/626064707
-江苏城市频道,http://122.227.204.50:1905/626064714
-江苏国际,http://122.227.204.50:1905/626064674
-江苏教育,http://122.227.204.50:1905/628008321
-江苏影视频道,http://122.227.204.50:1905/626064697
-江苏综艺频道,http://122.227.204.50:1905/626065193
-公共新闻频道,http://122.227.204.50:1905/626064693
-盐城新闻综合,http://122.227.204.50:1905/639731825
-淮安新闻综合,http://122.227.204.50:1905/639731826
-泰州新闻综合,http://122.227.204.50:1905/639731818
-连云港新闻综合,http://122.227.204.50:1905/639731715
-宿迁新闻综合,http://122.227.204.50:1905/639731832
-徐州新闻综合,http://122.227.204.50:1905/639731747
-优漫卡通频道,http://122.227.204.50:1905/626064703
-江阴新闻综合,http://122.227.204.50:1905/955227979
-南通新闻综合,http://122.227.204.50:1905/955227985
-宜兴新闻综合,http://122.227.204.50:1905/955227996
-溧水新闻综合,http://122.227.204.50:1905/639737327
-陕西银龄频道,http://122.227.204.50:1905/956909362
-陕西都市青春频道,http://122.227.204.50:1905/956909358
-陕西秦腔频道,http://122.227.204.50:1905/956909303
-陕西新闻资讯频道,http://122.227.204.50:1905/956909289
-财富天下,http://122.227.204.50:1905/956923159
-镇江新闻综合,http://122.227.204.50:1905/639731783
-海南广播电视总台新闻频道,http://122.227.204.50:1905/962067517
-海南广播电视总台自贸频道,http://122.227.204.50:1905/962045226
-海南广播电视总台社会与法频道,http://122.227.204.50:1905/962045223
-海南广播电视总台文旅频道,http://122.227.204.50:1905/962067526
-海南广播电视总台少儿频道,http://122.227.204.50:1905/962067523
-经典香港电影,http://122.227.204.50:1905/625703337
-抗战经典影片,http://122.227.204.50:1905/617432318
-新片放映厅,http://122.227.204.50:1905/619495952
-CHC影迷电影,http://122.227.204.50:1905/952383261
-CHC动作电影,http://122.227.204.50:1905/644368714
-CHC家庭影院,http://122.227.204.50:1905/644368373
-和美乡途轮播台,http://122.227.204.50:1905/713591450
-南方影视,http://122.227.204.50:1905/614961829
-中国航天“逆袭”之路,http://122.227.204.50:1905/713600957
-CETV1,http://122.227.204.50:1905/923287154
-CETV2,http://122.227.204.50:1905/923287211
-CETV4,http://122.227.204.50:1905/923287339
-山东教育,http://122.227.204.50:1905/609154353
-熊猫频道01,http://122.227.204.50:1905/609158151
-熊猫频道1,http://122.227.204.50:1905/608933610
-熊猫频道2,http://122.227.204.50:1905/608933640
-熊猫频道3,http://122.227.204.50:1905/608934619
-熊猫频道4,http://122.227.204.50:1905/608934721
-熊猫频道5,http://122.227.204.50:1905/608935104
-熊猫频道6,http://122.227.204.50:1905/608935797
-熊猫频道7,http://122.227.204.50:1905/609169286
-熊猫频道8,http://122.227.204.50:1905/609169287
-熊猫频道9,http://122.227.204.50:1905/609169226
-熊猫频道10,http://122.227.204.50:1905/609169285
-最强综艺趴,http://122.227.204.50:1905/629942228
-嘉佳卡通,http://122.227.204.50:1905/614952364
-经典动画大集合,http://122.227.204.50:1905/629942219
-新动漫,http://122.227.204.50:1905/961930269
-新动力量创一流,http://122.227.204.50:1905/713589837
-中华特产,http://122.227.204.50:1905/959986618
-环球旅游,http://122.227.204.50:1905/958475356
-梨园频道,http://122.227.204.50:1905/961930369
+中国天气,http://103.236.77.86:29824/959986621
+CCTV1,http://103.236.77.86:29824/608807420
+CCTV2,http://103.236.77.86:29824/631780532
+CCTV3,http://103.236.77.86:29824/624878271
+CCTV4,http://103.236.77.86:29824/631780421
+CCTV5,http://103.236.77.86:29824/641886683
+CCTV5+,http://103.236.77.86:29824/641886773
+CCTV6,http://103.236.77.86:29824/624878396
+CCTV7,http://103.236.77.86:29824/673168121
+CCTV8,http://103.236.77.86:29824/624878356
+CCTV9,http://103.236.77.86:29824/673168140
+CCTV10,http://103.236.77.86:29824/624878405
+CCTV11,http://103.236.77.86:29824/667987558
+CCTV12,http://103.236.77.86:29824/673168185
+CCTV13,http://103.236.77.86:29824/608807423
+CCTV14,http://103.236.77.86:29824/624878440
+CCTV15,http://103.236.77.86:29824/673168223
+CCTV17,http://103.236.77.86:29824/673168256
+CCTV4欧洲,http://103.236.77.86:29824/608807419
+CCTV4美洲,http://103.236.77.86:29824/608807416
+CGTN外语纪录,http://103.236.77.86:29824/609006487
+CGTN阿拉伯语,http://103.236.77.86:29824/609154345
+CGTN西班牙语,http://103.236.77.86:29824/609006450
+CGTN法语,http://103.236.77.86:29824/609006476
+CGTN俄语,http://103.236.77.86:29824/609006446
+老故事,http://103.236.77.86:29824/884121956
+发现之旅,http://103.236.77.86:29824/624878970
+中学生,http://103.236.77.86:29824/708869532
+CGTN,http://103.236.77.86:29824/609017205
+赛事最经典,http://103.236.77.86:29824/646596895
+体坛名栏汇,http://103.236.77.86:29824/629943305
+四海钓鱼,http://103.236.77.86:29824/637444975
+陕西体育休闲频道,http://103.236.77.86:29824/956909356
+24小时城市联赛轮播台,http://103.236.77.86:29824/915512915
+武术世界,http://103.236.77.86:29824/958475359
+快乐垂钓,http://103.236.77.86:29824/961930263
+东方卫视,http://103.236.77.86:29824/651632648
+江苏卫视,http://103.236.77.86:29824/623899368
+广东卫视,http://103.236.77.86:29824/608831231
+北京卫视,http://103.236.77.86:29824/630287636
+辽宁卫视,http://103.236.77.86:29824/630291707
+河北卫视,http://103.236.77.86:29824/962042070
+江西卫视,http://103.236.77.86:29824/783847495
+河南卫视,http://103.236.77.86:29824/790187291
+陕西卫视,http://103.236.77.86:29824/738910838
+大湾区卫视,http://103.236.77.86:29824/608917627
+湖北卫视,http://103.236.77.86:29824/947472496
+吉林卫视,http://103.236.77.86:29824/947472500
+青海卫视,http://103.236.77.86:29824/947472506
+东南卫视,http://103.236.77.86:29824/849116810
+海南卫视,http://103.236.77.86:29824/947472502
+海峡卫视,http://103.236.77.86:29824/849119120
+中国农林卫视,http://103.236.77.86:29824/956904896
+兵团卫视,http://103.236.77.86:29824/956923145
+宁夏卫视,http://103.236.77.86:29824/738910535
+重庆卫视,http://103.236.77.86:29824/738910914
+三沙卫视,http://103.236.77.86:29824/961023778
+上海新闻综合,http://103.236.77.86:29824/651632657
+上视东方影视,http://103.236.77.86:29824/617290047
+上海第一财经,http://103.236.77.86:29824/608780988
+南京新闻综合频道,http://103.236.77.86:29824/838109047
+南京教科频道,http://103.236.77.86:29824/838153729
+南京十八频道,http://103.236.77.86:29824/838151753
+体育休闲频道,http://103.236.77.86:29824/626064707
+江苏城市频道,http://103.236.77.86:29824/626064714
+江苏国际,http://103.236.77.86:29824/626064674
+江苏教育,http://103.236.77.86:29824/628008321
+江苏影视频道,http://103.236.77.86:29824/626064697
+江苏综艺频道,http://103.236.77.86:29824/626065193
+公共新闻频道,http://103.236.77.86:29824/626064693
+盐城新闻综合,http://103.236.77.86:29824/639731825
+淮安新闻综合,http://103.236.77.86:29824/639731826
+泰州新闻综合,http://103.236.77.86:29824/639731818
+连云港新闻综合,http://103.236.77.86:29824/639731715
+宿迁新闻综合,http://103.236.77.86:29824/639731832
+徐州新闻综合,http://103.236.77.86:29824/639731747
+优漫卡通频道,http://103.236.77.86:29824/626064703
+江阴新闻综合,http://103.236.77.86:29824/955227979
+南通新闻综合,http://103.236.77.86:29824/955227985
+宜兴新闻综合,http://103.236.77.86:29824/955227996
+溧水新闻综合,http://103.236.77.86:29824/639737327
+陕西银龄频道,http://103.236.77.86:29824/956909362
+陕西都市青春频道,http://103.236.77.86:29824/956909358
+陕西秦腔频道,http://103.236.77.86:29824/956909303
+陕西新闻资讯频道,http://103.236.77.86:29824/956909289
+财富天下,http://103.236.77.86:29824/956923159
+镇江新闻综合,http://103.236.77.86:29824/639731783
+海南广播电视总台新闻频道,http://103.236.77.86:29824/962067517
+海南广播电视总台自贸频道,http://103.236.77.86:29824/962045226
+海南广播电视总台社会与法频道,http://103.236.77.86:29824/962045223
+海南广播电视总台文旅频道,http://103.236.77.86:29824/962067526
+海南广播电视总台少儿频道,http://103.236.77.86:29824/962067523
+经典香港电影,http://103.236.77.86:29824/625703337
+抗战经典影片,http://103.236.77.86:29824/617432318
+新片放映厅,http://103.236.77.86:29824/619495952
+CHC影迷电影,http://103.236.77.86:29824/952383261
+CHC动作电影,http://103.236.77.86:29824/644368714
+CHC家庭影院,http://103.236.77.86:29824/644368373
+和美乡途轮播台,http://103.236.77.86:29824/713591450
+南方影视,http://103.236.77.86:29824/614961829
+中国航天“逆袭”之路,http://103.236.77.86:29824/713600957
+CETV1,http://103.236.77.86:29824/923287154
+CETV2,http://103.236.77.86:29824/923287211
+CETV4,http://103.236.77.86:29824/923287339
+山东教育,http://103.236.77.86:29824/609154353
+熊猫频道01,http://103.236.77.86:29824/609158151
+熊猫频道1,http://103.236.77.86:29824/608933610
+熊猫频道2,http://103.236.77.86:29824/608933640
+熊猫频道3,http://103.236.77.86:29824/608934619
+熊猫频道4,http://103.236.77.86:29824/608934721
+熊猫频道5,http://103.236.77.86:29824/608935104
+熊猫频道6,http://103.236.77.86:29824/608935797
+熊猫频道7,http://103.236.77.86:29824/609169286
+熊猫频道8,http://103.236.77.86:29824/609169287
+熊猫频道9,http://103.236.77.86:29824/609169226
+熊猫频道10,http://103.236.77.86:29824/609169285
+最强综艺趴,http://103.236.77.86:29824/629942228
+嘉佳卡通,http://103.236.77.86:29824/614952364
+经典动画大集合,http://103.236.77.86:29824/629942219
+新动漫,http://103.236.77.86:29824/961930269
+新动力量创一流,http://103.236.77.86:29824/713589837
+中华特产,http://103.236.77.86:29824/959986618
+环球旅游,http://103.236.77.86:29824/958475356
+梨园频道,http://103.236.77.86:29824/961930369
 中国天气,http://222.134.19.49:8090/959986621
 CCTV1,http://222.134.19.49:8090/608807420
 CCTV2,http://222.134.19.49:8090/631780532
@@ -1240,380 +1275,130 @@ CETV4,http://124.221.146.169:7001/923287339
 中华特产,http://124.221.146.169:7001/959986618
 环球旅游,http://124.221.146.169:7001/958475356
 梨园频道,http://124.221.146.169:7001/961930369
-中国天气,http://121.29.157.193:7788/959986621
-CCTV1,http://121.29.157.193:7788/608807420
-CCTV2,http://121.29.157.193:7788/631780532
-CCTV3,http://121.29.157.193:7788/624878271
-CCTV4,http://121.29.157.193:7788/631780421
-CCTV5,http://121.29.157.193:7788/641886683
-CCTV5+,http://121.29.157.193:7788/641886773
-CCTV6,http://121.29.157.193:7788/624878396
-CCTV7,http://121.29.157.193:7788/673168121
-CCTV8,http://121.29.157.193:7788/624878356
-CCTV9,http://121.29.157.193:7788/673168140
-CCTV10,http://121.29.157.193:7788/624878405
-CCTV11,http://121.29.157.193:7788/667987558
-CCTV12,http://121.29.157.193:7788/673168185
-CCTV13,http://121.29.157.193:7788/608807423
-CCTV14,http://121.29.157.193:7788/624878440
-CCTV15,http://121.29.157.193:7788/673168223
-CCTV17,http://121.29.157.193:7788/673168256
-CCTV4欧洲,http://121.29.157.193:7788/608807419
-CCTV4美洲,http://121.29.157.193:7788/608807416
-CGTN外语纪录,http://121.29.157.193:7788/609006487
-CGTN阿拉伯语,http://121.29.157.193:7788/609154345
-CGTN西班牙语,http://121.29.157.193:7788/609006450
-CGTN法语,http://121.29.157.193:7788/609006476
-CGTN俄语,http://121.29.157.193:7788/609006446
-老故事,http://121.29.157.193:7788/884121956
-发现之旅,http://121.29.157.193:7788/624878970
-中学生,http://121.29.157.193:7788/708869532
-CGTN,http://121.29.157.193:7788/609017205
-赛事最经典,http://121.29.157.193:7788/646596895
-体坛名栏汇,http://121.29.157.193:7788/629943305
-四海钓鱼,http://121.29.157.193:7788/637444975
-陕西体育休闲频道,http://121.29.157.193:7788/956909356
-24小时城市联赛轮播台,http://121.29.157.193:7788/915512915
-武术世界,http://121.29.157.193:7788/958475359
-快乐垂钓,http://121.29.157.193:7788/961930263
-东方卫视,http://121.29.157.193:7788/651632648
-江苏卫视,http://121.29.157.193:7788/623899368
-广东卫视,http://121.29.157.193:7788/608831231
-北京卫视,http://121.29.157.193:7788/630287636
-辽宁卫视,http://121.29.157.193:7788/630291707
-河北卫视,http://121.29.157.193:7788/962042070
-江西卫视,http://121.29.157.193:7788/783847495
-河南卫视,http://121.29.157.193:7788/790187291
-陕西卫视,http://121.29.157.193:7788/738910838
-大湾区卫视,http://121.29.157.193:7788/608917627
-湖北卫视,http://121.29.157.193:7788/947472496
-吉林卫视,http://121.29.157.193:7788/947472500
-青海卫视,http://121.29.157.193:7788/947472506
-东南卫视,http://121.29.157.193:7788/849116810
-海南卫视,http://121.29.157.193:7788/947472502
-海峡卫视,http://121.29.157.193:7788/849119120
-中国农林卫视,http://121.29.157.193:7788/956904896
-兵团卫视,http://121.29.157.193:7788/956923145
-宁夏卫视,http://121.29.157.193:7788/738910535
-重庆卫视,http://121.29.157.193:7788/738910914
-三沙卫视,http://121.29.157.193:7788/961023778
-上海新闻综合,http://121.29.157.193:7788/651632657
-上视东方影视,http://121.29.157.193:7788/617290047
-上海第一财经,http://121.29.157.193:7788/608780988
-南京新闻综合频道,http://121.29.157.193:7788/838109047
-南京教科频道,http://121.29.157.193:7788/838153729
-南京十八频道,http://121.29.157.193:7788/838151753
-体育休闲频道,http://121.29.157.193:7788/626064707
-江苏城市频道,http://121.29.157.193:7788/626064714
-江苏国际,http://121.29.157.193:7788/626064674
-江苏教育,http://121.29.157.193:7788/628008321
-江苏影视频道,http://121.29.157.193:7788/626064697
-江苏综艺频道,http://121.29.157.193:7788/626065193
-公共新闻频道,http://121.29.157.193:7788/626064693
-盐城新闻综合,http://121.29.157.193:7788/639731825
-淮安新闻综合,http://121.29.157.193:7788/639731826
-泰州新闻综合,http://121.29.157.193:7788/639731818
-连云港新闻综合,http://121.29.157.193:7788/639731715
-宿迁新闻综合,http://121.29.157.193:7788/639731832
-徐州新闻综合,http://121.29.157.193:7788/639731747
-优漫卡通频道,http://121.29.157.193:7788/626064703
-江阴新闻综合,http://121.29.157.193:7788/955227979
-南通新闻综合,http://121.29.157.193:7788/955227985
-宜兴新闻综合,http://121.29.157.193:7788/955227996
-溧水新闻综合,http://121.29.157.193:7788/639737327
-陕西银龄频道,http://121.29.157.193:7788/956909362
-陕西都市青春频道,http://121.29.157.193:7788/956909358
-陕西秦腔频道,http://121.29.157.193:7788/956909303
-陕西新闻资讯频道,http://121.29.157.193:7788/956909289
-财富天下,http://121.29.157.193:7788/956923159
-镇江新闻综合,http://121.29.157.193:7788/639731783
-海南广播电视总台新闻频道,http://121.29.157.193:7788/962067517
-海南广播电视总台自贸频道,http://121.29.157.193:7788/962045226
-海南广播电视总台社会与法频道,http://121.29.157.193:7788/962045223
-海南广播电视总台文旅频道,http://121.29.157.193:7788/962067526
-海南广播电视总台少儿频道,http://121.29.157.193:7788/962067523
-经典香港电影,http://121.29.157.193:7788/625703337
-抗战经典影片,http://121.29.157.193:7788/617432318
-新片放映厅,http://121.29.157.193:7788/619495952
-CHC影迷电影,http://121.29.157.193:7788/952383261
-CHC动作电影,http://121.29.157.193:7788/644368714
-CHC家庭影院,http://121.29.157.193:7788/644368373
-和美乡途轮播台,http://121.29.157.193:7788/713591450
-南方影视,http://121.29.157.193:7788/614961829
-中国航天“逆袭”之路,http://121.29.157.193:7788/713600957
-CETV1,http://121.29.157.193:7788/923287154
-CETV2,http://121.29.157.193:7788/923287211
-CETV4,http://121.29.157.193:7788/923287339
-山东教育,http://121.29.157.193:7788/609154353
-熊猫频道01,http://121.29.157.193:7788/609158151
-熊猫频道1,http://121.29.157.193:7788/608933610
-熊猫频道2,http://121.29.157.193:7788/608933640
-熊猫频道3,http://121.29.157.193:7788/608934619
-熊猫频道4,http://121.29.157.193:7788/608934721
-熊猫频道5,http://121.29.157.193:7788/608935104
-熊猫频道6,http://121.29.157.193:7788/608935797
-熊猫频道7,http://121.29.157.193:7788/609169286
-熊猫频道8,http://121.29.157.193:7788/609169287
-熊猫频道9,http://121.29.157.193:7788/609169226
-熊猫频道10,http://121.29.157.193:7788/609169285
-最强综艺趴,http://121.29.157.193:7788/629942228
-嘉佳卡通,http://121.29.157.193:7788/614952364
-经典动画大集合,http://121.29.157.193:7788/629942219
-新动漫,http://121.29.157.193:7788/961930269
-新动力量创一流,http://121.29.157.193:7788/713589837
-中华特产,http://121.29.157.193:7788/959986618
-环球旅游,http://121.29.157.193:7788/958475356
-梨园频道,http://121.29.157.193:7788/961930369
-中国天气,http://www.ikerobot.com:1234/959986621
-CCTV1,http://www.ikerobot.com:1234/608807420
-CCTV2,http://www.ikerobot.com:1234/631780532
-CCTV3,http://www.ikerobot.com:1234/624878271
-CCTV4,http://www.ikerobot.com:1234/631780421
-CCTV5,http://www.ikerobot.com:1234/641886683
-CCTV5+,http://www.ikerobot.com:1234/641886773
-CCTV6,http://www.ikerobot.com:1234/624878396
-CCTV7,http://www.ikerobot.com:1234/673168121
-CCTV8,http://www.ikerobot.com:1234/624878356
-CCTV9,http://www.ikerobot.com:1234/673168140
-CCTV10,http://www.ikerobot.com:1234/624878405
-CCTV11,http://www.ikerobot.com:1234/667987558
-CCTV12,http://www.ikerobot.com:1234/673168185
-CCTV13,http://www.ikerobot.com:1234/608807423
-CCTV14,http://www.ikerobot.com:1234/624878440
-CCTV15,http://www.ikerobot.com:1234/673168223
-CCTV17,http://www.ikerobot.com:1234/673168256
-CCTV4欧洲,http://www.ikerobot.com:1234/608807419
-CCTV4美洲,http://www.ikerobot.com:1234/608807416
-CGTN外语纪录,http://www.ikerobot.com:1234/609006487
-CGTN阿拉伯语,http://www.ikerobot.com:1234/609154345
-CGTN西班牙语,http://www.ikerobot.com:1234/609006450
-CGTN法语,http://www.ikerobot.com:1234/609006476
-CGTN俄语,http://www.ikerobot.com:1234/609006446
-老故事,http://www.ikerobot.com:1234/884121956
-发现之旅,http://www.ikerobot.com:1234/624878970
-中学生,http://www.ikerobot.com:1234/708869532
-CGTN,http://www.ikerobot.com:1234/609017205
-赛事最经典,http://www.ikerobot.com:1234/646596895
-体坛名栏汇,http://www.ikerobot.com:1234/629943305
-四海钓鱼,http://www.ikerobot.com:1234/637444975
-陕西体育休闲频道,http://www.ikerobot.com:1234/956909356
-24小时城市联赛轮播台,http://www.ikerobot.com:1234/915512915
-武术世界,http://www.ikerobot.com:1234/958475359
-快乐垂钓,http://www.ikerobot.com:1234/961930263
-东方卫视,http://www.ikerobot.com:1234/651632648
-江苏卫视,http://www.ikerobot.com:1234/623899368
-广东卫视,http://www.ikerobot.com:1234/608831231
-北京卫视,http://www.ikerobot.com:1234/630287636
-辽宁卫视,http://www.ikerobot.com:1234/630291707
-河北卫视,http://www.ikerobot.com:1234/962042070
-江西卫视,http://www.ikerobot.com:1234/783847495
-河南卫视,http://www.ikerobot.com:1234/790187291
-陕西卫视,http://www.ikerobot.com:1234/738910838
-大湾区卫视,http://www.ikerobot.com:1234/608917627
-湖北卫视,http://www.ikerobot.com:1234/947472496
-吉林卫视,http://www.ikerobot.com:1234/947472500
-青海卫视,http://www.ikerobot.com:1234/947472506
-东南卫视,http://www.ikerobot.com:1234/849116810
-海南卫视,http://www.ikerobot.com:1234/947472502
-海峡卫视,http://www.ikerobot.com:1234/849119120
-中国农林卫视,http://www.ikerobot.com:1234/956904896
-兵团卫视,http://www.ikerobot.com:1234/956923145
-宁夏卫视,http://www.ikerobot.com:1234/738910535
-重庆卫视,http://www.ikerobot.com:1234/738910914
-三沙卫视,http://www.ikerobot.com:1234/961023778
-上海新闻综合,http://www.ikerobot.com:1234/651632657
-上视东方影视,http://www.ikerobot.com:1234/617290047
-上海第一财经,http://www.ikerobot.com:1234/608780988
-南京新闻综合频道,http://www.ikerobot.com:1234/838109047
-南京教科频道,http://www.ikerobot.com:1234/838153729
-南京十八频道,http://www.ikerobot.com:1234/838151753
-体育休闲频道,http://www.ikerobot.com:1234/626064707
-江苏城市频道,http://www.ikerobot.com:1234/626064714
-江苏国际,http://www.ikerobot.com:1234/626064674
-江苏教育,http://www.ikerobot.com:1234/628008321
-江苏影视频道,http://www.ikerobot.com:1234/626064697
-江苏综艺频道,http://www.ikerobot.com:1234/626065193
-公共新闻频道,http://www.ikerobot.com:1234/626064693
-盐城新闻综合,http://www.ikerobot.com:1234/639731825
-淮安新闻综合,http://www.ikerobot.com:1234/639731826
-泰州新闻综合,http://www.ikerobot.com:1234/639731818
-连云港新闻综合,http://www.ikerobot.com:1234/639731715
-宿迁新闻综合,http://www.ikerobot.com:1234/639731832
-徐州新闻综合,http://www.ikerobot.com:1234/639731747
-优漫卡通频道,http://www.ikerobot.com:1234/626064703
-江阴新闻综合,http://www.ikerobot.com:1234/955227979
-南通新闻综合,http://www.ikerobot.com:1234/955227985
-宜兴新闻综合,http://www.ikerobot.com:1234/955227996
-溧水新闻综合,http://www.ikerobot.com:1234/639737327
-陕西银龄频道,http://www.ikerobot.com:1234/956909362
-陕西都市青春频道,http://www.ikerobot.com:1234/956909358
-陕西秦腔频道,http://www.ikerobot.com:1234/956909303
-陕西新闻资讯频道,http://www.ikerobot.com:1234/956909289
-财富天下,http://www.ikerobot.com:1234/956923159
-镇江新闻综合,http://www.ikerobot.com:1234/639731783
-海南广播电视总台新闻频道,http://www.ikerobot.com:1234/962067517
-海南广播电视总台自贸频道,http://www.ikerobot.com:1234/962045226
-海南广播电视总台社会与法频道,http://www.ikerobot.com:1234/962045223
-海南广播电视总台文旅频道,http://www.ikerobot.com:1234/962067526
-海南广播电视总台少儿频道,http://www.ikerobot.com:1234/962067523
-经典香港电影,http://www.ikerobot.com:1234/625703337
-抗战经典影片,http://www.ikerobot.com:1234/617432318
-新片放映厅,http://www.ikerobot.com:1234/619495952
-CHC影迷电影,http://www.ikerobot.com:1234/952383261
-CHC动作电影,http://www.ikerobot.com:1234/644368714
-CHC家庭影院,http://www.ikerobot.com:1234/644368373
-和美乡途轮播台,http://www.ikerobot.com:1234/713591450
-南方影视,http://www.ikerobot.com:1234/614961829
-中国航天“逆袭”之路,http://www.ikerobot.com:1234/713600957
-CETV1,http://www.ikerobot.com:1234/923287154
-CETV2,http://www.ikerobot.com:1234/923287211
-CETV4,http://www.ikerobot.com:1234/923287339
-山东教育,http://www.ikerobot.com:1234/609154353
-熊猫频道01,http://www.ikerobot.com:1234/609158151
-熊猫频道1,http://www.ikerobot.com:1234/608933610
-熊猫频道2,http://www.ikerobot.com:1234/608933640
-熊猫频道3,http://www.ikerobot.com:1234/608934619
-熊猫频道4,http://www.ikerobot.com:1234/608934721
-熊猫频道5,http://www.ikerobot.com:1234/608935104
-熊猫频道6,http://www.ikerobot.com:1234/608935797
-熊猫频道7,http://www.ikerobot.com:1234/609169286
-熊猫频道8,http://www.ikerobot.com:1234/609169287
-熊猫频道9,http://www.ikerobot.com:1234/609169226
-熊猫频道10,http://www.ikerobot.com:1234/609169285
-最强综艺趴,http://www.ikerobot.com:1234/629942228
-嘉佳卡通,http://www.ikerobot.com:1234/614952364
-经典动画大集合,http://www.ikerobot.com:1234/629942219
-新动漫,http://www.ikerobot.com:1234/961930269
-新动力量创一流,http://www.ikerobot.com:1234/713589837
-中华特产,http://www.ikerobot.com:1234/959986618
-环球旅游,http://www.ikerobot.com:1234/958475356
-梨园频道,http://www.ikerobot.com:1234/961930369
-中国天气,http://14.118.89.10:7788/959986621
-CCTV1,http://14.118.89.10:7788/608807420
-CCTV2,http://14.118.89.10:7788/631780532
-CCTV3,http://14.118.89.10:7788/624878271
-CCTV4,http://14.118.89.10:7788/631780421
-CCTV5,http://14.118.89.10:7788/641886683
-CCTV5+,http://14.118.89.10:7788/641886773
-CCTV6,http://14.118.89.10:7788/624878396
-CCTV7,http://14.118.89.10:7788/673168121
-CCTV8,http://14.118.89.10:7788/624878356
-CCTV9,http://14.118.89.10:7788/673168140
-CCTV10,http://14.118.89.10:7788/624878405
-CCTV11,http://14.118.89.10:7788/667987558
-CCTV12,http://14.118.89.10:7788/673168185
-CCTV13,http://14.118.89.10:7788/608807423
-CCTV14,http://14.118.89.10:7788/624878440
-CCTV15,http://14.118.89.10:7788/673168223
-CCTV17,http://14.118.89.10:7788/673168256
-CCTV4欧洲,http://14.118.89.10:7788/608807419
-CCTV4美洲,http://14.118.89.10:7788/608807416
-CGTN外语纪录,http://14.118.89.10:7788/609006487
-CGTN阿拉伯语,http://14.118.89.10:7788/609154345
-CGTN西班牙语,http://14.118.89.10:7788/609006450
-CGTN法语,http://14.118.89.10:7788/609006476
-CGTN俄语,http://14.118.89.10:7788/609006446
-老故事,http://14.118.89.10:7788/884121956
-发现之旅,http://14.118.89.10:7788/624878970
-中学生,http://14.118.89.10:7788/708869532
-CGTN,http://14.118.89.10:7788/609017205
-赛事最经典,http://14.118.89.10:7788/646596895
-体坛名栏汇,http://14.118.89.10:7788/629943305
-四海钓鱼,http://14.118.89.10:7788/637444975
-陕西体育休闲频道,http://14.118.89.10:7788/956909356
-24小时城市联赛轮播台,http://14.118.89.10:7788/915512915
-武术世界,http://14.118.89.10:7788/958475359
-快乐垂钓,http://14.118.89.10:7788/961930263
-东方卫视,http://14.118.89.10:7788/651632648
-江苏卫视,http://14.118.89.10:7788/623899368
-广东卫视,http://14.118.89.10:7788/608831231
-北京卫视,http://14.118.89.10:7788/630287636
-辽宁卫视,http://14.118.89.10:7788/630291707
-河北卫视,http://14.118.89.10:7788/962042070
-江西卫视,http://14.118.89.10:7788/783847495
-河南卫视,http://14.118.89.10:7788/790187291
-陕西卫视,http://14.118.89.10:7788/738910838
-大湾区卫视,http://14.118.89.10:7788/608917627
-湖北卫视,http://14.118.89.10:7788/947472496
-吉林卫视,http://14.118.89.10:7788/947472500
-青海卫视,http://14.118.89.10:7788/947472506
-东南卫视,http://14.118.89.10:7788/849116810
-海南卫视,http://14.118.89.10:7788/947472502
-海峡卫视,http://14.118.89.10:7788/849119120
-中国农林卫视,http://14.118.89.10:7788/956904896
-兵团卫视,http://14.118.89.10:7788/956923145
-宁夏卫视,http://14.118.89.10:7788/738910535
-重庆卫视,http://14.118.89.10:7788/738910914
-三沙卫视,http://14.118.89.10:7788/961023778
-上海新闻综合,http://14.118.89.10:7788/651632657
-上视东方影视,http://14.118.89.10:7788/617290047
-上海第一财经,http://14.118.89.10:7788/608780988
-南京新闻综合频道,http://14.118.89.10:7788/838109047
-南京教科频道,http://14.118.89.10:7788/838153729
-南京十八频道,http://14.118.89.10:7788/838151753
-体育休闲频道,http://14.118.89.10:7788/626064707
-江苏城市频道,http://14.118.89.10:7788/626064714
-江苏国际,http://14.118.89.10:7788/626064674
-江苏教育,http://14.118.89.10:7788/628008321
-江苏影视频道,http://14.118.89.10:7788/626064697
-江苏综艺频道,http://14.118.89.10:7788/626065193
-公共新闻频道,http://14.118.89.10:7788/626064693
-盐城新闻综合,http://14.118.89.10:7788/639731825
-淮安新闻综合,http://14.118.89.10:7788/639731826
-泰州新闻综合,http://14.118.89.10:7788/639731818
-连云港新闻综合,http://14.118.89.10:7788/639731715
-宿迁新闻综合,http://14.118.89.10:7788/639731832
-徐州新闻综合,http://14.118.89.10:7788/639731747
-优漫卡通频道,http://14.118.89.10:7788/626064703
-江阴新闻综合,http://14.118.89.10:7788/955227979
-南通新闻综合,http://14.118.89.10:7788/955227985
-宜兴新闻综合,http://14.118.89.10:7788/955227996
-溧水新闻综合,http://14.118.89.10:7788/639737327
-陕西银龄频道,http://14.118.89.10:7788/956909362
-陕西都市青春频道,http://14.118.89.10:7788/956909358
-陕西秦腔频道,http://14.118.89.10:7788/956909303
-陕西新闻资讯频道,http://14.118.89.10:7788/956909289
-财富天下,http://14.118.89.10:7788/956923159
-镇江新闻综合,http://14.118.89.10:7788/639731783
-海南广播电视总台新闻频道,http://14.118.89.10:7788/962067517
-海南广播电视总台自贸频道,http://14.118.89.10:7788/962045226
-海南广播电视总台社会与法频道,http://14.118.89.10:7788/962045223
-海南广播电视总台文旅频道,http://14.118.89.10:7788/962067526
-海南广播电视总台少儿频道,http://14.118.89.10:7788/962067523
-经典香港电影,http://14.118.89.10:7788/625703337
-抗战经典影片,http://14.118.89.10:7788/617432318
-新片放映厅,http://14.118.89.10:7788/619495952
-CHC影迷电影,http://14.118.89.10:7788/952383261
-CHC动作电影,http://14.118.89.10:7788/644368714
-CHC家庭影院,http://14.118.89.10:7788/644368373
-和美乡途轮播台,http://14.118.89.10:7788/713591450
-南方影视,http://14.118.89.10:7788/614961829
-中国航天“逆袭”之路,http://14.118.89.10:7788/713600957
-CETV1,http://14.118.89.10:7788/923287154
-CETV2,http://14.118.89.10:7788/923287211
-CETV4,http://14.118.89.10:7788/923287339
-山东教育,http://14.118.89.10:7788/609154353
-熊猫频道01,http://14.118.89.10:7788/609158151
-熊猫频道1,http://14.118.89.10:7788/608933610
-熊猫频道2,http://14.118.89.10:7788/608933640
-熊猫频道3,http://14.118.89.10:7788/608934619
-熊猫频道4,http://14.118.89.10:7788/608934721
-熊猫频道5,http://14.118.89.10:7788/608935104
-熊猫频道6,http://14.118.89.10:7788/608935797
-熊猫频道7,http://14.118.89.10:7788/609169286
-熊猫频道8,http://14.118.89.10:7788/609169287
-熊猫频道9,http://14.118.89.10:7788/609169226
-熊猫频道10,http://14.118.89.10:7788/609169285
-最强综艺趴,http://14.118.89.10:7788/629942228
-嘉佳卡通,http://14.118.89.10:7788/614952364
-经典动画大集合,http://14.118.89.10:7788/629942219
-新动漫,http://14.118.89.10:7788/961930269
-新动力量创一流,http://14.118.89.10:7788/713589837
-中华特产,http://14.118.89.10:7788/959986618
-环球旅游,http://14.118.89.10:7788/958475356
-梨园频道,http://14.118.89.10:7788/961930369
-
-贵州移动,#genre#
+中国天气,http://45.78.61.93:1234/959986621
+CCTV1,http://45.78.61.93:1234/608807420
+CCTV2,http://45.78.61.93:1234/631780532
+CCTV3,http://45.78.61.93:1234/624878271
+CCTV4,http://45.78.61.93:1234/631780421
+CCTV5,http://45.78.61.93:1234/641886683
+CCTV5+,http://45.78.61.93:1234/641886773
+CCTV6,http://45.78.61.93:1234/624878396
+CCTV7,http://45.78.61.93:1234/673168121
+CCTV8,http://45.78.61.93:1234/624878356
+CCTV9,http://45.78.61.93:1234/673168140
+CCTV10,http://45.78.61.93:1234/624878405
+CCTV11,http://45.78.61.93:1234/667987558
+CCTV12,http://45.78.61.93:1234/673168185
+CCTV13,http://45.78.61.93:1234/608807423
+CCTV14,http://45.78.61.93:1234/624878440
+CCTV15,http://45.78.61.93:1234/673168223
+CCTV17,http://45.78.61.93:1234/673168256
+CCTV4欧洲,http://45.78.61.93:1234/608807419
+CCTV4美洲,http://45.78.61.93:1234/608807416
+CGTN外语纪录,http://45.78.61.93:1234/609006487
+CGTN阿拉伯语,http://45.78.61.93:1234/609154345
+CGTN西班牙语,http://45.78.61.93:1234/609006450
+CGTN法语,http://45.78.61.93:1234/609006476
+CGTN俄语,http://45.78.61.93:1234/609006446
+老故事,http://45.78.61.93:1234/884121956
+发现之旅,http://45.78.61.93:1234/624878970
+中学生,http://45.78.61.93:1234/708869532
+CGTN,http://45.78.61.93:1234/609017205
+赛事最经典,http://45.78.61.93:1234/646596895
+体坛名栏汇,http://45.78.61.93:1234/629943305
+四海钓鱼,http://45.78.61.93:1234/637444975
+陕西体育休闲频道,http://45.78.61.93:1234/956909356
+24小时城市联赛轮播台,http://45.78.61.93:1234/915512915
+武术世界,http://45.78.61.93:1234/958475359
+快乐垂钓,http://45.78.61.93:1234/961930263
+东方卫视,http://45.78.61.93:1234/651632648
+江苏卫视,http://45.78.61.93:1234/623899368
+广东卫视,http://45.78.61.93:1234/608831231
+北京卫视,http://45.78.61.93:1234/630287636
+辽宁卫视,http://45.78.61.93:1234/630291707
+河北卫视,http://45.78.61.93:1234/962042070
+江西卫视,http://45.78.61.93:1234/783847495
+河南卫视,http://45.78.61.93:1234/790187291
+陕西卫视,http://45.78.61.93:1234/738910838
+大湾区卫视,http://45.78.61.93:1234/608917627
+湖北卫视,http://45.78.61.93:1234/947472496
+吉林卫视,http://45.78.61.93:1234/947472500
+青海卫视,http://45.78.61.93:1234/947472506
+东南卫视,http://45.78.61.93:1234/849116810
+海南卫视,http://45.78.61.93:1234/947472502
+海峡卫视,http://45.78.61.93:1234/849119120
+中国农林卫视,http://45.78.61.93:1234/956904896
+兵团卫视,http://45.78.61.93:1234/956923145
+宁夏卫视,http://45.78.61.93:1234/738910535
+重庆卫视,http://45.78.61.93:1234/738910914
+三沙卫视,http://45.78.61.93:1234/961023778
+上海新闻综合,http://45.78.61.93:1234/651632657
+上视东方影视,http://45.78.61.93:1234/617290047
+上海第一财经,http://45.78.61.93:1234/608780988
+南京新闻综合频道,http://45.78.61.93:1234/838109047
+南京教科频道,http://45.78.61.93:1234/838153729
+南京十八频道,http://45.78.61.93:1234/838151753
+体育休闲频道,http://45.78.61.93:1234/626064707
+江苏城市频道,http://45.78.61.93:1234/626064714
+江苏国际,http://45.78.61.93:1234/626064674
+江苏教育,http://45.78.61.93:1234/628008321
+江苏影视频道,http://45.78.61.93:1234/626064697
+江苏综艺频道,http://45.78.61.93:1234/626065193
+公共新闻频道,http://45.78.61.93:1234/626064693
+盐城新闻综合,http://45.78.61.93:1234/639731825
+淮安新闻综合,http://45.78.61.93:1234/639731826
+泰州新闻综合,http://45.78.61.93:1234/639731818
+连云港新闻综合,http://45.78.61.93:1234/639731715
+宿迁新闻综合,http://45.78.61.93:1234/639731832
+徐州新闻综合,http://45.78.61.93:1234/639731747
+优漫卡通频道,http://45.78.61.93:1234/626064703
+江阴新闻综合,http://45.78.61.93:1234/955227979
+南通新闻综合,http://45.78.61.93:1234/955227985
+宜兴新闻综合,http://45.78.61.93:1234/955227996
+溧水新闻综合,http://45.78.61.93:1234/639737327
+陕西银龄频道,http://45.78.61.93:1234/956909362
+陕西都市青春频道,http://45.78.61.93:1234/956909358
+陕西秦腔频道,http://45.78.61.93:1234/956909303
+陕西新闻资讯频道,http://45.78.61.93:1234/956909289
+财富天下,http://45.78.61.93:1234/956923159
+镇江新闻综合,http://45.78.61.93:1234/639731783
+海南广播电视总台新闻频道,http://45.78.61.93:1234/962067517
+海南广播电视总台自贸频道,http://45.78.61.93:1234/962045226
+海南广播电视总台社会与法频道,http://45.78.61.93:1234/962045223
+海南广播电视总台文旅频道,http://45.78.61.93:1234/962067526
+海南广播电视总台少儿频道,http://45.78.61.93:1234/962067523
+经典香港电影,http://45.78.61.93:1234/625703337
+抗战经典影片,http://45.78.61.93:1234/617432318
+新片放映厅,http://45.78.61.93:1234/619495952
+CHC影迷电影,http://45.78.61.93:1234/952383261
+CHC动作电影,http://45.78.61.93:1234/644368714
+CHC家庭影院,http://45.78.61.93:1234/644368373
+和美乡途轮播台,http://45.78.61.93:1234/713591450
+南方影视,http://45.78.61.93:1234/614961829
+中国航天“逆袭”之路,http://45.78.61.93:1234/713600957
+CETV1,http://45.78.61.93:1234/923287154
+CETV2,http://45.78.61.93:1234/923287211
+CETV4,http://45.78.61.93:1234/923287339
+山东教育,http://45.78.61.93:1234/609154353
+熊猫频道01高清,http://45.78.61.93:1234/609158151
+熊猫频道1,http://45.78.61.93:1234/608933610
+熊猫频道2,http://45.78.61.93:1234/608933640
+熊猫频道3,http://45.78.61.93:1234/608934619
+熊猫频道4,http://45.78.61.93:1234/608934721
+熊猫频道5,http://45.78.61.93:1234/608935104
+熊猫频道6,http://45.78.61.93:1234/608935797
+熊猫频道7,http://45.78.61.93:1234/609169286
+熊猫频道8,http://45.78.61.93:1234/609169287
+熊猫频道9,http://45.78.61.93:1234/609169226
+熊猫频道10,http://45.78.61.93:1234/609169285
+最强综艺趴,http://45.78.61.93:1234/629942228
+嘉佳卡通,http://45.78.61.93:1234/614952364
+经典动画大集合,http://45.78.61.93:1234/629942219
+新动漫,http://45.78.61.93:1234/961930269
+新动力量创一流,http://45.78.61.93:1234/713589837
+中华特产,http://45.78.61.93:1234/959986618
+环球旅游,http://45.78.61.93:1234/958475356
+梨园频道,http://45.78.61.93:1234/961930369
 中国天气,http://fn.gcl.de5.net:5908/gsh950428/959986621
 CCTV1,http://fn.gcl.de5.net:5908/gsh950428/608807420
 CCTV2,http://fn.gcl.de5.net:5908/gsh950428/631780532
@@ -1738,6 +1523,378 @@ CETV4,http://fn.gcl.de5.net:5908/gsh950428/923287339
 中华特产,http://fn.gcl.de5.net:5908/gsh950428/959986618
 环球旅游,http://fn.gcl.de5.net:5908/gsh950428/958475356
 梨园频道,http://fn.gcl.de5.net:5908/gsh950428/961930369
+中国天气,https://live.chinacert.cftest5.cn/cnmg/live/959986621
+CCTV1,https://live.chinacert.cftest5.cn/cnmg/live/608807420
+CCTV2,https://live.chinacert.cftest5.cn/cnmg/live/631780532
+CCTV3,https://live.chinacert.cftest5.cn/cnmg/live/624878271
+CCTV4,https://live.chinacert.cftest5.cn/cnmg/live/631780421
+CCTV5,https://live.chinacert.cftest5.cn/cnmg/live/641886683
+CCTV5+,https://live.chinacert.cftest5.cn/cnmg/live/641886773
+CCTV6,https://live.chinacert.cftest5.cn/cnmg/live/624878396
+CCTV7,https://live.chinacert.cftest5.cn/cnmg/live/673168121
+CCTV8,https://live.chinacert.cftest5.cn/cnmg/live/624878356
+CCTV9,https://live.chinacert.cftest5.cn/cnmg/live/673168140
+CCTV10,https://live.chinacert.cftest5.cn/cnmg/live/624878405
+CCTV11,https://live.chinacert.cftest5.cn/cnmg/live/667987558
+CCTV12,https://live.chinacert.cftest5.cn/cnmg/live/673168185
+CCTV13,https://live.chinacert.cftest5.cn/cnmg/live/608807423
+CCTV14,https://live.chinacert.cftest5.cn/cnmg/live/624878440
+CCTV15,https://live.chinacert.cftest5.cn/cnmg/live/673168223
+CCTV17,https://live.chinacert.cftest5.cn/cnmg/live/673168256
+CCTV4欧洲,https://live.chinacert.cftest5.cn/cnmg/live/608807419
+CCTV4美洲,https://live.chinacert.cftest5.cn/cnmg/live/608807416
+CGTN外语纪录,https://live.chinacert.cftest5.cn/cnmg/live/609006487
+CGTN阿拉伯语,https://live.chinacert.cftest5.cn/cnmg/live/609154345
+CGTN西班牙语,https://live.chinacert.cftest5.cn/cnmg/live/609006450
+CGTN法语,https://live.chinacert.cftest5.cn/cnmg/live/609006476
+CGTN俄语,https://live.chinacert.cftest5.cn/cnmg/live/609006446
+老故事,https://live.chinacert.cftest5.cn/cnmg/live/884121956
+发现之旅,https://live.chinacert.cftest5.cn/cnmg/live/624878970
+中学生,https://live.chinacert.cftest5.cn/cnmg/live/708869532
+CGTN,https://live.chinacert.cftest5.cn/cnmg/live/609017205
+赛事最经典,https://live.chinacert.cftest5.cn/cnmg/live/646596895
+体坛名栏汇,https://live.chinacert.cftest5.cn/cnmg/live/629943305
+四海钓鱼,https://live.chinacert.cftest5.cn/cnmg/live/637444975
+陕西体育休闲频道,https://live.chinacert.cftest5.cn/cnmg/live/956909356
+24小时城市联赛轮播台,https://live.chinacert.cftest5.cn/cnmg/live/915512915
+武术世界,https://live.chinacert.cftest5.cn/cnmg/live/958475359
+快乐垂钓,https://live.chinacert.cftest5.cn/cnmg/live/961930263
+东方卫视,https://live.chinacert.cftest5.cn/cnmg/live/651632648
+江苏卫视,https://live.chinacert.cftest5.cn/cnmg/live/623899368
+广东卫视,https://live.chinacert.cftest5.cn/cnmg/live/608831231
+北京卫视,https://live.chinacert.cftest5.cn/cnmg/live/630287636
+辽宁卫视,https://live.chinacert.cftest5.cn/cnmg/live/630291707
+河北卫视,https://live.chinacert.cftest5.cn/cnmg/live/962042070
+江西卫视,https://live.chinacert.cftest5.cn/cnmg/live/783847495
+河南卫视,https://live.chinacert.cftest5.cn/cnmg/live/790187291
+陕西卫视,https://live.chinacert.cftest5.cn/cnmg/live/738910838
+大湾区卫视,https://live.chinacert.cftest5.cn/cnmg/live/608917627
+湖北卫视,https://live.chinacert.cftest5.cn/cnmg/live/947472496
+吉林卫视,https://live.chinacert.cftest5.cn/cnmg/live/947472500
+青海卫视,https://live.chinacert.cftest5.cn/cnmg/live/947472506
+东南卫视,https://live.chinacert.cftest5.cn/cnmg/live/849116810
+海南卫视,https://live.chinacert.cftest5.cn/cnmg/live/947472502
+海峡卫视,https://live.chinacert.cftest5.cn/cnmg/live/849119120
+中国农林卫视,https://live.chinacert.cftest5.cn/cnmg/live/956904896
+兵团卫视,https://live.chinacert.cftest5.cn/cnmg/live/956923145
+宁夏卫视,https://live.chinacert.cftest5.cn/cnmg/live/738910535
+重庆卫视,https://live.chinacert.cftest5.cn/cnmg/live/738910914
+三沙卫视,https://live.chinacert.cftest5.cn/cnmg/live/961023778
+上海新闻综合,https://live.chinacert.cftest5.cn/cnmg/live/651632657
+上视东方影视,https://live.chinacert.cftest5.cn/cnmg/live/617290047
+上海第一财经,https://live.chinacert.cftest5.cn/cnmg/live/608780988
+南京新闻综合频道,https://live.chinacert.cftest5.cn/cnmg/live/838109047
+南京教科频道,https://live.chinacert.cftest5.cn/cnmg/live/838153729
+南京十八频道,https://live.chinacert.cftest5.cn/cnmg/live/838151753
+体育休闲频道,https://live.chinacert.cftest5.cn/cnmg/live/626064707
+江苏城市频道,https://live.chinacert.cftest5.cn/cnmg/live/626064714
+江苏国际,https://live.chinacert.cftest5.cn/cnmg/live/626064674
+江苏教育,https://live.chinacert.cftest5.cn/cnmg/live/628008321
+江苏影视频道,https://live.chinacert.cftest5.cn/cnmg/live/626064697
+江苏综艺频道,https://live.chinacert.cftest5.cn/cnmg/live/626065193
+公共新闻频道,https://live.chinacert.cftest5.cn/cnmg/live/626064693
+盐城新闻综合,https://live.chinacert.cftest5.cn/cnmg/live/639731825
+淮安新闻综合,https://live.chinacert.cftest5.cn/cnmg/live/639731826
+泰州新闻综合,https://live.chinacert.cftest5.cn/cnmg/live/639731818
+连云港新闻综合,https://live.chinacert.cftest5.cn/cnmg/live/639731715
+宿迁新闻综合,https://live.chinacert.cftest5.cn/cnmg/live/639731832
+徐州新闻综合,https://live.chinacert.cftest5.cn/cnmg/live/639731747
+优漫卡通频道,https://live.chinacert.cftest5.cn/cnmg/live/626064703
+江阴新闻综合,https://live.chinacert.cftest5.cn/cnmg/live/955227979
+南通新闻综合,https://live.chinacert.cftest5.cn/cnmg/live/955227985
+宜兴新闻综合,https://live.chinacert.cftest5.cn/cnmg/live/955227996
+溧水新闻综合,https://live.chinacert.cftest5.cn/cnmg/live/639737327
+陕西银龄频道,https://live.chinacert.cftest5.cn/cnmg/live/956909362
+陕西都市青春频道,https://live.chinacert.cftest5.cn/cnmg/live/956909358
+陕西秦腔频道,https://live.chinacert.cftest5.cn/cnmg/live/956909303
+陕西新闻资讯频道,https://live.chinacert.cftest5.cn/cnmg/live/956909289
+财富天下,https://live.chinacert.cftest5.cn/cnmg/live/956923159
+镇江新闻综合,https://live.chinacert.cftest5.cn/cnmg/live/639731783
+海南广播电视总台新闻频道,https://live.chinacert.cftest5.cn/cnmg/live/962067517
+海南广播电视总台自贸频道,https://live.chinacert.cftest5.cn/cnmg/live/962045226
+海南广播电视总台社会与法频道,https://live.chinacert.cftest5.cn/cnmg/live/962045223
+海南广播电视总台文旅频道,https://live.chinacert.cftest5.cn/cnmg/live/962067526
+海南广播电视总台少儿频道,https://live.chinacert.cftest5.cn/cnmg/live/962067523
+经典香港电影,https://live.chinacert.cftest5.cn/cnmg/live/625703337
+抗战经典影片,https://live.chinacert.cftest5.cn/cnmg/live/617432318
+新片放映厅,https://live.chinacert.cftest5.cn/cnmg/live/619495952
+CHC影迷电影,https://live.chinacert.cftest5.cn/cnmg/live/952383261
+CHC动作电影,https://live.chinacert.cftest5.cn/cnmg/live/644368714
+CHC家庭影院,https://live.chinacert.cftest5.cn/cnmg/live/644368373
+和美乡途轮播台,https://live.chinacert.cftest5.cn/cnmg/live/713591450
+南方影视,https://live.chinacert.cftest5.cn/cnmg/live/614961829
+中国航天“逆袭”之路,https://live.chinacert.cftest5.cn/cnmg/live/713600957
+CETV1,https://live.chinacert.cftest5.cn/cnmg/live/923287154
+CETV2,https://live.chinacert.cftest5.cn/cnmg/live/923287211
+CETV4,https://live.chinacert.cftest5.cn/cnmg/live/923287339
+山东教育,https://live.chinacert.cftest5.cn/cnmg/live/609154353
+熊猫频道01,https://live.chinacert.cftest5.cn/cnmg/live/609158151
+熊猫频道1,https://live.chinacert.cftest5.cn/cnmg/live/608933610
+熊猫频道2,https://live.chinacert.cftest5.cn/cnmg/live/608933640
+熊猫频道3,https://live.chinacert.cftest5.cn/cnmg/live/608934619
+熊猫频道4,https://live.chinacert.cftest5.cn/cnmg/live/608934721
+熊猫频道5,https://live.chinacert.cftest5.cn/cnmg/live/608935104
+熊猫频道6,https://live.chinacert.cftest5.cn/cnmg/live/608935797
+熊猫频道7,https://live.chinacert.cftest5.cn/cnmg/live/609169286
+熊猫频道8,https://live.chinacert.cftest5.cn/cnmg/live/609169287
+熊猫频道9,https://live.chinacert.cftest5.cn/cnmg/live/609169226
+熊猫频道10,https://live.chinacert.cftest5.cn/cnmg/live/609169285
+最强综艺趴,https://live.chinacert.cftest5.cn/cnmg/live/629942228
+嘉佳卡通,https://live.chinacert.cftest5.cn/cnmg/live/614952364
+经典动画大集合,https://live.chinacert.cftest5.cn/cnmg/live/629942219
+新动漫,https://live.chinacert.cftest5.cn/cnmg/live/961930269
+新动力量创一流,https://live.chinacert.cftest5.cn/cnmg/live/713589837
+中华特产,https://live.chinacert.cftest5.cn/cnmg/live/959986618
+环球旅游,https://live.chinacert.cftest5.cn/cnmg/live/958475356
+梨园频道,https://live.chinacert.cftest5.cn/cnmg/live/961930369
+中国天气,http://wfenf.x3322.net:7788/959986621
+CCTV1,http://wfenf.x3322.net:7788/608807420
+CCTV2,http://wfenf.x3322.net:7788/631780532
+CCTV3,http://wfenf.x3322.net:7788/624878271
+CCTV4,http://wfenf.x3322.net:7788/631780421
+CCTV5,http://wfenf.x3322.net:7788/641886683
+CCTV5+,http://wfenf.x3322.net:7788/641886773
+CCTV6,http://wfenf.x3322.net:7788/624878396
+CCTV7,http://wfenf.x3322.net:7788/673168121
+CCTV8,http://wfenf.x3322.net:7788/624878356
+CCTV9,http://wfenf.x3322.net:7788/673168140
+CCTV10,http://wfenf.x3322.net:7788/624878405
+CCTV11,http://wfenf.x3322.net:7788/667987558
+CCTV12,http://wfenf.x3322.net:7788/673168185
+CCTV13,http://wfenf.x3322.net:7788/608807423
+CCTV14,http://wfenf.x3322.net:7788/624878440
+CCTV15,http://wfenf.x3322.net:7788/673168223
+CCTV17,http://wfenf.x3322.net:7788/673168256
+CCTV4欧洲,http://wfenf.x3322.net:7788/608807419
+CCTV4美洲,http://wfenf.x3322.net:7788/608807416
+CGTN外语纪录,http://wfenf.x3322.net:7788/609006487
+CGTN阿拉伯语,http://wfenf.x3322.net:7788/609154345
+CGTN西班牙语,http://wfenf.x3322.net:7788/609006450
+CGTN法语,http://wfenf.x3322.net:7788/609006476
+CGTN俄语,http://wfenf.x3322.net:7788/609006446
+老故事,http://wfenf.x3322.net:7788/884121956
+发现之旅,http://wfenf.x3322.net:7788/624878970
+中学生,http://wfenf.x3322.net:7788/708869532
+CGTN,http://wfenf.x3322.net:7788/609017205
+赛事最经典,http://wfenf.x3322.net:7788/646596895
+体坛名栏汇,http://wfenf.x3322.net:7788/629943305
+四海钓鱼,http://wfenf.x3322.net:7788/637444975
+陕西体育休闲频道,http://wfenf.x3322.net:7788/956909356
+24小时城市联赛轮播台,http://wfenf.x3322.net:7788/915512915
+武术世界,http://wfenf.x3322.net:7788/958475359
+快乐垂钓,http://wfenf.x3322.net:7788/961930263
+东方卫视,http://wfenf.x3322.net:7788/651632648
+江苏卫视,http://wfenf.x3322.net:7788/623899368
+广东卫视,http://wfenf.x3322.net:7788/608831231
+北京卫视,http://wfenf.x3322.net:7788/630287636
+辽宁卫视,http://wfenf.x3322.net:7788/630291707
+河北卫视,http://wfenf.x3322.net:7788/962042070
+江西卫视,http://wfenf.x3322.net:7788/783847495
+河南卫视,http://wfenf.x3322.net:7788/790187291
+陕西卫视,http://wfenf.x3322.net:7788/738910838
+大湾区卫视,http://wfenf.x3322.net:7788/608917627
+湖北卫视,http://wfenf.x3322.net:7788/947472496
+吉林卫视,http://wfenf.x3322.net:7788/947472500
+青海卫视,http://wfenf.x3322.net:7788/947472506
+东南卫视,http://wfenf.x3322.net:7788/849116810
+海南卫视,http://wfenf.x3322.net:7788/947472502
+海峡卫视,http://wfenf.x3322.net:7788/849119120
+中国农林卫视,http://wfenf.x3322.net:7788/956904896
+兵团卫视,http://wfenf.x3322.net:7788/956923145
+宁夏卫视,http://wfenf.x3322.net:7788/738910535
+重庆卫视,http://wfenf.x3322.net:7788/738910914
+三沙卫视,http://wfenf.x3322.net:7788/961023778
+上海新闻综合,http://wfenf.x3322.net:7788/651632657
+上视东方影视,http://wfenf.x3322.net:7788/617290047
+上海第一财经,http://wfenf.x3322.net:7788/608780988
+南京新闻综合频道,http://wfenf.x3322.net:7788/838109047
+南京教科频道,http://wfenf.x3322.net:7788/838153729
+南京十八频道,http://wfenf.x3322.net:7788/838151753
+体育休闲频道,http://wfenf.x3322.net:7788/626064707
+江苏城市频道,http://wfenf.x3322.net:7788/626064714
+江苏国际,http://wfenf.x3322.net:7788/626064674
+江苏教育,http://wfenf.x3322.net:7788/628008321
+江苏影视频道,http://wfenf.x3322.net:7788/626064697
+江苏综艺频道,http://wfenf.x3322.net:7788/626065193
+公共新闻频道,http://wfenf.x3322.net:7788/626064693
+盐城新闻综合,http://wfenf.x3322.net:7788/639731825
+淮安新闻综合,http://wfenf.x3322.net:7788/639731826
+泰州新闻综合,http://wfenf.x3322.net:7788/639731818
+连云港新闻综合,http://wfenf.x3322.net:7788/639731715
+宿迁新闻综合,http://wfenf.x3322.net:7788/639731832
+徐州新闻综合,http://wfenf.x3322.net:7788/639731747
+优漫卡通频道,http://wfenf.x3322.net:7788/626064703
+江阴新闻综合,http://wfenf.x3322.net:7788/955227979
+南通新闻综合,http://wfenf.x3322.net:7788/955227985
+宜兴新闻综合,http://wfenf.x3322.net:7788/955227996
+溧水新闻综合,http://wfenf.x3322.net:7788/639737327
+陕西银龄频道,http://wfenf.x3322.net:7788/956909362
+陕西都市青春频道,http://wfenf.x3322.net:7788/956909358
+陕西秦腔频道,http://wfenf.x3322.net:7788/956909303
+陕西新闻资讯频道,http://wfenf.x3322.net:7788/956909289
+财富天下,http://wfenf.x3322.net:7788/956923159
+镇江新闻综合,http://wfenf.x3322.net:7788/639731783
+海南广播电视总台新闻频道,http://wfenf.x3322.net:7788/962067517
+海南广播电视总台自贸频道,http://wfenf.x3322.net:7788/962045226
+海南广播电视总台社会与法频道,http://wfenf.x3322.net:7788/962045223
+海南广播电视总台文旅频道,http://wfenf.x3322.net:7788/962067526
+海南广播电视总台少儿频道,http://wfenf.x3322.net:7788/962067523
+经典香港电影,http://wfenf.x3322.net:7788/625703337
+抗战经典影片,http://wfenf.x3322.net:7788/617432318
+新片放映厅,http://wfenf.x3322.net:7788/619495952
+CHC影迷电影,http://wfenf.x3322.net:7788/952383261
+CHC动作电影,http://wfenf.x3322.net:7788/644368714
+CHC家庭影院,http://wfenf.x3322.net:7788/644368373
+和美乡途轮播台,http://wfenf.x3322.net:7788/713591450
+南方影视,http://wfenf.x3322.net:7788/614961829
+中国航天“逆袭”之路,http://wfenf.x3322.net:7788/713600957
+CETV1,http://wfenf.x3322.net:7788/923287154
+CETV2,http://wfenf.x3322.net:7788/923287211
+CETV4,http://wfenf.x3322.net:7788/923287339
+山东教育,http://wfenf.x3322.net:7788/609154353
+熊猫频道01,http://wfenf.x3322.net:7788/609158151
+熊猫频道1,http://wfenf.x3322.net:7788/608933610
+熊猫频道2,http://wfenf.x3322.net:7788/608933640
+熊猫频道3,http://wfenf.x3322.net:7788/608934619
+熊猫频道4,http://wfenf.x3322.net:7788/608934721
+熊猫频道5,http://wfenf.x3322.net:7788/608935104
+熊猫频道6,http://wfenf.x3322.net:7788/608935797
+熊猫频道7,http://wfenf.x3322.net:7788/609169286
+熊猫频道8,http://wfenf.x3322.net:7788/609169287
+熊猫频道9,http://wfenf.x3322.net:7788/609169226
+熊猫频道10,http://wfenf.x3322.net:7788/609169285
+最强综艺趴,http://wfenf.x3322.net:7788/629942228
+嘉佳卡通,http://wfenf.x3322.net:7788/614952364
+经典动画大集合,http://wfenf.x3322.net:7788/629942219
+新动漫,http://wfenf.x3322.net:7788/961930269
+新动力量创一流,http://wfenf.x3322.net:7788/713589837
+中华特产,http://wfenf.x3322.net:7788/959986618
+环球旅游,http://wfenf.x3322.net:7788/958475356
+梨园频道,http://wfenf.x3322.net:7788/961930369
+中国天气,http://mg.cttv.vip/959986621
+CCTV1,http://mg.cttv.vip/608807420
+CCTV2,http://mg.cttv.vip/631780532
+CCTV3,http://mg.cttv.vip/624878271
+CCTV4,http://mg.cttv.vip/631780421
+CCTV5,http://mg.cttv.vip/641886683
+CCTV5+,http://mg.cttv.vip/641886773
+CCTV6,http://mg.cttv.vip/624878396
+CCTV7,http://mg.cttv.vip/673168121
+CCTV8,http://mg.cttv.vip/624878356
+CCTV9,http://mg.cttv.vip/673168140
+CCTV10,http://mg.cttv.vip/624878405
+CCTV11,http://mg.cttv.vip/667987558
+CCTV12,http://mg.cttv.vip/673168185
+CCTV13,http://mg.cttv.vip/608807423
+CCTV14,http://mg.cttv.vip/624878440
+CCTV15,http://mg.cttv.vip/673168223
+CCTV17,http://mg.cttv.vip/673168256
+CCTV4欧洲,http://mg.cttv.vip/608807419
+CCTV4美洲,http://mg.cttv.vip/608807416
+CGTN外语纪录,http://mg.cttv.vip/609006487
+CGTN阿拉伯语,http://mg.cttv.vip/609154345
+CGTN西班牙语,http://mg.cttv.vip/609006450
+CGTN法语,http://mg.cttv.vip/609006476
+CGTN俄语,http://mg.cttv.vip/609006446
+老故事,http://mg.cttv.vip/884121956
+发现之旅,http://mg.cttv.vip/624878970
+中学生,http://mg.cttv.vip/708869532
+CGTN,http://mg.cttv.vip/609017205
+赛事最经典,http://mg.cttv.vip/646596895
+体坛名栏汇,http://mg.cttv.vip/629943305
+四海钓鱼,http://mg.cttv.vip/637444975
+陕西体育休闲频道,http://mg.cttv.vip/956909356
+24小时城市联赛轮播台,http://mg.cttv.vip/915512915
+武术世界,http://mg.cttv.vip/958475359
+快乐垂钓,http://mg.cttv.vip/961930263
+东方卫视,http://mg.cttv.vip/651632648
+江苏卫视,http://mg.cttv.vip/623899368
+广东卫视,http://mg.cttv.vip/608831231
+北京卫视,http://mg.cttv.vip/630287636
+辽宁卫视,http://mg.cttv.vip/630291707
+河北卫视,http://mg.cttv.vip/962042070
+江西卫视,http://mg.cttv.vip/783847495
+河南卫视,http://mg.cttv.vip/790187291
+陕西卫视,http://mg.cttv.vip/738910838
+大湾区卫视,http://mg.cttv.vip/608917627
+湖北卫视,http://mg.cttv.vip/947472496
+吉林卫视,http://mg.cttv.vip/947472500
+青海卫视,http://mg.cttv.vip/947472506
+东南卫视,http://mg.cttv.vip/849116810
+海南卫视,http://mg.cttv.vip/947472502
+海峡卫视,http://mg.cttv.vip/849119120
+中国农林卫视,http://mg.cttv.vip/956904896
+兵团卫视,http://mg.cttv.vip/956923145
+宁夏卫视,http://mg.cttv.vip/738910535
+重庆卫视,http://mg.cttv.vip/738910914
+三沙卫视,http://mg.cttv.vip/961023778
+上海新闻综合,http://mg.cttv.vip/651632657
+上视东方影视,http://mg.cttv.vip/617290047
+上海第一财经,http://mg.cttv.vip/608780988
+南京新闻综合频道,http://mg.cttv.vip/838109047
+南京教科频道,http://mg.cttv.vip/838153729
+南京十八频道,http://mg.cttv.vip/838151753
+体育休闲频道,http://mg.cttv.vip/626064707
+江苏城市频道,http://mg.cttv.vip/626064714
+江苏国际,http://mg.cttv.vip/626064674
+江苏教育,http://mg.cttv.vip/628008321
+江苏影视频道,http://mg.cttv.vip/626064697
+江苏综艺频道,http://mg.cttv.vip/626065193
+公共新闻频道,http://mg.cttv.vip/626064693
+盐城新闻综合,http://mg.cttv.vip/639731825
+淮安新闻综合,http://mg.cttv.vip/639731826
+泰州新闻综合,http://mg.cttv.vip/639731818
+连云港新闻综合,http://mg.cttv.vip/639731715
+宿迁新闻综合,http://mg.cttv.vip/639731832
+徐州新闻综合,http://mg.cttv.vip/639731747
+优漫卡通频道,http://mg.cttv.vip/626064703
+江阴新闻综合,http://mg.cttv.vip/955227979
+南通新闻综合,http://mg.cttv.vip/955227985
+宜兴新闻综合,http://mg.cttv.vip/955227996
+溧水新闻综合,http://mg.cttv.vip/639737327
+陕西银龄频道,http://mg.cttv.vip/956909362
+陕西都市青春频道,http://mg.cttv.vip/956909358
+陕西秦腔频道,http://mg.cttv.vip/956909303
+陕西新闻资讯频道,http://mg.cttv.vip/956909289
+财富天下,http://mg.cttv.vip/956923159
+镇江新闻综合,http://mg.cttv.vip/639731783
+海南广播电视总台新闻频道,http://mg.cttv.vip/962067517
+海南广播电视总台自贸频道,http://mg.cttv.vip/962045226
+海南广播电视总台社会与法频道,http://mg.cttv.vip/962045223
+海南广播电视总台文旅频道,http://mg.cttv.vip/962067526
+海南广播电视总台少儿频道,http://mg.cttv.vip/962067523
+经典香港电影,http://mg.cttv.vip/625703337
+抗战经典影片,http://mg.cttv.vip/617432318
+新片放映厅,http://mg.cttv.vip/619495952
+CHC影迷电影,http://mg.cttv.vip/952383261
+CHC动作电影,http://mg.cttv.vip/644368714
+CHC家庭影院,http://mg.cttv.vip/644368373
+和美乡途轮播台,http://mg.cttv.vip/713591450
+南方影视,http://mg.cttv.vip/614961829
+中国航天“逆袭”之路,http://mg.cttv.vip/713600957
+CETV1,http://mg.cttv.vip/923287154
+CETV2,http://mg.cttv.vip/923287211
+CETV4,http://mg.cttv.vip/923287339
+山东教育,http://mg.cttv.vip/609154353
+熊猫频道01,http://mg.cttv.vip/609158151
+熊猫频道1,http://mg.cttv.vip/608933610
+熊猫频道2,http://mg.cttv.vip/608933640
+熊猫频道3,http://mg.cttv.vip/608934619
+熊猫频道4,http://mg.cttv.vip/608934721
+熊猫频道5,http://mg.cttv.vip/608935104
+熊猫频道6,http://mg.cttv.vip/608935797
+熊猫频道7,http://mg.cttv.vip/609169286
+熊猫频道8,http://mg.cttv.vip/609169287
+熊猫频道9,http://mg.cttv.vip/609169226
+熊猫频道10,http://mg.cttv.vip/609169285
+最强综艺趴,http://mg.cttv.vip/629942228
+嘉佳卡通,http://mg.cttv.vip/614952364
+经典动画大集合,http://mg.cttv.vip/629942219
+新动漫,http://mg.cttv.vip/961930269
+新动力量创一流,http://mg.cttv.vip/713589837
+中华特产,http://mg.cttv.vip/959986618
+环球旅游,http://mg.cttv.vip/958475356
+梨园频道,http://mg.cttv.vip/961930369
 
 阿里咪咕,#genre#
 CCTV1,http://47.119.24.76:59093/608807420
@@ -1864,132 +2021,6 @@ CETV4,http://47.119.24.76:59093/923287339
 中华特产,http://47.119.24.76:59093/959986618
 环球旅游,http://47.119.24.76:59093/958475356
 梨园频道,http://47.119.24.76:59093/961930369
-
-日后咪咕,#genre#
-中国天气,http://45.78.61.93:1234/959986621
-CCTV1,http://45.78.61.93:1234/608807420
-CCTV2,http://45.78.61.93:1234/631780532
-CCTV3,http://45.78.61.93:1234/624878271
-CCTV4,http://45.78.61.93:1234/631780421
-CCTV5,http://45.78.61.93:1234/641886683
-CCTV5+,http://45.78.61.93:1234/641886773
-CCTV6,http://45.78.61.93:1234/624878396
-CCTV7,http://45.78.61.93:1234/673168121
-CCTV8,http://45.78.61.93:1234/624878356
-CCTV9,http://45.78.61.93:1234/673168140
-CCTV10,http://45.78.61.93:1234/624878405
-CCTV11,http://45.78.61.93:1234/667987558
-CCTV12,http://45.78.61.93:1234/673168185
-CCTV13,http://45.78.61.93:1234/608807423
-CCTV14,http://45.78.61.93:1234/624878440
-CCTV15,http://45.78.61.93:1234/673168223
-CCTV17,http://45.78.61.93:1234/673168256
-CCTV4欧洲,http://45.78.61.93:1234/608807419
-CCTV4美洲,http://45.78.61.93:1234/608807416
-CGTN外语纪录,http://45.78.61.93:1234/609006487
-CGTN阿拉伯语,http://45.78.61.93:1234/609154345
-CGTN西班牙语,http://45.78.61.93:1234/609006450
-CGTN法语,http://45.78.61.93:1234/609006476
-CGTN俄语,http://45.78.61.93:1234/609006446
-老故事,http://45.78.61.93:1234/884121956
-发现之旅,http://45.78.61.93:1234/624878970
-中学生,http://45.78.61.93:1234/708869532
-CGTN,http://45.78.61.93:1234/609017205
-赛事最经典,http://45.78.61.93:1234/646596895
-体坛名栏汇,http://45.78.61.93:1234/629943305
-四海钓鱼,http://45.78.61.93:1234/637444975
-陕西体育休闲频道,http://45.78.61.93:1234/956909356
-24小时城市联赛轮播台,http://45.78.61.93:1234/915512915
-武术世界,http://45.78.61.93:1234/958475359
-快乐垂钓,http://45.78.61.93:1234/961930263
-东方卫视,http://45.78.61.93:1234/651632648
-江苏卫视,http://45.78.61.93:1234/623899368
-广东卫视,http://45.78.61.93:1234/608831231
-北京卫视,http://45.78.61.93:1234/630287636
-辽宁卫视,http://45.78.61.93:1234/630291707
-河北卫视,http://45.78.61.93:1234/962042070
-江西卫视,http://45.78.61.93:1234/783847495
-河南卫视,http://45.78.61.93:1234/790187291
-陕西卫视,http://45.78.61.93:1234/738910838
-大湾区卫视,http://45.78.61.93:1234/608917627
-湖北卫视,http://45.78.61.93:1234/947472496
-吉林卫视,http://45.78.61.93:1234/947472500
-青海卫视,http://45.78.61.93:1234/947472506
-东南卫视,http://45.78.61.93:1234/849116810
-海南卫视,http://45.78.61.93:1234/947472502
-海峡卫视,http://45.78.61.93:1234/849119120
-中国农林卫视,http://45.78.61.93:1234/956904896
-兵团卫视,http://45.78.61.93:1234/956923145
-宁夏卫视,http://45.78.61.93:1234/738910535
-重庆卫视,http://45.78.61.93:1234/738910914
-三沙卫视,http://45.78.61.93:1234/961023778
-上海新闻综合,http://45.78.61.93:1234/651632657
-上视东方影视,http://45.78.61.93:1234/617290047
-上海第一财经,http://45.78.61.93:1234/608780988
-南京新闻综合频道,http://45.78.61.93:1234/838109047
-南京教科频道,http://45.78.61.93:1234/838153729
-南京十八频道,http://45.78.61.93:1234/838151753
-体育休闲频道,http://45.78.61.93:1234/626064707
-江苏城市频道,http://45.78.61.93:1234/626064714
-江苏国际,http://45.78.61.93:1234/626064674
-江苏教育,http://45.78.61.93:1234/628008321
-江苏影视频道,http://45.78.61.93:1234/626064697
-江苏综艺频道,http://45.78.61.93:1234/626065193
-公共新闻频道,http://45.78.61.93:1234/626064693
-盐城新闻综合,http://45.78.61.93:1234/639731825
-淮安新闻综合,http://45.78.61.93:1234/639731826
-泰州新闻综合,http://45.78.61.93:1234/639731818
-连云港新闻综合,http://45.78.61.93:1234/639731715
-宿迁新闻综合,http://45.78.61.93:1234/639731832
-徐州新闻综合,http://45.78.61.93:1234/639731747
-优漫卡通频道,http://45.78.61.93:1234/626064703
-江阴新闻综合,http://45.78.61.93:1234/955227979
-南通新闻综合,http://45.78.61.93:1234/955227985
-宜兴新闻综合,http://45.78.61.93:1234/955227996
-溧水新闻综合,http://45.78.61.93:1234/639737327
-陕西银龄频道,http://45.78.61.93:1234/956909362
-陕西都市青春频道,http://45.78.61.93:1234/956909358
-陕西秦腔频道,http://45.78.61.93:1234/956909303
-陕西新闻资讯频道,http://45.78.61.93:1234/956909289
-财富天下,http://45.78.61.93:1234/956923159
-镇江新闻综合,http://45.78.61.93:1234/639731783
-海南广播电视总台新闻频道,http://45.78.61.93:1234/962067517
-海南广播电视总台自贸频道,http://45.78.61.93:1234/962045226
-海南广播电视总台社会与法频道,http://45.78.61.93:1234/962045223
-海南广播电视总台文旅频道,http://45.78.61.93:1234/962067526
-海南广播电视总台少儿频道,http://45.78.61.93:1234/962067523
-经典香港电影,http://45.78.61.93:1234/625703337
-抗战经典影片,http://45.78.61.93:1234/617432318
-新片放映厅,http://45.78.61.93:1234/619495952
-CHC影迷电影,http://45.78.61.93:1234/952383261
-CHC动作电影,http://45.78.61.93:1234/644368714
-CHC家庭影院,http://45.78.61.93:1234/644368373
-和美乡途轮播台,http://45.78.61.93:1234/713591450
-南方影视,http://45.78.61.93:1234/614961829
-中国航天“逆袭”之路,http://45.78.61.93:1234/713600957
-CETV1,http://45.78.61.93:1234/923287154
-CETV2,http://45.78.61.93:1234/923287211
-CETV4,http://45.78.61.93:1234/923287339
-山东教育,http://45.78.61.93:1234/609154353
-熊猫频道01高清,http://45.78.61.93:1234/609158151
-熊猫频道1,http://45.78.61.93:1234/608933610
-熊猫频道2,http://45.78.61.93:1234/608933640
-熊猫频道3,http://45.78.61.93:1234/608934619
-熊猫频道4,http://45.78.61.93:1234/608934721
-熊猫频道5,http://45.78.61.93:1234/608935104
-熊猫频道6,http://45.78.61.93:1234/608935797
-熊猫频道7,http://45.78.61.93:1234/609169286
-熊猫频道8,http://45.78.61.93:1234/609169287
-熊猫频道9,http://45.78.61.93:1234/609169226
-熊猫频道10,http://45.78.61.93:1234/609169285
-最强综艺趴,http://45.78.61.93:1234/629942228
-嘉佳卡通,http://45.78.61.93:1234/614952364
-经典动画大集合,http://45.78.61.93:1234/629942219
-新动漫,http://45.78.61.93:1234/961930269
-新动力量创一流,http://45.78.61.93:1234/713589837
-中华特产,http://45.78.61.93:1234/959986618
-环球旅游,http://45.78.61.93:1234/958475356
-梨园频道,http://45.78.61.93:1234/961930369
 
 四川咪咕,#genre#
 中国天气,http://113.98.11.46:3000/959986621
@@ -2414,283 +2445,109 @@ CCTV17,http://hwottcdn.ln.chinamobile.com/PLTV/11/224/3221227352/index.m3u8
 西藏卫视,http://hwottcdn.ln.chinamobile.com/PLTV/11/224/3221227157/index.m3u8
 
 移动咪咕,#genre#
-咪咕体育-4K,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000010000005180&livemode=1&stbId=yu&mode=1
-咪咕视频-1,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000001000005969&livemode=1&stbId=yu&mode=1
-咪咕视频-2,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000001000007218&livemode=1&stbId=yu&mode=1
-咪咕视频-3,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000001000008001&livemode=1&stbId=yu&mode=1
-咪咕视频-4,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000001000010129&livemode=1&stbId=yu&mode=1
-咪咕视频-5,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000001000010948&livemode=1&stbId=yu&mode=1
-咪咕视频-6,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000001000028638&livemode=1&stbId=yu&mode=1
-咪咕视频-7,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000001000031494&livemode=1&stbId=yu&mode=1
-咪咕视频-8,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000010000000097&livemode=1&stbId=yu&mode=1
-咪咕视频-9,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000010000002019&livemode=1&stbId=yu&mode=1
-咪咕视频-10,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000010000003915&livemode=1&stbId=yu&mode=1
-咪咕视频-11,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000010000004193&livemode=1&stbId=yu&mode=1
-咪咕视频-12,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000010000005837&livemode=1&stbId=yu&mode=1
-咪咕视频-13,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000010000006077&livemode=1&stbId=yu&mode=1
-咪咕视频-14,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000010000006658&livemode=1&stbId=yu&mode=1
-咪咕视频-15,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000010000009788&livemode=1&stbId=yu&mode=1
-咪咕视频-16,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000010000010833&livemode=1&stbId=yu&mode=1
-咪咕视频-17,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000010000011297&livemode=1&stbId=yu&mode=1
-咪咕视频-18,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000010000011518&livemode=1&stbId=yu&mode=1
-咪咕视频-19,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000010000012558&livemode=1&stbId=yu&mode=1
-咪咕视频-20,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000010000012616&livemode=1&stbId=yu&mode=1
-咪咕视频-21,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000010000015470&livemode=1&stbId=yu&mode=1
-咪咕视频-22,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000010000019839&livemode=1&stbId=yu&mode=1
-咪咕视频-23,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000010000021904&livemode=1&stbId=yu&mode=1
-咪咕视频-24,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000010000025380&livemode=1&stbId=yu&mode=1
-咪咕视频-25,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000010000027691&livemode=1&stbId=yu&mode=1
-咪咕视频-26,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000010000031669&livemode=1&stbId=yu&mode=1
-咪咕视频-27,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000020000011518&livemode=1&stbId=yu&mode=1
-咪咕视频-28,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000020000011519&livemode=1&stbId=yu&mode=1
-咪咕视频-29,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000020000011520&livemode=1&stbId=yu&mode=1
-咪咕视频-30,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000020000011521&livemode=1&stbId=yu&mode=1
-咪咕视频-31,http://zteres.sn.chinamobile.com:6060/000000001000/3000000001000008176/1.m3u8?channel-id=FifastbLive&Contentid=3000000001000008176&livemode=1&stbId=3
-咪咕视频-32,http://zteres.sn.chinamobile.com:6060/000000001000/3000000001000008001/1.m3u8?channel-id=FifastbLive&Contentid=3000000001000008001&livemode=1&stbId=3
-咪咕视频-33,http://zteres.sn.chinamobile.com:6060/000000001000/2000000003000000068/1.m3u8?channel-id=hnbblive&Contentid=2000000003000000068&livemode=1&stbId=3
-咪咕游戏赛事-1,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000001000008176&livemode=1&stbId=yu&mode=1
-咪咕足球赛事-2,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000001000005308&livemode=1&stbId=yu&mode=1
-咪咕足球赛事-3,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000001000008379&livemode=1&stbId=yu&mode=1
-咪咕足球赛事-4,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000010000002809&livemode=1&stbId=yu&mode=1
-咪咕足球赛事-5,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000010000015560&livemode=1&stbId=yu&mode=1
-咪咕足球赛事-6,http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=3000000010000023434&livemode=1&stbId=yu&mode=1
 
-体育-昨天08-30,#genre#
-英超 托特纳姆热刺VS纽卡斯尔联 全场回放（李子琪、徐阳、苏东） 00:15,http://113.98.11.46:3000/967109901
-英超 托特纳姆热刺VS纽卡斯尔联 全场回放（陈凯冬、陆毅隽） 00:15,http://113.98.11.46:3000/967112233
-意甲 萨索洛VS都灵 全场回放（乔迁） 00:15,http://113.98.11.46:3000/967109454
-意甲 蒙扎VS乌迪内斯 全场回放（梁祥宇） 00:15,http://113.98.11.46:3000/967110825
-意甲 佛罗伦萨VS弗罗西诺内 全场回放（刘焕） 00:15,http://113.98.11.46:3000/967109838
-德甲 多特蒙德VS汉堡 全场回放（沈云怡、鲁靖明） 00:15,http://113.98.11.46:3000/967109650
-西甲 皇家社会VS西班牙人 全场回放（张天翼） 00:45,http://113.98.11.46:3000/967111851
-男篮世预赛 塞内加尔VS安哥拉 全场回放（赛场原声） 02:20,http://113.98.11.46:3000/967117701
-法甲 里昂VS勒阿弗尔 全场回放（乔迁） 02:30,http://113.98.11.46:3000/967116287
-法甲 布雷斯特VS图卢兹 全场回放（邵煊） 02:30,http://113.98.11.46:3000/967114730
-法甲 欧塞尔VS昂热 全场回放（盛斌） 02:30,http://113.98.11.46:3000/967115145
-意甲 尤文图斯VS帕尔马 全场回放（孙雨轩、刘腾） 02:30,http://113.98.11.46:3000/967115372
-法甲 洛里昂VS特鲁瓦 全场回放（刘一臻） 02:30,http://113.98.11.46:3000/967115883
-西甲 塞维利亚VS马德里竞技 全场回放（张昊泽、王宇） 03:15,http://113.98.11.46:3000/967116186
-铁人三项系列赛 “她铁”粉色铁人三项挑战赛 2026“她铁”粉色铁人三项挑战赛全场回放(二) 06:00,http://113.98.11.46:3000/967126401
-铁人三项系列赛 “她铁”粉色铁人三项挑战赛 2026“她铁”粉色铁人三项挑战赛全场回放（一） 06:00,http://113.98.11.46:3000/967126848
-WTA 黛安娜·帕里VS梅尔滕斯 全场回放（郭丰庆） 07:30,http://113.98.11.46:3000/967123857
-WTA 黛安娜·帕里VS梅尔滕斯 全场回放 07:30,http://113.98.11.46:3000/967124258
-WTA 黛安娜·帕里VS梅尔滕斯 全场回放 07:30,http://113.98.11.46:3000/967124744
-马拉松系列赛 2026兰州新区马拉松 2026兰州新区马拉松全场回放（赛场原声） 07:15,http://113.98.11.46:3000/967124658
-中国自行车运动协会系列赛 中国公路自行车公开赛（湖北恩施站）DAY2 2026中国公路自行车公开赛（湖北恩施站）Day2全场回放（官方解说） 08:15,http://113.98.11.46:3000/967124951
-粤港澳大湾区滑雪公开赛 鹏城之巅·2026粤港澳大湾区滑雪公开赛 2026粤港澳大湾区滑雪公开赛Day2全场回放（官方解说）（一） 09:00,http://113.98.11.46:3000/967125324
-粤港澳大湾区滑雪公开赛 鹏城之巅·2026粤港澳大湾区滑雪公开赛 2026粤港澳大湾区滑雪公开赛Day2全场回放（官方解说）（二） 09:00,http://113.98.11.46:3000/967126516
-超三联赛 超三联赛 仁怀大区赛 B档决赛及A档12进8 全场回放（周赫） 08:55,http://113.98.11.46:3000/967126104
-超三联赛 超三联赛 仁怀大区赛 B档决赛及A档12进8 全场回放（赛场原声） 08:55,http://113.98.11.46:3000/967126367
-超三联赛 超三联赛 仁怀大区赛 B档决赛及A档12进8 【回放】成都和众20:21广东生涯 08:55,http://113.98.11.46:3000/967122443
-超三联赛 超三联赛 仁怀大区赛 B档决赛及A档12进8 【回放】广东光正教育21:15广东生涯 08:55,http://113.98.11.46:3000/967121627
-超三联赛 超三联赛 仁怀大区赛 B档决赛及A档12进8 【回放】江苏香江猛虎14:22广东光正教育 08:55,http://113.98.11.46:3000/967122962
-攀岩系列赛 中国速度攀岩系列赛（湖南长沙站）Day2 2026中国速度攀岩系列赛湖南长沙站Day2全场回放（官方解说） 12:00,http://113.98.11.46:3000/967126082
-超三联赛 超三联赛 仁怀大区赛 A档12进8及四分之一决赛 全场回放（周赫） 13:25,http://113.98.11.46:3000/967126104
-超三联赛 超三联赛 仁怀大区赛 A档12进8及四分之一决赛 全场回放（吴博文） 13:25,http://113.98.11.46:3000/967127854
-超三联赛 超三联赛 仁怀大区赛 A档12进8及四分之一决赛 全场回放（赛场原声） 13:25,http://113.98.11.46:3000/967128813
-超三联赛 超三联赛 仁怀大区赛 A档12进8及四分之一决赛 【回放】上海久事22:14南昌凯锆商贸 13:25,http://113.98.11.46:3000/967127571
-超三联赛 超三联赛 仁怀大区赛 A档12进8及四分之一决赛 【回放】宁波海曙捷英22:16浙江普徕 13:25,http://113.98.11.46:3000/967127806
-超三联赛 超三联赛 仁怀大区赛 A档12进8及四分之一决赛 【回放】贵州贵阳丝恋19:21北京控股 13:25,http://113.98.11.46:3000/967127353
-超三联赛 超三联赛 仁怀大区赛 A档12进8及四分之一决赛 【回放】上海横沙誉民21:13深圳龙华启航 13:25,http://113.98.11.46:3000/967127120
-超三联赛 超三联赛 仁怀大区赛 A档12进8及四分之一决赛 【回放】深圳龙华启航22:16山东 13:25,http://113.98.11.46:3000/967125909
-超三联赛 超三联赛 仁怀大区赛 A档12进8及四分之一决赛 【回放】北京控股22:11无锡文旅惠汕 13:25,http://113.98.11.46:3000/967125949
-超三联赛 超三联赛 仁怀大区赛 A档12进8及四分之一决赛 【回放】南昌凯锆商贸21:17重庆瀚动 13:25,http://113.98.11.46:3000/967125982
-超三联赛 超三联赛 仁怀大区赛 A档12进8及四分之一决赛 【回放】浙江普徕20:13广东悦跑豹猫 13:25,http://113.98.11.46:3000/967126196
-男篮世预赛 新西兰VS叙利亚 全场回放（赛场原声） 13:50,http://113.98.11.46:3000/967127720
-徽青赛 马鞍山VS宣城 全场回放 16:00,http://113.98.11.46:3000/967128593
-徽青赛 亳州VS铜陵 全场回放 16:00,http://113.98.11.46:3000/967128851
-海河超儿 东丽2-0武清 天津市海河足球超级联赛第4轮全场回放：东丽2:0武清（赛场原声） 16:00,http://113.98.11.46:3000/967128454
-全国女子篮球锦标赛 江苏南钢VS北京首钢园 全场回放（赛场原声） 15:50,http://113.98.11.46:3000/967128464
-CPB中国棒球城市联赛 上海虎鲸VS福州海侠 2026赛季CPB中国棒球城市联赛上海赛区全场回放：上海虎鲸6-5福州海侠（官方解说） 16:30,http://113.98.11.46:3000/967133096
-男篮世预赛 澳大利亚VS约旦 全场回放（赛场原声） 16:50,http://113.98.11.46:3000/967129412
-徽青赛 芜湖VS池州 全场回放 17:00,http://113.98.11.46:3000/967130999
-NBA经典赛事 NBA精彩重播：快船vs火箭 全场回放（邵化谦、苏群） 18:00,http://113.98.11.46:3000/963041838
-海河超儿 河北3-2河东 天津市海河足球超级联赛第4轮全场回放：河北3:2河东（赛场原声） 18:00,http://113.98.11.46:3000/967129532
-中甲 宁波职业足球俱乐部VS梅州客家 全场回放（官方解说） 18:50,http://113.98.11.46:3000/967134549
-中甲 大连鲲城VS南通支云 全场回放（官方解说） 18:50,http://113.98.11.46:3000/967134302
-蒙超联赛 包头队VS通辽队 全场回放 19:00,http://113.98.11.46:3000/967133604
-徽BA 安庆VS马鞍山 全场回放 19:00,http://113.98.11.46:3000/967132796
-徽BA 滁州VS铜陵 全场回放 19:00,http://113.98.11.46:3000/967132463
-徽BA 芜湖VS合肥 全场回放 19:00,http://113.98.11.46:3000/967131699
-徽BA 蚌埠VS黄山 全场回放 19:00,http://113.98.11.46:3000/967134102
-NBA上海篮球盛典 上海久事大鲨鱼VSG联赛联队 全场回放（王冠证） 19:00,http://113.98.11.46:3000/967131063
-中甲 广东广州豹足球俱乐部VS长春亚泰 全场回放 19:20,http://113.98.11.46:3000/967136017
-齐鲁超赛 东营队VS临沂队 全场回放 19:30,http://113.98.11.46:3000/967133915
-徽青赛 淮南VS阜阳 全场回放 19:30,http://113.98.11.46:3000/967134775
-超三联赛 超三联赛 仁怀大区赛 A档半决赛及决赛 全场回放（李嘉伟） 19:25,http://113.98.11.46:3000/967131132
-超三联赛 超三联赛 仁怀大区赛 A档半决赛及决赛 全场回放（赛场原声） 19:25,http://113.98.11.46:3000/967132820
-超三联赛 超三联赛 仁怀大区赛 A档半决赛及决赛 【回放】上海横沙誉民8:21上海久事 19:25,http://113.98.11.46:3000/967130643
-超三联赛 超三联赛 仁怀大区赛 A档半决赛及决赛 【回放】北京控股18:21宁波海曙捷英 19:25,http://113.98.11.46:3000/967130135
-超三联赛 超三联赛 仁怀大区赛 A档半决赛及决赛 【回放】上海久事21:16宁波海曙捷英 19:25,http://113.98.11.46:3000/967129317
-超三联赛 超三联赛 仁怀大区赛 A档半决赛及决赛 【回放】上海横沙誉民21:17北京控股 19:25,http://113.98.11.46:3000/967129069
-全国女子篮球锦标赛 四川蜀道远达VS山东高速赤水河酒女篮 全场回放（赛场原声） 19:20,http://113.98.11.46:3000/967134386
-湘超 张家界队VS常德队 全场回放 19:38,http://113.98.11.46:3000/967140824
-湘超 郴州队VS益阳队 全场回放 19:38,http://113.98.11.46:3000/967137416
-男篮世预赛 菲律宾VS伊朗 全场回放（李天宇） 19:50,http://113.98.11.46:3000/967134496
-男篮世预赛 菲律宾VS伊朗 全场回放（赛场原声） 19:50,http://113.98.11.46:3000/967135697
-男篮世预赛 埃及VS刚果共和国 全场回放（赛场原声） 20:20,http://113.98.11.46:3000/967137157
-男篮世预赛 波兰VS德国 全场回放（邵化谦） 20:35,http://113.98.11.46:3000/967135308
-男篮世预赛 波兰VS德国 全场回放（赛场原声） 20:35,http://113.98.11.46:3000/967140772
-英超 桑德兰VS富勒姆 全场回放（兰子非） 20:55,http://113.98.11.46:3000/967135280
-英超 桑德兰VS富勒姆 全场回放（AI智慧观赛） 20:55,http://113.98.11.46:3000/967136133
-英超 桑德兰VS富勒姆 全场回放（智能解说） 20:55,http://113.98.11.46:3000/967135916
-英超 利兹联VS布伦特福德 全场回放（刘焕） 20:55,http://113.98.11.46:3000/967134819
-英超 利兹联VS布伦特福德 全场回放（AI智慧观赛） 20:55,http://113.98.11.46:3000/967135282
-英超 利兹联VS布伦特福德 全场回放（智能解说） 20:55,http://113.98.11.46:3000/967135389
-英超 切尔西VS布莱顿 全场回放（颜强、贺宇、程思钦） 20:45,http://113.98.11.46:3000/967136160
-英超 切尔西VS布莱顿 全场回放（陈凯冬、何辉） 20:45,http://113.98.11.46:3000/967139139
-法甲 巴黎FCVS尼斯 全场回放（李永熙） 20:45,http://113.98.11.46:3000/967134708
-德甲 弗赖堡VS云达不莱梅 全场回放（李霄） 21:15,http://113.98.11.46:3000/967135713
-西甲 皇家马德里VS马拉加 全场回放（林梦鸽、孙雷） 22:45,http://113.98.11.46:3000/967140706
-男篮世预赛 几内亚VS喀麦隆 全场回放（赛场原声） 22:50,http://113.98.11.46:3000/967140445
-美国网球公开赛 王欣瑜、吴易昺晋级美网次轮 大看台球场 23:00,http://113.98.11.46:3000/967048188
-美国网球公开赛 王欣瑜、吴易昺晋级美网次轮 17号球场 23:00,http://113.98.11.46:3000/967048199
-美国网球公开赛 王欣瑜、吴易昺晋级美网次轮 5号球场 23:00,http://113.98.11.46:3000/967048227
-美国网球公开赛 王欣瑜、吴易昺晋级美网次轮 6号球场 23:00,http://113.98.11.46:3000/967048244
-美国网球公开赛 王欣瑜、吴易昺晋级美网次轮 7号球场 23:00,http://113.98.11.46:3000/967048253
-美国网球公开赛 王欣瑜、吴易昺晋级美网次轮 10号球场 23:00,http://113.98.11.46:3000/967048273
-美国网球公开赛 王欣瑜、吴易昺晋级美网次轮 11号球场 23:00,http://113.98.11.46:3000/967048301
-美国网球公开赛 王欣瑜、吴易昺晋级美网次轮 12号球场 23:00,http://113.98.11.46:3000/967048312
-美国网球公开赛 王欣瑜、吴易昺晋级美网次轮 13号球场 23:00,http://113.98.11.46:3000/967048359
-美国网球公开赛 王欣瑜、吴易昺晋级美网次轮 国际信号 23:00,http://113.98.11.46:3000/967048106
-美国网球公开赛 王欣瑜、吴易昺晋级美网次轮 英文解说 23:00,http://113.98.11.46:3000/967048117
-美国网球公开赛 吴易昺VS沃尔顿 全场回放（邱超） 23:00,http://113.98.11.46:3000/967142445
-美国网球公开赛 吴易昺VS沃尔顿 全场回放 23:00,http://113.98.11.46:3000/967141734
-法甲 雷恩VS勒芒 全场回放（邵煊） 23:00,http://113.98.11.46:3000/967143709
-英超 曼联VS伊普斯维奇 全场回放（叶紫辰、何辉） 23:15,http://113.98.11.46:3000/967144617
-英超 曼联VS伊普斯维奇 全场回放（洪荒） 23:15,http://113.98.11.46:3000/967140517
-英超 曼联VS伊普斯维奇 全场回放（陈渤胄） 23:15,http://113.98.11.46:3000/967140721
-德甲 奥格斯堡VS沙尔克04 全场回放（赵宇） 23:15,http://113.98.11.46:3000/967141705
-男篮世预赛 瑞典VS法国 全场回放（季孟年） 23:20,http://113.98.11.46:3000/967145824
-男篮世预赛 瑞典VS法国 全场回放 23:20,http://113.98.11.46:3000/967146617
-男篮世预赛 安哥拉VS科特迪瓦 全场回放 23:20,http://113.98.11.46:3000/967146815
-体育-今天08-31,#genre#
-男篮世预赛 拉脱维亚VS以色列 2027年男篮世预赛欧洲赛区第四窗口期宣传片：文班亚马约基奇率队出战 23:50,http://113.98.11.46:3000/967006072
-男篮世预赛 爱沙尼亚VS芬兰 全场回放 23:50,http://113.98.11.46:3000/967147059
-意甲 那不勒斯VS科莫 全场回放（鲁靖明、涂远） 00:15,http://113.98.11.46:3000/967144060
-美国网球公开赛 张帅VS费尔南德斯 全场回放（胡力涛） 01:00,http://113.98.11.46:3000/967144842
-美国网球公开赛 张帅VS费尔南德斯 全场回放 01:00,http://113.98.11.46:3000/967145008
-西甲 拉科鲁尼亚VS瓦伦西亚 全场回放（孙雨轩） 01:15,http://113.98.11.46:3000/967145912
-男篮世预赛 突尼斯VS南苏丹 2027年男篮世预赛非洲赛区第四窗口期宣传片：狂野大陆谁将突出重围？ 01:50,http://113.98.11.46:3000/967007226
-男篮世预赛 马里VS塞内加尔 天赋无极限！2027男篮世预赛非洲赛区谁能脱颖而出？ 02:20,http://113.98.11.46:3000/960639612
-美国网球公开赛 阿朗戈VS王欣瑜 全场回放（宋光振） 02:40,http://113.98.11.46:3000/967147860
-西甲 塞尔塔VS毕尔巴鄂竞技 兰子非 03:15,http://113.98.11.46:3000/966999072
-西甲 塞尔塔VS毕尔巴鄂竞技 赛场原声 03:15,http://113.98.11.46:3000/966999080
-咪咕体育日报 undefined 咪咕体育日报 第166期 08:00,http://113.98.11.46:3000/966490346
-攀岩系列赛 中国速度攀岩系列赛（湖南长沙站）Day3 湖南长沙站 17:30,http://113.98.11.46:3000/967032284
-NBA经典赛事 NBA精彩重播：快船vs湖人 杨健 曾令旭 刘铁 18:00,http://113.98.11.46:3000/966323738
-男篮世预赛 韩国VS沙特阿拉伯 盛哲 17:50,http://113.98.11.46:3000/966984550
-男篮世预赛 韩国VS沙特阿拉伯 赛场原声 17:50,http://113.98.11.46:3000/966984563
-男篮世预赛 日本VS卡塔尔 殳海 18:00,http://113.98.11.46:3000/966984596
-男篮世预赛 日本VS卡塔尔 赛场原声 18:00,http://113.98.11.46:3000/966984609
-CPB中国棒球城市联赛 深圳蓝袜VS北京正大龙 清流播出 18:30,http://113.98.11.46:3000/967034473
-男篮世预赛 中国VS黎巴嫩 庄宁宇 杨鸣 陈正昊 18:30,http://113.98.11.46:3000/966984677
-男篮世预赛 中国VS黎巴嫩 连睿 周琦 周鹏 18:30,http://113.98.11.46:3000/966984691
-男篮世预赛 中国VS黎巴嫩 赛场原声 19:20,http://113.98.11.46:3000/966984699
-湘超 株洲队VS邵阳队 赛场原声 19:38,http://113.98.11.46:3000/966706740
-美国网球公开赛 萨巴伦卡、阿尔卡拉斯接连出战！ 阿瑟・阿什球场 23:30,http://113.98.11.46:3000/967049001
-美国网球公开赛 萨巴伦卡、阿尔卡拉斯接连出战！ 阿姆斯特朗球场 23:00,http://113.98.11.46:3000/967048545
-美国网球公开赛 萨巴伦卡、阿尔卡拉斯接连出战！ 大看台球场 23:00,http://113.98.11.46:3000/967048571
-美国网球公开赛 萨巴伦卡、阿尔卡拉斯接连出战！ 17号球场 23:00,http://113.98.11.46:3000/967048602
-美国网球公开赛 萨巴伦卡、阿尔卡拉斯接连出战！ 5号球场 23:00,http://113.98.11.46:3000/967048786
-美国网球公开赛 萨巴伦卡、阿尔卡拉斯接连出战！ 6号球场 23:00,http://113.98.11.46:3000/967048818
-美国网球公开赛 萨巴伦卡、阿尔卡拉斯接连出战！ 7号球场 23:00,http://113.98.11.46:3000/967048839
-美国网球公开赛 萨巴伦卡、阿尔卡拉斯接连出战！ 9号球场 23:00,http://113.98.11.46:3000/967048880
-美国网球公开赛 萨巴伦卡、阿尔卡拉斯接连出战！ 10号球场 23:00,http://113.98.11.46:3000/967048908
-美国网球公开赛 萨巴伦卡、阿尔卡拉斯接连出战！ 11号球场 23:00,http://113.98.11.46:3000/967048928
-美国网球公开赛 萨巴伦卡、阿尔卡拉斯接连出战！ 12号球场 23:00,http://113.98.11.46:3000/967048947
-美国网球公开赛 萨巴伦卡、阿尔卡拉斯接连出战！ 13号球场 23:00,http://113.98.11.46:3000/967048966
-美国网球公开赛 萨巴伦卡、阿尔卡拉斯接连出战！ 15号球场 23:00,http://113.98.11.46:3000/967048972
-美国网球公开赛 萨巴伦卡、阿尔卡拉斯接连出战！ 国际信号 23:00,http://113.98.11.46:3000/967048491
-美国网球公开赛 萨巴伦卡、阿尔卡拉斯接连出战！ 英文解说 23:00,http://113.98.11.46:3000/967048517
-男篮世预赛 立陶宛VS波黑 赛场原声 23:20,http://113.98.11.46:3000/966984349
-体育-明天09-01,#genre#
-男篮世预赛 希腊VS西班牙 吴博文 23:50,http://113.98.11.46:3000/966984373
-男篮世预赛 希腊VS西班牙 赛场原声 23:50,http://113.98.11.46:3000/966984359
-意甲 莱切VS罗马 谭逸雄 00:15,http://113.98.11.46:3000/967027562
-意甲 莱切VS罗马 赛场原声 00:15,http://113.98.11.46:3000/967027547
-西甲 奥萨苏纳VS赫塔菲 鹿中原 01:15,http://113.98.11.46:3000/966999101
-西甲 奥萨苏纳VS赫塔菲 赛场原声 01:15,http://113.98.11.46:3000/966999112
-男篮世预赛 意大利VS塞尔维亚 孔德昕 01:20,http://113.98.11.46:3000/966984409
-男篮世预赛 意大利VS塞尔维亚 赛场原声 01:20,http://113.98.11.46:3000/966984733
-男篮世预赛 葡萄牙VS格鲁吉亚 姜帆 01:50,http://113.98.11.46:3000/966984446
-男篮世预赛 葡萄牙VS格鲁吉亚 赛场原声 01:50,http://113.98.11.46:3000/966984658
-男篮世预赛 黑山VS乌克兰 赛场原声 02:20,http://113.98.11.46:3000/966984457
-意甲 亚特兰大VS博洛尼亚 张昊泽 02:30,http://113.98.11.46:3000/967027489
-意甲 亚特兰大VS博洛尼亚 赛场原声 02:30,http://113.98.11.46:3000/967027481
-英超 阿斯顿维拉VS阿森纳 詹俊 张路 李子琪 02:30,http://113.98.11.46:3000/966999335
-英超 阿斯顿维拉VS阿森纳 江忠德 02:45,http://113.98.11.46:3000/966999323
-英超 阿斯顿维拉VS阿森纳 英文原声 02:45,http://113.98.11.46:3000/966999311
-英超 阿斯顿维拉VS阿森纳 赛场原声 02:45,http://113.98.11.46:3000/966999304
-英超 阿斯顿维拉VS阿森纳 4K赛场原声 02:45,http://113.98.11.46:3000/967033674
-西甲 巴塞罗那VS巴列卡诺 梁祥宇 李欣 03:15,http://113.98.11.46:3000/966998783
-西甲 巴塞罗那VS巴列卡诺 赛场原声 03:15,http://113.98.11.46:3000/966998778
-男篮世预赛 冰岛VS土耳其 周鹏 03:20,http://113.98.11.46:3000/966984481
-男篮世预赛 冰岛VS土耳其 赛场原声 03:20,http://113.98.11.46:3000/966984465
-男篮世预赛 美国VS哥伦比亚 蔡凯臣 06:50,http://113.98.11.46:3000/966985564
-男篮世预赛 美国VS哥伦比亚 赛场原声 06:50,http://113.98.11.46:3000/966985555
-男篮世预赛 乌拉圭VS波多黎各 赛场原声 07:00,http://113.98.11.46:3000/966985585
-男篮世预赛 加拿大VS阿根廷 邢晨 07:00,http://113.98.11.46:3000/966985576
-男篮世预赛 加拿大VS阿根廷 赛场原声 07:00,http://113.98.11.46:3000/966985570
-男篮世预赛 巴哈马VS巴拿马 殷文玉 08:00,http://113.98.11.46:3000/966985601
-男篮世预赛 巴哈马VS巴拿马 赛场原声 08:00,http://113.98.11.46:3000/966985598
-男篮世预赛 多米尼加VS智利 赛场原声 08:00,http://113.98.11.46:3000/966985589
-男篮世预赛 墨西哥VS巴西 赛场原声 10:00,http://113.98.11.46:3000/966985610
-WTT 男女单打资格赛第一轮 凌维康 徐铭辰 13:00,http://113.98.11.46:3000/966866129
-WTT 男女单打资格赛第一轮 1号桌 13:00,http://113.98.11.46:3000/966866070
-WTT 男女单打资格赛第一轮 2号桌 13:00,http://113.98.11.46:3000/966866092
-WTT 男女单打资格赛第一轮 3号桌 13:00,http://113.98.11.46:3000/966866104
-WTT 男女单打资格赛第一轮 4号桌 13:00,http://113.98.11.46:3000/966866116
-NBA经典赛事 NBA精彩重播：掘金vs勇士 连睿 周鹏 18:00,http://113.98.11.46:3000/966323759
-CPB中国棒球城市联赛 长沙旺旺VS福州海侠 清流播出 18:00,http://113.98.11.46:3000/967034475
-CPB中国棒球城市联赛 北京正大龙VS厦门海豚 清流播出 18:30,http://113.98.11.46:3000/967034490
-WTT 男女单打资格赛第一轮 赵曦 刘馨蕊 19:00,http://113.98.11.46:3000/966866250
-WTT 男女单打资格赛第一轮 1号桌 19:00,http://113.98.11.46:3000/966866175
-WTT 男女单打资格赛第一轮 2号桌 19:00,http://113.98.11.46:3000/966866198
-WTT 男女单打资格赛第一轮 3号桌 19:00,http://113.98.11.46:3000/966866221
-WTT 男女单打资格赛第一轮 4号桌 19:00,http://113.98.11.46:3000/966866240
-足协杯 山东泰山VS上海海港 石庆圣 刘越 邵凌霄 19:00,http://113.98.11.46:3000/966999283
-足协杯 山东泰山VS上海海港 赛场原声 19:20,http://113.98.11.46:3000/966998832
-足协杯 山东泰山VS上海海港 智能解说 19:30,http://113.98.11.46:3000/967054706
-足协杯 大连英博海发VS上海申花 娄一晨 李彦 魏欣怡 19:00,http://113.98.11.46:3000/966999309
-足协杯 大连英博海发VS上海申花 赛场原声 19:20,http://113.98.11.46:3000/966998857
-足协杯 大连英博海发VS上海申花 智能解说 19:30,http://113.98.11.46:3000/967054642
-足协杯 北京国安VS兰州陇原竞技 张昊泽 19:20,http://113.98.11.46:3000/966999336
-足协杯 北京国安VS兰州陇原竞技 赛场原声 19:20,http://113.98.11.46:3000/966999001
-美国网球公开赛 男女单打第一轮 阿瑟・阿什球场 23:30,http://113.98.11.46:3000/967048324
-美国网球公开赛 男女单打第一轮 阿姆斯特朗球场 23:00,http://113.98.11.46:3000/967048113
-美国网球公开赛 男女单打第一轮 大看台球场 23:00,http://113.98.11.46:3000/967048171
-美国网球公开赛 男女单打第一轮 17号球场 23:00,http://113.98.11.46:3000/967048186
-美国网球公开赛 男女单打第一轮 5号球场 23:00,http://113.98.11.46:3000/967048196
-美国网球公开赛 男女单打第一轮 6号球场 23:00,http://113.98.11.46:3000/967048221
-美国网球公开赛 男女单打第一轮 7号球场 23:00,http://113.98.11.46:3000/967048237
-美国网球公开赛 男女单打第一轮 10号球场 23:00,http://113.98.11.46:3000/967048247
-美国网球公开赛 男女单打第一轮 11号球场 23:00,http://113.98.11.46:3000/967048266
-美国网球公开赛 男女单打第一轮 12号球场 23:00,http://113.98.11.46:3000/967048280
-美国网球公开赛 男女单打第一轮 13号球场 23:00,http://113.98.11.46:3000/967048289
-美国网球公开赛 男女单打第一轮 15号球场 23:00,http://113.98.11.46:3000/967048309
-美国网球公开赛 男女单打第一轮 国际信号 23:00,http://113.98.11.46:3000/967048136
-美国网球公开赛 男女单打第一轮 英文解说 23:00,http://113.98.11.46:3000/967048151
+
+咪视界4K-1,http://gslbserv.itv.cmvideo.cn:80/3000000010000005180/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000005180&livemode=1&stbId=YanG-1989
+咪视界4K-1,http://gslbserv.itv.cmvideo.cn:80/3000000010000005180/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000005180&livemode=1&stbId=BingCha
+咪视界4K-2,http://gslbserv.itv.cmvideo.cn:80/3000000010000015686/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000015686&livemode=1&stbId=YanG-1989
+咪视界4K-2,http://gslbserv.itv.cmvideo.cn:80/3000000010000015686/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000015686&livemode=1&stbId=BingCha
+咪视界1,http://gslbserv.itv.cmvideo.cn:80/3000000001000005308/index.m3u8?channel-id=FifastbLive&Contentid=3000000001000005308&livemode=1&stbId=YanG-1989
+咪视界1,http://gslbserv.itv.cmvideo.cn:80/3000000001000005308/index.m3u8?channel-id=FifastbLive&Contentid=3000000001000005308&livemode=1&stbId=BingCha
+咪视界2,http://gslbserv.itv.cmvideo.cn:80/3000000001000005969/index.m3u8?channel-id=FifastbLive&Contentid=3000000001000005969&livemode=1&stbId=YanG-1989
+咪视界2,http://gslbserv.itv.cmvideo.cn:80/3000000001000005969/index.m3u8?channel-id=FifastbLive&Contentid=3000000001000005969&livemode=1&stbId=BingCha
+咪视界3,http://gslbserv.itv.cmvideo.cn:80/3000000001000007218/index.m3u8?channel-id=FifastbLive&Contentid=3000000001000007218&livemode=1&stbId=YanG-1989
+咪视界3,http://gslbserv.itv.cmvideo.cn:80/3000000001000007218/index.m3u8?channel-id=FifastbLive&Contentid=3000000001000007218&livemode=1&stbId=BingCha
+咪视界4,http://gslbserv.itv.cmvideo.cn:80/3000000001000008001/index.m3u8?channel-id=FifastbLive&Contentid=3000000001000008001&livemode=1&stbId=YanG-1989
+咪视界4,http://gslbserv.itv.cmvideo.cn:80/3000000001000008001/index.m3u8?channel-id=FifastbLive&Contentid=3000000001000008001&livemode=1&stbId=BingCha
+咪视界5,http://gslbserv.itv.cmvideo.cn:80/3000000001000008176/index.m3u8?channel-id=FifastbLive&Contentid=3000000001000008176&livemode=1&stbId=YanG-1989
+咪视界5,http://gslbserv.itv.cmvideo.cn:80/3000000001000008176/index.m3u8?channel-id=FifastbLive&Contentid=3000000001000008176&livemode=1&stbId=BingCha
+咪视界6,http://gslbserv.itv.cmvideo.cn:80/3000000001000008379/index.m3u8?channel-id=FifastbLive&Contentid=3000000001000008379&livemode=1&stbId=YanG-1989
+咪视界6,http://gslbserv.itv.cmvideo.cn:80/3000000001000008379/index.m3u8?channel-id=FifastbLive&Contentid=3000000001000008379&livemode=1&stbId=BingCha
+咪视界7,http://gslbserv.itv.cmvideo.cn:80/3000000001000010129/index.m3u8?channel-id=FifastbLive&Contentid=3000000001000010129&livemode=1&stbId=YanG-1989
+咪视界7,http://gslbserv.itv.cmvideo.cn:80/3000000001000010129/index.m3u8?channel-id=FifastbLive&Contentid=3000000001000010129&livemode=1&stbId=BingCha
+咪视界8,http://gslbserv.itv.cmvideo.cn:80/3000000001000010948/index.m3u8?channel-id=FifastbLive&Contentid=3000000001000010948&livemode=1&stbId=YanG-1989
+咪视界8,http://gslbserv.itv.cmvideo.cn:80/3000000001000010948/index.m3u8?channel-id=FifastbLive&Contentid=3000000001000010948&livemode=1&stbId=BingCha
+咪视界9,http://gslbserv.itv.cmvideo.cn:80/3000000001000028638/index.m3u8?channel-id=FifastbLive&Contentid=3000000001000028638&livemode=1&stbId=YanG-1989
+咪视界9,http://gslbserv.itv.cmvideo.cn:80/3000000001000028638/index.m3u8?channel-id=FifastbLive&Contentid=3000000001000028638&livemode=1&stbId=BingCha
+咪视界10,http://gslbserv.itv.cmvideo.cn:80/3000000001000031494/index.m3u8?channel-id=FifastbLive&Contentid=3000000001000031494&livemode=1&stbId=YanG-1989
+咪视界10,http://gslbserv.itv.cmvideo.cn:80/3000000001000031494/index.m3u8?channel-id=FifastbLive&Contentid=3000000001000031494&livemode=1&stbId=BingCha
+咪视界11,http://gslbserv.itv.cmvideo.cn:80/3000000010000000097/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000000097&livemode=1&stbId=YanG-1989
+咪视界11,http://gslbserv.itv.cmvideo.cn:80/3000000010000000097/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000000097&livemode=1&stbId=BingCha
+咪视界12,http://gslbserv.itv.cmvideo.cn:80/3000000010000002019/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000002019&livemode=1&stbId=YanG-1989
+咪视界12,http://gslbserv.itv.cmvideo.cn:80/3000000010000002019/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000002019&livemode=1&stbId=BingCha
+咪视界13,http://gslbserv.itv.cmvideo.cn:80/3000000010000002809/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000002809&livemode=1&stbId=YanG-1989
+咪视界13,http://gslbserv.itv.cmvideo.cn:80/3000000010000002809/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000002809&livemode=1&stbId=BingCha
+咪视界14,http://gslbserv.itv.cmvideo.cn:80/3000000010000003915/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000003915&livemode=1&stbId=YanG-1989
+咪视界14,http://gslbserv.itv.cmvideo.cn:80/3000000010000003915/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000003915&livemode=1&stbId=BingCha
+咪视界15,http://gslbserv.itv.cmvideo.cn:80/3000000010000004193/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000004193&livemode=1&stbId=YanG-1989
+咪视界15,http://gslbserv.itv.cmvideo.cn:80/3000000010000004193/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000004193&livemode=1&stbId=BingCha
+咪视界16,http://gslbserv.itv.cmvideo.cn:80/3000000010000005837/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000005837&livemode=1&stbId=YanG-1989
+咪视界16,http://gslbserv.itv.cmvideo.cn:80/3000000010000005837/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000005837&livemode=1&stbId=BingCha
+咪视界17,http://gslbserv.itv.cmvideo.cn:80/3000000010000006077/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000006077&livemode=1&stbId=YanG-1989
+咪视界17,http://gslbserv.itv.cmvideo.cn:80/3000000010000006077/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000006077&livemode=1&stbId=BingCha
+咪视界18,http://gslbserv.itv.cmvideo.cn:80/3000000010000006658/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000006658&livemode=1&stbId=YanG-1989
+咪视界18,http://gslbserv.itv.cmvideo.cn:80/3000000010000006658/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000006658&livemode=1&stbId=BingCha
+咪视界19,http://gslbserv.itv.cmvideo.cn:80/3000000010000009788/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000009788&livemode=1&stbId=YanG-1989
+咪视界19,http://gslbserv.itv.cmvideo.cn:80/3000000010000009788/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000009788&livemode=1&stbId=BingCha
+咪视界20,http://gslbserv.itv.cmvideo.cn:80/3000000010000010833/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000010833&livemode=1&stbId=YanG-1989
+咪视界20,http://gslbserv.itv.cmvideo.cn:80/3000000010000010833/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000010833&livemode=1&stbId=BingCha
+咪视界21,http://gslbserv.itv.cmvideo.cn:80/3000000010000011297/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000011297&livemode=1&stbId=YanG-1989
+咪视界21,http://gslbserv.itv.cmvideo.cn:80/3000000010000011297/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000011297&livemode=1&stbId=BingCha
+咪视界22,http://gslbserv.itv.cmvideo.cn:80/3000000010000011518/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000011518&livemode=1&stbId=YanG-1989
+咪视界22,http://gslbserv.itv.cmvideo.cn:80/3000000010000011518/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000011518&livemode=1&stbId=BingCha
+咪视界23,http://gslbserv.itv.cmvideo.cn:80/3000000010000012558/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000012558&livemode=1&stbId=YanG-1989
+咪视界23,http://gslbserv.itv.cmvideo.cn:80/3000000010000012558/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000012558&livemode=1&stbId=BingCha
+咪视界24,http://gslbserv.itv.cmvideo.cn:80/3000000010000012616/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000012616&livemode=1&stbId=YanG-1989
+咪视界24,http://gslbserv.itv.cmvideo.cn:80/3000000010000012616/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000012616&livemode=1&stbId=BingCha
+咪视界25,http://gslbserv.itv.cmvideo.cn:80/3000000010000015470/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000015470&livemode=1&stbId=YanG-1989
+咪视界25,http://gslbserv.itv.cmvideo.cn:80/3000000010000015470/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000015470&livemode=1&stbId=BingCha
+咪视界26,http://gslbserv.itv.cmvideo.cn:80/3000000010000015560/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000015560&livemode=1&stbId=YanG-1989
+咪视界26,http://gslbserv.itv.cmvideo.cn:80/3000000010000015560/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000015560&livemode=1&stbId=BingCha
+咪视界27,http://gslbserv.itv.cmvideo.cn:80/3000000010000017678/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000017678&livemode=1&stbId=YanG-1989
+咪视界27,http://gslbserv.itv.cmvideo.cn:80/3000000010000017678/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000017678&livemode=1&stbId=BingCha
+咪视界28,http://gslbserv.itv.cmvideo.cn:80/3000000010000019839/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000019839&livemode=1&stbId=YanG-1989
+咪视界28,http://gslbserv.itv.cmvideo.cn:80/3000000010000019839/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000019839&livemode=1&stbId=BingCha
+咪视界29,http://gslbserv.itv.cmvideo.cn:80/3000000010000021904/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000021904&livemode=1&stbId=YanG-1989
+咪视界29,http://gslbserv.itv.cmvideo.cn:80/3000000010000021904/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000021904&livemode=1&stbId=BingCha
+咪视界30,http://gslbserv.itv.cmvideo.cn:80/3000000010000023434/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000023434&livemode=1&stbId=YanG-1989
+咪视界30,http://gslbserv.itv.cmvideo.cn:80/3000000010000023434/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000023434&livemode=1&stbId=BingCha
+咪视界31,http://gslbserv.itv.cmvideo.cn:80/3000000010000025380/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000025380&livemode=1&stbId=YanG-1989
+咪视界31,http://gslbserv.itv.cmvideo.cn:80/3000000010000025380/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000025380&livemode=1&stbId=BingCha
+咪视界32,http://gslbserv.itv.cmvideo.cn:80/3000000010000027691/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000027691&livemode=1&stbId=YanG-1989
+咪视界32,http://gslbserv.itv.cmvideo.cn:80/3000000010000027691/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000027691&livemode=1&stbId=BingCha
+咪视界33,http://gslbserv.itv.cmvideo.cn:80/3000000010000031669/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000031669&livemode=1&stbId=YanG-1989
+咪视界33,http://gslbserv.itv.cmvideo.cn:80/3000000010000031669/index.m3u8?channel-id=FifastbLive&Contentid=3000000010000031669&livemode=1&stbId=BingCha
+咪视界34,http://gslbserv.itv.cmvideo.cn:80/3000000020000011518/index.m3u8?channel-id=FifastbLive&Contentid=3000000020000011518&livemode=1&stbId=YanG-1989
+咪视界34,http://gslbserv.itv.cmvideo.cn:80/3000000020000011518/index.m3u8?channel-id=FifastbLive&Contentid=3000000020000011518&livemode=1&stbId=BingCha
+咪视界35,http://gslbserv.itv.cmvideo.cn:80/3000000020000011519/index.m3u8?channel-id=FifastbLive&Contentid=3000000020000011519&livemode=1&stbId=YanG-1989
+咪视界35,http://gslbserv.itv.cmvideo.cn:80/3000000020000011519/index.m3u8?channel-id=FifastbLive&Contentid=3000000020000011519&livemode=1&stbId=BingCha
+咪视界36,http://gslbserv.itv.cmvideo.cn:80/3000000020000011520/index.m3u8?channel-id=FifastbLive&Contentid=3000000020000011520&livemode=1&stbId=YanG-1989
+咪视界36,http://gslbserv.itv.cmvideo.cn:80/3000000020000011520/index.m3u8?channel-id=FifastbLive&Contentid=3000000020000011520&livemode=1&stbId=BingCha
+咪视界37,http://gslbserv.itv.cmvideo.cn:80/3000000020000011521/index.m3u8?channel-id=FifastbLive&Contentid=3000000020000011521&livemode=1&stbId=YanG-1989
+咪视界37,http://gslbserv.itv.cmvideo.cn:80/3000000020000011521/index.m3u8?channel-id=FifastbLive&Contentid=3000000020000011521&livemode=1&stbId=BingCha
+咪视界38,http://gslbserv.itv.cmvideo.cn:80/3000000020000011522/index.m3u8?channel-id=FifastbLive&Contentid=3000000020000011522&livemode=1&stbId=YanG-1989
+咪视界38,http://gslbserv.itv.cmvideo.cn:80/3000000020000011522/index.m3u8?channel-id=FifastbLive&Contentid=3000000020000011522&livemode=1&stbId=BingCha
+
+
 
 轮播,#genre#
 凤凰中文,http://bobohome.ignorelist.com:20247/fengshows?id=2.m3u8
 凤凰资讯,http://bobohome.ignorelist.com:20247/fengshows?id=1.m3u8
 凤凰香港,http://bobohome.ignorelist.com:20247/fengshows?id=3.m3u8
-凤凰中文,http://c.123.rr.kg/163189/fhzw
-凤凰资讯,http://c.123.rr.kg/163189/fhzx
-凤凰香港,http://c.123.rr.kg/163189/fhhk
-凤凰中文,http://c.123.rr.kg/163189/fhzw
-凤凰资讯,http://c.123.rr.kg/163189/fhzx
-凤凰香港,http://c.123.rr.kg/163189/fhhk
-凤凰中文,http://r.jdshipin.com/cCCzW
-凤凰资讯,http://r.jdshipin.com/0Rp07
-凤凰香港,http://r.jdshipin.com/yDoTN
-天映频道,https://cdn.qd.je/163189/typd2
-无线新闻台,https://cdn.qd.je/163189/wxxwt
-TVB亚洲武侠,http://c.123.rr.kg/163189/yzwx
+凤凰香港,http://43.152.224.209/qctv.fengshows.cn/live/0701phk72.m3u8
+凤凰中文,http://43.152.224.209/qctv.fengshows.cn/live/0701pcc72.m3u8
+凤凰资讯,http://43.152.224.209/qctv.fengshows.cn/live/0701pin72.m3u8
+凤凰香港,http://jiekou.dpdns.org/xiang/php/fhx.php?id=fhhk
+凤凰中文,http://jiekou.dpdns.org/xiang/php/fhx.php?id=fhzx
+凤凰资讯,http://jiekou.dpdns.org/xiang/php/fhx.php?id=fhzw
+凤凰香港,http://xiangz.qzz.io:8031/php/fhx.php?id=fhhk
+凤凰中文,http://xiangz.qzz.io:8031/php/fhx.php?id=fhzx
+凤凰资讯,http://xiangz.qzz.io:8031/php/fhx.php?id=fhzw
+中天新闻,http://iactive-clink.com:8081/live/111ztxw.m3u8
 JJ斗地主,http://1.14.124.206:35455/huya/152698
 JJ斗地主,http://1.14.124.206:35455/huya/30814432
 JJ斗地主,http://1.14.124.206:35455/huya/30814433
+欢乐麻将,http://1.14.124.206:35455/huya/30258359
 斯诺克,http://1.14.124.206:35455/huya/880214
 斯诺克,http://1.14.124.206:35455/huya/27599671
 斯诺克,http://1.14.124.206:35455/huya/31018325
