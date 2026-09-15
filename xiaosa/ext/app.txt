@@ -1,4 +1,0 @@
-{
-  "domain": "http://juziapp.hzhcbkj.cn",
-  "enabled": true
-}
