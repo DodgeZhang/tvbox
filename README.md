@@ -28,10 +28,7 @@ GitHub加速（含18）：https://gh-proxy.org/https://raw.githubusercontent.com
 | 裤佬 | https://gh-proxy.org/https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/Jsnzkpg<br> |
 | 嗷呜 | http://itv666.cc/aowu/config.webp<br> |
 | VOX | http://rihou.cc:88/demo.php<br> |
-| 老张 | https://zhangqun1818.serv00.net/zq/api.json                                         <br> |
-| 嗷呜 | http://itv666.cc/aowu/config.webp<br> |
-| VOX | http://rihou.cc:88/demo.php<br> |
-| 老张 | https://zhangqun1818.serv00.net/zq/api.json<br> |
+| 老张 | https://zhangqun1818.serv00.net/zq/api.json |
 | 锅大侠 | https://gh.xxooo.cf/https://raw.githubusercontent.com/supermeguo/BoxRes/main/Myuse/catcr.json |
 
 #### ★WebHome广场(网友自制推荐)
