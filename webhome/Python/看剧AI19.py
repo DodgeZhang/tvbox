@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 # 看剧AI kanju19.com (hipy t4 py源)
 # 协议: HMAC-SHA256 请求签名; 剧集token经 /v1/playback/resolve 解析多线路
+# 追剧日历: /v1/watch-calendar (对应 https://kanju19.com/updates)
 import sys
 import time
 import math
 import hmac
 import hashlib
 import secrets
+import datetime
 import urllib.parse
 
 sys.path.append('..')
@@ -44,6 +46,7 @@ CATEGORIES = {
     "anime": "动漫", "variety": "综艺", "documentary": "纪录片",
 }
 
+# 实测各 genre 取值服务端均真实过滤(假类型返回0条)
 GENRES = {
     "movie": ["动作", "冒险", "剧情", "喜剧", "奇幻", "古装", "家庭", "科幻"],
     "series": ["动作", "冒险", "剧情", "刑侦", "古装", "历史", "台剧", "悬疑"],
@@ -53,10 +56,19 @@ GENRES = {
     "documentary": ["历史", "纪录片"],
 }
 
+# 追剧日历筛选项, 与 /updates 页面四个 tab 一致
+CAL_KINDS = [("series", "电视剧"), ("anime", "动漫"), ("variety", "综艺"), ("movie", "电影")]
+CAL_KIND_SET = {"series", "anime", "variety", "movie"}
+WEEKDAYS = [("0", "今天"), ("1", "周一"), ("2", "周二"), ("3", "周三"),
+            ("4", "周四"), ("5", "周五"), ("6", "周六"), ("7", "周日")]
+CAL_SORTS = [("heat", "热度优先"), ("year", "年份最新")]
+CAL_LIMIT = 20
+
 
 class Spider(Spider):
     def init(self, extend=""):
         self._hi = 0
+        self._cal_more = {}
         for i, h in enumerate(HOSTS):
             try:
                 r = requests.get(h + "/v1/runtime/bootstrap", headers={"User-Agent": UA}, timeout=(5, 10))
@@ -110,6 +122,25 @@ class Spider(Spider):
             self._hi = (self._hi + 1) % len(HOSTS)
         return {}
 
+    @staticmethod
+    def _parse_ext(extend):
+        """兼容 dict / query串 / 空值"""
+        if isinstance(extend, dict):
+            return extend
+        d = {}
+        if extend:
+            for pair in str(extend).split("&"):
+                if "=" in pair:
+                    k, v = pair.split("=", 1)
+                    d[urllib.parse.unquote(k)] = urllib.parse.unquote(v)
+        return d
+
+    @staticmethod
+    def _today_weekday():
+        """Asia/Shanghai 的 ISO 星期: 周一=1 ... 周日=7 (与接口 weekday 一致)"""
+        tz = datetime.timezone(datetime.timedelta(hours=8))
+        return datetime.datetime.now(tz).isoweekday()
+
     def _vod(self, c):
         return {
             "vod_id": c.get("id", ""),
@@ -121,14 +152,37 @@ class Spider(Spider):
             "vod_class": "/".join((c.get("genres") or [])[:3]),
         }
 
+    def _cal_vod(self, c):
+        remark = c.get("latest_episode_label") or c.get("season_label") or ""
+        return {
+            "vod_id": c.get("id", ""),
+            "vod_name": c.get("title", ""),
+            "vod_pic": c.get("poster_url", ""),
+            "vod_remarks": remark or str(c.get("year") or ""),
+            "vod_year": str(c.get("year") or ""),
+        }
+
     def homeContent(self, filter=False):
-        cls = []
+        cls = [{"type_id": "calendar", "type_name": "📅追剧日历"}]
         for k, v in CATEGORIES.items():
-            cls.append({
-                "type_id": k, "type_name": v,
-                "subs": [{"type_id": "%s:%s" % (k, g), "type_name": g} for g in GENRES[k]],
-            })
-        return {"class": cls, "list": []}
+            cls.append({"type_id": k, "type_name": v})
+        filters = {}
+        # 各内容分类: 类型(genre)筛选 —— 走标准 filters/extend, 不再用 subs
+        for k in CATEGORIES:
+            filters[k] = [{
+                "key": "genre", "name": "类型",
+                "value": [{"n": "全部", "v": ""}] + [{"n": g, "v": g} for g in GENRES[k]],
+            }]
+        # 追剧日历: 类型(电影/电视剧/动漫/综艺) + 日期 + 排序
+        filters["calendar"] = [
+            {"key": "kind", "name": "类型",
+             "value": [{"n": n, "v": v} for v, n in CAL_KINDS]},
+            {"key": "weekday", "name": "日期",
+             "value": [{"n": n, "v": v} for v, n in WEEKDAYS]},
+            {"key": "sort", "name": "排序",
+             "value": [{"n": n, "v": v} for v, n in CAL_SORTS]},
+        ]
+        return {"class": cls, "filters": filters, "list": []}
 
     def homeVideoContent(self):
         seen, lst = set(), []
@@ -146,16 +200,70 @@ class Spider(Spider):
                 lst.append(v)
         return {"list": lst}
 
+    def _cal_group(self, j, kind, wd):
+        """从 watch-calendar 响应中取出指定星期/类型的分组, 返回 (more_url, items, total)"""
+        days = j.get("days") or []
+        day = None
+        for d in days:
+            if int(d.get("weekday") or 0) == wd:
+                day = d
+                break
+        if day is None and days:
+            day = days[0]
+        if not day:
+            return None, [], 0
+        grp = (day.get("groups") or {}).get(kind) or {}
+        return grp.get("more_url"), (grp.get("preview") or []), int(grp.get("total") or 0)
+
+    def _calendar_content(self, pn, ext):
+        kind = ext.get("kind") or "series"
+        if kind not in CAL_KIND_SET:
+            kind = "series"
+        sort = ext.get("sort") or "heat"
+        if sort not in ("heat", "year"):
+            sort = "heat"
+        try:
+            wd = int(ext.get("weekday") or "0")
+        except Exception:
+            wd = 0
+        if wd <= 0:
+            wd = self._today_weekday()
+        wd = min(max(wd, 1), 7)
+        key = "%s:%d:%s" % (kind, wd, sort)
+        if pn <= 1:
+            path = ("/v1/watch-calendar?week=current&sort=%s&kind=%s&weekday=%d&limit=%d"
+                    % (sort, kind, wd, CAL_LIMIT))
+            j = self._req("GET", path)
+            more, cards, total = self._cal_group(j, kind, wd)
+            self._cal_more[key] = more
+        else:
+            more = self._cal_more.get(key)
+            if not more:
+                return {"page": pn, "pagecount": 1, "limit": CAL_LIMIT, "total": 0, "list": []}
+            # more_url 已含 view/cursor 等全部 query, 直接按完整 path 重新签名
+            j = self._req("GET", more)
+            more, cards, total = self._cal_group(j, kind, wd)
+            self._cal_more[key] = more
+        return {
+            "page": pn,
+            "pagecount": max(int(math.ceil(total / float(CAL_LIMIT))), 1),
+            "limit": CAL_LIMIT,
+            "total": total,
+            "list": [self._cal_vod(c) for c in cards],
+        }
+
     def categoryContent(self, tid, pg=1, filter=False, extend=""):
         try:
             pn = max(int(str(pg)), 1)
         except Exception:
             pn = 1
-        cat, gen = str(tid), ""
-        if ":" in cat:
-            cat, gen = cat.split(":", 1)
+        ext = self._parse_ext(extend)
+        if str(tid) == "calendar":
+            return self._calendar_content(pn, ext)
+        cat = str(tid)
         if cat not in CATEGORIES:
             cat = "movie"
+        gen = ext.get("genre", "")
         limit = 40
         path = "/v1/browse/catalog?kind=%s&page=%d&limit=%d" % (cat, pn, limit)
         if gen:
