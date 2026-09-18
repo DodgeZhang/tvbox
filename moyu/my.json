@@ -1,8 +1,8 @@
 {
-  "spider": "./jar/950055803_4_1788301315144.jar;md5;282aee405654188f1bc1822bbf137410",
+  "spider": "./jar/950055803_4_1788301315144.jar;md5;80d7ed6389e3012b4c650527c2a0353c",
   "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
-  "logo": "https://modelscope-resouces.oss-cn-zhangjiakou.aliyuncs.com/avatar%2Ff5309172-1af6-4c4f-a1c5-a4773a1cc718.gif",
-  "danmaku": "http://127.0.0.1:5266/danmu/webhtv?name={name}&episode={episode}",
+  "logo": "./ico/logo.gif",
+  "danmaku": "https://uzdm.616222.xyz",
   "sites": [
     {
       "key": "Douban",
@@ -44,6 +44,7 @@
       "changeable": 1,
       "filterable": 1,
       "ext": {
+        "cookie": "",
         "site": [
           "https://wogg.xxooo.cf",
           "https://woggpan.888484.xyz",
@@ -282,12 +283,11 @@
       "key": "gying",
       "name": "👀┆观影┆4K",
       "type": 3,
-      "api": "csp_Gying",
+      "api": "csp_GyingFix",
       "searchable": 1,
       "quickSearch": 0,
       "filterable": 0,
       "ext": {
-        "cookie": "",
         "site": [
           "https://www.教父.com",
           "https://www.星际穿越.com",
@@ -1361,6 +1361,11 @@
     }
   ],
   "lives": [
+    {
+      "name": "IPTV直播",
+      "type": 0,
+      "url": "https://iptv.445569.xyz/live.m3u"
+    },
     {
       "name": "superiptv",
       "type": 0,

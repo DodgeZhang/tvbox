@@ -1,5 +1,5 @@
 {
-  "spider": "./jar/950055803_4_1788301315144.jar;md5;282aee405654188f1bc1822bbf137410",
+  "spider": "./jar/950055803_4_1788301315144.jar;md5;80d7ed6389e3012b4c650527c2a0353c",
   "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
   "danmaku": "http://127.0.0.1:5266/danmu/webhtv?name={name}&episode={episode}",
   "sites": [
@@ -82,6 +82,7 @@
       "changeable": 1,
       "filterable": 1,
       "ext": {
+        "cookie": "",
         "site": [
           "https://wogg.xxooo.cf",
           "https://woggpan.888484.xyz",
@@ -679,12 +680,11 @@
       "key": "gying",
       "name": "👀┆观影┆4K",
       "type": 3,
-      "api": "csp_Gying",
+      "api": "csp_GyingFix",
       "searchable": 1,
       "quickSearch": 0,
       "filterable": 0,
       "ext": {
-        "cookie": "",
         "site": [
           "https://www.教父.com",
           "https://www.星际穿越.com",
