@@ -403,24 +403,6 @@
             "timeout": 60
         },
         {
-            "key": "蜡笔",
-            "name": "蜡笔 • 4K",
-            "type": 3,
-            "api": "csp_PanWebShare",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "changeable": 1,
-            "ext": {
-                "site": [
-                    "http://tvpanpan.site",
-                    "http://feimo.fun",
-                    "https://www.mmpanpan.site"
-                ]
-            },
-            "timeout": 60
-        },
-        {
             "key": "闪电",
             "name": "闪电 • 4K",
             "type": 3,
@@ -432,25 +414,6 @@
             "ext": {
                 "site": [
                     "http://shandian.blog"
-                ]
-            },
-            "timeout": 60
-        },
-        {
-            "key": "至臻",
-            "name": "至臻 • 4K",
-            "type": 3,
-            "api": "csp_PanWebShare",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "changeable": 1,
-            "ext": {
-                "site": [
-                    "https://sp.zzzy.shop",
-                    "https://www.zhizhen8.click",
-                    "https://www.zhizhen1.top",
-                    "https://www.mihdr.top"
                 ]
             },
             "timeout": 60
@@ -474,43 +437,6 @@
             "timeout": 60
         },
         {
-            "key": "欧哥",
-            "name": "欧哥 • 4K",
-            "type": 3,
-            "api": "csp_PanWebShare",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "changeable": 1,
-            "ext": {
-                "site": [
-                    "https://woog.nxog.eu.org",
-                    "https://woog.nxog.fun",
-                    "https://woog.nxog.eu.org",
-                    "https://woog.430520.xyz"
-                ]
-            },
-            "timeout": 60
-        },
-        {
-            "key": "二小",
-            "name": "二小 • 4K",
-            "type": 3,
-            "api": "csp_PanWebShare",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "changeable": 1,
-            "ext": {
-                "site": [
-                    "http://www.wexwp.cc",
-                    "https://www.2xiaopan.one",
-                    "https://www.wexwp.cc"
-                ]
-            },
-            "timeout": 60
-        },
-        {
             "key": "虎斑",
             "name": "虎斑 • 4K",
             "type": 3,
@@ -523,6 +449,22 @@
                 "site": [
                     "http://xhban.xyz",
                     "http://38.76.197.172:16969"
+                ]
+            },
+            "timeout": 60
+        },
+        {
+            "key": "花卷",
+            "name": "花卷 • 4K",
+            "type": 3,
+            "api": "csp_PanWebShareHJ",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "changeable": 1,
+            "ext": {
+                "site": [
+                    "https://www.hjzhencai.top"
                 ]
             },
             "timeout": 60
@@ -1055,22 +997,6 @@
             "timeout": 60
         },
         {
-            "key": "米搜",
-            "name": "米搜 • 搜索",
-            "type": 3,
-            "api": "csp_MiSou",
-            "searchable": 1,
-            "quickSearch": 0,
-            "filterable": 0,
-            "ext": {
-                "site": [
-                    "http://gesoso.fun",
-                    "http://www.misoso.shop"
-                ]
-            },
-            "timeout": 60
-        },
-        {
             "key": "百酷",
             "name": "百酷 • 搜索",
             "type": 3,
@@ -1163,18 +1089,6 @@
             "name": "呦呦 • DJ",
             "type": 3,
             "api": "csp_Djuu",
-            "searchable": 1,
-            "quickSearch": 0,
-            "changeable": 0,
-            "style": {
-                "type": "list"
-            }
-        },
-        {
-            "key": "轮回DJ",
-            "name": "轮回 • DJ",
-            "type": 3,
-            "api": "csp_Djlh",
             "searchable": 1,
             "quickSearch": 0,
             "changeable": 0,
@@ -1290,19 +1204,6 @@
             "quickSearch": 0,
             "changeable": 0,
             "api": "./py/爱听音乐.py"
-        },
-        {
-            "key": "网络直播",
-            "name": "网络 • 直播",
-            "type": 3,
-            "api": "csp_ALLLive",
-            "searchable": 0,
-            "quickSearch": 0,
-            "changeable": 0,
-            "style": {
-                "type": "rect",
-                "ratio": 1.618
-            }
         },
         {
             "key": "哔哩哔哩音乐",
