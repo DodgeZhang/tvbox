@@ -2712,17 +2712,34 @@ html.tv-mode .dock .dock-side { display: none !important; }
     border: 1px solid rgba(0,0,0,0.08) !important;
     color: #1c1c1e !important;                /* 深色图标，确保可见 */
     box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+    /* 老内核 place-items (grid) 居中可能导致图标偏移，改用 flexbox 居中 */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
   html.tv-mode .np-controls button svg {
     fill: #1c1c1e !important;                 /* SVG 图标强制深色 */
+    width: 28px !important;
+    height: 28px !important;
+    display: block !important;
+    /* 老 Chromium SVG 渲染可能歪斜，强制几何精度渲染 + 保持宽高比 */
+    shape-rendering: geometricPrecision !important;
   }
   html.tv-mode .np-controls .np-play {
     background: #1c1c1e !important;           /* 播放按钮深色底 */
     color: #fff !important;
     border: 1px solid rgba(0,0,0,0.15) !important;
+    /* 焦点环的 scale(1.07) 会让圆形按钮在老内核上变形/图标歪斜，禁用缩放 */
+    transform: none !important;
+    box-sizing: border-box !important;        /* 确保 84x84 含边框，圆形不变形 */
   }
   html.tv-mode .np-controls .np-play svg {
     fill: #fff !important;                    /* 播放按钮内白色图标 */
+  }
+  /* 播放页所有控制按钮禁用焦点环缩放，只保留描边提示 */
+  html.tv-mode .np-controls .tv-focus,
+  html.tv-mode .np-tools .tv-focus {
+    transform: none !important;
   }
   /* 底部工具栏同样去毛玻璃 */
   html.tv-mode .np-tools {
@@ -9530,6 +9547,31 @@ function paintNow(song) {
                    t.closest(".duo-card") || t.id === "guessCard" || t.id === "radarCard";
     if (playable) ensureNowPlaying("click");
   }, true);
+
+  /* ---------- SVG 图标渲染修复（老 Chromium 下播放/暂停等 SVG 图标可能歪斜） ----------
+     preserveAspectRatio 是 SVG 属性不是 CSS 属性，需在元素上显式设置；
+     同时给 play SVG 补 width/height 属性（原文件只设了 CSS 尺寸，老内核可能不认）。 */
+  function fixSvgIcons() {
+    if (!tvMode) return;
+    var svgs = document.querySelectorAll(".np-controls svg, .np-tools svg, #npPlayIcon, #miniPlayIcon");
+    for (var i = 0; i < svgs.length; i++) {
+      var s = svgs[i];
+      if (!s.getAttribute("preserveAspectRatio")) s.setAttribute("preserveAspectRatio", "xMidYMid meet");
+      if (!s.getAttribute("width")) s.setAttribute("width", "28");
+      if (!s.getAttribute("height")) s.setAttribute("height", "28");
+      s.setAttribute("shape-rendering", "geometricPrecision");
+    }
+  }
+  setTimeout(fixSvgIcons, 600);
+  /* 播放页打开后再次修复（play/pause 切换时 innerHTML 会重建 path） */
+  var _npObs = new MutationObserver(function () {
+    var np = $("np");
+    if (np && np.classList.contains("open")) fixSvgIcons();
+  });
+  setTimeout(function () {
+    var np = $("np");
+    if (np) _npObs.observe(np, { attributes: true, attributeFilter: ["class"] });
+  }, 1000);
 
   /* 焦点堆栈：每个弹层打开时压栈记录来源焦点，关闭时逐层回焦
      （播放页内的音质/操作表子弹层关闭时，播放页本身仍开着） */
