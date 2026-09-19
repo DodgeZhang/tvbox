@@ -753,14 +753,59 @@ JS = r'''
       if (!tvMode) return;
       var np = $("np");
       if (np && np.classList.contains("open")) return;
-      var mini = $("mini");
-      if (mini) {
-        setTimeout(function () {
-          try { mini.click(); } catch (e) {}
-        }, 30);
-      }
+      /* 音频已开始播放但播放页未开：走共享兜底（mini.click → 直接加 open class） */
+      ensureNowPlaying("audio-play");
     });
   })();
+
+  /* ---------- 播放页打开共享兜底 ----------
+     三个入口都会调用：
+       1) audio.play 事件（键盘/鼠标点击卡片都最终走到这里）
+       2) keydown OK（键盘确认键）
+       3) document click（TCL 等电视遥控器 OK 键发送鼠标 click 而非 keydown）
+     原应用 openNowPlaying 在 IIFE 内不可全局调用，这里 replicate 其核心动作。 */
+  var ensureTimer = 0;
+  function ensureNowPlaying(trigger) {
+    if (!tvMode) return;
+    clearTimeout(ensureTimer);
+    var np = $("np");
+    if (np && np.classList.contains("open")) return;
+    showDiag(["ensureNP trig=" + trigger + " np.open=" + (np && np.classList.contains("open"))]);
+    ensureTimer = setTimeout(function () {
+      var n = $("np");
+      if (n && n.classList.contains("open")) { showDiag(["ensureNP already open"]); return; }
+      /* 尝试 #mini（原应用自己的入口：其 click handler 调 openNowPlaying） */
+      var mini = $("mini");
+      var miniShow = mini && mini.classList.contains("show");
+      showDiag(["ensureNP mini.show=" + miniShow + " display=" + (mini ? getComputedStyle(mini).display : "none")]);
+      if (mini) { try { mini.click(); } catch (e1) {} }
+      setTimeout(function () {
+        var n2 = $("np");
+        if (n2 && n2.classList.contains("open")) { showDiag(["ensureNP opened via mini.click"]); return; }
+        /* mini.click 在 display:none 下老 WebView 可能不响应，直接 replicate openNowPlaying 核心 */
+        if (n2) {
+          n2.classList.remove("closing", "lyrics-full");
+          n2.style.transform = "";
+          n2.style.opacity = "";
+          n2.style.transition = "";
+          n2.classList.add("open");
+          try { history.pushState({ aqNp: 1 }, "", "#player"); } catch (eh) {}
+        }
+        showDiag(["ensureNP opened via direct addClass, now=" + (n2 && n2.classList.contains("open"))]);
+      }, 160);
+    }, 120);
+  }
+
+  /* 捕获遥控器 OK 键模拟的鼠标 click（TCL/部分 Android TV 的 DPAD 中心键发 click 而非 keydown） */
+  document.addEventListener("click", function (e) {
+    if (!tvMode) return;
+    var t = e.target;
+    if (!t || !t.closest) return;
+    var playable = t.closest(".album") || t.closest(".song") ||
+                   t.closest(".ch-item") || t.closest(".pl-card") ||
+                   t.closest(".duo-card") || t.id === "guessCard" || t.id === "radarCard";
+    if (playable) ensureNowPlaying("click");
+  }, true);
 
   /* 焦点堆栈：每个弹层打开时压栈记录来源焦点，关闭时逐层回焦
      （播放页内的音质/操作表子弹层关闭时，播放页本身仍开着） */
@@ -937,53 +982,16 @@ JS = r'''
            取最近的可点击容器再触发，否则 click 落在子节点上原应用不响应 */
         var target = el.closest(".album,.song,.ch-item,.pl-card,.duo-card,.q-opt,.tab,.chip,.ch-tab,.search-tab,.lib-item,.np-lyrics,.np-art-wrap,.song-more,.q-opt,.plat-btn,.plat-menu button,.ch-refresh,.sec-link,.src-check,.field,.range,input,select,textarea,button,a,[role=button],#mini,#guessCard,#radarCard");
         if (!target) target = el;
-        var diagLines = [];
-        diagLines.push("OK target=" + (target.className || target.id || target.tagName));
+        var okLines = [];
+        okLines.push("OK target=" + (target.className || target.id || target.tagName));
         click(target);
-        /* TV：可播放卡片点击后，老内核可能：
-           (a) audio 的 play 事件不触发 / 时序异常；
-           (b) 合成 click 未真正点燃原应用的播放链路。
-           这里做兜底：120ms 后若播放页仍未打开，点 #mini 触发 openNowPlaying。 */
         var playable = target.closest(".album") || target.closest(".song") ||
                        target.closest(".ch-item") || target.closest(".pl-card") ||
                        target.closest(".duo-card") || target.id === "guessCard" || target.id === "radarCard";
-        diagLines.push("playable=" + !!playable);
+        okLines.push("playable=" + !!playable);
+        showDiag(okLines);
         if (playable) {
-          setTimeout(function () {
-            var np = $("np");
-            var npOpen = np && np.classList.contains("open");
-            diagLines.push("npOpen@120=" + npOpen);
-            if (!npOpen) {
-              var mini = $("mini");
-              diagLines.push("mini.show=" + (mini && mini.classList.contains("show")) + " display=" + (mini ? getComputedStyle(mini).display : "none"));
-              var miniClicked = false;
-              if (mini) {
-                try { mini.click(); miniClicked = true; } catch (e3) { diagLines.push("miniClickErr"); }
-              }
-              setTimeout(function () {
-                var np2 = $("np");
-                var open2 = np2 && np2.classList.contains("open");
-                diagLines.push("npOpen@280(after mini.click)=" + open2);
-                if (!open2) {
-                  /* 最后兜底：直接 replicate openNowPlaying 的核心动作
-                     （原应用 openNowPlaying 在 IIFE 内不可全局调用，等价于：
-                      移除 closing/lyrics-full → 加 open → 同步歌词 → pushState） */
-                  if (np2) {
-                    np2.classList.remove("closing", "lyrics-full");
-                    np2.style.transform = "";
-                    np2.style.opacity = "";
-                    np2.style.transition = "";
-                    np2.classList.add("open");
-                    try { history.pushState({ aqNp: 1 }, "", "#player"); } catch (eh) {}
-                  }
-                  diagLines.push("npOpen@440(direct addClass)=" + (np2 && np2.classList.contains("open")));
-                }
-                showDiag(diagLines);
-              }, 160);
-            } else {
-              showDiag(diagLines);
-            }
-          }, 120);
+          ensureNowPlaying("keydown-OK");
         }
       }
     }
