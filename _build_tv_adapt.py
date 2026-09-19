@@ -549,55 +549,103 @@ JS = r'''
 
     var ar = act.getBoundingClientRect();
     var ax = (ar.left + ar.right) / 2, ay = (ar.top + ar.bottom) / 2;
-    var best = null, bestScore = Infinity, innerBest = null, innerScore = Infinity, relaxBest = null, relaxScore = Infinity;
+    /* 评分改用"沿轴中心距离"而不是边缘间距 edge：
+       焦点环给卡片加了 scale(1.07)，放大后当前卡会与紧邻卡边缘重叠，
+       若用 edge 分档，相邻卡会因 edge≤0 被降级、隔一张的卡反而胜出 → 跳卡。
+       中心距离不受 scale 影响，相邻卡 along 最小，永远不会被跳过。 */
+    var strictBest = null, strictScore = Infinity;
+    var relaxBest = null, relaxScore = Infinity;
+    var isHorz = dir === "left" || dir === "right";
+    var rowCandidates = [];   // 全部候选坐标，供"行序换行"使用（不能只收半平面内的）
 
     for (var i = 0; i < list.length; i++) {
       var el = list[i];
       if (el === act) continue;
       var r = el.getBoundingClientRect();
       var cx = (r.left + r.right) / 2, cy = (r.top + r.bottom) / 2;
-      var along = 0, cross = 0, edge = 0, half = false, contained = act.contains(el);
-      if (dir === "right") { along = cx - ax; cross = Math.abs(cy - ay); edge = r.left - ar.right; half = cx > ax - 6; }
-      else if (dir === "left") { along = ax - cx; cross = Math.abs(cy - ay); edge = ar.left - r.right; half = cx < ax + 6; }
-      else if (dir === "down") { along = cy - ay; cross = Math.abs(cx - ax); edge = r.top - ar.bottom; half = cy > ay - 6; }
-      else { along = ay - cy; cross = Math.abs(cx - ax); edge = ar.top - r.bottom; half = cy < ay + 6; }
-      if (!half) continue;
-      /* "同排硬性 cross 上限" —— 当当前元素或候选属于 album/duo-card/pl-card 这类大卡片时，
-         只选同一水平行的候选；否则会被下面的 song-more / plat-btn 等跨层"低 edge"候选抢走。
-         阈值收紧到 min(当前/候选元素高) * 0.35，精确匹配同一视觉行。
-         song-more 等小按钮豁免（它们自身 height 只有 20~30px，乘 0.35 反而太小）。 */
-      var isBigCard = el.classList.contains("album") || el.classList.contains("duo-card") ||
-                      el.classList.contains("radar-card") || el.classList.contains("guess-card") ||
-                      el.classList.contains("pl-card") || el.classList.contains("ch-item") ||
-                      el.classList.contains("song") ||
-                      act.classList.contains("album") || act.classList.contains("duo-card") ||
-                      act.classList.contains("radar-card") || act.classList.contains("guess-card") ||
-                      act.classList.contains("pl-card") || act.classList.contains("ch-item") ||
-                      act.classList.contains("song");
-      var isTinyBtn = el.classList.contains("song-more") || act.classList.contains("song-more");
-      if (isBigCard && !isTinyBtn) {
-        var rowTolerance = Math.max(18, Math.min(ar.height, r.height) * 0.35);
-        if (cross > rowTolerance) continue;
-      }
-      /* 方向键分轴硬筛：左右键只考虑同水平行（cross 小），上下键只考虑同列（edge 沿轴）
-         —— 进一步防止"右按却跳到下一行"的误判 */
-      if (dir === "left" || dir === "right") {
-        var horzTolerance = Math.max(24, Math.min(ar.height, r.height) * 0.45);
-        if (cross > horzTolerance) continue;
-      }
-      var score = edge + cross * 1.7;
-      if (edge > -4) {
-        if (score < bestScore) { bestScore = score; best = el; }
-      } else if (contained) {
-        /* 当前元素内部的小按钮（如歌曲行右侧的“更多”） */
-        var s = Math.max(edge, -ar.width * 0.8) + cross;
-        if (s < innerScore) { innerScore = s; innerBest = el; }
-      } else {
-        var rs = Math.max(edge, -ar.width * 0.55) + cross * 1.7;
-        if (rs < relaxScore) { relaxScore = rs; relaxBest = el; }
+      rowCandidates.push({ el: el, cx: cx, cy: cy });
+      var along = 0, cross = 0, half = false;
+      if (dir === "right") { along = cx - ax; cross = Math.abs(cy - ay); half = cx > ax - 6; }
+      else if (dir === "left") { along = ax - cx; cross = Math.abs(cy - ay); half = cx < ax + 6; }
+      else if (dir === "down") { along = cy - ay; cross = Math.abs(cx - ax); half = cy > ay - 6; }
+      else { along = ay - cy; cross = Math.abs(cx - ax); half = cy < ay + 6; }
+      if (!half || along < -6) continue;
+
+      /* 同排/同列 cross 容差：以两元素中较小尺寸为基准。
+         左右键比对高度（同一水平行），上下键比对宽度（同一列）。
+         严格档 0.45，放宽档 1.1（用于错位布局的兜底，绝不跨整行抢焦）。 */
+      var baseSize = isHorz ? Math.min(ar.height, r.height) : Math.min(ar.width, r.width);
+      var strictTol = Math.max(22, baseSize * 0.45);
+      var relaxTol = Math.max(60, baseSize * 1.1);
+
+      var score = along + cross * 1.7;
+      if (cross <= strictTol) {
+        if (score < strictScore) { strictScore = score; strictBest = el; }
+      } else if (cross <= relaxTol) {
+        if (score < relaxScore) { relaxScore = score; relaxBest = el; }
       }
     }
-    focusEl(best || innerBest || relaxBest);
+
+    var target = strictBest;
+
+    /* grid/flex 换行布局的"阅读顺序换行"：
+       右向走到行尾时，跳到下一行最左侧元素（而不是斜跳到下一行同列，
+       那样视觉上像跳过了一整行卡片）；左向同理回上一行最右侧。
+       已在最后一行/第一行时停在边界，不做斜向回跳（避免首尾振荡）。 */
+    if (!target && isHorz) {
+      /* 换行只在"同一布局容器"内寻找（如 #recRow 网格），
+         避免选中固定侧栏 dock、隔壁区块按钮等几何上更近但不相关的元素；
+         找不到网格容器时退回到当前 .page 作用域 */
+      var scope = null;
+      var pp = act.parentElement, hops = 0;
+      while (pp && pp !== document.body && hops < 4) {
+        var pd = getComputedStyle(pp).display;
+        if ((pd.indexOf("grid") === 0 || pd.indexOf("flex") === 0) && pp.children.length >= 3) { scope = pp; break; }
+        pp = pp.parentElement; hops++;
+      }
+      if (!scope && act.closest) scope = act.closest(".page");
+
+      var scoped = [];
+      for (var k1 = 0; k1 < rowCandidates.length; k1++) {
+        var cc = rowCandidates[k1];
+        if (scope && scope.contains(cc.el)) scoped.push(cc);
+      }
+      if (!scoped.length) scoped = rowCandidates;
+
+      var rowGap = ar.height * 0.5;
+      /* 先找最近的下/上一行的 cy，再在该行内取最左/最右 */
+      var nearestCy = null;
+      for (var k2 = 0; k2 < scoped.length; k2++) {
+        var d = scoped[k2];
+        if (dir === "right") {
+          if (d.cy <= ay + rowGap) continue;
+          if (nearestCy === null || d.cy < nearestCy) nearestCy = d.cy;
+        } else {
+          if (d.cy >= ay - rowGap) continue;
+          if (nearestCy === null || d.cy > nearestCy) nearestCy = d.cy;
+        }
+      }
+      if (nearestCy !== null) {
+        var sameRowTol = ar.height * 0.5;
+        var wrapBest2 = null, wrapKey2 = null;
+        for (var k3 = 0; k3 < scoped.length; k3++) {
+          var e = scoped[k3];
+          if (Math.abs(e.cy - nearestCy) > sameRowTol) continue;
+          if (dir === "right") {
+            if (wrapKey2 === null || e.cx < wrapKey2) { wrapKey2 = e.cx; wrapBest2 = e.el; }
+          } else {
+            if (wrapKey2 === null || e.cx > wrapKey2) { wrapKey2 = e.cx; wrapBest2 = e.el; }
+          }
+        }
+        target = wrapBest2;   /* 没有上/下一行时为 null → 停在边界 */
+      }
+    }
+
+    /* 上下方向仍允许放宽档兜底（不同区块间可能有列偏移）；
+       水平方向不再用斜向 relax，防止跨行跳卡 */
+    if (!target && !isHorz) target = relaxBest;
+
+    focusEl(target);
   }
 
   /* ---------- 弹层开关感知：自动落焦 / 关闭回焦 ---------- */
@@ -630,6 +678,27 @@ JS = r'''
     new MutationObserver(function () {
       if (tvMode && dock.classList.contains("collapsed")) dock.classList.remove("collapsed");
     }).observe(dock, { attributes: true, attributeFilter: ["class"] });
+  })();
+
+  /* TV 模式点播后自动进入播放页：
+     原应用的手机交互是"点卡片只出声，再上滑/点迷你条才打开播放页"，
+     TV 无触摸手势且横屏下迷你条被隐藏，导致只闻其声不见播放页。
+     这里监听音频真正开始播放（URL 异步解析完成）的时机，
+     若播放页未打开，则复用原应用入口（点击 #mini 非按钮区 → openNowPlaying）。 */
+  (function () {
+    var audioEl = $("audio");
+    if (!audioEl) return;
+    audioEl.addEventListener("play", function () {
+      if (!tvMode) return;
+      var np = $("np");
+      if (np && np.classList.contains("open")) return;
+      var mini = $("mini");
+      if (mini) {
+        setTimeout(function () {
+          try { mini.click(); } catch (e) {}
+        }, 30);
+      }
+    });
   })();
 
   /* 焦点堆栈：每个弹层打开时压栈记录来源焦点，关闭时逐层回焦
