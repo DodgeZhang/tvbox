@@ -9573,6 +9573,49 @@ function paintNow(song) {
     if (playable) ensureNowPlaying("click");
   }, true);
 
+  /* ---------- 拦截 popstate：弹层打开时遥控器返回键不应关闭播放页 ----------
+     原应用 openNowPlaying 时 pushState("#player")，并监听 popstate 关播放页。
+     TCL/Android TV 遥控器返回键会触发 WebView history.back() → popstate，
+     导致音质/列表弹框开着时按返回，播放页被原应用直接关闭。
+     双重保险：
+     1) popstate 捕获阶段拦截 + 恢复 #player 历史
+     2) MutationObserver 兜底：弹层开着时若 #np.open 被移除，立即加回 */
+  var _overlayJustClosed = 0;
+  window.addEventListener("popstate", function (e) {
+    if (!tvMode) return;
+    var now = Date.now();
+    var hasOverlay = !!document.querySelector(".src-editor-mask.open") ||
+                     !!(($("qPop") && $("qPop").classList.contains("open")) || ($("qPopMask") && $("qPopMask").classList.contains("open"))) ||
+                     !!($("sheetMask") && $("sheetMask").classList.contains("open")) ||
+                     !!($("platWrap") && $("platWrap").classList.contains("open"));
+    if (hasOverlay || (now - _overlayJustClosed) < 600) {
+      e.stopImmediatePropagation();
+      try { history.pushState({ aqNp: 1 }, "", "#player"); } catch (eh) {}
+      showDiag(["popstate blocked (overlay open/recently closed)"]);
+    }
+  }, true);
+
+  /* MutationObserver 兜底：弹层打开时，若原应用强行移除 #np.open，立即加回 */
+  (function () {
+    var npEl = $("np");
+    if (!npEl) return;
+    var _suppress = false;
+    new MutationObserver(function () {
+      if (!tvMode || _suppress) return;
+      var hasOverlay = !!document.querySelector(".src-editor-mask.open") ||
+                       !!(($("qPop") && $("qPop").classList.contains("open")) || ($("qPopMask") && $("qPopMask").classList.contains("open"))) ||
+                       !!($("sheetMask") && $("sheetMask").classList.contains("open")) ||
+                       !!($("platWrap") && $("platWrap").classList.contains("open"));
+      if ((hasOverlay || (Date.now() - _overlayJustClosed) < 600) && !npEl.classList.contains("open")) {
+        _suppress = true;
+        npEl.classList.add("open");
+        npEl.classList.remove("closing");
+        showDiag(["np.open restored (overlay active)"]);
+        setTimeout(function () { _suppress = false; }, 50);
+      }
+    }).observe(npEl, { attributes: true, attributeFilter: ["class"] });
+  })();
+
   /* ---------- SVG 图标渲染修复（老 Chromium 下播放/暂停等 SVG 图标可能歪斜） ----------
      preserveAspectRatio 是 SVG 属性不是 CSS 属性，需在元素上显式设置；
      同时给 play SVG 补 width/height 属性（原文件只设了 CSS 尺寸，老内核可能不认）。 */
@@ -9672,10 +9715,10 @@ function paintNow(song) {
       try { history.back(); } catch (eHb) { var _np = $("np"); if (_np) _np.classList.remove("lyrics-full"); }
       return;
     }
-    if (L.kind === "editor") { click(document.querySelector(".src-editor-mask.open")); return; }
-    if (L.kind === "qpop") { click($("qPopMask")); return; }
-    if (L.kind === "sheet") { click($("sheetMask")); return; }
-    if (L.kind === "plat") { click($("btnPlat")); return; }
+    if (L.kind === "editor") { _overlayJustClosed = Date.now(); click(document.querySelector(".src-editor-mask.open")); return; }
+    if (L.kind === "qpop") { _overlayJustClosed = Date.now(); click($("qPopMask")); return; }
+    if (L.kind === "sheet") { _overlayJustClosed = Date.now(); click($("sheetMask")); return; }
+    if (L.kind === "plat") { _overlayJustClosed = Date.now(); click($("btnPlat")); return; }
     if (L.kind === "np") { click($("npClose")); return; }
     /* 普通页面：非首页先回首页（首页按下无动作，避免误退出网站） */
     if (L.page && L.page.id !== "p-home") {
