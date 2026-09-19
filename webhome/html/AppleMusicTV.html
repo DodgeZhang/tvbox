@@ -2643,6 +2643,43 @@ html.tv-mode .dock .dock-side { display: none !important; }
     margin-left: 0 !important;
   }
 
+  /* ===== 老 TV 内核兼容（Chromium 60-80 常见于电视盒子/智能电视） ===== */
+  /* 1) .album 填满 grid 列（避免固定 172px 在宽屏 minmax(150px,1fr) 多列时溢出重叠）；
+        .album-art 靠图片自然比例保方形（不依赖 aspect-ratio，该属性需 Chromium≥88） */
+  html.tv-mode .h-row .album {
+    width: 100% !important;
+    max-width: none !important;
+    flex-basis: auto !important;
+  }
+  html.tv-mode .album-art {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1;            /* 现代浏览器：方形；老浏览器忽略，<img> 靠自然比例仍方形 */
+  }
+  /* 2) .duo-cover / .duo-mask 用 inset:0 定位（需 Chromium≥87），老内核补全四边 */
+  html.tv-mode .duo-cover,
+  html.tv-mode .duo-mask {
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+  }
+  /* 3) .np-art / 其他使用 CSS min() 的宽度，先给固定兜底值再用 min()；
+        老浏览器丢弃 min() 行、保留兜底值 */
+  html.tv-mode .np-art {
+    width: 320px !important;          /* 兜底：min(72vw,320px) 老内核不认 */
+    width: min(72vw, 320px) !important;
+    height: 320px !important;
+    height: auto !important;
+  }
+  html.tv-mode .np.open .np-art {
+    height: auto !important;
+  }
+  /* 4) flex gap 兜底（Chromium<84 不认 flex gap，用 margin 补偿关键间距） */
+  html.tv-mode .dock .tabbar {
+    margin: 0 !important;
+  }
+
   /* dock：贴左满高侧栏，position:fixed 但视觉上与 body 同色，不像浮层 */
   html.tv-mode .dock {
     position: fixed !important;
@@ -9009,6 +9046,30 @@ function paintNow(song) {
   }
   paint();
 
+  /* ---------- 浏览器能力诊断（方便在 TV 上确认内核版本/特性支持） ---------- */
+  (function diag() {
+    function supports(cssProp) {
+      try { return (window.CSS && CSS.supports) ? CSS.supports(cssProp) : null; }
+      catch (e) { return null; }
+    }
+    var info = {
+      ua: ua,
+      tvMode: tvMode,
+      coarse: coarse,
+      vw: window.innerWidth, vh: window.innerHeight,
+      dpr: window.devicePixelRatio || 1,
+      aspectRatio: supports("aspect-ratio: 1"),
+      inset: supports("inset: 0"),
+      cssMin: supports("width: min(1px, 2px)"),
+      backdropFilter: supports("backdrop-filter: blur(1px)"),
+      flexGap: supports("gap: 1px") && supports("display: flex"),
+      grid: supports("display: grid"),
+      customProperties: supports("--x: 0")
+    };
+    try { console.info("[AQ TV] browser capability:", JSON.stringify(info)); } catch (e) {}
+    window.__aqDiag = info;
+  })();
+
   /* 屏幕旋转 / 窗口尺寸变化：用户未显式选择时，进入宽屏横屏自动开 TV 模式 */
   var resizeTimer = 0;
   window.addEventListener("resize", function () {
@@ -9422,7 +9483,19 @@ function paintNow(song) {
     if (el.tagName === "INPUT") return !!TEXT_TYPES[(el.type || "text").toLowerCase()];
     return false;
   }
-  function click(el) { if (el) el.click(); }
+  function click(el) {
+    if (!el) return;
+    /* 老 TV 内核对非表单元素的 .click() 偶发不触发监听，
+       回退到派发真实 MouseEvent（带 bubbles，让原应用的事件委托/onclick 都能收到） */
+    try {
+      el.click();
+    } catch (e1) {
+      try {
+        var ev = new MouseEvent("click", { bubbles: true, cancelable: true, view: window });
+        el.dispatchEvent(ev);
+      } catch (e2) {}
+    }
+  }
 
   function doBack(L) {
     if (L.lyrics) {
@@ -9528,6 +9601,25 @@ function paintNow(song) {
       if (el && el !== document.body && !typing(el)) {
         e.preventDefault();
         click(el);
+        /* TV：可播放卡片点击后，老内核可能：
+           (a) audio 的 play 事件不触发 / 时序异常；
+           (b) 合成 click 未真正点燃原应用的播放链路。
+           这里做兜底：120ms 后若播放页仍未打开，点 #mini 触发 openNowPlaying。
+           原应用 openNowPlaying 幂等，重复触发无副作用。 */
+        if (tvMode) {
+          var playable = el.closest(".album") || el.closest(".song") ||
+                         el.closest(".ch-item") || el.closest(".pl-card") ||
+                         el.closest(".duo-card") || el.id === "guessCard" || el.id === "radarCard";
+          if (playable) {
+            setTimeout(function () {
+              var np = $("np");
+              if (np && !np.classList.contains("open")) {
+                var mini = $("mini");
+                if (mini) { try { mini.click(); } catch (e3) {} }
+              }
+            }, 120);
+          }
+        }
       }
     }
   }, true);
