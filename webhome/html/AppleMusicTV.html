@@ -2594,6 +2594,95 @@ html.tv-mode .np-lyrics.tv-focus {
   html.tv-mode .top-duo { height: 250px; }
 }
 
+/* ---------- TV：dock-side（主页/搜索圆钮）始终恢复可见可聚焦 ---------- */
+/* 原应用仅在 dock collapsed 时让它们可见，展开状态 width:0 opacity:0
+   导致 TV 方向键完全找不到底部导航，这里强制恢复 */
+html.tv-mode .dock-side {
+  position: relative !important;
+  display: grid !important;
+  place-items: center !important;
+  opacity: 1 !important;
+  width: 44px !important;
+  min-width: 44px !important;
+  max-width: 44px !important;
+  height: 44px !important;
+  flex: 0 0 44px !important;
+  pointer-events: auto !important;
+  transform: scale(1) !important;
+  border-width: 0.5px !important;
+  border-radius: 50% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+/* ---------- TV 横屏：dock 移到左侧竖排 ---------- */
+/* TV 遥控器几乎总是横屏；用 aspect ratio + tv-mode 限定，
+   同时 HTML 会挂 .landscape 类（由 JS 监听 orientation + 宽高比） */
+@media (orientation: landscape), (min-aspect-ratio: 16/9) {
+  html.tv-mode .dock {
+    position: fixed !important;
+    left: 10px !important;
+    top: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: translateY(-50%) !important;
+    flex-direction: column !important;
+    width: 68px !important;
+    min-width: 68px !important;
+    max-width: 68px !important;
+    height: auto !important;
+    padding: 10px 6px !important;
+    gap: 10px !important;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.78) 0%, rgba(255,255,255,0.62) 100%);
+    backdrop-filter: saturate(220%) blur(48px);
+    -webkit-backdrop-filter: saturate(220%) blur(48px);
+    border: 0.5px solid rgba(255,255,255,0.55);
+    border-radius: 36px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.09), inset 0 1px 0 rgba(255,255,255,0.95);
+    pointer-events: auto;
+  }
+  /* 竖排 dock 隐藏 mini（播放信息在播放页/迷你播放更有意义） */
+  html.tv-mode .dock .mini { display: none !important; }
+  /* tabbar 竖排 */
+  html.tv-mode .dock .tabbar {
+    flex-direction: column !important;
+    width: 56px !important;
+    height: auto !important;
+    max-height: none !important;
+    border-radius: 28px;
+    overflow: hidden;
+    padding: 4px 0;
+    gap: 2px;
+  }
+  html.tv-mode .dock .tab {
+    flex: 0 0 auto !important;
+    width: 100%;
+    height: 52px;
+    font-size: 9px;
+    gap: 1px;
+  }
+  /* 圆钮侧键 */
+  html.tv-mode .dock .dock-side {
+    width: 40px !important;
+    height: 40px !important;
+    flex: 0 0 40px !important;
+    margin: 0 auto !important;
+  }
+  /* 主内容让出 dock 宽度 */
+  html.tv-mode #app { padding-left: 92px !important; box-sizing: border-box; }
+  html.tv-mode .header { padding-left: 28px !important; }
+  html.tv-mode .page { padding-left: 28px !important; }
+  /* 播放页不受左侧 dock 挤压 */
+  html.tv-mode .np { padding-left: 0 !important; }
+  /* dock 不再需要强制展开——它被固定在侧栏一直可见 */
+  html.tv-mode .dock,
+  html.tv-mode .dock.collapsed {
+    transform: translateY(-50%) !important;
+  }
+}
+
 /* ---------- 模式切换轻提示 ---------- */
 .aq-tip {
   position: fixed; left: 50%; bottom: 130px;
