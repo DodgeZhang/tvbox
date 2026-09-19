@@ -933,27 +933,96 @@ JS = r'''
       var el = document.activeElement;
       if (el && el !== document.body && !typing(el)) {
         e.preventDefault();
-        click(el);
+        /* 老 TV 内核下 activeElement 可能是卡片内部子节点（如 img），
+           取最近的可点击容器再触发，否则 click 落在子节点上原应用不响应 */
+        var target = el.closest(".album,.song,.ch-item,.pl-card,.duo-card,.q-opt,.tab,.chip,.ch-tab,.search-tab,.lib-item,.np-lyrics,.np-art-wrap,.song-more,.q-opt,.plat-btn,.plat-menu button,.ch-refresh,.sec-link,.src-check,.field,.range,input,select,textarea,button,a,[role=button],#mini,#guessCard,#radarCard");
+        if (!target) target = el;
+        var diagLines = [];
+        diagLines.push("OK target=" + (target.className || target.id || target.tagName));
+        click(target);
         /* TV：可播放卡片点击后，老内核可能：
            (a) audio 的 play 事件不触发 / 时序异常；
            (b) 合成 click 未真正点燃原应用的播放链路。
-           这里做兜底：120ms 后若播放页仍未打开，点 #mini 触发 openNowPlaying。
-           原应用 openNowPlaying 幂等，重复触发无副作用。 */
-        if (tvMode) {
-          var playable = el.closest(".album") || el.closest(".song") ||
-                         el.closest(".ch-item") || el.closest(".pl-card") ||
-                         el.closest(".duo-card") || el.id === "guessCard" || el.id === "radarCard";
-          if (playable) {
-            setTimeout(function () {
-              var np = $("np");
-              if (np && !np.classList.contains("open")) {
-                var mini = $("mini");
-                if (mini) { try { mini.click(); } catch (e3) {} }
+           这里做兜底：120ms 后若播放页仍未打开，点 #mini 触发 openNowPlaying。 */
+        var playable = target.closest(".album") || target.closest(".song") ||
+                       target.closest(".ch-item") || target.closest(".pl-card") ||
+                       target.closest(".duo-card") || target.id === "guessCard" || target.id === "radarCard";
+        diagLines.push("playable=" + !!playable);
+        if (playable) {
+          setTimeout(function () {
+            var np = $("np");
+            var npOpen = np && np.classList.contains("open");
+            diagLines.push("npOpen@120=" + npOpen);
+            if (!npOpen) {
+              var mini = $("mini");
+              diagLines.push("mini.show=" + (mini && mini.classList.contains("show")) + " display=" + (mini ? getComputedStyle(mini).display : "none"));
+              var miniClicked = false;
+              if (mini) {
+                try { mini.click(); miniClicked = true; } catch (e3) { diagLines.push("miniClickErr"); }
               }
-            }, 120);
-          }
+              setTimeout(function () {
+                var np2 = $("np");
+                var open2 = np2 && np2.classList.contains("open");
+                diagLines.push("npOpen@280(after mini.click)=" + open2);
+                if (!open2) {
+                  /* 最后兜底：直接 replicate openNowPlaying 的核心动作
+                     （原应用 openNowPlaying 在 IIFE 内不可全局调用，等价于：
+                      移除 closing/lyrics-full → 加 open → 同步歌词 → pushState） */
+                  if (np2) {
+                    np2.classList.remove("closing", "lyrics-full");
+                    np2.style.transform = "";
+                    np2.style.opacity = "";
+                    np2.style.transition = "";
+                    np2.classList.add("open");
+                    try { history.pushState({ aqNp: 1 }, "", "#player"); } catch (eh) {}
+                  }
+                  diagLines.push("npOpen@440(direct addClass)=" + (np2 && np2.classList.contains("open")));
+                }
+                showDiag(diagLines);
+              }, 160);
+            } else {
+              showDiag(diagLines);
+            }
+          }, 120);
         }
       }
+    }
+  }, true);
+
+  /* ---------- 屏幕调试浮层（TV 无 DevTools，常驻显示能力信息 + 最近交互） ---------- */
+  var diagEl = null;
+  var diagLines = ["[AQ TV diag] ready"];
+  function showDiag(extra) {
+    if (extra && extra.length) diagLines = diagLines.concat(extra);
+    if (diagLines.length > 20) diagLines = diagLines.slice(-20);
+    if (!diagEl) {
+      diagEl = document.createElement("div");
+      diagEl.id = "aq-diag";
+      diagEl.style.cssText = "position:fixed;right:12px;top:12px;z-index:999999;background:rgba(0,0,0,.72);color:#7CFC00;font:11px/1.45 monospace;padding:7px 10px;border-radius:6px;max-width:380px;max-height:60vh;overflow:auto;white-space:pre-wrap;pointer-events:none;";
+      document.body.appendChild(diagEl);
+    }
+    diagEl.textContent = diagLines.join("\n");
+    if (tvMode) diagEl.style.display = "block";
+  }
+  /* TV 模式下常驻显示（含浏览器能力信息），便于在 TV 上直接看问题 */
+  if (tvMode) {
+    setTimeout(function () {
+      var d = window.__aqDiag || {};
+      showDiag([
+        "UA=" + (ua || "").slice(0, 60),
+        "vw=" + window.innerWidth + " vh=" + window.innerHeight + " dpr=" + (window.devicePixelRatio || 1),
+        "aspectRatio=" + d.aspectRatio + " inset=" + d.inset + " cssMin=" + d.cssMin,
+        "backdrop=" + d.backdropFilter + " flexGap=" + d.flexGap + " grid=" + d.grid,
+        "press any key to see keyCode"
+      ]);
+    }, 1200);
+  }
+  window.addEventListener("keydown", function (e) {
+    /* 记录所有按键，方便确认遥控器 OK 键到底发什么码 */
+    showDiag(["key=" + (e.key || "?") + " code=" + (e.code || "?") + " kc=" + (e.keyCode || 0)]);
+    if (e.key === "F3") {
+      e.preventDefault();
+      if (diagEl) diagEl.style.display = diagEl.style.display === "none" ? "block" : "none";
     }
   }, true);
 
