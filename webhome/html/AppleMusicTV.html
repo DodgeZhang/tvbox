@@ -9905,42 +9905,9 @@ function paintNow(song) {
     }
   }, true);
 
-  /* ---------- 屏幕调试浮层（TV 无 DevTools，常驻显示能力信息 + 最近交互） ---------- */
-  var diagEl = null;
-  var diagLines = ["[AQ TV diag] ready"];
-  function showDiag(extra) {
-    if (extra && extra.length) diagLines = diagLines.concat(extra);
-    if (diagLines.length > 20) diagLines = diagLines.slice(-20);
-    if (!diagEl) {
-      diagEl = document.createElement("div");
-      diagEl.id = "aq-diag";
-      diagEl.style.cssText = "position:fixed;right:12px;top:12px;z-index:999999;background:rgba(0,0,0,.72);color:#7CFC00;font:11px/1.45 monospace;padding:7px 10px;border-radius:6px;max-width:380px;max-height:60vh;overflow:auto;white-space:pre-wrap;pointer-events:none;";
-      document.body.appendChild(diagEl);
-    }
-    diagEl.textContent = diagLines.join("\n");
-    if (tvMode) diagEl.style.display = "block";
-  }
-  /* TV 模式下常驻显示（含浏览器能力信息），便于在 TV 上直接看问题 */
-  if (tvMode) {
-    setTimeout(function () {
-      var d = window.__aqDiag || {};
-      showDiag([
-        "UA=" + (ua || "").slice(0, 60),
-        "vw=" + window.innerWidth + " vh=" + window.innerHeight + " dpr=" + (window.devicePixelRatio || 1),
-        "aspectRatio=" + d.aspectRatio + " inset=" + d.inset + " cssMin=" + d.cssMin,
-        "backdrop=" + d.backdropFilter + " flexGap=" + d.flexGap + " grid=" + d.grid,
-        "press any key to see keyCode"
-      ]);
-    }, 1200);
-  }
-  window.addEventListener("keydown", function (e) {
-    /* 记录所有按键，方便确认遥控器 OK 键到底发什么码 */
-    showDiag(["key=" + (e.key || "?") + " code=" + (e.code || "?") + " kc=" + (e.keyCode || 0)]);
-    if (e.key === "F3") {
-      e.preventDefault();
-      if (diagEl) diagEl.style.display = diagEl.style.display === "none" ? "block" : "none";
-    }
-  }, true);
+  /* ---------- 屏幕调试浮层已移除（功能稳定后）。浏览器能力信息仍输出到 console，
+     可通过 window.__aqDiag 读取，便于将来排查老内核兼容问题。 ---------- */
+  function showDiag() { /* no-op: 调试浮层已移除，保留函数签名避免调用处报错 */ }
 
   /* TV 设备首次进入时给出一次操作提示 */
   if (tvMode && tvUA && saved !== "1" && saved !== "0") {
