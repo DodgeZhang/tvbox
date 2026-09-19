@@ -270,17 +270,22 @@ html.tv-mode .dock .dock-side { display: none !important; }
 
   /* 5) 播放页控制按钮：原样式依赖 backdrop-filter 毛玻璃（老内核不支持），
         改成实色背景 + 高对比图标，否则按钮在白底上几乎看不见 */
+  html.tv-mode .np-controls {
+    gap: 56px !important;             /* 加大上一曲/播放/下一曲按钮间距 */
+    padding: 12px 20px 18px !important;
+  }
   html.tv-mode .np-controls button {
     background: #f2f2f7 !important;          /* 实色浅灰底，替代毛玻璃 */
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
-    border: 1px solid rgba(0,0,0,0.08) !important;
+    border: 2px solid rgba(0,0,0,0.08) !important;
     color: #1c1c1e !important;                /* 深色图标，确保可见 */
     box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
     /* 老内核 place-items (grid) 居中可能导致图标偏移，改用 flexbox 居中 */
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    transition: background .15s ease, box-shadow .15s ease, border-color .15s ease !important;
   }
   html.tv-mode .np-controls button svg {
     fill: #1c1c1e !important;                 /* SVG 图标强制深色 */
@@ -293,18 +298,25 @@ html.tv-mode .dock .dock-side { display: none !important; }
   html.tv-mode .np-controls .np-play {
     background: #1c1c1e !important;           /* 播放按钮深色底 */
     color: #fff !important;
-    border: 1px solid rgba(0,0,0,0.15) !important;
-    /* 焦点环的 scale(1.07) 会让圆形按钮在老内核上变形/图标歪斜，禁用缩放 */
-    transform: none !important;
-    box-sizing: border-box !important;        /* 确保 84x84 含边框，圆形不变形 */
+    border: 2px solid rgba(0,0,0,0.15) !important;
+    box-sizing: border-box !important;        /* 确保圆形不变形 */
   }
   html.tv-mode .np-controls .np-play svg {
     fill: #fff !important;                    /* 播放按钮内白色图标 */
   }
-  /* 播放页所有控制按钮禁用焦点环缩放，只保留描边提示 */
-  html.tv-mode .np-controls .tv-focus,
-  html.tv-mode .np-tools .tv-focus {
+  /* 控制按钮焦点高亮：用边框变色 + 外发光，不用 scale（避免圆形/图标变形） */
+  html.tv-mode .np-controls .tv-focus {
     transform: none !important;
+    outline: none !important;
+    border-color: #fa2d48 !important;
+    box-shadow: 0 0 0 5px rgba(250,45,72,0.28), 0 6px 18px rgba(250,45,72,0.25) !important;
+  }
+  html.tv-mode .np-controls .np-play.tv-focus {
+    background: #fa2d48 !important;           /* 播放按钮聚焦时变粉红，最醒目 */
+    border-color: #fa2d48 !important;
+  }
+  html.tv-mode .np-controls .np-play.tv-focus svg {
+    fill: #fff !important;
   }
   /* 底部工具栏同样去毛玻璃 */
   html.tv-mode .np-tools {
@@ -314,9 +326,20 @@ html.tv-mode .dock .dock-side { display: none !important; }
   }
   html.tv-mode .np-tools button {
     color: #1c1c1e !important;
+    border-radius: 12px !important;
+    transition: background .15s ease !important;
   }
   html.tv-mode .np-tools button svg {
     fill: #1c1c1e !important;
+  }
+  html.tv-mode .np-tools .tv-focus {
+    transform: none !important;
+    outline: none !important;
+    background: rgba(250,45,72,0.12) !important;
+    color: #fa2d48 !important;
+  }
+  html.tv-mode .np-tools .tv-focus svg {
+    fill: #fa2d48 !important;
   }
 
   /* dock：贴左满高侧栏，position:fixed 但视觉上与 body 同色，不像浮层 */
@@ -547,8 +570,10 @@ JS = r'''
   function layer() {
     var ed = document.querySelector(".src-editor-mask.open");
     if (ed) return { kind: "editor", roots: [ed] };
-    var qp = $("qPop");
-    if (qp && qp.classList.contains("open")) return { kind: "qpop", roots: [qp] };
+    /* 音质弹框：#qPopMask 同步加 .open，#qPop 下一帧才加，两个都要检查避免漏判 */
+    var qp = $("qPop"), qpm = $("qPopMask");
+    var qpOpen = (qp && qp.classList.contains("open")) || (qpm && qpm.classList.contains("open"));
+    if (qpOpen) return { kind: "qpop", roots: [qp && qp.classList.contains("open") ? qp : (qpm || qp)] };
     var sm = $("sheetMask");
     if (sm && sm.classList.contains("open")) return { kind: "sheet", roots: [$("sheetBody")] };
     var pw = $("platWrap");
@@ -787,7 +812,7 @@ JS = r'''
   function sig() {
     return {
       editor: !!document.querySelector(".src-editor-mask.open"),
-      qpop: !!($("qPop") && $("qPop").classList.contains("open")),
+      qpop: !!((($("qPop") && $("qPop").classList.contains("open")) || ($("qPopMask") && $("qPopMask").classList.contains("open")))),
       sheet: !!($("sheetMask") && $("sheetMask").classList.contains("open")),
       plat: !!($("platWrap") && $("platWrap").classList.contains("open")),
       np: !!($("np") && $("np").classList.contains("open")),
