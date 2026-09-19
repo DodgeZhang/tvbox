@@ -2594,92 +2594,124 @@ html.tv-mode .np-lyrics.tv-focus {
   html.tv-mode .top-duo { height: 250px; }
 }
 
-/* ---------- TV：dock-side（主页/搜索圆钮）始终恢复可见可聚焦 ---------- */
-/* 原应用仅在 dock collapsed 时让它们可见，展开状态 width:0 opacity:0
-   导致 TV 方向键完全找不到底部导航，这里强制恢复 */
-html.tv-mode .dock-side {
-  position: relative !important;
-  display: grid !important;
-  place-items: center !important;
-  opacity: 1 !important;
-  width: 44px !important;
-  min-width: 44px !important;
-  max-width: 44px !important;
-  height: 44px !important;
-  flex: 0 0 44px !important;
-  pointer-events: auto !important;
-  transform: scale(1) !important;
-  border-width: 0.5px !important;
-  border-radius: 50% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: visible !important;
-}
+/* ---------- TV：统一隐藏 dock-side（主页/搜索圆钮） ---------- */
+/* dock-side 是原应用底部 dock collapsed 时才显示的冗余入口；
+   TV 模式下 dock 始终展开，tabbar（主页/搜索/资料库/设置）已覆盖全部导航，
+   两个 .dock-side 与 tab 完全重复，直接隐藏 */
+html.tv-mode .dock .dock-side { display: none !important; }
 
-/* ---------- TV 横屏：dock 移到左侧竖排 ---------- */
-/* TV 遥控器几乎总是横屏；用 aspect ratio + tv-mode 限定，
-   同时 HTML 会挂 .landscape 类（由 JS 监听 orientation + 宽高比） */
+/* ---------- TV 横屏：dock 变成左侧满高侧栏 ---------- */
+/* 覆盖原 10-foot 媒体查询的 max-width（920/1240/1920px）让页面铺满；
+   dock 用 position:fixed 贴左但不做悬浮胶囊（纯色 + 0 圆角 + 无阴影），
+   主内容靠 #app padding-left 让位，header + .page 保持正常垂直堆叠。 */
 @media (orientation: landscape), (min-aspect-ratio: 16/9) {
+  /* 清除原 820/1280/1800 段给 #app 设置的 max-width 限制 */
+  html.tv-mode #app {
+    max-width: none !important;
+    width: 100% !important;
+    padding-left: 96px !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    box-sizing: border-box;
+  }
+  /* header / .page 不再受 10-foot 段的 max-width 限制 */
+  html.tv-mode .header,
+  html.tv-mode .page {
+    width: 100% !important;
+    max-width: none !important;
+    padding-left: 4px !important;
+    padding-right: 16px !important;
+    box-sizing: border-box;
+  }
+  html.tv-mode .header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+  html.tv-mode .header h1 {
+    font-size: 26px !important;
+    margin: 0 !important;
+  }
+  html.tv-mode .header-btns {
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    margin-left: auto;
+    gap: 8px;
+  }
+  html.tv-mode .header-btns .plat-btn {
+    margin-left: 0 !important;
+  }
+
+  /* dock：贴左满高侧栏，position:fixed 但视觉上与 body 同色，不像浮层 */
   html.tv-mode .dock {
     position: fixed !important;
-    left: 10px !important;
-    top: 50% !important;
+    order: unset !important;
+    left: 0 !important;
     right: auto !important;
-    bottom: auto !important;
-    transform: translateY(-50%) !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    transform: none !important;
+    width: 80px !important;
+    min-width: 80px !important;
+    max-width: 80px !important;
+    height: 100vh !important;
+    flex: none !important;
     flex-direction: column !important;
-    width: 68px !important;
-    min-width: 68px !important;
-    max-width: 68px !important;
-    height: auto !important;
-    padding: 10px 6px !important;
-    gap: 10px !important;
-    background:
-      linear-gradient(180deg, rgba(255,255,255,0.78) 0%, rgba(255,255,255,0.62) 100%);
-    backdrop-filter: saturate(220%) blur(48px);
-    -webkit-backdrop-filter: saturate(220%) blur(48px);
-    border: 0.5px solid rgba(255,255,255,0.55);
-    border-radius: 36px;
-    box-shadow: 0 10px 28px rgba(0,0,0,0.09), inset 0 1px 0 rgba(255,255,255,0.95);
+    gap: 0 !important;
+    padding: 16px 0 16px 0 !important;
+    margin: 0 !important;
+    background: var(--surface) !important;
+    border-right: 0.5px solid rgba(0,0,0,0.08) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    z-index: 20;
     pointer-events: auto;
   }
-  /* 竖排 dock 隐藏 mini（播放信息在播放页/迷你播放更有意义） */
-  html.tv-mode .dock .mini { display: none !important; }
-  /* tabbar 竖排 */
-  html.tv-mode .dock .tabbar {
+  html.tv-mode .dock.collapsed {
     flex-direction: column !important;
-    width: 56px !important;
-    height: auto !important;
+    gap: 0 !important;
+    background: var(--surface) !important;
+  }
+  /* mini 隐藏（播放信息在播放页更合适） */
+  html.tv-mode .dock .mini { display: none !important; }
+  /* tabbar 作为侧栏主体，撑满全高，四个 tab 均匀分布 */
+  html.tv-mode .dock .tabbar {
+    flex: 1 1 auto !important;
+    width: 80px !important;
+    min-width: 80px !important;
+    max-width: 80px !important;
+    height: 100% !important;
+    flex-direction: column !important;
+    justify-content: space-evenly !important;
+    align-items: center !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    gap: 0 !important;
     max-height: none !important;
-    border-radius: 28px;
-    overflow: hidden;
-    padding: 4px 0;
-    gap: 2px;
+    overflow: visible !important;
   }
   html.tv-mode .dock .tab {
     flex: 0 0 auto !important;
-    width: 100%;
-    height: 52px;
-    font-size: 9px;
-    gap: 1px;
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50%;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    font-size: 10px;
+    color: var(--label-2);
+    transition: color .2s ease, background .2s ease;
   }
-  /* 圆钮侧键 */
-  html.tv-mode .dock .dock-side {
-    width: 40px !important;
-    height: 40px !important;
-    flex: 0 0 40px !important;
-    margin: 0 auto !important;
-  }
-  /* 主内容让出 dock 宽度 */
-  html.tv-mode #app { padding-left: 92px !important; box-sizing: border-box; }
-  html.tv-mode .header { padding-left: 28px !important; }
-  html.tv-mode .page { padding-left: 28px !important; }
-  /* 播放页不受左侧 dock 挤压 */
-  html.tv-mode .np { padding-left: 0 !important; }
-  /* dock 不再需要强制展开——它被固定在侧栏一直可见 */
-  html.tv-mode .dock,
-  html.tv-mode .dock.collapsed {
-    transform: translateY(-50%) !important;
+  html.tv-mode .dock .tab svg { width: 26px; height: 26px; }
+  html.tv-mode .dock .tab.on {
+    color: var(--pink);
+    background: rgba(250, 45, 72, 0.08);
   }
 }
 
@@ -9162,6 +9194,29 @@ function paintNow(song) {
       else if (dir === "down") { along = cy - ay; cross = Math.abs(cx - ax); edge = r.top - ar.bottom; half = cy > ay - 6; }
       else { along = ay - cy; cross = Math.abs(cx - ax); edge = ar.top - r.bottom; half = cy < ay + 6; }
       if (!half) continue;
+      /* "同排硬性 cross 上限" —— 当当前元素或候选属于 album/duo-card/pl-card 这类大卡片时，
+         只选同一水平行的候选；否则会被下面的 song-more / plat-btn 等跨层"低 edge"候选抢走。
+         阈值收紧到 min(当前/候选元素高) * 0.35，精确匹配同一视觉行。
+         song-more 等小按钮豁免（它们自身 height 只有 20~30px，乘 0.35 反而太小）。 */
+      var isBigCard = el.classList.contains("album") || el.classList.contains("duo-card") ||
+                      el.classList.contains("radar-card") || el.classList.contains("guess-card") ||
+                      el.classList.contains("pl-card") || el.classList.contains("ch-item") ||
+                      el.classList.contains("song") ||
+                      act.classList.contains("album") || act.classList.contains("duo-card") ||
+                      act.classList.contains("radar-card") || act.classList.contains("guess-card") ||
+                      act.classList.contains("pl-card") || act.classList.contains("ch-item") ||
+                      act.classList.contains("song");
+      var isTinyBtn = el.classList.contains("song-more") || act.classList.contains("song-more");
+      if (isBigCard && !isTinyBtn) {
+        var rowTolerance = Math.max(18, Math.min(ar.height, r.height) * 0.35);
+        if (cross > rowTolerance) continue;
+      }
+      /* 方向键分轴硬筛：左右键只考虑同水平行（cross 小），上下键只考虑同列（edge 沿轴）
+         —— 进一步防止"右按却跳到下一行"的误判 */
+      if (dir === "left" || dir === "right") {
+        var horzTolerance = Math.max(24, Math.min(ar.height, r.height) * 0.45);
+        if (cross > horzTolerance) continue;
+      }
       var score = edge + cross * 1.7;
       if (edge > -4) {
         if (score < bestScore) { bestScore = score; best = el; }
