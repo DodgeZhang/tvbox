@@ -9394,17 +9394,20 @@ function paintNow(song) {
       var along = 0, cross = 0, half = false;
       /* 横向移动必须严格在左/右半平面（cx 必须大于/小于当前中心），
          避免 dock 侧栏同列的下方 tab 因 along≈0 抢焦（用户按右键却下移）。
-         容差仅 2px 应对亚像素，不再用 -6/+6。 */
+         上下方向同理严格在上/下半平面，避免同行卡片被误判为上下候选
+         （如"为你推荐"grid 内按上键却在同行卡间来回跳）。
+         容差仅 2px 应对亚像素。 */
       if (dir === "right") { along = cx - ax; cross = Math.abs(cy - ay); half = cx > ax + 2; }
       else if (dir === "left") { along = ax - cx; cross = Math.abs(cy - ay); half = cx < ax - 2; }
-      else if (dir === "down") { along = cy - ay; cross = Math.abs(cx - ax); half = cy > ay - 6; }
-      else { along = ay - cy; cross = Math.abs(cx - ax); half = cy < ay + 6; }
+      else if (dir === "down") { along = cy - ay; cross = Math.abs(cx - ax); half = cy > ay + 2; }
+      else { along = ay - cy; cross = Math.abs(cx - ax); half = cy < ay - 2; }
       if (!half || along < -6) continue;
 
-      /* 同排/同列 cross 容差：以两元素中较小尺寸为基准。
-         左右键比对高度（同一水平行），上下键比对宽度（同一列）。
-         严格档 0.45，放宽档 1.1（用于错位布局的兜底，绝不跨整行抢焦）。 */
-      var baseSize = isHorz ? Math.min(ar.height, r.height) : Math.min(ar.width, r.width);
+      /* 同排/同列 cross 容差：
+         - 左右键比对高度（同一水平行），取较小高度，避免跨行抢焦
+         - 上下键比对宽度（同一列），取较大宽度，因为不同行的元素宽度可能差异很大
+           （如上方大卡片 600px vs 下方专辑卡 160px），取较小值会导致够不到上方卡片 */
+      var baseSize = isHorz ? Math.min(ar.height, r.height) : Math.max(ar.width, r.width);
       var strictTol = Math.max(22, baseSize * 0.45);
       var relaxTol = Math.max(60, baseSize * 1.1);
 
@@ -9421,53 +9424,95 @@ function paintNow(song) {
     /* grid/flex 换行布局的"阅读顺序换行"：
        右向走到行尾时，跳到下一行最左侧元素（而不是斜跳到下一行同列，
        那样视觉上像跳过了一整行卡片）；左向同理回上一行最右侧。
-       已在最后一行/第一行时停在边界，不做斜向回跳（避免首尾振荡）。 */
+       已在最后一行/第一行时停在边界，不做斜向回跳（避免首尾振荡）。
+       注意：只对 grid 或 flex-row 容器换行，flex-column（如 dock tabbar）
+       的左右键不应上下换行。 */
     if (!target && isHorz) {
-      /* 换行只在"同一布局容器"内寻找（如 #recRow 网格），
-         避免选中固定侧栏 dock、隔壁区块按钮等几何上更近但不相关的元素；
-         找不到网格容器时退回到当前 .page 作用域 */
-      var scope = null;
-      var pp = act.parentElement, hops = 0;
-      while (pp && pp !== document.body && hops < 4) {
-        var pd = getComputedStyle(pp).display;
-        if ((pd.indexOf("grid") === 0 || pd.indexOf("flex") === 0) && pp.children.length >= 3) { scope = pp; break; }
-        pp = pp.parentElement; hops++;
-      }
-      if (!scope && act.closest) scope = act.closest(".page");
+      var inDock = !!(act.closest && act.closest("#dock"));
+      var dockEl = $("dock");
 
-      var scoped = [];
-      for (var k1 = 0; k1 < rowCandidates.length; k1++) {
-        var cc = rowCandidates[k1];
-        if (scope && scope.contains(cc.el)) scoped.push(cc);
-      }
-      if (!scoped.length) scoped = rowCandidates;
-
-      var rowGap = ar.height * 0.5;
-      /* 先找最近的下/上一行的 cy，再在该行内取最左/最右 */
-      var nearestCy = null;
-      for (var k2 = 0; k2 < scoped.length; k2++) {
-        var d = scoped[k2];
-        if (dir === "right") {
-          if (d.cy <= ay + rowGap) continue;
-          if (nearestCy === null || d.cy < nearestCy) nearestCy = d.cy;
-        } else {
-          if (d.cy >= ay - rowGap) continue;
-          if (nearestCy === null || d.cy > nearestCy) nearestCy = d.cy;
+      /* dock ↔ 页面 横向跨越：dock 按右键应进入页面，页面按左键应回到 dock。
+         普通评分因 cross 容差太严（dock tab 与页面卡片垂直距离大）选不中，
+         这里单独处理：取对侧垂直方向最近的元素。 */
+      if (!target && isHorz) {
+        if (inDock && dir === "right") {
+          /* 从 dock 向右：找页面内垂直最近的可聚焦元素 */
+          var pageBest = null, pageDist = Infinity;
+          for (var pi = 0; pi < list.length; pi++) {
+            var pe = list[pi];
+            if (dockEl && dockEl.contains(pe)) continue;
+            if (pe === act) continue;
+            var pr = pe.getBoundingClientRect();
+            var pdy = Math.abs((pr.top + pr.bottom) / 2 - ay);
+            if (pdy < pageDist) { pageDist = pdy; pageBest = pe; }
+          }
+          if (pageBest) target = pageBest;
+        } else if (!inDock && dir === "left") {
+          /* 从页面向左：找 dock 内垂直最近的 tab */
+          var dockBest = null, dockDist = Infinity;
+          for (var di = 0; di < list.length; di++) {
+            var de = list[di];
+            if (dockEl && !dockEl.contains(de)) continue;
+            if (de === act) continue;
+            var dr = de.getBoundingClientRect();
+            var ddy = Math.abs((dr.top + dr.bottom) / 2 - ay);
+            if (ddy < dockDist) { dockDist = ddy; dockBest = de; }
+          }
+          if (dockBest) target = dockBest;
         }
       }
-      if (nearestCy !== null) {
-        var sameRowTol = ar.height * 0.5;
-        var wrapBest2 = null, wrapKey2 = null;
-        for (var k3 = 0; k3 < scoped.length; k3++) {
-          var e = scoped[k3];
-          if (Math.abs(e.cy - nearestCy) > sameRowTol) continue;
-          if (dir === "right") {
-            if (wrapKey2 === null || e.cx < wrapKey2) { wrapKey2 = e.cx; wrapBest2 = e.el; }
-          } else {
-            if (wrapKey2 === null || e.cx > wrapKey2) { wrapKey2 = e.cx; wrapBest2 = e.el; }
+
+      /* 阅读顺序换行：仅 grid / flex-row 容器。
+         找不到这类容器时不换行（边界停住），不回退到 .page，
+         否则 dock（flex-column）的左右键会误跳到 header 里的按钮。 */
+      if (!target) {
+        var scope = null;
+        var pp = act.parentElement, hops = 0;
+        while (pp && pp !== document.body && hops < 4) {
+          var pcs = getComputedStyle(pp);
+          var pd = pcs.display;
+          var pfd = pcs.flexDirection;
+          var isGrid = pd.indexOf("grid") === 0;
+          var isFlexRow = pd.indexOf("flex") === 0 && (pfd === "row" || pfd === "row-reverse");
+          if ((isGrid || isFlexRow) && pp.children.length >= 3) { scope = pp; break; }
+          pp = pp.parentElement; hops++;
+        }
+
+        if (scope) {
+          var scoped = [];
+          for (var k1 = 0; k1 < rowCandidates.length; k1++) {
+            var cc = rowCandidates[k1];
+            if (scope.contains(cc.el)) scoped.push(cc);
+          }
+          if (!scoped.length) scoped = rowCandidates;
+
+          var rowGap = ar.height * 0.5;
+          var nearestCy = null;
+          for (var k2 = 0; k2 < scoped.length; k2++) {
+            var d = scoped[k2];
+            if (dir === "right") {
+              if (d.cy <= ay + rowGap) continue;
+              if (nearestCy === null || d.cy < nearestCy) nearestCy = d.cy;
+            } else {
+              if (d.cy >= ay - rowGap) continue;
+              if (nearestCy === null || d.cy > nearestCy) nearestCy = d.cy;
+            }
+          }
+          if (nearestCy !== null) {
+            var sameRowTol = ar.height * 0.5;
+            var wrapBest2 = null, wrapKey2 = null;
+            for (var k3 = 0; k3 < scoped.length; k3++) {
+              var e = scoped[k3];
+              if (Math.abs(e.cy - nearestCy) > sameRowTol) continue;
+              if (dir === "right") {
+                if (wrapKey2 === null || e.cx < wrapKey2) { wrapKey2 = e.cx; wrapBest2 = e.el; }
+              } else {
+                if (wrapKey2 === null || e.cx > wrapKey2) { wrapKey2 = e.cx; wrapBest2 = e.el; }
+              }
+            }
+            target = wrapBest2;
           }
         }
-        target = wrapBest2;   /* 没有上/下一行时为 null → 停在边界 */
       }
     }
 
@@ -9475,7 +9520,9 @@ function paintNow(song) {
        水平方向不再用斜向 relax，防止跨行跳卡 */
     if (!target && !isHorz) target = relaxBest;
 
-    focusEl(target);
+    /* 找不到目标时保持当前焦点不动（边界停住），不要跳到 pickDefault，
+       否则 dock 左键会误跳到平台按钮等无关元素 */
+    if (target) focusEl(target);
   }
 
   /* ---------- 弹层开关感知：自动落焦 / 关闭回焦 ---------- */
