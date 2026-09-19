@@ -2664,6 +2664,29 @@ html.tv-mode .dock .dock-side { display: none !important; }
     bottom: 0 !important;
     left: 0 !important;
   }
+  /* 2b) 全量 inset:0 兜底：所有原文件用 inset:0 的弹层/页面容器，
+        老内核不认 inset 会导致 #np 播放页等无尺寸不可见。这里统一补全四边。 */
+  html.tv-mode .page,
+  html.tv-mode .np,
+  html.tv-mode .np-bg,
+  html.tv-mode .sheet-mask,
+  html.tv-mode .feature-slide,
+  html.tv-mode .feature-slide .feat-right,
+  html.tv-mode .q-pop-mask,
+  html.tv-mode .src-editor-mask {
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+  }
+  /* 伪元素 inset 兜底（装饰层，不补会导致渐变背景不铺满） */
+  html.tv-mode .np-bg::after,
+  html.tv-mode .np::before {
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+  }
   /* 3) .np-art / 其他使用 CSS min() 的宽度，先给固定兜底值再用 min()；
         老浏览器丢弃 min() 行、保留兜底值 */
   html.tv-mode .np-art {
