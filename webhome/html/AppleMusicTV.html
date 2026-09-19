@@ -9392,8 +9392,11 @@ function paintNow(song) {
       var cx = (r.left + r.right) / 2, cy = (r.top + r.bottom) / 2;
       rowCandidates.push({ el: el, cx: cx, cy: cy });
       var along = 0, cross = 0, half = false;
-      if (dir === "right") { along = cx - ax; cross = Math.abs(cy - ay); half = cx > ax - 6; }
-      else if (dir === "left") { along = ax - cx; cross = Math.abs(cy - ay); half = cx < ax + 6; }
+      /* 横向移动必须严格在左/右半平面（cx 必须大于/小于当前中心），
+         避免 dock 侧栏同列的下方 tab 因 along≈0 抢焦（用户按右键却下移）。
+         容差仅 2px 应对亚像素，不再用 -6/+6。 */
+      if (dir === "right") { along = cx - ax; cross = Math.abs(cy - ay); half = cx > ax + 2; }
+      else if (dir === "left") { along = ax - cx; cross = Math.abs(cy - ay); half = cx < ax - 2; }
       else if (dir === "down") { along = cy - ay; cross = Math.abs(cx - ax); half = cy > ay - 6; }
       else { along = ay - cy; cross = Math.abs(cx - ax); half = cy < ay + 6; }
       if (!half || along < -6) continue;
@@ -9576,11 +9579,33 @@ function paintNow(song) {
   /* ---------- 拦截 popstate：弹层打开时遥控器返回键不应关闭播放页 ----------
      原应用 openNowPlaying 时 pushState("#player")，并监听 popstate 关播放页。
      TCL/Android TV 遥控器返回键会触发 WebView history.back() → popstate，
-     导致音质/列表弹框开着时按返回，播放页被原应用直接关闭。
-     双重保险：
-     1) popstate 捕获阶段拦截 + 恢复 #player 历史
-     2) MutationObserver 兜底：弹层开着时若 #np.open 被移除，立即加回 */
+     且可能不触发 keydown，导致 doBack 不执行、弹框不关、播放页被关。
+     这里在 popstate 捕获阶段直接处理：有弹层则关弹层 + 恢复 #player 历史。
+     配合 MutationObserver 兜底，确保播放页不被关闭。 */
   var _overlayJustClosed = 0;
+  function closeTopOverlay() {
+    if (document.querySelector(".src-editor-mask.open")) {
+      _overlayJustClosed = Date.now();
+      click(document.querySelector(".src-editor-mask.open"));
+      return true;
+    }
+    if (($("qPop") && $("qPop").classList.contains("open")) || ($("qPopMask") && $("qPopMask").classList.contains("open"))) {
+      _overlayJustClosed = Date.now();
+      click($("qPopMask"));
+      return true;
+    }
+    if ($("sheetMask") && $("sheetMask").classList.contains("open")) {
+      _overlayJustClosed = Date.now();
+      click($("sheetMask"));
+      return true;
+    }
+    if ($("platWrap") && $("platWrap").classList.contains("open")) {
+      _overlayJustClosed = Date.now();
+      click($("btnPlat"));
+      return true;
+    }
+    return false;
+  }
   window.addEventListener("popstate", function (e) {
     if (!tvMode) return;
     var now = Date.now();
@@ -9590,8 +9615,10 @@ function paintNow(song) {
                      !!($("platWrap") && $("platWrap").classList.contains("open"));
     if (hasOverlay || (now - _overlayJustClosed) < 600) {
       e.stopImmediatePropagation();
+      /* 真实 TV 返回键可能只触发 popstate 不触发 keydown，这里直接关弹层 */
+      if (hasOverlay) closeTopOverlay();
       try { history.pushState({ aqNp: 1 }, "", "#player"); } catch (eh) {}
-      showDiag(["popstate blocked (overlay open/recently closed)"]);
+      showDiag(["popstate: overlay closed, np kept"]);
     }
   }, true);
 
@@ -9715,10 +9742,10 @@ function paintNow(song) {
       try { history.back(); } catch (eHb) { var _np = $("np"); if (_np) _np.classList.remove("lyrics-full"); }
       return;
     }
-    if (L.kind === "editor") { _overlayJustClosed = Date.now(); click(document.querySelector(".src-editor-mask.open")); return; }
-    if (L.kind === "qpop") { _overlayJustClosed = Date.now(); click($("qPopMask")); return; }
-    if (L.kind === "sheet") { _overlayJustClosed = Date.now(); click($("sheetMask")); return; }
-    if (L.kind === "plat") { _overlayJustClosed = Date.now(); click($("btnPlat")); return; }
+    if (L.kind === "editor" || L.kind === "qpop" || L.kind === "sheet" || L.kind === "plat") {
+      closeTopOverlay();
+      return;
+    }
     if (L.kind === "np") { click($("npClose")); return; }
     /* 普通页面：非首页先回首页（首页按下无动作，避免误退出网站） */
     if (L.page && L.page.id !== "p-home") {
