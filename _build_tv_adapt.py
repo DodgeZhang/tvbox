@@ -268,6 +268,40 @@ html.tv-mode .dock .dock-side { display: none !important; }
     margin: 0 !important;
   }
 
+  /* 5) 播放页控制按钮：原样式依赖 backdrop-filter 毛玻璃（老内核不支持），
+        改成实色背景 + 高对比图标，否则按钮在白底上几乎看不见 */
+  html.tv-mode .np-controls button {
+    background: #f2f2f7 !important;          /* 实色浅灰底，替代毛玻璃 */
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    border: 1px solid rgba(0,0,0,0.08) !important;
+    color: #1c1c1e !important;                /* 深色图标，确保可见 */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+  }
+  html.tv-mode .np-controls button svg {
+    fill: #1c1c1e !important;                 /* SVG 图标强制深色 */
+  }
+  html.tv-mode .np-controls .np-play {
+    background: #1c1c1e !important;           /* 播放按钮深色底 */
+    color: #fff !important;
+    border: 1px solid rgba(0,0,0,0.15) !important;
+  }
+  html.tv-mode .np-controls .np-play svg {
+    fill: #fff !important;                    /* 播放按钮内白色图标 */
+  }
+  /* 底部工具栏同样去毛玻璃 */
+  html.tv-mode .np-tools {
+    background: #f2f2f7 !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  html.tv-mode .np-tools button {
+    color: #1c1c1e !important;
+  }
+  html.tv-mode .np-tools button svg {
+    fill: #1c1c1e !important;
+  }
+
   /* dock：贴左满高侧栏，position:fixed 但视觉上与 body 同色，不像浮层 */
   html.tv-mode .dock {
     position: fixed !important;
