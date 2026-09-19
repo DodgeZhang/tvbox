@@ -8982,15 +8982,25 @@ function paintNow(song) {
   var tvUA = /android[\s_-]?tv|smart[ -]?tv|google[ ]?tv|googletv|aft(t|m|n|b|s|r|d|i|ks|ka|mm|ss)|bravia|vidaa|web0s|netcast|hbbtv|tizen|netrange|opera tv|roku|crkey|ce-html/i.test(ua);
   var coarse = !!(window.matchMedia && matchMedia("(pointer: coarse)").matches) ||
     "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  /* 宽屏横屏判定：宽度达到 10 英尺布局断点(820px)且宽>高。
+     电视盒子几乎总是横屏大屏；触屏笔记本/台式机外接显示器横屏访问时
+     也应直接呈现 TV 适配（侧栏 dock / 焦点导航 / 放大布局）。
+     竖屏手机（宽<820）不会被误判。 */
+  function isWideLandscape() {
+    return window.innerWidth >= 820 && window.innerWidth > window.innerHeight;
+  }
   var saved = null;
   try { saved = localStorage.getItem(LS_KEY); } catch (e) {}
-  var tvMode = saved === "1" ? true : saved === "0" ? false : tvUA;
+  var tvMode = saved === "1" ? true : saved === "0" ? false : (tvUA || isWideLandscape());
+  /* 用户是否已显式选择过模式（localStorage 记忆 或 URL ?tv=x）；
+     显式选择后，resize/旋转不再自动改写，以用户选择为准 */
+  var userChosen = saved === "1" || saved === "0";
 
   /* URL 参数临时/强制指定（并记忆到 localStorage） */
   try {
     var qs = new URLSearchParams(location.search);
-    if (qs.get("tv") === "1") { tvMode = true; try { localStorage.setItem(LS_KEY, "1"); } catch (e) {} }
-    else if (qs.get("tv") === "0") { tvMode = false; try { localStorage.setItem(LS_KEY, "0"); } catch (e) {} }
+    if (qs.get("tv") === "1") { tvMode = true; userChosen = true; try { localStorage.setItem(LS_KEY, "1"); } catch (e) {} }
+    else if (qs.get("tv") === "0") { tvMode = false; userChosen = true; try { localStorage.setItem(LS_KEY, "0"); } catch (e) {} }
   } catch (e) {}
 
   function paint() {
@@ -8998,6 +9008,30 @@ function paintNow(song) {
     docEl.classList.toggle("touch-device", !!coarse);
   }
   paint();
+
+  /* 屏幕旋转 / 窗口尺寸变化：用户未显式选择时，进入宽屏横屏自动开 TV 模式 */
+  var resizeTimer = 0;
+  window.addEventListener("resize", function () {
+    if (userChosen || tvMode) return;
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      if (!tvMode && isWideLandscape()) {
+        tvMode = true;
+        paint();
+        showTip("已进入 TV 遥控模式：方向键移动焦点，OK 确认，F2 可切换");
+        setTimeout(function () { focusDefault(); }, 60);
+      }
+    }, 200);
+  }, { passive: true });
+  window.addEventListener("orientationchange", function () {
+    setTimeout(function () {
+      if (!userChosen && !tvMode && isWideLandscape()) {
+        tvMode = true;
+        paint();
+        setTimeout(function () { focusDefault(); }, 60);
+      }
+    }, 250);
+  }, { passive: true });
 
   /* ---------- 轻提示 ---------- */
   var tipEl = null, tipTimer = 0;
@@ -9011,6 +9045,7 @@ function paintNow(song) {
 
   function toggleTV() {
     tvMode = !tvMode;
+    userChosen = true;
     try { localStorage.setItem(LS_KEY, tvMode ? "1" : "0"); } catch (e) {}
     paint();
     if (tvMode) {
