@@ -127,6 +127,30 @@ def _api_call(endpoint, data):
 CDN_HOST = "https://cdn.g3ejjm8m.com"
 
 
+def _fmt_score(score):
+    # "7.00" -> "7.0"，"5.00" -> "5.0"，无效 -> ""
+    try:
+        v = float(score or 0)
+        return ("%.1f" % v) if v > 0 else ""
+    except Exception:
+        return ""
+
+
+def _make_remarks(item):
+    # 官网卡片角标实际展示：年份 + 评分（列表接口不提供集数/清晰度）
+    year = str(item.get("release_at", "") or "").strip()
+    score = _fmt_score(item.get("score"))
+    parts = []
+    if year and year != "0":
+        parts.append(year)
+    if score:
+        parts.append(score + "分")
+    if parts:
+        return " · ".join(parts)
+    # 搜索联想接口字段较少，退回到分类名
+    return item.get("child_title", "") or item.get("category", "") or ""
+
+
 def _parse_item(item):
     pic = item.get("img_x_source") or item.get("img_x") or item.get("img") or ""
     if pic and pic.startswith("/"):
@@ -135,7 +159,7 @@ def _parse_item(item):
         "vod_id": item.get("id", ""),
         "vod_name": item.get("name", "") or "",
         "vod_pic": pic,
-        "vod_remarks": item.get("status") or item.get("child_title") or item.get("release_at") or "",
+        "vod_remarks": _make_remarks(item),
     }
     return vod
 
@@ -197,6 +221,16 @@ class Spider(Spider):
             if not res:
                 return {"list": []}
             data = res.get("data", {}) if isinstance(res, dict) else {}
+            links = data.get("links", []) or []
+            play_links = data.get("play_links", []) or []
+            # 详情角标：多集显示总集数，单片显示 HD
+            ep_count = len(links)
+            if ep_count > 1:
+                remarks = "共%d集" % ep_count
+            elif ep_count == 1:
+                remarks = "HD"
+            else:
+                remarks = str(data.get("release_at", "") or "")
             d = {
                 "vod_id": vid,
                 "vod_name": data.get("name", "") or "",
@@ -207,12 +241,10 @@ class Spider(Spider):
                 "vod_director": data.get("director", "") or "",
                 "vod_actor": data.get("actor", "") or "",
                 "vod_content": data.get("description", "") or "",
-                "vod_remarks": data.get("status", "") or "",
+                "vod_remarks": remarks,
                 "vod_play_from": "",
                 "vod_play_url": "",
             }
-            links = data.get("links", []) or []
-            play_links = data.get("play_links", []) or []
             if links:
                 # 用播放线路名作为 vod_play_from
                 line_names = [pl.get("name") or "线路%d" % (i + 1) for i, pl in enumerate(play_links)]
