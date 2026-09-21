@@ -64,7 +64,7 @@ CATEGORIES = [
 # 筛选维度（从 /vodshow/id/dianying.html 提取，全站通用）
 # type 切换分类 id；class/area/year/by 为附加筛选
 # URL 形如 /vodshow/class/{class}/area/{area}/by/{by}/id/{id}/year/{year}/page/{pg}.html
-FILTERS = {
+_FILTER_OPTS = {
     "type": [
         {"n": "全部", "v": ""},
         {"n": "动作片", "v": "dongzuopian"},
@@ -135,6 +135,17 @@ FILTERS = {
         {"n": "人气排序", "v": "hits"},
         {"n": "评分排序", "v": "score"},
     ],
+}
+# 维度显示名
+_FILTER_NAMES = {"type": "类型", "class": "剧情", "area": "地区",
+                 "year": "年份", "by": "排序"}
+# 每个分类的筛选维度数组（hipy 格式: {tid: [维度, ...]}）
+FILTERS = {
+    cat["type_id"]: [
+        {"key": k, "name": _FILTER_NAMES[k], "value": _FILTER_OPTS[k]}
+        for k in ("type", "class", "area", "year", "by")
+    ]
+    for cat in CATEGORIES
 }
 
 
@@ -371,16 +382,11 @@ class Spider(Spider):
     # ---------- 六接口 ----------
     def homeContent(self, filter):
         html = self._get(self.host)
-        # filters 所有分类共享（type 切换分类 id，class/area/year/by 附加筛选）
-        _names = {"type": "类型", "class": "剧情", "area": "地区",
-                  "year": "年份", "by": "排序"}
-        flt = {}
-        for k, opts in FILTERS.items():
-            flt[k] = {"key": k, "name": _names.get(k, k), "value": opts}
+        # filters: {tid: [维度{key,name,value}, ...]}，所有分类共享同一套维度
         return {
             "class": self.categories,
             "list": self._list(html),
-            "filters": flt,
+            "filters": FILTERS,
         }
 
     def homeVideoContent(self):
