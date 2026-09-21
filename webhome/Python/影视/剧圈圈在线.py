@@ -171,9 +171,7 @@ class Spider(Spider):
 
     def _resolve_play(self, vid):
         """POST /jx/api.php 用 vid 换取并解密真实播放直链，失败返回空串"""
-        import sys as _sys
         try:
-            print(f"[jqqzx] _resolve_play vid_len={len(vid)}", file=_sys.stderr, flush=True)
             r = requests.post(
                 f"{self.host}/jx/api.php",
                 data={"vid": vid},
@@ -181,20 +179,16 @@ class Spider(Spider):
                 timeout=15,
                 verify=False,
             )
-            print(f"[jqqzx] api status={r.status_code} body_len={len(r.text)}", file=_sys.stderr, flush=True)
             r.encoding = "utf-8"
             j = r.json()
             cipher = (j.get("data") or {}).get("url", "") or ""
-            print(f"[jqqzx] cipher_len={len(cipher)} head={cipher[:30]}", file=_sys.stderr, flush=True)
             if not cipher:
                 return ""
-            if cipher.startswith("http"):
+            if cipher.startswith("http"):  # 服务端偶尔直接返回明文
                 return cipher
             url = self._sign_url(cipher)
-            print(f"[jqqzx] signed_url_len={len(url)} head={url[:50]}", file=_sys.stderr, flush=True)
             return url if url.startswith("http") else ""
-        except Exception as e:
-            print(f"[jqqzx] _resolve_play EXC {type(e).__name__}: {e}", file=_sys.stderr, flush=True)
+        except Exception:
             return ""
 
     # ---------- 列表解析（re 正则，不依赖 lxml） ----------
@@ -518,12 +512,9 @@ class Spider(Spider):
         注意: 播放页页脚有触屏劫持广告脚本，绝不能让 WebView 加载播放页嗅探。
         """
         hd = {"User-Agent": self.ua}
-        import sys as _sys
         try:
             play_url = self._fix(id) if id and id.startswith("/") else (id or "")
-            print(f"[jqqzx] playerContent id={id} play_url={play_url}", file=_sys.stderr, flush=True)
             html = self._get(play_url, t=8000)
-            print(f"[jqqzx] play_html_len={len(html) if html else 0}", file=_sys.stderr, flush=True)
             vid = ""
             if html:
                 m = re.search(r'player_aaaa\s*=\s*(\{.*?\})\s*</script>', html, re.S)
@@ -548,7 +539,6 @@ class Spider(Spider):
                             vid = _u(base64.b64decode(vid).decode("utf-8", "ignore"))
                         except Exception:
                             pass
-            print(f"[jqqzx] vid_len={len(vid)} encrypt={encrypt if html else 'na'} vid_head={vid[:30]}", file=_sys.stderr, flush=True)
             if not vid:
                 return {"parse": 1, "playUrl": "", "url": play_url, "header": hd}
             # 个别线路 player_aaaa.url 本身就是直链
