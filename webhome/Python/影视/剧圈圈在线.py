@@ -416,16 +416,18 @@ class Spider(Spider):
     def playerContent(self, flag, id, vipFlags=None):
         """播放解析
         id 形如 /play/93678-10-1.html
-        所有线路 ps=1（jsjiami v7 混淆），parse:1 由客户端 WebView 嗅探
-        直接返回播放页 URL，让客户端执行 player.js → 跳转 jx → 嗅探 m3u8
+        注意: 播放页页脚有触屏劫持广告脚本（touchend 跳转 ezze0ct.com → 纯爱导航站），
+        不能让 WebView 加载播放页，否则嗅探器被广告劫持。
+        正确做法: Python 端提取 player_aaaa.url（encrypt=0 时为 jx vid 密文，不解密），
+        让 WebView 直接加载干净的 /jx/player.php?vid= 播放器页（仅 DPlayer+hls.js，无广告），
+        jx 页 getQueryString('vid') 解密出 m3u8 → DPlayer 播放 → 客户端嗅探到直链。
         """
         try:
             play_url = self._fix(id) if id and id.startswith("/") else (id or "")
-            # 确认播放页可访问（快速探测，失败兜底仍返回 parse:1）
             html = self._get(play_url, t=8000)
-            hd = {"User-Agent": self.ua, "Referer": self.host + "/"}
+            hd = {"User-Agent": self.ua}
+            vid = ""
             if html:
-                # 尝试从播放页提 player_aaaa，如果是直链或 iframe 直接 parse:0
                 m = re.search(r'player_aaaa\s*=\s*(\{.*?\})\s*</script>', html, re.S)
                 if not m:
                     m = re.search(r'player_aaaa\s*=\s*(\{.*?\})', html, re.S)
@@ -434,16 +436,31 @@ class Spider(Spider):
                         pd = json.loads(m.group(1))
                     except Exception:
                         pd = {}
-                    raw = pd.get("url", "")
-                    if raw and re.search(r'\.(m3u8|mp4|flv|ts)(\?|$)', raw, re.I):
-                        # 直链！
-                        return {
-                            "parse": 0,
-                            "playUrl": "",
-                            "url": raw,
-                            "header": hd,
-                        }
-            # 默认: parse:1 嗅探播放页
+                    vid = pd.get("url", "") or ""
+                    encrypt = str(pd.get("encrypt", "0"))
+                    if encrypt == "1" and vid:
+                        try:
+                            from urllib.parse import unescape as _u
+                            vid = _u(vid)
+                        except Exception:
+                            pass
+                    elif encrypt == "2" and vid:
+                        import base64 as _b64
+                        from urllib.parse import unescape as _u
+                        try:
+                            vid = _u(_b64.b64decode(vid).decode("utf-8", "ignore"))
+                        except Exception:
+                            pass
+            if vid:
+                # vid 含 +/= 字符，必须完整 percent-encode，否则 getQueryString 取参出错
+                jx_url = f"{self.host}/jx/player.php?vid={quote(vid, safe='')}"
+                return {
+                    "parse": 1,
+                    "playUrl": "",
+                    "url": jx_url,
+                    "header": hd,
+                }
+            # 兜底: 拿不到 vid 时嗅探播放页（可能被广告劫持，成功率低）
             return {
                 "parse": 1,
                 "playUrl": "",
