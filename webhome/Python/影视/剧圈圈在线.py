@@ -25,7 +25,7 @@ import json
 import base64
 import hashlib
 import requests
-from urllib.parse import urljoin
+from urllib.parse import urljoin, quote
 
 sys.path.append('..')
 try:
@@ -60,6 +60,82 @@ CATEGORIES = [
     {"type_id": "zongyi",   "type_name": "综艺"},
     {"type_id": "duanju",   "type_name": "短剧"},
 ]
+
+# 筛选维度（从 /vodshow/id/dianying.html 提取，全站通用）
+# type 切换分类 id；class/area/year/by 为附加筛选
+# URL 形如 /vodshow/class/{class}/area/{area}/by/{by}/id/{id}/year/{year}/page/{pg}.html
+FILTERS = {
+    "type": [
+        {"n": "全部", "v": ""},
+        {"n": "动作片", "v": "dongzuopian"},
+        {"n": "喜剧片", "v": "xijupian"},
+        {"n": "爱情片", "v": "aiqingpian"},
+        {"n": "科幻片", "v": "kehuanpian"},
+        {"n": "恐怖片", "v": "kongbupian"},
+        {"n": "剧情片", "v": "juqingpian"},
+        {"n": "战争片", "v": "zhanzhengpian"},
+        {"n": "动画片", "v": "donghuapian"},
+    ],
+    "class": [
+        {"n": "全部", "v": ""},
+        {"n": "Netflix", "v": "Netflix"},
+        {"n": "喜剧", "v": "喜剧"},
+        {"n": "爱情", "v": "爱情"},
+        {"n": "恐怖", "v": "恐怖"},
+        {"n": "动作", "v": "动作"},
+        {"n": "科幻", "v": "科幻"},
+        {"n": "剧情", "v": "剧情"},
+        {"n": "战争", "v": "战争"},
+        {"n": "犯罪", "v": "犯罪"},
+        {"n": "动画", "v": "动画"},
+        {"n": "奇幻", "v": "奇幻"},
+        {"n": "武侠", "v": "武侠"},
+        {"n": "冒险", "v": "冒险"},
+        {"n": "枪战", "v": "枪战"},
+        {"n": "悬疑", "v": "悬疑"},
+        {"n": "惊悚", "v": "惊悚"},
+        {"n": "古装", "v": "古装"},
+        {"n": "历史", "v": "历史"},
+        {"n": "家庭", "v": "家庭"},
+        {"n": "同性", "v": "同性"},
+        {"n": "运动", "v": "运动"},
+        {"n": "儿童", "v": "儿童"},
+        {"n": "经典", "v": "经典"},
+        {"n": "青春", "v": "青春"},
+        {"n": "文艺", "v": "文艺"},
+        {"n": "微电影", "v": "微电影"},
+        {"n": "纪录片", "v": "纪录片"},
+        {"n": "网络电影", "v": "网络电影"},
+    ],
+    "area": [
+        {"n": "全部", "v": ""},
+        {"n": "大陆", "v": "大陆"},
+        {"n": "美国", "v": "美国"},
+        {"n": "韩国", "v": "韩国"},
+        {"n": "日本", "v": "日本"},
+        {"n": "泰国", "v": "泰国"},
+        {"n": "香港", "v": "香港"},
+        {"n": "台湾", "v": "台湾"},
+        {"n": "新加坡", "v": "新加坡"},
+        {"n": "马来西亚", "v": "马来西亚"},
+        {"n": "印度", "v": "印度"},
+        {"n": "英国", "v": "英国"},
+        {"n": "法国", "v": "法国"},
+        {"n": "德国", "v": "德国"},
+        {"n": "加拿大", "v": "加拿大"},
+        {"n": "西班牙", "v": "西班牙"},
+        {"n": "俄罗斯", "v": "俄罗斯"},
+        {"n": "其它", "v": "其它"},
+    ],
+    "year": [
+        {"n": "全部", "v": ""},
+    ] + [{"n": str(y), "v": str(y)} for y in range(2026, 1987, -1)],
+    "by": [
+        {"n": "时间排序", "v": "time"},
+        {"n": "人气排序", "v": "hits"},
+        {"n": "评分排序", "v": "score"},
+    ],
+}
 
 
 class Spider(Spider):
@@ -295,10 +371,16 @@ class Spider(Spider):
     # ---------- 六接口 ----------
     def homeContent(self, filter):
         html = self._get(self.host)
+        # filters 所有分类共享（type 切换分类 id，class/area/year/by 附加筛选）
+        _names = {"type": "类型", "class": "剧情", "area": "地区",
+                  "year": "年份", "by": "排序"}
+        flt = {}
+        for k, opts in FILTERS.items():
+            flt[k] = {"key": k, "name": _names.get(k, k), "value": opts}
         return {
             "class": self.categories,
             "list": self._list(html),
-            "filters": {},
+            "filters": flt,
         }
 
     def homeVideoContent(self):
@@ -311,11 +393,29 @@ class Spider(Spider):
         except Exception:
             pg = 1
         cat = str(tid)
-        # 真实分类 URL: /vodshow/id/{slug}/page/{n}.html
+        # extend 是用户选择的筛选字典，键: type/class/area/year/by
+        ext = extend or {}
+        # type 选中时切换分类 id（如 dongzuopian），否则用原分类
+        type_id = str(ext.get("type", "") or "").strip()
+        show_id = type_id if type_id else cat
+        # 构造筛选路径段（顺序不敏感，MacCMS 路由兼容）
+        parts = []
+        cls = str(ext.get("class", "") or "").strip()
+        area = str(ext.get("area", "") or "").strip()
+        by = str(ext.get("by", "") or "").strip()
+        year = str(ext.get("year", "") or "").strip()
+        if cls:
+            parts.append(f"class/{quote(cls)}")
+        if area:
+            parts.append(f"area/{quote(area)}")
+        if by:
+            parts.append(f"by/{quote(by)}")
+        parts.append(f"id/{show_id}")
+        if year:
+            parts.append(f"year/{quote(year)}")
         if pg > 1:
-            url = f"{self.host}/vodshow/id/{cat}/page/{pg}.html"
-        else:
-            url = f"{self.host}/vodshow/id/{cat}.html"
+            parts.append(f"page/{pg}")
+        url = f"{self.host}/vodshow/{'/'.join(parts)}.html"
         html = self._get(url)
         items = self._list(html)
         limit = len(items) or 20
