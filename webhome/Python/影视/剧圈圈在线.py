@@ -7,12 +7,15 @@
 - 详情: /vod/{id}.html
 - 播放: /play/{vodid}-{sid}-{nid}.html → player_aaaa JSON → /jx/player.php?vid=
 - 搜索: /index.php/ajax/suggest?mid=1&wd={key}&limit=50 (绕过搜索验证码)
-- 解析: 所有线路 ps=1，jx 页面 jsjiami v7 混淆需 JS 执行 → parse:1 由客户端嗅探
+- 解析: jx 页面 jsjiami v7 混淆需 JS 执行，且开头有 self==top 反嵌检查（顶层加载会
+  把标题改成 404），故经 localProxy 返回全屏 iframe 包装页加载 jx 页（iframe 中
+  self != top 检查通过）→ 站内 JS 解密 vid → DPlayer 拉 m3u8 → 客户端嗅探直链
 - 依赖: requests (hipy 自带)，lxml 可选（无则用 re 兜底）
 """
 import sys
 import re
 import json
+import base64
 import requests
 from urllib.parse import urljoin, quote
 
@@ -99,6 +102,17 @@ class Spider(Spider):
         if not url:
             return ""
         return urljoin(self.host + "/", url)
+
+    def _e64(self, s):
+        return base64.b64encode(str(s).encode("utf-8")).decode("utf-8")
+
+    def _d64(self, s):
+        s = str(s)
+        return base64.b64decode(s + "=" * (-len(s) % 4)).decode("utf-8", "ignore")
+
+    def _wrap_proxy(self, target):
+        """构造 localProxy 包装页地址（hipy 9978 端口 do=py 路由）"""
+        return "http://127.0.0.1:9978/proxy?do=py&url=" + quote(self._e64(target), safe='')
 
     # ---------- 列表解析（re 正则，不依赖 lxml） ----------
     def _list(self, html):
@@ -416,11 +430,13 @@ class Spider(Spider):
     def playerContent(self, flag, id, vipFlags=None):
         """播放解析
         id 形如 /play/93678-10-1.html
-        注意: 播放页页脚有触屏劫持广告脚本（touchend 跳转 ezze0ct.com → 纯爱导航站），
+        注意1: 播放页页脚有触屏劫持广告脚本（touchend 跳转 ezze0ct.com → 纯爱导航站），
         不能让 WebView 加载播放页，否则嗅探器被广告劫持。
+        注意2: jx/player.php 混淆代码开头有反嵌检查 self==top → $('title').text('404')，
+        WebView 顶层直连 jx URL 会把标题改成 404 并破坏播放器（APP 实测 title=404）。
         正确做法: Python 端提取 player_aaaa.url（encrypt=0 时为 jx vid 密文，不解密），
-        让 WebView 直接加载干净的 /jx/player.php?vid= 播放器页（仅 DPlayer+hls.js，无广告），
-        jx 页 getQueryString('vid') 解密出 m3u8 → DPlayer 播放 → 客户端嗅探到直链。
+        经 localProxy 返回全屏 iframe 包装页加载 jx 播放器页（iframe 中 self != top），
+        站内 JS 解密出 m3u8 → DPlayer 播放 → 客户端嗅探到直链。
         """
         try:
             play_url = self._fix(id) if id and id.startswith("/") else (id or "")
@@ -445,19 +461,20 @@ class Spider(Spider):
                         except Exception:
                             pass
                     elif encrypt == "2" and vid:
-                        import base64 as _b64
-                        from urllib.parse import unescape as _u
                         try:
-                            vid = _u(_b64.b64decode(vid).decode("utf-8", "ignore"))
+                            from urllib.parse import unescape as _u
+                            vid = _u(base64.b64decode(vid).decode("utf-8", "ignore"))
                         except Exception:
                             pass
             if vid:
-                # vid 含 +/= 字符，必须完整 percent-encode，否则 getQueryString 取参出错
-                jx_url = f"{self.host}/jx/player.php?vid={quote(vid, safe='')}"
+                # vid 与站内真实 iframe 拼接方式保持一致（不做 percent-encode，
+                # 与 MacPlayer.Parse + PlayUrl 行为对齐；base64 密文含 +/= 时
+                # getQueryString 按原文读取才能正确解密）
+                jx_url = f"{self.host}/jx/player.php?vid={vid}"
                 return {
                     "parse": 1,
                     "playUrl": "",
-                    "url": jx_url,
+                    "url": self._wrap_proxy(jx_url),
                     "header": hd,
                 }
             # 兜底: 拿不到 vid 时嗅探播放页（可能被广告劫持，成功率低）
@@ -476,5 +493,41 @@ class Spider(Spider):
                 "header": {"User-Agent": self.ua},
             }
 
-    def localProxy(self, params):
-        return None
+    def localProxy(self, param):
+        """本地代理：返回全屏 iframe 包装页。
+        jx/player.php 只允许在 iframe 中运行（self==top 反嵌），包装页提供 iframe
+        上下文；jx 页内 DPlayer/hls.js 从 www.jqqzx.me 原域加载并请求 m3u8，
+        客户端嗅探器（shouldInterceptRequest 覆盖所有子框架请求）捕获直链。
+        """
+        try:
+            raw = ""
+            if isinstance(param, dict):
+                raw = param.get("url", "") or ""
+            elif param:
+                raw = str(param)
+            target = ""
+            if raw:
+                try:
+                    target = self._d64(raw)
+                except Exception:
+                    try:
+                        from urllib.parse import unquote as _uq
+                        target = self._d64(_uq(raw))
+                    except Exception:
+                        target = ""
+            if not target.startswith("http"):
+                return [404, "text/plain", "", ""]
+            page = (
+                '<!DOCTYPE html><html><head><meta charset="utf-8">'
+                '<meta name="referrer" content="no-referrer">'
+                '<title>剧圈圈在线</title>'
+                '<style>html,body{margin:0;padding:0;width:100%;height:100%;'
+                'background:#000;overflow:hidden}'
+                'iframe{position:absolute;left:0;top:0;width:100%;height:100%;'
+                'border:0}</style></head><body>'
+                f'<iframe src="{target}" allowfullscreen="true" frameborder="0" '
+                'scrolling="no"></iframe></body></html>'
+            )
+            return [200, "text/html; charset=utf-8", page, ""]
+        except Exception:
+            return [404, "text/plain", "", ""]
