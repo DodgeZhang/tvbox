@@ -416,54 +416,47 @@ class Spider(Spider):
     def playerContent(self, flag, id, vipFlags=None):
         """播放解析
         id 形如 /play/93678-10-1.html
-        访问播放页 → 提取 player_aaaa → 构造 jx URL → parse:1 客户端嗅探
+        所有线路 ps=1（jsjiami v7 混淆），parse:1 由客户端 WebView 嗅探
+        直接返回播放页 URL，让客户端执行 player.js → 跳转 jx → 嗅探 m3u8
         """
         try:
             play_url = self._fix(id) if id and id.startswith("/") else (id or "")
-            html = self._get(play_url)
-            # 提取 player_aaaa = {...}
-            m = re.search(r'player_aaaa\s*=\s*(\{.*?\})\s*</script>', html, re.S)
-            if not m:
-                m = re.search(r'player_aaaa\s*=\s*(\{.*?\})', html, re.S)
-            url = ""
-            if m:
-                try:
-                    player_data = json.loads(m.group(1))
-                except Exception:
+            # 确认播放页可访问（快速探测，失败兜底仍返回 parse:1）
+            html = self._get(play_url, t=8000)
+            hd = {"User-Agent": self.ua, "Referer": self.host + "/"}
+            if html:
+                # 尝试从播放页提 player_aaaa，如果是直链或 iframe 直接 parse:0
+                m = re.search(r'player_aaaa\s*=\s*(\{.*?\})\s*</script>', html, re.S)
+                if not m:
+                    m = re.search(r'player_aaaa\s*=\s*(\{.*?\})', html, re.S)
+                if m:
                     try:
-                        raw = m.group(1)
-                        raw2 = re.sub(r"([{,]\s*)([a-zA-Z_]\w*)\s*:", r'\1"\2":', raw)
-                        player_data = json.loads(raw2)
+                        pd = json.loads(m.group(1))
                     except Exception:
-                        player_data = {}
-                url = player_data.get("url", "")
-                encrypt = str(player_data.get("encrypt", "0"))
-                # MacCMS decrypt: encrypt 1 → unescape, encrypt 2 → unescape(base64)
-                if encrypt == "1" and url:
-                    from urllib.parse import unescape as _uesc
-                    try:
-                        url = _uesc(url)
-                    except Exception:
-                        pass
-                elif encrypt == "2" and url:
-                    import base64 as _b64
-                    from urllib.parse import unescape as _uesc
-                    try:
-                        url = _uesc(_b64.b64decode(url).decode("utf-8", "ignore"))
-                    except Exception:
-                        pass
-            # 构造 jx 解析 URL
-            jx_url = f"{self.host}/jx/player.php?vid={quote(url, safe='')}" if url else play_url
+                        pd = {}
+                    raw = pd.get("url", "")
+                    if raw and re.search(r'\.(m3u8|mp4|flv|ts)(\?|$)', raw, re.I):
+                        # 直链！
+                        return {
+                            "parse": 0,
+                            "playUrl": "",
+                            "url": raw,
+                            "header": hd,
+                        }
+            # 默认: parse:1 嗅探播放页
             return {
                 "parse": 1,
-                "url": jx_url,
-                "header": json.dumps({"User-Agent": self.ua, "Referer": play_url}),
+                "playUrl": "",
+                "url": play_url,
+                "header": hd,
             }
         except Exception:
+            play_url = self._fix(id) if id and id.startswith("/") else (id or "")
             return {
                 "parse": 1,
-                "url": self._fix(id) if id and id.startswith("/") else (id or ""),
-                "header": json.dumps({"User-Agent": self.ua}),
+                "playUrl": "",
+                "url": play_url,
+                "header": {"User-Agent": self.ua},
             }
 
     def localProxy(self, params):
