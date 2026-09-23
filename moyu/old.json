@@ -1,5 +1,5 @@
 {
-  "spider": "./jar/950055803_4_1788301315144.jar;md5;80d7ed6389e3012b4c650527c2a0353c",
+  "spider": "./jar/466454997_2_1789736334293.jar;md5;835b242eab0da4d3402724dd4705a9e8",
   "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
   "danmaku": "http://127.0.0.1:5266/danmu/webhtv?name={name}&episode={episode}",
   "sites": [
@@ -82,7 +82,6 @@
       "changeable": 1,
       "filterable": 1,
       "ext": {
-        "cookie": "",
         "site": [
           "https://wogg.xxooo.cf",
           "https://woggpan.888484.xyz",
@@ -100,10 +99,9 @@
       "searchable": 1,
       "ext": {
         "site": [
-          "https://123.666291.xyz",
-          "https://666.666291.xyz",
-          "https://www.muou.site",
-          "https://www.muou.asia"
+          "https://www.muoua.top",
+          "https://333.333291.xyz",
+          "https://666.666291.xyz"
         ]
       }
     },
@@ -118,15 +116,18 @@
       "ext": "https://max.moyu666666.top/app88.php?site=bl"
     },
     {
-      "key": "FuYun",
-      "name": "☁️┆浮云┆4K",
+      "key": "KanJu",
+      "name": "🎬┆流映┆4K",
       "type": 3,
-      "api": "csp_FuYun",
+      "api": "csp_KanJu",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "changeable": 0,
-      "ext": "AT5gVJoBJLBjA8bGv16T3JrqN2LXBIOz+yh3i+Q62mrf39gRwFyDvBsZFicI+C39mJcLm9J7qY/293gromRPJAf+9zAbwWTtKnR5Ums7P1Q5ts6eqP1gLc/RID4P3Mia9LSNqOxWJ8U9XZRYJl6gdtnZo7oR8T8JMWvWFVZzu5pAGSlzcJxMzqaVrWaPTrC3x790BI+cfF1ogCKAwNaVQxU="
+      "changeable": 1,
+      "ext": {
+        "site": "https://kanju.ai",
+        "playname": "ly"
+      }
     },
     {
       "key": "花信",
@@ -139,6 +140,19 @@
       "ext": {
         "php": "https://max.moyu666666.top/niulai.php",
         "site": "huaxin"
+      }
+    },
+    {
+      "key": "砚池",
+      "name": "🪨┆砚池┆4K",
+      "type": 3,
+      "api": "csp_NiuLai",
+      "searchable": 1,
+      "filterable": 1,
+      "changeable": 0,
+      "ext": {
+        "php": "https://max.moyu666666.top/niulai.php",
+        "site": "yanchi"
       }
     },
     {
@@ -185,7 +199,7 @@
       "changeable": 1,
       "ext": "AWdPh5PnFxq1XZ1+qPrYSqER0/V56CsPtyhgchXfwuAECyRqGnmaLDChTlIn6qwjfE0Hr9d1et+8HEB6MOa6J+NFI/q9jj1dLRTXdE2kKzczaxo6/yaY9q8jEfksZElPK2hPF0UlOPg3Dy5xjGlHXKPA4p5WFet29QlPbubxC6L1"
     },
-        {
+    {
       "key": "长泽",
       "name": "😗┆长泽┆4K",
       "type": 3,
@@ -211,7 +225,7 @@
       "type": 3,
       "api": "csp_zhiqiu",
       "searchable": 1,
-      "ext": "http://www.小不点.com/api//2026/zhiqiu.php"
+      "ext": "http://www.y456y.com/api//2026/zhiqiu.php"
     },
     {
       "key": "fishhxq",
@@ -219,7 +233,7 @@
       "type": 3,
       "api": "csp_FishHxq",
       "searchable": 1,
-      "ext": "http://www.小不点.com/api//2026/fishhxq.php"
+      "ext": "http://www.y456y.com/api//2026/fishhxq.php"
     },
     {
       "key": "Kan360",
@@ -229,7 +243,7 @@
       "searchable": 1,
       "filterable": 1,
       "ext": {
-        "filter": "https://openlist.wya6.com/d/down/2026/json/360.json",
+        "filter": "./ext/360.json",
         "fishjx": [
           "https://jx.xmflv.com/?url="
         ]
@@ -497,7 +511,7 @@
         "playname": "qy"
       }
     },
-        {
+    {
       "key": "观澜",
       "name": "🎞️┆观澜┆APP",
       "api": "csp_AppUn",
@@ -647,6 +661,19 @@
       "changeable": 1
     },
     {
+      "key": "Time1080",
+      "name": "⏳┆时光┆1080",
+      "type": 3,
+      "api": "csp_Time1080",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1,
+      "ext": {
+        "site": "https://v.time1080.xyz"
+      }
+    },
+    {
       "key": "WoNiu",
       "name": "🐌┆蜗牛┆4K",
       "type": 3,
@@ -680,11 +707,12 @@
       "key": "gying",
       "name": "👀┆观影┆4K",
       "type": 3,
-      "api": "csp_GyingFix",
+      "api": "csp_Gying",
       "searchable": 1,
       "quickSearch": 0,
       "filterable": 0,
       "ext": {
+        "cookie": "",
         "site": [
           "https://www.教父.com",
           "https://www.星际穿越.com",
@@ -829,7 +857,7 @@
       "searchable": 1,
       "changeable": 1
     },
-        {
+    {
       "key": "VideoX",
       "name": "📺┆小北┆云视",
       "type": 3,
@@ -893,7 +921,7 @@
       "searchable": 1,
       "filterable": 1
     },
-        {
+    {
       "key": "SaoHuo",
       "name": "🌶️┆骚火┆影视",
       "type": 3,
@@ -1111,7 +1139,7 @@
       "quickSearch": 0,
       "changeable": 0,
       "ext": {
-        "json": "./ext/89370c8ddf36b5e1beb4d71adb921bda.txt"
+        "json": "https://nos.netease.com/ysf/89370c8ddf36b5e1beb4d71adb921bda.txt"
       }
     },
     {
@@ -1127,7 +1155,7 @@
       "quickSearch": 0,
       "changeable": 0,
       "ext": {
-        "json": "./ext/d7a21cf34ede56f5c686ecfba5fc7e3f.txt"
+        "json": "https://nos.netease.com/ysf/d7a21cf34ede56f5c686ecfba5fc7e3f.txt"
       }
     },
     {
@@ -1143,7 +1171,7 @@
       "quickSearch": 0,
       "changeable": 0,
       "ext": {
-        "json": "./ext/8f55d520f8d70056695740ef151744a7.txt"
+        "json": "https://nos.netease.com/ysf/8f55d520f8d70056695740ef151744a7.txt"
       }
     },
     {
@@ -1159,7 +1187,7 @@
       "quickSearch": 0,
       "changeable": 0,
       "ext": {
-        "json": "./ext/c66a4b5356141c49fd45ec51568017b4.txt"
+        "json": "https://nos.netease.com/ysf/c66a4b5356141c49fd45ec51568017b4.txt"
       }
     },
     {
@@ -1171,7 +1199,7 @@
       "quickSearch": 1,
       "changeable": 0,
       "ext": {
-        "json": "./ext/0075389dca9afadd4614e9713765ff17.txt"
+        "json": "https://nos.netease.com/ysf/0075389dca9afadd4614e9713765ff17.txt"
       },
       "style": {
         "type": "rect",
@@ -1187,7 +1215,7 @@
       "quickSearch": 0,
       "changeable": 0,
       "ext": {
-        "json": "./ext/6496356286589c68f52c2f99c0c674c7.txt"
+        "json": "https://nos.netease.com/ysf/6496356286589c68f52c2f99c0c674c7.txt"
       },
       "style": {
         "type": "rect",
