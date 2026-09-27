@@ -1,6 +1,7 @@
 {
-  "spider": "./jar/6b3f3-d6b2d2c3-70cd-47a6-8632-6096809927d4.png;md5;6b3f30565b0bb99d486b40049bcd4802",
+  "spider": "./jar/46da6-aa33493f-1c1d-4f35-9990-0be4bdbf0c64.jar;md5;46da6b6a6a111d7924717db2ae790de3",
   "wallpaper": "https://深色壁纸.xxooo.cf/",
+  "logo": "http://xn--z7x900a.net/fm.gif",
   "sites": [
     {
       "key": "豆瓣",
@@ -50,11 +51,13 @@
       "filterable": 1,
       "ext": {
         "site_urls": [
-          "http://tvpanpan.site",
+          "http://xiaocge.fun",
           "http://feimo.fun",
+          "http://www.labi88.sbs",
+          "http://fmao.site",
+          "http://fmao.shop",
           "http://xiaocgege.shop",
-          "http://www.xiaocgege.shop",
-          "https://www.xiaocge.fun"
+          "http://www.xiaocgege.shop"
         ],
         "threadinfo": {
           "chunksize": 512,
@@ -71,11 +74,12 @@
       "filterable": 1,
       "ext": {
         "site_urls": [
-          "https://www.zhizhen8.click",
           "https://pan.mihdr.top",
           "https://www.zhizhen1.top",
           "https://www.mihdr.top",
-          "https://www.miqk.cc"
+          "https://www.miqk.cc",
+          "https://www.zhizhenpan.com",
+          "https://www.zhizhen8.click"
         ],
         "url_key": "Netfixtv2",
         "threadinfo": {
@@ -102,8 +106,8 @@
       "key": "干饭",
       "name": "🍚┃干饭┃APP",
       "type": 3,
-      "api": "csp_AppQi",
-      "ext": "http://110.42.67.130:1226|kj37zs29q22jk96t"
+      "api": "csp_AppGet",
+      "ext": "https://www.douy32mf.top|1234567887654321"
     },
     {
       "key": "光盘",
@@ -116,15 +120,37 @@
       "key": "行动",
       "name": "😌┃行动┃APP",
       "type": 3,
-      "api": "csp_AppQi",
-      "ext": "https://lanyingjisu.oss-cn-wuhan-lr.aliyuncs.com/lyjszx.txt|oW5UxZ5kWVr1DI69"
+      "api": "csp_AppDrama",
+      "ext": {
+        "host": "",
+        "publicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCp9Ek4wIlQAtwFnuBRlsFiow2tr+4UOciGeNKbY7nL74etUqUb6fvpOSOHhFEfaWlfwUpOB17x3JEL3No19nfjCeVYrYPjlJcgoqUWH/tfIfFAQWvtxBIBlKazkhw8d3ChysWmeWRikKqkBsVRY4oqNPuj4sjm6Zult0U4I4prRQIDAQAB",
+        "dataKey": "NDBYSZR1DMRRZ05NSUCWEJNIYWLBPT0=",
+        "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
+        "commonKey": "ed5fdsgucxumegqa",
+        "version": " 1.0.0.4 ",
+        "pkg": "com.muyue.tool",
+        "appName": "华谊",
+        "site": " https://1851089669.cdn.123clouddisk.com/1851089669/oss/az5.txt ",
+        "decrypt": "1"
+      }
     },
     {
       "key": "再来",
       "name": "✌️┃再来┃APP",
       "type": 3,
-      "api": "csp_AppGet",
-      "ext": "https://www.douy32mf.top|1234567887654321"
+      "api": "csp_AppDrama",
+      "ext": {
+        "host": "",
+        "publicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
+        "dataKey": "D2KREWRIBVNAUJJYEDL4VFHOY2Q0PQ==",
+        "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
+        "commonKey": "ed5fdsgucxumegqa",
+        "version": " 3.0.0.7 ",
+        "pkg": "com.dytiantang.one",
+        "appName": "电影天堂",
+        "site": "https://dyttandroid04-1372779881.cos.ap-shanghai.myqcloud.com/app_dyttandroid.txt",
+        "decrypt": "1"
+      }
     },
     {
       "key": "一碗",
@@ -135,7 +161,7 @@
     },
     {
       "key": "韩圈",
-      "name": "🥽┃韩圈┃APP",
+      "name": "⭕┃韩圈 ┃APP",
       "type": 3,
       "api": "csp_Hxq",
       "ext": " http://www.小不点.com/api/2026/fishhxq.php"
@@ -151,7 +177,8 @@
       "key": "csp_Jpys",
       "name": "🥇️┃金牌┃影视",
       "type": 3,
-      "api": "csp_Jpys"
+      "api": "csp_Jpys",
+      "ext": "https://y2s52n7.com"
     },
     {
       "key": "csp_Wwys",
@@ -192,7 +219,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://cz01.vip"
+      "ext": "https://www.czzy89.com"
     },
     {
       "key": "csp_SP360",
@@ -207,7 +234,7 @@
       "api": "csp_Bili",
       "playerType": 2,
       "ext": {
-        "json": "./ext/0075389dca9afadd4614e9713765ff17.txt",
+        "json": "https://nos.netease.com/ysf/0075389dca9afadd4614e9713765ff17.txt",
         "cookie": ""
       },
       "style": {
@@ -327,7 +354,7 @@
       "key": "儿童",
       "name": "📚┃儿童┃启蒙",
       "type": 3,
-      "api": "./ext/drpy2.min.js",
+      "api": "./lib/drpy2.min.js",
       "searchable": 0,
       "quickSearch": 0,
       "changeable": 0,
@@ -335,7 +362,7 @@
         "type": "rect",
         "ratio": 1.597
       },
-      "ext": "./ext/兔小贝.js"
+      "ext": "./lib/兔小贝.js"
     },
     {
       "key": "csp_少儿",
@@ -399,7 +426,7 @@
     },
     {
       "key": "push_agent",
-      "name": "关注公众号：肥猫宝贝",
+      "name": "关注公众号：熊猫是只肥猫",
       "type": 3,
       "api": "csp_Push",
       "playerType": "1",
@@ -505,18 +532,22 @@
   ],
   "lives": [
     {
-      "name": "Kimentanm",
-      "type": 0,
-      "url": "https://gh.llkk.cc/https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u",
+      "name": "Gather「蕉」",
+      "type": 3,
+      "url": "https://tv.tmxk.kdns.fr/4grxobbf",
+      "epg": "https://material.1989.click/epg.xml.gz",
+      "ua": "okhttp/3.8.1",
+      "timeout": 10,
       "playerType": 2
     },
     {
-      "name": "develop202",
-      "type": 0,
-      "url": "https://gh.llkk.cc/http://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/interface.txt",
-      "playerType": 2,
-      "epg": "http://diyp5.112114.xyz/?ch={name}&date={date}",
-      "logo": "https://epg.112114.xyz/logo/{name}.png"
+      "name": "Gather「果」",
+      "type": 3,
+      "url": "https://tv.tmxk.kdns.fr/yplrnuc7",
+      "epg": "https://material.1989.click/epg.xml.gz",
+      "ua": "okhttp/3.8.1",
+      "timeout": 10,
+      "playerType": 2
     }
   ],
   "headers": [
