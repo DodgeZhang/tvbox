@@ -1,7 +1,7 @@
 {
   "spider": "./jar/46da6-aa33493f-1c1d-4f35-9990-0be4bdbf0c64.jar;md5;46da6b6a6a111d7924717db2ae790de3",
   "wallpaper": "https://深色壁纸.xxooo.cf/",
-  "logo": "http://xn--z7x900a.net/fm.gif",
+  "logo": "./logo/fm.gif",
   "sites": [
     {
       "key": "豆瓣",
