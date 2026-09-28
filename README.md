@@ -14,20 +14,20 @@ GitHub加速（含18）：https://gh-proxy.org/https://raw.githubusercontent.com
 #### ★在线源接口：
 | 接口名称 | 接口地址 |
 | --- | --- |
-| 饭太硬 | http://www.饭太硬.cc/tv<br> |
-| 小米<br> | https://gh-proxy.org/https://raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/demo.json<br> |
-| 肥猫<br> | http://肥猫.net/<br> |
-| 王二小<br> | https://9280.kstore.vip/newwex.json<br> |
-| 摸鱼儿<br><br> | http://摸鱼儿.cc<br>https://6800.kstore.vip/fish.json<br> |
-| 潇洒<br><br> | https://cnb.cool/fish2018/xs/-/git/raw/main/api.json<br>https://9877.kstore.space/one.json<br> |
-| 小虎斑<br><br> | http://hb.小虎斑.site:25252/仅供测试<br><br> |
-| 南风<br> | https://gh-proxy.com/https://raw.githubusercontent.com/yoursmile66/TVBox/refs/heads/main/XC.json<br> |
-| 香雅情<br> | https://gh-proxy.com/https://raw.githubusercontent.com/xyq254245/xyqonlinerule/main/XYQTVBox.json<br> |
-| 少儿频道<br> | https://jihulab.com/ymz1231/xymz/-/raw/main/ymshaoer<br> |
-| 东篱<br> | https://chigua.eu.org<br> |
-| 裤佬 | https://gh-proxy.org/https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/Jsnzkpg<br> |
-| 嗷呜 | http://itv666.cc/aowu/config.webp<br> |
-| VOX | http://rihou.cc:88/demo.php<br> |
+| 饭太硬 | http://www.饭太硬.cc/tv |
+| 小米 | https://gh-proxy.org/https://raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/demo.json |
+| 肥猫 | http://肥猫.net/tv |
+| 王二小 | https://9280.kstore.vip/aiwex.json <br>http://new.王二小放牛娃.top |
+| 摸鱼儿 | http://www.y456y.com <br>http://我不是.摸鱼儿.cc |
+| 潇洒 | https://9877.kstore.space/sun.json |
+| 小虎斑 | http://hb.小虎斑.site:25252/仅供测试/ |
+| 南风 | https://gh-proxy.com/https://raw.githubusercontent.com/yoursmile66/TVBox/refs/heads/main/XC.json |
+| 香雅情 | https://gh-proxy.com/https://raw.githubusercontent.com/xyq254245/xyqonlinerule/main/XYQTVBox.json |
+| 少儿频道 | https://jihulab.com/ymz1231/xymz/-/raw/main/ymshaoer |
+| 东篱 | https://chigua.eu.org |
+| 裤佬 | https://gh-proxy.org/https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/Jsnzkpg |
+| 嗷呜 | http://itv666.cc/aowu/config.webp |
+| VOX | http://rihou.cc:88/demo.php |
 | 老张 | https://zhangqun1818.serv00.net/zq/api.json |
 | 锅大侠 | https://gh.xxooo.cf/https://raw.githubusercontent.com/supermeguo/BoxRes/main/Myuse/catcr.json |
 
