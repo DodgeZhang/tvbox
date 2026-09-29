@@ -1,0 +1,130 @@
+{
+    "warningText": "禁止任何商业用途，仅限个人学习爬虫原理使用。",
+    "sites": [
+        {
+            "key": "app-menu",
+            "name": "app-menu",
+            "type": 3,
+            "jar": "./app-menu.jar",
+            "api": "csp_appmenu",
+            "searchable": 0,
+            "quickSearch": 0,
+            "filterable": 0
+        },
+        {
+            "key": "wv_2_multi",
+            "name": "②多URL-宫格",
+            "type": 3,
+            "jar": "./app-menu.jar",
+            "api": "csp_WvWv",
+            "searchable": 0,
+            "quickSearch": 0,
+            "filterable": 0,
+            "style": {
+                "type": "list",
+                "ratio": 1.43
+            },
+            "ext": {
+                "items": [
+                    {
+                        "name": "QQ音乐",
+                        "url": "./QQ音乐.html"
+                    },
+                    {
+                        "name": "TMDB遥控器",
+                        "url": "./tmdb电视遥控器修复.html"
+                    },
+                    {
+                        "name": "玩偶盘搜",
+                        "url": "https://1061077908-glitch.github.io/LaoGong.io/玩偶盘搜优化正式版21.html"
+                    }
+                ]
+            }
+        },
+        {
+            "key": "wv_3_cate",
+            "name": "③带分类-顶部tab",
+            "type": 3,
+            "jar": "./app-menu.jar",
+            "api": "csp_WvWv",
+            "searchable": 0,
+            "quickSearch": 0,
+            "filterable": 0,
+            "style": {
+                "type": "list",
+                "ratio": 1.43
+            },
+            "ext": {
+                "items": [
+                    {
+                        "cate": "音乐",
+                        "name": "QQ音乐",
+                        "url": "./QQ音乐.html"
+                    },
+                    {
+                        "cate": "影视",
+                        "name": "TMDB遥控器",
+                        "url": "./tmdb电视遥控器修复.html"
+                    },
+                    {
+                        "cate": "网盘",
+                        "name": "玩偶盘搜",
+                        "url": "https://1061077908-glitch.github.io/LaoGong.io/玩偶盘搜优化正式版21.html"
+                    }
+                ]
+            }
+        },
+        {
+            "key": "wv_4_dir",
+            "name": "④单文件夹扫描",
+            "type": 3,
+            "jar": "./app-menu.jar",
+            "api": "csp_WvWv",
+            "searchable": 0,
+            "quickSearch": 0,
+            "filterable": 0,
+            "style": {
+                "type": "list",
+                "ratio": 1.43
+            },
+            "ext": {
+                "dir": "/storage/emulated/0/123云盘/html"
+            }
+        },
+        {
+            "key": "wv_5_root",
+            "name": "⑤多文件夹-子文件夹为分类",
+            "type": 3,
+            "jar": "./app-menu.jar",
+            "api": "csp_WvWv",
+            "searchable": 0,
+            "quickSearch": 0,
+            "filterable": 0,
+            "style": {
+                "type": "list",
+                "ratio": 1.43
+            },
+            "ext": {
+                "proxy": "http://127.0.0.1:2080",
+                "root": "/storage/emulated/0/123云盘/html/html"
+            }
+        },
+        {
+            "key": "wv_6_proxy_json",
+            "name": "⑥代理+JSON+统一图片",
+            "type": 3,
+            "jar": "./app-menu.jar",
+            "api": "csp_WvWv",
+            "searchable": 0,
+            "quickSearch": 0,
+            "filterable": 0,
+            "style": {
+                "type": "list",
+                "ratio": 1.43
+            },
+            "ext": {
+                "config": "./wv_config.json"
+            }
+        }
+    ]
+}
