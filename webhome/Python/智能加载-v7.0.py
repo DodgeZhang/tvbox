@@ -8524,6 +8524,12 @@ class Spider(BaseSpider):
                 state = "扫描完成：未发现可加载站点（未改动站点配置）"
             self.status["write_state"] = state
             self.status["error"] = ""
+            # 扫描结果落盘：否则仅存实例内存，退出 App 重进/刷新接口
+            # （新 spider 实例）后扫描结果丢失，需要重新扫描。
+            try:
+                self._save_scan_snapshot()
+            except Exception as exc:
+                self._warn("扫描列表快照保存失败: {}".format(exc))
             self._log(
                 "INFO",
                 "仅扫描完成: 站点={} 直播={} 忽略={}".format(
