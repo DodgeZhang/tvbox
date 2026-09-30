@@ -1,12 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-导航:   https://www.qiushui.vip   
-        https://www.qiushuitv.cn
-        https://www.qiushuiying.cn
-由「影视py源生成器」自动生成 2026-09-15 14:02
+由「影视py源生成器」自动生成
 站点: https://www.ntmsxy.com
-
 """
 import re
 import json

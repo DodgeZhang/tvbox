@@ -1,392 +1,268 @@
 # -*- coding: utf-8 -*-
-import re, urllib.parse
-import json
-from bs4 import BeautifulSoup
-import requests
-from base.spider import Spider as BaseSpider
+import sys, re, json, time
+from urllib.parse import urljoin, quote
 
+sys.path.append('..')
+try:
+    from base.spider import Spider
+except ImportError:
+    class Spider:
+        def fetch(self, url, headers=None, **kw):
+            import requests as rq
+            kw.pop('timeout', None)
+            r = rq.get(url, headers=headers, timeout=15, **kw)
+            r.encoding = 'utf-8'
+            return r
 
-class Spider(BaseSpider):
-    def init(self, extend=""):
-        self.host = "https://maihaolian.com"
-        self.headers = {
-            "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1",
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-            "Accept-Language": "zh-CN,zh;q=0.9",
-        }
+HOSTS = ["https://www.maihaolian.com", "http://www.maihaolian.com", "https://maihaolian.com", "http://maihaolian.com"]
+HOST = "https://www.maihaolian.com"
+UA = "Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1"
+CATEGORIES = {"1": "电影", "2": "电视剧", "3": "综艺", "4": "动漫", "5": "热门短剧", "qq": "腾讯SVIP", "youku": "优酷SVIP", "bli": "B站SVIP", "duanju": "红果短剧"}
+PLAYABLE = {"1", "2", "3", "4", "5", "6"}
+PARSERS = {"JD4K": "https://fgsrg.hzqingshan.com/player/", "JD2K": "https://fgsrg.hzqingshan.com/player/", "co": "https://zzrs.mfdyvip.com/player/", "BBA": "https://zzrs.mfdyvip.com/player/", "YYNB": "https://zzrs.mfdyvip.com/player/", "youku": "https://zzrs.mfdyvip.com/player/", "qq": "https://zzrs.mfdyvip.com/player/", "bilibili": "https://zzrs.mfdyvip.com/player/", "qiyi": "https://zzrs.mfdyvip.com/player/"}
 
-    def getName(self):
-        return '枫叶影院'
-
-    def homeContent(self, filter):
-        return {"class": [
-            {'type_id': "/label/qq", 'type_name': "腾讯VIP精选"},
-            {'type_id': "/label/bli", 'type_name': "B站VIP精选"},
-            {'type_id': "/label/youku", 'type_name': "优酷VIP精选"},
-            {"type_id": "5", "type_name": "红果短剧"},
-            {"type_id": "2", "type_name": "电视剧"},
-            {"type_id": "1", "type_name": "电影"},
-            {"type_id": "4", "type_name": "动漫"},
-            {"type_id": "3", "type_name": "综艺"},
-        ], "filters": self._build_filters()}
-
-    def _build_filters(self):
-        area = [{"n": "全部", "v": ""}, {"n": "大陆", "v": "大陆"}, {"n": "香港", "v": "香港"},
-                {"n": "台湾", "v": "台湾"}, {"n": "美国", "v": "美国"}, {"n": "韩国", "v": "韩国"},
-                {"n": "日本", "v": "日本"}, {"n": "泰国", "v": "泰国"}, {"n": "新加坡", "v": "新加坡"},
-                {"n": "马来西亚", "v": "马来西亚"}, {"n": "印度", "v": "印度"}, {"n": "英国", "v": "英国"},
-                {"n": "法国", "v": "法国"}, {"n": "加拿大", "v": "加拿大"}, {"n": "西班牙", "v": "西班牙"},
-                {"n": "俄罗斯", "v": "俄罗斯"}, {"n": "其它", "v": "其它"}]
-        year = [{"n": "全部", "v": ""}, {"n": "2026", "v": "2026"}, {"n": "2025", "v": "2025"},
-                {"n": "2024", "v": "2024"}, {"n": "2023", "v": "2023"}, {"n": "2022", "v": "2022"},
-                {"n": "2021", "v": "2021"}, {"n": "2020", "v": "2020"}, {"n": "2019", "v": "2019"},
-                {"n": "2018", "v": "2018"}, {"n": "2017", "v": "2017"}, {"n": "2016", "v": "2016"},
-                {"n": "2015", "v": "2015"}, {"n": "2014", "v": "2014"}, {"n": "2013", "v": "2013"},
-                {"n": "2012", "v": "2012"}, {"n": "2011", "v": "2011"}, {"n": "2010", "v": "2010"},
-                {"n": "2009", "v": "2009"}, {"n": "2008", "v": "2008"}, {"n": "2007", "v": "2007"},
-                {"n": "2006", "v": "2006"}, {"n": "2005", "v": "2005"}, {"n": "2004", "v": "2004"}]
-        lang = [{"n": "全部", "v": ""}, {"n": "国语", "v": "国语"}, {"n": "英语", "v": "英语"},
-                {"n": "粤语", "v": "粤语"}, {"n": "闽南语", "v": "闽南语"}, {"n": "韩语", "v": "韩语"},
-                {"n": "日语", "v": "日语"}, {"n": "法语", "v": "法语"}, {"n": "德语", "v": "德语"},
-                {"n": "其它", "v": "其它"}]
-        sort = [{"n": "时间", "v": "time"}, {"n": "人气", "v": "hits"}, {"n": "评分", "v": "score"}]
-        letter = [{"n": "全部", "v": ""}, {"n": "A", "v": "A"}, {"n": "B", "v": "B"}, {"n": "C", "v": "C"},
-                  {"n": "D", "v": "D"}, {"n": "E", "v": "E"}, {"n": "F", "v": "F"}, {"n": "G", "v": "G"},
-                  {"n": "H", "v": "H"}, {"n": "I", "v": "I"}, {"n": "J", "v": "J"}, {"n": "K", "v": "K"},
-                  {"n": "L", "v": "L"}, {"n": "M", "v": "M"}, {"n": "N", "v": "N"}, {"n": "O", "v": "O"},
-                  {"n": "P", "v": "P"}, {"n": "Q", "v": "Q"}, {"n": "R", "v": "R"}, {"n": "S", "v": "S"},
-                  {"n": "T", "v": "T"}, {"n": "U", "v": "U"}, {"n": "V", "v": "V"}, {"n": "W", "v": "W"},
-                  {"n": "X", "v": "X"}, {"n": "Y", "v": "Y"}, {"n": "Z", "v": "Z"}, {"n": "0-9", "v": "0-9"}]
-        return {
-            "2": [
-                {"key": "class", "name": "类型",
-                 "value": [{"n": "全部", "v": "2"}, {"n": "国产剧", "v": "13"}, {"n": "日韩剧", "v": "15"},
-                           {"n": "海外剧", "v": "16"}]},
-                {"key": "area", "name": "地区", "value": area},
-                {"key": "genre", "name": "剧情", "value": [{"n": v[0], "v": v[1]} for v in
-                                                           [("全部", ""), ("古装", "古装"), ("战争", "战争"),
-                                                            ("青春偶像", "青春偶像"), ("喜剧", "喜剧"),
-                                                            ("家庭", "家庭"), ("犯罪", "犯罪"), ("动作", "动作"),
-                                                            ("奇幻", "奇幻"), ("剧情", "剧情"), ("历史", "历史"),
-                                                            ("经典", "经典"), ("乡村", "乡村"), ("情景", "情景"),
-                                                            ("商战", "商战"), ("网剧", "网剧"), ("其他", "其他")]]},
-                {"key": "year", "name": "年份", "value": year},
-                {"key": "lang", "name": "语言", "value": lang},
-                {"key": "letter", "name": "字母", "value": letter},
-                {"key": "sort", "name": "排序", "value": sort},
-            ],
-            "1": [
-                {"key": "class", "name": "类型",
-                 "value": [{"n": "全部", "v": "1"}, {"n": "动作片", "v": "6"}, {"n": "喜剧片", "v": "7"},
-                           {"n": "恐怖片", "v": "8"}, {"n": "科幻片", "v": "9"}, {"n": "爱情片", "v": "10"},
-                           {"n": "剧情片", "v": "11"}, {"n": "战争片", "v": "12"}, {"n": "纪录片", "v": "20"}]},
-                {"key": "area", "name": "地区", "value": area},
-                {"key": "genre", "name": "剧情", "value": [{"n": v[0], "v": v[1]} for v in
-                                                           [("全部", ""), ("喜剧", "喜剧"), ("爱情", "爱情"),
-                                                            ("恐怖", "恐怖"), ("动作", "动作"), ("科幻", "科幻"),
-                                                            ("剧情", "剧情"), ("战争", "战争"), ("警匪", "警匪"),
-                                                            ("犯罪", "犯罪"), ("动画", "动画"), ("奇幻", "奇幻"),
-                                                            ("武侠", "武侠"), ("冒险", "冒险"), ("枪战", "枪战"),
-                                                            ("悬疑", "悬疑"), ("惊悚", "惊悚"), ("经典", "经典"),
-                                                            ("青春", "青春"), ("文艺", "文艺"), ("微电影", "微电影"),
-                                                            ("古装", "古装"), ("历史", "历史"), ("运动", "运动"),
-                                                            ("农村", "农村"), ("儿童", "儿童"),
-                                                            ("网络电影", "网络电影")]]},
-                {"key": "year", "name": "年份", "value": year},
-                {"key": "lang", "name": "语言", "value": lang},
-                {"key": "letter", "name": "字母", "value": letter},
-                {"key": "sort", "name": "排序", "value": sort},
-            ],
-            "4": [
-                {"key": "class", "name": "类型",
-                 "value": [{"n": "全部", "v": "4"}, {"n": "国产动漫", "v": "25"}, {"n": "日韩动漫", "v": "26"}]},
-                {"key": "genre", "name": "剧情", "value": [{"n": v[0], "v": v[1]} for v in
-                                                           [("全部", ""), ("情感", "情感"), ("科幻", "科幻"),
-                                                            ("热血", "热血"), ("推理", "推理"), ("搞笑", "搞笑"),
-                                                            ("冒险", "冒险"), ("奇幻", "奇幻"), ("战斗", "战斗"),
-                                                            ("校园", "校园"), ("萝莉", "萝莉"), ("治愈", "治愈"),
-                                                            ("原创", "原创"), ("亲子", "亲子"), ("益智", "益智"),
-                                                            ("励志", "励志"), ("其他", "其他")]]},
-                {"key": "area", "name": "地区",
-                 "value": [{"n": "全部", "v": ""}, {"n": "大陆", "v": "大陆"}, {"n": "香港", "v": "香港"},
-                           {"n": "台湾", "v": "台湾"}, {"n": "美国", "v": "美国"}, {"n": "韩国", "v": "韩国"},
-                           {"n": "日本", "v": "日本"}, {"n": "法国", "v": "法国"}, {"n": "英国", "v": "英国"},
-                           {"n": "其它", "v": "其它"}]},
-                {"key": "year", "name": "年份", "value": year},
-                {"key": "lang", "name": "语言", "value": lang},
-                {"key": "letter", "name": "字母", "value": letter},
-                {"key": "sort", "name": "排序", "value": sort},
-            ],
-            "3": [
-                {"key": "class", "name": "类型",
-                 "value": [{"n": "全部", "v": "3"}, {"n": "大陆综艺", "v": "21"}, {"n": "日韩综艺", "v": "22"}]},
-                {"key": "genre", "name": "剧情", "value": [{"n": v[0], "v": v[1]} for v in
-                                                           [("全部", ""), ("选秀", "选秀"), ("情感", "情感"),
-                                                            ("访谈", "访谈"), ("播报", "播报"), ("音乐", "音乐"),
-                                                            ("美食", "美食"), ("旅游", "旅游"), ("搞笑", "搞笑"),
-                                                            ("游戏", "游戏"), ("亲子", "亲子"), ("其它", "其它")]]},
-                {"key": "area", "name": "地区",
-                 "value": [{"n": "全部", "v": ""}, {"n": "大陆", "v": "大陆"}, {"n": "香港", "v": "香港"},
-                           {"n": "台湾", "v": "台湾"}, {"n": "美国", "v": "美国"}, {"n": "韩国", "v": "韩国"},
-                           {"n": "日本", "v": "日本"}, {"n": "英国", "v": "英国"}, {"n": "其它", "v": "其它"}]},
-                {"key": "year", "name": "年份", "value": year},
-                {"key": "lang", "name": "语言", "value": lang},
-                {"key": "letter", "name": "字母", "value": letter},
-                {"key": "sort", "name": "排序", "value": sort},
-            ],
-        }
-
-    def homeVideoContent(self):
-        html = self._fetch('/')
-        return {"list": self._parse_video_list(html)}
-
-    def categoryContent(self, tid, pg, filter, extend):
-        # 构建筛选参数：参照歪比巴卜，直接取extend里的值，fallback到filter
-        if tid.startswith('/label'):
-            url = f'{tid}/page/{pg}.html'
-            html = self._fetch(url)
-            items = self._parse_video_list(html)
-            page = int(pg)
-            page_count = page if len(items) < 24 else page + 2
-            return {"list": items, "page": page, "pagecount": page_count, "limit": 24, "total": page_count * 24}
-
-        args = {}
-        if extend and isinstance(extend, dict):
-            for k, v in extend.items():
-                if v:
-                    args[k] = str(v)
-        if isinstance(filter, dict):
-            for k, v in filter.items():
-                if v and k not in args:
-                    args[k] = str(v)
-        route_tid = args.get('class', args.get('tid', str(tid)))
-        area = args.get('area', '')
-        genre = args.get('genre', '')
-        year = args.get('year', '')
-        lang = args.get('lang', '')
-        letter = args.get('letter', '')
-        sort = args.get('sort', '')
-        # 无筛选走正常分页
-        if not area and not genre and not year and not lang and not letter and not sort:
-            url = f'/cupfox-list/{route_tid}--------{pg}---.html'
-            html = self._fetch(url)
-            items = self._parse_video_list(html)
-            page = int(pg)
-            soup = BeautifulSoup(html, 'html.parser')
-            pagecount = page
-            for a in soup.select('a.page-link'):
-                if a.text == '尾页':
-                    m = re.search(r'---(\d+)---', a.get('href', ''))
-                    if m:
-                        pagecount = int(m.group(1))
-                    break
-            if not items:
-                pagecount = 0
-            return {"list": items, "page": page, "pagecount": pagecount, "limit": 36, "total": 9999}
-        # 有筛选：{tid}-{area}-{sort}-{genre}-{lang}-{letter}------{year}.html
-        segs = [route_tid, area, sort, genre, lang, letter, '', '', year]
-        url = '/cupfox-list/' + '-'.join(segs) + '.html'
-        html = self._fetch(url)
-        items = self._parse_video_list(html)
-        return {"list": items, "page": 1, "pagecount": 1, "limit": 36, "total": 9999}
-
-    def detailContent(self, ids):
-        result = {"list": []}
-        vid = ids[0].split(',')[0].strip()
+class Spider(Spider):
+    def _fetch(self, url, headers=None, timeout=15):
+        for fn in (lambda: self.fetch(url, headers=headers, verify=False), lambda: self.fetch(url, verify=False)):
+            try:
+                r = fn()
+                h = r.text if hasattr(r, 'text') else (r.decode('utf-8', 'ignore') if isinstance(r, bytes) else str(r))
+                if h and len(h) > 500 and "系统安全验证" not in h:
+                    return h
+            except:
+                pass
         try:
-            html = self._fetch(f'/detail/{vid}.html')
-            if not html: return result
-            soup = BeautifulSoup(html, 'html.parser')
-            vod_name = soup.select_one('h3.slide-info-title')
-            vod_name = vod_name.text.strip() if vod_name else ''
-            vod_pic = soup.select_one('img.lazy')
-            vod_pic = self._fix_pic(vod_pic.get('data-src', '')) if vod_pic else ''
-            vod_director = ''
-            vod_actor = ''
-            for el in soup.select('.slide-info'):
-                text = el.get_text(' ').strip()
-                if text.startswith('导演：'):
-                    vod_director = text.replace('导演：', '').strip()
-                elif text.startswith('演员：'):
-                    vod_actor = text.replace('演员：', '').strip()
-            vod_content = soup.select_one('#height_limit')
-            vod_content = vod_content.get_text(' ', strip=True) if vod_content else ''
-            play_from, play_url = [], []
-            for tab in soup.select('.anthology-tab a.swiper-slide'):
-                src_name = re.sub(r'<[^>]+>', '', str(tab)).strip() or tab.get_text(' ', strip=True).strip()
-                if src_name:
-                    play_from.append(src_name)
-            tab_blocks = soup.select('.anthology-list-box')
-            for i, block in enumerate(tab_blocks):
-                ep_list = []
-                for a in block.select('li a'):
-                    href = a.get('href', '')
-                    m = re.search(r'/play/(.*?)\.html', href)
-                    if m:
-                        ep_list.append(f'{a.text.strip()}${vid}-{m.group(1)}')
-                ep_list.reverse()
-                if ep_list and i < len(play_from):
-                    play_url.append('#'.join(ep_list))
-            valid_from = [pf for i, pf in enumerate(play_from) if i < len(play_url)]
-            result["list"].append({
-                "vod_id": vid, "vod_name": vod_name, "vod_pic": vod_pic,
-                "vod_director": vod_director, "vod_actor": vod_actor,
-                "vod_content": vod_content,
-                "vod_play_from": "$$$".join(valid_from),
-                "vod_play_url": "$$$".join(play_url),
-            })
+            import requests as rq
+            h = rq.get(url, headers=headers, timeout=min(timeout, 8), verify=False).text
+            if h and len(h) > 500 and "系统安全验证" not in h:
+                return h
         except:
             pass
-        return result
-
-    def searchContent(self, key, quick, pg="1"):
         try:
-            decoded = urllib.parse.unquote(key)
+            import urllib.request as uq
+            req = uq.Request(url, headers=dict(headers or {}))
+            h = uq.urlopen(req, timeout=min(timeout, 8)).read().decode('utf-8', 'ignore')
+            if h and len(h) > 500 and "系统安全验证" not in h:
+                return h
         except:
-            decoded = key
-        html = self._fetch(f'/cupfox-search/{urllib.parse.quote(decoded)}----------{pg}---.html')
-        items = self._parse_search_list(html)
-        return {"list": items, "page": int(pg), "pagecount": 1, "limit": 36, "total": len(items)}
+            pass
+        return ""
 
-    def playerContent(self, flag, id, vipFlags):
-        url = ''
+    def init(self, extend=""):
+        global HOST
+        for h in HOSTS:
+            try:
+                if "枫叶影院" in self._fetch(h, {"User-Agent": UA}):
+                    HOST = h
+                    break
+            except:
+                pass
+
+    def _html(self, path):
+        url = path if path.startswith("http") else HOST + path
+        headers = {"User-Agent": UA, "Connection": "close", "Referer": HOST + "/"}
+        for _ in range(2):
+            h = self._fetch(url, headers)
+            if h and "系统安全验证" not in h and not h.startswith("403"):
+                return h
+            time.sleep(1)
+        return ""
+
+    def _pic(self, u):
+        u = (u or "").replace("\\", "").replace("&amp;", "&").strip()
+        if not u:
+            return ""
+        if u.startswith("//"):
+            u = "https:" + u
+        if not u.startswith("http"):
+            u = HOST + u
+        if "gimg0.baidu.com" in u:
+            return u
+        m = re.match(r'https?://([^/]+)(/.*)$', u)
+        if m and "hzqingshan.com" in m.group(1):
+            return "https://gimg0.baidu.com/gimg/app=2001&n=0&g=0n&fmt=jpeg&src=" + m.group(1) + m.group(2)
+        return u
+
+    def homeContent(self, filter=False):
+        return {"class": [{"type_id": k, "type_name": v} for k, v in CATEGORIES.items()], "list": self._cards(self._html("/"))}
+
+    def homeVideoContent(self):
+        return {"list": self._cards(self._html("/"))}
+
+    def categoryContent(self, tid, pg=1, filter=False, extend=""):
+        pn = 1
         try:
-            url = id if id.startswith('http') else f'{self.host}/play/{id}.html'
-            html = self._fetch(url)
-            if html:
-                m = re.search(r'player_aaaa=(.*?)</script>', html, re.S)
-                if m:
-
-                    try:
-                        pd = json.loads(m.group(1))
-                    except Exception as e:
-                        print(e)
-                        pd = {}
-                    # print('pd:', pd)
-                    play_url = pd.get('url')
-                    play_id = pd.get('from')
-
-                    api_map = {
-                        'YYNB': 'https://zzrs.mfdyvip.com/player/mplayer.php',
-                        'JD4K': 'https://fgsrg.hzqingshan.com/player/mplayer.php',
-                    }
-                    if not play_url:
-                        return {"parse": 0, "url": 'https://php.doube.eu.org/error.m3u8',
-                                "header": {'User-Agent': 'Mozilla/5.0'}}
-                    if play_url.startswith('http') and (play_url.endswith('.m3u8') or play_url.endswith('.mp4')):
-                        return {"parse": 0, "url": play_url, "header": {'User-Agent': 'Mozilla/5.0'}}
-
-                    else:
-                        headers = {
-                            'User-Agent': "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-                            'Accept': "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-                            'accept-language': "zh-CN,zh;q=0.9",
-                            'cache-control': "no-cache",
-                            'pragma': "no-cache",
-                            'priority': "u=0, i",
-                            'referer': "https://www.ht10010.com/",
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        }
-                        response = requests.get(f"https://fgsrg.hzqingshan.com/player/?url={play_url}", headers=headers)
-                        token = re.search(r'data-te="(.*?)"', response.text)
-                        if token:
-                            token = token.group(1)
-                            payload = {
-                                'url': play_url,
-                                'token': token
-                            }
-                            # print('payload', payload)
-                            try:
-                                response = self.post(api_map[play_id], data=payload, headers=headers)
-
-                                response.raise_for_status()
-                                result = response.json()
-                                # print('result:', result)
-                                if result['code'] == 200 and 'url' in result:
-                                    play_url = result['url']
-                                    return {"parse": 0, "url": play_url, "header": {
-                                        'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1'}}
-                            except Exception as e:
-                                print(e)
-        except Exception as e:
-            print(e)
-        return {"parse": 1, "url": url}
-
-    def localProxy(self, param=''):
-        return {}
-
-    def isVideoFormat(self, url):
-        return False
-
-    def manualVideoCheck(self):
-        return False
-
-    def _fetch(self, url):
-        try:
-            if not url.startswith('http'):
-                url = self.host + url
-            rsp = self.fetch(url, headers=self.headers)
-            return rsp.text if rsp else ''
+            pn = max(int(str(pg)), 1)
         except:
-            return ''
+            pass
+        t = str(tid)
+        if t.isdigit():
+            h = self._fetch("%s/index.php/ajax/data?mid=1&tid=%s&page=%s&limit=24" % (HOST, t, pn), {"User-Agent": UA, "Referer": HOST + "/", "X-Requested-With": "XMLHttpRequest"})
+            try:
+                d = json.loads(h)
+            except:
+                d = None
+            if d and d.get("code") == 1 and d.get("list"):
+                items = [{"vod_id": str(v.get("vod_id")), "vod_name": v.get("vod_name") or "", "vod_pic": self._pic(v.get("vod_pic")), "vod_remarks": v.get("vod_remarks") or ""} for v in d.get("list") or []]
+                return {"page": pn, "pagecount": max(int(d.get("pagecount") or pn), pn), "limit": 24, "total": int(d.get("total") or 0), "list": items}
+        base = "/type/%s" % t if t.isdigit() else "/label/%s" % t
+        url = base + ".html" if pn == 1 else base + "/page/%d.html" % pn
+        html = self._html(url)
+        items = self._cards(html)
+        pc = max(self._pagecount(html, pn), pn + 1 if len(items) >= 20 else pn)
+        return {"page": pn, "pagecount": pc, "limit": max(len(items), 20), "total": len(items), "list": items}
 
-    def _fix_pic(self, u):
-        if not u: return ''
-        if u.startswith('//'): return 'https:' + u
-        return u.replace('&amp;', '&')
+    def _cards(self, html):
+        items, seen = [], set()
+        if not html:
+            return items
+        for m in re.finditer(r'<a[^>]+href="(/detail/(\d+)\.html)"[^>]*>(.*?)</a>', html, re.S):
+            vid = m.group(2)
+            if vid in seen:
+                continue
+            g = m.group(3)
+            t = re.search(r'alt="([^"]+)"', g) or re.search(r'<span[^>]*>([^<]+)</span>', g)
+            name = re.sub(r'\s+', '', t.group(1)).strip() if t else ""
+            if not name:
+                name = re.sub(r'\s+', '', re.sub(r'<[^>]+>', '', g)).strip()
+            if not name or len(name) > 100:
+                continue
+            p = re.search(r'data-src="([^"]+)"', g) or re.search(r'src="([^"]+)"', g) or re.search(r'background-image:\s*url\(([^)]+)\)', g)
+            remark = re.sub(r'<[^>]+>', '', g)
+            remark = re.sub(r'\s+', '', remark).replace(name, '').strip('|')
+            seen.add(vid)
+            items.append({"vod_id": vid, "vod_name": name[:50], "vod_pic": self._pic(p.group(1) if p else ""), "vod_remarks": remark[:20]})
+        return items
 
-    def _parse_video_list(self, html):
-        videos, seen = [], set()
-        soup = BeautifulSoup(html, 'html.parser')
-        cards = soup.select('a.public-list-exp')
-        for a in cards:
-            href = a.get('href', '')
-            m = re.search(r'/detail/(\d+)\.html', href)
-            if not m: continue
-            vod_id = m.group(1)
-            if vod_id in seen: continue
-            seen.add(vod_id)
-            span = ','.join([span.text for span in a.select('span.public-prt')])
-            # print('span', span)
-            vod_name = a.get('title', '') or (a.select_one('img') and a.select_one('img').get('alt', '')) or ''
-            pic_el = a.select_one('img')
-            vod_pic = self._fix_pic(pic_el.get('data-src', '')) if pic_el else ''
-            remark_el = a.select_one('.ft2') or a.select_one('.public-list-prb')
-            vod_remarks = remark_el.text.strip() if remark_el else ''
-            videos.append(
-                {"vod_id": vod_id, "vod_name": vod_name.strip(), "vod_pic": vod_pic, "vod_remarks": vod_remarks, "vod_year": span})
-        return videos
+    def detailContent(self, ids):
+        if isinstance(ids, list):
+            vid = ids[0] if ids else ""
+        else:
+            vid = str(ids) if ids else ""
+        m = re.search(r'(\d+)', str(vid))
+        vid = m.group(1) if m else ""
+        if not vid:
+            return {"list": []}
+        h = self._html("/detail/%s.html" % vid)
+        if not h:
+            return {"list": []}
+        d = {"vod_id": vid, "vod_name": "", "vod_pic": "", "vod_year": "", "vod_area": "", "vod_class": "", "vod_director": "", "vod_actor": "", "vod_content": "", "vod_remarks": "", "vod_play_from": "", "vod_play_url": ""}
+        tn = re.search(r'<h3[^>]*class="[^"]*slide-info-title[^"]*"[^>]*>([^<]+)</h3>', h) or re.search(r'alt="《([^》]+)》', h)
+        if tn:
+            d["vod_name"] = tn.group(1).strip()
+        p = re.search(r'data-src="([^"]+)"', h) or re.search(r'src="([^"]+)"', h)
+        if p:
+            d["vod_pic"] = p.group(1).replace('&amp;', '&')
+        for k, f in (("类型", "vod_class"), ("演员", "vod_actor"), ("导演", "vod_director"), ("年份", "vod_year"), ("连载", "vod_remarks")):
+            m2 = re.search(r'<strong class="r6">%s:</strong>([^<]*)<' % k, h)
+            if m2:
+                d[f] = m2.group(1).strip()
+        dm = re.search(r'id="height_limit"[^>]*>(.*?)</div>', h, re.S)
+        if dm:
+            d["vod_content"] = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', dm.group(1))).strip()
+            d["vod_content"] = re.sub(r'^简介[:：]?\s*', '', d["vod_content"])[:500]
+        froms = re.findall(r'aria-label="(\d+)\s*/\s*\d+"[^>]*>(.*?)</a>', h, re.S)
+        eps = re.findall(r'href="(/play/%s-(\d+)-(\d+)\.html)"[^>]*>([^<]+)</a>' % vid, h)
+        groups = {}
+        for url, sid, nid, ename in eps:
+            groups.setdefault(sid, []).append((nid, ename, url))
+        pf, pu = [], []
+        for sid, fname in froms:
+            if sid not in groups or not groups[sid] or sid not in PLAYABLE:
+                continue
+            fname = re.sub(r'\(\d+\)$', '', re.sub(r'\s+', '', re.sub(r'<[^>]+>', '', fname).replace('&nbsp;', ' ')).strip())
+            pf.append(fname or ("线路%s" % sid))
+            pu.append("#".join("%s$%s" % (e, u) for n, e, u in groups[sid]))
+        if pf:
+            d["vod_play_from"] = "$$$".join(pf)
+            d["vod_play_url"] = "$$$".join(pu)
+        return {"list": [d]}
 
-    def _parse_search_list(self, html):
-        videos, seen = [], set()
-        soup = BeautifulSoup(html, 'html.parser')
-        cards = soup.select('a.public-list-exp')
-        for a in cards:
-            href = a.get('href', '')
-            m = re.search(r'/detail/(\d+)\.html', href)
-            if not m: continue
-            vod_id = m.group(1)
-            if vod_id in seen: continue
-            seen.add(vod_id)
-            pic_el = a.select_one('img')
-            vod_pic = self._fix_pic(pic_el.get('data-src', '')) if pic_el else ''
-            title_el = soup.select_one(f'a.thumb-txt[href="/detail/{vod_id}.html"]')
-            if title_el:
-                vod_name = title_el.text.strip()
-            else:
-                vod_name = a.select_one('img') and a.select_one('img').get('alt', '') or ''
-            remark_el = a.select_one('.public-list-prb') or a.select_one('.ft2')
-            vod_remarks = remark_el.text.strip() if remark_el else ''
-            videos.append(
-                {"vod_id": vod_id, "vod_name": vod_name.strip(), "vod_pic": vod_pic, "vod_remarks": vod_remarks})
-        return videos
+    def searchContent(self, key, quick=False, pg="1"):
+        return {"list": self._cards(self._html("/cupfox-search/-------------.html?wd=" + quote(key))), "page": 1}
 
+    def _resolve(self, base, code):
+        h = self._fetch(base + "?url=" + code, {"User-Agent": UA, "Referer": HOST + "/"})
+        m = re.search(r'data-te="([^"]+)"', h or "")
+        if not m:
+            return ""
+        try:
+            import requests as rq
+            r = rq.post(base + "mplayer.php", data={"url": code, "token": m.group(1)}, headers={"User-Agent": UA, "Referer": base}, timeout=15, verify=False)
+            j = r.json()
+        except:
+            try:
+                import urllib.request as uq
+                import urllib.parse as up
+                data = up.urlencode({"url": code, "token": m.group(1)}).encode()
+                req = uq.Request(base + "mplayer.php", data=data, headers={"User-Agent": UA, "Referer": base, "Content-Type": "application/x-www-form-urlencoded"})
+                j = json.loads(uq.urlopen(req, timeout=15).read().decode("utf-8", "ignore"))
+            except:
+                return ""
+        if j.get("code") == 200 and j.get("url"):
+            return j["url"]
+        return ""
 
-if __name__ == '__main__':
-    sp = Spider()
-    sp.init()
-    # 20067-5-189
-    print(sp.categoryContent('/label/qq','1',True, {}))
-    # print(sp.playerContent('', '20067-6-189', []))
-    # print(sp.playerContent('', '20067-5-189', []))
-    pass
+    def playerContent(self, flag, id, vipFlags=None):
+        url = str(id) if id else str(flag)
+        if url.startswith("http") and (".m3u8" in url or ".mp4" in url):
+            return {"parse": 0, "url": url}
+        if not url.startswith("/"):
+            url = "/" + url
+        h = self._fetch(HOST + url, {"User-Agent": UA, "Referer": HOST + "/"})
+        if not h:
+            return {"parse": 0, "url": ""}
+        pd = re.search(r'player_aaaa=(\{.*?\})\s*</script>', h, re.S)
+        if pd:
+            try:
+                d = json.loads(pd.group(1))
+                u = d.get("url") or ""
+                if u.startswith("http"):
+                    return {"parse": 0, "url": u}
+                if u and (d.get("from") or "") in PARSERS:
+                    ru = self._resolve(PARSERS[d.get("from")], u)
+                    if ru:
+                        return {"parse": 0, "url": ru}
+            except:
+                pass
+        m = re.match(r'/play/(\d+)-(\d+)-(\d+)\.html', url)
+        if m:
+            for alt in sorted(PLAYABLE):
+                if alt == m.group(2):
+                    continue
+                h2 = self._fetch("%s/play/%s-%s-%s.html" % (HOST, m.group(1), alt, m.group(3)), {"User-Agent": UA, "Referer": HOST + "/"})
+                if h2:
+                    pd2 = re.search(r'player_aaaa=(\{.*?\})\s*</script>', h2, re.S)
+                    if pd2:
+                        try:
+                            d2 = json.loads(pd2.group(1))
+                            u2 = d2.get("url") or ""
+                            if u2.startswith("http"):
+                                return {"parse": 0, "url": u2}
+                            if u2 and (d2.get("from") or "") in PARSERS:
+                                ru2 = self._resolve(PARSERS[d2.get("from")], u2)
+                                if ru2:
+                                    return {"parse": 0, "url": ru2}
+                        except:
+                            pass
+        m3u8 = re.search(r'(https?://[^\s"\'<>]+\.m3u8)', h)
+        if m3u8:
+            return {"parse": 0, "url": m3u8.group(1)}
+        return {"parse": 0, "url": ""}
+
+    def localProxy(self, param):
+        pass
+
+    def _pagecount(self, html, current_page=1):
+        if not html:
+            return current_page
+        pages = re.findall(r'/(?:type|label)/[^/]+/page/(\d+)\.html', html)
+        max_page = current_page
+        for p in pages:
+            try:
+                n = int(p)
+                if n > max_page:
+                    max_page = n
+            except:
+                pass
+        return max_page
