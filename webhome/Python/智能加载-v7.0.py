@@ -2177,26 +2177,54 @@ class Spider(BaseSpider):
             path = os.path.join(self.STORAGE_ROOT, path.lstrip("/"))
         return os.path.realpath(os.path.abspath(path))
 
+    @staticmethod
+    def _dir_contains_any_file(path):
+        """目录树下是否存在任意普通文件（忽略隐藏目录）。
+
+        用于区分“真实分类目录”与旧版本自动创建的空分类文件夹；
+        遇到第一个文件即返回，不做全量遍历。
+        """
+        try:
+            for current, dirs, files in os.walk(path):
+                dirs[:] = [d for d in dirs if not d.startswith(".")]
+                if files:
+                    return True
+        except Exception:
+            return False
+        return False
+
     def _scan_roots_for_base(self, base_path):
+        # 扫描根语义：优先使用根下“确实含有文件”的类型子目录
+        # （py/python、js、csp、html，标准分类布局）；子目录不存在、
+        # 或只是空目录（常见于旧版本设置路径时自动创建的空分类文件夹）
+        # 时，回退为直接递归扫描根目录本身。这样无论扫描根设成 webhome
+        # 容器、Python 目录，还是 TVBoxOSC 这类任意目录，里面任意层级
+        # 的源文件都能被扫到；标准布局行为不变。
+        def type_root(*names):
+            detected = _detect_child_dir(base_path, *names)
+            if os.path.isdir(detected) and self._dir_contains_any_file(detected):
+                return detected
+            return base_path
+
         roots = [
             {
-                "path": _detect_child_dir(base_path, "py", "python"),
+                "path": type_root("py", "python"),
                 "type": "PY",
                 "extensions": [".py"],
             },
             {
-                "path": _detect_child_dir(base_path, "js", "javascript"),
+                "path": type_root("js", "javascript"),
                 "type": "JS",
                 "extensions": [".js", ".json"],
             },
             {
-                "path": _detect_child_dir(base_path, "csp"),
+                "path": type_root("csp"),
                 "type": "CSP",
                 "extensions": [".json"],
             },
             # 已按用户要求移除 XBPQ 扫描根，仅保留 csp 作为 JAR/CSP 站点源目录。
             {
-                "path": _detect_child_dir(base_path, "html"),
+                "path": type_root("html"),
                 "type": "HTML",
                 "extensions": [".html"],
             },
@@ -13233,13 +13261,41 @@ class Spider(BaseSpider):
             base_name, self.TYPE_LABEL.get(root_type, root_type)
         )
 
+    def _browser_root_groups(self):
+        """去重后的浏览器根分组：[(真实路径, [类型...], 显示名), ...]。
+
+        多个类型根指向同一物理目录时（扫描目录回退模式：该目录下没有
+        非空的类型子目录，PY/JS/CSP/HTML 都回退到目录本身），合并为
+        一张卡片，避免同一批文件在 4 个类型卡片里重复显示。单一根仍
+        保留类型后缀（如 Python（PY））。
+        """
+        groups = []
+        index_by_norm = {}
+        for root_type, root_path in self._browser_enabled_roots():
+            norm = os.path.normcase(root_path)
+            if norm in index_by_norm:
+                groups[index_by_norm[norm]][1].append(root_type)
+            else:
+                index_by_norm[norm] = len(groups)
+                groups.append([root_path, [root_type]])
+        result = []
+        for root_path, root_types in groups:
+            if len(root_types) > 1:
+                display_name = (
+                    os.path.basename(os.path.normpath(root_path)) or root_path
+                )
+            else:
+                display_name = self._root_folder_name(root_path, root_types[0])
+            result.append((root_path, root_types, display_name))
+        return result
+
     def _browser_items(self, dir_path):
         """文件浏览器：根页列扫描根，子页列下级文件夹与文件卡。"""
         sources = self.cache.get("sources", [])
-        enabled_roots = self._browser_enabled_roots()
+        groups = self._browser_root_groups()
         if not dir_path:
             items = []
-            for root_type, root_path in enabled_roots:
+            for root_path, _root_types, display_name in groups:
                 root_norm = os.path.normcase(root_path)
                 root_sources = [
                     source
@@ -13256,19 +13312,25 @@ class Spider(BaseSpider):
                 items.append(
                     {
                         "browser_folder": True,
-                        "browser_name": "📁 "
-                        + self._root_folder_name(root_path, root_type),
+                        "browser_name": "📁 " + display_name,
                         "browser_dir": root_path,
                         "browser_remarks": "{} 项".format(len(root_sources)),
                     }
                 )
             return items
         real_dir = os.path.realpath(os.path.abspath(os.path.expanduser(dir_path)))
+        # 选“最深、最具体”的匹配根：回退模式下缺失类型目录会回退到父目录
+        # （如 js 不存在时 JS 根=webhome，而 HTML 根=webhome/html），父根
+        # 同样包含子目录，首个匹配会错误地把 html 文件归到父根导致空页。
         matched_root = None
-        for _root_type, root_path in enabled_roots:
-            if self._safe_path_within(real_dir, root_path):
+        best_len = -1
+        for root_path, _root_types, _display_name in groups:
+            if not self._safe_path_within(real_dir, root_path):
+                continue
+            root_len = len(os.path.normcase(root_path))
+            if root_len > best_len:
+                best_len = root_len
                 matched_root = root_path
-                break
         if not matched_root:
             return []
         rel_dir = os.path.relpath(real_dir, matched_root)
