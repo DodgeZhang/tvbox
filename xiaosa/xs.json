@@ -59,16 +59,6 @@
             "filterable": 0
         },
         {
-            "key": "爱看",
-            "name": "爱看 • APP",
-            "type": 3,
-            "api": "csp_AiKan",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "http://43.248.117.123:14680"
-        },
-        {
             "key": "咕噜",
             "name": "咕噜 • APP",
             "type": 3,
@@ -482,7 +472,8 @@
             "changeable": 1,
             "ext": {
                 "site": [
-                    "https://www.hjzhencai.top"
+                    "https://www.hjzhencai.top",
+                    "https://www.huanjuanwp.shop"
                 ]
             },
             "timeout": 60
