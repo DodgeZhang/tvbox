@@ -1,5 +1,5 @@
 {
-  "spider": "./jar/643990617_4_1790940680473.jar;md5;ac6074a8e4e9ae329bc2b53e383adb40",
+  "spider": "./jar/350167968_3_1790963314413.jar;md5;ee6abbb5a1e86ef53796034163175aac",
   "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
   "danmaku": "http://127.0.0.1:5266/danmu/webhtv?name={name}&episode={episode}",
   "sites": [
@@ -645,20 +645,7 @@
       "filterable": 0,
       "changeable": 1
     },
-    {
-      "key": "Time1080",
-      "name": "⏳┆时光┆4K",
-      "type": 3,
-      "api": "csp_Time1080",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "changeable": 1,
-      "ext": {
-        "site": "https://v.time1080.xyz"
-      }
-    },
-    {
+        {
       "key": "WoNiu",
       "name": "🐌┆蜗牛┆4K",
       "type": 3,
