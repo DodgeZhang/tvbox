@@ -363,11 +363,25 @@ class Spider(BaseSpider):
     ACTION_BLOCK_PREFIX = "local_source_block:"
     # v7.0：临时加载走 FloatSpider 方案——反射运行中 VodConfig 内存 addSite，
     # 不写任何配置文件，退出 App 后随进程消失。以下为跨壳类名候选。
-    RUNTIME_VOD_CONFIG_SUFFIXES = ("api.config.VodConfig", "VodConfig")
-    RUNTIME_SITE_SUFFIXES = ("bean.Site", "bean.site.Site", "api.Site", "model.Site")
+    RUNTIME_VOD_CONFIG_SUFFIXES = (
+        "api.config.VodConfig",   # 新版 FongMi 及主流分支
+        "api.VodConfig",          # 旧版 FongMi（config 子包重构前）
+        "config.VodConfig",
+        "VodConfig",
+    )
+    RUNTIME_SITE_SUFFIXES = (
+        "bean.Site",
+        "bean.site.Site",
+        "api.Site",
+        "api.config.Site",
+        "model.Site",
+    )
     RUNTIME_URL_UTIL_SUFFIXES = ("utils.UrlUtil",)
     RUNTIME_REFRESH_EVENT_SUFFIXES = ("event.RefreshEvent",)
     RUNTIME_BASE_PACKAGES = ("com.fongmi.android.tv", "com.github.catvod")
+    # ClassLoader 兜底用的锚点类：必须与壳代码在同一 dex / 类加载器。
+    # 不能用 android.app.Application（由框架类加载器加载，找不到壳类）。
+    RUNTIME_ANCHOR_CLASSES = ("com.github.catvod.Proxy",)
     ACTION_CLEAR_SITES = "local_source_clear_sites"
     ACTION_FULL_CLEAR = "local_source_full_clear"
     ACTION_UNLOAD_ALL_PERM = "local_source_unload_all_perm"
@@ -8975,24 +8989,42 @@ class Spider(BaseSpider):
                 return False, "「{}」是 {} 类型，仅支持永久加载".format(
                     name, self.TYPE_LABEL.get(source_type, source_type or "未知")
                 )
-            was_perm = (
+            # 永久态有两种来源，转换时都必须清理：
+            # · selected：全部加载/配置选择集（写标准点播配置）
+            # · injected：单文件永久加载（写注册表 + perm_injected 记录）
+            was_perm_selected = (
                 isinstance(self.selected_identities, set)
                 and identity in self.selected_identities
             )
-            if was_perm:
-                # 改为临时加载 = 移出加载 + 临时加载 两步。
-                # 第一步（此处）：从配置移除并写盘，触发 App 异步重建站点表。
-                # 第二步（看门）：确认重建落地后执行与"文件浏览-临时加载"
-                # 完全相同的纯内存注入。此处若同步注入，注入结果会被随后
-                # 落地的重建冲掉（实测站点出现后又消失），故不在此注入。
-                site = (
-                    source.get("site")
-                    if isinstance(source.get("site"), dict)
-                    else {}
-                )
-                runtime_key = str(site.get("key", "")).strip() or str(
-                    source.get("key", "")
-                ).strip()
+            was_perm_injected = identity in self.perm_injected_identities
+            if was_perm_injected:
+                # 单文件永久加载（注册表来源）转为临时：与"已加载站点-
+                # 全部改为临时"完全相同的路径——只改加载方式：删注册表
+                # 永久项、内存覆盖注入（set_home=False），不重新生成配置、
+                # 不触发 App 重载。重载会重建站点表并把首页切到聚合接口
+                # "智能点播"（即用户看到的"自动切换接口"）。
+                self.perm_injected_identities.discard(identity)
+                self._remove_site_from_registry(source)
+                if was_perm_selected:
+                    self.selected_identities.discard(identity)
+                self.temp_identities.add(identity)
+                try:
+                    self._save_settings()
+                except Exception as exc:
+                    self._warn("加载状态保存失败: {}".format(exc))
+                try:
+                    self._inject_site_into_app(source, set_home=False)
+                except Exception:
+                    pass
+                self._schedule_manager_page_refresh(delay=0.2)
+                return True, "「{}」已改为临时加载，退出 App 后自动消失".format(name)
+            if was_perm_selected:
+                # 配置选择集来源（"全部加载"的聚合"智能点播"接口）：
+                # 单站无法从聚合接口剥离，只能重生成配置并重载。
+                # 第一步（此处）：从配置选择集移除并写盘，触发 App 异步
+                # 重建站点表。第二步（看门）：确认重建落地后执行与"文件
+                # 浏览-临时加载"完全相同的纯内存注入。此处若同步注入，
+                # 注入结果会被随后落地的重建冲掉（实测站点出现后又消失）。
                 self.selected_identities.discard(identity)
                 try:
                     self._save_settings()
@@ -9015,12 +9047,9 @@ class Spider(BaseSpider):
                         or "未知错误",
                     )
                 self.temp_identities.add(identity)
-                if runtime_key:
-                    # 看门补注后据此恢复首页选中（与文件浏览-临时加载
-                    # 注入后切首页的行为一致）。自记而不读 App 侧：
-                    # 重建时 App 找不到被移除的 home 会回退首站并覆盖
-                    # 持久化值，重建后读到的已被污染。
-                    self._temp_home_key = runtime_key
+                # 只改变加载方式，不抢占当前接口：不设置 _temp_home_key，
+                # 看门补注时该站 set_home=False（与"已加载站点-全部改为
+                # 临时"的行为保持一致）。
                 # 临时状态落盘：App 重建会销毁本实例，新实例靠它恢复。
                 try:
                     self._save_settings()
@@ -9464,7 +9493,12 @@ class Spider(BaseSpider):
         return self._find_runtime_class(self.RUNTIME_SITE_SUFFIXES)
 
     def _find_runtime_class(self, suffixes, bases=None):
-        """在运行时通过 jclass 定位目标类。支持跨壳类名探测。"""
+        """在运行时通过 jclass 定位目标类。支持跨壳类名探测。
+
+        个别机型（多 dex 分包 / 旧版运行时）jclass 找不到壳内类，
+        再用壳类加载器做 Class.forName 兜底（见
+        _find_runtime_class_via_loader）。
+        """
         bases = bases or self.RUNTIME_BASE_PACKAGES
         from java import jclass
         for base in bases:
@@ -9474,6 +9508,51 @@ class Spider(BaseSpider):
                     return jclass(full)
                 except Exception:
                     continue
+        return self._find_runtime_class_via_loader(suffixes, bases, jclass)
+
+    def _find_runtime_class_via_loader(self, suffixes, bases, jclass):
+        """jclass 全部失败时的兜底：拿到壳类加载器后 Class.forName。
+
+        优先用 Chaquopy 保存的 App 类加载器（本脚本正运行其中）；
+        再退到锚点壳类自身的类加载器。两者都与壳代码在同一 dex，
+        不受 JNI 默认类加载器差异影响。
+        """
+        loaders = []
+        try:
+            Python = jclass("com.chaquo.python.Python")
+            loader = Python.getInstance().getClassLoader()
+            if loader is not None:
+                loaders.append(loader)
+        except Exception:
+            pass
+        for anchor in self.RUNTIME_ANCHOR_CLASSES:
+            try:
+                anchor_cls = jclass(anchor)
+                loader = anchor_cls.getClassLoader()
+                if loader is not None and loader not in loaders:
+                    loaders.append(loader)
+            except Exception:
+                continue
+        try:
+            context_loader = (
+                jclass("java.lang.Thread").currentThread().getContextClassLoader()
+            )
+            if context_loader is not None and context_loader not in loaders:
+                loaders.append(context_loader)
+        except Exception:
+            pass
+        try:
+            Class = jclass("java.lang.Class")
+        except Exception:
+            return None
+        for loader in loaders:
+            for base in bases:
+                for suffix in suffixes:
+                    full = "{}.{}".format(base, suffix)
+                    try:
+                        return Class.forName(full, True, loader)
+                    except Exception:
+                        continue
         return None
 
     def _runtime_file_url(self, file_url):
