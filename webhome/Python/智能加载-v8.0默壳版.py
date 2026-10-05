@@ -4637,8 +4637,32 @@ class Spider(BaseSpider):
                     self._notify_app(message)
                 self._schedule_manager_page_refresh()
             except Exception as exc:
-                self._log("ERROR", "文件加载操作失败: {}".format(exc))
-                self._notify_app("文件加载操作失败: {}".format(exc))
+                # 仅记录异常文本无法定位编码类问题（如 ascii codec），完整
+                # 堆栈写入诊断日志；Toast 附带本脚本最后一帧的行号/函数名，
+                # 用户截图即可定位，不必再翻日志。
+                import traceback
+
+                stack = "".join(
+                    traceback.format_exception(type(exc), exc, exc.__traceback__)
+                )
+                self._log(
+                    "ERROR",
+                    "文件加载操作失败 action={}:\n{}".format(action_string, stack),
+                )
+                frame_hint = ""
+                tb = exc.__traceback__
+                while tb is not None:
+                    filename = str(tb.tb_frame.f_code.co_filename or "")
+                    if filename.endswith(".py"):
+                        frame_hint = "（{}:{} {}）".format(
+                            os.path.basename(filename),
+                            tb.tb_lineno,
+                            tb.tb_frame.f_code.co_name,
+                        )
+                    tb = tb.tb_next
+                self._notify_app(
+                    "文件加载操作失败{}: {}".format(frame_hint, exc)
+                )
 
         worker_thread = threading.Thread(
             target=_worker, name="local-source-load-file"
@@ -12349,7 +12373,13 @@ class Spider(BaseSpider):
         except Exception:
             port = 9978
         relative = file_url[7:]
-        return "http://127.0.0.1:{}/file/{}".format(port, relative.lstrip("/"))
+        # 路径可能含中文/空格，必须 percent-quote，否则该 URL 一旦被
+        # HTTP 客户端按 ascii 编码请求行就会抛 UnicodeEncodeError。
+        # safe 集合与 _runtime_site_reference 保持一致。
+        return "http://127.0.0.1:{}/file/{}".format(
+            port,
+            urllib.parse.quote(relative.lstrip("/"), safe="/%:@&=+$,~"),
+        )
 
     def _inject_site_into_app(self, source, set_home=True):
         """通过 Java 反射将单个站点直接注入运行中的 VodConfig（FloatSpider 方案）。
