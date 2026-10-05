@@ -4631,14 +4631,14 @@ class Spider(BaseSpider):
 
             with self._ProxyCreationLock(self):
 
-                class SaveListener(dynamic_proxy(click_listener)):
+                class SaveListener(dynamic_proxy(view_click_listener)):
                     def __init__(self, edits, protocol_view, dialog):
                         super().__init__()
                         self.edits = edits
                         self.protocol_view = protocol_view
                         self.dialog = dialog
 
-                    def onClick(self, dialog_arg, which):
+                    def onClick(self, view):
                         name = str(self.edits["name"].getText().toString()).strip()
                         url = str(self.edits["url"].getText().toString()).strip()
                         username = str(
