@@ -242,7 +242,11 @@ class _StandaloneProgressHandle(object):
 
                 listener = CloseListener()
             owner._dialog_refs.append(listener)
-            self._dialog.setButton(-1, "确定", listener)
+            try:
+                self._dialog.setButton(-1, "确定", listener)
+            except Exception:
+                # 按钮已在创建时存在，退化为仅改文案。
+                self._dialog.getButton(-1).setText("确定")
         except Exception:
             pass
 
@@ -7381,8 +7385,23 @@ class Spider(BaseSpider):
                             builder = builder_class(activity)
                             builder.setTitle(title)
                             builder.setView(container)
-                            # 同步/测试不可中途取消，任务结束后才给「确定」按钮。
-                            builder.setCancelable(False)
+                            # v8.0：创建时即带「关闭」按钮并允许点空白/返回键
+                            # 关闭；关闭只是收起进度显示，后台任务继续执行。
+                            click_listener = jclass(
+                                "android.content.DialogInterface$OnClickListener"
+                            )
+
+                            class CloseNowListener(
+                                dynamic_proxy(click_listener)
+                            ):
+                                def onClick(self, dialog_, which):
+                                    handle = box.get("handle")
+                                    if handle is not None:
+                                        handle.dismiss()
+
+                            close_now = CloseNowListener()
+                            builder.setPositiveButton("关闭", close_now)
+                            builder.setCancelable(True)
                             dialog = builder.show()
                             handler_class = jclass("android.os.Handler")
                             looper_class = jclass("android.os.Looper")
@@ -7393,7 +7412,7 @@ class Spider(BaseSpider):
                                 owner, dialog, bar, text_view, handler
                             )
                             owner._dialog_refs.extend(
-                                [bar, text_view, container, dialog]
+                                [bar, text_view, container, close_now, dialog]
                             )
                         except Exception as exc:
                             owner._log(
