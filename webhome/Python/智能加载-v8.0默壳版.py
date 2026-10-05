@@ -16987,6 +16987,7 @@ class Spider(BaseSpider):
                     "net_action": True,
                     "action_id": "net_divider",
                     "pic_key": "folder",
+                    "remarks": "{} 个已配置目录".format(len(self.network_roots)),
                     "action": "none",
                 }
             )
@@ -17001,6 +17002,7 @@ class Spider(BaseSpider):
                     "net_action": True,
                     "action_id": "net_divider",
                     "pic_key": "folder",
+                    "remarks": "点击下方添加网络目录",
                     "action": "none",
                 }
             )
