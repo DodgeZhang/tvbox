@@ -3465,6 +3465,22 @@ class Spider(BaseSpider):
                                 continue
                             if rel.count("/") + 1 > self.NETWORK_MAX_DEPTH:
                                 continue
+                            # 归档内容已在内存，顺手算 git blob SHA 作为内容指纹，
+                            # 使 API 不可用的兜底路径也能精确增量（而不是只比大小）。
+                            member_fp = tf.extractfile(member)
+                            blob_sha = ""
+                            if member_fp is not None:
+                                blob_hash = hashlib.sha1()
+                                blob_hash.update(
+                                    b"blob %d\x00"
+                                    % int(getattr(member, "size", 0) or 0)
+                                )
+                                while True:
+                                    chunk = member_fp.read(65536)
+                                    if not chunk:
+                                        break
+                                    blob_hash.update(chunk)
+                                blob_sha = blob_hash.hexdigest()
                             quoted_segments = "/".join(
                                 urllib.parse.quote(seg, safe="")
                                 for seg in [candidate_branch] + full_path.split("/")
@@ -3480,12 +3496,12 @@ class Spider(BaseSpider):
                                     "url": raw_url,
                                     "size": int(getattr(member, "size", 0) or 0),
                                     "mtime": "",
-                                    "etag": "",
+                                    "etag": blob_sha,
                                     "is_dir": False,
                                 }
                             )
                 self._warn(
-                    "GitHub 已通过源码归档列举 {} 个文件（分支 {}），增量按文件大小判断".format(
+                    "GitHub 已通过源码归档列举 {} 个文件（分支 {}），增量按 blob SHA 判断".format(
                         len(entries), candidate_branch
                     )
                 )
@@ -3588,15 +3604,21 @@ class Spider(BaseSpider):
             except Exception:
                 pass
         extra_meta = {}
-        etag = str(response_headers.get("etag", "") or "").strip()
-        modified = str(response_headers.get("last-modified", "") or "").strip()
-        length = str(response_headers.get("content-length", "") or "").strip()
-        if etag:
-            extra_meta["etag"] = etag
-        if modified:
-            extra_meta["mtime"] = modified
-        if length.isdigit():
-            extra_meta["size"] = int(length)
+        # GitHub/Gitee 清单的 etag 必须保留列目录阶段拿到的 git blob SHA
+        # （内容指纹）：raw/加速站响应头里的 ETag 是 CDN 自己的不透明标识
+        # （形如 W/"64hex"，各加速站还不一致），写回清单会导致下次同步时
+        # SHA 永远对不上、所有文件被误判为变更而全量重下。
+        protocol = str(root.get("protocol", "") or "").strip().lower()
+        if protocol not in ("github", "gitee"):
+            etag = str(response_headers.get("etag", "") or "").strip()
+            modified = str(response_headers.get("last-modified", "") or "").strip()
+            length = str(response_headers.get("content-length", "") or "").strip()
+            if etag:
+                extra_meta["etag"] = etag
+            if modified:
+                extra_meta["mtime"] = modified
+            if length.isdigit():
+                extra_meta["size"] = int(length)
         return len(body), extra_meta
 
     def _network_entry_changed(self, entry, old_meta):
