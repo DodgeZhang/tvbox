@@ -3685,6 +3685,7 @@ class Spider(BaseSpider):
             head_executor = concurrent.futures.ThreadPoolExecutor(
                 max_workers=head_workers
             )
+            head_futures = {}
             try:
                 head_futures = {
                     head_executor.submit(
@@ -3713,7 +3714,10 @@ class Spider(BaseSpider):
                         )
             finally:
                 # 取消/异常时不等待在途请求（GitHub 无代理时单请求可能卡满超时）。
-                head_executor.shutdown(wait=False, cancel_futures=True)
+                # cancel_futures 是 Python 3.9+ 参数，3.8 需先手动 cancel 排队任务。
+                for future in head_futures:
+                    future.cancel()
+                head_executor.shutdown(wait=False)
         download_list = []
         new_meta = {}
         for entry in candidates:
@@ -3746,6 +3750,7 @@ class Spider(BaseSpider):
             dl_executor = concurrent.futures.ThreadPoolExecutor(
                 max_workers=max_workers
             )
+            future_map = {}
             try:
                 future_map = {
                     dl_executor.submit(work, entry): entry for entry in download_list
@@ -3778,7 +3783,10 @@ class Spider(BaseSpider):
                         )
             finally:
                 # 取消/异常时不等待在途请求（GitHub 无代理时单请求可能卡满超时）。
-                dl_executor.shutdown(wait=False, cancel_futures=True)
+                # cancel_futures 是 Python 3.9+ 参数，3.8 需先手动 cancel 排队任务。
+                for future in future_map:
+                    future.cancel()
+                dl_executor.shutdown(wait=False)
         else:
             # 无需下载时也要把确定进度条补满，避免空条/除零。
             report("远程文件均为最新，无需下载", done=1, total=1)
@@ -9560,6 +9568,7 @@ class Spider(BaseSpider):
         )
         self._site_test_toast = None
         executor = None
+        site_test_futures = {}
         try:
             completed_count = 0
 
@@ -9642,7 +9651,7 @@ class Spider(BaseSpider):
                 max_workers=workers,
                 thread_name_prefix="site-functional-test",
             )
-            future_sources = {
+            future_sources = site_test_futures = {
                 executor.submit(self._test_source_availability, source): source
                 for source in pending
             }
@@ -9683,7 +9692,10 @@ class Spider(BaseSpider):
                         test_stage="functional",
                     ),
                 )
-            executor.shutdown(wait=False, cancel_futures=True)
+            for future in future_sources:
+                future.cancel()
+            # cancel_futures 是 Python 3.9+ 参数，3.8 需先手动 cancel 排队任务。
+            executor.shutdown(wait=False)
             if targeted:
                 remaining = max(0, pending_count - len(pending))
             elif retest:
@@ -9726,7 +9738,10 @@ class Spider(BaseSpider):
         except Exception as exc:
             if executor is not None:
                 try:
-                    executor.shutdown(wait=False, cancel_futures=True)
+                    # cancel_futures 是 Python 3.9+ 参数，3.8 先手动 cancel。
+                    for future in site_test_futures:
+                        future.cancel()
+                    executor.shutdown(wait=False)
                 except Exception:
                     pass
             self._log(
