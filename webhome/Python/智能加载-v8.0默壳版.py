@@ -2537,14 +2537,38 @@ class Spider(BaseSpider):
                 return item
         return None
 
+    def _network_cache_base(self):
+        """网络镜像根目录：跟随当前扫描目录（<扫描目录>/network-cache）。"""
+        base = self.local_base_dir or self.LOCAL_BASE_DIR
+        return os.path.join(
+            os.path.abspath(os.path.expanduser(base)),
+            self.NETWORK_ROOT_CACHE_DIRNAME,
+        )
+
     def _network_root_cache_dir(self, root):
         root_id = str((root or {}).get("id", "") or "")
         if not root_id:
             root_id = self._network_root_id((root or {}).get("url", ""))
-        return os.path.join(
+        target = os.path.join(self._network_cache_base(), root_id)
+        # 旧版本镜像固定在 TV/CustomCsp/network-cache，若新位置还没有而旧位置
+        # 有，则整体搬移，避免迁移后重新下载。
+        legacy = os.path.join(
             os.path.abspath(os.path.expanduser(self.network_root_cache_dir)),
             root_id,
         )
+        if (
+            os.path.normcase(legacy) != os.path.normcase(target)
+            and os.path.isdir(legacy)
+            and not os.path.isdir(target)
+        ):
+            try:
+                os.makedirs(os.path.dirname(target), exist_ok=True)
+                shutil.move(legacy, target)
+                self._log("INFO", "网络目录镜像已迁移: {} -> {}".format(legacy, target))
+            except Exception as exc:
+                self._warn("网络目录镜像迁移失败，沿用旧目录: {} ({})".format(legacy, exc))
+                return legacy
+        return target
 
     def _network_root_specs(self):
         """把已镜像到本地的网络根展开成普通扫描 spec。
