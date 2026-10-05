@@ -6727,7 +6727,9 @@ class Spider(BaseSpider):
 
                 class DismissListener(dynamic_proxy(click_listener)):
                     def onClick(self, dialog, which):
-                        return None
+                        # 「取消」点击后对话框自动关闭；同步释放在途面板，
+                        # 避免残留引用吞掉之后的进度更新。
+                        owner._release_progress_panel(panel_key)
 
                 class CancelProgressListener(dynamic_proxy(click_listener)):
                     """运行中点击「取消当前进度」：触发任务取消并收尾。"""
@@ -6870,6 +6872,24 @@ class Spider(BaseSpider):
                         builder.setPositiveButton(confirm_text, confirm_listener)
                         builder.setNegativeButton("取消", dismiss)
                         dialog = builder.show()
+                        # v8.0 修复：AlertDialog 的按钮点击后默认会自动 dismiss，
+                        # 进度面板（含进度条）会在点「开始」的瞬间被关闭、
+                        # 后续进度更新全部写到不可见对话框上。这里覆盖确认按钮
+                        # 为 View 级监听（不触发自动关闭），与批量选择等对话框一致。
+                        view_click_listener = jclass(
+                            "android.view.View$OnClickListener"
+                        )
+
+                        class ConfirmNoDismiss(
+                            dynamic_proxy(view_click_listener)
+                        ):
+                            def onClick(self, view):
+                                confirm_listener.onClick(dialog, -1)
+
+                        confirm_no_dismiss = ConfirmNoDismiss()
+                        dialog.getButton(-1).setOnClickListener(
+                            confirm_no_dismiss
+                        )
                         # 登记为在途进度面板（确认前仅保存句柄，确认后才对外可见）。
                         with owner._progress_panel_lock:
                             owner._active_progress_panel = {
@@ -6887,6 +6907,7 @@ class Spider(BaseSpider):
                                 container,
                                 scroll,
                                 confirm_listener,
+                                confirm_no_dismiss,
                                 dismiss,
                                 dialog,
                             ]
@@ -6990,6 +7011,25 @@ class Spider(BaseSpider):
             self._reserve_panel_cancel_button(
                 panel, panel_key, cancellable, click_listener
             )
+            # 运行中把「取消」按钮改为空操作并禁止空白/返回关闭：
+            # 否则任务中途面板被 dismiss 后，进度条与结果都不可见。
+            try:
+                view_click_listener = jclass(
+                    "android.view.View$OnClickListener"
+                )
+
+                class NoopViewClick(dynamic_proxy(view_click_listener)):
+                    def onClick(self, view):
+                        return None
+
+                noop_view_click = NoopViewClick()
+                self._dialog_refs.append(noop_view_click)
+                negative = panel["dialog"].getButton(-2)
+                if negative is not None:
+                    negative.setOnClickListener(noop_view_click)
+                panel["dialog"].setCancelable(False)
+            except Exception:
+                pass
             self._launch_panel_worker(panel_key, _worker)
 
         runnable_class = None
