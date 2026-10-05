@@ -133,6 +133,7 @@ class _StandaloneProgressHandle(object):
         self._handler = handler
         self._closed = False
         self._last_ts = 0.0
+        self._on_dismiss = None
 
     @classmethod
     def null(cls):
@@ -254,6 +255,12 @@ class _StandaloneProgressHandle(object):
         if self._closed:
             return
         self._closed = True
+        # v8.0：关闭对话框时触发取消回调（如网络同步在途请求中断）。
+        try:
+            if self._on_dismiss is not None:
+                self._on_dismiss()
+        except Exception:
+            pass
 
         def _do_dismiss():
             try:
@@ -764,6 +771,7 @@ class Spider(BaseSpider):
         # v8.0：扫描取消支持——面板「取消当前进度」置位后，
         # _scan_all_roots 在根循环/遍历循环中检测并提前终止。
         self._scan_cancel_event = threading.Event()
+        self._network_sync_cancel_event = threading.Event()
         self._last_scan_cancelled = False
         self._destroyed = False
         self._jar_inspection_cache = {}
@@ -3614,6 +3622,8 @@ class Spider(BaseSpider):
             "正在获取 {} 目录列表…".format(protocol.upper()),
             indeterminate=True,
         )
+        if self._sync_cancel_requested():
+            raise RuntimeError("已取消本次同步")
         entries = self._network_list_tree(root, protocol)
         candidates = []
         skipped_large = 0
@@ -3649,14 +3659,19 @@ class Spider(BaseSpider):
                 done=0,
                 total=head_total,
             )
-            with concurrent.futures.ThreadPoolExecutor(
+            head_executor = concurrent.futures.ThreadPoolExecutor(
                 max_workers=head_workers
-            ) as executor:
+            )
+            try:
                 head_futures = {
-                    executor.submit(self._network_head_metadata, root, entry): entry
+                    head_executor.submit(
+                        self._network_head_metadata, root, entry
+                    ): entry
                     for entry in candidates
                 }
                 for future in concurrent.futures.as_completed(head_futures):
+                    if self._sync_cancel_requested():
+                        raise RuntimeError("已取消本次同步")
                     entry = head_futures[future]
                     try:
                         head_meta = future.result()
@@ -3673,6 +3688,9 @@ class Spider(BaseSpider):
                             done=head_done,
                             total=head_total,
                         )
+            finally:
+                # 取消/异常时不等待在途请求（GitHub 无代理时单请求可能卡满超时）。
+                head_executor.shutdown(wait=False, cancel_futures=True)
         download_list = []
         new_meta = {}
         for entry in candidates:
@@ -3702,13 +3720,16 @@ class Spider(BaseSpider):
 
         if download_list:
             max_workers = max(1, min(self.NETWORK_WORKERS, total))
-            with concurrent.futures.ThreadPoolExecutor(
+            dl_executor = concurrent.futures.ThreadPoolExecutor(
                 max_workers=max_workers
-            ) as executor:
+            )
+            try:
                 future_map = {
-                    executor.submit(work, entry): entry for entry in download_list
+                    dl_executor.submit(work, entry): entry for entry in download_list
                 }
                 for future in concurrent.futures.as_completed(future_map):
+                    if self._sync_cancel_requested():
+                        raise RuntimeError("已取消本次同步")
                     entry = future_map[future]
                     try:
                         rel, written, extra_meta = future.result()
@@ -3732,6 +3753,9 @@ class Spider(BaseSpider):
                             done=done,
                             total=total,
                         )
+            finally:
+                # 取消/异常时不等待在途请求（GitHub 无代理时单请求可能卡满超时）。
+                dl_executor.shutdown(wait=False, cancel_futures=True)
         else:
             # 无需下载时也要把确定进度条补满，避免空条/除零。
             report("远程文件均为最新，无需下载", done=1, total=1)
@@ -3801,12 +3825,26 @@ class Spider(BaseSpider):
             "status": status,
         }
 
-    def _sync_network_roots_locked(self, only_root_id=None, progress=None):
+    def _sync_cancel_requested(self):
+        """同步/扫描共用取消检测：扫描面板或网络同步对话框任一取消即生效。"""
+        for event in (self._scan_cancel_event, self._network_sync_cancel_event):
+            try:
+                if event is not None and event.is_set():
+                    return True
+            except Exception:
+                pass
+        return False
+
+    def _sync_network_roots_locked(
+        self, only_root_id=None, progress=None, skip_synced=False
+    ):
         """扫描/手动同步入口。返回 (success_count, detail_lines)。
 
         单个根失败不影响其它根，也不中断本地扫描。
         progress(message, done=None, total=None, indeterminate=None) 可选，
         用于把每个根的同步进度回传到进度对话框/面板。
+        skip_synced=True 时（扫描触发），已有本地镜像的根跳过联网同步，
+        直接扫描本地镜像；从未同步过的根仍会联网拉取。
         """
         targets = []
         for root in self.network_roots:
@@ -3831,6 +3869,31 @@ class Spider(BaseSpider):
         try:
             for root in targets:
                 name = str(root.get("name", "网络目录"))
+                if self._sync_cancel_requested():
+                    self._log("INFO", "网络目录同步被取消: 跳过剩余根")
+                    break
+                if skip_synced:
+                    # 已有本地镜像：跳过联网，直接扫本地缓存。
+                    try:
+                        cache_dir = self._network_root_cache_dir(root)
+                        if os.path.isfile(
+                            self._network_manifest_path(cache_dir)
+                        ):
+                            self._log(
+                                "INFO",
+                                "网络目录已有本地镜像，跳过同步: {}".format(name),
+                            )
+                            if progress:
+                                try:
+                                    progress(
+                                        "「{}」已有本地镜像，直接扫描本地".format(name),
+                                        indeterminate=True,
+                                    )
+                                except Exception:
+                                    pass
+                            continue
+                    except Exception:
+                        pass
                 self._network_sync_root_id = str(root.get("id", ""))
                 self._network_sync_message = "准备同步「{}」".format(name)
                 self._log("INFO", "网络目录开始同步: {} ({})".format(name, root.get("url")))
@@ -4566,11 +4629,16 @@ class Spider(BaseSpider):
             return
 
         def _worker():
+            # 新一次显式同步开始前清掉旧取消标记（含扫描面板残留的）。
+            self._network_sync_cancel_event.clear()
+            self._scan_cancel_event.clear()
             progress_ui = self._create_standalone_progress(
                 "正在同步网络目录",
                 "准备同步…",
                 indeterminate=True,
             )
+            # 关闭对话框视为取消本次同步：后台线程在下一个检测点中断。
+            progress_ui._on_dismiss = self._network_sync_cancel_event.set
             try:
                 def _forward(
                     message,
@@ -7335,6 +7403,12 @@ class Spider(BaseSpider):
             pass
         try:
             self._scan_cancel_event.set()
+            cancelled = True
+        except Exception:
+            pass
+        # 扫描阶段包含网络目录同步；同步取消事件同时置位，加速在途请求结束。
+        try:
+            self._network_sync_cancel_event.set()
             cancelled = True
         except Exception:
             pass
@@ -11345,14 +11419,18 @@ class Spider(BaseSpider):
             state["started"] = now
         return True, ""
 
-    def _finish_manual_scan_request(self):
+    def _finish_manual_scan_request(self, cancelled=False):
         key = self._manual_scan_state_key()
         with _MANUAL_SCAN_LOCK:
             state = _MANUAL_SCAN_STATE.setdefault(
                 key, {"running": False, "last": 0.0}
             )
             state["running"] = False
-            state["last"] = time.monotonic()
+            if cancelled:
+                # 取消的扫描不计入「刚刚完成」去重窗口，允许用户立即重扫。
+                state["last"] = 0.0
+            else:
+                state["last"] = time.monotonic()
 
     def _refresh_locked(self, allow_empty=False, progress=None):
         self.status = self._empty_status()
@@ -12411,19 +12489,29 @@ class Spider(BaseSpider):
         self.incomplete_scan_roots = []
         self.incomplete_scan_types = set()
         # v8.0：手动扫描时先同步已启用的网络目录到本地镜像；
+        # 已有本地镜像的根跳过联网（skip_synced），直接扫本地，
+        # 避免没挂代理时卡在 GitHub 请求上；从未同步过的根仍会先同步。
         # 自动补扫/启动刷新不发起网络请求，直接沿用上次镜像。
         if sync_network and any(
             item.get("enabled", True) for item in self.network_roots
         ):
             if progress:
                 try:
-                    progress("正在同步网络目录…", indeterminate=True)
+                    progress("正在检查网络目录镜像…", indeterminate=True)
                 except Exception:
                     pass
             try:
-                self._sync_network_roots_locked(progress=progress)
+                self._sync_network_roots_locked(
+                    progress=progress, skip_synced=True
+                )
             except Exception as exc:
                 self._warn("网络目录同步异常（继续扫描本地与已有镜像）: {}".format(exc))
+            if self._scan_cancel_event.is_set():
+                self._last_scan_cancelled = True
+                self.status["write_state"] = "已取消本次扫描"
+                self.status["error"] = "已取消本次扫描"
+                self._log("INFO", "扫描被用户取消")
+                return
         effective_roots = self._effective_scan_roots()
         sources = []
         ignored_sources = []
@@ -12444,6 +12532,7 @@ class Spider(BaseSpider):
         # v8.0：每次扫描开始时复位取消标记；用户在进度面板点
         # 「取消当前进度」后，下面两处检测点会提前终止扫描。
         self._scan_cancel_event.clear()
+        self._network_sync_cancel_event.clear()
         self._last_scan_cancelled = False
         scan_cancelled = False
 
@@ -17012,7 +17101,9 @@ class Spider(BaseSpider):
                     self.inited = True
                 return {"list": [self._status_detail()]}
             finally:
-                self._finish_manual_scan_request()
+                self._finish_manual_scan_request(
+                    cancelled=self._last_scan_cancelled
+                )
 
         source = self.cache["source_index"].get(source_id)
         if not source:
@@ -18504,7 +18595,9 @@ class Spider(BaseSpider):
                         )
                     return {"code": 0, "msg": message}
             finally:
-                self._finish_manual_scan_request()
+                self._finish_manual_scan_request(
+                    cancelled=self._last_scan_cancelled
+                )
         if action == self.ACTION_LOAD_ALL:
             allowed, duplicate_message = self._begin_manual_scan_request()
             if not allowed:
@@ -18594,7 +18687,9 @@ class Spider(BaseSpider):
                     )
                 return {"code": 0, "msg": message}
         finally:
-            self._finish_manual_scan_request()
+            self._finish_manual_scan_request(
+                cancelled=self._last_scan_cancelled
+            )
 
     def playerContent(self, flag, id, vipFlags):
         return {
