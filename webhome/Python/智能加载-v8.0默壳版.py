@@ -585,7 +585,6 @@ class Spider(BaseSpider):
     # ======================================================================
     # v8.0 网络扫描根（路线 B：远程目录镜像到本地缓存后走本地扫描链路）
     # ======================================================================
-    NETWORK_ROOTS_TID = "network_roots"
     NETWORK_ADD_ID = "__local_source_network_add__"
     NETWORK_SYNC_ALL_ID = "__local_source_network_sync_all__"
     NETWORK_ROOT_CACHE_DIRNAME = "network-cache"
@@ -16362,14 +16361,11 @@ class Spider(BaseSpider):
     def homeContent(self, filter):
         self._ensure_initialized()
         # 推荐（首页 list）由 App 固定置顶为第一个标签，设置紧随其后固定为第二个标签。
+        # v8.0：网络目录管理并入「设置」页，不再单独占一个分类标签。
         classes = [
             {
                 "type_id": self.SCAN_SETTINGS_TID,
                 "type_name": "设置" + (" *" if self.config_dirty else ""),
-            },
-            {
-                "type_id": self.NETWORK_ROOTS_TID,
-                "type_name": "🌐 网络目录 ({})".format(len(self.network_roots)),
             },
         ]
         if self.cache["sources"]:
@@ -16580,9 +16576,8 @@ class Spider(BaseSpider):
         elif str(tid) == self.LOADED_TID:
             return self._paged_result(self._loaded_items(), page)
         elif tid == self.SCAN_SETTINGS_TID:
+            # v8.0：设置页现在包含原本的扫描设置和网络目录管理。
             return self._paged_result(self._scan_setting_items(), page)
-        elif tid == self.NETWORK_ROOTS_TID:
-            return self._paged_result(self._network_root_items(), page)
         elif tid == self.BACKUPS_TID:
             return self._paged_result(self._backup_items(), page)
         else:
@@ -16977,6 +16972,39 @@ class Spider(BaseSpider):
                 "import_profile": True,
             },
         ]
+        # v8.0：网络目录管理并入「设置」页，底部接一条分隔说明 +
+        # 网络目录原有卡片（添加 / 全部同步 / 每个根）。
+        if self.network_roots:
+            items.append(
+                {
+                    "id": "net_divider",
+                    "name": "🌐 网络目录",
+                    "type": "DIVIDER",
+                    "relative_in_root": "{} 个已配置目录".format(
+                        len(self.network_roots)
+                    ),
+                    "settings": True,
+                    "net_action": True,
+                    "action_id": "net_divider",
+                    "pic_key": "folder",
+                    "action": "none",
+                }
+            )
+        else:
+            items.append(
+                {
+                    "id": "net_divider",
+                    "name": "🌐 网络目录",
+                    "type": "DIVIDER",
+                    "relative_in_root": "点击下方添加网络目录",
+                    "settings": True,
+                    "net_action": True,
+                    "action_id": "net_divider",
+                    "pic_key": "folder",
+                    "action": "none",
+                }
+            )
+        items.extend(self._network_root_items())
         return items
 
     def _backup_items(self):
@@ -17636,6 +17664,9 @@ class Spider(BaseSpider):
     def action(self, action):
         action = str(action)
         self._log("INFO", "用户操作: {}".format(action))
+        if action == "none":
+            # 分隔/占位卡片，点击无动作。
+            return {"code": 0, "msg": ""}
         protected = (
             action not in (self.ACTION_TEST_SITES, self.ACTION_RETEST_SITES)
             and not action.startswith(self.ACTION_SOURCE_PREFIX)
