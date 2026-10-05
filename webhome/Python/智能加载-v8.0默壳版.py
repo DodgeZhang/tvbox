@@ -16972,10 +16972,11 @@ class Spider(BaseSpider):
                 "import_profile": True,
             },
         ]
-        # v8.0：网络目录管理并入「设置」页，底部接一条分隔说明 +
-        # 网络目录原有卡片（添加 / 全部同步 / 每个根）。
+        # v8.0：网络目录管理并入「设置」页，插在「扫描类型」之后：
+        # 分隔说明 + 网络目录原有卡片（添加 / 全部同步 / 每个根）。
+        net_items = []
         if self.network_roots:
-            items.append(
+            net_items.append(
                 {
                     "id": "net_divider",
                     "name": "🌐 网络目录",
@@ -16992,7 +16993,7 @@ class Spider(BaseSpider):
                 }
             )
         else:
-            items.append(
+            net_items.append(
                 {
                     "id": "net_divider",
                     "name": "🌐 网络目录",
@@ -17006,7 +17007,9 @@ class Spider(BaseSpider):
                     "action": "none",
                 }
             )
-        items.extend(self._network_root_items())
+        net_items.extend(self._network_root_items())
+        # 插到「扫描类型」（索引 2）之后。
+        items[3:3] = net_items
         return items
 
     def _backup_items(self):
