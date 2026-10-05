@@ -445,6 +445,18 @@ class Spider(BaseSpider):
     NETWORK_MAX_FILE_SIZE = 5 * 1024 * 1024
     # 镜像只收录本地扫描链认识的源文件扩展名。
     NETWORK_EXTENSIONS = (".py", ".js", ".json", ".html")
+    # GitHub 公益加速站（2026 仍存活）：直连失败时按序自动回退，拼接方式为
+    # 「加速站 + 完整 GitHub URL」，同时支持 raw / codeload 归档 / 部分 API。
+    # 仅用于无 Token 的公开仓库；私有库带凭据时强制直连，避免凭据泄漏给第三方。
+    NETWORK_GITHUB_MIRRORS = (
+        "https://gh-proxy.org/",
+        "https://ghfast.top/",
+        "https://ghproxy.net/",
+        "https://github.moeyy.xyz/",
+        "https://gh.llkk.cc/",
+    )
+    # API 不可达时改拉源码归档（tar.gz）列举目录树的体积上限。
+    NETWORK_GITHUB_ARCHIVE_MAX_SIZE = 64 * 1024 * 1024
     ACTION_NET_ADD = "local_source_network_add"
     ACTION_NET_SYNC_ALL = "local_source_network_sync_all"
     # 分类页根卡：点击弹出操作菜单（同步/编辑/停用/删除）。
@@ -550,6 +562,9 @@ class Spider(BaseSpider):
         self._network_sync_root_id = ""
         self._network_sync_message = ""
         self._network_sync_lock = threading.Lock()
+        # GitHub 加速站会话级记忆：None=未探测，""/直连成功，"https://..."镜像成功。
+        # 第一个文件/接口探测成功后整条同步链路粘住该线路，避免每个文件重试。
+        self._github_fast_base = None
         self.app_server_ports = list(range(self.APP_PORT_START, self.APP_PORT_END + 1))
         self.last_app_port = 0
         self.cache = self._empty_cache()
@@ -2604,6 +2619,63 @@ class Spider(BaseSpider):
             )
         return None
 
+    # ------------------------------------------------------------------
+    # GitHub 加速站回退（直连 -> 公益镜像依次尝试，成功线路会话内粘滞）
+    # ------------------------------------------------------------------
+    def _network_github_ordered_bases(self, url):
+        """返回 [(base, final_url)]；base 为 "" 表示直连。"""
+        bases = [""] + [str(item).rstrip("/") for item in self.NETWORK_GITHUB_MIRRORS]
+        sticky = self._github_fast_base
+        if sticky is not None and sticky in bases:
+            bases = [sticky] + [item for item in bases if item != sticky]
+        return [
+            (base, url if not base else "{}/{}".format(base, url))
+            for base in bases
+        ]
+
+    def _network_github_fast_request(
+        self, url, root, headers=None, method="GET", data=None
+    ):
+        """GitHub 专用 GET：直连失败自动换加速站。
+
+        - 公开库：直连 → 各加速站依次尝试，首个成功线路记为粘滞线路；
+        - 配置了 Token（私有库）：只走直连，绝不把凭据/私有 URL 交给第三方代理；
+        - 404/401/400 属于资源或权限问题，换站无意义，直接返回。
+        """
+        auth = self._network_auth(root)
+        token = str(auth.get("token", "") or auth.get("password", "") or "")
+        request_headers = {str(k): str(v) for k, v in (headers or {}).items()}
+        if token:
+            request_headers.setdefault("Authorization", "Bearer {}".format(token))
+            candidates = [("", url)]
+        else:
+            candidates = self._network_github_ordered_bases(url)
+        last_error = None
+        for base, final_url in candidates:
+            try:
+                status, resp_headers, body, final = self._network_http_request(
+                    final_url,
+                    method=method,
+                    headers=request_headers,
+                    data=data,
+                    auth=None,
+                )
+                self._github_fast_base = base
+                return status, resp_headers, body, final
+            except Exception as exc:
+                # 底层 HTTP 层对非 2xx 统一抛 ValueError("HTTP 状态码")。
+                code_match = re.match(r"^HTTP\s+(\d{3})$", str(exc).strip())
+                code = int(code_match.group(1)) if code_match else 0
+                if code in (400, 401, 404):
+                    # 资源不存在/凭据无效：换加速站也是同样结果，直接终止。
+                    raise
+                # 网络失败 / 超时 / 403 限流 / 429 / 5xx / 202：换下一候选线路。
+                last_error = exc
+                if self._github_fast_base == base:
+                    self._github_fast_base = None
+                continue
+        raise last_error or ValueError("GitHub 直连与加速站均不可用")
+
     def _network_resolve_protocol(self, root):
         """返回实际协议名；显式指定优先，auto 先认 Git 站点再探 WebDAV。"""
         url = str(root.get("url", "") or "")
@@ -3021,16 +3093,25 @@ class Spider(BaseSpider):
         url = api_url
         headers = {"Accept": "application/vnd.github+json"}
         token = auth["token"] or auth["password"]
-        if token_query and token:
-            separator = "&" if "?" in url else "?"
-            url = "{}{}access_token={}".format(
-                url, separator, urllib.parse.quote(token, safe="")
+        host_info = self._network_git_host(root.get("url", ""))
+        is_github = bool(host_info and host_info[3] == "github")
+        if is_github:
+            # GitHub：加速回退由 _network_github_fast_request 统一处理，
+            # Token（如有）也在其中以直连方式附加，不经过第三方代理。
+            status, _h, body, _final = self._network_github_fast_request(
+                url, root, headers=headers
             )
-        elif token:
-            headers["Authorization"] = "Bearer {}".format(token)
-        status, _h, body, _final = self._network_http_request(
-            url, headers=headers, auth=None
-        )
+        else:
+            if token_query and token:
+                separator = "&" if "?" in url else "?"
+                url = "{}{}access_token={}".format(
+                    url, separator, urllib.parse.quote(token, safe="")
+                )
+            elif token:
+                headers["Authorization"] = "Bearer {}".format(token)
+            status, _h, body, _final = self._network_http_request(
+                url, headers=headers, auth=None
+            )
         if status == 403:
             raise ValueError(
                 "仓库 API 拒绝访问（HTTP 403）：可能是私有库未填 Token，或触发了限流"
@@ -3049,15 +3130,42 @@ class Spider(BaseSpider):
             root["url"]
         )
         api_base, raw_template, token_query, _label = host_config
-        if not branch:
-            info = self._network_git_get_json(
-                "{}/repos/{}/{}".format(api_base, owner, repo), root, token_query
+        data = None
+        if protocol == "github":
+            # api.github.com 在部分网络下被限流/阻断：API 失败时自动改拉
+            # codeload 源码归档（同样支持加速站前缀）来列举目录树。
+            # 404 属于仓库/分支真实不存在，不回退。
+            try:
+                if not branch:
+                    info = self._network_git_get_json(
+                        "{}/repos/{}/{}".format(api_base, owner, repo),
+                        root,
+                        token_query,
+                    )
+                    branch = str(info.get("default_branch", "master") or "master")
+                tree_url = "{}/repos/{}/{}/git/trees/{}?recursive=1".format(
+                    api_base, owner, repo, urllib.parse.quote(branch, safe="/")
+                )
+                data = self._network_git_get_json(tree_url, root, token_query)
+            except Exception as api_exc:
+                if "404" in str(api_exc):
+                    raise
+                self._warn(
+                    "GitHub API 不可达（{}），改用源码归档加速列举".format(api_exc)
+                )
+                return self._network_github_tree_from_tarball(
+                    root, owner, repo, branch, prefix
+                )
+        else:
+            if not branch:
+                info = self._network_git_get_json(
+                    "{}/repos/{}/{}".format(api_base, owner, repo), root, token_query
+                )
+                branch = str(info.get("default_branch", "master") or "master")
+            tree_url = "{}/repos/{}/{}/git/trees/{}?recursive=1".format(
+                api_base, owner, repo, urllib.parse.quote(branch, safe="/")
             )
-            branch = str(info.get("default_branch", "master") or "master")
-        tree_url = "{}/repos/{}/{}/git/trees/{}?recursive=1".format(
-            api_base, owner, repo, urllib.parse.quote(branch, safe="/")
-        )
-        data = self._network_git_get_json(tree_url, root, token_query)
+            data = self._network_git_get_json(tree_url, root, token_query)
         tree = data.get("tree", []) if isinstance(data, dict) else []
         if not isinstance(tree, list):
             raise ValueError("仓库目录树返回格式无效")
@@ -3116,6 +3224,95 @@ class Spider(BaseSpider):
             )
         return entries
 
+    def _network_github_tree_from_tarball(self, root, owner, repo, branch, prefix):
+        """API 不可用时的兜底：拉 codeload 源码归档解析目录树。
+
+        归档 URL 同样适用「加速站 + 完整 URL」拼接；公开库走加速回退，
+        私有库（带 Token）只直连。返回结构与 _network_list_git 一致。
+        """
+        import gzip
+        import io
+        import tarfile
+
+        branches = [branch] if branch else ["main", "master"]
+        prefix_norm = str(prefix or "").strip("/")
+        last_error = None
+        for candidate_branch in branches:
+            archive_url = (
+                "https://codeload.github.com/{}/{}/tar.gz/refs/heads/{}".format(
+                    urllib.parse.quote(owner, safe=""),
+                    urllib.parse.quote(repo, safe=""),
+                    urllib.parse.quote(candidate_branch, safe=""),
+                )
+            )
+            try:
+                status, _h, body, _final = self._network_github_fast_request(
+                    archive_url, root
+                )
+                if status != 200:
+                    raise ValueError("HTTP {}".format(status))
+                if not body:
+                    raise ValueError("源码归档内容为空")
+                if len(body) > self.NETWORK_GITHUB_ARCHIVE_MAX_SIZE:
+                    raise ValueError("源码归档超过 {}MB 上限".format(
+                        self.NETWORK_GITHUB_ARCHIVE_MAX_SIZE // (1024 * 1024)
+                    ))
+                entries = []
+                with gzip.GzipFile(fileobj=io.BytesIO(body)) as gz:
+                    with tarfile.open(fileobj=gz, mode="r|") as tf:
+                        for member in tf:
+                            if not member.isfile():
+                                continue
+                            parts = str(member.name or "").split("/", 1)
+                            if len(parts) < 2:
+                                continue
+                            full_path = parts[1]
+                            if prefix_norm:
+                                prefix_with_slash = prefix_norm + "/"
+                                if full_path != prefix_norm and not full_path.startswith(
+                                    prefix_with_slash
+                                ):
+                                    continue
+                                rel_raw = full_path[len(prefix_norm):].lstrip("/")
+                            else:
+                                rel_raw = full_path
+                            rel = self._network_safe_rel(rel_raw)
+                            if not rel:
+                                continue
+                            if rel.count("/") + 1 > self.NETWORK_MAX_DEPTH:
+                                continue
+                            quoted_segments = "/".join(
+                                urllib.parse.quote(seg, safe="")
+                                for seg in [candidate_branch] + full_path.split("/")
+                            )
+                            raw_url = (
+                                "https://raw.githubusercontent.com/{}/{}/{}".format(
+                                    owner, repo, quoted_segments
+                                )
+                            )
+                            entries.append(
+                                {
+                                    "rel": rel,
+                                    "url": raw_url,
+                                    "size": int(getattr(member, "size", 0) or 0),
+                                    "mtime": "",
+                                    "etag": "",
+                                    "is_dir": False,
+                                }
+                            )
+                self._warn(
+                    "GitHub 已通过源码归档列举 {} 个文件（分支 {}），增量按文件大小判断".format(
+                        len(entries), candidate_branch
+                    )
+                )
+                return entries
+            except Exception as exc:
+                last_error = exc
+                continue
+        raise ValueError(
+            "GitHub API 与源码归档均列举失败：{}".format(last_error)
+        )
+
     # ------------------------------------------------------------------
     # 镜像同步引擎
     # ------------------------------------------------------------------
@@ -3172,15 +3369,15 @@ class Spider(BaseSpider):
     def _network_download_one(self, root, entry, target):
         headers = {}
         response_headers = {}
-        is_git = bool(self._network_git_host(root.get("url", "")))
-        token = str(root.get("token", "") or "") or str(root.get("password", "") or "")
-        if is_git and token and "github.com" in root.get("url", ""):
-            # GitHub raw 私有库：Bearer 头；Gitee token 已放在 query。
-            headers["Authorization"] = "Bearer {}".format(token)
-            status, response_headers, body, _final = self._network_http_request(
-                entry["url"], headers=headers, auth=None
+        host_info = self._network_git_host(root.get("url", ""))
+        if host_info and host_info[3] == "github":
+            # GitHub raw：公开库直连失败自动换加速站（Token 私有库强制直连，
+            # Bearer 由 fast_request 附加），成功线路在本次同步内粘滞。
+            status, response_headers, body, _final = self._network_github_fast_request(
+                entry["url"], root
             )
-        elif is_git:
+        elif host_info and host_info[3] == "gitee":
+            # Gitee token 已放在 query。
             status, response_headers, body, _final = self._network_http_request(
                 entry["url"], headers=headers, auth=None
             )
