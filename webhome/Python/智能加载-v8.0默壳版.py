@@ -150,34 +150,16 @@ class _StandaloneProgressHandle(object):
         owner = self._owner
         if owner is None or (self._closed and not allow_closed):
             return
-        try:
-            from java import dynamic_proxy, jclass
+        # v8.0：不再为每次进度刷新新建 dynamic_proxy Runnable（高频新建/
+        # 跨线程投递会概率触发 Chaquopy #788 闪退），统一并入 spider 的
+        # 单例 UI 泵；关闭/销毁态的校验放到泵任务里执行。
+        handle = self
 
-            runnable_class = jclass("java.lang.Runnable")
-            with owner._ProxyCreationLock(owner):
-
-                class ProgressRunnable(dynamic_proxy(runnable_class)):
-                    def __init__(self_inner):
-                        super(ProgressRunnable, self_inner).__init__()
-                        self_inner._proxy_id = owner._retain_proxy(self_inner)
-
-                    def run(self_inner):
-                        try:
-                            if (
-                                not self._closed or allow_closed
-                            ) and not owner._destroyed:
-                                fn()
-                        finally:
-                            owner._release_proxy(self_inner._proxy_id)
-
-                runner = ProgressRunnable()
-            owner._dialog_refs.append(runner)
-            self._handler.post(runner)
-        except Exception:
-            try:
+        def _guarded():
+            if (not handle._closed or allow_closed) and not owner._destroyed:
                 fn()
-            except Exception:
-                pass
+
+        owner._post_on_ui(_guarded)
 
     def update(
         self,
@@ -763,6 +745,20 @@ class Spider(BaseSpider):
         self._ui_proxy_lock = threading.RLock()
         # 通知保留单独的 gate，确保同一时刻只有一个通知代理在途。
         self._notification_gate = threading.Lock()
+        # v8.0 崩溃修复：Chaquopy 动态代理在「工作线程高频新建 Runnable
+        # 代理类/实例并 post 到主线程」时会概率性触发
+        # DynamicProxy._chaquopyGetType is abstract 闪退（上游已知缺陷
+        # chaquo/chaquopy#788，维护者在 14.0.2 复现，运行时加载的 py
+        # 无法使用 static_proxy 规避）。这里维护全 spider 唯一的 UI 泵
+        # 代理：工作线程只把纯 Python 回调入队，由同一个长生命周期代理
+        # 在主线程批量取出并按节拍自调度，彻底消除高频代理新建/跨线程投递。
+        self._ui_pump = None
+        self._ui_pump_handler = None
+        self._ui_pump_jobs = []
+        self._ui_pump_scheduled = False
+        self._ui_pump_lock = threading.Lock()
+        self._ui_pump_interval_ms = 100
+        self._ui_pump_max_jobs = 2000
         self._site_test_toast = None
         self._site_test_thread = None
         self._site_test_control_lock = threading.Lock()
@@ -823,6 +819,106 @@ class Spider(BaseSpider):
             self._owner._re_enable_gc_after_proxy()
             self._owner._ui_proxy_lock.release()
             return False  # 不吞掉异常
+
+    def _post_on_ui(self, fn):
+        """把无参回调排入唯一的 UI 线程泵执行（可在任意线程调用）。
+
+        所有高频 UI 刷新（扫描进度、独立进度框、面板回填、收尾按钮等）
+        都走这里：调用方只入队一个纯 Python 可调用对象，不创建任何
+        dynamic_proxy；真正的 Runnable 代理全进程只有一个，由它在
+        主线程批量取任务，队列有积压时按 _ui_pump_interval_ms 节拍
+        自调度，队列清空即停泵，下次入队立即唤醒。
+        """
+        if fn is None or self._destroyed:
+            return
+        need_post = False
+        with self._ui_pump_lock:
+            # 极端情况下（主线程长时间卡住）限制积压，丢弃最旧的中间
+            # 刷新（最终态/关闭类任务排在最后，不会被丢）。
+            if len(self._ui_pump_jobs) >= self._ui_pump_max_jobs:
+                self._ui_pump_jobs.pop(0)
+            self._ui_pump_jobs.append(fn)
+            if not self._ui_pump_scheduled:
+                self._ui_pump_scheduled = True
+                need_post = True
+        if need_post:
+            self._pump_schedule(delayed=False)
+
+    def _pump_ensure(self):
+        """惰性创建（仅一次）UI 泵代理与主线程 Handler。"""
+        if self._ui_pump is not None:
+            return self._ui_pump, self._ui_pump_handler
+        with self._ProxyCreationLock(self):
+            if self._ui_pump is None:
+                from java import dynamic_proxy, jclass
+
+                runnable_class = jclass("java.lang.Runnable")
+                handler_class = jclass("android.os.Handler")
+                looper_class = jclass("android.os.Looper")
+                owner = self
+
+                class UiPump(dynamic_proxy(runnable_class)):
+                    def run(self_inner):
+                        owner._pump_drain()
+
+                pump = UiPump()
+                handler = handler_class(looper_class.getMainLooper())
+                self._ui_pump = pump
+                self._ui_pump_handler = handler
+                # 单例代理伴随整个 spider 生命周期，永久保活。
+                self._dialog_refs.append(pump)
+        return self._ui_pump, self._ui_pump_handler
+
+    def _pump_schedule(self, delayed):
+        try:
+            pump, handler = self._pump_ensure()
+            if delayed:
+                handler.postDelayed(pump, int(self._ui_pump_interval_ms))
+            else:
+                handler.post(pump)
+        except Exception as exc:
+            # 无 Android 环境（纯 Python 测试）或入队失败：复位调度位，
+            # 让后续调用可以重试；本次任务直接在当前线程尽力执行，
+            # 保持与旧实现相同的兜底语义。
+            with self._ui_pump_lock:
+                jobs = list(self._ui_pump_jobs)
+                self._ui_pump_jobs.clear()
+                self._ui_pump_scheduled = False
+            try:
+                self._log("WARN", "UI 泵调度失败，改为当前线程执行: {}".format(exc))
+            except Exception:
+                pass
+            for job in jobs:
+                try:
+                    job()
+                except Exception:
+                    pass
+
+    def _pump_drain(self):
+        """UI 泵代理的 run 入口：批量执行积压任务并按需节拍续跑。"""
+        with self._ui_pump_lock:
+            # 必须在锁内对同一个列表「拷贝 + 原地清空」，不能换绑新列表：
+            # 否则工作线程可能在换绑瞬间把任务 append 到已脱离的旧列表，
+            # 既不会被本次执行，也不在后续队列里，造成更新静默丢失。
+            jobs = list(self._ui_pump_jobs)
+            self._ui_pump_jobs.clear()
+            # 执行期间新入队的任务会看到 scheduled=False 并自行立即投递，
+            # 因此这里先释放调度位。
+            self._ui_pump_scheduled = False
+        for job in jobs:
+            try:
+                job()
+            except Exception:
+                pass
+        # 执行期间若有积压且没有别的调用方认领投递，则由泵按节拍延时
+        # 续跑一次；调用方已认领（会立即 post）时不重复投递。
+        delayed = False
+        with self._ui_pump_lock:
+            if self._ui_pump_jobs and not self._ui_pump_scheduled:
+                self._ui_pump_scheduled = True
+                delayed = True
+        if delayed:
+            self._pump_schedule(delayed=True)
 
     def getName(self):
         return "智能加载 {}".format(self.VERSION)
@@ -7320,71 +7416,42 @@ class Spider(BaseSpider):
         text_view = panel.get("text")
         bar_view = panel.get("bar")
 
-        try:
-            from java import dynamic_proxy, jclass
-
-            runnable_class = jclass("java.lang.Runnable")
-            handler_class = jclass("android.os.Handler")
-            looper_class = jclass("android.os.Looper")
-        except Exception:
-            runnable_class = None
-        if runnable_class is None:
-            try:
-                text_view.setText(text)
-            except Exception:
-                pass
-            return True
-
         owner = self
 
-        with self._ProxyCreationLock(self):
-
-            class SetText(dynamic_proxy(runnable_class)):
-                def __init__(self):
-                    super().__init__()
-                    self._proxy_id = owner._retain_proxy(self)
-
-                def run(self):
-                    try:
-                        # 更新时再次校验面板仍在途，避免写穿旧面板。
-                        with owner._progress_panel_lock:
-                            current = owner._active_progress_panel
-                            if (
-                                not current
-                                or current.get("key") != panel.get("key")
-                                or current.get("text") is not text_view
-                            ):
-                                return
-                        if owner._destroyed:
-                            return
-                        text_view.setText(text)
-                        if bar_view is not None:
-                            try:
-                                if total is not None and int(total) > 0:
-                                    bar_view.setIndeterminate(False)
-                                    bar_view.setMax(int(total))
-                                    value = int(done or 0)
-                                    if value < 0:
-                                        value = 0
-                                    if value > int(total):
-                                        value = int(total)
-                                    bar_view.setProgress(value)
-                                elif indeterminate:
-                                    bar_view.setIndeterminate(True)
-                            except Exception:
-                                pass
-                    finally:
-                        owner._release_proxy(self._proxy_id)
-            runner = SetText()
-            self._dialog_refs.append(runner)
-            # 不再截断，保持所有代理引用
+        # v8.0：扫描/检测期间这里会被高频调用（每个扫描目录、每个站点
+        # 完成都来一次），旧实现每次新建一个 SetText 动态代理类并跨线程
+        # post，会概率触发 Chaquopy #788 闪退。改为只入队纯 Python 渲染
+        # 闭包，由全 spider 唯一的 UI 泵代理在主线程批量执行。
+        def _render_on_ui():
+            # 更新时再次校验面板仍在途，避免写穿旧面板。
+            with owner._progress_panel_lock:
+                current = owner._active_progress_panel
+                if (
+                    not current
+                    or current.get("key") != panel.get("key")
+                    or current.get("text") is not text_view
+                ):
+                    return
+            if owner._destroyed:
+                return
             try:
-                handler_class(looper_class.getMainLooper()).post(runner)
+                text_view.setText(text)
+                if bar_view is not None:
+                    if total is not None and int(total) > 0:
+                        bar_view.setIndeterminate(False)
+                        bar_view.setMax(int(total))
+                        value = int(done or 0)
+                        if value < 0:
+                            value = 0
+                        if value > int(total):
+                            value = int(total)
+                        bar_view.setProgress(value)
+                    elif indeterminate:
+                        bar_view.setIndeterminate(True)
             except Exception:
-                try:
-                    text_view.setText(text)
-                except Exception:
-                    pass
+                pass
+
+        owner._post_on_ui(_render_on_ui)
         return True
 
     def _finish_progress_panel(self, panel_key, message, ok=True):
@@ -7415,57 +7482,35 @@ class Spider(BaseSpider):
         dialog = panel.get("dialog")
         owner = self
 
-        with self._ProxyCreationLock(self):
+        def _finalize():
             try:
-                from java import dynamic_proxy, jclass
+                with owner._ProxyCreationLock(owner):
+                    from java import dynamic_proxy, jclass
 
-                view_click_listener = jclass(
-                    "android.view.View$OnClickListener"
-                )
+                    view_click_listener = jclass(
+                        "android.view.View$OnClickListener"
+                    )
 
-                class FinishCloseClick(dynamic_proxy(view_click_listener)):
-                    def onClick(self, view):
-                        owner._release_progress_panel(panel_key)
+                    class FinishCloseClick(dynamic_proxy(view_click_listener)):
+                        def onClick(self_inner, view):
+                            owner._release_progress_panel(panel_key)
 
-                def _finalize():
-                    try:
-                        listener = FinishCloseClick()
-                        self._dialog_refs.append(listener)
-                        # 确认按钮已被覆盖为 View 级监听，必须用
-                        # getButton().setOnClickListener 重接，
-                        # dialog.setButton 对该按钮不再生效。
-                        button = dialog.getButton(-1)
-                        if button is not None:
-                            button.setText("确定")
-                            button.setOnClickListener(listener)
-                        # 完成后允许点空白/返回键关闭。
-                        dialog.setCancelable(True)
-                    except Exception:
-                        pass
-
-                runnable_class = jclass("java.lang.Runnable")
-                handler_class = jclass("android.os.Handler")
-                looper_class = jclass("android.os.Looper")
-
-                class FinalizeDialog(dynamic_proxy(runnable_class)):
-                    def __init__(self):
-                        super().__init__()
-                        self._proxy_id = owner._retain_proxy(self)
-
-                    def run(self):
-                        try:
-                            _finalize()
-                        finally:
-                            owner._release_proxy(self._proxy_id)
-
-                runner = FinalizeDialog()
-                self._dialog_refs.append(runner)
-                handler_class(looper_class.getMainLooper()).post(runner)
+                    listener = FinishCloseClick()
+                owner._dialog_refs.append(listener)
+                # 确认按钮已被覆盖为 View 级监听，必须用
+                # getButton().setOnClickListener 重接，
+                # dialog.setButton 对该按钮不再生效。
+                button = dialog.getButton(-1)
+                if button is not None:
+                    button.setText("确定")
+                    button.setOnClickListener(listener)
+                # 完成后允许点空白/返回键关闭。
+                dialog.setCancelable(True)
             except Exception:
-                try:
-                    dialog.setButton(-1, "确定", None)
-                except Exception:
-                    pass
+                pass
+
+        # v8.0：收尾动作并入单例 UI 泵，不再为此新建 Runnable 代理。
+        owner._post_on_ui(_finalize)
 
     def _cancel_progress_panel(self, panel_key):
         """用户点击「取消当前进度」：请求取消当前任务并收起进度面板。"""
@@ -9462,11 +9507,8 @@ class Spider(BaseSpider):
                                         "WARN", "站点通知显示失败: {}".format(exc)
                                     )
                             finally:
-                                owner._release_proxy(self._proxy_id)
-                                try:
-                                    owner._notification_refs.remove(self)
-                                except (ValueError, AttributeError):
-                                    pass
+                                # 单例代理永久保活，这里只需通知等待方并
+                                # 释放单飞 gate；代理引用不移除。
                                 if self._displayed:
                                     self._displayed.set()
                                 try:
@@ -9476,23 +9518,23 @@ class Spider(BaseSpider):
 
                     owner._ShowNotificationClass = ShowNotification
 
-                # 创建实例并配置
-                runner = owner._ShowNotificationClass()
+                # v8.0：实例同样只创建一个并永久保活，每次通知前重新配置。
+                # _notification_gate 保证上一次 run() 已结束才会再次配置，
+                # 不存在跨调用字段竞争。
+                if not getattr(owner, '_ShowNotificationInstance', None):
+                    runner = owner._ShowNotificationClass()
+                    owner._ShowNotificationInstance = runner
+                    owner._notification_refs.append(runner)
+                runner = owner._ShowNotificationInstance
                 runner.configure(text, replace, displayed, context, toast_class, None if not replace else owner._site_test_toast)
-                self._notification_refs.append(runner)
-                try:
-                    if activity is not None:
-                        activity.runOnUiThread(runner)
-                        queued = True
-                    else:
-                        queued = handler.post(runner)
-                except Exception:
-                    self._notification_refs.remove(runner)
-                    raise
+                if activity is not None:
+                    activity.runOnUiThread(runner)
+                    queued = True
+                else:
+                    queued = handler.post(runner)
             # 部分 Chaquopy 版本会把 Java void/boolean 返回值映射为 None。
             # None 表示调用已发出；只有明确的 false 才视为入队失败。
             if queued is not None and not bool(queued):
-                self._notification_refs.remove(runner)
                 return False
             gate_handed_to_runner = True
             if wait and not displayed.wait(1.5):
