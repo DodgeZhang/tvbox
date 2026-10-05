@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # @tvbox-role manager
-# @version v7.0-lite
+# @version v8.0
 # @release-format plain-release-v1
 # @dual-app-loader WebHTV,OK影视
 
@@ -113,6 +113,151 @@ class PackageServiceRequestError(ValueError):
 class NoRedirectHandler(urllib.request.HTTPRedirectHandler):
     def redirect_request(self, req, fp, code, msg, headers, newurl):
         return None
+
+
+class _StandaloneProgressHandle(object):
+    """独立进度对话框句柄（横向进度条 + 消息文本）。
+
+    供网络同步/测试连接等没有「确认-进度面板」的等待操作使用；所有控件
+    操作都 post 到 UI 线程执行。owner 为空时是静默空句柄：无 Android
+    环境（如纯 Python 测试）下 update/finish/dismiss 全部安全空转。
+    """
+
+    MIN_INTERVAL = 0.12
+
+    def __init__(self, owner, dialog, bar, message_view, handler):
+        self._owner = owner
+        self._dialog = dialog
+        self._bar = bar
+        self._message = message_view
+        self._handler = handler
+        self._closed = False
+        self._last_ts = 0.0
+
+    @classmethod
+    def null(cls):
+        return cls(None, None, None, None, None)
+
+    def _alive(self):
+        return (
+            self._owner is not None
+            and not self._closed
+            and not self._owner._destroyed
+        )
+
+    def _post(self, fn, allow_closed=False):
+        owner = self._owner
+        if owner is None or (self._closed and not allow_closed):
+            return
+        try:
+            from java import dynamic_proxy, jclass
+
+            runnable_class = jclass("java.lang.Runnable")
+            with owner._ProxyCreationLock(owner):
+
+                class ProgressRunnable(dynamic_proxy(runnable_class)):
+                    def __init__(self_inner):
+                        super(ProgressRunnable, self_inner).__init__()
+                        self_inner._proxy_id = owner._retain_proxy(self_inner)
+
+                    def run(self_inner):
+                        try:
+                            if (
+                                not self._closed or allow_closed
+                            ) and not owner._destroyed:
+                                fn()
+                        finally:
+                            owner._release_proxy(self_inner._proxy_id)
+
+                runner = ProgressRunnable()
+            owner._dialog_refs.append(runner)
+            self._handler.post(runner)
+        except Exception:
+            try:
+                fn()
+            except Exception:
+                pass
+
+    def update(
+        self,
+        message=None,
+        done=None,
+        total=None,
+        indeterminate=None,
+        force=False,
+    ):
+        if not self._alive():
+            return
+        now = time.monotonic()
+        if not force and now - self._last_ts < self.MIN_INTERVAL:
+            return
+        self._last_ts = now
+
+        def _render():
+            try:
+                if message is not None:
+                    self._message.setText(str(message))
+                if total is not None and int(total) > 0:
+                    self._bar.setIndeterminate(False)
+                    self._bar.setMax(int(total))
+                    value = int(done or 0)
+                    if value < 0:
+                        value = 0
+                    if value > int(total):
+                        value = int(total)
+                    self._bar.setProgress(value)
+                elif indeterminate:
+                    self._bar.setIndeterminate(True)
+            except Exception:
+                pass
+
+        self._post(_render)
+
+    def finish(self, message, ok=True):
+        if not self._alive():
+            return
+        prefix = "✅ 完成：" if ok else "❌ 失败："
+        self.update(
+            prefix + str(message or ""),
+            done=100 if ok else None,
+            total=100 if ok else None,
+            indeterminate=False if not ok else None,
+            force=True,
+        )
+        self._post(self._show_close_button)
+
+    def _show_close_button(self):
+        owner = self._owner
+        try:
+            from java import dynamic_proxy, jclass
+
+            click_listener = jclass(
+                "android.content.DialogInterface$OnClickListener"
+            )
+            with owner._ProxyCreationLock(owner):
+
+                class CloseListener(dynamic_proxy(click_listener)):
+                    def onClick(self_inner, dialog, which):
+                        self.dismiss()
+
+                listener = CloseListener()
+            owner._dialog_refs.append(listener)
+            self._dialog.setButton(-1, "确定", listener)
+        except Exception:
+            pass
+
+    def dismiss(self):
+        if self._closed:
+            return
+        self._closed = True
+
+        def _do_dismiss():
+            try:
+                self._dialog.dismiss()
+            except Exception:
+                pass
+
+        self._post(_do_dismiss, allow_closed=True)
 
 
 # === UI_ICONS BEGIN (auto-generated, do not edit by hand) ===
@@ -3438,15 +3583,29 @@ class Spider(BaseSpider):
         root["protocol"] = protocol
         cache_dir = self._network_root_cache_dir(root)
 
-        def report(message):
+        def report(message, done=None, total=None, indeterminate=None):
             self._network_sync_message = str(message)
             if progress:
                 try:
-                    progress(str(message))
+                    progress(
+                        str(message),
+                        done=done,
+                        total=total,
+                        indeterminate=indeterminate,
+                    )
+                except TypeError:
+                    # 兼容只接受单参数的旧式回调（如测试桩）。
+                    try:
+                        progress(str(message))
+                    except Exception:
+                        pass
                 except Exception:
                     pass
 
-        report("正在获取 {} 目录列表…".format(protocol.upper()))
+        report(
+            "正在获取 {} 目录列表…".format(protocol.upper()),
+            indeterminate=True,
+        )
         entries = self._network_list_tree(root, protocol)
         candidates = []
         skipped_large = 0
@@ -3475,6 +3634,13 @@ class Spider(BaseSpider):
         # ETag/Last-Modified/Content-Length，让增量跳过真正生效。
         if protocol == "http" and candidates:
             head_workers = max(1, min(self.NETWORK_WORKERS * 2, len(candidates)))
+            head_total = len(candidates)
+            head_done = 0
+            report(
+                "正在检查文件更新（0/{}）…".format(head_total),
+                done=0,
+                total=head_total,
+            )
             with concurrent.futures.ThreadPoolExecutor(
                 max_workers=head_workers
             ) as executor:
@@ -3490,6 +3656,15 @@ class Spider(BaseSpider):
                         head_meta = None
                     if head_meta:
                         entry.update(head_meta)
+                    head_done += 1
+                    if head_done % 10 == 0 or head_done == head_total:
+                        report(
+                            "正在检查文件更新（{}/{}）…".format(
+                                head_done, head_total
+                            ),
+                            done=head_done,
+                            total=head_total,
+                        )
         download_list = []
         new_meta = {}
         for entry in candidates:
@@ -3539,17 +3714,25 @@ class Spider(BaseSpider):
                                 "{}: {}".format(entry["rel"], exc)
                             )
                     done += 1
-                    if done % 10 == 0 or done == total:
+                    # 沿用旧版「首批 + 每 10 个 + 末批」节奏，避免逐文件
+                    # 刷日志/刷 UI；进度数值照常驱动百分比。
+                    if done == 1 or done % 10 == 0 or done == total:
                         report(
-                            "正在同步 {}/{}：{}".format(
+                            "正在下载 {}/{}：{}".format(
                                 done, total, entry["rel"]
-                            )
+                            ),
+                            done=done,
+                            total=total,
                         )
+        else:
+            # 无需下载时也要把确定进度条补满，避免空条/除零。
+            report("远程文件均为最新，无需下载", done=1, total=1)
         # 下载失败的文件不写入新清单，并保留旧镜像（如有），下次同步自动重试。
         for rel in failed_rels:
             new_meta.pop(rel, None)
 
         # 清理远程已删除的旧镜像文件与空目录。
+        report("正在清理失效镜像文件…", indeterminate=True)
         removed = 0
         for rel in list(old_files.keys()):
             if rel in new_meta or rel in failed_rels:
@@ -3577,6 +3760,7 @@ class Spider(BaseSpider):
             "synced_at": time.strftime("%Y-%m-%d %H:%M:%S"),
             "files": new_meta,
         }
+        report("正在写入镜像清单…", indeterminate=True)
         with open(self._network_manifest_path(cache_dir), "w", encoding="utf-8") as fp:
             json.dump(manifest, fp, ensure_ascii=False, indent=0)
         with open(self._network_marker_path(cache_dir), "w", encoding="utf-8") as fp:
@@ -3609,10 +3793,12 @@ class Spider(BaseSpider):
             "status": status,
         }
 
-    def _sync_network_roots_locked(self, only_root_id=None):
+    def _sync_network_roots_locked(self, only_root_id=None, progress=None):
         """扫描/手动同步入口。返回 (success_count, detail_lines)。
 
         单个根失败不影响其它根，也不中断本地扫描。
+        progress(message, done=None, total=None, indeterminate=None) 可选，
+        用于把每个根的同步进度回传到进度对话框/面板。
         """
         targets = []
         for root in self.network_roots:
@@ -3626,16 +3812,44 @@ class Spider(BaseSpider):
         details = []
         success = 0
         self._network_sync_running = True
+        if progress:
+            try:
+                progress(
+                    "准备同步 {} 个网络目录…".format(len(targets)),
+                    indeterminate=True,
+                )
+            except Exception:
+                pass
         try:
             for root in targets:
                 name = str(root.get("name", "网络目录"))
                 self._network_sync_root_id = str(root.get("id", ""))
                 self._network_sync_message = "准备同步「{}」".format(name)
                 self._log("INFO", "网络目录开始同步: {} ({})".format(name, root.get("url")))
+
+                def _root_progress(message, _name=name, **kwargs):
+                    # 原有行为：每个阶段消息都写日志；同时转发给上层 UI。
+                    self._log("INFO", str(message))
+                    if progress:
+                        try:
+                            progress(
+                                "「{}」{}".format(_name, message),
+                                **kwargs
+                            )
+                        except TypeError:
+                            try:
+                                progress(
+                                    "「{}」{}".format(_name, message)
+                                )
+                            except Exception:
+                                pass
+                        except Exception:
+                            pass
+
                 try:
                     stats = self._sync_network_root_locked(
                         root,
-                        progress=lambda msg: self._log("INFO", str(msg)),
+                        progress=_root_progress,
                     )
                     root["last_sync"] = time.strftime("%Y-%m-%d %H:%M:%S")
                     root["last_status"] = stats["status"]
@@ -4344,17 +4558,36 @@ class Spider(BaseSpider):
             return
 
         def _worker():
+            progress_ui = self._create_standalone_progress(
+                "正在同步网络目录",
+                "准备同步…",
+                indeterminate=True,
+            )
             try:
+                def _forward(
+                    message,
+                    done=None,
+                    total=None,
+                    indeterminate=None,
+                ):
+                    progress_ui.update(
+                        message,
+                        done=done,
+                        total=total,
+                        indeterminate=indeterminate,
+                    )
+
                 with self.lock:
                     _count, details = self._sync_network_roots_locked(
-                        only_root_id=target_id or None
+                        only_root_id=target_id or None,
+                        progress=_forward,
                     )
                 message = "；".join(details) if details else "没有需要同步的已启用网络目录"
-                self._notify_app(message)
+                progress_ui.finish(message, ok=True)
                 self._schedule_manager_page_refresh()
             except Exception as exc:
                 self._log("ERROR", "网络目录后台同步失败: {}".format(exc))
-                self._notify_app("网络目录同步失败: {}".format(exc))
+                progress_ui.finish("网络目录同步失败: {}".format(exc), ok=False)
 
         worker_thread = threading.Thread(
             target=_worker, name="local-network-sync"
@@ -4366,6 +4599,11 @@ class Spider(BaseSpider):
         """后台测试连接（列目录在 HTTP 场景下可能有多层请求，避免卡 UI）。"""
 
         def _worker():
+            progress_ui = self._create_standalone_progress(
+                "正在测试连接",
+                "正在与网络目录建立连接，请稍候…",
+                indeterminate=True,
+            )
             try:
                 with self.lock:
                     protocol_name, count, sample = self._network_probe_locked(
@@ -4381,10 +4619,10 @@ class Spider(BaseSpider):
                     message = "连接成功：{}，但该目录下未发现 .py/.js/.json/.html 源文件".format(
                         label
                     )
-                self._notify_app(message)
+                progress_ui.finish(message, ok=True)
             except Exception as exc:
                 self._log("WARN", "网络目录连接测试失败: {}".format(exc))
-                self._notify_app("连接失败: {}".format(exc))
+                progress_ui.finish("连接失败: {}".format(exc), ok=False)
 
         worker_thread = threading.Thread(
             target=_worker, name="local-network-probe"
@@ -4497,12 +4735,8 @@ class Spider(BaseSpider):
                     def onClick(self, dialog, which):
                         try:
                             if which == 0:
+                                # v8.0：同步进度由独立进度对话框展示，不再弹 toast。
                                 owner._network_start_sync_worker(snapshot["id"])
-                                toast_class.makeText(
-                                    activity,
-                                    "已开始后台同步「{}」".format(snapshot["name"]),
-                                    toast_class.LENGTH_SHORT,
-                                ).show()
                             elif which == 1:
                                 owner._open_network_edit_dialog(snapshot["id"])
                             elif which == 2:
@@ -4515,17 +4749,13 @@ class Spider(BaseSpider):
                                         owner._save_settings()
                                 owner._schedule_manager_page_refresh()
                             elif which == 3:
+                                # v8.0：测试进度由独立进度对话框展示，不再弹 toast。
                                 owner._network_start_probe_worker(
                                     snapshot["url"],
                                     snapshot["username"],
                                     snapshot["secret"],
                                     snapshot["protocol"],
                                 )
-                                toast_class.makeText(
-                                    activity,
-                                    "正在测试连接，请稍候…",
-                                    toast_class.LENGTH_SHORT,
-                                ).show()
                             elif which == 4:
                                 opened, message = owner._open_network_confirm_dialog(
                                     "删除网络目录",
@@ -4695,9 +4925,7 @@ class Spider(BaseSpider):
                         owner._network_start_probe_worker(
                             url, username, secret, holder["protocol"]
                         )
-                        toast_class.makeText(
-                            activity, "正在测试连接，请稍候…", toast_class.LENGTH_SHORT
-                        ).show()
+                        # v8.0：测试进度由独立进度对话框展示，不再弹 toast。
 
                 class ProtocolRowListener(dynamic_proxy(view_click_listener)):
                     def __init__(self, label_view, edits):
@@ -6372,7 +6600,7 @@ class Spider(BaseSpider):
                     "title": "应用并扫描",
                     "desc": (
                         "应用当前扫描配置，并重新扫描本地目录。\n\n"
-                        "v7.0：仅更新文件浏览结果，不写配置、不重载；\n"
+                        "v8.0：仅更新文件浏览结果，不写配置、不重载；\n"
                         "确认无误后请点击首页「加载全部」或进文件浏览点选。"
                     ),
                     "running_title": "正在应用并扫描…",
@@ -6564,6 +6792,28 @@ class Spider(BaseSpider):
                         text.setPadding(0, 0, 0, int(8 * density + 0.5))
                         text.setTextIsSelectable(True)
                         container.addView(text)
+                        # v8.0：进度面板内嵌横向进度条，扫描/同步/测活等等待
+                        # 操作可直观看到进度走到哪里；确认前隐藏，点确认后显示。
+                        progress_bar_cls = jclass("android.widget.ProgressBar")
+                        bar_attr = jclass("android.R$attr")
+                        progress_bar = progress_bar_cls(
+                            activity,
+                            None,
+                            bar_attr.progressBarStyleHorizontal,
+                        )
+                        bar_params = linear_cls.LayoutParams(
+                            linear_cls.LayoutParams.MATCH_PARENT,
+                            linear_cls.LayoutParams.WRAP_CONTENT,
+                        )
+                        bar_params.setMargins(
+                            0, 0, 0, int(8 * density + 0.5)
+                        )
+                        progress_bar.setLayoutParams(bar_params)
+                        progress_bar.setMax(100)
+                        progress_bar.setProgress(0)
+                        progress_bar.setIndeterminate(False)
+                        progress_bar.setVisibility(8)  # View.GONE
+                        container.addView(progress_bar)
                         # 保存当前对话框的文件夹开关容器供确认时核对（冗余但稳妥）。
                         switches = {}
                         if is_site_test:
@@ -6622,11 +6872,20 @@ class Spider(BaseSpider):
                                 "key": panel_key,
                                 "dialog": dialog,
                                 "text": text,
+                                "bar": progress_bar,
                                 "running": False,
                                 "cancel_requested": False,
                             }
                         owner._dialog_refs.extend(
-                            [text, container, scroll, confirm_listener, dismiss, dialog]
+                            [
+                                text,
+                                progress_bar,
+                                container,
+                                scroll,
+                                confirm_listener,
+                                dismiss,
+                                dialog,
+                            ]
                         )
 
                 runner = ShowDialog()
@@ -6708,6 +6967,16 @@ class Spider(BaseSpider):
                     return
             panel["running"] = True
             panel["text"].setText("已启动：{}…".format(cfg["running_title"]))
+            # 运行模式先展示不确定进度条，任务回传具体数值后切换为确定百分比。
+            bar = panel.get("bar")
+            if bar is not None:
+                try:
+                    bar.setVisibility(0)  # View.VISIBLE
+                    bar.setMax(100)
+                    bar.setProgress(0)
+                    bar.setIndeterminate(True)
+                except Exception:
+                    pass
             try:
                 panel["dialog"].setTitle(cfg["running_title"])
                 activity = panel["dialog"].getContext()
@@ -6812,9 +7081,20 @@ class Spider(BaseSpider):
         )
         worker.start()
 
-    def _update_progress_panel(self, message, panel_key=None):
+    def _update_progress_panel(
+        self,
+        message,
+        panel_key=None,
+        done=None,
+        total=None,
+        indeterminate=None,
+    ):
         """线程安全地把任务进度/详情回填到在途进度面板。
         若干净地没有可用的进度面板，则退化为 _notify_app toast。
+
+        - total>0：进度条切换为确定模式，按 done/total 显示百分比；
+        - indeterminate=True：切换为不确定模式（往返动画）；
+        - 两者均为 None：仅刷新文字，进度条形态保持不变。
         """
         text = " ".join(str(message or "").split()).strip()
         if not text or self._destroyed:
@@ -6835,6 +7115,7 @@ class Spider(BaseSpider):
         if panel is None:
             return self._notify_app(text)
         text_view = panel.get("text")
+        bar_view = panel.get("bar")
 
         try:
             from java import dynamic_proxy, jclass
@@ -6874,6 +7155,21 @@ class Spider(BaseSpider):
                         if owner._destroyed:
                             return
                         text_view.setText(text)
+                        if bar_view is not None:
+                            try:
+                                if total is not None and int(total) > 0:
+                                    bar_view.setIndeterminate(False)
+                                    bar_view.setMax(int(total))
+                                    value = int(done or 0)
+                                    if value < 0:
+                                        value = 0
+                                    if value > int(total):
+                                        value = int(total)
+                                    bar_view.setProgress(value)
+                                elif indeterminate:
+                                    bar_view.setIndeterminate(True)
+                            except Exception:
+                                pass
                     finally:
                         owner._release_proxy(self._proxy_id)
             runner = SetText()
@@ -6897,7 +7193,14 @@ class Spider(BaseSpider):
             body = "✅ 完成\n\n{}".format(text)
         else:
             body = "❌ 未完成\n\n{}".format(text)
-        self._update_progress_panel(body, panel_key=panel_key)
+        # 成功把进度条补满；失败则停止不确定动画，保留当前进度位置。
+        self._update_progress_panel(
+            body,
+            panel_key=panel_key,
+            done=100 if ok else None,
+            total=100 if ok else None,
+            indeterminate=False if not ok else None,
+        )
         with self._progress_panel_lock:
             panel = self._active_progress_panel
             if (
@@ -6999,6 +7302,113 @@ class Spider(BaseSpider):
             daemon=True,
         )
         worker.start()
+
+    def _create_standalone_progress(self, title, message="", indeterminate=True):
+        """在 UI 线程同步创建独立进度对话框（横向进度条 + 消息文本）。
+
+        网络同步/测试连接等没有「确认-进度面板」的等待操作使用本方法。
+        可在任意线程调用：内部切到 UI 线程创建并等待句柄；拿不到
+        Activity 或创建超时（2 秒）时返回静默空句柄，后台任务不受影响。
+        """
+        try:
+            from java import dynamic_proxy, jclass
+
+            activity = self._current_android_activity(jclass)
+        except Exception:
+            activity = None
+        if activity is None:
+            return _StandaloneProgressHandle.null()
+
+        box = {}
+        created = threading.Event()
+        owner = self
+        initial_message = str(message or "")
+        initial_indeterminate = bool(indeterminate)
+
+        with self._ProxyCreationLock(self):
+            runnable_class = jclass("java.lang.Runnable")
+
+            class BuildRunnable(dynamic_proxy(runnable_class)):
+                def __init__(self):
+                    super().__init__()
+                    self._proxy_id = owner._retain_proxy(self)
+
+                def run(self):
+                    try:
+                        try:
+                            density = float(
+                                activity.getResources().getDisplayMetrics().density
+                            )
+                            padding = int(16 * density + 0.5)
+                            try:
+                                builder_class = jclass(
+                                    "com.google.android.material.dialog.MaterialAlertDialogBuilder"
+                                )
+                            except Exception:
+                                builder_class = jclass(
+                                    "android.app.AlertDialog$Builder"
+                                )
+                            linear_cls = jclass("android.widget.LinearLayout")
+                            text_cls = jclass("android.widget.TextView")
+                            bar_cls = jclass("android.widget.ProgressBar")
+                            bar_attr = jclass("android.R$attr")
+                            container = linear_cls(activity)
+                            container.setOrientation(linear_cls.VERTICAL)
+                            container.setPadding(padding, padding, padding, 0)
+                            bar = bar_cls(
+                                activity,
+                                None,
+                                bar_attr.progressBarStyleHorizontal,
+                            )
+                            bar_params = linear_cls.LayoutParams(
+                                linear_cls.LayoutParams.MATCH_PARENT,
+                                linear_cls.LayoutParams.WRAP_CONTENT,
+                            )
+                            bar_params.setMargins(
+                                0, 0, 0, int(10 * density + 0.5)
+                            )
+                            bar.setLayoutParams(bar_params)
+                            bar.setMax(100)
+                            bar.setProgress(0)
+                            bar.setIndeterminate(initial_indeterminate)
+                            container.addView(bar)
+                            text_view = text_cls(activity)
+                            text_view.setTextSize(14.0)
+                            text_view.setLineSpacing(0.0, 1.3)
+                            text_view.setTextIsSelectable(True)
+                            text_view.setText(initial_message)
+                            container.addView(text_view)
+                            builder = builder_class(activity)
+                            builder.setTitle(title)
+                            builder.setView(container)
+                            # 同步/测试不可中途取消，任务结束后才给「确定」按钮。
+                            builder.setCancelable(False)
+                            dialog = builder.show()
+                            handler_class = jclass("android.os.Handler")
+                            looper_class = jclass("android.os.Looper")
+                            handler = handler_class(
+                                looper_class.getMainLooper()
+                            )
+                            box["handle"] = _StandaloneProgressHandle(
+                                owner, dialog, bar, text_view, handler
+                            )
+                            owner._dialog_refs.extend(
+                                [bar, text_view, container, dialog]
+                            )
+                        except Exception as exc:
+                            owner._log(
+                                "ERROR",
+                                "独立进度对话框创建失败: {}".format(exc),
+                            )
+                    finally:
+                        created.set()
+                        owner._release_proxy(self._proxy_id)
+
+            runner = BuildRunnable()
+        self._dialog_refs.append(runner)
+        activity.runOnUiThread(runner)
+        created.wait(2.0)
+        return box.get("handle") or _StandaloneProgressHandle.null()
 
     def _apply_pending_type_settings(self):
         previous_types = dict(self.type_enabled)
@@ -10857,7 +11267,7 @@ class Spider(BaseSpider):
             state["running"] = False
             state["last"] = time.monotonic()
 
-    def _refresh_locked(self, allow_empty=False):
+    def _refresh_locked(self, allow_empty=False, progress=None):
         self.status = self._empty_status()
         self.status["scan_time"] = time.strftime("%Y-%m-%d %H:%M:%S")
         enabled_roots = [
@@ -10873,7 +11283,7 @@ class Spider(BaseSpider):
             ),
         )
         try:
-            self._scan_all_roots()
+            self._scan_all_roots(progress=progress)
             if self.status["limit_reached"]:
                 self.status["write_state"] = "扫描达到保护上限，已保护旧注册表"
                 self.status["error"] = "请缩小扫描目录或调整 max_files"
@@ -10999,7 +11409,7 @@ class Spider(BaseSpider):
         except Exception as exc:
             self._warn("加载选择初始化保存失败: {}".format(exc))
 
-    def _scan_only_locked(self, sync_network=False):
+    def _scan_only_locked(self, sync_network=False, progress=None):
         """仅扫描设定目录并填充浏览缓存，不写任何配置、不触发重载。"""
         self.status = self._empty_status()
         self.status["scan_time"] = time.strftime("%Y-%m-%d %H:%M:%S")
@@ -11015,7 +11425,9 @@ class Spider(BaseSpider):
             ),
         )
         try:
-            self._scan_all_roots(sync_network=sync_network)
+            self._scan_all_roots(
+                sync_network=sync_network, progress=progress
+            )
             if self.status["limit_reached"]:
                 self.status["write_state"] = "扫描达到保护上限，请缩小目录后重试"
                 self.status["error"] = "请缩小扫描目录或调整 max_files"
@@ -11895,7 +12307,13 @@ class Spider(BaseSpider):
                 self._warn("扫描缓存删除失败: {} ({})".format(candidate, exc))
         return removed
 
-    def _scan_all_roots(self, sync_network=False):
+    def _scan_all_roots(self, sync_network=False, progress=None):
+        """逐根扫描本地目录。
+
+        progress(message, done=None, total=None, indeterminate=None) 可选：
+        手动扫描时把「正在同步网络目录 / 正在扫描第几个根」回传到进度面板；
+        自动补扫/启动刷新不传，行为与旧版完全一致。
+        """
         self.cache = self._empty_cache()
         self._package_filter_excluded = False
         self._jar_inspection_cache = {}
@@ -11906,8 +12324,13 @@ class Spider(BaseSpider):
         if sync_network and any(
             item.get("enabled", True) for item in self.network_roots
         ):
+            if progress:
+                try:
+                    progress("正在同步网络目录…", indeterminate=True)
+                except Exception:
+                    pass
             try:
-                self._sync_network_roots_locked()
+                self._sync_network_roots_locked(progress=progress)
             except Exception as exc:
                 self._warn("网络目录同步异常（继续扫描本地与已有镜像）: {}".format(exc))
         effective_roots = self._effective_scan_roots()
@@ -11928,6 +12351,27 @@ class Spider(BaseSpider):
         available_types = set()
         limit_reached = False
 
+        # v8.0：文件总数需遍历后才知道，进度条按「扫描根 i/N」粗粒度推进，
+        # 消息文本同时展示已发现文件数，兼顾直观与零额外磁盘开销。
+        total_roots = sum(
+            1
+            for spec in effective_roots
+            if str(spec.get("type", "")).upper() in self.TYPE_ORDER
+            and self.type_enabled.get(
+                str(spec.get("type", "")).upper(), True
+            )
+        )
+        root_index = 0
+        if progress and total_roots:
+            try:
+                progress(
+                    "开始扫描 {} 个目录…".format(total_roots),
+                    done=0,
+                    total=total_roots,
+                )
+            except Exception:
+                pass
+
         for root_order, spec in enumerate(effective_roots):
             if limit_reached:
                 break
@@ -11937,6 +12381,24 @@ class Spider(BaseSpider):
                 continue
             if not self.type_enabled.get(source_type, True):
                 continue
+            root_index += 1
+            if progress:
+                try:
+                    type_label = self.TYPE_LABEL.get(source_type, source_type)
+                    root_path = str(spec.get("path", ""))
+                    progress(
+                        "正在扫描（{}/{}）{} 目录：{} · 已发现 {} 个文件".format(
+                            root_index,
+                            total_roots,
+                            type_label,
+                            root_path,
+                            self.status["found"],
+                        ),
+                        done=root_index - 1,
+                        total=total_roots,
+                    )
+                except Exception:
+                    pass
             root = os.path.abspath(os.path.expanduser(str(spec.get("path", ""))))
             extensions = {
                 self._normalize_extension(ext)
@@ -12506,6 +12968,19 @@ class Spider(BaseSpider):
                         sources.append(source)
                 if limit_reached:
                     break
+            if progress:
+                try:
+                    progress(
+                        "已完成（{}/{}）个目录 · 累计发现 {} 个文件，正在整理结果…".format(
+                            root_index,
+                            total_roots,
+                            self.status["found"],
+                        ),
+                        done=root_index,
+                        total=total_roots,
+                    )
+                except Exception:
+                    pass
 
         all_sources = sources + ignored_sources
         if not self.block_adult_sites:
@@ -16556,7 +17031,7 @@ class Spider(BaseSpider):
             "仓库安装规则：<类型目录>/<备注名>/<相对路径>\n"
             "扫描上限：文件 {max_files} · 深度 {max_depth} · 单文件 {max_size} 字节\n\n"
             "最近任务日志：\n{recent_log}\n\n"
-            "v7.0：扫描与加载分离——「扫描」只更新文件浏览结果，不改动配置；\n"
+            "v8.0：扫描与加载分离——「扫描」只更新文件浏览结果，不改动配置；\n"
             "点击「加载全部」或在文件浏览中选择文件后才写入并重载。\n"
             "原基础配置与手工注入项始终保留。\n\n"
             "----------------\n"
@@ -17057,7 +17532,8 @@ class Spider(BaseSpider):
             if self._network_sync_running:
                 return {"code": 0, "msg": "网络目录同步中，请稍候"}
             self._network_start_sync_worker(root_id)
-            return {"code": 0, "msg": "已开始后台同步，完成后会提示"}
+            # v8.0：进度由独立进度对话框展示，不额外弹 toast。
+            return {"code": 0, "msg": ""}
         if action.startswith(self.ACTION_NET_TOGGLE_PREFIX):
             root_id = action[len(self.ACTION_NET_TOGGLE_PREFIX) :]
             with self.lock:
@@ -17896,7 +18372,12 @@ class Spider(BaseSpider):
                                 "code": 0,
                                 "msg": "扫描配置应用失败：{}".format(exc),
                             }
-                    ok = self._scan_only_locked(sync_network=True)
+                    ok = self._scan_only_locked(
+                        sync_network=True,
+                        progress=lambda message, **kwargs: self._update_progress_panel(
+                            message, **kwargs
+                        ),
+                    )
                     self.inited = True
                     if ok:
                         self._schedule_manager_page_refresh()
@@ -17953,7 +18434,10 @@ class Spider(BaseSpider):
                 self.temp_identities = set()
                 self._temp_home_key = ""
                 ok = self._refresh_locked(
-                    allow_empty=not any(self.type_enabled.values())
+                    allow_empty=not any(self.type_enabled.values()),
+                    progress=lambda message, **kwargs: self._update_progress_panel(
+                        message, **kwargs
+                    ),
                 )
                 self.inited = True
                 if ok:
