@@ -761,6 +761,10 @@ class Spider(BaseSpider):
         self._site_test_thread = None
         self._site_test_control_lock = threading.Lock()
         self._site_test_cancel = threading.Event()
+        # v8.0：扫描取消支持——面板「取消当前进度」置位后，
+        # _scan_all_roots 在根循环/遍历循环中检测并提前终止。
+        self._scan_cancel_event = threading.Event()
+        self._last_scan_cancelled = False
         self._destroyed = False
         self._jar_inspection_cache = {}
         self._app_identity_cache = None
@@ -6490,7 +6494,7 @@ class Spider(BaseSpider):
                     ),
                     "running_title": "正在扫描…",
                     "destructive": False,
-                    "cancellable": False,
+                    "cancellable": True,
                     "exec_action": self.ACTION_SCAN_ONLY,
                     "confirm_text": "开始扫描",
                 },
@@ -6515,7 +6519,7 @@ class Spider(BaseSpider):
                     ),
                     "running_title": "正在扫描…",
                     "destructive": False,
-                    "cancellable": False,
+                    "cancellable": True,
                     "exec_action": self.ACTION_RESCAN,
                     "confirm_text": "开始扫描",
                 },
@@ -6609,7 +6613,7 @@ class Spider(BaseSpider):
                     ),
                     "running_title": "正在应用并扫描…",
                     "destructive": False,
-                    "cancellable": False,
+                    "cancellable": True,
                     "exec_action": self.ACTION_APPLY_SCAN_CONFIG,
                     "confirm_text": "开始扫描",
                 },
@@ -6890,6 +6894,20 @@ class Spider(BaseSpider):
                         dialog.getButton(-1).setOnClickListener(
                             confirm_no_dismiss
                         )
+                        # 兜底：任何途径（取消按钮/空白/返回/释放）关闭对话框
+                        # 时同步清掉在途面板引用，避免残留句柄吞掉进度更新。
+                        dismiss_listener_cls = jclass(
+                            "android.content.DialogInterface$OnDismissListener"
+                        )
+
+                        class PanelDismiss(
+                            dynamic_proxy(dismiss_listener_cls)
+                        ):
+                            def onDismiss(self, dialog_):
+                                owner._release_progress_panel(panel_key)
+
+                        panel_dismiss = PanelDismiss()
+                        dialog.setOnDismissListener(panel_dismiss)
                         # 登记为在途进度面板（确认前仅保存句柄，确认后才对外可见）。
                         with owner._progress_panel_lock:
                             owner._active_progress_panel = {
@@ -6909,6 +6927,7 @@ class Spider(BaseSpider):
                                 confirm_listener,
                                 confirm_no_dismiss,
                                 dismiss,
+                                panel_dismiss,
                                 dialog,
                             ]
                         )
@@ -7011,22 +7030,9 @@ class Spider(BaseSpider):
             self._reserve_panel_cancel_button(
                 panel, panel_key, cancellable, click_listener
             )
-            # 运行中把「取消」按钮改为空操作并禁止空白/返回关闭：
-            # 否则任务中途面板被 dismiss 后，进度条与结果都不可见。
+            # 运行中禁止点空白/返回键关闭面板（取消/收起统一走底部按钮），
+            # 否则面板被 dismiss 后进度条与结果都不可见。
             try:
-                view_click_listener = jclass(
-                    "android.view.View$OnClickListener"
-                )
-
-                class NoopViewClick(dynamic_proxy(view_click_listener)):
-                    def onClick(self, view):
-                        return None
-
-                noop_view_click = NoopViewClick()
-                self._dialog_refs.append(noop_view_click)
-                negative = panel["dialog"].getButton(-2)
-                if negative is not None:
-                    negative.setOnClickListener(noop_view_click)
                 panel["dialog"].setCancelable(False)
             except Exception:
                 pass
@@ -7074,46 +7080,54 @@ class Spider(BaseSpider):
     def _reserve_panel_cancel_button(
         self, panel, panel_key, cancellable, click_listener
     ):
-        """运行模式下，把底部操作按钮调整为「取消当前进度」或「完成」。
-        - 可取消任务（测活/重检测）：显示「取消当前进度」，点击触发 cancel。
-        - 不可取消任务（扫描/清除/分类）：运行中显示「取消」，完成变「确定」。
-        尽力而为：若当前构造环境拿不到按钮视图则跳过，不影响核心功能。
+        """运行模式下，把底部操作按钮调整为「取消当前进度」或「后台运行」。
+        - 可取消任务（扫描/测活/重检测）：显示「取消当前进度」，点击触发取消。
+        - 不可取消任务（清除/分类/导入导出等）：显示「后台运行」，点击收起
+          面板、任务继续在后台执行，结束时以 toast 提示结果。
+        注意：确认按钮此前已被覆盖为 View 级监听（防自动关闭），这里必须
+        继续用 getButton().setOnClickListener 重接，dialog.setButton 无效。
         """
         try:
             dialog = panel.get("dialog")
             if dialog is None:
                 return
-            if click_listener is None:
-                return
             try:
                 from java import dynamic_proxy, jclass
             except Exception:
                 return
+            view_click_listener = jclass("android.view.View$OnClickListener")
             owner = self
             with self._ProxyCreationLock(self):
+
+                class CancelViewClick(dynamic_proxy(view_click_listener)):
+                    def onClick(self, view):
+                        owner._cancel_progress_panel(panel_key)
+
+                class BackgroundViewClick(dynamic_proxy(view_click_listener)):
+                    def onClick(self, view):
+                        owner._release_progress_panel(panel_key)
+
                 if cancellable:
-                    class CancelListener(dynamic_proxy(click_listener)):
-                        def onClick(self, d, which):
-                            owner._cancel_progress_panel(panel_key)
-
-                    listener = CancelListener()
-                    self._dialog_refs.append(listener)
-                    dialog.setButton(
-                        -1,  # BUTTON_POSITIVE
-                        "取消当前进度",
-                        listener,
-                    )
+                    listener = CancelViewClick()
+                    label = "取消当前进度"
                 else:
-                    class CloseListener(dynamic_proxy(click_listener)):
-                        def onClick(self, d, which):
-                            owner._release_progress_panel(panel_key)
-
-                    listener = CloseListener()
-                    self._dialog_refs.append(listener)
-                    try:
-                        dialog.setButton(-1, "取消", listener)
-                    except Exception:
-                        pass
+                    listener = BackgroundViewClick()
+                    label = "后台运行"
+                self._dialog_refs.append(listener)
+            try:
+                button = dialog.getButton(-1)
+                if button is not None:
+                    button.setText(label)
+                    button.setOnClickListener(listener)
+            except Exception:
+                pass
+            # 运行中隐藏第二个按钮，避免误触造成面板状态错乱。
+            try:
+                negative = dialog.getButton(-2)
+                if negative is not None:
+                    negative.setVisibility(8)  # View.GONE
+            except Exception:
+                pass
         except Exception as exc:
             self._log("WARN", "进度面板按钮调整失败: {}".format(exc))
 
@@ -7260,19 +7274,27 @@ class Spider(BaseSpider):
             try:
                 from java import dynamic_proxy, jclass
 
-                click_listener = jclass(
-                    "android.content.DialogInterface$OnClickListener"
+                view_click_listener = jclass(
+                    "android.view.View$OnClickListener"
                 )
 
-                class CloseListener(dynamic_proxy(click_listener)):
-                    def onClick(self, d, which):
+                class FinishCloseClick(dynamic_proxy(view_click_listener)):
+                    def onClick(self, view):
                         owner._release_progress_panel(panel_key)
 
                 def _finalize():
                     try:
-                        listener = CloseListener()
+                        listener = FinishCloseClick()
                         self._dialog_refs.append(listener)
-                        dialog.setButton(-1, "确定", listener)
+                        # 确认按钮已被覆盖为 View 级监听，必须用
+                        # getButton().setOnClickListener 重接，
+                        # dialog.setButton 对该按钮不再生效。
+                        button = dialog.getButton(-1)
+                        if button is not None:
+                            button.setText("确定")
+                            button.setOnClickListener(listener)
+                        # 完成后允许点空白/返回键关闭。
+                        dialog.setCancelable(True)
                     except Exception:
                         pass
 
@@ -7302,12 +7324,18 @@ class Spider(BaseSpider):
 
     def _cancel_progress_panel(self, panel_key):
         """用户点击「取消当前进度」：请求取消当前任务并收起进度面板。"""
-        # 触发实际任务取消（站点测活/重检测通过 _site_test_cancel 中断）。
+        # 触发实际任务取消（站点测活/重检测通过 _site_test_cancel 中断，
+        # 扫描/应用并扫描通过 _scan_cancel_event 中断）。
         cancelled = False
         try:
             if self._site_test_cancel is not None:
                 self._site_test_cancel.set()
                 cancelled = True
+        except Exception:
+            pass
+        try:
+            self._scan_cancel_event.set()
+            cancelled = True
         except Exception:
             pass
         self._update_progress_panel(
@@ -11343,6 +11371,8 @@ class Spider(BaseSpider):
         )
         try:
             self._scan_all_roots(progress=progress)
+            if self._last_scan_cancelled:
+                return False
             if self.status["limit_reached"]:
                 self.status["write_state"] = "扫描达到保护上限，已保护旧注册表"
                 self.status["error"] = "请缩小扫描目录或调整 max_files"
@@ -11487,6 +11517,8 @@ class Spider(BaseSpider):
             self._scan_all_roots(
                 sync_network=sync_network, progress=progress
             )
+            if self._last_scan_cancelled:
+                return False
             if self.status["limit_reached"]:
                 self.status["write_state"] = "扫描达到保护上限，请缩小目录后重试"
                 self.status["error"] = "请缩小扫描目录或调整 max_files"
@@ -12409,6 +12441,11 @@ class Spider(BaseSpider):
         new_file_cache = {}
         available_types = set()
         limit_reached = False
+        # v8.0：每次扫描开始时复位取消标记；用户在进度面板点
+        # 「取消当前进度」后，下面两处检测点会提前终止扫描。
+        self._scan_cancel_event.clear()
+        self._last_scan_cancelled = False
+        scan_cancelled = False
 
         # v8.0：文件总数需遍历后才知道，进度条按「扫描根 i/N」粗粒度推进，
         # 消息文本同时展示已发现文件数，兼顾直观与零额外磁盘开销。
@@ -12433,6 +12470,9 @@ class Spider(BaseSpider):
 
         for root_order, spec in enumerate(effective_roots):
             if limit_reached:
+                break
+            if self._scan_cancel_event.is_set():
+                scan_cancelled = True
                 break
             source_type = str(spec.get("type", "")).upper()
             if source_type not in self.TYPE_ORDER:
@@ -12495,6 +12535,9 @@ class Spider(BaseSpider):
             for current, dirs, files in os.walk(
                 root, topdown=True, onerror=walk_error, followlinks=False
             ):
+                if self._scan_cancel_event.is_set():
+                    scan_cancelled = True
+                    break
                 relative_dir = os.path.relpath(current, root)
                 depth = 0 if relative_dir == "." else relative_dir.count(os.sep) + 1
                 dirs[:] = sorted(
@@ -13027,6 +13070,8 @@ class Spider(BaseSpider):
                         sources.append(source)
                 if limit_reached:
                     break
+            if scan_cancelled:
+                break
             if progress:
                 try:
                     progress(
@@ -13040,6 +13085,14 @@ class Spider(BaseSpider):
                     )
                 except Exception:
                     pass
+
+        if scan_cancelled:
+            # 用户中途取消：不写快照、不改配置，已收集的部分结果直接丢弃。
+            self._last_scan_cancelled = True
+            self.status["write_state"] = "已取消本次扫描"
+            self.status["error"] = "已取消本次扫描"
+            self._log("INFO", "扫描被用户取消")
+            return
 
         all_sources = sources + ignored_sources
         if not self.block_adult_sites:
