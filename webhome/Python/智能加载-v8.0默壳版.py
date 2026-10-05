@@ -8125,6 +8125,36 @@ class Spider(BaseSpider):
         except Exception as exc:
             raise ValueError("读取 OK影视当前点播接口失败: {}".format(exc))
 
+    def _ascii_safe_http_url(self, value):
+        """对 http(s) URL 的非 ASCII 路径/查询做 UTF-8 percent-quote。
+
+        Chaquopy(Python 3.8) 的 http.client._encode_request 固定用 ascii
+        编码请求行，含中文的订阅地址会直接抛 UnicodeEncodeError（如
+        "'ascii' codec can't encode characters in position 5-7"），导致
+        加载全部/转换加载方式整体失败。域名由 http.client 走 IDNA，这里
+        只处理 path/query/fragment。
+        """
+        try:
+            parsed = urllib.parse.urlsplit(str(value))
+        except Exception:
+            return value
+        if parsed.scheme.lower() not in ("http", "https"):
+            return value
+        path_safe = "/%:@!$&'()*+,;=~"
+        query_safe = path_safe + "?/"
+        try:
+            return urllib.parse.urlunsplit(
+                (
+                    parsed.scheme,
+                    parsed.netloc,
+                    urllib.parse.quote(parsed.path, safe=path_safe),
+                    urllib.parse.quote(parsed.query, safe=query_safe),
+                    urllib.parse.quote(parsed.fragment, safe=query_safe),
+                )
+            )
+        except Exception:
+            return value
+
     def _ok_fetch_config_text(self, value):
         path = self._reference_path(value)
         if path and os.path.isfile(path):
@@ -8137,19 +8167,30 @@ class Spider(BaseSpider):
 
                 port = int(jclass("com.github.catvod.Proxy").getPort())
                 value = "http://127.0.0.1:{}/{}".format(
-                    port, value[9:].lstrip("/")
+                    port,
+                    urllib.parse.quote(
+                        value[9:].lstrip("/"), safe="/%:@!$&'()*+,;=~"
+                    ),
                 )
             except Exception as exc:
                 raise ValueError("无法读取 assets 配置: {}".format(exc))
         if not value.lower().startswith(("http://", "https://")):
             raise ValueError("不支持的基础配置地址: {}".format(value))
+        request_url = self._ascii_safe_http_url(value)
         request = urllib.request.Request(
-            value,
+            request_url,
             headers={"User-Agent": "okhttp/4.12.0", "Accept": "application/json"},
         )
         opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
-        with opener.open(request, timeout=10) as response:
-            return response.read().decode("utf-8-sig")
+        try:
+            with opener.open(request, timeout=10) as response:
+                return response.read().decode("utf-8-sig")
+        except Exception as exc:
+            # 附带上实际请求地址，便于区分订阅地址本身的问题（如中文路径、
+            # 404、超时），而不是只看到底层编码/网络异常。
+            raise ValueError(
+                "读取基础配置失败（{}）: {}".format(request_url, exc)
+            )
 
     def _ok_decoder_base64(self, text):
         match = re.search(r"[A-Za-z0-9]{8}\*\*", text)
