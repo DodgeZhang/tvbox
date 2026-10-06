@@ -37,9 +37,9 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
 
 # 探索模块：browseId -> 中文名（顺序与官网探索栏一致）
 MODULES = [
-    ("UC-9-kyTW8ZkZNDHQJ6FgpwQ", "音乐"),
-    ("FEstorefront", "影视"),
     ("FEhype_leaderboard", "粉丝热搜"),
+    ("FEstorefront", "影视"),
+    ("UC-9-kyTW8ZkZNDHQJ6FgpwQ", "音乐"),
     ("UC4R8DWoMoI7CAwX8_LjQHig", "直播"),
     ("UCOpNcN46UbXVtpKMrmU4Abg", "游戏"),
     ("UCYfdidRxbB8Qhf0Nx7ioOYw", "新闻"),
@@ -48,6 +48,12 @@ MODULES = [
     ("FEpodcasts_destination", "播客"),
 ]
 MODULE_NAME = dict(MODULES)
+
+# 部分模块不带 params 时 YouTube 返回空页 / HTTP 400，需固定默认 params
+DEFAULT_PARAMS = {
+    "FEstorefront": "ogUCKAU%3D",            # 影视-浏览（卡片为 gridMovieRenderer）
+    "FEpodcasts_destination": "qgcCCAE%3D",  # 播客（不带 params 直接 400）
+}
 
 # 解析器候选（部署可替换/增补）
 INVIDIOUS_SEED = [
@@ -67,11 +73,18 @@ COBALT_SEED = [
     "https://cobalt-api.kwieme.de",
 ]
 
-# 卡片渲染器：video 类
+# 卡片渲染器：video 类（含影视 storefront 的电影卡片）
 _VIDEO_RK = ("videoRenderer", "compactVideoRenderer", "gridVideoRenderer",
-             "playlistVideoRenderer", "gridPlaylistRenderer")
+             "playlistVideoRenderer", "gridPlaylistRenderer",
+             "gridMovieRenderer", "compactMovieRenderer", "movieRenderer")
 # 卡片渲染器：新版统一卡片
 _LOCKUP_RK = ("lockupViewModel",)
+
+
+def _xml(s):
+    """MPD 文本转义。"""
+    return (str(s).replace("&", "&amp;").replace("<", "&lt;")
+            .replace(">", "&gt;").replace('"', "&quot;"))
 
 _SES = requests.Session()
 _LK = threading.RLock()
@@ -82,6 +95,9 @@ _ST = {
     "tabs": {}, "tabs_at": 0.0,             # 模块 -> 真实标签（筛选）
     "chain": {},                            # 分页 continuation 链缓存
     "iv": "", "pp": "", "cob": "",          # 已探活的解析器实例
+    "dash": True,                           # 高清晰度 DASH 合成开关（extend {"dash": false} 关闭）
+    "seg": "proxy",                         # proxy=分片经本地代理（默认，规避 IP 绑定）；direct=直连
+    "media": {},                            # vid -> 已解析的 DASH 轨道（含过期时间）
 }
 
 
@@ -101,6 +117,20 @@ class Spider(Spider):
         return False
 
     def localProxy(self, param):
+        p = param if isinstance(param, dict) else {}
+        if not p and isinstance(param, str):
+            try:
+                from urllib.parse import parse_qs
+                p = {k: v[0] for k, v in parse_qs(param.lstrip("?")).items()}
+            except Exception:
+                p = {}
+        try:
+            if p.get("type") == "mpd":
+                return self._proxy_mpd(p)
+            if p.get("type") == "media":
+                return self._proxy_media(p)
+        except Exception:
+            pass
         return None
 
     def _parse_extend(self, extend):
@@ -120,6 +150,10 @@ class Spider(Spider):
                 _ST["proxy"] = str(cfg["proxy"]).strip()
             if cfg.get("cobalt_token"):
                 _ST["cobalt_token"] = str(cfg["cobalt_token"]).strip()
+            if "dash" in cfg:
+                _ST["dash"] = bool(cfg.get("dash"))
+            if cfg.get("seg"):
+                _ST["seg"] = str(cfg["seg"]).strip().lower()
         elif s.startswith("http"):
             _ST["proxy"] = s
 
@@ -167,7 +201,7 @@ class Spider(Spider):
             }
         }
 
-    def _innertube(self, endpoint, body, timeout=15):
+    def _innertube(self, endpoint, body, timeout=15, ctx=None):
         key = _ST.get("key") or API_KEY
         url = "%s/youtubei/v1/%s?key=%s&prettyPrint=false" % (HOST, endpoint, key)
         headers = {
@@ -176,7 +210,7 @@ class Spider(Spider):
             "Referer": HOST + "/",
             "X-Goog-Api-Format-Version": "3",
         }
-        payload = {"context": self._ctx()}
+        payload = {"context": ctx or self._ctx()}
         if isinstance(body, dict):
             payload.update(body)
         try:
@@ -384,7 +418,16 @@ class Spider(Spider):
                 continue
             seen.add(t["v"])
             out.append(t)
-        return out
+        # 只保留真正含视频卡片的标签（音乐「帖子」返回的是社区帖子 backstagePostRenderer，无视频，需过滤）
+        valid = []
+        for t in out:
+            try:
+                items, _tok = self._browse(bid, t["v"])
+            except Exception:
+                items = []
+            if items:
+                valid.append(t)
+        return valid if valid else out
 
     def _all_tabs(self):
         now = time.time()
@@ -451,6 +494,8 @@ class Spider(Spider):
                 params = str(json.loads(extend).get("tab") or "")
             except Exception:
                 params = ""
+        if not params:
+            params = DEFAULT_PARAMS.get(bid, "")
         key = "%s|%s" % (bid, params)
         cont = self._token_for_page(bid, params, key, page)
         items, tok = self._browse(bid, params, cont)
@@ -610,6 +655,149 @@ class Spider(Spider):
             return j.get("url") or ""
         return self._probe_first("cob", COBALT_SEED, maker)
 
+    # ------------------------------------------------------ 高清晰度（ANDROID_VR + DASH 合成）
+    def _vr_player(self, vid):
+        """ANDROID_VR 客户端返回明文流地址（无需 signature 解密），可取 1080p 视频流 + 音频流。"""
+        ctx = {"client": {
+            "clientName": "ANDROID_VR", "clientVersion": "1.65.10",
+            "deviceMake": "Oculus", "deviceModel": "Quest 3",
+            "androidSdkVersion": 32, "osName": "Android", "osVersion": "12L",
+            "hl": "en", "gl": "US",
+            "userAgent": ("com.google.android.apps.youtube.vr.oculus/1.65.10 "
+                          "(Linux; U; Android 12L; eureka-user Build/SQ3A.220605.009.A1) gzip"),
+        }}
+        return self._innertube("player", {
+            "videoId": vid, "contentCheckOk": True, "racyCheckOk": True,
+        }, ctx=ctx)
+
+    def _dash_tracks(self, vid):
+        """解析该视频的 DASH 轨道（1080p/720p/480p 视频 + 音频），30 分钟缓存。"""
+        now = time.time()
+        d = _ST["media"].get(vid)
+        if d and d.get("expires", 0) > now:
+            return d
+        resp = self._vr_player(vid) or {}
+        fmts = (resp.get("streamingData") or {}).get("adaptiveFormats") or []
+        if not fmts:
+            return None
+        want = (1080, 720, 480, 360)
+        vids, seen = [], set()
+        for f in fmts:
+            if not str(f.get("mimeType") or "").startswith("video/mp4") or not f.get("url"):
+                continue
+            h = int(f.get("height") or 0)
+            if h not in want or h in seen:
+                continue
+            seen.add(h)
+            vids.append(f)
+        if not vids:
+            return None
+        vids.sort(key=lambda x: int(x.get("height") or 0), reverse=True)
+        audio = None
+        for f in fmts:
+            if str(f.get("mimeType") or "").startswith("audio/mp4") and f.get("url"):
+                if audio is None or int(f.get("bitrate") or 0) > int(audio.get("bitrate") or 0):
+                    audio = f
+        data = {
+            "video": vids[:3], "audio": audio,
+            "duration": int((resp.get("videoDetails") or {}).get("lengthSeconds") or 0),
+            "expires": now + 1800,
+        }
+        _ST["media"][vid] = data
+        return data
+
+    def _media_for(self, vid):
+        """取轨道缓存，过期则重新解析（分片地址延迟解析，可规避 URL 过期）。"""
+        d = _ST["media"].get(vid)
+        if d and d.get("expires", 0) > time.time():
+            return d
+        try:
+            return self._dash_tracks(vid)
+        except Exception:
+            return d
+
+    def _proxy_mpd(self, p):
+        """合成 DASH 清单：视频轨 + 音频轨。默认经由 type=media 代理分片（URL 与请求 IP 绑定）。"""
+        vid = str(p.get("vid") or "")
+        data = self._media_for(vid)
+        if not data or not data.get("video"):
+            return [404, "text/plain", b""]
+        direct = _ST.get("seg") == "direct"
+        base = "http://127.0.0.1:9978/proxy?do=py&type=media&vid=" + vid
+
+        def rng(x):
+            r = x or {}
+            return "%s-%s" % (r.get("start", "0"), r.get("end", "0"))
+
+        def codecs(f):
+            mt = str(f.get("mimeType") or "")
+            return mt.split('codecs="')[-1].strip('"') if 'codecs="' in mt else ""
+
+        out = ['<?xml version="1.0" encoding="UTF-8"?>',
+               '<MPD xmlns="urn:mpeg:dash:schema:mpd:2011" type="static" '
+               'mediaPresentationDuration="PT%dS" minBufferTime="PT1.5S" '
+               'profiles="urn:mpeg:dash:profile:isoff-on-demand:2011">'
+               % int(data.get("duration") or 0),
+               '<Period id="1" start="PT0S">']
+        for f in data.get("video") or []:
+            u = f.get("url") if direct else (base + "&track=video&itag=%s" % f.get("itag"))
+            out.append('<AdaptationSet mimeType="%s" startWithSAP="1" segmentAlignment="true">'
+                       % str(f.get("mimeType") or "video/mp4").split(";")[0])
+            out.append('<Representation id="v%s" bandwidth="%s" codecs="%s" width="%s" height="%s">'
+                       % (f.get("itag"), f.get("bitrate") or 1000000, _xml(codecs(f)),
+                          f.get("width") or 0, f.get("height") or 0))
+            out.append('<BaseURL>%s</BaseURL>' % _xml(u or ""))
+            out.append('<SegmentBase indexRange="%s"><Initialization range="%s"/></SegmentBase>'
+                       % (rng(f.get("indexRange")), rng(f.get("initRange"))))
+            out.append('</Representation></AdaptationSet>')
+        a = data.get("audio")
+        if a and a.get("url"):
+            u = a.get("url") if direct else (base + "&track=audio")
+            out.append('<AdaptationSet mimeType="%s" startWithSAP="1" segmentAlignment="true" lang="und">'
+                       % str(a.get("mimeType") or "audio/mp4").split(";")[0])
+            out.append('<Representation id="audio" bandwidth="%s" codecs="%s" audioSamplingRate="44100">'
+                       % (a.get("bitrate") or 128000, _xml(codecs(a))))
+            out.append('<BaseURL>%s</BaseURL>' % _xml(u or ""))
+            out.append('<SegmentBase indexRange="%s"><Initialization range="%s"/></SegmentBase>'
+                       % (rng(a.get("indexRange")), rng(a.get("initRange"))))
+            out.append('</Representation></AdaptationSet>')
+        out.append('</Period></MPD>')
+        return [200, "application/dash+xml", "".join(out)]
+
+    def _proxy_media(self, p):
+        """代理媒体分片（透传 Range），保证出口 IP 与取流请求一致。"""
+        vid = str(p.get("vid") or "")
+        data = self._media_for(vid)
+        if not data:
+            return [404, "text/plain", b""]
+        track = p.get("track")
+        if track == "video":
+            tracks = data.get("video") or []
+            itag = str(p.get("itag") or "")
+            f = next((x for x in tracks if str(x.get("itag")) == itag),
+                     tracks[0] if tracks else None)
+        elif track == "audio":
+            f = data.get("audio")
+        else:
+            f = None
+        if not f or not f.get("url"):
+            return [404, "text/plain", b""]
+        headers = {"User-Agent": UA, "Referer": HOST + "/"}
+        rv = p.get("range") or p.get("Range")
+        if rv:
+            headers["Range"] = rv
+        try:
+            r = self._req(f["url"], headers=headers, timeout=30)
+        except Exception:
+            return [500, "text/plain", b""]
+        h = {"Content-Type": r.headers.get("Content-Type", "application/octet-stream"),
+             "Accept-Ranges": "bytes", "Cache-Control": "no-cache"}
+        if r.headers.get("Content-Range"):
+            h["Content-Range"] = r.headers["Content-Range"]
+        if r.headers.get("Content-Length"):
+            h["Content-Length"] = r.headers["Content-Length"]
+        return [r.status_code, h["Content-Type"], r.content, h]
+
     def playerContent(self, flag, id, vipFlags=None):
         vid = str(id or "").strip()
         if vid.startswith("v:"):
@@ -617,6 +805,16 @@ class Spider(Spider):
         if not vid:
             return {"parse": 1, "playUrl": "", "url": "", "header": {}}
         header = {"User-Agent": UA, "Referer": HOST + "/"}
+        # 1) 高清晰度：ANDROID_VR 视频流 + 音频流本地合成 DASH（默认开启，extend {"dash": false} 关闭）
+        if _ST.get("dash", True):
+            try:
+                if self._dash_tracks(vid):
+                    return {"parse": 0, "playUrl": "", "format": "application/dash+xml",
+                            "url": "http://127.0.0.1:9978/proxy?do=py&type=mpd&vid=%s" % vid,
+                            "header": header}
+            except Exception:
+                pass
+        # 2) 单流解析器（多为 360p 兜底）
         for fn in (self._iv_stream, self._pp_stream, self._cobalt_stream):
             try:
                 u = fn(vid)
@@ -624,6 +822,6 @@ class Spider(Spider):
                 u = ""
             if u:
                 return {"parse": 0, "playUrl": "", "url": u, "header": header}
-        # 兜底：内嵌播放页，交由壳的 webview 处理
+        # 3) 兜底：内嵌播放页，交由壳的 webview 处理
         embed = "%s/embed/%s?autoplay=1&playsinline=1" % (HOST, vid)
         return {"parse": 2, "playUrl": "", "url": embed, "header": header}
