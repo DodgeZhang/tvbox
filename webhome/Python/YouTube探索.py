@@ -1,18 +1,25 @@
 # -*- coding: utf-8 -*-
 # YouTube「探索」源 —— TVBox / hipy / 影视仓 T4 py 源
 #
-# 分类：YouTube 探索栏各模块（音乐 影视 粉丝热搜 直播 游戏 新闻 体育 课程 播客）
-# 筛选：各模块页面上的真实子标签（运行时从 tabRenderer 探测，带内存缓存）
-# 列表 / 搜索 / 详情：InnerTube Web 客户端接口（无需 API Key 注册、无需登录）
-# 播放：分层解析器 Invidious -> Piped -> cobalt，全部失败时兜底 webview 内嵌（parse=2）
+# 分类：电影解说 / 音乐 / 游戏 / 直播 / 新闻 / 体育 / 学习 / 4K / 8K
+# 列表：走 search 关键词 + continuation 翻页；直播第 1 页取官方 livetab
+# 首页：网页首页推荐流（ANDROID_VR 客户端，WEB 未登录恒为空）
+# 搜索 / 详情：InnerTube 接口（免 API Key、免登录）
+# 播放：单条「自动」线路，本地合成 DASH 自动取最高画质轨
+#   轨道源：ANDROID_VR 明文直链 -> Invidious adaptiveFormats -> 单流兜底 -> webview 内嵌
 #
-# 说明（重要）：2026 年公共解析器大面积失效（Invidious 仅剩极少数且多为 DASH 分离流、
-# Piped 公共实例基本 403/502、cobalt 需 JWT）。因此播放优先按解析器链取混流直链，
-# 取不到时回落到内嵌播放页；部署时可在此处补充可用实例或解析器。
+# 画质受限的根因是 player 接口被判定 bot（playabilityStatus=LOGIN_REQUIRED），此时不返回任何
+# 流地址。extend 可配：
+#   {"proxy":"http://192.168.1.2:7890"}               换出口 IP（注意代理要对设备可达）
+#   {"cookie":"SAPISID=...; __Secure-3PAPISID=..."}   登录态 Cookie，含 SAPISID 才能签名成功
+#   {"visitor":"Cgt..."}                              指定 visitorData，不填则自动从首页提取
+#   另可选 {"dash":true,"seg":"proxy"}
 
 import sys
 import json
 import time
+import re
+import hashlib
 import threading
 
 sys.path.append('..')
@@ -35,25 +42,77 @@ DEFAULT_CV = "2.20260101.00.00"
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36")
 
-# 探索模块：browseId -> 中文名（顺序与官网探索栏一致）
+# 分类走 search 关键词翻页；直播第 1 页另取官方 livetab
+MOVIE_ID = "__movie__"                          # 电影解说
+C4K_ID = "__4k__"                               # 4K
+C8K_ID = "__8k__"                               # 8K
+LIVE_ID = "UC4R8DWoMoI7CAwX8_LjQHig"            # 官方直播频道
+LIVE_TAB_PARAMS = "EgdsaXZldGFi"                # livetab，内容最全
+
+# 内容板块：browseId -> 中文名
 MODULES = [
-    ("FEhype_leaderboard", "粉丝热搜"),
-    ("FEstorefront", "影视"),
+    (MOVIE_ID, "电影解说"),
     ("UC-9-kyTW8ZkZNDHQJ6FgpwQ", "音乐"),
-    ("UC4R8DWoMoI7CAwX8_LjQHig", "直播"),
     ("UCOpNcN46UbXVtpKMrmU4Abg", "游戏"),
+    (LIVE_ID, "直播"),
     ("UCYfdidRxbB8Qhf0Nx7ioOYw", "新闻"),
     ("UCEgdi0XIXXZ-qJOFPf4JSKw", "体育"),
-    ("FEcourses_destination", "课程"),
-    ("FEpodcasts_destination", "播客"),
+    ("FEcourses_destination", "学习"),
+    (C4K_ID, "4K"),
+    (C8K_ID, "8K"),
 ]
 MODULE_NAME = dict(MODULES)
 
-# 部分模块不带 params 时 YouTube 返回空页 / HTTP 400，需固定默认 params
-DEFAULT_PARAMS = {
-    "FEstorefront": "ogUCKAU%3D",            # 影视-浏览（卡片为 gridMovieRenderer）
-    "FEpodcasts_destination": "qgcCCAE%3D",  # 播客（不带 params 直接 400）
+CATEGORY_QUERY = {
+    MOVIE_ID: "电影解说",
+    "UC-9-kyTW8ZkZNDHQJ6FgpwQ": "音乐",
+    "UCOpNcN46UbXVtpKMrmU4Abg": "游戏",
+    LIVE_ID: "直播",
+    "UCYfdidRxbB8Qhf0Nx7ioOYw": "新闻",
+    "UCEgdi0XIXXZ-qJOFPf4JSKw": "体育",
+    "FEcourses_destination": "课程",
+    C4K_ID: "4K video",
+    C8K_ID: "8K video",
 }
+
+
+def _num(s):
+    """取字符串开头的数字串（「1080」「1080P」「137」「1080P AV1」均可），取不到返回 0。"""
+    s = str(s or "").strip()
+    i = 0
+    while i < len(s) and s[i].isdigit():
+        i += 1
+    return int(s[:i]) if i else 0
+
+
+def _qual_of(s):
+    """解析播放 id 后缀「itag_高度」，返回 (itag, 高度)。"""
+    a, _, b = str(s or "").partition("_")
+    return _num(a), _num(b)
+
+
+# 内嵌播放页的期望清晰度参数 vq
+_VQ_STEPS = [(2160, "hd2160"), (1440, "hd1440"), (1080, "hd1080"), (720, "hd720"),
+             (480, "large"), (360, "medium"), (240, "small"), (144, "tiny")]
+
+
+def _vq(h):
+    """把期望高度转成内嵌播放器的 vq 值。"""
+    for k, v in _VQ_STEPS:
+        if h >= k:
+            return v
+    return "hd1080"
+
+
+# 首页推荐流：WEB 未登录恒返回空页，ANDROID_VR 可拿到真实推荐
+VR_CTX = {"client": {
+    "clientName": "ANDROID_VR", "clientVersion": "1.65.10",
+    "deviceMake": "Oculus", "deviceModel": "Quest 3",
+    "androidSdkVersion": 32, "osName": "Android", "osVersion": "12L",
+    "hl": "en", "gl": "US",
+    "userAgent": ("com.google.android.apps.youtube.vr.oculus/1.65.10 "
+                  "(Linux; U; Android 12L; eureka-user Build/SQ3A.220605.009.A1) gzip"),
+}}
 
 # 解析器候选（部署可替换/增补）
 INVIDIOUS_SEED = [
@@ -63,17 +122,8 @@ INVIDIOUS_SEED = [
     "https://yewtu.be",
     "https://iv.melmac.space",
 ]
-PIPED_SEED = [
-    "https://pipedapi.kavin.rocks",
-    "https://pipedapi.adminforge.de",
-    "https://api.piped.yt",
-]
-COBALT_SEED = [
-    "https://api.cobalt.tools",
-    "https://cobalt-api.kwieme.de",
-]
 
-# 卡片渲染器：video 类（含影视 storefront 的电影卡片）
+# 卡片渲染器：video 类（含影视的电影卡片）
 _VIDEO_RK = ("videoRenderer", "compactVideoRenderer", "gridVideoRenderer",
              "playlistVideoRenderer", "gridPlaylistRenderer",
              "gridMovieRenderer", "compactMovieRenderer", "movieRenderer")
@@ -86,18 +136,78 @@ def _xml(s):
     return (str(s).replace("&", "&amp;").replace("<", "&lt;")
             .replace(">", "&gt;").replace('"', "&quot;"))
 
+
+# Cookie 只发往 YouTube 自身域名，解析器实例与 googlevideo 分片都不带，避免泄露凭据
+_COOKIE_HOSTS = ("youtube.com", "youtu.be")
+
+
+def _is_host(url, hosts):
+    """URL 域名是否属于 hosts（后缀匹配）。"""
+    h = str(url or "").split("//", 1)[-1].split("/", 1)[0].split("?", 1)[0]
+    h = h.split("@")[-1].split(":")[0].lower()
+    return any(h == x or h.endswith("." + x) for x in hosts)
+
+
+def _sapisid_auth(cookie, origin=HOST):
+    """谷歌登录态的 SAPISIDHASH 签名，InnerTube 判定登录身份必需。
+
+    取 cookie 里的 SAPISID/__Secure-1PAPISID/__Secure-3PAPISID 做 sha1(ts " " key " " origin)
+    签名；都缺失（如只从 document.cookie 复制，拿不到 HttpOnly 项）时返回空串，仅带 Cookie 头。
+    """
+    cookie = cookie or ""
+    out = []
+    for name, tag in (("SAPISID", "SAPISIDHASH"),
+                      ("__Secure-1PAPISID", "SAPISID1PHASH"),
+                      ("__Secure-3PAPISID", "SAPISID3PHASH")):
+        m = re.search(r"(?:^|;\s*)" + name + r"=([^;]*)", cookie)
+        if not m or not m.group(1).strip():
+            continue
+        ts = str(int(time.time()))
+        h = hashlib.sha1(("%s %s %s" % (ts, m.group(1).strip(), origin))
+                         .encode("utf-8")).hexdigest()
+        out.append("%s %s_%s" % (tag, ts, h))
+    return " ".join(out)
+
+
+def _rngdict(s):
+    """Invidious 的 "742-1229" Range 串转成 googlevideo 风格的 {start, end}。"""
+    a, _, b = str(s or "").partition("-")
+    a, b = a.strip(), b.strip()
+    if not (a.isdigit() and b.isdigit()):
+        return None
+    return {"start": a, "end": b}
+
+
+def _to_track(f):
+    """Invidious 的 adaptiveFormat 转成与 ANDROID_VR 一致的轨道结构。"""
+    w, _, h = str(f.get("size") or "").partition("x")
+    return {
+        "itag": int(f.get("itag") or 0),
+        "mimeType": str(f.get("type") or ""),
+        "url": str(f.get("url") or ""),
+        "width": int(w) if w.isdigit() else 0,
+        "height": int(h) if h.isdigit() else _num(f.get("resolution")),
+        "bitrate": int(f.get("bitrate") or 0),
+        "initRange": _rngdict(f.get("init")),
+        "indexRange": _rngdict(f.get("index")),
+    }
+
+
 _SES = requests.Session()
 _LK = threading.RLock()
 _ST = {
     "cv": DEFAULT_CV, "cv_at": 0.0,        # 动态 clientVersion
     "proxy": None,                          # 代理（extend 配置）
-    "cobalt_token": "",                     # cobalt JWT（extend 配置，可选）
-    "tabs": {}, "tabs_at": 0.0,             # 模块 -> 真实标签（筛选）
+    "cookie": "",                           # 登录态 Cookie（extend 配置）
+    "visitor": "",                          # visitorData（extend 配置，缺省从首页提取）
     "chain": {},                            # 分页 continuation 链缓存
-    "iv": "", "pp": "", "cob": "",          # 已探活的解析器实例
+    "iv": "",                               # 已探活的 Invidious 实例
     "dash": True,                           # 高清晰度 DASH 合成开关（extend {"dash": false} 关闭）
     "seg": "proxy",                         # proxy=分片经本地代理（默认，规避 IP 绑定）；direct=直连
     "media": {},                            # vid -> 已解析的 DASH 轨道（含过期时间）
+    "na_at": 0.0,                           # 播放接口最近一次取流失败（被风控）的时间
+    "pdead_at": 0.0,                        # 单流 Invidious 最近一次失效的时间
+    "home": [], "home_at": 0.0,             # 网页首页推荐流缓存
 }
 
 
@@ -148,8 +258,10 @@ class Spider(Spider):
         if isinstance(cfg, dict):
             if cfg.get("proxy"):
                 _ST["proxy"] = str(cfg["proxy"]).strip()
-            if cfg.get("cobalt_token"):
-                _ST["cobalt_token"] = str(cfg["cobalt_token"]).strip()
+            if cfg.get("cookie"):
+                _ST["cookie"] = str(cfg["cookie"]).strip()
+            if cfg.get("visitor"):
+                _ST["visitor"] = str(cfg["visitor"]).strip()
             if "dash" in cfg:
                 _ST["dash"] = bool(cfg.get("dash"))
             if cfg.get("seg"):
@@ -162,6 +274,11 @@ class Spider(Spider):
         h = {"User-Agent": UA, "Accept-Language": "zh-CN,zh;q=0.9"}
         if headers:
             h.update(headers)
+        if _is_host(url, _COOKIE_HOSTS):
+            if _ST["cookie"]:
+                h["Cookie"] = _ST["cookie"]
+            if _ST["visitor"]:
+                h["X-Goog-Visitor-Id"] = _ST["visitor"]
         proxies = None
         if _ST["proxy"]:
             proxies = {"http": _ST["proxy"], "https": _ST["proxy"]}
@@ -172,20 +289,27 @@ class Spider(Spider):
             return _SES.get(url, headers=h, timeout=timeout, proxies=proxies)
 
     def _ensure_client(self, force=False):
-        """从首页提取真实 INNERTUBE_CLIENT_VERSION，避免写死版本号过期（6 小时缓存）。"""
+        """从首页提取真实 INNERTUBE_CLIENT_VERSION 与 VISITOR_DATA（6 小时缓存）。
+
+        固定 visitorData 比每次当新访客更不容易触发 bot 判定；extend 给了 visitor 则不覆盖。
+        """
         now = time.time()
         if not force and _ST["cv_at"] and now - _ST["cv_at"] < 21600:
             return _ST["cv"]
         try:
             r = self._req(HOST + "/", timeout=12)
             t = r.text or ""
-            import re as _re
-            m = _re.search(r'"INNERTUBE_CLIENT_VERSION":"([^"]+)"', t)
+            m = re.search(r'"INNERTUBE_CLIENT_VERSION":"([^"]+)"', t)
             if m:
                 _ST["cv"] = m.group(1)
-            m2 = _re.search(r'"INNERTUBE_API_KEY":"([^"]+)"', t)
+            m2 = re.search(r'"INNERTUBE_API_KEY":"([^"]+)"', t)
             if m2:
                 _ST["key"] = m2.group(1)
+            if not _ST["visitor"]:
+                m3 = (re.search(r'"VISITOR_DATA":"([^"]+)"', t)
+                      or re.search(r'"visitorData":"([^"]+)"', t))
+                if m3:
+                    _ST["visitor"] = m3.group(1)
         except Exception:
             pass
         _ST["cv_at"] = now
@@ -210,18 +334,31 @@ class Spider(Spider):
             "Referer": HOST + "/",
             "X-Goog-Api-Format-Version": "3",
         }
-        payload = {"context": ctx or self._ctx()}
+        az = _sapisid_auth(_ST.get("cookie") or "")
+        if az:
+            headers["Authorization"] = az
+            headers["X-Origin"] = HOST
+        base = ctx or self._ctx()
+        if _ST.get("visitor") and isinstance(base, dict):
+            base = dict(base)
+            c = dict(base.get("client") or {})
+            c.setdefault("visitorData", _ST["visitor"])
+            base["client"] = c
+        payload = {"context": base}
         if isinstance(body, dict):
             payload.update(body)
+        data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
         try:
-            r = self._req(url, method="POST", headers=headers,
-                          data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),
+            r = self._req(url, method="POST", headers=headers, data=data,
                           timeout=timeout)
-            if r.status_code != 200 and _ST.get("cv_at") and time.time() - _ST["cv_at"] > 3600:
-                self._ensure_client(force=True)
+            if r.status_code != 200:
+                if _ST.get("cv_at") and time.time() - _ST["cv_at"] > 3600:
+                    self._ensure_client(force=True)
             return r.json()
         except Exception:
-            return {}
+            # 不重试：壳每档线路只等 30 秒，必须尽早失败
+            pass
+        return {}
 
     # ------------------------------------------------------------------ 解析工具
     def _tx(self, node):
@@ -371,109 +508,51 @@ class Spider(Spider):
         resp = self._innertube("browse", body)
         return self._parse(resp)
 
-    def _token_for_page(self, bid, params, key, pg):
-        """获取第 pg 页所需的 continuation token（顺序回填并缓存）。"""
+    def _chain_token(self, key, pg, fetch):
+        """按 continuation 链顺序回填并缓存，返回第 pg 页所需 token（pg<2 返回空）。
+
+        fetch(prev_token) -> (items, tok)。
+        """
         if pg < 2:
             return ""
         toks = _ST["chain"].setdefault(key, [])
         guard = 0
-        while len(toks) < pg - 1 and guard < 12:
+        while len(toks) < pg - 1 and guard < 80:
             prev = toks[-1] if toks else ""
-            _items, tok = self._browse(bid, params, prev)
+            _items, tok = fetch(prev)
             if not tok:
                 break
             toks.append(tok)
             guard += 1
         return toks[pg - 2] if len(toks) >= pg - 1 else ""
 
-    # ------------------------------------------------------------------ 筛选探测
-    def _module_tabs(self, bid):
-        """读取模块页面的真实子标签（tabRenderer），供筛选使用。"""
-        try:
-            resp = self._innertube("browse", {"browseId": bid})
-        except Exception:
-            return []
-        found = []
-
-        def walk(n):
-            if isinstance(n, dict):
-                if "tabRenderer" in n and isinstance(n["tabRenderer"], dict):
-                    t = n["tabRenderer"]
-                    name = self._tx(t.get("title"))
-                    p = self._dig(t, ("endpoint", "browseEndpoint", "params"))
-                    if name and p:
-                        found.append({"n": name, "v": p})
-                for k in n.keys():
-                    if k != "tabRenderer":
-                        walk(n[k])
-            elif isinstance(n, list):
-                for x in n:
-                    walk(x)
-
-        walk(resp)
-        # 去重
-        seen, out = set(), []
-        for t in found:
-            if t["v"] in seen:
-                continue
-            seen.add(t["v"])
-            out.append(t)
-        # 只保留真正含视频卡片的标签（音乐「帖子」返回的是社区帖子 backstagePostRenderer，无视频，需过滤）
-        valid = []
-        for t in out:
-            try:
-                items, _tok = self._browse(bid, t["v"])
-            except Exception:
-                items = []
-            if items:
-                valid.append(t)
-        return valid if valid else out
-
-    def _all_tabs(self):
-        now = time.time()
-        if _ST["tabs"] and now - _ST["tabs_at"] < 21600:
-            return _ST["tabs"]
-        tabs = {}
-        lock = threading.Lock()
-
-        def work(bid):
-            r = self._module_tabs(bid)
-            with lock:
-                tabs[bid] = r
-
-        ths = []
-        for bid, _name in MODULES:
-            t = threading.Thread(target=work, args=(bid,))
-            t.daemon = True
-            t.start()
-            ths.append(t)
-        for t in ths:
-            t.join(timeout=12)
-        if tabs:
-            _ST["tabs"] = tabs
-            _ST["tabs_at"] = now
-        return tabs
+    def _search_req(self, query="", cont=""):
+        """search 端点：首屏用 query，翻页用 continuation，每页约 20 条。"""
+        body = {"continuation": cont} if cont else {"query": query}
+        resp = self._innertube("search", body, timeout=20)
+        return self._parse(resp)
 
     # ------------------------------------------------------------------ 六接口
     def homeContent(self, filter=False):
-        cls = [{"type_id": bid, "type_name": name} for bid, name in MODULES]
-        filters = {}
-        try:
-            tabs = self._all_tabs()
-            for bid, _name in MODULES:
-                opts = tabs.get(bid) or []
-                if len(opts) > 1:
-                    filters[bid] = [{"key": "tab", "name": "类型", "value": opts}]
-        except Exception:
-            filters = {}
-        return {"class": cls, "filters": filters, "list": []}
+        return {"class": [{"type_id": bid, "type_name": name} for bid, name in MODULES],
+                "filters": {}, "list": []}
 
     def homeVideoContent(self):
+        """首页：取 YouTube 网页首页推荐流（10 分钟缓存）。"""
+        now = time.time()
+        if _ST["home"] and now - _ST["home_at"] < 600:
+            return {"list": _ST["home"]}
+        items = []
         try:
-            items, _tok = self._browse("FEwhat_to_watch")
-            return {"list": items}
+            resp = self._innertube("browse", {"browseId": "FEwhat_to_watch"},
+                                   timeout=20, ctx=VR_CTX)
+            items, _tok = self._parse(resp)
         except Exception:
-            return {"list": []}
+            items = []
+        if items:
+            _ST["home"] = items
+            _ST["home_at"] = now
+        return {"list": items}
 
     def categoryContent(self, tid, pg=1, filter=False, extend=""):
         try:
@@ -486,26 +565,25 @@ class Spider(Spider):
                 if v == bid:
                     bid = k
                     break
-        params = ""
-        if isinstance(extend, dict):
-            params = str(extend.get("tab") or "")
-        elif isinstance(extend, str) and extend.strip().startswith("{"):
+        # 全部走 search 关键词：模块页无 continuation 翻不了页
+        query = CATEGORY_QUERY.get(bid) or MODULE_NAME.get(bid, "")
+        if not query:
+            return {"page": page, "pagecount": page, "limit": 0, "total": 0, "list": []}
+        # 直播第 1 页取官方 livetab（其 continuation 为空），第 2 页起用关键词续接
+        if bid == LIVE_ID and page == 1:
             try:
-                params = str(json.loads(extend).get("tab") or "")
+                items, _tok = self._browse(bid, LIVE_TAB_PARAMS)
             except Exception:
-                params = ""
-        if not params:
-            params = DEFAULT_PARAMS.get(bid, "")
-        key = "%s|%s" % (bid, params)
-        cont = self._token_for_page(bid, params, key, page)
-        items, tok = self._browse(bid, params, cont)
-        if page == 1 and tok:
-            _ST["chain"].setdefault(key, [])
-            if not _ST["chain"][key]:
-                _ST["chain"][key] = [tok]
+                items = []
+            if items:
+                return {"page": 1, "pagecount": 2, "limit": len(items),
+                        "total": 0, "list": items}
+        skey = "Q|" + bid
+        cont = self._chain_token(skey, page, lambda prev: self._search_req(query, prev))
+        items, _tok = self._search_req(query, cont)
         return {
             "page": page,
-            "pagecount": page + 1 if tok else page,
+            "pagecount": page + 1,
             "limit": len(items),
             "total": 0,
             "list": items,
@@ -531,20 +609,18 @@ class Spider(Spider):
             items = self._playlist_items(pid)
             if not items:
                 return {"list": []}
-            eps = []
-            for it in items:
-                v = it.get("vod_id", "")
-                if v.startswith("v:"):
-                    eps.append("%s$%s" % (it.get("vod_name") or "视频", v[2:]))
-            pic = items[0].get("vod_pic", "")
+            eps = [(it.get("vod_name") or "视频", str(it.get("vod_id"))[2:])
+                   for it in items if str(it.get("vod_id", "")).startswith("v:")]
+            if not eps:
+                return {"list": []}
             return {"list": [{
                 "vod_id": vid,
                 "vod_name": items[0].get("vod_name", "播放列表"),
-                "vod_pic": pic,
+                "vod_pic": items[0].get("vod_pic", ""),
                 "vod_remarks": "共%d集" % len(eps),
                 "vod_content": "",
-                "vod_play_from": "YouTube",
-                "vod_play_url": "#".join(eps),
+                "vod_play_from": "自动",
+                "vod_play_url": "#".join("%s$%s" % (n, i) for n, i in eps),
             }]}
         v = vid[2:] if vid.startswith("v:") else vid
         name, pic, desc, author = "", "", "", ""
@@ -574,8 +650,8 @@ class Spider(Spider):
             "vod_actor": author,
             "vod_content": desc,
             "vod_remarks": author,
-            "vod_play_from": "YouTube",
-            "vod_play_url": "正片$%s" % v,
+            "vod_play_from": "自动",
+            "vod_play_url": "正片$" + v,
         }]}
 
     def searchContent(self, key, quick=False, pg="1"):
@@ -587,23 +663,17 @@ class Spider(Spider):
         if not kw:
             return {"list": []}
         ckey = "S|" + kw
-        cont = ""
-        if page >= 2:
-            cont = self._token_for_page("__search__", kw, ckey, page)
-        body = {"query": kw}
-        if cont:
-            body["continuation"] = cont
-        resp = self._innertube("search", body)
-        items, tok = self._parse(resp)
-        if page == 1 and tok:
-            _ST["chain"][ckey] = [tok]
+        cont = self._chain_token(ckey, page, lambda prev: self._search_req(kw, prev))
+        items, _tok = self._search_req(kw, cont)
         return {"list": items}
 
     # ------------------------------------------------------------------ 播放
-    def _probe_first(self, kind, seeds, maker):
+    def _probe_first(self, kind, seeds, maker, deadline=0.0):
         cached = _ST.get(kind) or ""
         order = ([cached] if cached else []) + [s for s in seeds if s != cached]
         for base in order:
+            if deadline and time.time() > deadline:
+                break                                   # 超出总预算，放弃剩余候选
             try:
                 url = maker(base)
                 if url:
@@ -613,9 +683,9 @@ class Spider(Spider):
                 continue
         return ""
 
-    def _iv_stream(self, vid):
+    def _iv_stream(self, vid, deadline=0.0):
         def maker(base):
-            r = self._req(base.rstrip("/") + "/api/v1/videos/" + vid, timeout=12)
+            r = self._req(base.rstrip("/") + "/api/v1/videos/" + vid, timeout=4)
             j = r.json()
             for s in (j.get("formatStreams") or []):
                 if isinstance(s, dict) and s.get("url"):
@@ -624,106 +694,175 @@ class Spider(Spider):
             if h:
                 return h
             return ""
-        return self._probe_first("iv", INVIDIOUS_SEED, maker)
-
-    def _pp_stream(self, vid):
-        def maker(base):
-            r = self._req(base.rstrip("/") + "/streams/" + vid, timeout=12)
-            j = r.json()
-            for s in (j.get("videoStreams") or []):
-                if isinstance(s, dict) and not s.get("videoOnly") and s.get("url"):
-                    return s["url"]
-            h = j.get("hls")
-            if h:
-                return h
-            return ""
-        return self._probe_first("pp", PIPED_SEED, maker)
-
-    def _cobalt_stream(self, vid):
-        token = _ST.get("cobalt_token") or ""
-        if not token:
-            return ""
-        body = json.dumps({"url": "https://www.youtube.com/watch?v=" + vid}).encode("utf-8")
-
-        def maker(base):
-            r = self._req(base.rstrip("/") + "/", method="POST",
-                          headers={"Content-Type": "application/json",
-                                   "Accept": "application/json",
-                                   "Authorization": "Api-Key " + token},
-                          data=body, timeout=15)
-            j = r.json()
-            return j.get("url") or ""
-        return self._probe_first("cob", COBALT_SEED, maker)
+        return self._probe_first("iv", INVIDIOUS_SEED, maker, deadline)
 
     # ------------------------------------------------------ 高清晰度（ANDROID_VR + DASH 合成）
-    def _vr_player(self, vid):
-        """ANDROID_VR 客户端返回明文流地址（无需 signature 解密），可取 1080p 视频流 + 音频流。"""
-        ctx = {"client": {
-            "clientName": "ANDROID_VR", "clientVersion": "1.65.10",
-            "deviceMake": "Oculus", "deviceModel": "Quest 3",
-            "androidSdkVersion": 32, "osName": "Android", "osVersion": "12L",
-            "hl": "en", "gl": "US",
-            "userAgent": ("com.google.android.apps.youtube.vr.oculus/1.65.10 "
-                          "(Linux; U; Android 12L; eureka-user Build/SQ3A.220605.009.A1) gzip"),
-        }}
+    def _vr_player(self, vid, timeout=15):
+        """ANDROID_VR 客户端请求 player 接口（返回明文流地址，无需 signature 解密）。"""
         return self._innertube("player", {
             "videoId": vid, "contentCheckOk": True, "racyCheckOk": True,
-        }, ctx=ctx)
+        }, timeout=timeout, ctx=VR_CTX)
 
-    def _dash_tracks(self, vid):
-        """解析该视频的 DASH 轨道（1080p/720p/480p 视频 + 音频），30 分钟缓存。"""
-        now = time.time()
-        d = _ST["media"].get(vid)
-        if d and d.get("expires", 0) > now:
-            return d
-        resp = self._vr_player(vid) or {}
+    def _vr_info(self, vid, timeout=10):
+        """ANDROID_VR 取轨道。AV1 与 H.264 各留一档：avc1 最高 1080p，1440P/2160P 仅存在于 AV1。
+
+        同 (分辨率, 编码族) 取码率最高的；同分辨率 avc1 在前。被判定 bot 时返回 None。
+        """
+        resp = self._vr_player(vid, timeout) or {}
         fmts = (resp.get("streamingData") or {}).get("adaptiveFormats") or []
         if not fmts:
             return None
-        want = (1080, 720, 480, 360)
-        vids, seen = [], set()
+        best = {}
         for f in fmts:
-            if not str(f.get("mimeType") or "").startswith("video/mp4") or not f.get("url"):
+            mt = str(f.get("mimeType") or "")
+            if not mt.startswith("video/mp4") or not f.get("url"):
                 continue
-            h = int(f.get("height") or 0)
-            if h not in want or h in seen:
+            try:
+                h = int(f.get("height") or 0)
+            except Exception:
+                h = 0
+            if h <= 0:
                 continue
-            seen.add(h)
-            vids.append(f)
-        if not vids:
+            k = (h, "av01" if "av01" in mt else "avc1")
+            if k not in best or int(f.get("bitrate") or 0) > int(best[k].get("bitrate") or 0):
+                best[k] = f
+        if not best:
             return None
-        vids.sort(key=lambda x: int(x.get("height") or 0), reverse=True)
+        tracks = sorted(best.values(),
+                        key=lambda x: (-int(x.get("height") or 0),
+                                       1 if "av01" in str(x.get("mimeType") or "") else 0))
         audio = None
         for f in fmts:
             if str(f.get("mimeType") or "").startswith("audio/mp4") and f.get("url"):
                 if audio is None or int(f.get("bitrate") or 0) > int(audio.get("bitrate") or 0):
                     audio = f
-        data = {
-            "video": vids[:3], "audio": audio,
+        return {
+            "tracks": tracks, "audio": audio,
             "duration": int((resp.get("videoDetails") or {}).get("lengthSeconds") or 0),
-            "expires": now + 1800,
         }
-        _ST["media"][vid] = data
-        return data
+
+    def _iv_info(self, vid, timeout=10):
+        """用 Invidious 取轨道，作为 VR 被风控时的画质来源。
+
+        只认 adaptiveFormats——formatStreams 是混流，封顶 360p/720p。不可带 local=true
+        （那条 /videoplayback 路径挂在反爬后面）；非 local 直链不校验请求方 IP，由本地代理拉分片。
+        """
+        cached = _ST.get("iv") or ""
+        order = ([cached] if cached else []) + [s for s in INVIDIOUS_SEED if s != cached]
+        t0 = time.time()
+        for base in order:
+            if time.time() > t0 + timeout:
+                break                                   # 总预算到点，不再换实例
+            try:
+                r = self._req(base.rstrip("/") + "/api/v1/videos/" + vid, timeout=5)
+                j = r.json()
+            except Exception:
+                continue
+            fmts = j.get("adaptiveFormats") or []
+            best = {}
+            for f in fmts:
+                if not isinstance(f, dict):
+                    continue
+                mt = str(f.get("type") or "")
+                if not mt.startswith("video/mp4") or not f.get("url"):
+                    continue
+                if not _rngdict(f.get("init")) or not _rngdict(f.get("index")):
+                    continue                            # 缺 Range 拼不出 SegmentBase
+                h = _num(f.get("resolution"))
+                if h <= 0:
+                    continue
+                k = (h, "av01" if "av01" in mt else "avc1")
+                if k not in best or int(f.get("bitrate") or 0) > int(best[k].get("bitrate") or 0):
+                    best[k] = f
+            if not best:
+                continue
+            tracks = [_to_track(best[k]) for k in
+                      sorted(best, key=lambda x: (-x[0], 1 if x[1] == "av01" else 0))]
+            audio = None
+            for f in fmts:
+                if not isinstance(f, dict) or not f.get("url"):
+                    continue
+                if not str(f.get("type") or "").startswith("audio/mp4"):
+                    continue
+                if not _rngdict(f.get("init")) or not _rngdict(f.get("index")):
+                    continue
+                if audio is None or int(f.get("bitrate") or 0) > int(audio.get("bitrate") or 0):
+                    audio = f
+            _ST["iv"] = base
+            return {
+                "tracks": tracks, "audio": _to_track(audio) if audio else None,
+                "duration": int(j.get("lengthSeconds") or 0),
+            }
+        return None
+
+    def _media_info(self, vid, timeout=10):
+        """解析该视频可用轨道，30 分钟缓存。先试 ANDROID_VR，被风控则改走 Invidious。"""
+        now = time.time()
+        d = _ST["media"].get(vid)
+        if d and d.get("expires", 0) > now:
+            return d
+        info = None
+        if now - float(_ST.get("na_at") or 0) >= 300:   # 5 分钟内刚被风控过，跳过 VR 直接问 Invidious
+            info = self._vr_info(vid, timeout)
+            if not info:
+                _ST["na_at"] = now
+        if not info:
+            info = self._iv_info(vid, timeout)
+        if not info or not info.get("tracks"):
+            return None
+        info["expires"] = now + 1800
+        _ST["media"][vid] = info
+        return info
+
+    def _pick_track(self, info, want_h=0, want_itag=0):
+        """按 itag 精确选轨；未命中则取不高于 want_h 的最高一档（0 为最高档）。"""
+        tracks = (info or {}).get("tracks") or []
+        if not tracks:
+            return None
+        if want_itag:
+            for f in tracks:
+                if int(f.get("itag") or 0) == want_itag:
+                    return f
+        if want_h:
+            for f in tracks:                      # tracks 已按高度降序、同高 avc1 在前
+                if int(f.get("height") or 0) <= want_h:
+                    return f
+            # 期望低于所有可用轨：退回最低一档
+            return min(tracks, key=lambda x: (
+                int(x.get("height") or 0),
+                1 if "av01" in str(x.get("mimeType") or "") else 0))
+        return tracks[0]
 
     def _media_for(self, vid):
-        """取轨道缓存，过期则重新解析（分片地址延迟解析，可规避 URL 过期）。"""
+        """取轨道缓存，过期则重新解析（延迟解析可规避 URL 过期）。"""
         d = _ST["media"].get(vid)
         if d and d.get("expires", 0) > time.time():
             return d
         try:
-            return self._dash_tracks(vid)
+            return self._media_info(vid)
         except Exception:
             return d
 
     def _proxy_mpd(self, p):
-        """合成 DASH 清单：视频轨 + 音频轨。默认经由 type=media 代理分片（URL 与请求 IP 绑定）。"""
+        """合成 DASH 清单（视频轨 + 音频轨），默认取最高画质，可按 itag/q 指定。
+
+        只放一条视频 Representation——多轨时 ExoPlayer 自适应会退回低清；分片默认走 type=media 代理。
+        """
         vid = str(p.get("vid") or "")
         data = self._media_for(vid)
-        if not data or not data.get("video"):
+        if not data or not data.get("tracks"):
+            return [404, "text/plain", b""]
+        try:
+            want_h = int(p.get("q") or 0)
+            want_it = int(p.get("itag") or 0)
+        except Exception:
+            want_h, want_it = 0, 0
+        f = self._pick_track(data, want_h, want_it)
+        if not f:
             return [404, "text/plain", b""]
         direct = _ST.get("seg") == "direct"
-        base = "http://127.0.0.1:9978/proxy?do=py&type=media&vid=" + vid
+        base = ("http://127.0.0.1:9978/proxy?do=py&type=media&vid=%s&itag=%s&q=%s"
+                % (vid, int(f.get("itag") or 0), int(f.get("height") or 0)))
 
         def rng(x):
             r = x or {}
@@ -739,17 +878,16 @@ class Spider(Spider):
                'profiles="urn:mpeg:dash:profile:isoff-on-demand:2011">'
                % int(data.get("duration") or 0),
                '<Period id="1" start="PT0S">']
-        for f in data.get("video") or []:
-            u = f.get("url") if direct else (base + "&track=video&itag=%s" % f.get("itag"))
-            out.append('<AdaptationSet mimeType="%s" startWithSAP="1" segmentAlignment="true">'
-                       % str(f.get("mimeType") or "video/mp4").split(";")[0])
-            out.append('<Representation id="v%s" bandwidth="%s" codecs="%s" width="%s" height="%s">'
-                       % (f.get("itag"), f.get("bitrate") or 1000000, _xml(codecs(f)),
-                          f.get("width") or 0, f.get("height") or 0))
-            out.append('<BaseURL>%s</BaseURL>' % _xml(u or ""))
-            out.append('<SegmentBase indexRange="%s"><Initialization range="%s"/></SegmentBase>'
-                       % (rng(f.get("indexRange")), rng(f.get("initRange"))))
-            out.append('</Representation></AdaptationSet>')
+        u = f.get("url") if direct else (base + "&track=video")
+        out.append('<AdaptationSet mimeType="%s" startWithSAP="1" segmentAlignment="true">'
+                   % str(f.get("mimeType") or "video/mp4").split(";")[0])
+        out.append('<Representation id="v%s" bandwidth="%s" codecs="%s" width="%s" height="%s">'
+                   % (f.get("itag"), f.get("bitrate") or 1000000, _xml(codecs(f)),
+                      f.get("width") or 0, f.get("height") or 0))
+        out.append('<BaseURL>%s</BaseURL>' % _xml(u or ""))
+        out.append('<SegmentBase indexRange="%s"><Initialization range="%s"/></SegmentBase>'
+                   % (rng(f.get("indexRange")), rng(f.get("initRange"))))
+        out.append('</Representation></AdaptationSet>')
         a = data.get("audio")
         if a and a.get("url"):
             u = a.get("url") if direct else (base + "&track=audio")
@@ -772,10 +910,12 @@ class Spider(Spider):
             return [404, "text/plain", b""]
         track = p.get("track")
         if track == "video":
-            tracks = data.get("video") or []
-            itag = str(p.get("itag") or "")
-            f = next((x for x in tracks if str(x.get("itag")) == itag),
-                     tracks[0] if tracks else None)
+            try:
+                want_h = int(p.get("q") or 0)
+                want_it = int(p.get("itag") or 0)
+            except Exception:
+                want_h, want_it = 0, 0
+            f = self._pick_track(data, want_h, want_it)
         elif track == "audio":
             f = data.get("audio")
         else:
@@ -800,28 +940,37 @@ class Spider(Spider):
 
     def playerContent(self, flag, id, vipFlags=None):
         vid = str(id or "").strip()
+        want_it, want_h = 0, 0
+        if "|" in vid:
+            vid, _, qs = vid.partition("|")
+            want_it, want_h = _qual_of(qs)
+        if not want_h:
+            want_h = _num(flag)                # 兼容只按线路名传清晰度的播放器
         if vid.startswith("v:"):
             vid = vid[2:]
         if not vid:
             return {"parse": 1, "playUrl": "", "url": "", "header": {}}
         header = {"User-Agent": UA, "Referer": HOST + "/"}
-        # 1) 高清晰度：ANDROID_VR 视频流 + 音频流本地合成 DASH（默认开启，extend {"dash": false} 关闭）
+        # 1) 本地合成 DASH，自动取最高画质轨
         if _ST.get("dash", True):
             try:
-                if self._dash_tracks(vid):
+                if self._media_info(vid):
+                    q = "&itag=%d&q=%d" % (want_it, want_h)
                     return {"parse": 0, "playUrl": "", "format": "application/dash+xml",
-                            "url": "http://127.0.0.1:9978/proxy?do=py&type=mpd&vid=%s" % vid,
+                            "url": "http://127.0.0.1:9978/proxy?do=py&type=mpd&vid=%s%s" % (vid, q),
                             "header": header}
             except Exception:
                 pass
-        # 2) 单流解析器（多为 360p 兜底）
-        for fn in (self._iv_stream, self._pp_stream, self._cobalt_stream):
+        # 2) 单流兜底（Invidious 混流，画质低）。失败缓存 5 分钟——壳每档线路只等 30 秒
+        if time.time() - float(_ST.get("pdead_at") or 0) > 300:
             try:
-                u = fn(vid)
+                u = self._iv_stream(vid, time.time() + 6)
             except Exception:
                 u = ""
             if u:
                 return {"parse": 0, "playUrl": "", "url": u, "header": header}
-        # 3) 兜底：内嵌播放页，交由壳的 webview 处理
-        embed = "%s/embed/%s?autoplay=1&playsinline=1" % (HOST, vid)
+            _ST["pdead_at"] = time.time()
+        # 3) 兜底：内嵌播放页交给壳的 webview，vq 提示期望清晰度
+        vq = _vq(want_h)
+        embed = "%s/embed/%s?autoplay=1&playsinline=1&rel=0&vq=%s" % (HOST, vid, vq)
         return {"parse": 2, "playUrl": "", "url": embed, "header": header}
