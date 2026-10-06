@@ -683,17 +683,17 @@ class Spider(Spider):
                 continue
         return ""
 
-    def _iv_stream(self, vid, deadline=0.0):
+    def _iv_stream(self, vid, deadline=0.0, live=False):
         def maker(base):
             r = self._req(base.rstrip("/") + "/api/v1/videos/" + vid, timeout=4)
             j = r.json()
+            h = j.get("hlsUrl")
+            if h and (live or j.get("liveNow")):
+                return h                     # 直播只能走 HLS，单条直链只是某一时刻的分片快照
             for s in (j.get("formatStreams") or []):
                 if isinstance(s, dict) and s.get("url"):
                     return s["url"]
-            h = j.get("hlsUrl")
-            if h:
-                return h
-            return ""
+            return h or ""
         return self._probe_first("iv", INVIDIOUS_SEED, maker, deadline)
 
     # ------------------------------------------------------ 高清晰度（ANDROID_VR + DASH 合成）
@@ -709,7 +709,9 @@ class Spider(Spider):
         同 (分辨率, 编码族) 取码率最高的；同分辨率 avc1 在前。被判定 bot 时返回 None。
         """
         resp = self._vr_player(vid, timeout) or {}
-        fmts = (resp.get("streamingData") or {}).get("adaptiveFormats") or []
+        vd = resp.get("videoDetails") or {}
+        sd = resp.get("streamingData") or {}
+        fmts = sd.get("adaptiveFormats") or []
         if not fmts:
             return None
         best = {}
@@ -736,9 +738,14 @@ class Spider(Spider):
             if str(f.get("mimeType") or "").startswith("audio/mp4") and f.get("url"):
                 if audio is None or int(f.get("bitrate") or 0) > int(audio.get("bitrate") or 0):
                     audio = f
+        lb = (((resp.get("microformat") or {}).get("playerMicroformatRenderer") or {})
+              .get("liveBroadcastDetails") or {})
         return {
             "tracks": tracks, "audio": audio,
-            "duration": int((resp.get("videoDetails") or {}).get("lengthSeconds") or 0),
+            "duration": int(vd.get("lengthSeconds") or 0),
+            "live": bool(vd.get("isLive") or vd.get("isLiveNow") or lb.get("isLiveNow")
+                         or (sd.get("hlsManifestUrl") and vd.get("isLiveContent"))),
+            "hls": str(sd.get("hlsManifestUrl") or ""),
         }
 
     def _iv_info(self, vid, timeout=10):
@@ -792,6 +799,7 @@ class Spider(Spider):
             return {
                 "tracks": tracks, "audio": _to_track(audio) if audio else None,
                 "duration": int(j.get("lengthSeconds") or 0),
+                "live": bool(j.get("liveNow")), "hls": str(j.get("hlsUrl") or ""),
             }
         return None
 
@@ -951,22 +959,28 @@ class Spider(Spider):
         if not vid:
             return {"parse": 1, "playUrl": "", "url": "", "header": {}}
         header = {"User-Agent": UA, "Referer": HOST + "/"}
-        # 1) 本地合成 DASH，自动取最高画质轨
+        info = None
+        # 1) 本地合成 DASH，自动取最高画质轨。直播除外：其分片靠递增序号而非固定 indexRange，
+        #    合成的静态 MPD 播几秒即断，必须走下面的 HLS
         if _ST.get("dash", True):
             try:
-                if self._media_info(vid):
-                    q = "&itag=%d&q=%d" % (want_it, want_h)
-                    return {"parse": 0, "playUrl": "", "format": "application/dash+xml",
-                            "url": "http://127.0.0.1:9978/proxy?do=py&type=mpd&vid=%s%s" % (vid, q),
-                            "header": header}
+                info = self._media_info(vid)
             except Exception:
-                pass
-        # 2) 单流兜底（Invidious 混流，画质低）。失败缓存 5 分钟——壳每档线路只等 30 秒
+                info = None
+            if info and not info.get("live"):
+                q = "&itag=%d&q=%d" % (want_it, want_h)
+                return {"parse": 0, "playUrl": "", "format": "application/dash+xml",
+                        "url": "http://127.0.0.1:9978/proxy?do=py&type=mpd&vid=%s%s" % (vid, q),
+                        "header": header}
+        live = bool((info or {}).get("live"))
+        # 2) 单流兜底（Invidious 混流/HLS，画质低）。失败缓存 5 分钟——壳每档线路只等 30 秒
         if time.time() - float(_ST.get("pdead_at") or 0) > 300:
-            try:
-                u = self._iv_stream(vid, time.time() + 6)
-            except Exception:
-                u = ""
+            u = str((info or {}).get("hls") or "") if live else ""
+            if not u:
+                try:
+                    u = self._iv_stream(vid, time.time() + 6, live=live)
+                except Exception:
+                    u = ""
             if u:
                 return {"parse": 0, "playUrl": "", "url": u, "header": header}
             _ST["pdead_at"] = time.time()
