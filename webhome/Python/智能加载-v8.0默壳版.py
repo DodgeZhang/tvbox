@@ -8688,7 +8688,7 @@ class Spider(BaseSpider):
             self._warn("OK影视主动重载失败: {}".format(exc))
             return False, "OK影视配置已生成；主动重载失败，重启 App 后生效"
 
-    def _reload_app_vod_config(self, expected_keys=None):
+    def _reload_app_vod_config(self, expected_keys=None, keep_current_config=False):
         if not self.auto_reload_app:
             return False, "配置已写入；App 自动重载已关闭"
         expected = set(expected_keys) if expected_keys is not None else None
@@ -8707,7 +8707,7 @@ class Spider(BaseSpider):
             generation = self._reload_generation
             worker = threading.Thread(
                 target=self._delayed_app_vod_reload,
-                args=(generation, expected, reload_state),
+                args=(generation, expected, reload_state, keep_current_config),
                 name="local-source-reload",
             )
             worker.daemon = True
@@ -8827,14 +8827,18 @@ class Spider(BaseSpider):
                 last_error = str(exc)
         return False, "页面轻量刷新失败: {}".format(last_error)
 
-    def _delayed_app_vod_reload(self, generation, expected_keys, reload_state):
+    def _delayed_app_vod_reload(
+        self, generation, expected_keys, reload_state, keep_current_config=False
+    ):
         time.sleep(max(0.1, float(self.APP_RELOAD_DELAY)))
         try:
             with self.lock:
                 if generation != self._reload_generation:
                     return
             # 网络请求必须在锁外执行，避免 Android UI 线程保存设置时等待。
-            ok, detail = self._perform_app_vod_reload(expected_keys, reload_state)
+            ok, detail = self._perform_app_vod_reload(
+                expected_keys, reload_state, keep_current_config
+            )
             if ok and self.app_mode == self.APP_MODE_WEBHTV:
                 time.sleep(max(0.2, float(self.APP_PAGE_REFRESH_DELAY)))
                 # 主动补刷两个页面，避免 App 内部 VodConfig.load 只更新运行态、
@@ -8858,9 +8862,35 @@ class Spider(BaseSpider):
             self._log("ERROR", detail)
             self._notify_app(detail)
 
-    def _perform_app_vod_reload(self, expected_keys=None, reload_state=None):
+    def _perform_app_vod_reload(
+        self, expected_keys=None, reload_state=None, keep_current_config=False
+    ):
         trace_id = self._active_operation_trace_id()
         if self.app_mode == self.APP_MODE_OKTV:
+            if keep_current_config:
+                # 清除类操作：只有当前接口确为本脚本生成的 A/B 配置时才允许
+                # 重载，否则不动 App，避免把用户自有接口切到智能点播。
+                try:
+                    oktv_current = self._ok_current_config_url()
+                except Exception as exc:
+                    self._trace_log(
+                        trace_id,
+                        "app_reload",
+                        "oktv.current.unknown",
+                        level="WARN",
+                        error=str(exc),
+                    )
+                    return True, "无法确认 OK影视当前接口（{}）；保持现状未重载，重启 App 后生效".format(
+                        exc
+                    )
+                if not self._is_ok_generated_config_url(oktv_current):
+                    self._trace_log(
+                        trace_id,
+                        "app_reload",
+                        "oktv.keep_current",
+                        current_url=self._safe_log_url(oktv_current),
+                    )
+                    return True, "当前接口为用户自有接口，保持不变"
             self._trace_log(
                 trace_id,
                 "app_reload",
@@ -8943,6 +8973,23 @@ class Spider(BaseSpider):
                 # 注入仍能刷新。
                 target_url = str(current["url"]).strip()
                 generated_target = self._standard_config_reference()
+                if (
+                    keep_current_config
+                    and not self._live_config_reference_matches(
+                        target_url, generated_target
+                    )
+                ):
+                    # 清除类操作：当前接口不是本脚本生成的配置时一律不动，
+                    # 避免“注册+切换”把用户自有接口切到空的智能点播。
+                    self._remember_app_port(port)
+                    self._trace_log(
+                        trace_id,
+                        "app_reload",
+                        "webhtv.keep_current",
+                        port=port,
+                        current_url=self._safe_log_url(target_url),
+                    )
+                    return True, "当前接口为用户自有接口，保持不变"
                 self._trace_log(
                     trace_id,
                     "app_reload",
@@ -18430,7 +18477,10 @@ class Spider(BaseSpider):
                 self._set_manual_idle_status("已一键清除，请重新下载或扫描")
                 try:
                     _, reload_detail = self._reload_app_vod_config(
-                        expected_keys=set()
+                        expected_keys=set(),
+                        # 一键清除保持当前接口：仅当 App 正用生成的配置时才
+                        # 原地重载刷掉已清站点，绝不切换用户自有接口。
+                        keep_current_config=True,
                     )
                 except Exception as exc:
                     reload_detail = "App 重载请求失败：{}".format(exc)
@@ -18577,7 +18627,11 @@ class Spider(BaseSpider):
                         "已清除 {} 个自动注入项及扫描状态".format(removed)
                     )
                     self._clear_scan_cache_file()
-                    _, detail = self._reload_app_vod_config(expected_keys=set())
+                    _, detail = self._reload_app_vod_config(
+                        expected_keys=set(),
+                        # 清除自动站点保持当前接口，理由同一键清除。
+                        keep_current_config=True,
+                    )
                     self._schedule_manager_page_refresh()
                     self.inited = True
                     return {
@@ -18893,7 +18947,7 @@ class Spider(BaseSpider):
                         )
                 else:
                     message = "扫描未完成：{}".format(
-                        self.status["error"] or self.status["write_state"]
+                         self.status["error"] or self.status["write_state"]
                     )
                 return {"code": 0, "msg": message}
         finally:
