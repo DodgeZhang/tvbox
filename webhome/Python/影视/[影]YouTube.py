@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # YouTube「探索」源 —— TVBox / hipy / 影视仓 T4 py 源
 #
-# 分类：电影解说 / 音乐 / 游戏 / 直播 / 新闻 / 体育 / 学习 / 4K / 8K
+# 分类：电影解说 / 音乐 / 游戏 / 直播 / 新闻 / 体育 / 学习
 # 列表：走 search 关键词 + continuation 翻页；直播第 1 页取官方 livetab
 # 首页：网页首页推荐流（ANDROID_VR 客户端，WEB 未登录恒为空）
 # 搜索 / 详情：InnerTube 接口（免 API Key、免登录）
@@ -44,8 +44,6 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
 
 # 分类走 search 关键词翻页；直播第 1 页另取官方 livetab
 MOVIE_ID = "__movie__"                          # 电影解说
-C4K_ID = "__4k__"                               # 4K
-C8K_ID = "__8k__"                               # 8K
 LIVE_ID = "UC4R8DWoMoI7CAwX8_LjQHig"            # 官方直播频道
 LIVE_TAB_PARAMS = "EgdsaXZldGFi"                # livetab，内容最全
 
@@ -58,8 +56,6 @@ MODULES = [
     ("UCYfdidRxbB8Qhf0Nx7ioOYw", "新闻"),
     ("UCEgdi0XIXXZ-qJOFPf4JSKw", "体育"),
     ("FEcourses_destination", "学习"),
-    (C4K_ID, "4K"),
-    (C8K_ID, "8K"),
 ]
 MODULE_NAME = dict(MODULES)
 
@@ -71,8 +67,6 @@ CATEGORY_QUERY = {
     "UCYfdidRxbB8Qhf0Nx7ioOYw": "新闻",
     "UCEgdi0XIXXZ-qJOFPf4JSKw": "体育",
     "FEcourses_destination": "课程",
-    C4K_ID: "4K video",
-    C8K_ID: "8K video",
 }
 
 
