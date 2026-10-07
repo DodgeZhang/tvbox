@@ -1,0 +1,48 @@
+{
+  "sites": [
+    {
+      "key": "Ddzl",
+      "name": "斗地主了",
+      "type": 3,
+      "api": "csp_Ddzl",
+      "homePage": "https://www.haiwaiqipai.com/games/doudizhus/index.html",
+      "pic": "https://www.haiwaiqipai.com/img/DouDiZhu.jpg",
+      "proxy": "noproxy",
+      "chromeMode": "edge"
+    },
+    {
+      "key": "恐龙",
+      "name": "恐龙快打",
+      "type": 3,
+      "api": "csp_恐龙快打",
+      "homePage": "https://www.yikm.net/play?id=5334",
+      "pic": "https://img.1990i.com/arcadepic/dino.png"
+    },
+    {
+      "key": "铁钩",
+      "name": "铁钩船长",
+      "type": 3,
+      "api": "csp_铁钩船长",
+      "homePage": "https://www.yikm.net/play?id=5582",
+      "pic": "https://img.1990i.com/arcadepic/hook.png"
+    },
+    {
+      "key": "魂斗罗",
+      "name": "魂斗罗",
+      "type": 3,
+      "api": "csp_Nostr",
+      "homePage": "https://www.yikm.net/play?id=4137",
+      "pic": "https://img.1990i.com/fcpic/sj/436a.png",
+      "proxy": "noproxy",
+      "chromeMode": "edge"
+    },
+    {
+      "key": "三国",
+      "name": "三国战纪(v119)",
+      "type": 3,
+      "api": "csp_三国战纪(v119)",
+      "homePage": "https://www.yikm.net/play?id=9259",
+      "pic": "https://img.1990i.com/arcadepic/kovsh103.png"
+    }
+  ]
+}

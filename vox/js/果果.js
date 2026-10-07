@@ -1,4 +1,48 @@
 //小心儿悠悠//
+var mgFilter = [{
+    "key": "sort",
+    "name": "排序",
+    "value": [
+        {"n": "最热", "v": "c2"},
+        {"n": "最新", "v": "c1"}
+    ]
+}, {
+    "key": "area",
+    "name": "地区",
+    "value": [
+        {"n": "全部", "v": "a1"},
+        {"n": "内地", "v": "10"},
+        {"n": "港台", "v": "12"},
+        {"n": "泰国", "v": "193"}
+    ]
+}, {
+    "key": "year",
+    "name": "年代",
+    "value": [
+        {"n": "全部", "v": "all"},
+        {"n": "2026", "v": "2026"},
+        {"n": "2025", "v": "2025"},
+        {"n": "2024", "v": "2024"},
+        {"n": "2023", "v": "2023"},
+        {"n": "2022", "v": "2022"},
+        {"n": "2021", "v": "2021"},
+        {"n": "2020", "v": "2020"},
+        {"n": "2019", "v": "2019"},
+        {"n": "2018", "v": "2018"},
+        {"n": "2010-2014", "v": "2014t2010"},
+        {"n": "2000-2009", "v": "2009t2000"},
+        {"n": "90年代", "v": "1990s"},
+        {"n": "更早", "v": "1989e"}
+    ]
+}, {
+    "key": "chargeInfo",
+    "name": "资费",
+    "value": [
+        {"n": "全部", "v": "a1"},
+        {"n": "免费", "v": "b1"},
+        {"n": "VIP", "v": "b2"}
+    ]
+}];
 var rule = {
     title: '百忙无果[官]',
     host: 'https://pianku.api.mgtv.com',
@@ -9,8 +53,8 @@ var rule = {
     quickSearch: 0,
     filterable: 1,
     multi: 1,
-    url: '/rider/list/pcweb/v3?platform=pcweb&channelId=fyclass&pn=fypage&pc=80&hudong=1&_support=10000000&kind=a1&area=a1',
-    filter_url: 'year={{fl.year or "all"}}&sort={{fl.sort or "all"}}&chargeInfo={{fl.chargeInfo or "all"}}',
+    url: '/rider/list/pcweb/v3?platform=pcweb&channelId=fyclass&pn=fypage&pc=80&hudong=1&_support=10000000&kind=a1',
+    filter_url: 'area={{fl.area or "a1"}}&year={{fl.year or "all"}}&sort={{fl.sort or "c2"}}&chargeInfo={{fl.chargeInfo or "a1"}}',
     headers: {
         'User-Agent': 'PC_UA'
     },
@@ -18,12 +62,13 @@ var rule = {
     class_name: '电视剧&电影&综艺&动漫&纪录片&教育&少儿',
     class_url: '2&3&1&50&51&115&10',
     filter: {
-        "1": getCommonFilter(),
-        "2": getCommonFilter(),
-        "3": getCommonFilter(),
-        "50": getCommonFilter(),
-        "51": getCommonFilter(),
-        "115": getCommonFilter()
+        "1": mgFilter,
+        "2": mgFilter,
+        "3": mgFilter,
+        "10": mgFilter,
+        "50": mgFilter,
+        "51": mgFilter,
+        "115": mgFilter
     },
     limit: 20,
     play_parse: true,
@@ -44,7 +89,7 @@ var rule = {
                 jx: bata.url.includes("mgtv") ? 0 : 1,
                 danmaku: "http://103.36.220.166:98/tvbox/zh.php?url=" + input.split("?")[0]
             };
-        } catch {
+        } catch (e) {
             input = {
                 parse: 0,
                 url: input.split("?")[0],
@@ -191,53 +236,3 @@ var rule = {
     })
 };
 
-function getCommonFilter() {
-    return [{
-        "key": "chargeInfo",
-        "name": "付费类型",
-        "value": [
-            {"n": "全部", "v": "all"},
-            {"n": "免费", "v": "b1"},
-            {"n": "vip", "v": "b2"},
-            {"n": "VIP用券", "v": "b3"},
-            {"n": "付费点播", "v": "b4"}
-        ]
-    }, {
-        "key": "sort",
-        "name": "排序",
-        "value": [
-            {"n": "最新", "v": "c1"},
-            {"n": "最热", "v": "c2"},
-            {"n": "知乎高分", "v": "c4"}
-        ]
-    }, {
-        "key": "year",
-        "name": "年代",
-        "value": [
-            {"n": "全部", "v": "all"},
-            {"n": "2026", "v": "2026"},
-            {"n": "2025", "v": "2025"},
-            {"n": "2024", "v": "2024"},
-            {"n": "2023", "v": "2023"},
-            {"n": "2022", "v": "2022"},
-            {"n": "2021", "v": "2021"},
-            {"n": "2020", "v": "2020"},
-            {"n": "2019", "v": "2019"},
-            {"n": "2018", "v": "2018"},
-            {"n": "2017", "v": "2017"},
-            {"n": "2016", "v": "2016"},
-            {"n": "2015", "v": "2015"},
-            {"n": "2014", "v": "2014"},
-            {"n": "2013", "v": "2013"},
-            {"n": "2012", "v": "2012"},
-            {"n": "2011", "v": "2011"},
-            {"n": "2010", "v": "2010"},
-            {"n": "2009", "v": "2009"},
-            {"n": "2008", "v": "2008"},
-            {"n": "2007", "v": "2007"},
-            {"n": "2006", "v": "2006"},
-            {"n": "2005", "v": "2005"},
-            {"n": "2004", "v": "2004"}
-        ]
-    }];
-}

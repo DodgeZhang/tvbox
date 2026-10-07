@@ -1,0 +1,65 @@
+{
+    "selfKey": "webhome",
+    "sites": [
+        {
+            "key": "sotvla",
+            "name": "SOTVLA",
+            "type": 3,
+            "api": "csp_Builtin",
+            "homePage": "https://www.sotvla.cc/",
+            "pic": "https://www.sotvla.cc/favicon.ico",
+            "chromeMode": "edge",
+            "extensions": [
+                {
+                    "id": "sotvla-native-enhance",
+                    "name": "SOTVLA App 播放增强",
+                    "version": "1.2.2",
+                    "runAt": "document-start",
+                    "js": [
+                        "./sotvla/sotvla.js"
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "Yxhj",
+            "name": "游戏合集",
+            "type": 3,
+            "api": "csp_Yxhj",
+            "folder": "./html/game.json",
+            "pic": "https://gips2.baidu.com/it/u=4223283450,2506453931&fm=3074&app=3074&f=JPEG",
+            "proxy": "noproxy",
+            "chromeMode": "edge"
+        },
+        {
+            "key": "XBW",
+            "name": "霸王游戏",
+            "type": 3,
+            "api": "csp_XBW",
+            "homePage": "./html/小霸王.html",
+            "pic": "https://wx4.sinaimg.cn/mw690/676f24e0ly1g26dy96mn9j20m80m8dt2.jpg",
+            "proxy": "noproxy",
+            "chromeMode": "edge"
+        },
+        {
+            "key": "NOSTRTV",
+            "name": "Nostrtv",
+            "type": 3,
+            "api": "csp_XBW",
+            "homePage": "./html/nostrtv.html",
+            "pic": "https://inews.gtimg.com/newsapp_ls/0/13763944436/0",
+            "proxy": "noproxy",
+            "chromeMode": "edge"
+        },
+        {
+            "key": "QQYY",
+            "name": "QQ音乐",
+            "type": 3,
+            "api": "csp_Qqyy",
+            "homePage": "./html/QQ音乐.html",
+            "pic": "https://5b0988e595225.cdn.sohucs.com/images/20190609/0f56f42a3e744d35a13286a311a9f8fa.jpeg",
+            "proxy": "noproxy",
+            "chromeMode": "edge"
+        }
+    ]
+}
