@@ -1,5 +1,5 @@
 {
-  "spider": "./jar/350167968_3_1790963314413.jar;md5;ee6abbb5a1e86ef53796034163175aac",
+  "spider": "./jar/709654417_2_1791217713839.jar;md5;34b70c352eea95ed3ee262117e830f50",
   "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
   "logo": "./img/20.gif",
   "danmaku": "http://127.0.0.1:5266/danmu/webhtv?name={name}&episode={episode}",
@@ -354,30 +354,14 @@
       }
     },
     {
-      "key": "花信",
-      "name": "🌼┆花信┆4K",
+      "key": "Luck",
+      "name": "🍀┆青禾┆4K",
       "type": 3,
-      "api": "csp_NiuLai",
+      "api": "csp_Luck",
       "searchable": 1,
+      "quickSearch": 1,
       "filterable": 1,
-      "changeable": 0,
-      "ext": {
-        "php": "https://max.moyu666666.top/niulai.php",
-        "site": "huaxin"
-      }
-    },
-    {
-      "key": "砚池",
-      "name": "🪨┆砚池┆4K",
-      "type": 3,
-      "api": "csp_NiuLai",
-      "searchable": 1,
-      "filterable": 1,
-      "changeable": 0,
-      "ext": {
-        "php": "https://max.moyu666666.top/niulai.php",
-        "site": "yanchi"
-      }
+      "ext": "https://max.moyu666666.top/luck.php"
     },
     {
       "key": "素笺",
@@ -390,19 +374,6 @@
       "ext": {
         "php": "https://max.moyu666666.top/niulai.php",
         "site": "sujian"
-      }
-    },
-    {
-      "key": "丹青",
-      "name": "🖌️┆丹青┆4K",
-      "type": 3,
-      "api": "csp_NiuLai",
-      "searchable": 1,
-      "filterable": 1,
-      "changeable": 0,
-      "ext": {
-        "php": "https://max.moyu666666.top/niulai.php",
-        "site": "danqing"
       }
     },
     {
@@ -514,45 +485,6 @@
       }
     },
     {
-      "key": "栖桐",
-      "name": "🌳┆栖桐┆影视",
-      "type": 3,
-      "api": "csp_NiuLai",
-      "searchable": 1,
-      "filterable": 1,
-      "changeable": 0,
-      "ext": {
-        "php": "https://max.moyu666666.top/niulai.php",
-        "site": "qitong"
-      }
-    },
-    {
-      "key": "锦书",
-      "name": "✉️┆锦书┆影视",
-      "type": 3,
-      "api": "csp_NiuLai",
-      "searchable": 1,
-      "filterable": 1,
-      "changeable": 0,
-      "ext": {
-        "php": "https://max.moyu666666.top/niulai.php",
-        "site": "jinshu"
-      }
-    },
-    {
-      "key": "棋枰",
-      "name": "♟️┆棋枰┆影视",
-      "type": 3,
-      "api": "csp_NiuLai",
-      "searchable": 1,
-      "filterable": 1,
-      "changeable": 0,
-      "ext": {
-        "php": "https://max.moyu666666.top/niulai.php",
-        "site": "qiping"
-      }
-    },
-    {
       "key": "竹隐",
       "name": "🎋┆竹隐┆影视",
       "type": 3,
@@ -631,26 +563,6 @@
       }
     },
     {
-      "key": "知年",
-      "name": "📅┆知年┆影视",
-      "api": "csp_AppUn",
-      "type": 3,
-      "ext": {
-        "php": "https://max.moyu666666.top/appun.php",
-        "playname": "zn"
-      }
-    },
-    {
-      "key": "弦歌",
-      "name": "🎶┆弦歌┆影视",
-      "api": "csp_AppUn",
-      "type": 3,
-      "ext": {
-        "php": "https://max.moyu666666.top/appun.php",
-        "playname": "xg"
-      }
-    },
-    {
       "key": "兰芷",
       "name": "🌸┆兰芷┆影视",
       "api": "csp_AppUn",
@@ -658,16 +570,6 @@
       "ext": {
         "php": "https://max.moyu666666.top/appun.php",
         "playname": "lz"
-      }
-    },
-    {
-      "key": "怀瑾",
-      "name": "💎┆怀瑾┆影视",
-      "api": "csp_AppUn",
-      "type": 3,
-      "ext": {
-        "php": "https://max.moyu666666.top/appun.php",
-        "playname": "hj"
       }
     },
     {
@@ -681,26 +583,6 @@
       }
     },
     {
-      "key": "惊鸿",
-      "name": "💫┆惊鸿┆影视",
-      "api": "csp_AppUn",
-      "type": 3,
-      "ext": {
-        "php": "https://max.moyu666666.top/appun.php",
-        "playname": "jh"
-      }
-    },
-    {
-      "key": "昭华",
-      "name": "✨┆昭华┆影视",
-      "api": "csp_AppUn",
-      "type": 3,
-      "ext": {
-        "php": "https://max.moyu666666.top/appun.php",
-        "playname": "zh"
-      }
-    },
-    {
       "key": "枕霜",
       "name": "❄️┆枕霜┆影视",
       "api": "csp_AppUn",
@@ -708,16 +590,6 @@
       "ext": {
         "php": "https://max.moyu666666.top/appun.php",
         "playname": "zs"
-      }
-    },
-    {
-      "key": "清沅",
-      "name": "💧┆清沅┆影视",
-      "api": "csp_AppUn",
-      "type": 3,
-      "ext": {
-        "php": "https://max.moyu666666.top/appun.php",
-        "playname": "qy"
       }
     },
     {
@@ -738,26 +610,6 @@
       "ext": {
         "php": "https://max.moyu666666.top/appun.php",
         "playname": "mj"
-      }
-    },
-    {
-      "key": "长明",
-      "name": "🕯️┆长明┆影视",
-      "api": "csp_AppUn",
-      "type": 3,
-      "ext": {
-        "php": "https://max.moyu666666.top/appun.php",
-        "playname": "cm"
-      }
-    },
-    {
-      "key": "寻川",
-      "name": "🏞️┆寻川┆影视",
-      "api": "csp_AppUn",
-      "type": 3,
-      "ext": {
-        "php": "https://max.moyu666666.top/appun.php",
-        "playname": "xc"
       }
     },
     {
