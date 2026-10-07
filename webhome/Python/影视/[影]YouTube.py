@@ -5,15 +5,15 @@
 # 列表：走 search 关键词 + continuation 翻页；直播第 1 页取官方 livetab
 # 首页：网页首页推荐流（ANDROID_VR 客户端，WEB 未登录恒为空）
 # 搜索 / 详情：InnerTube 接口（免 API Key、免登录）
-# 播放：单条「自动」线路，本地合成 DASH 自动取最高画质轨
-#   轨道源：ANDROID_VR 明文直链 -> Invidious adaptiveFormats -> 单流兜底 -> webview 内嵌
+# 播放：单条「自动」线路。点播默认交官方内嵌播放页（自带有效 token，不会被 60 秒截断）；
+#   extend 打开 {"dash": true} 时改走本地合成 DASH，直播恒走 Invidious HLS
 #
 # 画质受限的根因是 player 接口被判定 bot（playabilityStatus=LOGIN_REQUIRED），此时不返回任何
 # 流地址。extend 可配：
 #   {"proxy":"http://192.168.1.2:7890"}               换出口 IP（注意代理要对设备可达）
 #   {"cookie":"SAPISID=...; __Secure-3PAPISID=..."}   登录态 Cookie，含 SAPISID 才能签名成功
 #   {"visitor":"Cgt..."}                              指定 visitorData，不填则自动从首页提取
-#   另可选 {"dash":true,"seg":"proxy"}
+#   另可选 {"dash":true,"seg":"proxy"|"direct"}（默认 dash 关、seg=proxy：分片经本地代理转发）
 
 import sys
 import json
@@ -195,6 +195,11 @@ def _to_track(f):
 
 _SES = requests.Session()
 _LK = threading.RLock()
+# 媒体分片专用会话：播放时视频/音频并发请求，不能与解析请求共用 _LK，否则高码率分片互相排队
+_MSES = requests.Session()
+_msad = requests.adapters.HTTPAdapter(pool_connections=16, pool_maxsize=32)
+_MSES.mount("http://", _msad)
+_MSES.mount("https://", _msad)
 _ST = {
     "cv": DEFAULT_CV, "cv_at": 0.0,        # 动态 clientVersion
     "proxy": None,                          # 代理（extend 配置）
@@ -202,10 +207,14 @@ _ST = {
     "visitor": "",                          # visitorData（extend 配置，缺省从首页提取）
     "chain": {},                            # 分页 continuation 链缓存
     "iv": "",                               # 已探活的 Invidious 实例
-    "dash": True,                           # 高清晰度 DASH 合成开关（extend {"dash": false} 关闭）
-    "seg": "proxy",                         # proxy=分片经本地代理（默认，规避 IP 绑定）；direct=直连
+    # 默认关：Invidious 直链的 token 不按本机出口 IP 签发，YouTube 只放行该链前 60 秒，
+    # 之后分片一律 403。extend {"dash": true} 才启用合成 DASH
+    "dash": False,
+    "seg": "proxy",                         # proxy=分片经本地代理转发（默认，403 时可换链重试）；direct=播放器直连
     "media": {},                            # vid -> 已解析的 DASH 轨道（含过期时间）
+    "live": {},                             # vid -> 是否直播（详情页顺手记下，免去播放时再解析一次轨道）
     "na_at": 0.0,                           # 播放接口最近一次取流失败（被风控）的时间
+    "r403": {},                             # vid -> 最近一次因 403 重取直链的时间
     "pdead_at": 0.0,                        # 单流 Invidious 最近一次失效的时间
     "home": [], "home_at": 0.0,             # 网页首页推荐流缓存
 }
@@ -287,6 +296,16 @@ class Spider(Spider):
                 return _SES.post(url, headers=h, data=data, timeout=timeout,
                                  proxies=proxies)
             return _SES.get(url, headers=h, timeout=timeout, proxies=proxies)
+
+    def _media_get(self, url, rng="", timeout=30):
+        """媒体分片请求：走独立 Session，不占 _LK，也不带任何 Cookie。"""
+        h = {"User-Agent": UA, "Referer": HOST + "/"}
+        if rng:
+            h["Range"] = rng
+        proxies = None
+        if _ST["proxy"]:
+            proxies = {"http": _ST["proxy"], "https": _ST["proxy"]}
+        return _MSES.get(url, headers=h, timeout=timeout, proxies=proxies)
 
     def _ensure_client(self, force=False):
         """从首页提取真实 INNERTUBE_CLIENT_VERSION 与 VISITOR_DATA（6 小时缓存）。
@@ -631,6 +650,7 @@ class Spider(Spider):
                 "racyCheckOk": True,
             })
             vd = resp.get("videoDetails") or {}
+            _ST["live"][v] = bool(vd.get("isLive") or vd.get("isLiveNow"))
             name = vd.get("title") or ""
             author = vd.get("author") or ""
             desc = (vd.get("shortDescription") or "")[:400]
@@ -854,7 +874,8 @@ class Spider(Spider):
     def _proxy_mpd(self, p):
         """合成 DASH 清单（视频轨 + 音频轨），默认取最高画质，可按 itag/q 指定。
 
-        只放一条视频 Representation——多轨时 ExoPlayer 自适应会退回低清；分片默认走 type=media 代理。
+        只放一条视频 Representation——多轨时 ExoPlayer 自适应会退回低清。
+        分片默认由播放器直连（seg=direct）；seg=proxy 时才改指 type=media 经本脚本转发。
         """
         vid = str(p.get("vid") or "")
         data = self._media_for(vid)
@@ -930,21 +951,53 @@ class Spider(Spider):
             f = None
         if not f or not f.get("url"):
             return [404, "text/plain", b""]
-        headers = {"User-Agent": UA, "Referer": HOST + "/"}
-        rv = p.get("range") or p.get("Range")
-        if rv:
-            headers["Range"] = rv
-        try:
-            r = self._req(f["url"], headers=headers, timeout=30)
-        except Exception:
-            return [500, "text/plain", b""]
-        h = {"Content-Type": r.headers.get("Content-Type", "application/octet-stream"),
-             "Accept-Ranges": "bytes", "Cache-Control": "no-cache"}
+        rv = str(p.get("range") or p.get("Range") or "").strip()
+        if not rv:
+            # 正常分片必带 Range；缺失时兜底只取前 1MB，避免把整档（4K 可达数百 MB）拉进内存
+            rv = "bytes=0-1048575"
+        r = None
+        for attempt in (0, 1):
+            try:
+                r = self._media_get(f["url"], rv)
+            except Exception:
+                return [500, "text/plain", b""]
+            if r.status_code != 403:
+                break
+            # 403＝直链已失效（签名含 ip，出口变化即作废）。换实例重取一次；
+            # 同一 vid 20 秒内只重取一次，否则每个分片都触发会拖垮播放
+            if attempt or time.time() - float(_ST["r403"].get(vid) or 0) < 20:
+                break
+            _ST["r403"][vid] = time.time()
+            print("[yt] 分片 403，重取直链 track=%s range=%s" % (track, rv),
+                  file=sys.stderr, flush=True)
+            _ST["media"].pop(vid, None)
+            _ST["iv"] = ""
+            try:
+                nd = self._media_info(vid, 8)
+            except Exception:
+                nd = None
+            f2 = None
+            if nd:
+                if track == "video":
+                    f2 = self._pick_track(nd, want_h, want_it)
+                elif track == "audio":
+                    f2 = nd.get("audio")
+            if not f2 or not f2.get("url"):
+                break
+            f = f2
+        body = r.content or b""
+        ct = r.headers.get("Content-Type") or "application/octet-stream"
+        # Content-Length 按实际返回字节数写，避免与上游不一致导致播放器等不到数据而卡死
+        h = {"Accept-Ranges": "bytes", "Cache-Control": "no-cache",
+             "Content-Length": str(len(body))}
         if r.headers.get("Content-Range"):
             h["Content-Range"] = r.headers["Content-Range"]
-        if r.headers.get("Content-Length"):
-            h["Content-Length"] = r.headers["Content-Length"]
-        return [r.status_code, h["Content-Type"], r.content, h]
+        if r.status_code != 206 or str(r.headers.get("Content-Length") or "") != str(len(body)):
+            print("[yt] 分片异常 track=%s range=%s code=%s 上游CL=%s 实长=%d"
+                  % (track, rv, r.status_code, r.headers.get("Content-Length"), len(body)),
+                  file=sys.stderr, flush=True)
+        # 上游拒绝时如实回传状态码：回 206 空包会被播放器当成「读到 0 字节」，分片永远推进不下去
+        return [r.status_code, ct, body, h]
 
     def playerContent(self, flag, id, vipFlags=None):
         vid = str(id or "").strip()
@@ -959,32 +1012,36 @@ class Spider(Spider):
         if not vid:
             return {"parse": 1, "playUrl": "", "url": "", "header": {}}
         header = {"User-Agent": UA, "Referer": HOST + "/"}
+        lv = _ST["live"].get(vid)              # 详情页记下的直播标记，没记过才解析轨道
         info = None
-        # 1) 本地合成 DASH，自动取最高画质轨。直播除外：其分片靠递增序号而非固定 indexRange，
-        #    合成的静态 MPD 播几秒即断，必须走下面的 HLS
-        if _ST.get("dash", True):
+        # 1) 可选：本地合成 DASH，自动取最高画质轨。默认关——直链不带本机出口 IP 的 token，
+        #    YouTube 只放行前 60 秒，之后音频分片全 403
+        if _ST.get("dash") or lv is None:
             try:
                 info = self._media_info(vid)
             except Exception:
                 info = None
-            if info and not info.get("live"):
+            if lv is None:
+                lv = bool((info or {}).get("live"))
+            if _ST.get("dash") and info and not lv:
                 q = "&itag=%d&q=%d" % (want_it, want_h)
                 return {"parse": 0, "playUrl": "", "format": "application/dash+xml",
                         "url": "http://127.0.0.1:9978/proxy?do=py&type=mpd&vid=%s%s" % (vid, q),
                         "header": header}
-        live = bool((info or {}).get("live"))
-        # 2) 单流兜底（Invidious 混流/HLS，画质低）。失败缓存 5 分钟——壳每档线路只等 30 秒
-        if time.time() - float(_ST.get("pdead_at") or 0) > 300:
-            u = str((info or {}).get("hls") or "") if live else ""
-            if not u:
+        live = bool(lv)
+        # 2) 直播只能走 HLS：分片靠递增序号，固定 indexRange 的静态 MPD 播几秒即断
+        if live:
+            u = str((info or {}).get("hls") or "")
+            if not u and time.time() - float(_ST.get("pdead_at") or 0) > 300:
                 try:
-                    u = self._iv_stream(vid, time.time() + 6, live=live)
+                    u = self._iv_stream(vid, time.time() + 6, live=True)
                 except Exception:
                     u = ""
+                if not u:
+                    _ST["pdead_at"] = time.time()
             if u:
                 return {"parse": 0, "playUrl": "", "url": u, "header": header}
-            _ST["pdead_at"] = time.time()
-        # 3) 兜底：内嵌播放页交给壳的 webview，vq 提示期望清晰度
+        # 3) 点播默认：官方内嵌播放页，官方播放器自带有效 token，不会被 60 秒截断
         vq = _vq(want_h)
         embed = "%s/embed/%s?autoplay=1&playsinline=1&rel=0&vq=%s" % (HOST, vid, vq)
         return {"parse": 2, "playUrl": "", "url": embed, "header": header}
