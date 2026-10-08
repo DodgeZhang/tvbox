@@ -6168,6 +6168,38 @@ class Spider(BaseSpider):
                                 dialog.getButton(dialog.BUTTON_NEGATIVE).setOnClickListener(
                                     perm_listener
                                 )
+                            # 全选：AlertDialog 原生只支持 3 个按钮，
+                            # 这里把「全选」注入按钮栏，置于「临时加载」左侧
+                            try:
+                                view_group_class = jclass("android.view.ViewGroup")
+                                button_class = jclass("android.widget.Button")
+                                negative_button = dialog.getButton(
+                                    dialog.BUTTON_NEGATIVE
+                                )
+                                panel = negative_button.getParent()
+                                try:
+                                    from java import cast
+
+                                    panel = cast(view_group_class, panel)
+                                except Exception:
+                                    pass
+                                try:
+                                    select_all_button = button_class(
+                                        activity,
+                                        None,
+                                        jclass("android.R$attr").buttonBarButtonStyle,
+                                    )
+                                except Exception:
+                                    select_all_button = button_class(activity)
+                                select_all_button.setText("全选")
+                                select_all_button.setOnClickListener(select_all_listener)
+                                panel.addView(
+                                    select_all_button,
+                                    panel.indexOfChild(negative_button),
+                                )
+                                owner._dialog_refs.append(select_all_button)
+                            except Exception:
+                                pass
                         except Exception as exc:
                             toast_class.makeText(
                                 activity,
