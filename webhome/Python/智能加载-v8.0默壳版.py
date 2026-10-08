@@ -5920,13 +5920,23 @@ class Spider(BaseSpider):
                         return None
 
                 class SelectAllListener(dynamic_proxy(view_click_listener)):
+                    """全选开关：未全选时全选，已全选时全部取消。"""
+
                     def __init__(self, switches):
                         super().__init__()
                         self.switches = switches
+                        self.button = None
 
                     def onClick(self, view):
-                        for control in self.switches.values():
-                            control.setChecked(True)
+                        controls = list(self.switches.values())
+                        all_checked = bool(controls) and all(
+                            bool(control.isChecked()) for control in controls
+                        )
+                        target = not all_checked
+                        for control in controls:
+                            control.setChecked(target)
+                        if self.button is not None:
+                            self.button.setText("全不选" if target else "全选")
 
                 class DismissListener(dynamic_proxy(view_click_listener)):
                     """仅关闭对话框的按钮监听器（View$OnClickListener）。"""
@@ -6183,23 +6193,44 @@ class Spider(BaseSpider):
                                     panel = cast(view_group_class, panel)
                                 except Exception:
                                     pass
+                                # 克隆同栏按钮的配色与尺寸：文字颜色/字号/padding 对齐，
+                                # 并用对话框主题构造 + 清掉底衬和海拔阴影，
+                                # 否则默认按钮样式会带出实心/带阴影的色块
+                                select_all_button = button_class(dialog.getContext())
+                                select_all_button.setTextColor(
+                                    negative_button.getTextColors()
+                                )
+                                select_all_button.setTextSize(
+                                    jclass("android.util.TypedValue").COMPLEX_UNIT_PX,
+                                    negative_button.getTextSize(),
+                                )
+                                select_all_button.setMinWidth(
+                                    negative_button.getMinimumWidth()
+                                )
+                                select_all_button.setMinHeight(
+                                    negative_button.getMinimumHeight()
+                                )
+                                select_all_button.setPadding(
+                                    negative_button.getPaddingLeft(),
+                                    negative_button.getPaddingTop(),
+                                    negative_button.getPaddingRight(),
+                                    negative_button.getPaddingBottom(),
+                                )
+                                select_all_button.setBackground(None)
                                 try:
-                                    select_all_button = button_class(
-                                        activity,
-                                        None,
-                                        jclass("android.R$attr").buttonBarButtonStyle,
-                                    )
+                                    select_all_button.setStateListAnimator(None)
                                 except Exception:
-                                    select_all_button = button_class(activity)
+                                    pass
                                 select_all_button.setText("全选")
                                 select_all_button.setOnClickListener(select_all_listener)
+                                select_all_listener.button = select_all_button
                                 panel.addView(
                                     select_all_button,
                                     panel.indexOfChild(negative_button),
                                 )
                                 owner._dialog_refs.append(select_all_button)
-                            except Exception:
-                                pass
+                            except Exception as exc:
+                                owner._warn("批量选择-全选按钮注入失败: {}".format(exc))
                         except Exception as exc:
                             toast_class.makeText(
                                 activity,
