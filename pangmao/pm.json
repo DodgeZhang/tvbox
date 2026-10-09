@@ -1,7 +1,7 @@
 {
   "spider": "./jar/aidaox-20260911-111534.jar;md5;e78d86355ecbfd17d474f7b6ce2b00c5",
   "wallpaper": "proxy://do=wallpaper",
-  "logo": "https://jk.catvod.site/jk/assets/feimao_logo.gif?v=20260901c",
+  "logo": "./img/logo1.gif",
   "sites": [
     {
       "key": "Douban",

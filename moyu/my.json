@@ -15,8 +15,8 @@
       "filterable": 1,
       "ext": {
         "home": {
-          "douban": "./ext/douban.json",
-          "tmdb": "./ext/tmdb.json"
+          "douban": "./lib/douban.json",
+          "tmdb": "./lib/tmdb.json"
         }
       }
     },
@@ -50,7 +50,7 @@
           "https://www.wogg.live",
           "http://woggpan.xxooo.cf"
         ],
-        "filter": "./ext/wogg.json"
+        "filter": "./lib/wogg.json"
       }
     },
     {
@@ -420,7 +420,7 @@
       "searchable": 1,
       "filterable": 1,
       "ext": {
-        "filter": "./ext/360.json",
+        "filter": "./lib/360.json",
         "fishjx": [
           "https://jx.xmflv.com/?url="
         ]
@@ -1131,7 +1131,7 @@
       "style": {
         "type": "list"
       },
-      "ext": "./ext/share.json"
+      "ext": "./lib/share.json"
     },
     {
       "key": "push_agent",
@@ -1151,7 +1151,7 @@
       "indexs": 0,
       "searchable": 1,
       "filterable": 1,
-      "ext": "./ext/fishdrive.json"
+      "ext": "./lib/fishdrive.json"
     },
     {
       "key": "Wallpaper",
