@@ -60,6 +60,12 @@
       "type": 4
     },
     {
+      "key": "HB36DJ",
+      "name": "摇滚|DJ",
+      "type": 3,
+      "api": "csp_HB36DJCAT"
+    },
+    {
       "key": "luoxue",
       "api": "csp_HBLuoXueCAT",
       "name": "落雪|弹幕",
