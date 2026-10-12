@@ -13,7 +13,7 @@
       "ext": {
         "siteUrl": "http://127.0.0.1:9999",
         "count": 4,
-        "channelUsername": "+P4IU1QbK4ChlNTYx,+h10ulzfxiQZiYTdi,+cpJ_dIx_hlYxMWQx,+Jc37JCr1diEzNDMx,leoziyuan,ResourceUniverse,BaiduCloudDisk,SharePanBaidu,bdwpzhpd,bdwpzhpd,alyp_TV,ucquark,wp123zy,oneonefivewpfx,tyypzhpd,cloudtianyi,yunpanchat,ydypzyfx,yunpan139,guaguale115,Mbox115,shares_115,zaihuayun,PanjClub,NewQuark,yunpanpan,kuakeyun,Quark_Movies,qixingzhenren,alyp_4K_Movies,alyp_TV,yunpanshare,shareAliyun,Lsp115,alyp_1",
+        "channelUsername": "+P4IU1QbK4ChlNTYx,+h10ulzfxiQZiYTdi,+cpJ_dIx_hlYxMWQx,+Jc37JCr1diEzNDMx,leoziyuan,ResourceUniverse,BaiduCloudDisk,SharePanBaidu,bdwpzhpd,alyp_TV,ucquark,wp123zy,oneonefivewpfx,tyypzhpd,cloudtianyi,yunpanchat,ydypzyfx,yunpan139,guaguale115,Mbox115,shares_115,zaihuayun,PanjClub,NewQuark,yunpanpan,kuakeyun,Quark_Movies,qixingzhenren,alyp_4K_Movies,yunpanshare,shareAliyun,Lsp115,alyp_1",
         "commonConfig": "./json/peizhi.json",
         "filter": "./json/douban.json"
       }
@@ -26,12 +26,174 @@
       "searchable": 0,
       "changeable": 0,
       "ext": {
+        "commonConfig": "./json/peizhi.json",
+        "services": "./json/services.json"
+      }
+    },
+    {
+      "key": "玩偶gg",
+      "name": "玩偶 | 饭",
+      "type": 3,
+      "api": "csp_Wogg",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "siteUrl": [
+          "https://woggpan.888484.xyz",
+          "https://woggpan.xxooo.cf",
+          "https://wogg.333232.xyz",
+          "https://wogg4k.333232.xyz"
+        ],
+        "filter": "./json/wogg.json",
+        "commonConfig": "./json/peizhi.json"
+      }
+    },
+    {
+      "key": "玩偶 | 蜗牛",
+      "name": "玩偶 | 蜗牛",
+      "type": 3,
+      "api": "csp_WoNiu",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "siteUrl": "https://www.wn4k.com/",
+        "filter": "./json/wogg.json",
+        "username": "",
+        "password": "",
+        "commonConfig": "./json/peizhi.json"
+      }
+    },
+    {
+      "key": "玩偶 | 木偶",
+      "name": "玩偶 | 木偶",
+      "type": 3,
+      "api": "csp_kongbai",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "siteUrl": [
+          "https://333.333291.xyz/",
+          "https://www.muou.asia",
+          "https://666.666291.xyz",
+          "https://123.666291.xyz"
+        ],
+        "filter": "./json/wogg.json",
+        "commonConfig": "./json/peizhi.json"
+      }
+    },
+    {
+      "key": "玩偶 | 闪电uc",
+      "name": "玩偶 | 闪电UC",
+      "type": 3,
+      "api": "csp_kongbai",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "siteUrl": "http://shandian.blog/",
+        "filter": "./json/wogg.json",
+        "commonConfig": "./json/peizhi.json"
+      }
+    },
+    {
+      "key": "玩偶 | 二小",
+      "name": "玩偶 | 二小",
+      "type": 3,
+      "api": "csp_kongbai",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "siteUrl": [
+          "https://www.2xiaopan.top/",
+          "https://www.wexwp.cc"
+        ],
+        "filter": "./json/wogg.json",
+        "commonConfig": "./json/peizhi.json"
+      }
+    },
+    {
+      "key": "玩偶 | 小米",
+      "name": "玩偶 | 小米",
+      "type": 3,
+      "api": "csp_kongbai",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "siteUrl": "https://www.milvdou.fun/",
+        "filter": "./json/wogg.json",
+        "commonConfig": "./json/peizhi.json"
+      }
+    },
+    {
+      "key": "玩偶 | 多多",
+      "name": "玩偶 | 多多",
+      "type": 3,
+      "api": "csp_kongbai",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "siteUrl": [
+          "https://yydsys.de5.net",
+          "https://tv.214521.xyz"
+        ],
+        "filter": "./json/wogg.json",
+        "commonConfig": "./json/peizhi.json"
+      }
+    },
+    {
+      "key": "玩偶 | 蜡笔",
+      "name": "玩偶 | 蜡笔",
+      "type": 3,
+      "api": "csp_kongbai",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "siteUrl": "http://www.labi88.sbs/",
+        "filter": "./json/wogg.json",
+        "commonConfig": "./json/peizhi.json"
+      }
+    },
+    {
+      "key": "玩偶 | 讴歌",
+      "name": "玩偶 | 讴歌",
+      "type": 3,
+      "api": "csp_kongbai",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "siteUrl": "https://woog.nxog.eu.org/",
+        "filter": "./json/wogg.json",
+        "commonConfig": "./json/peizhi.json"
+      }
+    },
+    {
+      "key": "玩偶虎斑",
+      "name": "玩偶 | 虎斑",
+      "type": 3,
+      "api": "csp_kongbai",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "siteUrl": "http://103.45.162.207:20720/",
+        "filter": "./json/wogg.json",
+        "commonConfig": "./json/peizhi.json"
+      }
+    },
+    {
+      "key": "玩偶虎斑2",
+      "name": "玩偶 | 虎斑2",
+      "type": 3,
+      "api": "csp_kongbai",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "siteUrl": "http://xsayang.fun:12512",
+        "filter": "./json/wogg.json",
         "commonConfig": "./json/peizhi.json"
       }
     },
     {
       "key": "Jpys",
-      "name": "金牌影视",
+      "name": "在线 | 金牌影视",
       "type": 3,
       "api": "csp_Jpys",
       "searchable": 1,
@@ -45,7 +207,7 @@
     },
     {
       "key": "GuaZi",
-      "name": "瓜子影视",
+      "name": "在线 | 瓜子影视",
       "type": 3,
       "api": "csp_GuaZi",
       "searchable": 1,
@@ -55,13 +217,25 @@
       }
     },
     {
+      "key": "Ikanbot",
+      "name": "在线 | 爱看机器人",
+      "type": 3,
+      "api": "csp_Ikanbot",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "siteUrl": "https://www1.aikanbot.com/",
+        "commonConfig": "./json/peizhi.json"
+      }
+    },
+    {
       "key": "聚合短剧",
-      "name": "聚合短剧",
+      "name": "在线 | 聚合短剧",
       "type": 3,
       "api": "csp_JuheShortDrama",
       "searchable": 1,
       "filterable": 0,
-      "switchable": 0,
+      "changeable": 0,
       "ext": {
         "host": {
           "百度": "https://api.jkyai.top",
@@ -82,24 +256,88 @@
       }
     },
     {
-      "key": "Ikanbot",
-      "name": "爱看机器人",
+      "key": "賤賤",
+      "name": "在线 | 贱贱",
       "type": 3,
-      "api": "csp_Ikanbot",
+      "api": "csp_Jianpian",
       "searchable": 1,
+      "changeable": 1,
+      "ext": "./json/jianpian.json"
+    },
+
+    {
+      "key": "Douyu",
+      "name": "直播 | 斗鱼",
+      "type": 3,
+      "api": "csp_Douyu",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
       "changeable": 0,
       "ext": {
         "commonConfig": "./json/peizhi.json"
       }
     },
     {
+      "key": "huya",
+      "name": "直播 | 虎牙",
+      "type": 3,
+      "api": "csp_Huya",
+      "searchable": 1,
+      "filterable": 1,
+      "changeable": 0,
+      "ext": {
+        "commonConfig": "./json/peizhi.json"
+      }
+    },
+    {
+      "key": "lf_live10_min",
+      "name": "直播 | 路飞",
+      "type": 3,
+      "api": "./lib/lf_live10_min-output.js",
+      "searchable": 0,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1,
+      "ext": "./json/lf_live.json"
+    },
+
+    {
+      "key": "网盘集合",
+      "name": "网盘 | 集合4K",
+      "type": 3,
+      "api": "csp_网盘集合",
+      "searchable": 1,
+      "filterable": 0,
+      "changeable": 0,
+      "ext": {
+        "share": "./json/网盘集合.json",
+        "commonConfig": "./json/peizhi.json"
+      }
+    },
+    {
       "key": "FourKZN",
-      "name": "网盘 | 4k指南",
+      "name": "网盘 | 4K指南",
       "type": 3,
       "api": "csp_FourKZN",
       "searchable": 1,
       "changeable": 0,
       "ext": {
+        "siteUrl": "https://4kzn.cc",
+        "commonConfig": "./json/peizhi.json"
+      }
+    },
+    {
+      "key": "盘链",
+      "name": "网盘 | 盘链",
+      "type": 3,
+      "api": "csp_PanLian",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "siteUrl": "https://pinglian.lol/",
+        "username": "",
+        "password": "",
         "commonConfig": "./json/peizhi.json"
       }
     },
@@ -111,24 +349,22 @@
       "searchable": 1,
       "changeable": 0,
       "ext": {
-        "commonConfig": "./json/peizhi.json",
-        "siteUrl": "https://www.xn--wcv59z.com//",
+        "siteUrl": "https://www.xn--wcv59z.com/",
         "username": "",
         "password": "",
-        "cookie":""
+        "commonConfig": "./json/peizhi.json"
       }
     },
     {
-      "key": "网盘集合",
-      "name": "网盘集合 | 4K",
+      "key": "SeedHub",
+      "name": "网盘 | SeedHub",
       "type": 3,
-      "api": "csp_网盘集合",
+      "api": "csp_SeedHub",
       "searchable": 1,
       "filterable": 0,
-      "switchable": 0,
+      "changeable": 0,
       "ext": {
-        "commonConfig": "./json/peizhi.json",
-        "share": "./json/网盘集合.json"
+        "commonConfig": "./json/peizhi.json"
       }
     },
     {
@@ -138,224 +374,10 @@
       "api": "csp_Qiwei",
       "searchable": 1,
       "filterable": 0,
-      "switchable": 0,
+      "changeable": 0,
       "ext": {
-        "siteUrl": "https://www.qwnull.com",
+        "siteUrl": "https://www.qwfun.com",
         "commonConfig": "./json/peizhi.json"
-      }
-    },
-    {
-      "key": "pansou | fish",
-      "name": "pansou | fish",
-      "type": 3,
-      "api": "csp_PanSouFish",
-      "searchable": 1,
-      "changeable": 0,
-      "ext": {
-        "siteUrl": "https://pansou-latest-hv4k.onrender.com",
-        "filter": {
-          "include": ["HDR","高码"],
-          "exclude": ["预告", "花絮"]
-        },
-        "commonConfig": "./json/peizhi.json"
-      }
-    },
-    {
-      "key": "Emby",
-      "name": "Emby",
-      "type": 3,
-      "api": "csp_Emby",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": {
-        //        "server": "https://emby.feiniu.lol:443",
-        //emby需要梯子的，配置代理头
-        "server": "http://127.0.0.1:9966/api/proxy/https://lite.cn2gias.uk:443",
-        "username": "23",
-        "password": "23",
-        "ua": "Yamby/1.0.2(Android)",
-        "client": "Yamby",
-        "clientVersion": "0.2.3",
-        "deviceName": "oppo find x9 pro",
-        "commonConfig": "./json/peizhi.json"
-      },
-      "changeable": 1
-    },
-    {
-      "key": "肥牛",
-      "name": "Emby肥牛",
-      "type": 3,
-      "api": "csp_Emby",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": {
-        //        "server": "https://emby.feiniu.lol:443",
-        //emby需要梯子的配置
-        "server": "http://127.0.0.1:9966/api/proxy/https://emby.feiniu.lol:443",
-        "username": "23",
-        "password": "123",
-        "ua": "",
-        "client": "Yamby",
-        "deviceName": "Yamby",
-        "commonConfig": "./json/peizhi.json"
-      },
-      "changeable": 1
-    },
-    {
-      "key": "游戏 | 直播",
-      "name": "游戏 | 直播",
-      "type": 3,
-      "api": "csp_Living",
-      "searchable": 1,
-      "changeable": 0,
-      "ext": {
-        "siteUrl": "https://bt.muxia.fun/api",
-        "commonConfig": "./json/peizhi.json"
-      }
-    },
-    //    {
-    //      "key": "玩偶 | 清影",
-    //      "name": "玩偶 | 清影",
-    //      "type": 3,
-    //      "api": "csp_kongbai",
-    //      "searchable": 1,
-    //      "changeable": 0,
-    //      "ext": {
-    //        "commonConfig": "./json/peizhi.json",
-    //        "siteUrl": "https://revohd.com/",
-    //        "filter": "./json/wogg.json"
-    //      }
-    //    },
-    {
-      "key": "玩偶 | 木偶",
-      "name": "玩偶 | 木偶",
-      "type": 3,
-      "api": "csp_kongbai",
-      "searchable": 1,
-      "changeable": 0,
-      "ext": {
-        "commonConfig": "./json/peizhi.json",
-        "siteUrl": "https://www.muou.site/",
-        "filter": "./json/wogg.json"
-      }
-    },
-    {
-      "key": "玩偶 | 闪电uc",
-      "name": "玩偶 | 闪电uc",
-      "type": 3,
-      "api": "csp_kongbai",
-      "searchable": 1,
-      "changeable": 0,
-      "ext": {
-        "commonConfig": "./json/peizhi.json",
-        "siteUrl": "http://1.95.79.193/",
-        "filter": "./json/wogg.json"
-      }
-    },
-    {
-      "key": "玩偶 | 二小",
-      "name": "玩偶 | 二小",
-      "type": 3,
-      "api": "csp_kongbai",
-      "searchable": 1,
-      "changeable": 0,
-      "ext": {
-        "commonConfig": "./json/peizhi.json",
-        "siteUrl": "https://wexwp.cc/",
-        "filter": "./json/wogg.json"
-      }
-    },
-    {
-      "key": "玩偶 | 小米",
-      "name": "玩偶 | 小米",
-      "type": 3,
-      "api": "csp_kongbai",
-      "searchable": 1,
-      "changeable": 0,
-      "ext": {
-        "commonConfig": "./json/peizhi.json",
-        "siteUrl": "https://www.milvdou.fun/",
-        "filter": "./json/wogg.json"
-      }
-    },
-    {
-      "key": "玩偶 | 多多",
-      "name": "玩偶 | 多多",
-      "type": 3,
-      "api": "csp_kongbai",
-      "searchable": 1,
-      "changeable": 0,
-      "ext": {
-        "commonConfig": "./json/peizhi.json",
-        "siteUrl": "http://tv.yydsys.top/",
-        "filter": "./json/wogg.json"
-      }
-    },
-    {
-      "key": "玩偶 | 蜡笔",
-      "name": "玩偶 | 蜡笔",
-      "type": 3,
-      "api": "csp_kongbai",
-      "searchable": 1,
-      "changeable": 0,
-      "ext": {
-        "commonConfig": "./json/peizhi.json",
-        "siteUrl": "http://www.labi88.sbs/",
-        "filter": "./json/wogg.json"
-      }
-    },
-    {
-      "key": "玩偶 | 讴歌",
-      "name": "玩偶 | 讴歌",
-      "type": 3,
-      "api": "csp_kongbai",
-      "searchable": 1,
-      "changeable": 0,
-      "ext": {
-        "commonConfig": "./json/peizhi.json",
-        "siteUrl": "https://woog.nxog.eu.org/",
-        "filter": "./json/wogg.json"
-      }
-    },
-    {
-      "key": "玩偶gg",
-      "name": "玩偶 | 饭",
-      "type": 3,
-      "api": "csp_Wogg",
-      "searchable": 1,
-      "changeable": 0,
-      "ext": {
-        "commonConfig": "./json/peizhi.json",
-        "siteUrl": "http://woggpan.wogg.lol/",
-        "filter": "./json/wogg.json"
-      }
-    },
-    {
-      "key": "玩偶虎斑",
-      "name": "玩偶 | 虎斑",
-      "type": 3,
-      "api": "csp_kongbai",
-      "searchable": 1,
-      "changeable": 0,
-      "ext": {
-        "commonConfig": "./json/peizhi.json",
-        "siteUrl": "http://103.45.162.207:20720/",
-        "filter": "./json/wogg.json"
-      }
-    },
-    {
-      "key": "玩偶虎斑2",
-      "name": "玩偶 | 虎斑2",
-      "type": 3,
-      "api": "csp_kongbai",
-      "searchable": 1,
-      "changeable": 0,
-      "ext": {
-        "commonConfig": "./json/peizhi.json",
-        "siteUrl": "http://xsayang.fun:12512",
-        "filter": "./json/wogg.json"
       }
     },
     {
@@ -365,89 +387,50 @@
       "api": "csp_Star2",
       "searchable": 1,
       "filterable": 0,
-      "switchable": 0,
+      "changeable": 0,
       "ext": {
         "siteUrl": "https://1.star2.cn/",
         "commonConfig": "./json/peizhi.json"
       }
     },
     {
-      "key": "Youtube",
-      "name": "Youtube",
+      "key": "光鸭社区",
+      "name": "网盘 | 光鸭社区",
       "type": 3,
-      "api": "csp_Youtube",
+      "api": "csp_光鸭社区",
       "searchable": 1,
-      "changeable": 1,
-      "style": {
-        "type": "rect",
-        "ratio": 1.433
-      },
+      "changeable": 0,
       "ext": {
-        "commonConfig": "./json/peizhi.json",
-        "json": "./json/youtube.json"
-      }
-    },
-    {
-      "key": "盤搜天意",
-      "name": "网盘 | 盤搜天意",
-      "type": 3,
-      "api": "csp_PanSou",
-      "searchable": 1,
-      "filterable": 0,
-      "switchable": 0,
-      "ext": {
-        "siteUrl": "https://www.tianyiso.com",
+        "siteUrl": "https://gy.lubao2.de5.net",
         "commonConfig": "./json/peizhi.json"
       }
     },
     {
-      "key": "賤賤",
-      "name": "賤賤",
+      "key": "pansou | fish",
+      "name": "网盘 | PanSouFish",
       "type": 3,
-      "api": "csp_Jianpian",
-      "searchable": 1,
-      "changeable": 1,
-      "ext": "./json/jianpian.json"
-    },
-    {
-      "key": "lf_live10_min",
-      "name": "路飞丨Live",
-      "type": 3,
-      "searchable": 0,
-      "quickSearch": 1,
-      "filterable": 1,
-      "changeable": 1,
-      "api": "./lib/lf_live10_min-output.js",
-      "ext": "./json/lf_live.json"
-    },
-    {
-      "key": "哔哩FM",
-      "name": "哔哩",
-      "type": 3,
-      "api": "csp_Bili",
+      "api": "csp_PanSouFish",
       "searchable": 1,
       "changeable": 0,
-      "style": {
-        "type": "rect",
-        "ratio": 1.433
-      },
       "ext": {
-        "json": "./json/bilibili.json",
-        "commonConfig": "./json/peizhi.json",
-        "cookie": ""
+        "siteUrl": "https://pansou-latest-hv4k.onrender.com",
+        "filter": {
+          "include": ["HDR", "高码"],
+          "exclude": ["预告", "花絮"]
+        },
+        "commonConfig": "./json/peizhi.json"
       }
     },
     {
-      "key": "TgYunPan|本地",
-      "name": "TgYunPan | 本地",
+      "key": "盤搜天意",
+      "name": "网盘 | 盘搜天意",
       "type": 3,
-      "api": "csp_TgYunPanLocal",
+      "api": "csp_PanSou",
       "searchable": 1,
       "filterable": 0,
-      "switchable": 0,
+      "changeable": 0,
       "ext": {
-        "count": 4,
-        "channelUsername": "leoziyuan,ResourceUniverse,BaiduCloudDisk,SharePanBaidu,bdwpzhpd,bdwpzhpd,alyp_TV,ucquark,wp123zy,oneonefivewpfx,tyypzhpd,cloudtianyi,yunpanchat,ydypzyfx,yunpan139,guaguale115,Mbox115,shares_115,zaihuayun,PanjClub,NewQuark,yunpanpan,kuakeyun,Quark_Movies,qixingzhenren,alyp_4K_Movies,alyp_TV,yunpanshare,shareAliyun,Lsp115,alyp_1",
+        "siteUrl": "https://www.tianyiso.com",
         "commonConfig": "./json/peizhi.json"
       }
     },
@@ -458,7 +441,7 @@
       "api": "csp_PanTa",
       "searchable": 1,
       "filterable": 0,
-      "switchable": 0,
+      "changeable": 0,
       "ext": {
         "siteUrl": "https://www.91panta.cn/",
         "commonConfig": "./json/peizhi.json"
@@ -471,7 +454,7 @@
       "api": "csp_PanTa",
       "searchable": 1,
       "filterable": 0,
-      "switchable": 0,
+      "changeable": 0,
       "ext": {
         "siteUrl": "https://www.leijing1.com/",
         "cookie": "JSESSIONID=B24E6992236274BD6A636FE8EAA2FDA; cms_token=25968d70e1c64c3fa475c5bb15946443; cms_accessToken=8c67340ebecb46b88f9c85492bfe1cf1; cms_refreshToken=0af0ab743ae243be99b29c2af5b449a",
@@ -480,12 +463,12 @@
     },
     {
       "key": "易搜",
-      "name": "易搜 | 4K",
+      "name": "网盘 | 易搜4K",
       "type": 3,
       "api": "csp_YiSo",
       "searchable": 1,
       "filterable": 0,
-      "switchable": 0,
+      "changeable": 0,
       "ext": {
         "cookie": "",
         "commonConfig": "./json/peizhi.json"
@@ -493,7 +476,7 @@
     },
     {
       "key": "盤搜索",
-      "name": "网盘 | 盤搜索",
+      "name": "网盘 | 盘搜索",
       "type": 3,
       "api": "csp_PanSearch",
       "searchable": 1,
@@ -504,7 +487,7 @@
     },
     {
       "key": "紙條搜",
-      "name": "网盘 | 紙條搜",
+      "name": "网盘 | 纸条搜",
       "type": 3,
       "api": "csp_XiaoZhiTiao",
       "searchable": 1,
@@ -514,107 +497,151 @@
       }
     },
     {
+      "key": "TgYunPan|本地",
+      "name": "网盘 | Tg本地",
+      "type": 3,
+      "api": "csp_TgYunPanLocal",
+      "searchable": 1,
+      "filterable": 0,
+      "changeable": 0,
+      "ext": {
+        "count": 4,
+        "channelUsername": "leoziyuan,ResourceUniverse,BaiduCloudDisk,SharePanBaidu,bdwpzhpd,alyp_TV,ucquark,wp123zy,oneonefivewpfx,tyypzhpd,cloudtianyi,yunpanchat,ydypzyfx,yunpan139,guaguale115,Mbox115,shares_115,zaihuayun,PanjClub,NewQuark,yunpanpan,kuakeyun,Quark_Movies,qixingzhenren,alyp_4K_Movies,yunpanshare,shareAliyun,Lsp115,alyp_1",
+        "commonConfig": "./json/peizhi.json"
+      }
+    },
+
+    {
+      "key": "Emby",
+      "name": "媒体库 | Emby",
+      "type": 3,
+      "api": "csp_Emby",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1,
+      "ext": {
+        "server": "http://127.0.0.1:9966/api/proxy/https://lite.cn2gias.uk:443",
+        "username": "23",
+        "password": "23",
+        "ua": "Yamby/1.0.2(Android)",
+        "client": "Yamby",
+        "clientVersion": "0.2.3",
+        "deviceName": "oppo find x9 pro",
+        "commonConfig": "./json/peizhi.json"
+      }
+    },
+    {
+      "key": "肥牛",
+      "name": "媒体库 | Emby肥牛",
+      "type": 3,
+      "api": "csp_Emby",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1,
+      "ext": {
+        "server": "http://127.0.0.1:9966/api/proxy/https://emby.feiniu.lol:443",
+        "username": "23",
+        "password": "123",
+        "ua": "",
+        "client": "Yamby",
+        "deviceName": "Yamby",
+        "commonConfig": "./json/peizhi.json"
+      }
+    },
+    {
       "key": "AList",
-      "name": "AList",
+      "name": "媒体库 | AList",
       "type": 3,
       "api": "csp_AList",
       "searchable": 1,
       "changeable": 0,
       "ext": "./json/alist.json"
     },
+
     {
-      "key": "push_agent",
-      "name": "推送",
+      "key": "哔哩FM",
+      "name": "视频 | 哔哩",
       "type": 3,
-      "api": "csp_Push",
+      "api": "csp_Bili",
       "searchable": 1,
-      "filterable": 0,
-      "switchable": 0,
+      "changeable": 0,
+      "style": {
+        "type": "rect",
+        "ratio": 1.433
+      },
       "ext": {
+        "json": "./json/bilibili.json",
+        "cookie": "",
         "commonConfig": "./json/peizhi.json"
       }
     },
     {
+      "key": "Youtube",
+      "name": "视频 | Youtube",
+      "type": 3,
+      "api": "csp_Youtube",
+      "searchable": 1,
+      "changeable": 1,
+      "style": {
+        "type": "rect",
+        "ratio": 1.433
+      },
+      "ext": {
+        "json": "./json/youtube.json",
+        "commonConfig": "./json/peizhi.json"
+      }
+    },
+
+    {
+      "key": "push_agent",
+      "name": "工具 | 推送",
+      "type": 3,
+      "api": "csp_Push",
+      "searchable": 1,
+      "filterable": 0,
+      "changeable": 0,
+      "ext": {
+        "commonConfig": "./json/peizhi.json"
+      }
+    },
+
+    {
       "key": "360资源",
-      "name": "360资源-采集",
+      "name": "采集 | 360资源",
       "type": 1,
       "api": "https://360zy.com/api.php/seaxml/vod/",
       "searchable": 1,
       "changeable": 1,
       "categories": [
-        "国产动漫",
-        "日韩动漫",
-        "国产剧",
-        "韩国剧",
-        "日本剧",
-        "电影片",
-        "连续剧",
-        "综艺片",
-        "动漫片",
-        "动作片",
-        "喜剧片",
-        "爱情片",
-        "科幻片",
-        "恐怖片",
-        "剧情片",
-        "战争片",
-        "香港剧",
-        "欧美剧",
-        "记录片",
-        "台湾剧",
-        "海外剧",
-        "泰国剧",
-        "大陆综艺",
-        "港台综艺",
-        "日韩综艺",
-        "欧美综艺",
-        "欧美动漫",
-        "港台动漫",
-        "海外动漫"
+        "国产动漫", "日韩动漫", "国产剧", "韩国剧", "日本剧",
+        "电影片", "连续剧", "综艺片", "动漫片",
+        "动作片", "喜剧片", "爱情片", "科幻片", "恐怖片", "剧情片", "战争片",
+        "香港剧", "欧美剧", "记录片", "台湾剧", "海外剧", "泰国剧",
+        "大陆综艺", "港台综艺", "日韩综艺", "欧美综艺",
+        "欧美动漫", "港台动漫", "海外动漫"
       ]
     },
     {
       "key": "非凡",
-      "name": "非凡",
+      "name": "采集 | 非凡",
       "type": 1,
       "api": "http://cj.ffzyapi.com/api.php/provide/vod/",
       "searchable": 1,
       "changeable": 1,
       "categories": [
-        "国产动漫",
-        "日韩动漫",
-        "国产剧",
-        "韩国剧",
-        "日本剧",
-        "电影片",
-        "连续剧",
-        "综艺片",
-        "动漫片",
-        "动作片",
-        "喜剧片",
-        "爱情片",
-        "科幻片",
-        "恐怖片",
-        "剧情片",
-        "战争片",
-        "香港剧",
-        "欧美剧",
-        "记录片",
-        "台湾剧",
-        "海外剧",
-        "泰国剧",
-        "大陆综艺",
-        "港台综艺",
-        "日韩综艺",
-        "欧美综艺",
-        "欧美动漫",
-        "港台动漫",
-        "海外动漫"
+        "国产动漫", "日韩动漫", "国产剧", "韩国剧", "日本剧",
+        "电影片", "连续剧", "综艺片", "动漫片",
+        "动作片", "喜剧片", "爱情片", "科幻片", "恐怖片", "剧情片", "战争片",
+        "香港剧", "欧美剧", "记录片", "台湾剧", "海外剧", "泰国剧",
+        "大陆综艺", "港台综艺", "日韩综艺", "欧美综艺",
+        "欧美动漫", "港台动漫", "海外动漫"
       ]
     },
     {
       "key": "豆瓣采集资源",
-      "name": "豆瓣 | 采集",
+      "name": "采集 | 豆瓣",
       "type": 1,
       "api": "https://caiji.dbzy.tv/api.php/provide/vod/from/dbm3u8/at/josn/",
       "playerType": 1,
@@ -623,46 +650,19 @@
     },
     {
       "key": "量子",
-      "name": "量子",
+      "name": "采集 | 量子",
       "type": 1,
       "api": "https://cj.lziapi.com/api.php/provide/vod/",
       "searchable": 1,
       "changeable": 1,
       "categories": [
-        "国产动漫",
-        "日韩动漫",
-        "国产剧",
-        "韩国剧",
-        "日本剧",
-        "电影片",
-        "连续剧",
-        "综艺片",
-        "动漫片",
-        "动作片",
-        "喜剧片",
-        "爱情片",
-        "科幻片",
-        "恐怖片",
-        "剧情片",
-        "战争片",
-        "台湾剧",
-        "香港剧",
-        "欧美剧",
-        "记录片",
-        "海外剧",
-        "泰国剧",
-        "大陆综艺",
-        "港台综艺",
-        "日韩综艺",
-        "欧美综艺",
-        "欧美动漫",
-        "港台动漫",
-        "海外动漫",
-        "体育",
-        "足球",
-        "篮球",
-        "网球",
-        "斯诺克"
+        "国产动漫", "日韩动漫", "国产剧", "韩国剧", "日本剧",
+        "电影片", "连续剧", "综艺片", "动漫片",
+        "动作片", "喜剧片", "爱情片", "科幻片", "恐怖片", "剧情片", "战争片",
+        "台湾剧", "香港剧", "欧美剧", "记录片", "海外剧", "泰国剧",
+        "大陆综艺", "港台综艺", "日韩综艺", "欧美综艺",
+        "欧美动漫", "港台动漫", "海外动漫",
+        "体育", "足球", "篮球", "网球", "斯诺克"
       ]
     }
   ],
