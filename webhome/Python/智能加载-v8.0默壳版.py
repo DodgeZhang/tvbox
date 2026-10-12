@@ -526,6 +526,48 @@ class Spider(BaseSpider):
     # ClassLoader 兜底用的锚点类：必须与壳代码在同一 dex / 类加载器。
     # 不能用 android.app.Application（由框架类加载器加载，找不到壳类）。
     RUNTIME_ANCHOR_CLASSES = ("com.github.catvod.Proxy",)
+    # v8.1：正式包经 R8 混淆后会改写 api.config.** 的类名与方法名，上面所有
+    # 具名后缀全部失配（这正是「未找到 VodConfig 类」的根因）。下面的常量
+    # 描述「结构指纹」——只依赖被 keep 的 bean.Site 类型名、平台类型
+    # java.util.List，以及成员字段/方法结构，与混淆无关。
+    RUNTIME_SITE_DESCRIPTOR = "Lcom/fongmi/android/tv/bean/Site;"
+    RUNTIME_LIST_DESCRIPTOR = "Ljava/util/List;"
+    RUNTIME_PARSE_DESCRIPTOR = "Lcom/fongmi/android/tv/bean/Parse;"
+    RUNTIME_LIST_TYPE_NAME = "java.util.List"
+    RUNTIME_SITE_TYPE_NAME = "com.fongmi.android.tv.bean.Site"
+    # bean.Config 同样被 keep，可作「切换首页」回退链的混淆无关锚点。
+    RUNTIME_CONFIG_TYPE_NAME = "com.fongmi.android.tv.bean.Config"
+    # v8.2：指纹由「方法签名」改为「实例字段类型」。实测正式包在同一 dex 内
+    # 经 R8 全程序优化（proguard-android-optimize.txt）后：VodConfig.get()
+    # 因只有 `return Loader.INSTANCE;` 而被内联并删除；public setHome(Site)
+    # 因只有 `setHome(config, site, true)` 而被内联并删除；VodConfig$Loader
+    # 被类合并进另一个顶层类（单例变成 `static volatile` 字段）。于是真实
+    # 容器类只剩「无参返回 List」一项方法特征，得分永远低于任何方法指纹
+    # 阈值——命中 30 个候选却全是 Site/Vod 之类的假阳性。
+    # 实例字段类型不会被内联消除，因此改用字段指纹：Site 类型字段是容器类
+    # 的决定性特征（实测 8372 个类中，同时含 Site+Parse+List 字段的仅 1 个）。
+    RUNTIME_SCAN_SITE_FIELD_SCORE = 6
+    RUNTIME_SCAN_PARSE_FIELD_SCORE = 3
+    RUNTIME_SCAN_LIST_FIELD_SCORE = 2
+    RUNTIME_SCAN_MIN_SCORE = 6
+    # Site+Parse+List 三种字段齐全的「完整指纹」得分，仅此类才允许在
+    # 「站点表为空」时用启发式挑 getSites（避免误采纳 bean.Vod 之类假阳性）。
+    RUNTIME_SCAN_FULL_FINGERPRINT = (
+        RUNTIME_SCAN_SITE_FIELD_SCORE
+        + RUNTIME_SCAN_PARSE_FIELD_SCORE
+        + RUNTIME_SCAN_LIST_FIELD_SCORE
+    )
+    RUNTIME_SCAN_MAX_CANDIDATES = 32
+    # DEX 头部长度：文件短于该值即可判定不是有效 dex，直接跳过。
+    RUNTIME_HEADER_SIZE = 112
+    # 句柄缓存结构版本：schema 4 起额外缓存「持有类字段名 + 关键成员名」，
+    # 使冷启动可以走「按混淆名直调」路径（反射路径在 R8 包里不可用）。
+    RUNTIME_HANDLES_SCHEMA = 4
+    # 运行态容器定位逻辑的构建标记：定位失败时随提示文本一起透出，用来一眼判定
+    # 设备上跑的到底是哪一版脚本（避免「改了没重新打包」被误判成修复失败）。
+    RUNTIME_LOCATE_BUILD = "vc4-namepath"
+    # 另一个线程正在扫描 dex 时的等待上限（秒）。
+    RUNTIME_RESOLVE_WAIT = 12.0
     ACTION_CLEAR_SITES = "local_source_clear_sites"
     ACTION_FULL_CLEAR = "local_source_full_clear"
     ACTION_UNLOAD_ALL_PERM = "local_source_unload_all_perm"
@@ -723,6 +765,17 @@ class Spider(BaseSpider):
         # 临时站点当前 home key（自己记录，不读 App 侧：重建回退首站会
         # 污染持久化 home，看门补注需要靠它恢复选中）。
         self._temp_home_key = ""
+        # v8.1：运行态站点表句柄。混淆包（R8）里类名/方法名不可按名定位，
+        # 首次解析（具名 -> 缓存类名 -> dex 结构指纹扫描）的结果缓存在这里，
+        # 并把混淆后的容器类名落盘复用。该锁只保护句柄缓存本身，绝不与
+        # self.lock 交叉持有，避免与注入路径形成死锁。
+        self._runtime_vc_lock = threading.RLock()
+        self._runtime_vc_cache = None
+        self._runtime_vc_resolving = False
+        self._runtime_vc_detail = ""
+        self._runtime_handles_path = os.path.join(
+            os.path.dirname(self.registry_path), "运行态站点表.json"
+        )
         # None=加载全部（兼容旧管线语义）；set(identity)=仅生成子集。
         self._load_filter = None
         # True=已执行过仅扫描，结果可浏览但尚未加载。
@@ -1041,6 +1094,13 @@ class Spider(BaseSpider):
                 self._restore_perm_injected_sites()
             except Exception as exc:
                 self._warn("永久注入站点恢复失败: {}".format(exc))
+        # v8.1：预先解析运行态站点表句柄。混淆包里需要扫描 dex 结构指纹
+        # 才能定位容器类，耗时较长；放到 init 之后的后台线程预热，用户
+        # 点「临时加载」时直接命中缓存，不在注入路径上同步等待。
+        try:
+            self._warm_runtime_vod_handles()
+        except Exception as exc:
+            self._log("DEBUG", "运行态站点表预热启动失败: {}".format(exc))
 
     def _empty_cache(self):
         return {
@@ -12343,17 +12403,10 @@ class Spider(BaseSpider):
                     expected_keys.add(key)
         if not expected_keys:
             return set()
-        try:
-            vod_config = self._runtime_vod_config()
-            if vod_config is None:
-                return set()
-            sites = vod_config.getSites()
-            actual = set()
-            for i in range(sites.size()):
-                actual.add(str(sites.get(i).getKey()))
-            return expected_keys - actual
-        except Exception:
+        actual = self._runtime_site_keys()
+        if actual is None:
             return set()
+        return expected_keys - actual
 
     def _unload_file_locked(self, source_id):
         source = self.cache.get("source_index", {}).get(source_id)
@@ -12454,16 +12507,34 @@ class Spider(BaseSpider):
 
     # ---- FloatSpider 风格：运行时反射注入/移除临时站点 ----
     def _runtime_vod_config(self):
-        """获取运行中的 VodConfig 实例。失败返回 None。"""
-        for suffix in self.RUNTIME_VOD_CONFIG_SUFFIXES:
-            cls = self._find_runtime_class((suffix,))
-            if cls is None:
-                continue
+        """获取运行中的站点表容器实例。失败返回 None。"""
+        handles = self._runtime_vod_handles()
+        if handles is None:
+            return None
+        try:
+            instance, _sites = handles["resolve"]()
+            return instance
+        except Exception:
+            return None
+
+    def _runtime_site_keys(self):
+        """运行态站点表当前所有站点 key；无法探测返回 None。"""
+        handles = self._runtime_vod_handles()
+        if handles is None:
+            return None
+        try:
+            _instance, sites = handles["resolve"]()
+        except Exception:
+            return None
+        if sites is None:
+            return None
+        keys = set()
+        for i in range(sites.size()):
             try:
-                return cls.get()
+                keys.add(str(sites.get(i).getKey()))
             except Exception:
                 continue
-        return None
+        return keys
 
     def _app_process_id(self):
         """当前 App 进程 PID，用于判定临时加载状态是否属于本进程会话。
@@ -12502,39 +12573,14 @@ class Spider(BaseSpider):
     def _find_runtime_class_via_loader(self, suffixes, bases, jclass):
         """jclass 全部失败时的兜底：拿到壳类加载器后 Class.forName。
 
-        优先用 Chaquopy 保存的 App 类加载器（本脚本正运行其中）；
-        再退到锚点壳类自身的类加载器。两者都与壳代码在同一 dex，
-        不受 JNI 默认类加载器差异影响。
+        类加载器集合由 _runtime_class_loaders 统一提供（Chaquopy App
+        加载器 / 锚点壳类加载器 / 线程上下文加载器），都与壳代码同源。
         """
-        loaders = []
-        try:
-            Python = jclass("com.chaquo.python.Python")
-            loader = Python.getInstance().getClassLoader()
-            if loader is not None:
-                loaders.append(loader)
-        except Exception:
-            pass
-        for anchor in self.RUNTIME_ANCHOR_CLASSES:
-            try:
-                anchor_cls = jclass(anchor)
-                loader = anchor_cls.getClassLoader()
-                if loader is not None and loader not in loaders:
-                    loaders.append(loader)
-            except Exception:
-                continue
-        try:
-            context_loader = (
-                jclass("java.lang.Thread").currentThread().getContextClassLoader()
-            )
-            if context_loader is not None and context_loader not in loaders:
-                loaders.append(context_loader)
-        except Exception:
-            pass
         try:
             Class = jclass("java.lang.Class")
         except Exception:
             return None
-        for loader in loaders:
+        for loader in self._runtime_class_loaders():
             for base in bases:
                 for suffix in suffixes:
                     full = "{}.{}".format(base, suffix)
@@ -12574,27 +12620,1519 @@ class Spider(BaseSpider):
             urllib.parse.quote(relative.lstrip("/"), safe="/%:@&=+$,~"),
         )
 
-    def _inject_site_into_app(self, source, set_home=True):
-        """通过 Java 反射将单个站点直接注入运行中的 VodConfig（FloatSpider 方案）。
+    # ---- v8.1：混淆无关的运行态站点表定位（结构探测 + dex 指纹扫描） ----
+    def _java_items(self, values):
+        """Java 数组/集合安全转 Python list；失败返回空列表。"""
+        if values is None:
+            return []
+        try:
+            return [values[i] for i in range(len(values))]
+        except Exception:
+            pass
+        try:
+            return list(iter(values))
+        except Exception:
+            return []
 
-        不写入任何配置文件；set_home=True 时注入成功后自动切换首页到该站。
-        返回 (ok, message)。
+    def _reflect_invoke(self, method, target, args=None):
+        """调用 java.lang.reflect.Method，兼容 varargs 的两种传参写法。"""
+        argv = list(args or [])
+        if argv:
+            try:
+                return method.invoke(target, argv)
+            except Exception:
+                return method.invoke(target, *argv)
+        try:
+            return method.invoke(target, [])
+        except Exception:
+            return method.invoke(target)
+
+    def _set_accessible(self, member):
+        """尽力放开成员访问限制（R8 可能收紧被混淆成员的可见性）。"""
+        try:
+            member.setAccessible(True)
+        except Exception:
+            pass
+        return member
+
+    def _runtime_class_loaders(self):
+        """壳代码可用的类加载器列表（含 Chaquopy App 加载器与锚点类加载器）。
+
+        必须与壳代码在同一 dex / 类加载器，否则 Class.forName 找不到壳类。
+        不能用 android.app.Application（由框架类加载器加载）。
         """
+        from java import jclass
+
+        loaders = []
+        try:
+            loader = jclass("com.chaquo.python.Python").getInstance().getClassLoader()
+            if loader is not None:
+                loaders.append(loader)
+        except Exception:
+            pass
+        for anchor in self.RUNTIME_ANCHOR_CLASSES:
+            try:
+                loader = jclass(anchor).getClassLoader()
+            except Exception:
+                continue
+            if loader is not None and not any(loader is item for item in loaders):
+                loaders.append(loader)
+        try:
+            loader = jclass("java.lang.Thread").currentThread().getContextClassLoader()
+            if loader is not None and not any(loader is item for item in loaders):
+                loaders.append(loader)
+        except Exception:
+            pass
+        return loaders
+
+    def _load_runtime_class_by_name(self, name):
+        """按（可能是混淆后短名）类名加载壳内类，返回可反射的 Class 实例。
+
+        必须优先用 `Class.forName` 拿「java.lang.Class 实例」：Chaquopy 的
+        `jclass("pd5")` 返回的是**类代理**——它只暴露该类自身的静态成员，
+        并不具备 `getName/getDeclaredMethods/getDeclaredFields/getSuperclass`
+        这些 java.lang.Class 的**实例**方法。返回代理会让结构探测第一步就抛
+        `type object 'pd5' has no attribute 'getName'`（这正是历轮失败根因）。
+        """
+        name = str(name or "").strip()
+        if not name:
+            return None
         try:
             from java import jclass
 
+            Class = jclass("java.lang.Class")
+        except Exception:
+            Class = None
+        if Class is not None:
+            for loader in self._runtime_class_loaders():
+                try:
+                    return Class.forName(name, True, loader)
+                except Exception:
+                    continue
+            try:
+                return Class.forName(name)
+            except Exception:
+                pass
+        # 退化：至少拿到类代理（可静态调用/实例化），但反射结构探测不可用。
+        try:
+            from java import jclass
+
+            return jclass(name)
+        except Exception:
+            return None
+
+    def _runtime_site_type_name(self):
+        """运行态 Site 类的真实类型名（bean.** 被 keep，跨混淆稳定）。"""
+        site_cls = self._runtime_site_cls()
+        if site_cls is not None:
+            try:
+                name = str(site_cls.getName())
+                if name:
+                    return name
+            except Exception:
+                pass
+        return self.RUNTIME_SITE_TYPE_NAME
+
+    def _generic_list_element_name(self, method):
+        """取方法泛型返回类型 List<X> 中的 X 类型名；取不到返回空串。
+
+        R8 可能剥离 Signature 属性，所以这里只是加分项而非判定依据。
+        """
+        try:
+            generic = method.getGenericReturnType()
+        except Exception:
+            return ""
+        try:
+            if "Parameterized" not in str(generic.getClass().getName()):
+                return ""
+            args = self._java_items(generic.getActualTypeArguments())
+            if len(args) != 1:
+                return ""
+            return str(args[0].getName())
+        except Exception:
+            return ""
+
+    def _choose_sites_getter(
+        self, instance, getters, site_type, sites_method="", zero_arg=None
+    ):
+        """在候选无参 List 方法里挑出真正返回站点表的那一个。
+
+        VodConfig 除 getSites() 外还有 getParses/getFlags/getAds/getRules/
+        getDoh 等同样「无参返回 List」的方法，必须区分。返回
+        (方法, 置信度)：
+          * 4：方法名等于 dex 字节码推断出的 getSites 名（最强判据，与站点表
+               是否为空无关——空表时唯一能确定 getSites 的手段），或表非空且
+               首元素类型为 Site——与配置是否已加载无关；
+          * 3：表为空但泛型签名为 List<Site>；
+          * 2：所有候选都不是 Site 表，但**恰有一个返回空表**、其余均有内容
+               ——只在站点表尚未加载时出现（真实包中 getParses 恒非空，
+               故唯一空表即 getSites）。调用方需另有字段指纹佐证才可采纳；
+          * 1：以上都取不到，只能按声明顺序兜底（需调用方另有佐证）。
+        同分保留最早出现的（真 VodConfig 中 getSites 最先声明）。
+        """
+        if sites_method:
+            # R8 会按名重排方法顺序，所以「声明顺序」不可信；这里用字节码
+            # 事实（setHome(Config,Site,boolean)/getSite(String) 调用谁）定位。
+            # 除「返回 List」的候选外，再按名搜一遍所有无参方法：R8 若收窄了
+            # getSites 的返回类型（如 ArrayList），仅按返回类型筛会漏掉它。
+            name = str(sites_method)
+            for getter in list(getters) + list(zero_arg or []):
+                try:
+                    if str(getter.getName()) == name:
+                        # R8 可能收紧可见性；不放开会在 invoke 时抛
+                        # IllegalAccessException（此前从未走到这一步）。
+                        return self._set_accessible(getter), 4
+                except Exception:
+                    continue
+        best = None
+        best_score = 0
+        empty_getters = []
+        filled = 0
+        for getter in getters:
+            try:
+                self._set_accessible(getter)
+                value = self._reflect_invoke(getter, instance)
+            except Exception:
+                continue
+            if value is None:
+                continue
+            try:
+                size = int(value.size())
+            except Exception:
+                continue
+            score = 1
+            if size > 0:
+                filled += 1
+                try:
+                    if str(value.get(0).getClass().getName()) == site_type:
+                        score = 4
+                except Exception:
+                    score = 1
+            else:
+                empty_getters.append(getter)
+                if self._generic_list_element_name(getter) == site_type:
+                    score = 3
+            if score > best_score:
+                best_score = score
+                best = getter
+        if best_score < 3 and len(empty_getters) == 1 and filled:
+            return empty_getters[0], 2
+        return best, best_score
+
+    def _make_runtime_handles(
+        self,
+        class_name,
+        singleton,
+        getter,
+        setter,
+        instance,
+        confidence=1,
+        holder="",
+        home_pair=None,
+        sites_method="",
+    ):
+        """把反射成员封装成统一句柄，供注入/移除/查询复用。
+
+        resolve() 每次重新取单例与站点表：VodConfig.load 会重建 sites，
+        缓存的对象必须在使用时刷新，否则会往已废弃的旧表里写。
+        「切换首页」按三级回退：
+          * setter：public setHome(Site)（未混淆壳）；
+          * home_pair：(getConfig, setHome(Config,Site,boolean))——R8 把
+            只有一行委托的 setHome(Site) 内联删除后，被 initSite 调用的
+            三参版仍存活，用它等价复原（save=False，不写配置文件）；
+          * 都为 None：只注入站点表，降级为注入后触发刷新。
+        """
+
+        def resolve():
+            if hasattr(singleton, "invoke"):
+                live = self._reflect_invoke(singleton, None)
+            else:
+                live = singleton.get(None)
+            if live is None:
+                live = instance
+            if live is None:
+                raise ValueError("站点表容器实例不可用")
+            sites = self._reflect_invoke(getter, live)
+            if sites is None:
+                raise ValueError("站点表不可用")
+            return live, sites
+
+        set_home = None
+        if setter is not None:
+
+            def set_home(live, site):
+                return self._reflect_invoke(setter, live, [site])
+
+        elif home_pair is not None:
+            # R8 内联删除 setHome(Site)，但 setHome(Config, Site, boolean)
+            # 因被 initSite 调用而存活。传 save=False：只改内存 home 与选中态
+            # 并发 RefreshEvent.home()，不写配置文件——避免把临时站的 key
+            # 持久化（重建后 App 找不到它，必然回退首站并污染持久值）。
+            config_getter, triple_setter = home_pair
+
+            def set_home(live, site):
+                self._set_accessible(config_getter)
+                self._set_accessible(triple_setter)
+                config = self._reflect_invoke(config_getter, live)
+                if config is None:
+                    raise ValueError("Config 实例不可用")
+                return self._reflect_invoke(
+                    triple_setter, live, [config, site, False]
+                )
+
+        return {
+            "class": class_name,
+            "holder": str(holder or ""),
+            "resolve": resolve,
+            "set_home": set_home,
+            "confidence": int(confidence),
+            # 供落盘缓存复用：下次启动不必重新扫 dex 即可定位 getSites。
+            "sites_method": str(sites_method or ""),
+        }
+
+    def _load_holder_field(self, holder_name, field_name):
+        """按「混淆后的类名 + 字段名」直接取容器单例（绕过 java.lang.Class 反射）。
+
+        Chaquopy 里 `jclass("x")` 与 `Class.forName("x")` 返回的是**同一个类
+        代理**（Python type 对象）：它只暴露该类自身的 public 静态成员，没有
+        `java.lang.Class` 的实例方法（getName/getDeclaredMethods/getMethods/
+        getDeclaredFields/getSuperclass 全部不存在）。所以任何形式的 Java 反射
+        结构探测在全程序优化（R8）包里都注定失败——这正是历轮「未找到
+        VodConfig 类」的最终根因。
+
+        可行的替代路径只有一条：类代理的 **public 静态字段按名可直接读取**，
+        而字段值是真正的 Java 对象实例（不是类代理），实例方法又能按混淆后的
+        名字正常调用（与 `_legacy_vod_handles` 里 `instance.getSites()` 同理）。
+        因此用 dex 解析出的「持有类 + 静态字段名」取值，再按 dex 解析出的
+        「getSites 方法名」直调即可。
+
+        返回 (实例, 失败原因)。
+        """
+        holder_name = str(holder_name or "").strip()
+        field_name = str(field_name or "").strip()
+        if not holder_name or not field_name:
+            return None, "缺少持有类或字段名"
+        try:
+            from java import jclass
+
+            holder = jclass(holder_name)
+        except Exception as exc:
+            return None, "持有类不可加载({})".format(exc)
+        try:
+            instance = getattr(holder, field_name)
+        except AttributeError:
+            return None, "持有类无 public 静态字段 {}".format(field_name)
+        except Exception as exc:
+            return None, "读取字段 {} 失败({})".format(field_name, exc)
+        if instance is None:
+            return None, "单例字段 {} 为空".format(field_name)
+        return instance, ""
+
+    def _make_name_handles(
+        self,
+        class_name,
+        holder,
+        field,
+        instance,
+        sites_method,
+        set_site="",
+        set_triple="",
+        config_getter="",
+        confidence=4,
+        members=None,
+    ):
+        """用「dex 解析出的混淆名」构造句柄，全程不触碰 Java 反射。
+
+        resolve() 每次重新读单例字段并重新调用 getSites：VodConfig.load 会
+        重建 sites 列表（clear() 把各字段置 null），缓存旧表会往废弃对象里写。
+        「切换首页」按三级回退：单参 setHome(Site)（可能被内联删除）-> 三参
+        setHome(Config,Site,boolean)（save=False，不写配置文件，避免把临时站
+        的 key 持久化）-> 都没有则只注入站点表并触发刷新。
+        """
+
+        def resolve():
+            live, _err = self._load_holder_field(holder, field)
+            if live is None:
+                # 字段被重新赋值且暂时读不到时，退回捕获时的实例。
+                live = instance
+            if live is None:
+                raise ValueError("站点表容器实例不可用")
+            try:
+                getter = getattr(live, sites_method)
+            except Exception:
+                raise ValueError("站点表读取方法不可用: {}".format(sites_method))
+            sites = getter()
+            if sites is None:
+                raise ValueError("站点表不可用")
+            return live, sites
+
+        set_home = None
+        if set_site:
+
+            def set_home(live, site):
+                return getattr(live, set_site)(site)
+
+        elif set_triple and config_getter:
+
+            def set_home(live, site):
+                config = getattr(live, config_getter)()
+                if config is None:
+                    raise ValueError("Config 实例不可用")
+                return getattr(live, set_triple)(config, site, False)
+
+        return {
+            "class": class_name,
+            "holder": str(holder or ""),
+            "holder_field": str(field or ""),
+            "members": dict(members or {}),
+            "resolve": resolve,
+            "set_home": set_home,
+            "confidence": int(confidence),
+            "sites_method": str(sites_method or ""),
+        }
+
+    def _probe_container_by_names(self, class_name, holder_entries, members, diagnose=None):
+        """绕过反射的定位路径：按 dex 给出的混淆名取单例并直调 getSites。
+
+        这是 R8 全程序优化包里的主路径（反射路径见 _probe_vod_config_class，
+        仅对未混淆/轻度混淆壳生效）。仅在真正拿到可调用的站点表后才返回句柄，
+        因此 universe 之外的候选（bean.Vod 之类假阳性）会因字段读不到或方法名
+        不存在而被逐个拒绝。
+        """
+        diagnose = [] if diagnose is None else diagnose
+        members = members or {}
+        sites_method = str(members.get("sites", "") or "").strip()
+        if not sites_method:
+            diagnose.append("dex 未能解析出 getSites 方法名")
+            return None
+        for entry in list(holder_entries or []):
+            if not isinstance(entry, dict):
+                continue
+            holder = str(entry.get("class", "") or "").strip()
+            field = str(entry.get("field", "") or "").strip()
+            instance, err = self._load_holder_field(holder, field)
+            if instance is None:
+                diagnose.append(
+                    "{}#{}: {}".format(holder or "?", field or "?", err)
+                )
+                continue
+            try:
+                value = getattr(instance, sites_method)()
+            except Exception as exc:
+                diagnose.append(
+                    "{}#{}: 调用 {}() 失败({})".format(
+                        holder, field, sites_method, exc
+                    )
+                )
+                continue
+            if value is None:
+                diagnose.append(
+                    "{}#{}: {}() 返回空".format(holder, field, sites_method)
+                )
+                continue
+            return self._make_name_handles(
+                class_name,
+                holder,
+                field,
+                instance,
+                sites_method,
+                str(members.get("set_site", "") or ""),
+                str(members.get("set_triple", "") or ""),
+                str(members.get("config", "") or ""),
+                4,
+                members,
+            )
+        return None
+
+    def _probe_vod_config_class(
+        self, cls, site_type="", holder_name="", diagnose=None, dex_score=0,
+        sites_method="", class_name=""
+    ):
+        """按结构（而非名字）判定 cls 是否为运行态站点表容器。
+
+        R8 混淆后类名与方法名全不可依赖，这里只依赖与混淆无关的事实：
+          * `com.fongmi.android.tv.bean.Site` 被 keep，类型名稳定；
+          * `java.util.List` 是平台类型名，稳定。
+        采纳条件（逐项放宽以适配 R8 全程序优化后的真实包）：
+          * 至少一个「无参返回 List」的方法，其中返回表元素为 Site 的那个
+            才是 `getSites()`（真实包中它读的是活体字段，可直接写入）；
+          * 单例来源按优先级：本类静态无参返回自身的方法 -> 本类静态同类型
+            字段 -> 内部类静态同类型字段 -> 外部持有类的静态同类型字段
+            （R8 类合并后 `VodConfig$Loader` 会变成独立顶层类）；
+          * 「单参为 Site」的方法（`setHome(Site)`）允许缺失——被内联删除时
+            退化为「注入站点表后触发刷新」；若同时存在「无参返回 Config」
+            与「(Config, Site, boolean)」两方法，则用三参版等价复原切换首页
+            （save=False，不写配置文件）。
+        不再要求成员是 public：R8 的 `-allowaccessmodification` 会放宽或收紧
+        可见性，可见性判定交给 `_set_accessible` 兜底。
+        diagnose 为可选列表，失败时写入拒绝原因，便于定位。
+        """
+        diagnose = [] if diagnose is None else diagnose
+        if cls is None:
+            diagnose.append("类对象为空")
+            return None
+        site_type = str(site_type or self.RUNTIME_SITE_TYPE_NAME)
+        # 类名以 dex 候选给出的名字为准（确定、与 Chaquopy 代理形态无关）；
+        # 只有调用方没给时才退回反射，且不依赖 java.lang.Class 实例方法一定可用。
+        class_name = str(class_name or "").strip()
+        if not class_name:
+            try:
+                class_name = str(cls.getName())
+            except Exception:
+                class_name = ""
+        if not class_name:
+            try:
+                class_name = str(getattr(cls, "__name__") or "")
+            except Exception:
+                class_name = ""
+        if not class_name:
+            diagnose.append(
+                "类名读取失败: 既未由 dex 候选给出，也无法从类对象取得"
+            )
+            return None
+        try:
+            from java import jclass
+
+            Modifier = jclass("java.lang.reflect.Modifier")
+        except Exception:
+            Modifier = None
+
+        def is_static(member):
+            if Modifier is None:
+                return False
+            try:
+                return bool(Modifier.isStatic(member.getModifiers()))
+            except Exception:
+                return False
+
+        def reject(reason):
+            if reason:
+                diagnose.append(reason)
+            return None
+
+        def safe_call(target, name):
+            try:
+                return getattr(target, name)()
+            except Exception:
+                return None
+
+        def static_self_fields(owner):
+            """owner 及其父类中「静态且类型为本容器类」的字段。
+
+            R8 常把单例放在这类字段；类合并或继承层级变化时字段可能上移到
+            父类，因此沿继承链向上找，避免漏判。
+            """
+            found = []
+            hops = 0
+            while owner is not None and hops < 8:
+                hops += 1
+                for field in self._java_items(safe_call(owner, "getDeclaredFields")):
+                    try:
+                        if is_static(field) and str(field.getType().getName()) == class_name:
+                            found.append(field)
+                    except Exception:
+                        continue
+                try:
+                    owner = owner.getSuperclass()
+                except Exception:
+                    owner = None
+            return found
+
+        # Chaquopy 的 jclass()/Class.forName 返回的都是「类代理」（Python type
+        # 对象），它没有 java.lang.Class 的实例方法；这里先探明形态，失败时
+        # 直接把原因写进诊断，下一次报错即可自证而无需再逐轮排查。
+        try:
+            proxy_form = not hasattr(cls, "getDeclaredMethods")
+        except Exception:
+            # hasattr 只会吞 AttributeError；Chaquopy 若抛出 Java 异常则按代理处理。
+            proxy_form = True
+        if proxy_form:
+            diagnose.append(
+                "类对象为 Chaquopy 类代理(无 getDeclaredMethods/getMethods)，"
+                "反射结构探测不可用"
+            )
+
+        merged = self._java_items(safe_call(cls, "getDeclaredMethods"))
+        for method in self._java_items(safe_call(cls, "getMethods")):
+            if not any(method == item for item in merged):
+                merged.append(method)
+        # 成员可能被 R8 上移到父类（如 BaseConfig），沿继承链补齐后再判定。
+        try:
+            parent = cls.getSuperclass()
+        except Exception:
+            parent = None
+        hops = 0
+        while parent is not None and hops < 8:
+            hops += 1
+            for method in self._java_items(safe_call(parent, "getDeclaredMethods")):
+                if not any(method == item for item in merged):
+                    merged.append(method)
+            try:
+                parent = parent.getSuperclass()
+            except Exception:
+                parent = None
+
+        getters = []
+        zero_arg = []
+        setters = []
+        config_getters = []
+        triple_setters = []
+        static_getters = []
+        for method in merged:
+            try:
+                params = self._java_items(method.getParameterTypes())
+                if is_static(method):
+                    if not params and str(method.getReturnType().getName()) == class_name:
+                        static_getters.append(method)
+                    continue
+                if not params:
+                    zero_arg.append(method)
+                    ret = str(method.getReturnType().getName())
+                    if ret == self.RUNTIME_LIST_TYPE_NAME:
+                        getters.append(method)
+                    elif ret == self.RUNTIME_CONFIG_TYPE_NAME:
+                        config_getters.append(method)
+                elif len(params) == 1 and str(params[0].getName()) == site_type:
+                    setters.append(method)
+                elif (
+                    len(params) == 3
+                    and str(params[0].getName()) == self.RUNTIME_CONFIG_TYPE_NAME
+                    and str(params[1].getName()) == site_type
+                    and str(params[2].getName()) == "boolean"
+                ):
+                    # setHome(Config, Site, boolean)：R8 内联删除单参
+                    # setHome(Site) 后，被 initSite 调用的三参版仍存活。
+                    triple_setters.append(method)
+            except Exception:
+                continue
+
+        def has_named(methods, name):
+            for method in methods:
+                try:
+                    if str(method.getName()) == str(name):
+                        return True
+                except Exception:
+                    continue
+            return False
+
+        # dex 已用字节码确认 getSites 返回 List；若反射侧看不到该返回类型
+        # （R8 收窄签名）导致 getters 为空，只要按名仍能命中就继续。
+        if not getters and not (sites_method and has_named(zero_arg, sites_method)):
+            if not merged:
+                return reject(
+                    "反射枚举到 0 个方法（类对象是 Chaquopy 类代理，"
+                    "需走「持有类+字段名」直调路径）"
+                )
+            return reject(
+                "无 0 参返回 List 的方法（声明+继承共 {} 个方法）".format(len(merged))
+            )
+
+        stage = "本类静态方法/字段"
+        singletons = list(static_getters)
+        if not singletons:
+            singletons = static_self_fields(cls)
+        if not singletons:
+            stage = "内部类静态字段"
+            # R8 可能把单例挪进内部类（未混淆壳的 VodConfig$Loader 即如此）。
+            for inner in self._java_items(safe_call(cls, "getDeclaredClasses")):
+                singletons = static_self_fields(inner)
+                if singletons:
+                    break
+        if not singletons and holder_name:
+            stage = "外部持有类静态字段"
+            # R8 类程序合并后 Loader 会成为独立顶层类，只能靠 dex 扫描给出的类名。
+            holder = self._load_runtime_class_by_name(holder_name)
+            if holder is not None:
+                singletons = static_self_fields(holder)
+        if not singletons:
+            return reject(
+                "无静态单例来源（本类/内部类/持有类均未命中；{} 个 List 候选）".format(
+                    len(getters)
+                )
+            )
+
+        # 「切换首页」回退链：单参 setHome(Site) 优先；缺失时用
+        # (getConfig, setHome(Config,Site,boolean)) 等价复原。
+        home_pair = None
+        if config_getters and triple_setters:
+            home_pair = (config_getters[0], triple_setters[0])
+
+        for singleton in singletons:
+            try:
+                self._set_accessible(singleton)
+                if hasattr(singleton, "invoke"):
+                    instance = self._reflect_invoke(singleton, None)
+                else:
+                    instance = singleton.get(None)
+            except Exception as exc:
+                diagnose.append("取单例失败: {}".format(exc))
+                continue
+            if instance is None:
+                diagnose.append("单例为空")
+                continue
+            getter, confidence = self._choose_sites_getter(
+                instance, getters, site_type, sites_method, zero_arg
+            )
+            if getter is None:
+                diagnose.append(
+                    "{} 个 List 候选均不可调用（单例来自{}）".format(
+                        len(getters), stage
+                    )
+                )
+                continue
+            if confidence < 3 and len(getters) > 1:
+                # 置信度 2（唯一空表）仅在候选本身带完整字段指纹时才可采纳，
+                # 否则可能是 bean.Vod 这类只有 Site+List 字段的假阳性。
+                if not (
+                    confidence == 2
+                    and dex_score >= self.RUNTIME_SCAN_FULL_FINGERPRINT
+                ):
+                    diagnose.append(
+                        "站点表为空且 {} 个 List 候选中无法唯一确定 getSites"
+                        "（单例来自{}，候选指纹分{}，dex 方法名{}）".format(
+                            len(getters), stage, dex_score,
+                            sites_method or "未解析",
+                        )
+                    )
+                    continue
+            handles = self._make_runtime_handles(
+                class_name,
+                singleton,
+                getter,
+                setters[0] if setters else None,
+                instance,
+                confidence,
+                holder_name,
+                home_pair,
+                sites_method,
+            )
+            if handles is not None:
+                return handles
+        if not diagnose:
+            diagnose.append("未找到可用的单例/站点表组合（{}）".format(stage))
+        return None
+
+    def _legacy_vod_handles(self):
+        """未混淆壳的具名快路径：api.config.VodConfig#get / getSites / setHome。"""
+        cls = self._find_runtime_class(self.RUNTIME_VOD_CONFIG_SUFFIXES)
+        if cls is None:
+            return None
+        getter = getattr(cls, "get", None)
+        if getter is None:
+            return None
+        try:
+            instance = getter()
+        except Exception:
+            return None
+        if instance is None:
+            return None
+        try:
+            sites = instance.getSites()
+        except Exception:
+            return None
+        if sites is None:
+            return None
+        class_name = ""
+        try:
+            class_name = str(cls.getName())
+        except Exception:
+            pass
+
+        def resolve():
+            live = getter()
+            if live is None:
+                raise ValueError("站点表容器实例不可用")
+            current = live.getSites()
+            if current is None:
+                raise ValueError("站点表不可用")
+            return live, current
+
+        def set_home(live, site):
+            return live.setHome(site)
+
+        if not hasattr(instance, "setHome"):
+            return None
+        return {"class": class_name, "resolve": resolve, "set_home": set_home}
+
+    def _read_runtime_handles_cache(self):
+        """读取落盘的混淆后容器类名缓存；无缓存或版本不符返回空 dict。"""
+        try:
+            if not os.path.isfile(self._runtime_handles_path):
+                return {}
+            with open(self._runtime_handles_path, "r", encoding="utf-8") as fp:
+                data = json.load(fp)
+        except Exception:
+            return {}
+        if not isinstance(data, dict):
+            return {}
+        try:
+            if int(data.get("schema", 0) or 0) != self.RUNTIME_HANDLES_SCHEMA:
+                return {}
+        except Exception:
+            return {}
+        name = str(data.get("class", "")).strip()
+        if not name:
+            return {}
+        members = data.get("members")
+        if not isinstance(members, dict):
+            members = {}
+        return {
+            "class": name,
+            "holder": str(data.get("holder", "")).strip(),
+            "holder_field": str(data.get("holder_field", "")).strip(),
+            "sites_method": str(data.get("sites_method", "")).strip(),
+            "members": members,
+        }
+
+    def _write_runtime_handles_cache(
+        self, class_name, holder="", sites_method="", holder_field="", members=None
+    ):
+        """写入容器类名、持有类、持有字段名、getSites 方法名缓存（原子替换）。
+
+        这些名字都是 dex 字节码解析出来的混淆后名字，落盘后下次冷启动即可直接
+        「按名直调」定位容器，不必再全量扫描 dex（扫描只在指纹变化时重跑）。
+        """
+        name = str(class_name or "").strip()
+        if not name:
+            return
+        try:
+            self._atomic_write_plain_json(
+                self._runtime_handles_path,
+                {
+                    "schema": self.RUNTIME_HANDLES_SCHEMA,
+                    "class": name,
+                    "holder": str(holder or "").strip(),
+                    "holder_field": str(holder_field or "").strip(),
+                    "sites_method": str(sites_method or "").strip(),
+                    "members": dict(members or {}),
+                },
+            )
+        except Exception:
+            pass
+
+    def _app_code_paths(self):
+        """App 自身代码所在文件（apk/dex/jar），供 dex 结构指纹扫描使用。"""
+        paths = []
+        try:
+            from java import jclass
+
+            application = jclass("com.chaquo.python.Python").getInstance().getApplication()
+            for name in ("getPackageCodePath", "getPackageResourcePath"):
+                try:
+                    value = str(getattr(application, name)())
+                except Exception:
+                    continue
+                if value and value not in paths and os.path.isfile(value):
+                    paths.append(value)
+        except Exception:
+            pass
+        try:
+            from java import jclass
+
+            value = str(jclass("java.lang.System").getProperty("java.class.path") or "")
+        except Exception:
+            value = ""
+        for part in value.split(os.pathsep):
+            part = part.strip()
+            if (
+                part
+                and part not in paths
+                and os.path.isfile(part)
+                and part.lower().endswith((".apk", ".dex", ".jar"))
+            ):
+                paths.append(part)
+        if paths:
+            return paths
+        # 兜底：从 /proc/self/maps 里捞已映射的 base.apk。
+        try:
+            with open("/proc/self/maps", "r") as fp:
+                for line in fp:
+                    start = line.find("/")
+                    if start < 0:
+                        continue
+                    end = line.find(".apk", start)
+                    if end < 0:
+                        continue
+                    candidate = line[start : end + 4]
+                    if candidate not in paths and os.path.isfile(candidate):
+                        paths.append(candidate)
+        except Exception:
+            pass
+        return paths
+
+    def _load_dex_blobs(self, path):
+        """读取 apk/jar 内的 classes*.dex（或裸 dex）原始字节。"""
+        blobs = []
+        if str(path).lower().endswith(".dex"):
+            try:
+                with open(path, "rb") as fp:
+                    blobs.append(fp.read())
+            except Exception:
+                pass
+            return blobs
+        try:
+            with zipfile.ZipFile(path) as archive:
+                names = sorted(
+                    name
+                    for name in archive.namelist()
+                    if name.startswith("classes")
+                    and name.endswith(".dex")
+                    and (name == "classes.dex" or name[7:-4].isdigit())
+                )
+                for name in names:
+                    try:
+                        with archive.open(name) as fp:
+                            blobs.append(fp.read())
+                    except Exception:
+                        continue
+        except Exception:
+            pass
+        return blobs
+
+    def _dex_scan_site_container(
+        self, blob, site_desc, list_desc, parse_desc, min_score
+    ):
+        """在单个 dex 中按「实例字段类型」指纹查找「站点表容器类」。
+
+        只读 string/type/field 三张表，不解析 class_data，耗时与类型/字段数
+        线性相关（万级类型约 0.05 秒）。所有判定都基于类型描述符，与 R8
+        混淆后的类名/方法名无关。
+
+        指纹（与真实 VodConfig 的成员一一对应，且不会被 R8 内联消除）：
+          * 含 `Lcom/fongmi/android/tv/bean/Site;` 字段 -> `home`
+          * 含 `Lcom/fongmi/android/tv/bean/Parse;` 字段 -> `parse`
+          * 含 `Ljava/util/List;` 字段                   -> `sites/rules/doh/parses`
+        字段表每一项的 class_idx 就是字段的声明类，因此无需 class_data 即可归属。
+
+        同时给出每个候选的「单例持有类」：R8 类合并后 `VodConfig$Loader` 会成为
+        独立顶层类，其中只有一个 `static volatile VodConfig` 字段，该字段是取到
+        运行实例的唯一入口（`get()` 已被内联删除）。
+
+        返回按得分降序的 [{"class","score","holders"}]，无命中返回 []。
+        """
+        if not blob or len(blob) < self.RUNTIME_HEADER_SIZE or blob[:4] != b"dex\n":
+            return []
+        # Site 类型字段是决定性特征：dex 里连这个描述符都没有就不可能命中。
+        if site_desc.encode("utf-8") not in blob:
+            return []
+
+        def u32(offset):
+            return int.from_bytes(blob[offset : offset + 4], "little")
+
+        limit = len(blob)
+        string_count = u32(0x38)
+        string_off = u32(0x3C)
+        type_count = u32(0x40)
+        type_off = u32(0x44)
+        field_count = u32(0x50)
+        field_off = u32(0x54)
+        if not (string_count and type_count and field_count):
+            return []
+        if string_off + string_count * 4 > limit:
+            return []
+        if type_off + type_count * 4 > limit:
+            return []
+        if field_off + field_count * 8 > limit:
+            return []
+        proto_count = u32(0x48)
+        proto_off = u32(0x4C)
+        method_count = u32(0x58)
+        method_off = u32(0x5C)
+        class_count = u32(0x60)
+        class_off = u32(0x64)
+        config_desc = "L" + self.RUNTIME_CONFIG_TYPE_NAME.replace(".", "/") + ";"
+
+        def read_string(index):
+            if index < 0 or index >= string_count:
+                return ""
+            data_off = u32(string_off + index * 4)
+            if data_off <= 0 or data_off >= limit:
+                return ""
+            pos = data_off
+            # 跳过 string_data_item 的 uleb128 utf16 长度。
+            for _ in range(5):
+                if pos >= limit:
+                    return ""
+                byte = blob[pos]
+                pos += 1
+                if byte < 0x80:
+                    break
+            end = blob.find(b"\x00", pos)
+            if end < 0:
+                return ""
+            return blob[pos:end].decode("utf-8", errors="replace")
+
+        def type_descriptor(index):
+            if index < 0 or index >= type_count:
+                return ""
+            return read_string(u32(type_off + index * 4))
+
+        def uleb(pos):
+            value = 0
+            shift = 0
+            while shift <= 35:
+                if pos >= limit:
+                    return 0, pos
+                byte = blob[pos]
+                pos += 1
+                value |= (byte & 0x7F) << shift
+                if byte < 0x80:
+                    break
+                shift += 7
+            return value, pos
+
+        def proto_types(index):
+            """proto_idx -> (返回类型描述符, [参数类型描述符...])。"""
+            if index < 0 or index >= proto_count:
+                return "", []
+            base = proto_off + index * 12
+            if base + 12 > limit:
+                return "", []
+            ret = type_descriptor(u32(base + 4))
+            params_off = u32(base + 8)
+            params = []
+            if params_off:
+                total = u32(params_off)
+                # type_list = uint32 size + uint16[] type_idx（每项 2 字节）。
+                # 早期版本误按 uint32 读取，1 参方法靠尾部补零侥幸命中，
+                # 多参方法（setHome(Config,Site,boolean)）必然读成垃圾值。
+                if total > 64 or params_off + 4 + total * 2 > limit:
+                    return ret, []
+                for k in range(total):
+                    start = params_off + 4 + k * 2
+                    params.append(
+                        type_descriptor(
+                            int.from_bytes(blob[start : start + 2], "little")
+                        )
+                    )
+            return ret, params
+
+        def method_item(index):
+            """method_idx -> (声明类 type_idx, proto_idx, 方法名)。"""
+            if index < 0 or index >= method_count:
+                return -1, -1, ""
+            base = method_off + index * 8
+            if base + 8 > limit:
+                return -1, -1, ""
+            return (
+                int.from_bytes(blob[base : base + 2], "little"),
+                int.from_bytes(blob[base + 2 : base + 4], "little"),
+                read_string(u32(base + 4)),
+            )
+
+        def class_data_offset(cls_idx):
+            """class_idx -> class_data_off（class_defs 按 class_idx 升序）。"""
+            for c in range(class_count):
+                base = class_off + c * 32
+                if base + 32 > limit:
+                    break
+                if int.from_bytes(blob[base : base + 2], "little") == cls_idx:
+                    offset = u32(base + 24)
+                    return offset if 0 < offset < limit else 0
+            return 0
+
+        def resolve_class_members(cls_idx):
+            """从字节码解析容器类的关键成员名（按 proto 分类，与名字无关）。
+
+            这是「绕过 Java 反射」方案的数据来源：R8 全程序优化包里
+            Chaquopy 拿不到 java.lang.Class 的实例方法（getName/
+            getDeclaredMethods 全不存在），只能用混淆后的名字直接取值/调用，
+            因此必须先把名字从字节码里解析出来。
+
+            返回 dict：
+              * sites     : 0 参返回 List 的方法名（getSites）。R8 会按名重排
+                            方法顺序、内联删除只有一行委托的 setHome(Site)，
+                            但**签名唯一**的 setHome(Config,Site,boolean) 与
+                            getSite(String)->Site 必然调用 getSites()，对这类
+                            调用者做 invoke 目标扫描即可反推出名字（站点表为空
+                            时这是唯一能确定 getSites 的手段）；
+              * config    : 0 参返回 Config 的方法名（getConfig）；
+              * set_site  : 单参 Site 的方法名（setHome(Site)，可能被内联删除）；
+              * set_triple: (Config, Site, boolean) 的方法名（setHome 三参版）；
+              * static_self: 静态 0 参返回本容器类的方法名（get()，可能被删除）。
+            """
+            members = {
+                "sites": "",
+                "config": "",
+                "set_site": "",
+                "set_triple": "",
+                "static_self": "",
+            }
+            data_off = class_data_offset(cls_idx)
+            if not data_off:
+                return members
+            pos = data_off
+            static_fields, pos = uleb(pos)
+            instance_fields, pos = uleb(pos)
+            direct_methods, pos = uleb(pos)
+            virtual_methods, pos = uleb(pos)
+            for _ in range(static_fields + instance_fields):
+                _d, pos = uleb(pos)
+                _a, pos = uleb(pos)
+            owner_desc = type_descriptor(cls_idx)
+            targets = []
+            # direct_methods 与 virtual_methods 各自从 0 起算 method_idx 增量。
+            for count in (direct_methods, virtual_methods):
+                diff = 0
+                for _ in range(count):
+                    delta, pos = uleb(pos)
+                    access, pos = uleb(pos)
+                    code_off, pos = uleb(pos)
+                    diff += delta
+                    if diff >= method_count:
+                        continue
+                    owner, proto_idx, name = method_item(diff)
+                    if owner != cls_idx or not name:
+                        continue
+                    ret, params = proto_types(proto_idx)
+                    # 无字节码的方法（abstract/native）不参与成员命名。
+                    if not code_off:
+                        continue
+                    if not params and ret == config_desc:
+                        if not members["config"]:
+                            members["config"] = name
+                    elif not params and ret == owner_desc and (access & 0x8):
+                        if not members["static_self"]:
+                            members["static_self"] = name
+                    elif len(params) == 1 and params[0] == site_desc:
+                        if not members["set_site"]:
+                            members["set_site"] = name
+                    elif (
+                        len(params) == 3
+                        and params[0] == config_desc
+                        and params[1] == site_desc
+                        and params[2] == "Z"
+                    ):
+                        if not members["set_triple"]:
+                            members["set_triple"] = name
+                    authoritative = (
+                        len(params) == 3
+                        and params[0] == config_desc
+                        and params[1] == site_desc
+                        and params[2] == "Z"
+                    ) or (len(params) == 1 and params[0] == site_desc) or (
+                        len(params) == 1
+                        and params[0] == "Ljava/lang/String;"
+                        and ret == site_desc
+                    )
+                    if not authoritative:
+                        continue
+                    if code_off + 16 > limit:
+                        continue
+                    insns_size = u32(code_off + 12)
+                    if insns_size > (1 << 20):
+                        continue
+                    base = code_off + 16
+                    if base + insns_size * 2 > limit:
+                        continue
+                    i = 0
+                    while i < insns_size:
+                        opcode = blob[base + i * 2]
+                        if 0x6E <= opcode <= 0x72 or 0x74 <= opcode <= 0x78:
+                            idx = int.from_bytes(
+                                blob[base + i * 2 + 2 : base + i * 2 + 4],
+                                "little",
+                            )
+                            i += 3
+                        else:
+                            i += 1
+                            continue
+                        if idx >= method_count:
+                            continue
+                        target_owner, target_proto, target_name = method_item(idx)
+                        if target_owner != cls_idx or not target_name:
+                            continue
+                        target_ret, target_params = proto_types(target_proto)
+                        if target_ret == list_desc and not target_params:
+                            if target_name not in targets:
+                                targets.append(target_name)
+            members["sites"] = targets[0] if targets else ""
+            return members
+
+        site_idx = -1
+        list_idx = -1
+        parse_idx = -1
+        for i in range(type_count):
+            descriptor = type_descriptor(i)
+            if descriptor == site_desc:
+                site_idx = i
+            elif descriptor == list_desc:
+                list_idx = i
+            elif descriptor == parse_desc:
+                parse_idx = i
+            if site_idx >= 0 and list_idx >= 0 and parse_idx >= 0:
+                break
+        if site_idx < 0:
+            return []
+
+        def field_pair(index):
+            base = field_off + index * 8
+            return (
+                int.from_bytes(blob[base : base + 2], "little"),
+                int.from_bytes(blob[base + 2 : base + 4], "little"),
+            )
+
+        site_cls = set()
+        list_cls = set()
+        parse_cls = set()
+        for i in range(field_count):
+            cls_idx, type_idx = field_pair(i)
+            if cls_idx >= type_count:
+                continue
+            if type_idx == site_idx:
+                site_cls.add(cls_idx)
+            elif list_idx >= 0 and type_idx == list_idx:
+                list_cls.add(cls_idx)
+            elif parse_idx >= 0 and type_idx == parse_idx:
+                parse_cls.add(cls_idx)
+        if not site_cls:
+            return []
+
+        # 候选的单例持有类：某个类把「候选类型」当作字段类型声明，即持有其单例。
+        # 同时记下该字段的名字——R8 全程序优化后只能「持有类 + 字段名」直接取值
+        # （Chaquopy 类代理可读 public 静态字段），因此字段名必须从 field_ids
+        # 里解析出来，运行时无从猜测。
+        holders = {}
+        holder_fields = {}
+        for i in range(field_count):
+            cls_idx, type_idx = field_pair(i)
+            if cls_idx == type_idx or type_idx not in site_cls:
+                continue
+            bucket = holders.get(type_idx)
+            if bucket is None:
+                bucket = []
+                holders[type_idx] = bucket
+            if cls_idx not in bucket:
+                bucket.append(cls_idx)
+            field_name = read_string(u32(field_off + i * 8 + 4))
+            if field_name:
+                pairs = holder_fields.get(type_idx)
+                if pairs is None:
+                    pairs = []
+                    holder_fields[type_idx] = pairs
+                if (cls_idx, field_name) not in pairs:
+                    pairs.append((cls_idx, field_name))
+
+        scored = []
+        for cls_idx in site_cls:
+            score = self.RUNTIME_SCAN_SITE_FIELD_SCORE
+            if cls_idx in parse_cls:
+                score += self.RUNTIME_SCAN_PARSE_FIELD_SCORE
+            if cls_idx in list_cls:
+                score += self.RUNTIME_SCAN_LIST_FIELD_SCORE
+            if score < min_score:
+                continue
+            descriptor = type_descriptor(cls_idx)
+            if not descriptor.startswith("L") or not descriptor.endswith(";"):
+                continue
+            holder_names = []
+            for holder_idx in holders.get(cls_idx, ()):
+                holder_desc = type_descriptor(holder_idx)
+                if not holder_desc.startswith("L") or not holder_desc.endswith(";"):
+                    continue
+                name = holder_desc[1:-1].replace("/", ".")
+                if name not in holder_names:
+                    holder_names.append(name)
+            holder_entries = []
+            for holder_idx, field_name in holder_fields.get(cls_idx, ()):
+                holder_desc = type_descriptor(holder_idx)
+                if not holder_desc.startswith("L") or not holder_desc.endswith(";"):
+                    continue
+                entry = {
+                    "class": holder_desc[1:-1].replace("/", "."),
+                    "field": field_name,
+                }
+                if entry not in holder_entries:
+                    holder_entries.append(entry)
+            scored.append((score, descriptor, holder_names, holder_entries, cls_idx))
+        if not scored:
+            return []
+        scored.sort(key=lambda item: -item[0])
+        results = []
+        for score, descriptor, holder_names, holder_entries, cls_idx in scored[
+            : self.RUNTIME_SCAN_MAX_CANDIDATES
+        ]:
+            members = resolve_class_members(cls_idx)
+            results.append(
+                {
+                    "class": descriptor[1:-1].replace("/", "."),
+                    "score": score,
+                    "holders": holder_names,
+                    # 「持有类 + 静态字段名」：绕过反射取单例的唯一入口。
+                    "holder_entries": holder_entries,
+                    # 字节码确定的 getSites() 混淆后方法名：站点表为空时靠它
+                    # 唯一确定「哪一个 0 参返回 List 的方法才是 getSites」。
+                    "sites_method": members.get("sites", ""),
+                    # 其余关键成员名（getConfig / setHome 单参 / 三参），
+                    # 供「按混淆名直调」方案复原切换首页。
+                    "members": members,
+                }
+            )
+        return results
+
+    def _discover_runtime_vod_config(self):
+        """扫描 dex 字段指纹，定位混淆后的站点表容器类并落盘缓存。
+
+        候选按「字段指纹得分」降序逐个交给 Java 反射结构探测复核，得分最高
+        的那个（含 Site+Parse+List 三种字段，实测全局唯一）通常一次命中；每个
+        候选被拒绝的原因都会写入 detail，失败时统一落进错误提示与诊断日志，
+        避免再出现「命中 30 个候选却不知为何一个都没采用」的黑盒。
+        """
+        detail = []
+        # 每个候选被拒绝的具体原因单独收集，最终排在错误提示最前面——否则
+        # 一长串候选枚举会吃掉 Toast 的字符预算，把真正的失败原因挤掉。
+        fail = []
+        site_type = self._runtime_site_type_name()
+        for path in self._app_code_paths():
+            for index, blob in enumerate(self._load_dex_blobs(path)):
+                try:
+                    candidates = self._dex_scan_site_container(
+                        blob,
+                        self.RUNTIME_SITE_DESCRIPTOR,
+                        self.RUNTIME_LIST_DESCRIPTOR,
+                        self.RUNTIME_PARSE_DESCRIPTOR,
+                        self.RUNTIME_SCAN_MIN_SCORE,
+                    )
+                except Exception as exc:
+                    detail.append("dex{} 扫描失败: {}".format(index, exc))
+                    continue
+                if not candidates:
+                    continue
+                detail.append(
+                    "dex{} 命中{}个字段候选（{}）".format(
+                        index,
+                        len(candidates),
+                        ", ".join(
+                            "{}:{}分{}".format(
+                                item.get("class"),
+                                item.get("score", 0),
+                                "/" + item["sites_method"]
+                                if item.get("sites_method")
+                                else "",
+                            )
+                            for item in candidates[:4]
+                        ),
+                    )
+                )
+                self._log(
+                    "INFO",
+                    "运行态容器候选（dex{}）: {}".format(
+                        index,
+                        ", ".join(
+                            "{}={}分/持有{}/方法{}".format(
+                                item.get("class"),
+                                item.get("score", 0),
+                                item.get("holders") or "无",
+                                item.get("sites_method") or "未解析",
+                            )
+                            for item in candidates
+                        ),
+                    ),
+                )
+                best = None
+                for item in candidates:
+                    reasons = []
+                    handles = None
+                    # 1) 绕过反射：按 dex 解析出的「持有类+字段名+方法名」直调。
+                    #    R8 全程序优化包里这是唯一可行的路径（类代理没有
+                    #    java.lang.Class 的实例方法，反射结构探测必然 0 方法）。
+                    try:
+                        handles = self._probe_container_by_names(
+                            item.get("class", ""),
+                            item.get("holder_entries") or [],
+                            item.get("members") or {},
+                            reasons,
+                        )
+                    except Exception as exc:
+                        handles = None
+                        reasons.append("名字直调探测异常: {}".format(exc))
+                    # 2) 反射结构探测：仅对未混淆/轻度混淆壳生效。
+                    if handles is None:
+                        cls = self._load_runtime_class_by_name(item.get("class"))
+                        if cls is None:
+                            reasons.append("类不可加载")
+                        else:
+                            for holder in item.get("holders") or [""]:
+                                try:
+                                    handles = self._probe_vod_config_class(
+                                        cls,
+                                        site_type,
+                                        holder,
+                                        reasons,
+                                        int(item.get("score", 0) or 0),
+                                        item.get("sites_method", ""),
+                                        item.get("class", ""),
+                                    )
+                                except Exception as exc:
+                                    handles = None
+                                    reasons.append("探测异常: {}".format(exc))
+                                if handles is not None:
+                                    break
+                    if handles is not None:
+                        if best is None or handles.get(
+                            "confidence", 0
+                        ) > best.get("confidence", 0):
+                            best = handles
+                    elif best is None:
+                        fail.append(
+                            "{}（{}分{}，持有{}）: {}".format(
+                                item.get("class"),
+                                item.get("score", 0),
+                                "/" + item["sites_method"]
+                                if item.get("sites_method")
+                                else "",
+                                ",".join(item.get("holders") or []) or "无",
+                                "；".join(reasons) if reasons else "未采纳（无明细）",
+                            )
+                        )
+                    if best is not None and best.get("confidence", 0) >= 4:
+                        break
+                if best is not None:
+                    self._write_runtime_handles_cache(
+                        best["class"],
+                        best.get("holder", ""),
+                        best.get("sites_method", ""),
+                        best.get("holder_field", ""),
+                        best.get("members") or {},
+                    )
+                    self._log(
+                        "INFO",
+                        "运行态站点表容器已定位: {}（dex{}，置信度{}，单例持有类{}）".format(
+                            best["class"],
+                            index,
+                            best.get("confidence", 0),
+                            best.get("holder") or "本类",
+                        ),
+                    )
+                    return best
+        # 失败原因排在候选枚举之前：Toast 截断时优先保留「哪个候选、在哪个环节、为什么」。
+        # 首部带构建标记：提示里没有该标记即说明设备跑的是旧脚本。
+        full_detail = "；".join(fail + detail)
+        if full_detail:
+            self._log(
+                "WARN", "运行态站点表容器定位失败: {}".format(full_detail)
+            )
+            full_detail = "【{}】{}".format(self.RUNTIME_LOCATE_BUILD, full_detail)
+        self._runtime_vc_detail = full_detail[:1600]
+        return None
+
+    def _resolve_runtime_vod_handles(self):
+        """运行态句柄解析全链路：具名 -> 缓存名字直调 -> dex 结构指纹扫描。"""
+        handles = self._legacy_vod_handles()
+        if handles is not None:
+            return handles
+        cached = self._read_runtime_handles_cache()
+        if cached:
+            handles = self._probe_container_by_names(
+                cached.get("class", ""),
+                [
+                    {
+                        "class": cached.get("holder", ""),
+                        "field": cached.get("holder_field", ""),
+                    }
+                ],
+                cached.get("members") or {},
+            )
+            if handles is None:
+                handles = self._probe_vod_config_class(
+                    self._load_runtime_class_by_name(cached.get("class")),
+                    self._runtime_site_type_name(),
+                    cached.get("holder", ""),
+                    None,
+                    0,
+                    cached.get("sites_method", ""),
+                    cached.get("class", ""),
+                )
+            if handles is not None:
+                return handles
+            # 缓存失效（App 升级 / 混淆映射变化）：丢弃后重新扫描。
+            self._log("WARN", "运行态站点表缓存失效，重新扫描 dex")
+        return self._discover_runtime_vod_config()
+
+    def _runtime_vod_handles(self, force=False):
+        """解析（并缓存）运行态站点表句柄；失败返回 None。
+
+        句柄只暴露 resolve()/set_home()，这样调用方不必知道容器类叫什么，
+        也就不受混淆影响。
+        """
+        with self._runtime_vc_lock:
+            if self._runtime_vc_cache is not None and not force:
+                return self._runtime_vc_cache
+            waiting = bool(self._runtime_vc_resolving)
+            if not waiting:
+                self._runtime_vc_resolving = True
+        if waiting:
+            # 已有线程在扫描：等它的结果，避免重复做全量 dex 扫描。
+            deadline = time.monotonic() + float(self.RUNTIME_RESOLVE_WAIT)
+            while time.monotonic() < deadline:
+                time.sleep(0.15)
+                with self._runtime_vc_lock:
+                    if self._runtime_vc_cache is not None:
+                        return self._runtime_vc_cache
+                    if not self._runtime_vc_resolving:
+                        break
+            with self._runtime_vc_lock:
+                if self._runtime_vc_cache is not None:
+                    return self._runtime_vc_cache
+            return self._legacy_vod_handles()
+        try:
+            handles = self._resolve_runtime_vod_handles()
+        except Exception as exc:
+            self._runtime_vc_detail = str(exc)[:400]
+            handles = None
+        finally:
+            with self._runtime_vc_lock:
+                self._runtime_vc_resolving = False
+        if handles is not None:
+            with self._runtime_vc_lock:
+                self._runtime_vc_cache = handles
+        return handles
+
+    def _runtime_unavailable_detail(self):
+        """容器定位失败时给出可诊断的原因，供错误信息拼接。"""
+        detail = str(getattr(self, "_runtime_vc_detail", "") or "").strip()
+        if detail:
+            return "已尝试具名/结构探测/dex 扫描：{}".format(detail)
+        return "类名已被混淆且结构探测未命中"
+
+    def _warm_runtime_vod_handles(self):
+        """init 后后台预热运行态句柄，避免首次临时加载同步等待 dex 扫描。"""
+        if self._runtime_vc_cache is not None:
+            return
+        worker = threading.Thread(
+            target=self._runtime_vod_handles,
+            name="local-source-runtime-handles",
+        )
+        worker.daemon = True
+        worker.start()
+
+    def _inject_site_into_app(self, source, set_home=True):
+        """把单个站点直接注入运行中的站点表。
+
+        容器类经「具名 -> 缓存 -> dex 结构指纹」三级定位，因此 R8 混淆包
+        同样可用。不写任何配置文件；set_home=True 时注入成功后自动切换
+        首页到该站。返回 (ok, message)。
+        """
+        try:
             site_dict = self._build_site(source)
-            VodConfig = self._find_runtime_class(self.RUNTIME_VOD_CONFIG_SUFFIXES)
-            if VodConfig is None:
-                return False, "未找到 VodConfig 类"
-            vod_config = VodConfig.get()
-            sites = vod_config.getSites()
+            handles = self._runtime_vod_handles()
+            if handles is None:
+                return False, "未找到 VodConfig 类（{}）".format(
+                    self._runtime_unavailable_detail()
+                )
+            try:
+                vod_config, sites = handles["resolve"]()
+            except Exception as exc:
+                return False, "运行态站点表不可用: {}".format(exc)
 
             existing_index = -1
             for i in range(sites.size()):
-                if sites.get(i).getKey() == site_dict["key"]:
-                    existing_index = i
-                    break
+                try:
+                    if str(sites.get(i).getKey()) == str(site_dict["key"]):
+                        existing_index = i
+                        break
+                except Exception:
+                    continue
 
             Site = self._find_runtime_class(self.RUNTIME_SITE_SUFFIXES)
             if Site is None:
@@ -12622,16 +14160,35 @@ class Spider(BaseSpider):
                         setter(int(site_dict[field]))
                     except Exception:
                         pass
-            if existing_index >= 0:
-                sites.set(existing_index, new_site)
-            else:
-                sites.add(new_site)
-            # 临时加载成功后自动切换首页到该站源。
-            # VodConfig.setHome 内部会置选中态并发出 RefreshEvent.home()。
-            switched = False
-            if set_home:
+            # VodConfig.getSites() 在 sites 字段为 null 时返回
+            # Collections.emptyList()（不可变），写入必然失败。这不是混淆
+            # 问题而是「App 尚未加载任何 VOD 配置」，给出可操作的提示。
+            if existing_index < 0:
                 try:
-                    vod_config.setHome(new_site)
+                    empty = sites.size() == 0 and "EmptyList" in str(
+                        sites.getClass().getName()
+                    )
+                except Exception:
+                    empty = False
+                if empty:
+                    return False, (
+                        "运行态站点表为空且不可写：App 尚未加载 VOD 配置，"
+                        "请先加载任意配置后再临时加载本地源"
+                    )
+            try:
+                if existing_index >= 0:
+                    sites.set(existing_index, new_site)
+                else:
+                    sites.add(new_site)
+            except Exception as exc:
+                return False, "运行态站点表写入失败: {}".format(exc)
+            # 临时加载成功后自动切换首页到该站源。
+            # setHome 内部会置选中态并发出 RefreshEvent.home()。
+            switched = False
+            set_home_fn = handles.get("set_home")
+            if set_home and set_home_fn is not None:
+                try:
+                    set_home_fn(vod_config, new_site)
                     switched = True
                     # 记录当前临时 home，供重建后看门补注恢复选中。
                     self._temp_home_key = str(site_dict["key"])
@@ -12645,20 +14202,24 @@ class Spider(BaseSpider):
             return False, str(exc)
 
     def _remove_site_from_app(self, source_key):
-        """通过 Java 反射从 VodConfig 运行态移除单个站点。"""
+        """从运行态站点表中移除单个站点（跨混淆定位容器类）。"""
         try:
-            from java import jclass
-            VodConfig = self._find_runtime_class(self.RUNTIME_VOD_CONFIG_SUFFIXES)
-            if VodConfig is None:
+            handles = self._runtime_vod_handles()
+            if handles is None:
                 return False
-            vod_config = VodConfig.get()
-            sites = vod_config.getSites()
+            try:
+                _vod_config, sites = handles["resolve"]()
+            except Exception:
+                return False
             removed = False
             for i in range(sites.size() - 1, -1, -1):
-                if sites.get(i).getKey() == source_key:
-                    sites.remove(i)
-                    removed = True
-                    break
+                try:
+                    if str(sites.get(i).getKey()) == str(source_key):
+                        sites.remove(i)
+                        removed = True
+                        break
+                except Exception:
+                    continue
             if removed:
                 self._post_app_refresh()
             return removed
@@ -12667,7 +14228,11 @@ class Spider(BaseSpider):
             return False
 
     def _post_app_refresh(self):
-        """触发 App 首页刷新，让用户立即看到注入/移除后的站点列表。"""
+        """触发 App 首页刷新，让用户立即看到注入/移除后的站点列表。
+
+        RefreshEvent 在 R8 混淆包里按名反射必然失败，此时退回本机 HTTP
+        轻量刷新——路由字符串是壳内字面量，与混淆无关。
+        """
         try:
             from java import jclass
             RefreshEvent = self._find_runtime_class(
@@ -12675,8 +14240,30 @@ class Spider(BaseSpider):
             )
             if RefreshEvent is not None:
                 RefreshEvent.home()
+                return
         except Exception as exc:
-            self._warn("App 刷新事件触发失败: {}".format(exc))
+            self._log("DEBUG", "App 刷新事件触发失败: {}".format(exc))
+        self._http_refresh_app_home()
+
+    def _http_refresh_app_home(self):
+        """本机 HTTP 轻量刷新首页，混淆无关的刷新兜底。"""
+        last_error = "未发现当前 App 本机服务"
+        # 只试前两个候选端口（本机代理端口 / 上次成功端口），避免在
+        # 持有 self.lock 的调用路径上做长时间端口遍历。
+        for port in self._app_port_candidates()[:2]:
+            base = "http://127.0.0.1:{}".format(port)
+            try:
+                query = urllib.parse.urlencode({"do": "refresh", "type": "home"})
+                self._request_status(
+                    base + "/action?" + query,
+                    max(1.2, self.APP_REQUEST_TIMEOUT * 3),
+                )
+                self._remember_app_port(port)
+                return True
+            except Exception as exc:
+                last_error = str(exc)
+        self._log("DEBUG", "本机首页刷新失败: {}".format(last_error))
+        return False
 
     def _auto_scan_on_enter_locked(self):
         """无有效快照时进入管理页自动扫描一次（v7：仅扫描，不写盘、不重载）。
