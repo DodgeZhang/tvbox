@@ -3,7 +3,7 @@
     "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
     "logo": "http://127.0.0.1:9978/file/TVBox/logo.png",
     "danmaku": "http://127.0.0.1:9978/proxy?do=danmaku&name={name}&episode={episode}",
-    "sites": [
+    "sites":[
         {
             "key": "豆瓣",
             "name": "豆瓣 • 首页",
@@ -266,19 +266,6 @@
             }
         },
         {
-            "key": "世界",
-            "name": "世界 • APP",
-            "type": 3,
-            "api": "csp_AppGet",
-            "searchable": 1,
-            "changeable": 1,
-            "ext": {
-                "url": "https://appcms.4ksj.app",
-                "dataKey": "O3K6rYx75Q4xtiIE",
-                "dataIv": "O3K6rYx75Q4xtiIE"
-            }
-        },
-        {
             "key": "魔方",
             "name": "魔方 • APP",
             "type": 3,
@@ -368,7 +355,7 @@
             "filterable": 1,
             "changeable": 1,
             "ext": {
-                "site": [
+                "site":[
                     "https://www.wogg.live",
                     "https://woggpan.888484.xyz",
                     "https://wogg.xxooo.cf",
@@ -387,7 +374,7 @@
             "filterable": 1,
             "changeable": 1,
             "ext": {
-                "site": [
+                "site":[
                     "http://xsayang.fun",
                     "http://38.76.197.172:12521"
                 ]
@@ -404,7 +391,7 @@
             "filterable": 1,
             "changeable": 1,
             "ext": {
-                "site": [
+                "site":[
                     "https://123.666291.xyz",
                     "https://666.666291.xyz",
                     "https://www.muou.site",
@@ -423,7 +410,7 @@
             "filterable": 1,
             "changeable": 1,
             "ext": {
-                "site": [
+                "site":[
                     "http://shandian.blog"
                 ]
             },
@@ -439,7 +426,7 @@
             "filterable": 1,
             "changeable": 1,
             "ext": {
-                "site": [
+                "site":[
                     "https://www.fmcf.fun",
                     "https://www.mmpanpan.site",
                     "http://tvpanpan.site",
@@ -458,7 +445,7 @@
             "filterable": 1,
             "changeable": 1,
             "ext": {
-                "site": [
+                "site":[
                     "https://tv.yydsys.top",
                     "https://tv.yydsys.cc",
                     "https://tv.214521.xyz"
@@ -476,7 +463,7 @@
             "filterable": 1,
             "changeable": 1,
             "ext": {
-                "site": [
+                "site":[
                     "https://woog.nxog.eu.org",
                     "https://ogkk.nxog.eu.org",
                     "https://woog.430520.xyz"
@@ -494,7 +481,7 @@
             "filterable": 1,
             "changeable": 1,
             "ext": {
-                "site": [
+                "site":[
                     "http://xhban.xyz",
                     "http://38.76.197.172:16969"
                 ]
@@ -511,7 +498,7 @@
             "filterable": 1,
             "changeable": 1,
             "ext": {
-                "site": [
+                "site":[
                     "https://www.hjzhencai.top",
                     "https://www.huanjuanwp.shop"
                 ]
@@ -526,7 +513,7 @@
             "searchable": 1,
             "quickSearch": 0,
             "ext": {
-                "site": [
+                "site":[
                     "https://sidhub.cc",
                     "https://seeduck.cc",
                     "https://hubdog.cc",
@@ -1428,10 +1415,10 @@
             "hide": 1
         }
     ],
-    "lives": [
+    "lives":[
         {}
     ],
-    "parses": [
+    "parses":[
         {
             "name": "聚合",
             "type": 3,
@@ -1518,40 +1505,40 @@
             }
         }
     ],
-    "rules": [
+    "rules":[
         {
             "name": "农民",
-            "hosts": [
+            "hosts":[
                 "toutiaovod.com"
             ],
-            "regex": [
+            "regex":[
                 "video/tos/cn"
             ]
         },
         {
             "name": "火山",
-            "hosts": [
+            "hosts":[
                 "huoshan.com"
             ],
-            "regex": [
+            "regex":[
                 "item_id="
             ]
         },
         {
             "name": "抖音",
-            "hosts": [
+            "hosts":[
                 "douyin.com"
             ],
-            "regex": [
+            "regex":[
                 "is_play_url="
             ]
         },
         {
             "name": "磁力广告",
-            "hosts": [
+            "hosts":[
                 "magnet"
             ],
-            "regex": [
+            "regex":[
                 "更多",
                 "请访问",
                 "example",
@@ -1574,30 +1561,30 @@
         },
         {
             "name": "饭团点击",
-            "hosts": [
+            "hosts":[
                 "dadagui",
                 "freeok",
                 "dadagui"
             ],
-            "script": [
+            "script":[
                 "document.querySelector(\"#playleftiframe\").contentWindow.document.querySelector(\"#start\").click();"
             ]
         },
         {
             "name": "毛驴点击",
-            "hosts": [
+            "hosts":[
                 "www.maolvys.com"
             ],
-            "script": [
+            "script":[
                 "document.getElementsByClassName('swal-buttonswal-button--confirm')[0].click()"
             ]
         }
     ],
-    "doh": [
+    "doh":[
         {
             "name": "Google",
             "url": "https://dns.google/dns-query",
-            "ips": [
+            "ips":[
                 "8.8.4.4",
                 "8.8.8.8"
             ]
@@ -1605,7 +1592,7 @@
         {
             "name": "Cloudflare",
             "url": "https://cloudflare-dns.com/dns-query",
-            "ips": [
+            "ips":[
                 "1.1.1.1",
                 "1.0.0.1",
                 "2606:4700:4700::1111",
@@ -1615,7 +1602,7 @@
         {
             "name": "AdGuard",
             "url": "https://dns.adguard.com/dns-query",
-            "ips": [
+            "ips":[
                 "94.140.14.140",
                 "94.140.14.141"
             ]
@@ -1623,7 +1610,7 @@
         {
             "name": "DNSWatch",
             "url": "https://resolver2.dns.watch/dns-query",
-            "ips": [
+            "ips":[
                 "84.200.69.80",
                 "84.200.70.40"
             ]
@@ -1631,13 +1618,13 @@
         {
             "name": "Quad9",
             "url": "https://dns.quad9.net/dns-quer",
-            "ips": [
+            "ips":[
                 "9.9.9.9",
                 "149.112.112.112"
             ]
         }
     ],
-    "flags": [
+    "flags":[
         "youku",
         "优酷",
         "优 酷",
@@ -1672,7 +1659,7 @@
         "哔 哩",
         "哔 哩 哔 哩"
     ],
-    "ads": [
+    "ads":[
         "mozai.4gtv.tv",
         "pv.vipwm.cc",
         "static-mozai.4gtv.tv"
