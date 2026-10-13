@@ -5492,7 +5492,7 @@ class Spider(BaseSpider):
                 )
                 relative = str(source.get("relative_in_root", ""))
                 source_type = str(source.get("type", "")).upper()
-                temp_supported = source_type == "PY"
+                temp_supported = self._temp_load_supported(source)
                 type_label = self.TYPE_LABEL.get(source_type, source_type or "未知")
                 perm_action = self.ACTION_LOAD_PERM_PREFIX + source_id
                 temp_action = self.ACTION_LOAD_TEMP_PREFIX + source_id
@@ -6178,24 +6178,24 @@ class Spider(BaseSpider):
                             builder = builder_class(activity)
                             builder.setTitle("批量选择 ({} 个站点)".format(len(all_sources)))
                             builder.setView(scroll)
-                            # 检查目录中是否全是 PY 类型，决定按钮布局
-                            all_py = all(
-                                str(source.get("type", "")).upper() == "PY"
+                            # 检查待选文件是否全部支持临时加载（PY / JS），决定按钮布局
+                            all_temp_ok = all(
+                                self._temp_load_supported(source)
                                 for source in all_sources
                             )
-                            if all_py:
-                                # 全是 PY：Neutral=屏蔽、Negative=临时加载、Positive=永久加载
+                            if all_temp_ok:
+                                # 全部支持临时：Neutral=屏蔽、Negative=临时加载、Positive=永久加载
                                 builder.setPositiveButton("永久加载", noop_listener)
                                 builder.setNeutralButton("屏蔽", noop_listener)
                                 builder.setNegativeButton("临时加载", noop_listener)
                             else:
-                                # 含非 PY：Neutral=屏蔽、Negative=加载（永久）、Positive=取消
+                                # 含不支持临时加载的类型：Neutral=屏蔽、Negative=加载（永久）、Positive=取消
                                 builder.setPositiveButton("取消", noop_listener)
                                 builder.setNeutralButton("屏蔽", noop_listener)
                                 builder.setNegativeButton("加载", noop_listener)
                             dialog = builder.show()
                             block_listener = BatchActionListener(switches, dialog, "block")
-                            if all_py:
+                            if all_temp_ok:
                                 temp_listener = BatchActionListener(switches, dialog, "temp")
                                 perm_listener = BatchActionListener(switches, dialog, "perm")
                                 unload_listener = None
@@ -11857,6 +11857,22 @@ class Spider(BaseSpider):
             permanent = set()
         return set(permanent) | set(self.temp_identities)
 
+    def _temp_load_supported(self, source):
+        """该文件是否支持「临时加载」（纯内存注入运行态站点表，退出 App 即消失）。
+
+        PY 与 JS 走的是同一条注入链路 _inject_site_into_app（只按 type/api/ext
+        组装 Site 并 add 进运行态站点表，与源类型无关；「全部改为临时」也一直
+        是无差别注入全部类型的）。JS 类型下的 .json（清单/依赖文件）不是可加载
+        的源，仍只支持永久加载。CSP/HTML 维持原样。
+        """
+        source_type = str(source.get("type", "")).upper()
+        if source_type == "PY":
+            return True
+        if source_type != "JS":
+            return False
+        path = str(source.get("path") or source.get("relative_in_root") or "")
+        return path.lower().endswith(".js")
+
     def _source_load_state(self, source):
         """返回单个扫描结果当前的加载状态：perm / temp / none。"""
         identity = str(source.get("identity", ""))
@@ -12032,9 +12048,11 @@ class Spider(BaseSpider):
             return False, "文件标识缺失，请重新扫描"
         name = str(source.get("name") or source.get("base_name") or identity)
         if temporary:
-            # v7.0：仅 PY 文件支持临时加载（FloatSpider 内存注入方案）。
+            # 临时加载 = 纯内存注入运行态站点表（退出 App 即消失）。PY 与 JS
+            # 复用同一条注入链路，其余类型（CSP/HTML、JS 类型下的 .json
+            # 清单/依赖）仍只支持永久加载。
             source_type = str(source.get("type", "")).upper()
-            if source_type != "PY":
+            if not self._temp_load_supported(source):
                 return False, "「{}」是 {} 类型，仅支持永久加载".format(
                     name, self.TYPE_LABEL.get(source_type, source_type or "未知")
                 )
@@ -19371,8 +19389,8 @@ class Spider(BaseSpider):
                 "temp": "🟡 临时加载",
                 "none": "⚪ 未加载",
             }.get(state, "⚪ 未加载")
-            if state == "perm" and str(real.get("type", "")).upper() != "PY":
-                # 非 PY 类型仅支持一种加载方式，统一显示“已加载”。
+            if state == "perm" and not self._temp_load_supported(real):
+                # 不支持临时加载的类型仅有一种加载方式，统一显示“已加载”。
                 state_label = "🟢 已加载"
             # 附加测活状态（如果有）
             test_label = ""
