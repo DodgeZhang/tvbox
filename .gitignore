@@ -8,3 +8,7 @@
 # Go 代理二进制（体积大且属原作者构建，仅本地备份）
 /moyu/go/
 /pangmao/go/
+
+# Python 字节码缓存（py_compile/导入时自动生成，无需入库）
+__pycache__/
+*.pyc
