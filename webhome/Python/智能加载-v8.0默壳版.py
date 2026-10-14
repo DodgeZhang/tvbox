@@ -355,7 +355,13 @@ class Spider(BaseSpider):
     ALLOW_EMPTY_WRITE = False
     DEFAULT_SEARCHABLE = 1
     DEFAULT_QUICK_SEARCH = 1
-    STRICT_RECOGNITION = True
+    # 严格识别：开启时会把「未按启发式规则识别出 Spider 入口」的 PY/JS 文件
+    # 直接排除。实测这类误判会跳过 App 能正常加载的源，默认改为关闭：
+    # 校验不通过的源仍会记录警告，但不再被排除出扫描结果。
+    STRICT_RECOGNITION = False
+    # 旧版本把 strict_recognition=True 写进设置文件，而界面上没有开关可以关掉它，
+    # 因此需要一次性迁移把它放宽，否则老用户升级后依旧是严格模式。
+    STRICT_RELAXED_MARKER = "strict_recognition_relaxed_v1"
     CACHE_VERSION = 13
     AUTO_RELOAD_APP = True
     AUTO_SCAN_ON_EMPTY = True
@@ -1119,6 +1125,9 @@ class Spider(BaseSpider):
             "found": 0,
             "included": 0,
             "skipped": 0,
+            # 每个被跳过文件的路径与原因，供「运行状态与诊断」中展示明细。
+            # 上限见 SKIP_DETAIL_LIMIT，避免大目录扫描时无限增长。
+            "skip_details": [],
             "duplicates": 0,
             "cache_hits": 0,
             "cache_misses": 0,
@@ -1247,6 +1256,11 @@ class Spider(BaseSpider):
         self.strict_recognition = self._bool_option(
             data, ("strict_recognition", "strictRecognition"), self.strict_recognition
         )
+        # 一次性迁移：旧版本默认严格识别且界面无开关，会误跳过可正常加载的源，
+        # 这里自动放宽一次（若之后被显式开启则不再回退）。
+        if self.strict_recognition and not data.get(self.STRICT_RELAXED_MARKER):
+            self.strict_recognition = self.STRICT_RECOGNITION
+            self._strict_relax_migrated = True
         self.auto_reload_app = self._bool_option(
             data, ("auto_reload_app", "autoReloadApp"), self.auto_reload_app
         )
@@ -2101,6 +2115,10 @@ class Spider(BaseSpider):
                 data.get("strict_recognition", data.get("strictRecognition", self.strict_recognition)),
                 self.strict_recognition,
             )
+            # 与另一处加载路径保持一致的一次性放宽迁移。
+            if self.strict_recognition and not data.get(self.STRICT_RELAXED_MARKER):
+                self.strict_recognition = self.STRICT_RECOGNITION
+                self._strict_relax_migrated = True
             self.auto_scan_on_empty = self._as_bool(
                 data.get("auto_scan_on_empty", data.get("autoScanOnEmpty", self.auto_scan_on_empty)),
                 self.auto_scan_on_empty,
@@ -2502,6 +2520,8 @@ class Spider(BaseSpider):
                 self.pending_block_adult_sites
             ),
             "strict_recognition": bool(self.strict_recognition),
+            # 放宽迁移标记：写入后不再自动回退用户的严格识别设置。
+            self.STRICT_RELAXED_MARKER: True,
             "auto_scan_on_empty": bool(self.auto_scan_on_empty),
             "auto_prune_blocked": bool(self.auto_prune_blocked),
             "pruned_sources": sorted(self.pruned_sources),
@@ -6179,33 +6199,37 @@ class Spider(BaseSpider):
                             builder.setTitle("批量选择 ({} 个站点)".format(len(all_sources)))
                             builder.setView(scroll)
                             # 检查待选文件是否全部支持临时加载（PY / JS），决定按钮布局
+                            # 注意：此处 self 是内层代理类实例，必须用 owner 取宿主方法。
                             all_temp_ok = all(
-                                self._temp_load_supported(source)
+                                owner._temp_load_supported(source)
                                 for source in all_sources
                             )
                             if all_temp_ok:
-                                # 全部支持临时：Neutral=屏蔽、Negative=临时加载、Positive=永久加载
-                                builder.setPositiveButton("永久加载", noop_listener)
-                                builder.setNeutralButton("屏蔽", noop_listener)
-                                builder.setNegativeButton("临时加载", noop_listener)
+                                # 全部支持临时：Positive=永久加载、Neutral=屏蔽、Negative=临时加载
+                                labels = ("永久加载", "屏蔽", "临时加载")
                             else:
-                                # 含不支持临时加载的类型：Neutral=屏蔽、Negative=加载（永久）、Positive=取消
-                                builder.setPositiveButton("取消", noop_listener)
-                                builder.setNeutralButton("屏蔽", noop_listener)
-                                builder.setNegativeButton("加载", noop_listener)
+                                # 含不支持临时加载的类型：Positive=取消、Neutral=屏蔽、Negative=加载
+                                labels = ("取消", "屏蔽", "加载")
+                            builder.setPositiveButton(labels[0], noop_listener)
+                            builder.setNeutralButton(labels[1], noop_listener)
+                            builder.setNegativeButton(labels[2], noop_listener)
                             dialog = builder.show()
                             block_listener = BatchActionListener(switches, dialog, "block")
+                            select_all_listener = SelectAllListener(switches)
                             if all_temp_ok:
+                                # 永久→Positive、屏蔽→Neutral、临时→Negative
                                 temp_listener = BatchActionListener(switches, dialog, "temp")
                                 perm_listener = BatchActionListener(switches, dialog, "perm")
                                 unload_listener = None
                                 dismiss_listener = None
+                                press = (perm_listener, block_listener, temp_listener)
                             else:
+                                # 取消→Positive、屏蔽→Neutral、加载(永久)→Negative
                                 temp_listener = None
                                 perm_listener = BatchActionListener(switches, dialog, "perm")
                                 unload_listener = BatchActionListener(switches, dialog, "unload")
                                 dismiss_listener = DismissListener(dialog)
-                            select_all_listener = SelectAllListener(switches)
+                                press = (dismiss_listener, block_listener, perm_listener)
                             owner._dialog_refs.extend(
                                 [
                                     block_listener,
@@ -6218,26 +6242,11 @@ class Spider(BaseSpider):
                                     dialog,
                                 ]
                             )
-                            if all_py:
-                                dialog.getButton(dialog.BUTTON_POSITIVE).setOnClickListener(
-                                    perm_listener
-                                )
-                                dialog.getButton(dialog.BUTTON_NEUTRAL).setOnClickListener(
-                                    block_listener
-                                )
-                                dialog.getButton(dialog.BUTTON_NEGATIVE).setOnClickListener(
-                                    temp_listener
-                                )
-                            else:
-                                dialog.getButton(dialog.BUTTON_POSITIVE).setOnClickListener(
-                                    dismiss_listener
-                                )
-                                dialog.getButton(dialog.BUTTON_NEUTRAL).setOnClickListener(
-                                    block_listener
-                                )
-                                dialog.getButton(dialog.BUTTON_NEGATIVE).setOnClickListener(
-                                    perm_listener
-                                )
+                            # 按钮接线只在一处完成：文案、监听器、接线若各自重复判断
+                            # all_temp_ok，一旦有一处改名漏改就会出现分支不同步。
+                            dialog.getButton(dialog.BUTTON_POSITIVE).setOnClickListener(press[0])
+                            dialog.getButton(dialog.BUTTON_NEUTRAL).setOnClickListener(press[1])
+                            dialog.getButton(dialog.BUTTON_NEGATIVE).setOnClickListener(press[2])
                             # 全选：AlertDialog 原生只支持 3 个按钮，
                             # 这里把「全选」注入按钮栏，置于「临时加载」左侧
                             try:
@@ -6769,6 +6778,22 @@ class Spider(BaseSpider):
                         "集成直播：{} 个".format(
                             len(owner.cache.get("lives", []))
                         ),
+                    ]
+                    + (
+                        [
+                            "",
+                            "跳过明细（最多 12 条）：",
+                        ]
+                        + [
+                            "  · " + str(item)
+                            for item in list(
+                                owner.status.get("skip_details") or []
+                            )[:12]
+                        ]
+                        if skipped_count
+                        else []
+                    )
+                    + [
                         "",
                         "功能测活：可用 {0} · 失效 {1} · 受限 {2}".format(
                             test_counts["available"],
@@ -14554,7 +14579,7 @@ class Spider(BaseSpider):
                         break
                     self.status["found"] += 1
                     if os.path.islink(full_path) or not os.path.isfile(full_path):
-                        self.status["skipped"] += 1
+                        self._note_skip("符号链接或非普通文件", full_path)
                         continue
                     real_path = os.path.realpath(full_path)
                     if real_path == self_path and not self._is_auto_loader_python(
@@ -14570,16 +14595,19 @@ class Spider(BaseSpider):
                         file_size = stat.st_size
                         modified_ns = getattr(stat, "st_mtime_ns", int(stat.st_mtime * 1000000000))
                     except Exception as exc:
-                        self.status["skipped"] += 1
+                        self._note_skip("读取文件状态失败({})".format(exc), real_path)
                         self._mark_scan_incomplete(source_type, full_path)
                         self._warn("读取文件状态失败: {} ({})".format(real_path, exc))
                         continue
                     if not readable or file_size <= 0:
-                        self.status["skipped"] += 1
+                        self._note_skip("不可读或空文件", real_path)
                         self._warn("跳过不可读或空文件: {}".format(real_path))
                         continue
                     if file_size > self.max_source_size:
-                        self.status["skipped"] += 1
+                        self._note_skip(
+                            "超过大小上限(>{}字节)".format(self.max_source_size),
+                            real_path,
+                        )
                         self._warn(
                             "跳过超过大小上限的文件: {} ({} bytes)".format(
                                 real_path, file_size
@@ -14589,13 +14617,14 @@ class Spider(BaseSpider):
 
                     relative_in_root = os.path.relpath(real_path, root).replace(os.sep, "/")
                     if self._is_excluded(source_type, lower_name, relative_in_root):
-                        self.status["skipped"] += 1
+                        # 命中排除规则：隐藏文件、__init__.py、JS/PY 排除名单等。
+                        self._note_skip("命中排除规则", real_path)
                         continue
                     identity = self._source_identity(source_type, real_path)
                     if identity in self.pruned_sources:
                         # 已被「自动清理屏蔽站点」移出配置。源文件仍在磁盘上，
                         # 从清除入口复位后即可重新参与扫描。
-                        self.status["skipped"] += 1
+                        self._note_skip("已从配置移除（屏蔽清理）", real_path)
                         continue
 
                     bundle = None
@@ -14644,7 +14673,7 @@ class Spider(BaseSpider):
                     if bundle is not None:
                         role = self._detect_file_role(source_type, lower_name, real_path)
                         if role not in ("source", "forced_source"):
-                            self.status["skipped"] += 1
+                            self._note_skip("按 {} 标识排除".format(role), real_path)
                             self._warn("已按 {} 标识排除: {}".format(role, real_path))
                             continue
                         self.status["cache_misses"] += 1
@@ -14778,7 +14807,12 @@ class Spider(BaseSpider):
                             if site_identity in self.pruned_sources:
                                 # 整包内的单个站点被清理：跳过该站点，
                                 # 同包其它站点不受影响，api.json 不动。
-                                self.status["skipped"] += 1
+                                self._note_skip(
+                                    "整包站点已从配置移除（屏蔽清理）",
+                                    "{}/{}".format(
+                                        real_path, site.get("name", "")
+                                    ),
+                                )
                                 continue
                             if site_identity in seen_paths:
                                 self.status["duplicates"] += 1
@@ -14875,7 +14909,7 @@ class Spider(BaseSpider):
                         and real_path not in local_jar_pairs
                         and real_path not in local_jar_ambiguous
                     ):
-                        self.status["skipped"] += 1
+                        self._note_skip("CSP 未配对本地 JAR", real_path)
                         continue
 
                     if package_id and not package_sites_enabled:
@@ -14918,11 +14952,11 @@ class Spider(BaseSpider):
                         "validation": validation,
                     }
                     if role not in ("source", "forced_source"):
-                        self.status["skipped"] += 1
+                        self._note_skip("按 {} 标识排除".format(role), real_path)
                         self._warn("已按 {} 标识排除: {}".format(role, real_path))
                         continue
                     if not valid and self.strict_recognition:
-                        self.status["skipped"] += 1
+                        self._note_skip("严格识别校验未通过", real_path)
                         self._warn(validation)
                         continue
                     if validation and not valid:
@@ -14940,7 +14974,7 @@ class Spider(BaseSpider):
                                     real_path, root
                                 )
                                 if not runtime_path:
-                                    self.status["skipped"] += 1
+                                    self._note_skip("DRPY 规则缺少 drpy2 运行时", real_path)
                                     self._warn(
                                         "DRPY 规则缺少 drpy2 运行时，已跳过: {}".format(
                                             real_path
@@ -14961,7 +14995,7 @@ class Spider(BaseSpider):
                                     os.path.basename(runtime_path)
                                 )
                         except Exception as exc:
-                            self.status["skipped"] += 1
+                            self._note_skip("DRPY 规则配对失败({})".format(exc), real_path)
                             self._warn(
                                 "DRPY 规则配对失败: {} ({})".format(
                                     real_path, exc
@@ -14970,7 +15004,7 @@ class Spider(BaseSpider):
                             continue
                     if source_type in ("CSP",) and not is_manifest:
                         if real_path in local_jar_ambiguous:
-                            self.status["skipped"] += 1
+                            self._note_skip("{} JAR 绑定不明确".format(source_type), real_path)
                             self._warn(
                                 "{} JAR 绑定不明确，已跳过: {}".format(
                                     source_type, real_path
@@ -14984,7 +15018,10 @@ class Spider(BaseSpider):
                                     self._auto_csp_site(real_path, paired_jar)
                                 )
                             except Exception as exc:
-                                self.status["skipped"] += 1
+                                self._note_skip(
+                                    "{} 自动配对失败({})".format(source_type, exc),
+                                    real_path,
+                                )
                                 self._warn(
                                     "{} 自动配对失败: {} ({})".format(
                                         source_type, real_path, exc
@@ -14997,7 +15034,7 @@ class Spider(BaseSpider):
                                 self._parse_site_manifest(real_path, source_type)
                             )
                         except Exception as exc:
-                            self.status["skipped"] += 1
+                            self._note_skip("站点清单解析失败({})".format(exc), real_path)
                             self._warn(
                                 "站点清单解析失败: {} ({})".format(
                                     real_path, exc
@@ -16262,6 +16299,10 @@ class Spider(BaseSpider):
             return "source"
         if "@tvbox-ignore" in lower_text:
             return "ignore"
+        # 显式声明的源优先于角色标识：否则带 @tvbox-role manager 的文件无法被
+        # @tvbox-source 强行纳入，用户就没有任何覆盖手段。
+        if "@tvbox-source" in lower_text:
+            return "forced_source"
         role_match = re.search(r"@tvbox-role\s*(?:[:=]\s*)?([a-z_-]+)", lower_text)
         if role_match:
             role = role_match.group(1)
@@ -16269,8 +16310,6 @@ class Spider(BaseSpider):
                 return role
             if role == "source":
                 return "forced_source"
-        if "@tvbox-source" in lower_text:
-            return "forced_source"
 
         if source_type == "JS":
             if lower_name.endswith(self.JS_EXTENSION_SUFFIXES):
@@ -18238,6 +18277,29 @@ class Spider(BaseSpider):
         except Exception:
             # 诊断日志失败不应影响扫描和注册表写入。
             pass
+
+    SKIP_DETAIL_LIMIT = 80
+
+    def _note_skip(self, reason, path=""):
+        """记录一个被跳过的文件（计数 + 明细），供运行状态面板展示。
+
+        与 _warn 分离：_warn 会去重且用于汇总警告，这里按文件维度保留明细，
+        使用户能直接看到「哪些文件被跳过、分别因为什么」。
+        """
+        self.status["skipped"] = self.status.get("skipped", 0) + 1
+        details = self.status.get("skip_details")
+        if not isinstance(details, list):
+            details = []
+            self.status["skip_details"] = details
+        if len(details) >= self.SKIP_DETAIL_LIMIT:
+            return
+        name = str(path or "").strip()
+        if name:
+            try:
+                name = os.path.relpath(name, self.STORAGE_ROOT).replace(os.sep, "/")
+            except Exception:
+                name = os.path.basename(name)
+        details.append("{}｜{}".format(name or "?", reason))
 
     def _warn(self, text):
         if text and text not in self.status["warnings"]:
