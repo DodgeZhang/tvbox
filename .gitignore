@@ -1,5 +1,7 @@
 # 本地 Trae 技能/配置，不上传远端
 .trae/
+# 本地 WorkBuddy 技能与工作区数据（由 .trae/skills 整理而来），不上传远端
+.workbuddy/
 # 系统/IDE
 .DS_Store
 *.swp
