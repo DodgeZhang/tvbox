@@ -59,6 +59,15 @@
             "filterable": 0
         },
         {
+            "key": "番茄影视",
+            "name": "番茄 • APP",
+            "type": 3,
+            "api": "csp_AppFQ",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 0
+        },
+        {
             "key": "咕噜",
             "name": "咕噜 • APP",
             "type": 3,
@@ -155,27 +164,6 @@
             }
         },
         {
-            "key": "苹果",
-            "name": "苹果 • APP",
-            "type": 3,
-            "api": "csp_AppDrama",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": {
-                "appName": "小苹果",
-                "commonKey": "ed5fdsgucxumegqa",
-                "publicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
-                "dataKey": "S0VNDTJHOFHHCNMRAW5IV2TOS2PBPQ==",
-                "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
-                "pkg": "com.juechufsh.android.xpg1",
-                "host": "",
-                "site": "https://xpgandroid03-1372779881.cos.ap-beijing.myqcloud.com/app_xpg_android.txt",
-                "version": "1.0.0.3",
-                "decrypt": "0"
-            }
-        },
-        {
             "key": "橘汁",
             "name": "橘汁 • APP",
             "type": 3,
@@ -266,19 +254,6 @@
             }
         },
         {
-            "key": "魔方",
-            "name": "魔方 • APP",
-            "type": 3,
-            "api": "csp_AppGet",
-            "searchable": 1,
-            "changeable": 1,
-            "ext": {
-                "url": "https://www.douy32mf.top",
-                "dataKey": "1234567887654321",
-                "dataIv": "1234567887654321"
-            }
-        },
-        {
             "key": "王子",
             "name": "王子 • APP",
             "type": 3,
@@ -292,7 +267,7 @@
             }
         },
         {
-            "key": "茉莉",
+            "key": "茉莉Get",
             "name": "茉莉 • APP",
             "type": 3,
             "api": "csp_AppGet",
@@ -530,6 +505,42 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
+            "ext": {
+                "site":[
+                    "https://4kzn.cc"
+                ]
+            },
+            "timeout": 60
+        },
+        {
+            "key": "小丑",
+            "name": "小丑 • 4K",
+            "type": 3,
+            "api": "csp_4KZhinan",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "ext": {
+                "site":[
+                    "https://4kxc.com"
+                ]
+            },
+            "timeout": 60
+        },
+        {
+            "key": "茉莉",
+            "name": "茉莉 • 4K",
+            "type": 3,
+            "api": "csp_HDmoli",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "ext": {
+                "site":[
+                    "https://www.hdmoli.com",
+                    "https://www.hdmoli.pro"
+                ]
+            },
             "timeout": 60
         },
         {
@@ -775,33 +786,6 @@
             },
             "style": {
                 "type": "list"
-            }
-        },
-        {
-            "key": "双星99",
-            "name": "双星 • 动漫",
-            "type": 3,
-            "api": "csp_App99",
-            "ext": {
-                "host": "http://111.180.139.119:19987/app/bn",
-                "LoginPath": "/app/log",
-                "versionName": "6.4.9",
-                "name": "双子星动漫",
-                "package": "com.haiwang.liangxia.my.ym",
-                "buildNumber": "2001",
-                "buildSignature": "A40DA80A59D170CAA950CF15C18C454D47A39B26989D8B640ECD745BA71BF5DC"
-            }
-        },
-        {
-            "key": "咕咕动漫",
-            "name": "咕咕 • 动漫",
-            "type": 3,
-            "searchable": 1,
-            "api": "csp_AppGet",
-            "ext": {
-                "url": "https://www.gugu3.com",
-                "dataKey": "nKfZ8KX6JTNWRzTD",
-                "dataIv": "nKfZ8KX6JTNWRzTD"
             }
         },
         {
@@ -1111,6 +1095,18 @@
             "type": 3,
             "api": "csp_QingtingFM",
             "searchable": 0,
+            "quickSearch": 0,
+            "changeable": 0,
+            "style": {
+                "type": "list"
+            }
+        },
+        {
+            "key": "听友听书",
+            "name": "听友 • 听书",
+            "type": 3,
+            "api": "csp_TingTingyou",
+            "searchable": 1,
             "quickSearch": 0,
             "changeable": 0,
             "style": {
