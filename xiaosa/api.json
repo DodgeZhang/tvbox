@@ -564,16 +564,6 @@
             "timeout": 60
         },
         {
-            "key": "人人",
-            "name": "人人 • 4K",
-            "type": 3,
-            "api": "csp_RenRen",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "timeout": 60
-        },
-        {
             "key": "即刻",
             "name": "即刻 • 4K",
             "type": 3,
@@ -1078,6 +1068,18 @@
             }
         },
         {
+            "key": "球通体育",
+            "name": "球通 • 体育",
+            "type": 3,
+            "api": "csp_SportQiutong",
+            "searchable": 0,
+            "quickSearch": 0,
+            "changeable": 0,
+            "style": {
+                "type": "list"
+            }
+        },
+        {
             "key": "呦呦DJ",
             "name": "呦呦 • DJ",
             "type": 3,
@@ -1117,10 +1119,7 @@
             "key": "世界听书",
             "name": "世界 • 听书",
             "type": 3,
-            "api": "csp_TingShijie",
-            "searchable": 1,
-            "quickSearch": 0,
-            "changeable": 0,
+            "api": "./py/世界听书.py",
             "style": {
                 "type": "list"
             }
