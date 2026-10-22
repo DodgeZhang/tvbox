@@ -1,5 +1,5 @@
 {
-  "spider": "./custom_spider.jar;md5;43989964965deab2a4b6b48251043412",
+  "spider": "./custom_spider.jar;md5;33f9dcee01312eae357360bea407824d",
   "wallpaper": "https://bing.img.run/rand.php",
   "lives": [],
   "sites": [
@@ -95,32 +95,17 @@
       }
     },
     {
-      "key": "玩偶 | 二小",
-      "name": "玩偶 | 二小",
+      "key": "玩偶 | 花卷",
+      "name": "玩偶 | 花卷",
       "type": 3,
-      "api": "csp_kongbai",
+      "api": "csp_HuaJuan",
       "searchable": 1,
       "changeable": 0,
       "ext": {
+        "commonConfig": "./json/peizhi.json",
         "siteUrl": [
-          "https://www.2xiaopan.top/",
-          "https://www.wexwp.cc"
-        ],
-        "filter": "./json/wogg.json",
-        "commonConfig": "./json/peizhi.json"
-      }
-    },
-    {
-      "key": "玩偶 | 小米",
-      "name": "玩偶 | 小米",
-      "type": 3,
-      "api": "csp_kongbai",
-      "searchable": 1,
-      "changeable": 0,
-      "ext": {
-        "siteUrl": "https://www.milvdou.fun/",
-        "filter": "./json/wogg.json",
-        "commonConfig": "./json/peizhi.json"
+          "https://www.hjzhencai.top/"
+        ]
       }
     },
     {

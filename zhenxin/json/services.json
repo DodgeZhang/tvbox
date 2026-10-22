@@ -9,7 +9,7 @@
       "default_command": "torrserver -p 8090 -d /storage/emulated/0/VodPlus/torrserver",
       "dependencies": [],
       "quick_options": [
-        "torrserver -p 8090 -d /storage/emulated/0/VodPlus/torrserver",
+        "torrserver",
         "torrserver -p 8090 -k -d /storage/emulated/0/VodPlus/torrserver",
         "torrserver -v"
       ]
