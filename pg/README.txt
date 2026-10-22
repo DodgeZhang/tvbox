@@ -71,5 +71,18 @@ tokenm.json格式説明：
 "pan115_delete_code":"",
 "pan115_speed_limit":0,
 "pan115_speed_limit_mobile":10485760,
-"pan_order":"ali|quark|uc|115|yd|thunder|pikpak"
+"pan123_username":"這裏填寫123雲盤用戶名或手機號，也可在「123網盤設置」裏輸入",
+"pan123_password":"123雲盤密碼",
+"pan123_flags":"4kz",
+"pan189_username":"這裏填寫天翼雲盤用戶名或手機號，也可在「189網盤設置」裏輸入",
+"pan189_password":"天翼雲盤密碼",
+"pan189_flags":"4kz",
+"baidu_cookie":"這裏填寫百度網盤Cookie，需同時包含BDUSS與STOKEN；也可在「BD網盤設置」裏掃碼、遠程輸入或粘貼JSON",
+"baidu_vod_flags":"1080P|720P|480P", //百度預覽畫質順序，僅支持1080P、720P、480P這類數字P，用|分隔
+"baidu_thread_limit":32, //百度R原畫并發綫程數，設置頁也可改
+"guangya_access_token":"這裏填寫光鴨OAuth的access_token；本地尚未登錄時會從本字段灌入。也可在「光鸭網盤設置」短信登錄，或粘貼JSON/純文本",
+"guangya_refresh_token":"這裏填寫光鴨OAuth的refresh_token，建議與access_token一起填，過期后用來刷新",
+"guangya_vod_flags":"origin", //光鴨畫質，origin代表原畫
+"guangya_thread_limit":22, //光鴨原畫并發綫程數，設置頁也可改
+"pan_order":"ali|quark|uc|123|189|115|yd|thunder|pikpak|baidu|guangya" //多網盤混排時的綫路順序，用|分隔
 }
