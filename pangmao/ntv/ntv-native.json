@@ -1,0 +1,22 @@
+{
+  "arm64-v8a": {
+    "url": "https://cnb.cool/dodgezhang/tvbox/-/git/raw/main/pangmao/ntv/ntv-native-arm64.zip",
+    "md5": "c4c789770ab832e9f555d3a082e0041a",
+    "size": 899419
+  },
+  "armeabi-v7a": {
+    "url": "https://cnb.cool/dodgezhang/tvbox/-/git/raw/main/pangmao/ntv/ntv-native-armv7.zip",
+    "md5": "08741b818e84bc6ca54a43436290020d",
+    "size": 994448
+  },
+  "arm32": {
+    "url": "https://cnb.cool/dodgezhang/tvbox/-/git/raw/main/pangmao/ntv/ntv-native-armv7.zip",
+    "md5": "08741b818e84bc6ca54a43436290020d",
+    "size": 994448
+  },
+  "arm64": {
+    "url": "https://cnb.cool/dodgezhang/tvbox/-/git/raw/main/pangmao/ntv/ntv-native-arm64.zip",
+    "md5": "c4c789770ab832e9f555d3a082e0041a",
+    "size": 899419
+  }
+}
