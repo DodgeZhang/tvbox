@@ -1,5 +1,5 @@
 {
-  "spider": "./jar/1.jar;md5;c9f60a6db0d8ab4521ef5ab3a87939a8",
+  "spider": "./jar/1.jar;md5;7bfeff4e4cbc5d2868e8cd6b298c495c",
   "logo": "./img/10.gif",
   "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
   "danmaku": "http://127.0.0.1:5266/danmu/webhtv?name={name}&episode={episode}",
@@ -157,46 +157,6 @@
           "https://woog.430520.xyz"
         ]
       }
-    },
-    {
-      "key": "KaiFan",
-      "name": "🍚┆开饭┆4K",
-      "type": 3,
-      "api": "csp_KaiFan",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "AfLGR2SW/7tjQA3K8Qgg5u7AG1NNWsCVAVxfMv/V44kP5aqzon5weT9IvX2w2KtBeMpAxc+Y0yRLN0eXf6oiuLw="
-    },
-    {
-      "key": "xiaozuo",
-      "name": "🍃┆等风┆4K",
-      "type": 3,
-      "api": "csp_DengFeng",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "ARRavWPOi7W2Usqhe54R+NW2sQ6CCBOYajU9bIz/WVyF75mrlP6UsAbts+o//eKOpDWbngYFUGIJGTa56hr3Hk0="
-    },
-    {
-      "key": "bandeng",
-      "name": "🌾┆板凳┆4K",
-      "type": 3,
-      "api": "csp_BanDeng",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "ASH3HkV5cxNhNR9+uQe0sWYxUWHzEywHT3rcYOx+wsK4Jx+sBd0qMO9kFic1Rc1osAMsAsTlMgabd1Ky2kmzQ/Y="
-    },
-    {
-      "key": "mandian",
-      "name": "🐢┆慢点┆4K",
-      "type": 3,
-      "api": "csp_ManDian",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "AU08qHcswQQ9GUNUYMdLgyq8HzPCy1gUxku0nrQgOwfSJrT0LgwdrXoWPVK+x4n+QQ8KbuVPdzA5/U2YL7fQmH8="
     },
     {
       "key": "SeedHub",
@@ -377,7 +337,137 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "AaS+rL6EXhyvk8kjx88vlhuoYDJVmN5DsnAVOsk5czv2bwkZzheDDKql32lVf6q85wzRh5PjXcFBwpnie3x9mhA="
+      "ext": "Acf4n+FgSJlps29HFqyt+ECG19M+iLto9fxzwikME3YOnRFfaIWR3C9CZF+/o2jh4T6D4bOxYn8j775k1TLOsSHsG7tlKBqeENs8VhcKgZS5u7Gb8/LXYDutl7a21jsXLw=="
+    },
+    {
+      "key": "jz",
+      "name": "🍵┆煮雪┆4K",
+      "type": 3,
+      "api": "csp_App88",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "AUeoWDxT/Sza6llGoZlPCelc2ZgSZNx8QBoJAONichQm4mIf8nslnxOIU1wrq2vvzWouK156R9sXK/CRGs6G6fc="
+    },
+    {
+      "key": "hy",
+      "name": "🌸┆棠梨┆4K",
+      "type": 3,
+      "api": "csp_App88",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "Ae8DpdkJGH5s9XIrvlLd8DvpiYdkSSaoIDmmvofda4Gpr9yX8k0a4w1wNmnu4CZ4Nnh03XkYIwooJ+psbf6P8ZY="
+    },
+    {
+      "key": "KaiFan",
+      "name": "🍚┆开饭┆4K",
+      "type": 3,
+      "api": "csp_KaiFan",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "AfLGR2SW/7tjQA3K8Qgg5u7AG1NNWsCVAVxfMv/V44kP5aqzon5weT9IvX2w2KtBeMpAxc+Y0yRLN0eXf6oiuLw="
+    },
+    {
+      "key": "XieHui",
+      "name": "🫖┆歇会┆4K",
+      "type": 3,
+      "api": "csp_XieHui",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "AWevGJ+A/nEjquOh7v58lbo8oaOgHdJkEu7/lzGApb2ngqWSO16XNPqrmqkozIxiLHvjDaaxs61fWZUIYBZBGgQ="
+    },
+    {
+      "key": "FaDai",
+      "name": "☁️┆发呆┆4K",
+      "type": 3,
+      "api": "csp_FaDai",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "AbjGNiFc0jaPCvOXj2edU7/DIRsvVxb1/2tyMFgaoT8L4eZNchAll5NXn7xBXvEwQvvJ55Odg+IugUeNvfYtPT0="
+    },
+    {
+      "key": "HuangYou",
+      "name": "🍃┆晃悠┆4K",
+      "type": 3,
+      "api": "csp_HuangYou",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "AVVlrRajtr+i42Q1MBwsMRSoNuckBLnPEocZVkZik+88465w0JZsKWJodTFxYL+RSsAVU8X8lJ4M8E2Xfw0GLYA="
+    },
+    {
+      "key": "SuiYuan",
+      "name": "🍂┆随缘┆4K",
+      "type": 3,
+      "api": "csp_SuiYuan",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "AVjYSEtEaHF+eS3NOrCubcE3f755psW6EFCg2THWgHt0uWkH1CXlE/UJ2zqohcEULrn/AlZOVuzN4V4Wt0EY3bY="
+    },
+    {
+      "key": "TangPing",
+      "name": "🛋️┆躺平┆4K",
+      "type": 3,
+      "api": "csp_TangPing",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "AUVdS2Q3l8yS7JhOkMXYE1ntTJ/61k8MzQmaQMqSZBbUKDBy/udxVLxvXhNDvifvbkVTEawL3m2p9hhwbTibxnA="
+    },
+    {
+      "key": "LaiChuang",
+      "name": "🛏️┆赖床┆4K",
+      "type": 3,
+      "api": "csp_LaiChuang",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "AVlJ4J+D/3DMzdKAQnig/9ckDSQU7H+PyPyOE/q+m7eGkaZ9YjDkVXgq17TjYCHuvJa0UinsvgwPiAVd51fKuA0="
+    },
+    {
+      "key": "bandeng",
+      "name": "🌾┆板凳┆4K",
+      "type": 3,
+      "api": "csp_BanDeng",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "ASH3HkV5cxNhNR9+uQe0sWYxUWHzEywHT3rcYOx+wsK4Jx+sBd0qMO9kFic1Rc1osAMsAsTlMgabd1Ky2kmzQ/Y="
+    },
+    {
+      "key": "mandian",
+      "name": "🐢┆慢点┆4K",
+      "type": 3,
+      "api": "csp_ManDian",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "AU08qHcswQQ9GUNUYMdLgyq8HzPCy1gUxku0nrQgOwfSJrT0LgwdrXoWPVK+x4n+QQ8KbuVPdzA5/U2YL7fQmH8="
+    },
+    {
+      "key": "ZhiWo",
+      "name": "🌙┆知我┆4K",
+      "type": 3,
+      "api": "csp_ZhiWo",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "AX1Vvf8Pdib7pGaiG52YtJfoH7J54wUt+/pfCo7QJrhIKMK6XXxVbbJG3pw3yHdOUVcBrTyo1EmM8M91pY30AUE="
+    },
+    {
+      "key": "xiaozuo",
+      "name": "🍃┆等风┆4K",
+      "type": 3,
+      "api": "csp_DengFeng",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "ARRavWPOi7W2Usqhe54R+NW2sQ6CCBOYajU9bIz/WVyF75mrlP6UsAbts+o//eKOpDWbngYFUGIJGTa56hr3Hk0="
     },
     {
       "key": "KanJu",
@@ -394,14 +484,14 @@
       }
     },
     {
-      "key": "Luck",
-      "name": "🍀┆青禾┆4K",
+      "key": "凝光",
+      "name": "✨┆凝光┆4K",
       "type": 3,
-      "api": "csp_Luck",
+      "api": "csp_NiuLai",
       "searchable": 1,
-      "quickSearch": 1,
       "filterable": 1,
-      "ext": "AVmGXIMHPYJNn3HvSEi3xt7y9lvzeljaj05GoaXvvD+OfVblWT5H+uivsxMUWrD0yr6b88fIHjZqG13478wcYgU="
+      "changeable": 0,
+      "ext": "AbHckdJkP3IQGfQAetQhutxB3VjOrW67VMoOo8mAdc9grkAgbVv7bUgWbHKHHabksz8nJklfQrFKo56OYXkhQ936PGDo/33ZU4cnkGGALgUlbfxoJoT/TJ/KZwRlYHiajg=="
     },
     {
       "key": "素笺",
@@ -471,36 +561,6 @@
       "ext": {
         "url": "http://v.rbotv.cn"
       }
-    },
-    {
-      "key": "三秋影视",
-      "name": "🍂┆三秋┆影视",
-      "type": 3,
-      "api": "csp_App3Q",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 0,
-      "ext": "AWbn5kTXI16R4Cr+RX4aHt0T+030j7BuQXZ0VHk8l3hKv+5UxjC4Ssjj/nyFAW+NCs8Pu72w7WrsQ1hQduHbfNE="
-    },
-    {
-      "key": "马猴影视",
-      "name": "🐒┆马猴┆影视",
-      "type": 3,
-      "api": "csp_App3Q",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 0,
-      "ext": "Aalts9S0kZVe1LnLnDkMQZgi4p/BQkgyXW3CiozzZwpXllkvgFr5ojgmcjYPyW+qWPP9aDwMqWoI7WYz/y7OXcc="
-    },
-    {
-      "key": "星澜",
-      "name": "🌌┆星澜┆影视",
-      "type": 3,
-      "api": "csp_NiuLai",
-      "searchable": 1,
-      "filterable": 1,
-      "changeable": 0,
-      "ext": "AfOEx4Xw7b+FHm/68xw9/lZWy8xM/OLcY5h9FHwA2IgFua44tuuISikGbVerA833yP5nIZh+Jj6ZR+3PnpErsJm4+VBlVVEvIPDhjrx+HB/Lfjty5u+JKHoniwcTCyQBZQ=="
     },
     {
       "key": "竹隐",
@@ -725,6 +785,16 @@
       "changeable": 1
     },
     {
+      "key": "dadun",
+      "name": "😴┆打盹┆动漫",
+      "type": 3,
+      "api": "csp_DaDun",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "AfCX4sFyDgfHnSLJWpjt1MhGM5IXEedNZfnttre6SML2iKsHtTs9bImgNSCyhOVdiFfFQEtkTtLKBE1jHKB54K5If+HC5ogqbIKmQp/pC3aY"
+    },
+    {
       "key": "XingHui",
       "name": "✨┆星绘┆动漫",
       "type": 3,
@@ -744,13 +814,6 @@
       "quickSearch": 0,
       "filterable": 1,
       "ext": "AfcrWiL6kOmzXnbqzxhVVO34r1aA/e0g4grwfsFA8V5EPAVy9WtRO4yVFf3aC5LmzKENIEFO9aA2BMklc+wOUy4="
-    },
-    {
-      "key": "双星",
-      "name": "✨┆双星┆动漫",
-      "type": 3,
-      "api": "csp_App88",
-      "ext": "ASknzit/3RrKEEXbbz2uOW7k75U9vVpwIABB/21in43V9EurdnfBnTItL6PlxmtMtD6kcaVBntdV/G/gFIItRXiANEcEPDY7/qVV0hfIygxO"
     },
     {
       "key": "XgAnime",
@@ -1012,17 +1075,6 @@
       "filterable": 1,
       "indexs": 0,
       "ext": "https://m.ting15.com",
-      "style": {
-        "type": "list"
-      }
-    },
-    {
-      "key": "TingShijie",
-      "name": "🌍┆听界┆有声",
-      "type": 3,
-      "api": "csp_TingShijie",
-      "searchable": 1,
-      "indexs": 0,
       "style": {
         "type": "list"
       }

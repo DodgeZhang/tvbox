@@ -59,15 +59,6 @@
             "filterable": 0
         },
         {
-            "key": "番茄影视",
-            "name": "番茄 • APP",
-            "type": 3,
-            "api": "csp_AppFQ",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 0
-        },
-        {
             "key": "咕噜",
             "name": "咕噜 • APP",
             "type": 3,
@@ -174,12 +165,12 @@
             "ext": {
                 "appName": "橘汁",
                 "publicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCr8SzZhjYy+rsya1K09t8d2K50pWFoBkgUqMpKOiW+3IEVKd4eTdvg9RSOjQ82kypL6R9BnsmrS1V8s4PVDwjQbUtYhTPPC9Hz16qY7rpD6m0d2vr09/UpWQ5uOy9PR0QTrsioveZ+DIe9jc3C+zBCu/kZSY/R8stwJoiitki3gwIDAQAB",
-                "dataKey": "OW1WBLFZCLJ0WTNJQMRSZ2DYSGNBPT0=",
+                "dataKey": "ZU1DSFFWNENKMDYXVUQRN0ZJDUC4PQ==",
                 "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
-                "pkg": "com.mxj.wylcjbxyx",
+                "pkg": "com.asjdhjhd.mgd.p3",
                 "host": "",
                 "site": "https://123-1349250429.cos.ap-shanghai.myqcloud.com/app.txt",
-                "version": "3.0.2.4",
+                "version": "3.0.7.0",
                 "decrypt": "1"
             }
         },
@@ -193,14 +184,14 @@
             "filterable": 1,
             "ext": {
                 "appName": "华谊",
-                "publicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCp9Ek4wIlQAtwFnuBRlsFiow2tr+4UOciGeNKbY7nL74etUqUb6fvpOSOHhFEfaWlfwUpOB17x3JEL3No19nfjCeVYrYPjlJcgoqUWH/tfIfFAQWvtxBIBlKazkhw8d3ChysWmeWRikKqkBsVRY4oqNPuj4sjm6Zult0U4I4prRQIDAQAB",
-                "dataKey": "NDBYSZR1DMRRZ05NSUCWEJNIYWLBPT0=",
+                "publicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCr8SzZhjYy+rsya1K09t8d2K50pWFoBkgUqMpKOiW+3IEVKd4eTdvg9RSOjQ82kypL6R9BnsmrS1V8s4PVDwjQbUtYhTPPC9Hz16qY7rpD6m0d2vr09/UpWQ5uOy9PR0QTrsioveZ+DIe9jc3C+zBCu/kZSY/R8stwJoiitki3gwIDAQAB",
+                "dataKey": "V04XQZNYRWN6T0JODZFIAG5CTZB3PT0=",
                 "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
-                "pkg": "com.muyue.tool",
+                "pkg": "com.lxf.sncgtzxyx",
                 "host": "",
-                "site": "https://vip.123pan.cn/1851089669/oss/az5.txt",
-                "version": "1.0.0.4",
-                "decrypt": "1"
+                "site": "https://1851089669.cdn.123clouddisk.com/1851089669/44107727",
+                "version": "6.0.0.1",
+                "decrypt": "0"
             }
         },
         {
@@ -498,6 +489,16 @@
             "timeout": 60
         },
         {
+            "key": "搬运",
+            "name": "搬运 • 4K",
+            "type": 3,
+            "api": "csp_BanYunDao",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "timeout": 60
+        },
+        {
             "key": "指南",
             "name": "指南 • 4K",
             "type": 3,
@@ -782,33 +783,19 @@
             "key": "巴士动漫",
             "name": "巴士 • 动漫",
             "type": 3,
-            "api": "csp_XBPQ",
-            "ext": {
-                "请求头": "User-Agent$MOBILE_UA#Accept$text/html#accept-language$zh-CN,zh;q=0.8",
-                "分类url": "https://dmbus.cc/show-{cateId}--{by}-{class}--{year}-{catePg}.html",
-                "分类": "国漫$1#日漫$2#欧美动漫$3#电影$4",
-                "数组": "class=\"item\">&&</li>",
-                "简介": "剧情：&&</p>",
-                "标题": "title=\"&&在线观看\"",
-                "副标题": "desc\">&&</span>",
-                "图片": "data-bg=\"&&\"",
-                "搜索url": "https://dmbus.cc/s----------.html?wd={wd}",
-                "倒序": "1"
-            }
+            "api": "csp_AnimeBashi"
         },
         {
-            "key": "路漫漫",
-            "name": "路漫漫 • 动漫",
+            "key": "吉里动漫",
+            "name": "吉里 • 动漫",
             "type": 3,
-            "api": "./js/drpy2.min.js",
-            "ext": "./js/路漫漫.js"
+            "api": "csp_AnimeGiri"
         },
         {
-            "key": "去看吧",
-            "name": "去看吧 • 动漫",
+            "key": "花子动漫",
+            "name": "花子 • 动漫",
             "type": 3,
-            "api": "./js/drpy2.min.js",
-            "ext": "./js/去看吧.js"
+            "api": "csp_AnimeHuazi"
         },
         {
             "key": "荐片",
@@ -980,16 +967,6 @@
             "timeout": 60
         },
         {
-            "key": "百酷",
-            "name": "百酷 • 搜索",
-            "type": 3,
-            "api": "csp_Baiku",
-            "searchable": 1,
-            "quickSearch": 0,
-            "filterable": 0,
-            "timeout": 60
-        },
-        {
             "key": "酷乐",
             "name": "酷乐 • 搜索",
             "type": 3,
@@ -1000,10 +977,10 @@
             "timeout": 60
         },
         {
-            "key": "鬼鬼",
-            "name": "鬼鬼 • 搜索",
+            "key": "百酷",
+            "name": "百酷 • 搜索",
             "type": 3,
-            "api": "csp_GuiGui",
+            "api": "csp_Baiku",
             "searchable": 1,
             "quickSearch": 0,
             "filterable": 0,

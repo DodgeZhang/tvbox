@@ -1,6 +1,6 @@
 {
-    "spider": "./jar/1.jpg;md5;12e821fd4c608270b019feb736c469dd",
-    "wallpaper": "./img/5.jpg",
+    "spider": "./jar/1.jpg;md5;722d5c1bdcb1b38fc62874941e060d6b",
+    "wallpaper": "https://www.loliapi.com/acg/",
     "logo": "./img/6.gif",
     "sites": [
         {
@@ -12,18 +12,18 @@
             "searchable": 0,
             "quickSearch": 0,
             "filterable": 0,
-            "ext": "./ext/2.txt"
+            "ext": "https://cdn.waimaimingtang.com/file/images/bwc/20260414181247-ae51abfbfe.txt"
         },
         {
             "key": "Doubanaaaa",
-            "name": "🐮【更新日期:20261020】🐮",
+            "name": "🐮【更新日期:20261026】🐮",
             "type": 3,
             "api": "csp_NewDouBanGuard",
             "indexs": 1,
             "searchable": 0,
             "quickSearch": 0,
             "filterable": 0,
-            "ext": "./ext/2.txt"
+            "ext": "https://cdn.waimaimingtang.com/file/images/bwc/20260414181247-ae51abfbfe.txt"
         },
         {
             "key": "Wexconfig",
