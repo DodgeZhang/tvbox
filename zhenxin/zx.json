@@ -563,6 +563,20 @@
       }
     },
     {
+      "key": "csp_BiliFilm",
+      "name": "视频 | 哔哩影视",
+      "type": 3,
+      "api": "csp_BiliFilm",
+      "searchable": 1,
+      "quickSearch": 0,
+      "filterable": 1,
+      "ext": {
+        "commonConfig": "./json/peizhi.json",
+        "json": "./json/bilibili.json",
+        "cookie": ""
+      }
+    },
+    {
       "key": "Youtube",
       "name": "视频 | Youtube",
       "type": 3,
