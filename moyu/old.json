@@ -1,5 +1,5 @@
 {
-    "spider": "./jar/1.jar;md5;7bfeff4e4cbc5d2868e8cd6b298c495c",
+    "spider": "./jar/1.jar;md5;c78599dab489dae65c893e121df0de2f",
   "logo": "./img/10.gif",
   "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
   "danmaku": "http://127.0.0.1:5266/danmu/webhtv?name={name}&episode={episode}",
@@ -147,6 +147,16 @@
       "ext": "AfLGR2SW/7tjQA3K8Qgg5u7AG1NNWsCVAVxfMv/V44kP5aqzon5weT9IvX2w2KtBeMpAxc+Y0yRLN0eXf6oiuLw="
     },
         {
+            "key": "shangtou",
+            "name": "🫠┆上头┆4K",
+            "type": 3,
+            "api": "csp_ShangTou",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "ext": "Ab723PUSGcnjpXT6567J5El7ZP+7lqBKJnQzkeqdAaVU29VedG35Y36vvAZWXOyL7tUL38RB0IWmvwZj4wWtuwyEOmAg2Nbpi1z46QBiBTmY"
+        },
+        {
             "key": "XieHui",
             "name": "🫖┆歇会┆4K",
             "type": 3,
@@ -260,6 +270,16 @@
         "playname": "ly"
       }
     },
+        {
+            "key": "嗑剧",
+            "name": "🍿┆嗑剧┆4K",
+            "type": 3,
+            "api": "csp_NiuLai",
+            "searchable": 1,
+            "filterable": 1,
+            "changeable": 0,
+            "ext": "Ab6RU4ow2BTC3y169gXHkoGyOzagKI89ksf5hxcm0/J5a7/pusSapfK8Oy6MtmlqAq8DsECmgbQ377MzwhHsU61D51ptVLqXXNu87y1TOl17"
+        },
         {
             "key": "凝光",
             "name": "✨┆凝光┆4K",
@@ -740,9 +760,8 @@
       "genre": "shortdrama",
       "filterable": 1,
       "ext": {
-        "host": "https://short.fishcloud.top",
-        "quality": "1080p",
-        "danmu": false
+                "host": "https://honhon.wya6.com",
+                "quality": "1080p"
       }
     },
     {

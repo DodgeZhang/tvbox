@@ -1,6 +1,6 @@
 {
-    "spider": "./jar/1.jpg;md5;722d5c1bdcb1b38fc62874941e060d6b",
-    "wallpaper": "https://www.loliapi.com/acg/",
+    "spider": "./jar/1.jpg;md5;53e039fb19875d5cfec02a0910399ffd",
+    "wallpaper": "./img/5.jpg",
     "logo": "./img/6.gif",
     "sites": [
         {
@@ -12,18 +12,18 @@
             "searchable": 0,
             "quickSearch": 0,
             "filterable": 0,
-            "ext": "https://cdn.waimaimingtang.com/file/images/bwc/20260414181247-ae51abfbfe.txt"
+            "ext": "./ext/2.txt"
         },
         {
             "key": "Doubanaaaa",
-            "name": "🐮【更新日期:20261026】🐮",
+            "name": "🐮【更新日期:20261106】🐮",
             "type": 3,
             "api": "csp_NewDouBanGuard",
             "indexs": 1,
             "searchable": 0,
             "quickSearch": 0,
             "filterable": 0,
-            "ext": "https://cdn.waimaimingtang.com/file/images/bwc/20260414181247-ae51abfbfe.txt"
+            "ext": "./ext/2.txt"
         },
         {
             "key": "Wexconfig",
@@ -261,6 +261,15 @@
             "name": "💥贱片┃秒播💥",
             "type": 3,
             "api": "csp_WexAiJianPianGuard",
+            "searchable": 1,
+            "quickSearch": 1,
+            "changeable": 0
+        },
+        {
+            "key": "下饭",
+            "name": "💥下饭┃秒播💥",
+            "type": 3,
+            "api": "csp_WexAiJuXiaFanGuard",
             "searchable": 1,
             "quickSearch": 1,
             "changeable": 0
@@ -537,6 +546,14 @@
             "changeable": 0
         },
         {
+            "key": "AnimeAiGongHeGuo",
+            "name": "🤡共和┃动漫🤡",
+            "type": 3,
+            "api": "csp_AnimeAiGongHeGuoGuard",
+            "searchable": 1,
+            "changeable": 0
+        },
+        {
             "key": "AnimeXiFan",
             "name": "🤡稀饭┃动漫🤡",
             "type": 3,
@@ -573,14 +590,6 @@
             "name": "🎃‍小马┃听书🎃",
             "type": 3,
             "api": "csp_BookHeMaGuard",
-            "searchable": 1,
-            "changeable": 0
-        },
-        {
-            "key": "BookAiShiJie",
-            "name": "🎃‍极品┃听书🎃",
-            "type": 3,
-            "api": "csp_BookAiShiJieGuard",
             "searchable": 1,
             "changeable": 0
         },
@@ -973,14 +982,6 @@
             "changeable": 0
         },
         {
-            "key": "SoAiQuPanShe",
-            "name": "🎠趣搜┃百度🎠",
-            "type": 3,
-            "api": "csp_SoAiQuPanSheGuard",
-            "searchable": 1,
-            "changeable": 0
-        },
-        {
             "key": "SoAiAiPanSo",
             "name": "🎠爱盘┃综合🎠",
             "type": 3,
@@ -993,6 +994,14 @@
             "name": "🎠卡卡┃综合🎠",
             "type": 3,
             "api": "csp_SoKaKaGuard",
+            "searchable": 1,
+            "changeable": 0
+        },
+        {
+            "key": "SoAiQuanPanGuard",
+            "name": "🎠全盘┃综合🎠",
+            "type": 3,
+            "api": "csp_SoAiQuanPanGuard",
             "searchable": 1,
             "changeable": 0
         },

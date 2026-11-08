@@ -1,7 +1,7 @@
 {
     "spider": "./spider.jar",
     "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
-    "logo": "http://127.0.0.1:9978/file/TVBox/logo.png",
+    "logo": "./logo.png",
     "danmaku": "http://127.0.0.1:9978/proxy?do=danmaku&name={name}&episode={episode}",
     "sites":[
         {
@@ -669,6 +669,12 @@
             "genre": "shortdrama"
         },
         {
+            "key": "星辰影视",
+            "name": "星辰 • 影视",
+            "type": 3,
+            "api": "csp_XingChen"
+        },
+        {
             "key": "飞娱影视",
             "name": "飞娱 • 影视",
             "type": 3,
@@ -732,19 +738,6 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1
-        },
-        {
-            "key": "面包影视",
-            "name": "面包 • 影视",
-            "type": 3,
-            "api": "csp_XBPQ",
-            "ext": {
-                "请求头": "User-Agent$MOBILE_UA",
-                "编码": "UTF-8",
-                "分类url": "https://v.aiwule.com/vodshow/{cateId}-{area}-{by}-{class}-{lang}-{letter}---{catePg}---{year}.html",
-                "分类": "电影$20#电视剧$21#动漫$23#综艺$22#短剧$47",
-                "简介": "简介：&&"
-            }
         },
         {
             "key": "剧圈影视",
@@ -817,7 +810,13 @@
             "key": "荐片",
             "name": "荐片 • 磁力",
             "api": "csp_JianPian",
-            "type": 3
+            "type": 3,
+            "ext": {
+                "site":[
+                    "https://www.whhyn.com",
+                    "https://www.zxfmj.com"
+                ]
+            }
         },
         {
             "key": "New6v",
