@@ -1,86 +1,20 @@
 # -*- coding: utf-8 -*-
-"""一次性构建脚本：在 AppleMusic.html 基础上注入 TV/手机双端适配，生成 AppleMusicTV.html（不覆盖原文件）"""
+"""一次性构建脚本：在 AppleMusic.html 基础上注入 TV/手机双端适配，生成 AppleMusicTV.html（不覆盖原文件）
+2026-11-10 重建：基底为 26.10.11 新版（993KB）；注入物提取自已验证的现行 TV 产物：
+  - TV CSS（含 v2 补充：rank-card/detail-song-row/tab-now）
+  - TV 引擎（含 v2 patch：detail 层 / more 层(npMorePop) / npClose 移除走 history.back）
+  - tabNow「当前播放」按钮 + 逻辑块
+"""
 import os
 
-base = r"d:\交投资料\相关文档\07-Git文件\Github\tvbox\webhome\html"
-src = os.path.join(base, "AppleMusic.html")
-dst = os.path.join(base, "AppleMusicTV.html")
+base = os.path.dirname(os.path.abspath(__file__))
+src = os.path.join(base, "webhome", "html", "AppleMusic.html")
+dst = os.path.join(base, "webhome", "html", "AppleMusicTV.html")
 
 with open(src, "r", encoding="utf-8", newline="") as f:
-    raw = f.read()
+    raw = f.read().replace("\r\n", "\n")
 
-# 主应用 <script>（行 2753 的裸 <script>）到行 8686 的 </script>，其后内容为浏览器扩展注入垃圾，全部丢弃
-start = raw.index("<script>")
-end = raw.index("</script>", start) + len("</script>")
-base_html = raw[:end]
-
-CSS = r'''
-<style id="aq-dual-adapt">
-/* ============================================================
-   Apple Music 双端适配注入样式（TV 遥控 / 手机触屏）
-   原则：只增强、不改变原有视觉风格；TV 规则全部限定 html.tv-mode，
-   触屏规则限定 html.touch-device 或小屏媒体查询。
-   ============================================================ */
-
-/* ---------- 手机/触屏：命中区域、即时反馈（视觉尺寸不变） ---------- */
-html.touch-device button,
-html.touch-device .tab,
-html.touch-device .chip,
-html.touch-device .album,
-html.touch-device .ch-item,
-html.touch-device .pl-card,
-html.touch-device .duo-card,
-html.touch-device .song,
-html.touch-device .lib-item,
-html.touch-device a {
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-}
-html.touch-device .album,
-html.touch-device .ch-item,
-html.touch-device .pl-card,
-html.touch-device .duo-card { transition: transform .12s ease; }
-html.touch-device .album:active,
-html.touch-device .ch-item:active,
-html.touch-device .pl-card:active,
-html.touch-device .duo-card:active { transform: scale(.97); }
-/* 整行类元素按下给底色反馈，不做缩放避免满宽溢出 */
-html.touch-device .song:active,
-html.touch-device .lib-item:active { background: rgba(250, 45, 72, .08); }
-
-/* iOS 输入框字号 >=16px 防止聚焦自动放大（搜索框原本即 17px） */
-html.touch-device .field,
-html.touch-device .src-editor input { font-size: 16px; }
-
-/* 小图标按钮扩大隐形命中区到 >=44px（不改视觉大小） */
-html.touch-device .circle-btn,
-html.touch-device .ch-refresh,
-html.touch-device .plat-btn,
-html.touch-device .song-more { position: relative; }
-html.touch-device .circle-btn::before,
-html.touch-device .ch-refresh::before,
-html.touch-device .plat-btn::before,
-html.touch-device .song-more::before {
-  content: ""; position: absolute; inset: -6px; border-radius: inherit;
-}
-html.touch-device .ch-refresh::before,
-html.touch-device .plat-btn::before { inset: -7px; }
-
-/* 超窄屏（<=360px）紧凑留白，避免横向溢出 */
-@media (max-width: 360px) {
-  .page { padding-left: 14px; padding-right: 14px; }
-  .header { padding-left: 14px; padding-right: 14px; }
-  .album { flex-basis: 134px; width: 134px; max-width: 134px; }
-  .album-art { width: 134px; height: 134px; }
-  .album-name, .album-artist { max-width: 134px; }
-  .ch-grid, .pl-grid { gap: 12px 8px; }
-  .top-duo { gap: 8px; }
-}
-/* 横屏矮屏手机：播放页封面收敛，避免遮挡控制区 */
-@media (pointer: coarse) and (max-height: 520px) {
-  #npArt { width: 168px; height: 168px; }
-}
-
+CSS = r'''<style id="aq-dual-adapt">
 /* ---------- TV 遥控模式：焦点环 ---------- */
 html.tv-mode *:focus { outline: none !important; }
 html.tv-mode .tv-focus {
@@ -427,11 +361,77 @@ html.tv-mode .dock .dock-side { display: none !important; }
   max-width: 80vw; text-align: center;
 }
 .aq-tip.show { opacity: 1; transform: translate(-50%, 0); }
-</style>
-'''
 
-JS = r'''
-<script>
+/* ============================================================
+   TV 适配 v2 补充（对齐官方新版：榜单卡 / 沉浸详情页 / 切源弹层 / 当前播放）
+   ============================================================ */
+/* 新增可聚焦卡片类型的焦点缩放 */
+html.tv-mode .tv-focus.rank-card { transform: scale(1.06); }
+html.tv-mode .tv-focus.detail-song-row { transform: scale(1.012); }
+html.tv-mode .detail-song-row { cursor: pointer; }
+
+/* —— 侧栏「当前播放」按钮：仅 TV 模式出现，手机/普通模式完全隐藏以保持官方 UI。
+   故意不用 .tab 类，避免被原应用 $(".tab") 的 go(dataset.p) 绑定当成页面切换 —— */
+.tab-now {
+  flex: 1 1 auto;
+  display: none !important; flex-direction: column;
+  align-items: center; justify-content: center; gap: 2px;
+  border: none; background: transparent;
+  color: rgba(60, 60, 67, 0.78);
+  font-size: 10px; font-weight: 500; font-family: inherit;
+  white-space: nowrap; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: color .28s ease, transform .32s cubic-bezier(0.34, 1.56, 0.64, 1), opacity .2s ease;
+}
+/* 仅 TV 模式显示（横屏走左侧圆栏样式，竖屏强制 TV 时走底栏样式） */
+html.tv-mode .tab-now { display: flex !important; }
+.tab-now svg { width: 24px; height: 24px; transition: transform .36s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.tab-now:active { transform: scale(0.82); }
+.tab-now.is-on { color: var(--pink); }
+.tab-now.is-on svg { transform: scale(1.12); }
+.tab-now.is-off { opacity: .38; }
+html.dark .tab-now { color: rgba(235, 235, 245, 0.72); }
+.tab-now.tap-off { animation: aqTapOff .3s ease; }
+@keyframes aqTapOff { 0%, 100% { transform: scale(1); } 40% { transform: scale(0.84); } }
+
+@media (min-width: 820px) {
+  html.tv-mode .rank-grid { grid-template-columns: repeat(5, 1fr); gap: 20px 16px; }
+}
+@media (min-width: 1280px) {
+  html.tv-mode .rank-grid { grid-template-columns: repeat(6, 1fr); }
+}
+
+@media (orientation: landscape), (min-aspect-ratio: 16/9) {
+  /* 老 TV 内核 inset:0 兜底：新版沉浸式详情页（np-more-pop 用 JS 定位，不加） */
+  html.tv-mode #detailPage,
+  html.tv-mode .detail-wall,
+  html.tv-mode .detail-wall::after {
+    top: 0 !important; right: 0 !important; bottom: 0 !important; left: 0 !important;
+  }
+  /* 「当前播放」在 TV 左侧栏中的圆钮样式（镜像 .dock .tab） */
+  html.tv-mode .dock .tab-now {
+    flex: 0 0 auto !important;
+    width: 60px !important; height: 60px !important;
+    border-radius: 50%;
+    flex-direction: column; justify-content: center;
+    gap: 2px; font-size: 9px;
+    color: var(--label-2);
+  }
+  html.tv-mode .dock .tab-now svg { width: 26px; height: 26px; }
+  html.tv-mode .dock .tab-now.is-on {
+    color: var(--pink);
+    background: rgba(250, 45, 72, 0.08);
+  }
+  html.tv-mode .dock .tab-now.is-off { opacity: .35; }
+}
+</style>'''
+
+TABNOW = r'''<button class="tab-now" id="tabNow" type="button" aria-label="当前播放" title="当前播放">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"></path></svg>
+        当前播放
+      </button>'''
+
+JS = r'''<script>
 /* ============================================================
    AQ 双端适配引擎（注入式，不改动原应用任何逻辑）
    - TV：遥控器方向键空间焦点导航 / OK 确认 / 返回分层退出 / 媒体键
@@ -552,7 +552,7 @@ JS = r'''
   }
 
   /* ---------- 焦点候选与可视判定 ---------- */
-  var CUSTOM = ".duo-card,.album,.ch-item,.pl-card,.song,.chip,.ch-tab,.search-tab,.lib-item,.np-lyrics,.np-art-wrap,#mini.show";
+  var CUSTOM = ".duo-card,.album,.ch-item,.pl-card,.rank-card,.detail-song-row,.song,.chip,.ch-tab,.search-tab,.lib-item,.np-lyrics,.np-art-wrap,#mini.show";
   var SELECTOR = "a[href],button,input,select,textarea,[role=button],.q-opt," + CUSTOM;
 
   function isVisible(el) {
@@ -570,6 +570,10 @@ JS = r'''
   function layer() {
     var ed = document.querySelector(".src-editor-mask.open");
     if (ed) return { kind: "editor", roots: [ed] };
+    /* 新版「切源/平台/歌词」弹层：与音质弹层共用 #qPopMask，但选项在独立容器里；
+       单独成层 more，避免与音质弹层混淆（mask 点击只关最上层） */
+    var nmp = $("npMorePop");
+    if (nmp && nmp.classList.contains("open")) return { kind: "more", roots: [nmp] };
     /* 音质弹框：#qPopMask 同步加 .open，#qPop 下一帧才加，两个都要检查避免漏判 */
     var qp = $("qPop"), qpm = $("qPopMask");
     var qpOpen = (qp && qp.classList.contains("open")) || (qpm && qpm.classList.contains("open"));
@@ -582,6 +586,9 @@ JS = r'''
     if (np && np.classList.contains("open")) {
       return { kind: "np", roots: [np], lyrics: np.classList.contains("lyrics-full") };
     }
+    /* 新版沉浸式歌单/榜单详情页 */
+    var dp = $("detailPage");
+    if (dp && dp.classList.contains("open")) return { kind: "detail", roots: [dp] };
     var roots = [];
     var page = document.querySelector(".page.on");
     if (page) roots.push(page);
@@ -654,6 +661,11 @@ JS = r'''
       return $("npPlay");
     }
     if (L.kind === "qpop") return L.roots[0].querySelector(".q-opt.on") || list[0];
+    if (L.kind === "more") return L.roots[0].querySelector("button") || list[0];
+    if (L.kind === "detail") {
+      var drow = L.roots[0].querySelector(".detail-song-row");
+      return drow || $("detailBackBtn") || list[0];
+    }
     if (L.kind === "plat") return L.roots[0].querySelector(".plat-menu button.on") || list[0];
     if (L.kind === "editor") return L.roots[0].querySelector("input[type=text],input:not([type]),textarea") || list[0];
     if (L.kind === "sheet") {
@@ -702,7 +714,7 @@ JS = r'''
 
     /* 播放页：控制行上键直达进度条（避免被整幅歌词区截获） */
     if (L.kind === "np" && dir === "up" && act.id &&
-        ["npPrev", "npPlay", "npNext", "npFav", "npSpeed", "npQuality", "npQueue", "npClose"].indexOf(act.id) >= 0) {
+        ["npMode", "npPrev", "npPlay", "npNext", "npQueue", "npFav", "npSpeed", "npQuality", "npSleep", "npMore"].indexOf(act.id) >= 0) {
       var seek = $("npSeek");
       if (seek && isVisible(seek)) { focusEl(seek); return; }
     }
@@ -864,9 +876,11 @@ JS = r'''
       editor: !!document.querySelector(".src-editor-mask.open"),
       qpop: !!((($("qPop") && $("qPop").classList.contains("open")) || ($("qPopMask") && $("qPopMask").classList.contains("open")))),
       sheet: !!($("sheetMask") && $("sheetMask").classList.contains("open")),
+      more: !!($("npMorePop") && $("npMorePop").classList.contains("open")),
       plat: !!($("platWrap") && $("platWrap").classList.contains("open")),
       np: !!($("np") && $("np").classList.contains("open")),
       lyrics: !!($("np") && $("np").classList.contains("lyrics-full")),
+      detail: !!($("detailPage") && $("detailPage").classList.contains("open")),
       page: (document.querySelector(".page.on") || {}).id || ""
     };
   }
@@ -919,9 +933,19 @@ JS = r'''
     clearTimeout(ensureTimer);
     var np = $("np");
     if (np && np.classList.contains("open")) return;
+    /* 点击/确认触发时，若刚打开的是歌单/榜单详情页则不要误开播放页；
+       audio-play / detail-row 触发不受限（详情页内点歌必须能顶开播放页） */
+    if (trigger !== "audio-play" && trigger !== "detail-row") {
+      var dp0 = $("detailPage");
+      if (dp0 && dp0.classList.contains("open")) return;
+    }
     showDiag(["ensureNP trig=" + trigger + " np.open=" + (np && np.classList.contains("open"))]);
     ensureTimer = setTimeout(function () {
       var n = $("np");
+      if (trigger !== "audio-play" && trigger !== "detail-row") {
+        var dp1 = $("detailPage");
+        if (dp1 && dp1.classList.contains("open")) return;
+      }
       if (n && n.classList.contains("open")) { showDiag(["ensureNP already open"]); return; }
       /* 尝试 #mini（原应用自己的入口：其 click handler 调 openNowPlaying） */
       var mini = $("mini");
@@ -951,9 +975,10 @@ JS = r'''
     var t = e.target;
     if (!t || !t.closest) return;
     var playable = t.closest(".album") || t.closest(".song") ||
-                   t.closest(".ch-item") || t.closest(".pl-card") ||
-                   t.closest(".duo-card") || t.id === "guessCard" || t.id === "radarCard";
-    if (playable) ensureNowPlaying("click");
+                   t.closest(".ch-item") ||
+                   t.closest(".duo-card") || t.closest(".detail-song-row") ||
+                   t.id === "guessCard" || t.id === "radarCard";
+    if (playable) ensureNowPlaying(playable.classList && playable.classList.contains("detail-song-row") ? "detail-row" : "click");
   }, true);
 
   /* ---------- 拦截 popstate：弹层打开时遥控器返回键不应关闭播放页 ----------
@@ -969,6 +994,12 @@ JS = r'''
       click(document.querySelector(".src-editor-mask.open"));
       return true;
     }
+    /* 切源/平台/歌词弹层优先于音质弹层（共用 #qPopMask，点遮罩只关最上层） */
+    if ($("npMorePop") && $("npMorePop").classList.contains("open")) {
+      _overlayJustClosed = Date.now();
+      click($("qPopMask"));
+      return true;
+    }
     if (($("qPop") && $("qPop").classList.contains("open")) || ($("qPopMask") && $("qPopMask").classList.contains("open"))) {
       _overlayJustClosed = Date.now();
       click($("qPopMask"));
@@ -982,6 +1013,12 @@ JS = r'''
     if ($("platWrap") && $("platWrap").classList.contains("open")) {
       _overlayJustClosed = Date.now();
       click($("btnPlat"));
+      return true;
+    }
+    /* 详情页层级最低（z-56），放在最后 */
+    if ($("detailPage") && $("detailPage").classList.contains("open")) {
+      _overlayJustClosed = Date.now();
+      click($("detailBackBtn"));
       return true;
     }
     return false;
@@ -1050,8 +1087,8 @@ JS = r'''
 
   /* 焦点堆栈：每个弹层打开时压栈记录来源焦点，关闭时逐层回焦
      （播放页内的音质/操作表子弹层关闭时，播放页本身仍开着） */
-  var KINDS = ["editor", "qpop", "sheet", "plat", "np"];
-  var OPEN_DELAY = { editor: 180, qpop: 200, sheet: 240, plat: 180, np: 280 };
+  var KINDS = ["editor", "qpop", "more", "sheet", "plat", "np", "detail"];
+  var OPEN_DELAY = { editor: 180, qpop: 200, more: 200, sheet: 240, plat: 180, np: 280, detail: 320 };
   var focusStack = [];
   function react() {
     var s = sig();
@@ -1088,7 +1125,7 @@ JS = r'''
       }, 80);
       return;
     }
-    var nowOverlay = s.editor || s.qpop || s.sheet || s.plat || s.np;
+    var nowOverlay = s.editor || s.qpop || s.more || s.sheet || s.plat || s.np;
     if (!nowOverlay && s.page && s.page !== cur.page) { cur = s; setTimeout(focusDefault, 140); return; }
     cur = s;
   }
@@ -1122,11 +1159,19 @@ JS = r'''
       try { history.back(); } catch (eHb) { var _np = $("np"); if (_np) _np.classList.remove("lyrics-full"); }
       return;
     }
-    if (L.kind === "editor" || L.kind === "qpop" || L.kind === "sheet" || L.kind === "plat") {
+    if (L.kind === "editor" || L.kind === "qpop" || L.kind === "more" || L.kind === "sheet" || L.kind === "plat") {
       closeTopOverlay();
       return;
     }
-    if (L.kind === "np") { click($("npClose")); return; }
+    if (L.kind === "np") {
+      /* 新版已移除 #npClose：走官方返回链路（popstate → closeNowPlaying） */
+      try { history.back(); } catch (eNb) {
+        var _n = $("np");
+        if (_n) { _n.classList.add("closing"); _n.classList.remove("open", "lyrics-full"); }
+      }
+      return;
+    }
+    if (L.kind === "detail") { click($("detailBackBtn")); return; }
     /* 普通页面：非首页先回首页（首页按下无动作，避免误退出网站） */
     if (L.page && L.page.id !== "p-home") {
       click(document.querySelector('.tab[data-p="home"]') || $("dockHome"));
@@ -1221,18 +1266,19 @@ JS = r'''
         e.preventDefault();
         /* 老 TV 内核下 activeElement 可能是卡片内部子节点（如 img），
            取最近的可点击容器再触发，否则 click 落在子节点上原应用不响应 */
-        var target = el.closest(".album,.song,.ch-item,.pl-card,.duo-card,.q-opt,.tab,.chip,.ch-tab,.search-tab,.lib-item,.np-lyrics,.np-art-wrap,.song-more,.q-opt,.plat-btn,.plat-menu button,.ch-refresh,.sec-link,.src-check,.field,.range,input,select,textarea,button,a,[role=button],#mini,#guessCard,#radarCard");
+        var target = el.closest(".album,.song,.ch-item,.pl-card,.rank-card,.detail-song-row,.duo-card,.q-opt,.tab,.tab-now,.chip,.ch-tab,.search-tab,.lib-item,.np-lyrics,.np-art-wrap,.song-more,.q-opt,.plat-btn,.plat-menu button,.ch-refresh,.sec-link,.src-check,.field,.range,input,select,textarea,button,a,[role=button],#mini,#guessCard,#radarCard,#tabNow");
         if (!target) target = el;
         var okLines = [];
         okLines.push("OK target=" + (target.className || target.id || target.tagName));
         click(target);
         var playable = target.closest(".album") || target.closest(".song") ||
-                       target.closest(".ch-item") || target.closest(".pl-card") ||
-                       target.closest(".duo-card") || target.id === "guessCard" || target.id === "radarCard";
+                       target.closest(".ch-item") ||
+                       target.closest(".duo-card") || target.closest(".detail-song-row") ||
+                       target.id === "guessCard" || target.id === "radarCard";
         okLines.push("playable=" + !!playable);
         showDiag(okLines);
         if (playable) {
-          ensureNowPlaying("keydown-OK");
+          ensureNowPlaying(playable.classList && playable.classList.contains("detail-song-row") ? "detail-row" : "keydown-OK");
         }
       }
     }
@@ -1266,15 +1312,86 @@ JS = r'''
     }
   };
 })();
-</script>
-'''
+</script>'''
 
-anchor = "</style></head>"
-pos = base_html.index(anchor) + len("</style>")
-out = base_html[:pos] + CSS + base_html[pos:] + JS + "\n</body>\n</html>\n"
+JS2 = r'''<script>
+/* ============================================================
+   侧栏「当前播放」入口（TV / 手机双端，注入式，不改原应用任何逻辑）
+   - 有播放（#mini.show 或 audio 有 src）：点击进入 #np 播放页
+   - 无播放：置灰并给一个轻反馈（不抢焦点、不报错）
+   - 播放页打开期间按钮高亮；mini/np/audio 状态变化自动同步
+   ============================================================ */
+(function () {
+  "use strict";
+  function $(id) { return document.getElementById(id); }
+  var btn = $("tabNow");
+  if (!btn) return;
+  var mini = $("mini"), npEl = $("np"), audioEl = $("audio");
+
+  function npOpen() { return !!(npEl && npEl.classList.contains("open")); }
+  function hasTrack() {
+    if (mini && mini.classList.contains("show")) return true;
+    return !!(audioEl && audioEl.src && !audioEl.error);
+  }
+  function paint() {
+    var off = !hasTrack();
+    btn.classList.toggle("is-on", npOpen());
+    btn.classList.toggle("is-off", off);
+    btn.setAttribute("aria-disabled", off ? "true" : "false");
+  }
+  function flash() {
+    btn.classList.remove("tap-off");
+    void btn.offsetWidth;
+    btn.classList.add("tap-off");
+    setTimeout(function () { btn.classList.remove("tap-off"); }, 320);
+  }
+  function openNow() {
+    if (npOpen()) return;
+    if (!hasTrack()) { flash(); return; }
+    /* 复用原应用入口：#mini 点击 → openNowPlaying；
+       TV 横屏下 mini 被 CSS 隐藏，老 WebView 可能不响应点击，170ms 后兜底 */
+    try { if (mini) mini.click(); } catch (e1) {}
+    setTimeout(function () {
+      var n = $("np");
+      if (n && !n.classList.contains("open")) {
+        n.classList.remove("closing", "lyrics-full");
+        n.style.transform = ""; n.style.opacity = ""; n.style.transition = "";
+        n.classList.add("open");
+        try { history.pushState({ aqNp: 1, overlay: "player" }, "", "#player"); } catch (e2) {}
+      }
+      paint();
+    }, 170);
+  }
+  btn.addEventListener("click", openNow);
+  if (mini) new MutationObserver(paint).observe(mini, { attributes: true, attributeFilter: ["class"] });
+  if (npEl) new MutationObserver(paint).observe(npEl, { attributes: true, attributeFilter: ["class"] });
+  if (audioEl) {
+    audioEl.addEventListener("emptied", function () { setTimeout(paint, 0); });
+    audioEl.addEventListener("loadstart", paint);
+    audioEl.addEventListener("play", paint);
+  }
+  setTimeout(paint, 300);
+  paint();
+})();
+</script>'''
+
+# 1) CSS 注入到 </style>\n</head> 之间
+a1 = "</style>\n</head>"
+assert raw.count(a1) == 1, "a1 anchor not unique"
+out = raw.replace(a1, "</style>\n" + CSS + "\n</head>")
+
+# 2) tabNow「当前播放」按钮注入到 tabbar </nav> 后（dock-side 前）
+a2 = "</nav>\n    <button class=\"dock-side\""
+assert out.count(a2) == 1, "a2 anchor not unique"
+out = out.replace(a2, "</nav>\n      " + TABNOW.strip().replace("\n", "\n      ") + "\n    <button class=\"dock-side\"")
+
+# 3) 引擎 + block4 注入到最后一个 </script> 后、</body> 前
+a3 = "</script>\n</body>\n</html>"
+assert out.count(a3) == 1, "a3 anchor not unique"
+out = out.replace(a3, "</script>\n" + JS + "\n" + JS2 + "\n</body>\n</html>\n")
 
 with open(dst, "w", encoding="utf-8", newline="") as f:
-    f.write(out)
+    f.write(out.rstrip("\n") + "\n")
 
 print("OK", len(raw), "->", len(out))
 print("dst:", dst)
