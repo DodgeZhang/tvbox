@@ -1,5 +1,5 @@
 {
-    "spider": "./jar/1.png;md5;d93049ba6615eab01b69a52ff03c02c9",
+    "spider": "./jar/1.png;md5;2dd93067babd96be152a4ef45e2ce7f8",
     "logo": "./img/9.gif",
     "danmaku": "http://127.0.0.1:2525/danmu?name={name}&epid={episode}",
     "wallpaper": "http://127.0.0.1:9978/proxy?do=AowuWapper&mode=2",
@@ -123,7 +123,17 @@
             "ext": "NewGrV2"
         },
         {
-            "name": "📦①线┃秒播",
+            "name": "📦师兄┃APP",
+            "key": "AppV7Dsx",
+            "type": 3,
+            "api": "csp_AppV7Amns",
+            "searchable": 1,
+            "quickSearch": 1,
+            "changeable": 1,
+            "ext": "AppV7Dsx"
+        },
+        {
+            "name": "📦浮舟┃APP",
             "key": "AppV7Fz",
             "type": 3,
             "api": "csp_AppV7Amns",
@@ -133,7 +143,7 @@
             "ext": "AppV7Fz"
         },
         {
-            "name": "📦②线┃秒播",
+            "name": "📦星野┃APP",
             "key": "AppV7Xy",
             "type": 3,
             "api": "csp_AppV7Amns",
@@ -143,7 +153,7 @@
             "ext": "AppV7Xy"
         },
         {
-            "name": "📦③线┃秒播",
+            "name": "📦织锦┃APP",
             "key": "AppV7Zjdr",
             "type": 3,
             "api": "csp_AppV7Amns",
@@ -153,7 +163,7 @@
             "ext": "AppV7Zjdr"
         },
         {
-            "name": "📦④线┃秒播",
+            "name": "📦玄珠┃APP",
             "key": "AppV7Xyz",
             "type": 3,
             "api": "csp_AppV7Amns",
@@ -163,7 +173,7 @@
             "ext": "AppV7Xyz"
         },
         {
-            "name": "📦⑤线┃秒播",
+            "name": "📦衔梦┃APP",
             "key": "AppV7Xnm",
             "type": 3,
             "api": "csp_AppV7Amns",
@@ -173,7 +183,7 @@
             "ext": "AppV7Xnm"
         },
         {
-            "name": "📦⑥线┃秒播",
+            "name": "📦鸣泉┃APP",
             "key": "AppV7Mtq",
             "type": 3,
             "api": "csp_AppV7Amns",
@@ -183,7 +193,7 @@
             "ext": "AppV7Mtq"
         },
         {
-            "name": "📦⑦线┃秒播",
+            "name": "📦琳琅┃APP",
             "key": "AppV7Llq",
             "type": 3,
             "api": "csp_AppV7Amns",
@@ -193,7 +203,7 @@
             "ext": "AppV7Llq"
         },
         {
-            "name": "📦⑧线┃秒播",
+            "name": "📦衔石┃APP",
             "key": "AppV7Xsz",
             "type": 3,
             "api": "csp_AppV7Amns",
@@ -203,7 +213,7 @@
             "ext": "AppV7Xsz"
         },
         {
-            "name": "📦⑨线┃秒播",
+            "name": "📦星海┃APP",
             "key": "AppV7Xhr",
             "type": 3,
             "api": "csp_AppV7Amns",
@@ -211,16 +221,6 @@
             "quickSearch": 1,
             "changeable": 1,
             "ext": "AppV7Xhr"
-        },
-        {
-            "name": "📦师兄┃秒播",
-            "key": "AppV7Dsx",
-            "type": 3,
-            "api": "csp_AppV7Amns",
-            "searchable": 1,
-            "quickSearch": 1,
-            "changeable": 1,
-            "ext": "AppV7Dsx"
         },
         {
             "name": "☁️花卷┃4K",
@@ -251,6 +251,26 @@
             "quickSearch": 1,
             "changeable": 1,
             "ext": "hbWobg"
+        },
+        {
+            "name": "☁️蜡笔┃4K",
+            "key": "lbWobg",
+            "type": 3,
+            "api": "csp_WobgAmns",
+            "searchable": 1,
+            "quickSearch": 1,
+            "changeable": 1,
+            "ext": "lbWobg"
+        },
+        {
+            "name": "☁️闪电┃4K",
+            "key": "sdWobg",
+            "type": 3,
+            "api": "csp_WobgAmns",
+            "searchable": 1,
+            "quickSearch": 1,
+            "changeable": 1,
+            "ext": "sdWobg"
         },
         {
             "name": "☁️Sed┃4K",
@@ -337,10 +357,10 @@
             "changeable": 1
         },
         {
-            "name": "🐱青云┃动漫",
-            "key": "DMqingk",
+            "name": "🐱快快┃动漫",
+            "key": "DMlmm",
             "type": 3,
-            "api": "csp_DMqingkAmns",
+            "api": "csp_DMlmmAmns",
             "searchable": 1,
             "quickSearch": 1,
             "changeable": 1
@@ -352,8 +372,7 @@
             "api": "csp_DMxiguaAmns",
             "searchable": 1,
             "quickSearch": 1,
-            "changeable": 1,
-            "ext": "DMxigua"
+            "changeable": 1
         },
         {
             "name": "🐱魔都┃动漫",
@@ -469,7 +488,7 @@
             "name": "⭐橘汁┃快速",
             "key": "Woshinidie",
             "type": 3,
-            "jar": "./jar/2.png;md5;7a2cb30dc4937d27e57288b5c381e19c",
+            "jar": "./jar/2.png;md5;528450abfa7bbee80d68034ae045a1f6",
             "api": "csp_Woshinidie",
             "searchable": 1,
             "quickSearch": 1,

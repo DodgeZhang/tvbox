@@ -1,10 +1,10 @@
 {
-    "spider": "./jar/1.jpg;md5;d2a33b53d09ec59c4cb7e3f482ef3907",
+    "spider": "./jar/1.jpg;md5;9d5f341aa5f3353b50cc3bc16b4f3e8a",
     "wallpaper": "./img/12.jpg",
     "sites": [
         {
             "key": "点我切源",
-            "name": "豆豆┃片单<修复所有>",
+            "name": "豆豆┃片单 <兼容安卓4>",
             "type": 3,
             "api": "csp_DouDouGuard",
             "indexs": 1,
@@ -126,7 +126,6 @@
             "type": 3,
             "api": "csp_AppgzGuard",
             "timeout": 15,
-            "playerType": "2",
             "searchable": 1,
             "quickSearch": 1,
             "changeable": 1
@@ -178,7 +177,6 @@
             "type": 3,
             "api": "csp_AppTTGuard",
             "timeout": 10,
-            "playerType": 2,
             "searchable": 1,
             "quickSearch": 1,
             "changeable": 1,
@@ -225,7 +223,6 @@
             "type": 3,
             "api": "csp_JPJGuard",
             "timeout": 10,
-            "playerType": 2,
             "searchable": 1,
             "quickSearch": 1,
             "changeable": 0
@@ -253,7 +250,7 @@
         },
         {
             "key": "AiDj",
-            "name": "❤️AI┃短漫剧",
+            "name": "❤️AI剧┃弹幕",
             "type": 3,
             "api": "csp_AiDjGuard",
             "ext": {
@@ -348,12 +345,12 @@
             "key": "有声小说",
             "name": "🎧有声┃小说",
             "type": 3,
-            "api": "csp_Tingshu275Guard",
+            "api": "csp_YueTingGuard",
             "style": {
                 "type": "rect",
                 "ratio": 1
             },
-            "searchable": 1,
+            "searchable": 0,
             "quickSearch": 0,
             "changeable": 0
         },
@@ -636,7 +633,7 @@
     ],
     "lives": [
         {
-            "name": "综合直播",
+            "name": "综合",
             "type": 0,
             "url": "./live/7.php",
             "ua": "bingcha/1.1 (mianfeifenxiang)",

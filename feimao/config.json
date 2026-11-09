@@ -1,5 +1,5 @@
 {
-    "spider": "./jar/1.png;md5;cd1e8ad50504d324a55a9187b95cd3de",
+    "spider": "./jar/1.png;md5;6a396033ae45efee57ba789f91d7123e",
     "danmaku": "http://127.0.0.1:9978/proxy?do=danmaku&name={name}&episode={episode}",
     "wallpaper": "https://深色壁纸.xxooo.cf/",
     "logo": "./img/17.gif",
@@ -25,6 +25,36 @@
             "type": 3,
             "api": "csp_Config",
             "playerType": 2
+        },
+        {
+            "key": "PanMarket",
+            "name": "🐼┃网盘┃应用",
+            "type": 3,
+            "api": "csp_PanMarket",
+            "searchable": 0,
+            "style": {
+                "type": "list"
+            },
+            "ext": {
+                "categories": [
+                    {
+                        "name": "Fongmi影视",
+                        "url": "https://pan.quark.cn/s/7129866d8655"
+                    },
+                    {
+                        "name": "OK影视",
+                        "url": "https://pan.quark.cn/s/cc286c991136"
+                    },
+                    {
+                        "name": "Kazumi",
+                        "url": "https://pan.quark.cn/s/e77ca870e15e"
+                    },
+                    {
+                        "name": "LxMusic",
+                        "url": "https://pan.quark.cn/s/c24085164146"
+                    }
+                ]
+            }
         },
         {
             "key": "alllive",
@@ -58,6 +88,29 @@
                     "threads": 16
                 },
                 "url_key": "FeiMaoUC"
+            }
+        },
+        {
+            "key": "csp_Duopan",
+            "name": "🖍︎┃蜡笔┃影视",
+            "type": 3,
+            "api": "csp_Duopan",
+            "filterable": 1,
+            "ext": {
+                "site_urls": [
+                    "http://xiaocge.fun",
+                    "http://feimo.fun",
+                    "http://www.labi88.sbs",
+                    "http://fmao.site",
+                    "http://fmao.shop",
+                    "http://xiaocgege.shop",
+                    "http://www.xiaocgege.shop"
+                ],
+                "threadinfo": {
+                    "chunksize": 512,
+                    "threads": 16
+                },
+                "url_key": "Duopan2"
             }
         },
         {
@@ -534,7 +587,7 @@
         {
             "name": "Gather「果」",
             "type": 3,
-            "url": "https://tv.tmxk.kdns.fr/yplrnuc7",
+            "url": "./live/14.m3u",
             "epg": "https://material.1989.click/epg.xml.gz",
             "ua": "okhttp/3.8.1",
             "timeout": 10,
