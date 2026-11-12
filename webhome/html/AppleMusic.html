@@ -7,11 +7,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" data-page-node-id="BOydYJidbPQ6ok9vXTzyuV" />
 <meta name="referrer" content="no-referrer" data-page-node-id="HrgGhxaYulVoCILOw9z8bn" />
 <title>Music</title>
-
-  <script>
+<script>
 try{var t=localStorage.getItem("aq_theme")||"light";function _aqIsNight(){var h=new Date().getHours();return h>=18||h<6;}var dark=t==="dark"||(t==="auto"&&_aqIsNight())||(t==="system"&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches);if(dark)document.documentElement.classList.add("dark");}catch(e){}
 </script>
-  <style>
+<style>
 :root {
   --bg: #f3f3f6;
   --bg-pure: #fafafc;
@@ -2394,9 +2393,9 @@ html.dark .np-more-pop button:active { background: rgba(120,120,128,0.22); }
   background-image: linear-gradient(
     90deg,
     var(--ly-hl) 0%,
-    var(--ly-hl) calc(var(--ly-prog) * 100% - 0.3%),
-    var(--ly-hl) calc(var(--ly-prog) * 100%),
-    var(--ly-dim) calc(var(--ly-prog) * 100% + 0.6%),
+    var(--ly-hl) calc(var(--ly-prog) * 100% - 6%),
+    color-mix(in srgb, var(--ly-hl) 60%, var(--ly-dim)) calc(var(--ly-prog) * 100%),
+    var(--ly-dim) calc(var(--ly-prog) * 100% + 10%),
     var(--ly-dim) 100%
   ) !important;
   -webkit-background-clip: text !important;
@@ -2434,9 +2433,9 @@ html.dark .np:not(.np-ui-dark) .np-lyrics .ly.on {
   background-image: linear-gradient(
     90deg,
     var(--ly-hl) 0%,
-    var(--ly-hl) calc(var(--ly-prog) * 100% - 0.3%),
-    var(--ly-hl) calc(var(--ly-prog) * 100%),
-    var(--ly-dim) calc(var(--ly-prog) * 100% + 0.6%),
+    var(--ly-hl) calc(var(--ly-prog) * 100% - 6%),
+    color-mix(in srgb, var(--ly-hl) 60%, var(--ly-dim)) calc(var(--ly-prog) * 100%),
+    var(--ly-dim) calc(var(--ly-prog) * 100% + 10%),
     var(--ly-dim) 100%
   ) !important;
   -webkit-background-clip: text !important;
@@ -3243,6 +3242,12 @@ html.dark .np-glow-base { background: rgba(235, 235, 245, 0.16); }
 .np.immersive .np-artist {
   color: rgba(255,255,255,0.8); text-shadow: 0 1px 10px rgba(0,0,0,0.25);
 }
+/* 竖版沉浸：歌名/歌手上移 5px（不动海报与歌词区） */
+.np.immersive .np-title,
+.np.immersive .np-artist {
+  transform: translateY(-5px);
+}
+
 .np.immersive .np-lyrics {
   text-align: left; padding: 4px 24px 0; max-height: 28vh; min-height: 72px;
 }
@@ -6074,8 +6079,9 @@ html.dark .np.np-ui-dark .np-lyrics .ly.on:not(.ly-ktv) {
   background-image: linear-gradient(
     90deg,
     var(--ly-hl, #b83a4e) 0%,
-    var(--ly-hl, #b83a4e) calc(var(--ly-prog, 0) * 100%),
-    var(--ly-dim, rgba(120,120,128,0.35)) calc(var(--ly-prog, 0) * 100% + 0.15%),
+    var(--ly-hl, #b83a4e) calc(var(--ly-prog, 0) * 100% - 6%),
+    color-mix(in srgb, var(--ly-hl, #b83a4e) 60%, var(--ly-dim, rgba(120,120,128,0.35))) calc(var(--ly-prog, 0) * 100%),
+    var(--ly-dim, rgba(120,120,128,0.35)) calc(var(--ly-prog, 0) * 100% + 10%),
     var(--ly-dim, rgba(120,120,128,0.35)) 100%
   ) !important;
   -webkit-background-clip: text !important;
@@ -6109,11 +6115,15 @@ html.dark .np.np-ui-dark .np-lyrics .ly.on:not(.ly-ktv) {
   -webkit-text-fill-color: var(--ly-dim);
   background: none !important;
   transition: none !important;
+  transform: none;
+  text-shadow: none !important;
 }
 .np-lyrics .ly.on.ly-ktv .ly-w.sung {
   color: var(--ly-hl) !important;
   -webkit-text-fill-color: var(--ly-hl) !important;
   background: none !important;
+  transform: none;
+  text-shadow: none;
 }
 .np-lyrics .ly.on.ly-ktv .ly-w.cur {
   color: transparent !important;
@@ -6121,12 +6131,16 @@ html.dark .np.np-ui-dark .np-lyrics .ly.on:not(.ly-ktv) {
   background-image: linear-gradient(
     90deg,
     var(--ly-hl) 0%,
-    var(--ly-hl) calc(var(--w-prog, 0) * 100%),
-    var(--ly-dim) calc(var(--w-prog, 0) * 100% + 0.15%),
+    var(--ly-hl) calc(var(--w-prog, 0) * 100% - 8%),
+    color-mix(in srgb, var(--ly-hl) 70%, var(--ly-dim)) calc(var(--w-prog, 0) * 100% - 1%),
+    color-mix(in srgb, var(--ly-hl) 35%, var(--ly-dim)) calc(var(--w-prog, 0) * 100% + 5%),
+    var(--ly-dim) calc(var(--w-prog, 0) * 100% + 14%),
     var(--ly-dim) 100%
   ) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
+  transform: none;
+  text-shadow: none !important;
 }
 .np-lyrics .ly-trans {
   display: block;
@@ -6231,15 +6245,19 @@ html.dark .np.np-ui-dark .np-lyrics .ly.on:not(.ly-ktv) {
   color: transparent !important;
   -webkit-text-fill-color: transparent !important;
   text-shadow: none !important;
+  transform: none !important;
   background-image: linear-gradient(
     90deg,
     var(--ly-hl) 0%,
-    var(--ly-hl) calc(var(--w-prog, 0) * 100%),
-    var(--ly-dim) calc(var(--w-prog, 0) * 100% + 0.15%),
+    var(--ly-hl) calc(var(--w-prog, 0) * 100% - 8%),
+    color-mix(in srgb, var(--ly-hl) 65%, var(--ly-dim)) calc(var(--w-prog, 0) * 100%),
+    var(--ly-dim) calc(var(--w-prog, 0) * 100% + 12%),
     var(--ly-dim) 100%
   ) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
+  transform: scale(1.018);
+  transform-origin: center bottom;
 }
 
 .np-lyrics .ly-roma {
@@ -6357,7 +6375,7 @@ html.dark .np:not(.immersive) .np-lyrics .ly.on.ly-ktv {
   background: none !important;
   background-image: none !important;
 }
-/* 当前字：经典原版「扫进去」渐变（不是整句齐亮、也不是整字跳变） */
+/* 当前字：柔边扫进去（宽过渡带，避免生硬切边） */
 .np:not(.immersive) .np-lyrics .ly.on.ly-ktv .ly-w.cur,
 .np.lyrics-full:not(.immersive) .np-lyrics .ly.on.ly-ktv .ly-w.cur,
 .np.np-ui-dark:not(.immersive) .np-lyrics .ly.on.ly-ktv .ly-w.cur,
@@ -6368,15 +6386,17 @@ html.dark .np:not(.immersive) .np-lyrics .ly.on.ly-ktv {
   background-image: linear-gradient(
     90deg,
     var(--ly-hl) 0%,
-    var(--ly-hl) calc(var(--w-prog, 0) * 100% - 0.2%),
-    var(--ly-hl) calc(var(--w-prog, 0) * 100%),
-    var(--ly-dim) calc(var(--w-prog, 0) * 100% + 0.5%),
+    var(--ly-hl) calc(var(--w-prog, 0) * 100% - 8%),
+    color-mix(in srgb, var(--ly-hl) 68%, var(--ly-dim)) calc(var(--w-prog, 0) * 100%),
+    var(--ly-dim) calc(var(--w-prog, 0) * 100% + 12%),
     var(--ly-dim) 100%
   ) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   background-size: 100% 100% !important;
   background-repeat: no-repeat !important;
+  transform: none !important;
+  text-shadow: none !important;
 }
 .np.lyrics-full:not(.immersive) .np-lyrics .ly.on.ly-ktv {
   color: var(--ly-dim) !important;
@@ -6384,7 +6404,6 @@ html.dark .np:not(.immersive) .np-lyrics .ly.on.ly-ktv {
 </style>
 </head>
 <body data-page-node-id="raGpTfuiS3DKlhJ6Y2VjVd">
-
 <div id="app" data-page-node-id="WQSCEz6WbZfDETRVTnUTCN">
   <header class="header" data-page-node-id="0Ku4SIHGcUtAuCAWHW3jUE">
     <h1 id="pageTitle" data-page-node-id="ZxloNyfd6rp7uQhv0w3W8j">现在就听</h1>
@@ -6671,7 +6690,7 @@ html.dark .np:not(.immersive) .np-lyrics .ly.on.ly-ktv {
         </div>
         <div class="set-row" data-page-node-id="qLQniEbcSDGXKhMFK4V5tT">
           <div class="set-label" data-page-node-id="nrjkPM31L72MMMfOA1fSyA">版本</div>
-          <div style="font-size:14px;color:var(--label-2)" data-page-node-id="Pzl12odjpe1CdNc6BBVjWi">5.8-1258013</div>
+          <div style="font-size:14px;color:var(--label-2)" data-page-node-id="Pzl12odjpe1CdNc6BBVjWi">5.9</div>
         </div>
       </div>
 
@@ -6836,6 +6855,7 @@ html.dark .np:not(.immersive) .np-lyrics .ly.on.ly-ktv {
   </div>
 </div>
 
+
 <div id="detailWall" class="detail-wall" aria-hidden="true"><div class="dw-amb" id="detailWallAmb"></div></div>
 <div id="detailPage" aria-hidden="true">
   <div class="detail-topbar">
@@ -6898,11 +6918,7 @@ html.dark .np:not(.immersive) .np-lyrics .ly.on.ly-ktv {
 
 <audio id="audio" preload="metadata" playsinline webkit-playsinline x-webkit-airplay="allow" data-page-node-id="9U7tpzv263eqM3EzgIKBzt"></audio>
 
-  <script>
-/* early */
-try{var t=localStorage.getItem("aq_theme")||"light";function _aqIsNight(){var h=new Date().getHours();return h>=18||h<6;}var dark=t==="dark"||(t==="auto"&&_aqIsNight())||(t==="system"&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches);if(dark)document.documentElement.classList.add("dark");}catch(e){}
-
-/* block 1 */
+<script>
 (function () {
   "use strict";
 
@@ -6945,6 +6961,9 @@ try{var t=localStorage.getItem("aq_theme")||"light";function _aqIsNight(){var h=
     _pendingFile: null,
     _pendingFileText: "",
   };
+  // 内置 LX 脚本正文（淡月疏星=Hei Music 聚合源，雾隐青山=星海音乐源）
+  var BUILTIN_LX_CHANGQING = "/**\n * @name Hei Music聚合源\n * @description 聚合自公开接口 Q群516649104\n * @version v2.2.1-fix\n * @author Compile by CatXiaolan\n */\n;(function() {\n\n\nconst { EVENT_NAMES, request, on, send } = globalThis.lx\n\n// ========== 统计上报配置 ==========\n// 上报地址以混淆字节形式存储于 _0xa3b1.report_url，由 PANEL_REPORT_URL 运行时解码获得，避免明文暴露\n// 为空字符串则不上报（PANEL_REPORT_URL 定义见下方解码函数之后）\n\n// ========== 混淆层：字符串编码/解码 ==========\n// 将敏感URL和密钥以编码形式存储，运行时解码使用\nvar _0x4e8f = function(arr, key) {\n  var result = []\n  for (var i = 0; i < arr.length; i++) {\n    result.push(String.fromCharCode(arr[i] ^ key.charCodeAt(i % key.length)))\n  }\n  return result.join('')\n}\n\n// 编码后的API URL密钥表（XOR with key \"HeiMusic\"）\nvar _0xa3b1 = {\n  nianxin_kw: [0x20,0x11,0x1d,0x3d,0x6,0x49,0x46,0x4c,0x25,0x6,0x19,0x63,0x1b,0x1a,0x8,0xd,0x30,0xc,0x7,0x35,0xf,0x5d,0xa,0xc,0x25,0x4a,0x1a,0x25,0x14,0x1,0xc,0x4c,0x2b,0x0,0x1a,0x25,0x1c,0x5c,0x2,0x14,0x66,0x15,0x1,0x3d],\n  gdstudio: [0x20,0x11,0x1d,0x3d,0x6,0x49,0x46,0x4c,0x25,0x10,0x1a,0x24,0x16,0x5e,0x8,0x13,0x21,0x4b,0xe,0x29,0x6,0x7,0x1c,0x7,0x21,0xa,0x47,0x35,0xc,0x9,0x46,0x2,0x38,0xc,0x47,0x3d,0x1d,0x3],\n  qq_vkey: [0x20,0x11,0x1d,0x3d,0x6,0x49,0x46,0x4c,0x3d,0x11,0x47,0x34,0x5b,0x2,0x18,0x4d,0x2b,0xa,0x4,0x62,0x16,0x14,0x0,0x4e,0x2a,0xc,0x7,0x62,0x18,0x6,0x1a,0xa,0x2b,0x10,0x47,0x2b,0x16,0x14],\n  qq_cdn: [0x20,0x11,0x1d,0x3d,0x6,0x49,0x46,0x4c,0x2c,0x9,0x47,0x3e,0x1,0x1,0xc,0x2,0x25,0x4b,0x18,0x3c,0x18,0x6,0x1a,0xa,0x2b,0x4b,0x18,0x3c,0x5b,0x10,0x6,0xe,0x67],\n  ynx_tx: [0x20,0x11,0x1d,0x3d,0x6,0x49,0x46,0x4c,0x29,0x15,0x0,0x60,0x3,0x41,0x47,0x1a,0x3d,0x4,0xf,0x28,0x1b,0x14,0x47,0x0,0x26,0x4a,0x28,0x1d,0x3c,0x5c,0x18,0x12,0x25,0x10,0x1a,0x24,0x16,0x5d,0x19,0xb,0x38],\n  ynx_tx2: [0x20,0x11,0x1d,0x3d,0x6,0x49,0x46,0x4c,0x3c,0x4,0x7,0x2a,0x5b,0x12,0x19,0xa,0x66,0x16,0x59,0x7c,0x6,0x5d,0xa,0xd,0x67,0x8,0x1c,0x3e,0x1c,0x10,0x36,0xc,0x38,0x0,0x7,0x12,0x14,0x3,0x0,0x4d,0x38,0xd,0x19],\n  nianxin_wy: [0x20,0x11,0x1d,0x3d,0x6,0x49,0x46,0x4c,0x25,0x6,0x19,0x63,0x1b,0x1a,0x8,0xd,0x30,0xc,0x7,0x35,0xf,0x5d,0xa,0xc,0x25,0x4a,0x1a,0x25,0x14,0x1,0xc,0x4c,0x2b,0x0,0x1a,0x25,0x1c,0x5c,0x1e,0x1a,0x66,0x15,0x1,0x3d],\n  ynx_apikey: [0x7b,0x3,0xf,0x7f,0x46,0x46,0x5b,0x50,0x2d,0x51,0x5e,0x79,0x43,0x46,0x5b,0x51,0x7c,0x4,0x5a,0x2b,0x41,0x4b,0x5c,0x54,0x71,0x4,0xa,0x2b,0x41,0x42,0xf,0x51,0x7c,0x54,0x5c,0x79,0x45,0x10,0xc,0x53,0x7c,0x7,0x5f,0x2e,0x16,0x43,0xb,0x5a,0x7c,0x54,0x5f,0x79,0x13,0x40,0x5e,0x2,0x7d,0x7,0x5f,0x7f,0x4c,0x4a,0xd,0x56],\n  // v1.1.9 新增源\n  nianxin_tx: [0x20,0x11,0x1d,0x3d,0x6,0x49,0x46,0x4c,0x25,0x6,0x19,0x63,0x1b,0x1a,0x8,0xd,0x30,0xc,0x7,0x35,0xf,0x5d,0xa,0xc,0x25,0x4a,0x1a,0x25,0x14,0x1,0xc,0x4c,0x2b,0x0,0x1a,0x25,0x1c,0x5c,0x1d,0x1b,0x66,0x15,0x1,0x3d],\n  nianxin_kg: [0x20,0x11,0x1d,0x3d,0x6,0x49,0x46,0x4c,0x25,0x6,0x19,0x63,0x1b,0x1a,0x8,0xd,0x30,0xc,0x7,0x35,0xf,0x5d,0xa,0xc,0x25,0x4a,0x1a,0x25,0x14,0x1,0xc,0x4c,0x2b,0x0,0x1a,0x25,0x1c,0x5c,0x2,0x4,0x66,0x15,0x1,0x3d],\n  // v1.3.0 新增源\n  xinghai: [0x20,0x11,0x1d,0x3d,0x6,0x49,0x46,0x4c,0x31,0x1c,0x47,0x37,0x11,0x17,0x10,0x11,0x66,0x11,0x6,0x3d,0x5a,0x1f,0x11,0x4c,0x29,0x15,0x0,0x62],\n  shouji_tx: [0x20,0x11,0x1d,0x3d,0x6,0x49,0x46,0x4c,0x2b,0x1c,0x8,0x3d,0x1c,0x5d,0x1d,0xc,0x38,0x4a,0x28,0x1d,0x3c,0x5c,0x18,0x12,0x17,0x8,0x1c,0x3e,0x1c,0x10,0x47,0x13,0x20,0x15,0x56,0x2c,0x5,0x1a,0x2,0x6,0x31,0x58,0x58,0x2b,0x13,0x17,0xf,0x56,0x7f,0x56,0x5a,0x2b,0x40,0x17,0x5c,0x50,0x70,0x52,0x5f,0x7d,0x10,0x45,0x5a,0x7,0x7f,0x0,0x5d,0x7b,0x17,0x12,0x58,0x54,0x7c,0x56,0x51,0x29,0x4c,0x15,0x5e,0x1,0x71,0x1,0xf,0x2e,0x44,0x4b,0xa,0x56,0x79,0x7,0xc,0x7c,0x44,0x43,0x50,0x50,0x70,0x53,0xf,0x29,0x42,0x47,0xa,0x50,0x29,0x54,0x4f,0x39,0xc,0x3,0xc,0x5e,0x22,0x16,0x6,0x23],\n  // v2.1.1 新增源\n  wwwweb: [0x20,0x11,0x1d,0x3d,0x6,0x49,0x46,0x4c,0x2b,0x4b,0x1e,0x3a,0x2,0x4,0xc,0x1,0x66,0x11,0x6,0x3d,0x5a,0x1e,0x1c,0x10,0x21,0x6,0x46,0x38,0x7,0x1f],\n  cenguigui_wy: [0x20,0x11,0x1d,0x3d,0x6,0x49,0x46,0x4c,0x29,0x15,0x0,0x63,0x16,0x16,0x7,0x4,0x3d,0xc,0xe,0x38,0x1c,0x5d,0xa,0xd,0x67,0x4,0x19,0x24,0x5a,0x1d,0xc,0x17,0x2d,0x4,0x1a,0x28,0x5a,0x1e,0x1c,0x10,0x21,0x6,0x36,0x3b,0x44,0x5d,0x19,0xb,0x38],\n  // v2.1.2 新增可用源（腾讯直链 / 咪咕搜索播放）\n  vkeys_tx: [0x20,0x11,0x1d,0x3d,0x6,0x49,0x46,0x4c,0x29,0x15,0x0,0x63,0x3,0x18,0xc,0x1a,0x3b,0x4b,0xa,0x23,0x5a,0x1e,0x1c,0x10,0x21,0x6,0x46,0x39,0x10,0x1d,0xa,0x6,0x26,0x11,0x46,0x3e,0x1a,0x1d,0xe,0x4c,0x24,0xc,0x7,0x26],\n  haitangw: [0x20,0x11,0x1d,0x3d,0x6,0x49,0x46,0x4c,0x25,0x10,0x1a,0x24,0x16,0x0,0xc,0x11,0x3e,0x0,0x1b,0x63,0x1d,0x12,0x0,0x17,0x29,0xb,0xe,0x3a,0x5b,0x10,0xa,0x4c,0x3e,0x54,0x46,0x20,0x0,0x0,0x0,0x0,0x67,0x17,0xc,0x3e,0x1a,0x1f,0x1f,0x6,0x65,0x10,0x1b,0x21],\n  migu_search: [0x20,0x11,0x1d,0x3d,0x6,0x49,0x46,0x4c,0x29,0x15,0x19,0x63,0x0,0x5d,0x7,0x5,0x66,0x8,0x0,0x2a,0x0,0x5d,0xa,0xd,0x67,0x15,0xa,0x62,0x7,0x16,0x1a,0xc,0x3d,0x17,0xa,0x28,0x5a,0x0,0x6,0xd,0x2f,0x4a,0x1a,0x28,0x14,0x1,0xa,0xb,0x67,0x13,0x58,0x63,0x45],\n  migu_listen: [0x20,0x11,0x1d,0x3d,0x6,0x49,0x46,0x4c,0x29,0x15,0x19,0x63,0x16,0x5d,0x7,0x5,0x66,0x8,0x0,0x2a,0x0,0x5d,0xa,0xd,0x67,0x28,0x20,0xa,0x20,0x3e,0x5b,0x4d,0x78,0x4a,0x1f,0x7c,0x5b,0x43,0x46,0x0,0x27,0xb,0x1d,0x28,0x1b,0x7,0x46,0x10,0x3d,0x7,0x46,0x21,0x1c,0x0,0x1d,0x6,0x26,0x36,0x6,0x23,0x12,0x5d,0xd,0xc],\n  // v2.2.0 新增可用源（HYW公益 / vkeys v2 / aa.cab搜索 / oiapi咪咕 / 酷我官方mobi）\n  hyw_free_api: [0x20,0x11,0x1d,0x3d,0x4f,0x5c,0x46,0x52,0x78,0x56,0x47,0x7a,0x4c,0x5d,0x58,0x5b,0x7c,0x4b,0x50,0x7a,0x5a,0x12,0x19,0xa,0x67,0x8,0x1c,0x3e,0x1c,0x10,0x46,0x16,0x3a,0x9],\n  hyw_free_key: [0x7e,0x26,0x58,0xb,0x58,0x46,0x5a,0x34,0x78,0x48,0x2e,0x1f,0x3e,0x3a,0x44,0x26,0x1e,0x23,0x2e],\n  vkeys_tx_v2: [0x20,0x11,0x1d,0x3d,0x6,0x49,0x46,0x4c,0x29,0x15,0x0,0x63,0x3,0x18,0xc,0x1a,0x3b,0x4b,0xa,0x23,0x5a,0x5,0x5b,0x4c,0x25,0x10,0x1a,0x24,0x16,0x5c,0x1d,0x6,0x26,0x6,0xc,0x23,0x1,0x5c,0xe,0x6,0x3c,0x10,0x1b,0x21],\n  aa_cab_tx: [0x20,0x11,0x1d,0x3d,0x6,0x49,0x46,0x4c,0x29,0x4b,0x8,0x2c,0x5b,0x10,0x8,0x1,0x67,0x14,0x18,0x63,0x18,0x6,0x1a,0xa,0x2b],\n  oiapi_migu: [0x20,0x11,0x1d,0x3d,0x6,0x49,0x46,0x4c,0x27,0xc,0x8,0x3d,0x1c,0x5d,0x7,0x6,0x3c,0x4a,0x8,0x3d,0x1c,0x5c,0x24,0xa,0xf,0x10,0x36,0x0,0x0,0x0,0x0,0x0],\n  kw_mobi: [0x20,0x11,0x1d,0x3d,0x4f,0x5c,0x46,0xd,0x25,0xa,0xb,0x24,0x5b,0x18,0x1c,0x14,0x27,0x4b,0xa,0x23,0x5a,0x1e,0x6,0x1,0x21,0x4b,0x1a],\n  // 统计上报地址（混淆存储，密钥 HeiMusic）\n  report_url: [0x20,0x11,0x1d,0x3d,0x4f,0x5c,0x46,0x5b,0x66,0x54,0x5a,0x7a,0x5b,0x4b,0x50,0x4d,0x79,0x55,0x5a,0x77,0x44,0x43,0x59,0x53,0x7c,0x4a,0x1b,0x28,0x5,0x1c,0x1b,0x17,0x66,0x15,0x1,0x3d],\n}\n\n// 运行时解码URL\nvar _dec = function(name) {\n  return _0x4e8f(_0xa3b1[name], 'HeiMusic')\n}\n\n// 上报地址（解码获得，避免明文；为空则不上报）\nvar PANEL_REPORT_URL = _dec('report_url')\n\n// ========== 第二层混淆：字符串表（XOR 编码 + 索引取值） ==========\nvar _0x2c7a = [[29633,23524,29168],[24509,24486,58,27,60,35],[24509,24486,61,21],[62,14,12,52,6,33037,35782],[62,14,12,52,6,33037,35782,21,122],[24509,24486,34,10],[38199,38711,27934,26797],[24509,24486,30,52],[43,0,7,42,0,26,14,22,33,58,30,52],[63,18,30,58,16,17],[47,1,26,57,0,23,0,12],[25,52,38810,19997,30337,36781],[21730,21744,25717,32111],[26199,27922,38810,19997,28389],[25982,38563,32819,21573],[0,60,62,20769,30399],[41,4,71,46,20,17],[39,12,8,61,28,21721,21756],[37183,25204,4,34,23,26],[24509,24486,58,27,60,35,83,67,27396,26263,32,9,20088,23339,22337],[24509,24486,58,27,60,35,83,67,20037,25930,25448,35752,24070,21379],[24509,24486,61,21,79,83,20140,25932,25417,69,29,53],[24509,24486,61,21,79,83,27429,26257,1,33,20068,23317,22365],[24509,24486,34,10,79,83,20140,25932,25417,69,2,42],[24509,24486,34,10,79,83,27429,26257,1,33,20068,23317,22365],[47,1,26,57,0,23,0,12,114,69,20068,25954,25460,35734,24090,21395],[47,1,26,57,0,23,0,12,114,69,27429,26303,60,55,20068,23355,22368],[47,1,26,57,0,23,0,12,104,33746,21439,22908,36176],[25,52,38810,19997,30337,36781,73,20134,25959,25444,73,57,13],[25,52,38810,19997,30337,36781,83,67,27396,26263,32,9,20088,23339,22337],[25,52,38810,19997,30337,36781,83,67,26466,36785,22199,26436,25917,38029,25548],[29633,23524,29168,109,20144,25948,25448,67,60,29],[29633,23524,29168,119,85,27455,26267,42,12,20072,23345,22373],[29633,23524,29168,119,85,38784,36161,38446,32495],[29633,23524,29168,119,85,26457,36797,22205,26433,25901,38039,25576],[24509,24486,30,52,85,20150,25926,25442,104,18,16],[24509,24486,30,52,79,83,27429,26257,1,33,20068,23317,22365],[63,18,30,58,16,17,83,67,20109,25930,25448,109,2,10,70,8,63],[63,18,30,58,16,17,83,67,27396,26263,32,9,20088,23339,22337],[38199,38711,27934,26797,79,83,20068,25932,25417,35712,24090,21437],[38199,38711,27934,26797,79,83,27429,26257,1,33,20068,23317,22365],[43,0,7,42,0,26,14,22,33,58,30,52,85,20150,25926,25442,104,18,16],[43,0,7,42,0,26,14,22,33,58,30,52,79,83,27429,26257,1,33,20068,23317,22365],[62,14,12,52,6,33037,35782,89,104,20128,25926,25420,85,7,17],[62,14,12,52,6,33037,35782,89,104,27433,26267,4,49,20094,23345,22347],[21730,21744,25717,32111,79,83,20140,25932,25417,69,4,42],[21730,21744,25717,32111,79,83,32595,23666,27396,26263,21604],[21730,21744,25717,32111,79,83,26435,25117,21112,27433,26267],[21730,21744,25717,32111,79,83,26435,33748,21406,21077,10,34,27,7,12,13,60,44,13],[26199,27922,38810,19997,28389,73,73,20078,25959,25444,35724,24126,21381],[26199,27922,38810,19997,28389,73,73,27439,26298,44,45,20032,23341,22363],[25982,38563,32819,21573,79,83,20140,25932,25417,69,29,53],[25982,38563,32819,21573,79,83,27429,26257,1,33,20068,23317,22365],[25982,38563,32819,21573,79,83,26435,36791,22166,26476,25889,38067,25552],[0,60,62,20769,30399,73,73,27439,26298,44,45,20032,23341,22363],[62,14,12,52,6,33037,35782,21,122,95,73,20104,25946,25458,73,23,48],[62,14,12,52,6,33037,35782,21,122,95,73,27393,26247,58,45,20078,23312,22349],[41,4,71,46,20,17,83,67,20109,25930,25448,109,1,11],[41,4,71,46,20,17,83,67,32626,23668,27429,26303,21624],[41,4,71,46,20,17,83,67,26466,36785,22199,26436,25917,38029,25548],[39,12,8,61,28,21721,21756,89,104,20128,25926,25420,85,30,14],[39,12,8,61,28,21721,21756,89,104,32607,23672,27393,26247,21630],[39,12,8,61,28,21721,21756,89,104,26447,36797,22163,26492,25915,38039,25542],[37183,25204,4,34,23,26,83,67,20109,25930,25448,109,30,4],[37183,25204,4,34,23,26,83,67,27396,26263,32,9,20088,23339,22337],[26024,21386,30017,28381],[24347,21032,29217,26465,23943,35032,20533,30027,65348,35730,26269,26109,38790,28387],[32626,23668,27429,26303,20372,24604],[41,6,29,36,26,29,73,13,39,17,73,62,0,3,25,12,58,17],[35775,27687,36332,26043,93],[24509,24486,30,52,79,83],[63,18,30,58,16,17,83,67],[38199,38711,27934,26797,79,83],[43,0,7,42,0,26,14,22,33,58,30,52,79,83],[62,14,12,52,6,33037,35782,89,104],[21730,21744,83,109],[26199,27922,38810,19997,28389,73,73],[0,60,62,20769,30399,73,73],[62,14,12,52,6,33037,35782,21,122,95,73],[37183,25204,4,34,23,26,83,67],[25096,26476,40,29,60,28387,22318,22866,36205,95,99],[26024,21386,30017,28381,25946,25458,24090,21395,114,69],[26024,25930,25448,30409,38790,20003,24090,21395,114,69],[103,4,25,36,91,3,1,19,119,4,10,57,28,28,7,94,43,13,12,46,30,44,28,19,44,4,29,40],[56,9,8,57,19,28,27,14,117],[110,4,25,36,72],[110,22,28,46,22,22,26,16,117],[110,17,0,32,16,78],[110,16,26,40,7,44,0,7,117],[110,6,5,36,16,29,29,60,60,28,25,40,72],[110,23,12,42,28,28,7,94],[110,20,28,44,25,26,29,26,117],[110,6,5,36,16,29,29,60,33,21,84],[41,6,29,36,26,29,84,5,41,12,5,40,17],[110,23,12,60,0,22,26,23,23,12,13,112],[110,4,25,36,6,78],[110,4,29,57,16,30,25,23,23,6,6,56,27,7,84],[32,17,29,61,6,73,70,76,41,21,0,99,28,3,0,5,49,75,6,63,18,76,15,12,58,8,8,57,72,25,26,12,38],[37,16,26,36,22,38,27,15],[35,2],[60,29],[37,2],[63,28],[35,18]]\nvar _0x8d40 = {}\nvar _g = function(i) {\n  if (_0x8d40[i] === undefined) _0x8d40[i] = _0x4e8f(_0x2c7a[i], 'HeiMusic')\n  return _0x8d40[i]\n}\n\n// 安全日志封装：移动版引擎宿主 API 极少，console 可能不存在，\n// 直接使用 console.log 在初始化/请求阶段抛错会导致脚本初始化失败或请求异常\nvar _0x6b0f = function() {\n  try {\n    if (typeof console !== 'undefined' && console.log) console.log.apply(console, arguments)\n  } catch (e) {}\n}\nvar _0x6b0e = function() {\n  try {\n    if (typeof console !== 'undefined' && console.error) console.error.apply(console, arguments)\n  } catch (e) {}\n}\n\nconst _0x6a02 = (url, options) => {\n  let abortFn = null\n  const p = new Promise((resolve, reject) => {\n    try {\n      const opts = options || {}\n      // 默认超时：竞速超时或调用方超时后，底层请求会在限期内自动终止，避免悬挂连接\n      if (!opts.timeout) opts.timeout = 5000\n      abortFn = request(url, opts, (err, resp) => {\n        if (err) return reject(err)\n        resolve(resp.body)\n      })\n    } catch (e) {\n      reject(e)\n    }\n  })\n  // 暴露中止能力，供竞速超时时取消底层请求\n  p.abort = () => { try { if (typeof abortFn === 'function') abortFn() } catch (e) {} }\n  return p\n}\n\n// 带响应头的请求封装：部分接口（如咪咕 listenSong）通过 302 返回真实直链，\n// 需读取 Location 头才能拿到可播放地址\nconst _0x6a01 = (url, options) => {\n  let abortFn = null\n  const p = new Promise((resolve, reject) => {\n    try {\n      const opts = options || {}\n      if (!opts.timeout) opts.timeout = 5000\n      abortFn = request(url, opts, (err, resp) => {\n        if (err) return reject(err)\n        resolve({\n          body: resp && resp.body,\n          headers: (resp && resp.headers) || {},\n          statusCode: resp && resp.statusCode,\n        })\n      })\n    } catch (e) {\n      reject(e)\n    }\n  })\n  p.abort = () => { try { if (typeof abortFn === 'function') abortFn() } catch (e) {} }\n  return p\n}\n\n// 带超时的请求封装，避免慢速API阻塞并发竞速\n// 超时优先中止底层 HTTP 请求（若封装链暴露了 abort），减少悬挂连接与无效上报\nconst _0x6a03 = function(promise, ms) {\n  var timer = null\n  var timeout = new Promise(function(_, reject) {\n    timer = setTimeout(function() {\n      try {\n        if (promise && typeof promise.abort === 'function') promise.abort()\n      } catch (e) {}\n      reject(new Error(_g(69) + ms + 'ms)'))\n    }, ms)\n  })\n  return Promise.race([promise, timeout]).then(function(v) {\n    clearTimeout(timer)\n    return v\n  }, function(e) {\n    clearTimeout(timer)\n    throw e\n  })\n}\n\nconst _0x6a04 = function(url) {\n  if (!url || typeof url !== 'string') return false\n  if (url.indexOf('http://') !== 0 && url.indexOf('https://') !== 0) return false\n  if (url.indexOf('panspace.kuwo.cn') !== -1) return false\n  return true\n}\n\n// 统计上报：异步发送调用数据到控制面板，不阻塞主流程\n// 使用随机生成的用户ID区分用户，代替IP识别\nvar _cachedClientIp = ''\nvar _userId = ''\nvar _clientType = ''\n\n// 检测客户端类型（轻量 UA 嗅探，兼容无 navigator 的环境）\nvar _0x6b07 = function() {\n  try {\n    var ua = (globalThis && globalThis.navigator && globalThis.navigator.userAgent) || ''\n    if (/android/i.test(ua)) _clientType = 'Android'\n    else if (/iphone|ipad|ios/i.test(ua)) _clientType = 'iOS'\n    else if (/windows/i.test(ua)) _clientType = 'Windows'\n    else if (/macintosh|mac os/i.test(ua)) _clientType = 'macOS'\n    else if (/linux/i.test(ua)) _clientType = 'Linux'\n  } catch(e) {}\n}\n\nvar _0x6b06 = function() {\n  // 生成随机用户ID（格式: U + 12位随机十六进制）\n  var chars = '0123456789abcdef'\n  var id = 'U'\n  for (var i = 0; i < 12; i++) {\n    id += chars[Math.floor(Math.random() * 16)]\n  }\n  _userId = id\n}\n\nvar _0x6b08 = function() {\n  if (_cachedClientIp) return\n  _0x6a02(_g(97), { method: 'GET', timeout: 3000 }).then(function(body) {\n    if (body && body.ip) {\n      _cachedClientIp = body.ip\n    }\n  }).catch(function() {})\n}\n\nvar _0x6b04 = function(platform, apiName, success, responseTime, quality) {\n  if (!PANEL_REPORT_URL) return\n  try {\n    var q = String(quality || '')\n    var body = _g(84) + encodeURIComponent(platform)\n      + _g(85) + encodeURIComponent(apiName)\n      + _g(86) + (success ? 1 : 0)\n      + _g(87) + encodeURIComponent(String(responseTime))\n      + _g(88) + encodeURIComponent(_userId)\n      + _g(89) + encodeURIComponent(_clientType)\n      + _g(90)\n    if (q !== '') body += _g(91) + encodeURIComponent(q)\n    if (_cachedClientIp) body += _g(92) + encodeURIComponent(_cachedClientIp)\n    request(PANEL_REPORT_URL, {\n      method: 'POST',\n      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },\n      body: body\n    }, function() {})\n  } catch(e) {}\n}\n\n// 失效播放聚合上报：整首歌曲所有接口均失败时触发一次，按 request_id 去重合并\nvar _0x6b05 = function(platform, quality, candidates) {\n  if (!PANEL_REPORT_URL) return\n  try {\n    var _0x6b10 = []\n    for (var i = 0; i < candidates.length; i++) _0x6b10.push(candidates[i].name)\n    var reqId = 'R' + Math.random().toString(16).substring(2, 10) + Date.now().toString(16)\n    var body = _g(93)\n      + _g(94) + encodeURIComponent(reqId)\n      + '&platform=' + encodeURIComponent(platform)\n      + _g(88) + encodeURIComponent(_userId)\n      + _g(91) + encodeURIComponent(String(quality || ''))\n      + _g(95) + encodeURIComponent(JSON.stringify(_0x6b10))\n      + _g(96) + candidates.length\n    if (_cachedClientIp) body += _g(92) + encodeURIComponent(_cachedClientIp)\n    request(PANEL_REPORT_URL, {\n      method: 'POST',\n      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },\n      body: body\n    }, function() {})\n  } catch(e) {}\n}\n\nconst _0x6a05 = function(musicInfo) {\n  return musicInfo.hash || musicInfo.songmid || musicInfo.songId || musicInfo.id || musicInfo.rid || musicInfo.musicId || musicInfo.copyrightId || musicInfo.songid\n}\n\nconst _0x6a06 = function(platform, musicInfo) {\n  if (platform === _g(99)) return musicInfo.hash || musicInfo.songmid || musicInfo.id || musicInfo.rid || musicInfo.mid\n  if (platform === _g(100)) return musicInfo.songmid || musicInfo.strMediaMid || musicInfo.mediaId || musicInfo.id\n  if (platform === _g(101)) return musicInfo.copyrightId || musicInfo.songId || musicInfo.id || musicInfo.songmid\n  return musicInfo.songmid || musicInfo.id || musicInfo.songId || musicInfo.rid || musicInfo.hash\n}\n\nconst _0x6a07 = function(quality) {\n  var q = String(quality || '128k').toLowerCase()\n  if (q === 'jymaster' || q === 'jyeffect' || q === 'sky' || q === 'dolby' || q === 'atmos' || q === 'atmos_plus' || q === 'master') return 'lossless'\n  if (q === 'flac' || q === 'flac24bit') return 'lossless'\n  if (q === '320k' || q === '192k') return 'exhigh'\n  return 'standard'\n}\n\nconst _0x6a08 = function(musicInfo) {\n  var name = musicInfo.name || musicInfo.songName || ''\n  var singer = musicInfo.singer || musicInfo.artist || ''\n  if (name && singer) return name + ' ' + singer\n  return name\n}\n\n// ========== API 源获取函数 ==========\n\n// 念心SVIP - kw (从混淆代码提取的真实URL)\nvar _0x6d01 = {\n  [_g(103)]: _dec('nianxin_kw') + '?id={id}&level={level}&type=mp3',\n}\nconst _0x6c02 = function(source, musicInfo, quality) {\n  var songId = _0x6a06(source, musicInfo)\n  if (!songId) return Promise.reject(new Error(_g(19)))\n  var template = _0x6d01[source]\n  if (!template) return Promise.reject(new Error(_g(20)))\n  var level = _0x6a07(quality)\n  var url = template.replace('{id}', encodeURIComponent(String(songId))).replace('{level}', encodeURIComponent(level))\n  return Promise.resolve(url)\n}\n\n// 念心TX接口 - tx (mcp.nianxinxz.com/share/ceshi/tx.php，返回302直链)\nvar NIANXIN_TX_URL = _dec('nianxin_tx')\nvar _0x6c03 = function(source, musicInfo, quality) {\n  if (source !== _g(100)) return Promise.reject(new Error(_g(21)))\n  var songId = _0x6a06('tx', musicInfo)\n  if (!songId) return Promise.reject(new Error(_g(22)))\n  var level = _0x6a07(quality)\n  // 该接口通过302重定向返回音频直链，直接返回接口地址交由播放器跟随跳转\n  return Promise.resolve(NIANXIN_TX_URL + '?id=' + encodeURIComponent(String(songId)) + '&level=' + level + '&type=mp3')\n}\n\n// 念心KG接口 - kg (mcp.nianxinxz.com/share/ceshi/kg.php，返回302直链)\nvar NIANXIN_KG_URL = _dec('nianxin_kg')\nvar _0x6c06 = function(source, musicInfo, quality) {\n  if (source !== _g(99)) return Promise.reject(new Error(_g(23)))\n  var songId = _0x6a06('kg', musicInfo)\n  if (!songId) return Promise.reject(new Error(_g(24)))\n  var level = _0x6a07(quality)\n  return Promise.resolve(NIANXIN_KG_URL + '?id=' + encodeURIComponent(String(songId)) + '&level=' + level + '&type=mp3')\n}\n\n// gdstudio - 多平台支持 (wy/tx/kg/kw/mg)\nvar GDSTUDIO_SOURCE_MAP = { 'wy': 'netease', 'tx': 'qq', 'kg': 'kugou', 'kw': 'kuwo', 'mg': 'migu' }\nconst _0x6c0b = function(source, musicInfo, quality) {\n  var gdSource = GDSTUDIO_SOURCE_MAP[source]\n  if (!gdSource) return Promise.reject(new Error(_g(25)))\n  var songId = source === _g(102) ? _0x6a05(musicInfo) : _0x6a06(source, musicInfo)\n  if (!songId) return Promise.reject(new Error(_g(26)))\n  var brMap = { '128k': '128', '320k': '320', 'flac': '740', 'flac24bit': '999', 'jyeffect': '999', 'sky': '999', 'jymaster': '999', 'dolby': '999', 'atmos': '999', 'atmos_plus': '999', 'master': '999' }\n  var br = brMap[quality] || '320'\n  return _0x6a02(_dec('gdstudio') + '?types=url&source=' + gdSource + '&id=' + encodeURIComponent(String(songId)) + '&br=' + br, {\n    method: 'GET',\n  }).then(function(body) {\n    if (body && body.url && _0x6a04(body.url)) return body.url\n    throw new Error(_g(27))\n  })\n}\n\n// QQ音乐直连vkey - tx (直接调用QQ音乐官方vkey接口，响应最快~0.13s)\n// 支持dolby全景声音质\nvar QQ_VKEY_URL = _dec('qq_vkey')\nvar QQ_CDN_URL = _dec('qq_cdn')\nvar QQ_VKEY_GUID = '10000'\n\nvar _qqVkeyRequest = function(filename, songmid) {\n  var payload = {\n    comm: { ct: 19, cv: 0, guid: QQ_VKEY_GUID, tmeAppID: 'qqmusic', qq: '0' },\n    hot: {\n      method: 'CgiGetHotVkey',\n      module: 'music.vkey.GetEVkey',\n      param: { filename: [filename], songmid: [String(songmid)] }\n    }\n  }\n  return _0x6a02(QQ_VKEY_URL, {\n    method: 'POST',\n    headers: { 'Content-Type': 'application/json' },\n    body: JSON.stringify(payload)\n  }).then(function(body) {\n    if (body && body.code === 0 && body.hot && body.hot.code === 0 &&\n        body.hot.data && body.hot.data.urls && body.hot.data.urls.length > 0) {\n      var purl = body.hot.data.urls[0].purl\n      if (purl) {\n        var fullUrl = QQ_CDN_URL + purl\n        if (_0x6a04(fullUrl)) return fullUrl\n      }\n    }\n    return null\n  })\n}\n\nvar _0x6c0c = function(source, musicInfo, quality) {\n  if (source !== _g(100)) return Promise.reject(new Error(_g(28)))\n  var songmid = musicInfo.songmid || musicInfo.strMediaMid || musicInfo.id || ''\n  var mediaMid = musicInfo.strMediaMid || songmid\n  if (!songmid) return Promise.reject(new Error(_g(29)))\n  // 音质格式映射，按优先级尝试\n  // QQ音乐CDN前缀: C400=128k, M800=320k, F000=FLAC, D000=HiRes, Q000=全景声, A000=臻品母带\n  var formatMap = {\n    '128k': [{ prefix: 'C400', ext: 'm4a' }],\n    '320k': [{ prefix: 'M800', ext: 'mp3' }, { prefix: 'C400', ext: 'm4a' }],\n    'flac': [{ prefix: 'F000', ext: 'flac' }, { prefix: 'M800', ext: 'mp3' }],\n    'flac24bit': [{ prefix: 'D000', ext: 'flac' }, { prefix: 'F000', ext: 'flac' }, { prefix: 'M800', ext: 'mp3' }],\n    'dolby': [{ prefix: 'Q000', ext: 'm4a' }, { prefix: 'F000', ext: 'flac' }, { prefix: 'M800', ext: 'mp3' }],\n    'atmos': [{ prefix: 'Q000', ext: 'm4a' }, { prefix: 'F000', ext: 'flac' }, { prefix: 'M800', ext: 'mp3' }],\n    'atmos_plus': [{ prefix: 'Q000', ext: 'm4a' }, { prefix: 'F000', ext: 'flac' }, { prefix: 'M800', ext: 'mp3' }],\n    'master': [{ prefix: 'A000', ext: 'flac' }, { prefix: 'F000', ext: 'flac' }, { prefix: 'M800', ext: 'mp3' }]\n  }\n  var formats = formatMap[quality] || formatMap['320k']\n  // 依次尝试不同格式，第一个成功即返回\n  var tryFormat = function(index) {\n    if (index >= formats.length) {\n      return Promise.reject(new Error(_g(30)))\n    }\n    var fmt = formats[index]\n    var filename = fmt.prefix + mediaMid + '.' + fmt.ext\n    return _qqVkeyRequest(filename, songmid).then(function(url) {\n      if (url) return url\n      return tryFormat(index + 1)\n    })\n  }\n  return tryFormat(0)\n}\n\n// 玉宁熙tx主接口 - tx (api-v2.yuafeng.cn, 带APIKEY)\nvar YNX_TX_URL = _dec('ynx_tx')\nvar YNX_TX2_URL = _dec('ynx_tx2')\nvar YNX_APIKEY = _dec('ynx_apikey')\n\n// 校验玉宁熙返回的URL是否匹配请求的音质，避免音质降级\nvar _checkYnxQuality = function(quality, url) {\n  if (!url) return false\n  var q = String(quality || '128k').toLowerCase()\n  // 128k 不降级检查\n  if (q === '128k') return true\n  // 320k 不应返回 C400（128k m4a）\n  if (q === '320k' || q === '192k') {\n    return url.indexOf('C400') === -1\n  }\n  // 无损/全景声应包含 flac 或高品质标识，避免 C400\n  if (q === 'flac' || q === 'flac24bit' || q === 'dolby') {\n    return url.indexOf('C400') === -1\n  }\n  return true\n}\n\nvar _0x6c01 = function(source, musicInfo, quality) {\n  if (source !== _g(100)) return Promise.reject(new Error(_g(31)))\n  var songmid = _0x6a06('tx', musicInfo)\n  if (!songmid) return Promise.reject(new Error(_g(32)))\n  // 音质映射为中文type参数\n  // 臻品母带=master, 臻品全景声=atmos/dolby, SQ无损=flac, HQ高品质=320k, 低品质=128k\n  var typeMap = { '128k': '低品质', '320k': 'HQ高品质', 'flac': 'SQ无损', 'flac24bit': '臻品全景声', 'dolby': '臻品全景声', 'atmos': '臻品全景声', 'atmos_plus': '臻品全景声', 'master': '臻品母带' }\n  var type = encodeURIComponent(typeMap[quality] || 'HQ高品质')\n  // 主接口: api-v2.yuafeng.cn\n  return _0x6a02(YNX_TX_URL + '?type=' + type + '&mid=' + encodeURIComponent(String(songmid)) + '&apikey=' + YNX_APIKEY, {\n    method: 'GET',\n  }).then(function(body) {\n    if (body && body.code === 0 && body.data && body.data.music) {\n      var musicUrl = body.data.music\n      if (_0x6a04(musicUrl)) {\n        if (_checkYnxQuality(quality, musicUrl)) return musicUrl\n        throw new Error(_g(33))\n      }\n    }\n    // 主接口失败，尝试次接口\n    return _0x6a02(YNX_TX2_URL + '?mid=' + encodeURIComponent(String(songmid)), {\n      method: 'GET',\n    }).then(function(body2) {\n      if (body2) {\n        // 按音质依次尝试字段\n        var fields = ['song_play_url_hq', 'song_play_url_standard', 'song_play_url']\n        if (quality === 'flac' || quality === 'flac24bit') {\n          fields = ['song_play_url_pq', 'song_play_url_sq', 'song_play_url_hq', 'song_play_url_standard', 'song_play_url']\n        } else if (quality === '128k') {\n          fields = ['song_play_url_standard', 'song_play_url', 'song_play_url_fq']\n        }\n        for (var i = 0; i < fields.length; i++) {\n          var url = body2[fields[i]]\n          if (url && _0x6a04(url)) {\n            if (_checkYnxQuality(quality, url)) return url\n          }\n        }\n      }\n      throw new Error(_g(34))\n    })\n  })\n}\n\n// 念心wy接口 - wy (mcp.nianxinxz.com/share/ceshi/wy.php)\nvar NIANXIN_WY_URL = _dec('nianxin_wy')\n\nvar _0x6c08 = function(source, musicInfo, quality) {\n  if (source !== _g(102)) return Promise.reject(new Error(_g(35)))\n  var songId = musicInfo.songId || musicInfo.musicId || musicInfo.id || ''\n  if (!songId) return Promise.reject(new Error(_g(36)))\n  var levelMap = { '128k': 'standard', '320k': 'exhigh', 'flac': 'lossless', 'flac24bit': 'hires', 'jyeffect': 'jyeffect', 'sky': 'sky', 'jymaster': 'jymaster', 'dolby': 'dolby', 'atmos': 'dolby', 'atmos_plus': 'dolby', 'master': 'jymaster' }\n  var level = levelMap[quality] || 'exhigh'\n  return _0x6a02(NIANXIN_WY_URL + '?id=' + encodeURIComponent(String(songId)) + '&level=' + level, {\n    method: 'GET',\n  }).then(function(body) {\n    if (body && body.code === 200 && body.url && _0x6a04(body.url)) return body.url.trim()\n    throw new Error(_g(70) + (body && body.msg ? body.msg : '未返回有效链接'))\n  })\n}\n\n// wwwweb - wy/kw (c.wwwweb.top/music/url，POST JSON，返回真实直链)\nvar WWWWEB_URL = _dec('wwwweb')\nvar _0x6c0a = function(source, musicInfo, quality) {\n  if (source !== _g(102) && source !== _g(103)) return Promise.reject(new Error(_g(37)))\n  var songId = _0x6a06(source, musicInfo)\n  if (!songId) return Promise.reject(new Error(_g(38)))\n  return _0x6a02(WWWWEB_URL, {\n    method: 'POST',\n    headers: { 'Content-Type': 'application/json', 'User-Agent': 'lx-music-request/2.9.0' },\n    body: JSON.stringify({ source: source, musicId: String(songId), quality: quality || '320k' }),\n    timeout: 6000,\n  }).then(function(body) {\n    if (body && body.code === 200 && body.url && _0x6a04(body.url)) return body.url\n    throw new Error(_g(71) + (body && body.message ? body.message : '未返回有效链接'))\n  })\n}\n\n// 长青海棠 - kw/kg/tx/wy (musicserver.haitangw.cc/v1/music/resolve-url，POST JSON，返回真实直链)\nvar HAITANGW_URL = _dec('haitangw')\nvar HAITANGW_SOURCE_MAP = { kw: 'kw', kg: 'kg', tx: 'tx', wy: 'wy' }\nvar _0x6c07 = function(source, musicInfo, quality) {\n  var hwSource = HAITANGW_SOURCE_MAP[source]\n  if (!hwSource) return Promise.reject(new Error(_g(39)))\n  var songId = _0x6a06(source, musicInfo)\n  if (!songId) return Promise.reject(new Error(_g(40)))\n  var level = _0x6a07(quality)\n  return _0x6a02(HAITANGW_URL, {\n    method: 'POST',\n    headers: { 'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0' },\n    body: JSON.stringify({ source: hwSource, rid: String(songId), level: level }),\n    timeout: 6000,\n  }).then(function(body) {\n    if (body && body.code === 0 && body.data && body.data.url && _0x6a04(body.data.url)) return body.data.url\n    throw new Error(_g(72) + (body && (body.message || body.msg) ? (body.message || body.msg) : '未返回有效链接'))\n  })\n}\n\n// cenguigui_wy - wy (api.cenguigui.cn/api/netease/music_v1.php，返回 data.url)\nvar CENGUIGUI_WY_URL = _dec('cenguigui_wy')\nvar _0x6c09 = function(source, musicInfo, quality) {\n  if (source !== _g(102)) return Promise.reject(new Error(_g(41)))\n  var songId = _0x6a06('wy', musicInfo)\n  if (!songId) return Promise.reject(new Error(_g(42)))\n  var levelMap = { '128k': 'standard', '320k': 'exhigh', 'flac': 'lossless', 'flac24bit': 'hires', 'jyeffect': 'jyeffect', 'sky': 'sky', 'jymaster': 'jymaster', 'dolby': 'dolby', 'atmos': 'dolby', 'atmos_plus': 'dolby', 'master': 'jymaster' }\n  var level = levelMap[quality] || 'exhigh'\n  return _0x6a02(CENGUIGUI_WY_URL + '?id=' + encodeURIComponent(String(songId)) + '&type=json&level=' + level, {\n    method: 'GET',\n    timeout: 6000,\n  }).then(function(body) {\n    var u = body && body.data && body.data.url\n    if (_0x6a04(u)) return u\n    if (body && body.url && _0x6a04(body.url)) return body.url\n    throw new Error(_g(73) + (body && body.msg ? body.msg : '未返回有效链接'))\n  })\n}\n\n// ========== vkeys 腾讯直链 - tx ==========\n// GET /music/tencent/song/link?mid=<songmid> 直接返回腾讯官方可播放直链（多为FLAC）\nvar VKEYS_TX_URL = _dec('vkeys_tx')\nvar _0x6c04 = function(source, musicInfo, quality) {\n  if (source !== _g(100)) return Promise.reject(new Error(_g(43)))\n  var songId = _0x6a06('tx', musicInfo)\n  if (!songId) return Promise.reject(new Error(_g(44)))\n  return _0x6a02(VKEYS_TX_URL + '?mid=' + encodeURIComponent(String(songId)), {\n    method: 'GET',\n    timeout: 6000,\n  }).then(function(body) {\n    var u = body && body.data && (body.data.url || body.data.link)\n    if (u && _0x6a04(u)) return u\n    if (body && body.url && _0x6a04(body.url)) return body.url\n    throw new Error(_g(74) + (body && body.message ? body.message : '未返回有效链接'))\n  })\n}\n\n// ========== 咪咕搜索播放 - mg ==========\n// 音乐软件传入的咪咕ID多为copyrightId，需先经搜索接口换取18位contentId，\n// 再调用 listenSong.do（该接口302重定向到咪咕官方音频直链，免费曲目可用）\nvar MIGU_SEARCH_URL = _dec('migu_search')\nvar MIGU_LISTEN_URL = _dec('migu_listen')\n\nvar _isContentId = function(id) {\n  return /^\\d{18}$/.test(String(id || ''))\n}\n\nvar _0x6c0d = function(source, musicInfo, quality) {\n  if (source !== _g(101)) return Promise.reject(new Error(_g(45)))\n  var toneMap = { '128k': 'PQ', '320k': 'HQ', 'flac': 'SQ', 'flac24bit': 'ZQ', 'atmos': 'ZQ', 'atmos_plus': 'ZQ', 'master': 'ZQ' }\n  var toneFlag = toneMap[quality] || 'HQ'\n  var rawId = _0x6a06('mg', musicInfo)\n\n  var buildListen = function(contentId, copyrightId) {\n    var u = MIGU_LISTEN_URL + '?toneFlag=' + toneFlag + '&contentId=' + encodeURIComponent(String(contentId))\n    if (copyrightId) u += '&copyrightId=' + encodeURIComponent(String(copyrightId))\n    return u + '&netType=01&resourceType=2&formatType=' + toneFlag + '&channel=014000D'\n  }\n\n  // 调用 listenSong.do：免费曲目返回 302 直链（读取 Location），VIP 曲目返回 JSON 提示\n  var resolveListen = function(contentId, copyrightId) {\n    var listenUrl = buildListen(contentId, copyrightId)\n    return _0x6a01(listenUrl, {\n      method: 'GET',\n      headers: {\n        'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36',\n        'Referer': 'https://app.c.nf.migu.cn/',\n      },\n      timeout: 6000,\n    }).then(function(resp) {\n      var h = resp.headers || {}\n      var loc = h.location || h.Location\n      if (loc && _0x6a04(loc)) return loc\n      var body = resp.body\n      if (body && body.data && body.data.url && _0x6a04(body.data.url)) return body.data.url\n      if (body && body.url && _0x6a04(body.url)) return body.url\n      // JSON 响应说明无试听地址（多为 VIP 曲目）；否则视为已重定向到音频，直接返回接口地址\n      if (body && typeof body === 'object' && (body.info || body.msg || body.code)) {\n        throw new Error(_g(75) + (body.info || body.msg || '无试听地址'))\n      }\n      return listenUrl\n    })\n  }\n\n  // 同时拿到18位contentId与独立copyrightId时可直接解析；否则走搜索补齐参数\n  var rawCrid = musicInfo.copyrightId ? String(musicInfo.copyrightId) : ''\n  if (_isContentId(rawId) && rawCrid && !_isContentId(rawCrid)) {\n    return resolveListen(rawId, rawCrid)\n  }\n\n  var keyword = _0x6a08(musicInfo)\n  if (!keyword) return Promise.reject(new Error(_g(46)))\n  return _0x6a02(MIGU_SEARCH_URL + '?keyword=' + encodeURIComponent(keyword) + '&pageNo=1&pageSize=5', {\n    method: 'GET',\n    headers: {\n      'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36',\n      'Referer': 'https://music.migu.cn/',\n    },\n    timeout: 6000,\n  }).then(function(body) {\n    var list = body && body.data\n    if (!list || !list.length) throw new Error(_g(47))\n    // 优先匹配同名同歌手，其次同名，最后取第一条\n    var picked = null\n    var wantName = String(musicInfo.name || musicInfo.songName || '')\n    var wantSinger = String(musicInfo.singer || musicInfo.artist || '')\n    for (var i = 0; i < list.length; i++) {\n      var sameName = !wantName || String(list[i].songName || '') === wantName\n      var sameSinger = !wantSinger || String(list[i].singer || '').indexOf(wantSinger) !== -1\n      if (sameName && sameSinger) { picked = list[i]; break }\n      if (!picked && sameName) picked = list[i]\n    }\n    if (!picked) picked = list[0]\n    var contentId = picked.contentId || picked.songId || ''\n    if (!contentId) throw new Error(_g(48))\n    return resolveListen(contentId, picked.copyrightId || '')\n  })\n}\n\n// ========== 星海音乐源后端 - 多平台支持 (tx/kg/kw/wy/mg) ==========\n// 使用 yy.zddyr.top 后端，支持全平台高品质音源\nvar XINGHAI_SOURCE_MAP = { 'tx': 'qq', 'kg': 'kg', 'kw': 'kw', 'wy': 'netease', 'mg': 'migu' }\nvar XINGHAI_URL = _dec('xinghai')\n\nvar _0x6c0e = function(source, musicInfo, quality) {\n  var xhSource = XINGHAI_SOURCE_MAP[source]\n  if (!xhSource) return Promise.reject(new Error(_g(49)))\n  var songId = source === _g(99) ? (musicInfo.hash || musicInfo.songmid || musicInfo.id || '') : _0x6a06(source, musicInfo)\n  if (!songId) return Promise.reject(new Error(_g(50)))\n  var params = 'source=' + encodeURIComponent(xhSource) + '&songmid=' + encodeURIComponent(String(songId)) + _g(91) + encodeURIComponent(quality || '320k')\n  // 酷狗额外参数\n  if (source === _g(99)) {\n    if (musicInfo.hash) params += '&hash=' + encodeURIComponent(String(musicInfo.hash))\n    if (musicInfo.albumId) params += '&albumId=' + encodeURIComponent(String(musicInfo.albumId))\n  }\n  // 网易云额外参数\n  if (source === _g(102)) {\n    if (musicInfo.name) params += '&name=' + encodeURIComponent(String(musicInfo.name))\n    if (musicInfo.singer) params += '&singer=' + encodeURIComponent(String(musicInfo.singer))\n  }\n  return _0x6a02(XINGHAI_URL + '?' + params, { method: 'GET', timeout: 8000 }).then(function(body) {\n    if (body && body.code === 200 && body.url && _0x6a04(body.url)) return body.url\n    throw new Error(_g(76) + (body && body.msg ? body.msg : '获取失败'))\n  })\n}\n\n// ========== 收集の聚合接口 (tx) ==========\nvar SHOUJI_TX_URL = _dec('shouji_tx')\n\nvar _0x6c0f = function(source, musicInfo, quality) {\n  if (source !== _g(100)) return Promise.reject(new Error(_g(51)))\n  var songmid = _0x6a06('tx', musicInfo) || _0x6a05(musicInfo)\n  if (!songmid) return Promise.reject(new Error(_g(52)))\n  return _0x6a02(SHOUJI_TX_URL + '&mid=' + encodeURIComponent(String(songmid)), {\n    method: 'GET',\n    timeout: 5000,\n  }).then(function(body) {\n    var u = body && (body.url || (body.data && body.data.url)) || ''\n    if (_0x6a04(u)) return u\n    throw new Error(_g(53))\n  })\n}\n// ========== v2.2.0 新增可用源 ==========\n\n// HYW公益 - 全平台 (103.79.184.97 卡密鉴权，query 携带 key + X-Card-Key 头)\nvar HYW_FREE_API = _dec('hyw_free_api')\nvar HYW_FREE_KEY = _dec('hyw_free_key')\n\nvar _0x6c10 = function(source, musicInfo, quality) {\n  var songId = _0x6a06(source, musicInfo)\n  if (!songId) return Promise.reject(new Error(_g(54)))\n  // 该接口各平台仅开放 128k/320k/flac/flac24bit，其余音质映射到最接近档位\n  var qMap = { '128k': '128k', '192k': '320k', '320k': '320k', 'flac': 'flac', 'flac24bit': 'flac24bit', 'hires': 'flac24bit', 'jyeffect': 'flac24bit', 'sky': 'flac24bit', 'dolby': 'flac24bit', 'atmos': 'flac24bit', 'atmos_plus': 'flac24bit', 'jymaster': 'flac24bit', 'master': 'flac24bit' }\n  var q = qMap[quality] || '320k'\n  return _0x6a02(HYW_FREE_API + '?source=' + encodeURIComponent(source) + '&songId=' + encodeURIComponent(String(songId)) + _g(91) + encodeURIComponent(q) + '&key=' + encodeURIComponent(HYW_FREE_KEY), {\n    method: 'GET',\n    headers: { 'User-Agent': 'Mozilla/5.0', 'X-Card-Key': HYW_FREE_KEY },\n    timeout: 5000,\n  }).then(function(body) {\n    var u = body && (body.url || (body.data && body.data.url)) || ''\n    if (u && _0x6a04(u)) return u\n    throw new Error(_g(77) + ((body && (body.msg || body.message)) || '获取失败'))\n  })\n}\n\n// vkeys腾讯v2 - tx (api.vkeys.cn/v2/music/tencent/geturl?mid=&quality=)\nvar VKEYS_V2_URL = _dec('vkeys_tx_v2')\n\nvar _0x6c05 = function(source, musicInfo, quality) {\n  if (source !== _g(100)) return Promise.reject(new Error(_g(55)))\n  var songmid = _0x6a06('tx', musicInfo)\n  if (!songmid) return Promise.reject(new Error(_g(56)))\n  var qMap = { '128k': '6', '192k': '7', '320k': '8', 'flac': '10', 'flac24bit': '11', 'hires': '11', 'jyeffect': '11', 'sky': '13', 'dolby': '13', 'atmos': '13', 'atmos_plus': '13', 'jymaster': '14', 'master': '14' }\n  var qc = qMap[quality] || '8'\n  return _0x6a02(VKEYS_V2_URL + '?mid=' + encodeURIComponent(String(songmid)) + _g(91) + qc, {\n    method: 'GET',\n    timeout: 6000,\n  }).then(function(body) {\n    var u = body && body.data && (body.data.url || body.data.link)\n    if (u && _0x6a04(u)) return u\n    throw new Error(_g(78) + ((body && (body.message || body.msg)) || '未返回有效链接'))\n  })\n}\n\n// aa.cab - tx 搜索式取链 (a.aa.cab/qq.music?msg=&n=1&type=)\nvar AACAB_TX_URL = _dec('aa_cab_tx')\n\nvar _0x6c11 = function(source, musicInfo, quality) {\n  if (source !== _g(100)) return Promise.reject(new Error(_g(57)))\n  var keyword = _0x6a08(musicInfo)\n  if (!keyword) return Promise.reject(new Error(_g(58)))\n  // type: 0=M500(128k) 1=M800(320k) 4=F000(FLAC) 5=母带\n  var tMap = { '128k': '0', '192k': '1', '320k': '1', 'flac': '4', 'flac24bit': '4', 'hires': '4', 'jyeffect': '4', 'sky': '5', 'dolby': '5', 'atmos': '5', 'atmos_plus': '5', 'jymaster': '5', 'master': '5' }\n  var t = tMap[quality] || '1'\n  return _0x6a02(AACAB_TX_URL + '?msg=' + encodeURIComponent(keyword) + '&n=1&type=' + t, {\n    method: 'GET',\n    timeout: 6000,\n  }).then(function(body) {\n    if (body) {\n      var u = (body.data && (body.data.music || body.data.url)) || body.playUrl || body.url\n      if (u && _0x6a04(u)) return u\n    }\n    throw new Error(_g(59))\n  })\n}\n\n// oiapi咪咕 - mg 搜索式取链 (oiapi.net/api/MiGu_Music?msg=&br=&n=)\nvar OIAPI_MIGU_URL = _dec('oiapi_migu')\n\nvar _0x6c12 = function(source, musicInfo, quality) {\n  if (source !== _g(101)) return Promise.reject(new Error(_g(60)))\n  var keyword = _0x6a08(musicInfo)\n  if (!keyword) return Promise.reject(new Error(_g(61)))\n  var brMap = { '128k': 'LQ', '192k': 'HQ', '320k': 'HQ', 'flac': 'SQ', 'flac24bit': 'SQ', 'hires': 'SQ', 'jyeffect': 'SQ', 'sky': 'SQ', 'dolby': 'SQ', 'atmos': 'SQ', 'atmos_plus': 'SQ', 'jymaster': 'SQ', 'master': 'SQ' }\n  var br = brMap[quality] || 'HQ'\n  return _0x6a02(OIAPI_MIGU_URL + '?msg=' + encodeURIComponent(keyword) + '&br=' + br + '&n=1', {\n    method: 'GET',\n    timeout: 6000,\n  }).then(function(body) {\n    var u = body && ((body.data && body.data.url) || body.url)\n    if (u && _0x6a04(u)) return u\n    throw new Error(_g(62))\n  })\n}\n\n// 酷我官方mobi - kw (nmobi.kuwo.cn 官方接口，响应最快~0.1s)\nvar _0x6d02 = _dec('kw_mobi')\n\nvar _0x6c13 = function(source, musicInfo, quality) {\n  if (source !== _g(103)) return Promise.reject(new Error(_g(63)))\n  var rid = _0x6a06('kw', musicInfo)\n  if (!rid) return Promise.reject(new Error(_g(64)))\n  // 实测该接口 flac 参数返回 48k AAC，故 flac 及以上音质统一降级为 320kmp3\n  var br = (quality === '128k') ? '128kmp3' : '320kmp3'\n  return _0x6a02(_0x6d02 + '?f=web&user=0&source=kwplayerhd_ar_6.6.6.6_tianbao_T1A_qirui.apk&type=convert_url_with_sign&rid=' + encodeURIComponent(String(rid)) + '&br=' + br, {\n    method: 'GET',\n    headers: { 'User-Agent': 'Mozilla/5.0 (Linux; Android) AppleWebKit/537.36' },\n    timeout: 5000,\n  }).then(function(body) {\n    var u = body && body.data && body.data.url\n    if (u && _0x6a04(u)) return u\n    throw new Error(_g(79) + ((body && (body.msg || body.message)) || '获取失败'))\n  })\n}\n\n// ========== API 源列表 ==========\n// txTier: TX平台专用分层竞速优先级，1=优先层（真实音质、响应快），2=备用层\nconst _0x6b00 = [\n  // 公网源\n  { name: _g(0),       fetch: _0x6c01,       sources: [_g(100)], txTier: 2 },\n  { name: _g(1),     fetch: _0x6c02,     sources: [_g(103)] },\n  { name: _g(2),       fetch: _0x6c03,   sources: [_g(100)], txTier: 1 },\n  { name: _g(3),    fetch: _0x6c04,     sources: [_g(100)], txTier: 1 },\n  { name: _g(4),  fetch: _0x6c05,     sources: [_g(100)], txTier: 1 },\n  { name: _g(5),       fetch: _0x6c06,   sources: [_g(99)] },\n  { name: _g(6),     fetch: _0x6c07,    sources: [_g(103), _g(99), _g(100), _g(102)], txTier: 2 },\n  { name: _g(7),        fetch: _0x6c08,   sources: [_g(102)] },\n  { name: _g(8), fetch: _0x6c09, sources: [_g(102)] },\n  { name: _g(9),       fetch: _0x6c0a,      sources: [_g(102), _g(103)] },\n  { name: _g(10),     fetch: _0x6c0b,    sources: [_g(102), _g(100), _g(99), _g(103), _g(101)] },\n  // v1.1.7 新增源\n  { name: _g(11),   fetch: _0x6c0c,      sources: [_g(100)], txTier: 2 },\n  { name: _g(12),     fetch: _0x6c0d,    sources: [_g(101)] },\n  // v1.3.0 新增源 - 星海后端\n  { name: _g(13),   fetch: _0x6c0e,     sources: [_g(100), _g(99), _g(103), _g(102), _g(101)], txTier: 2 },\n  { name: _g(14),       fetch: _0x6c0f,    sources: [_g(100)], txTier: 2 },\n  // v2.2.0 新增可用源 - HYW公益 / vkeys v2 / aa.cab / oiapi咪咕 / 酷我mobi\n  { name: _g(15),      fetch: _0x6c10,     sources: [_g(100), _g(99), _g(103), _g(102)], txTier: 2 },\n  { name: _g(16),       fetch: _0x6c11,     sources: [_g(100)], txTier: 2 },\n  { name: _g(17),    fetch: _0x6c12,   sources: [_g(101)] },\n  { name: _g(18),      fetch: _0x6c13,      sources: [_g(103)] },\n]\n\n// ========== 核心逻辑：并发竞速策略 ==========\n// 对同一平台的所有可用源同时发起请求，取最快返回的有效URL\n// 每个源设置4秒超时，避免慢速API阻塞；任一成功即返回\nvar RACE_TIMEOUT = 4000\n\n// 并发竞速：所有候选源同时请求，任一成功即返回\nvar _0x6b02 = function(candidates, source, musicInfo, quality) {\n  if (candidates.length === 0) {\n    return Promise.reject(new Error(_g(65)))\n  }\n  // 单源直接返回（带超时）\n  if (candidates.length === 1) {\n    var t0 = Date.now()\n    return _0x6a03(candidates[0].fetch(source, musicInfo, quality), RACE_TIMEOUT).then(function(url) {\n      var elapsed = Date.now() - t0\n      var ok = !!(url && _0x6a04(url))\n      _0x6b04(source, candidates[0].name, ok, elapsed, quality)\n      if (ok) return url\n      return Promise.reject(new Error(candidates[0].name + ': 无效URL'))\n    }).catch(function(e) {\n      var elapsed = Date.now() - t0\n      _0x6b04(source, candidates[0].name, false, elapsed, quality)\n      _0x6b05(source, quality, candidates)\n      throw e\n    })\n  }\n  // 多源并发竞速\n  var errors = []\n  var resolved = false\n  return new Promise(function(resolve, reject) {\n    var pending = candidates.length\n    var onSettled = function() {\n      pending--\n      if (pending === 0 && !resolved) {\n        _0x6b05(source, quality, candidates)\n        reject(new Error(_g(80) + errors.join('\\n')))\n      }\n    }\n    for (var i = 0; i < candidates.length; i++) {\n      (function(apiSource) {\n        var t0 = Date.now()\n        _0x6a03(apiSource.fetch(source, musicInfo, quality), RACE_TIMEOUT).then(function(url) {\n          if (resolved) return\n          var elapsed = Date.now() - t0\n          if (url && _0x6a04(url)) {\n            _0x6b04(source, apiSource.name, true, elapsed, quality)\n            resolved = true\n            resolve(url)\n          } else {\n            _0x6b04(source, apiSource.name, false, elapsed, quality)\n            errors.push(apiSource.name + ': 无效URL')\n            onSettled()\n          }\n        }).catch(function(e) {\n          if (resolved) return\n          var elapsed = Date.now() - t0\n          _0x6b04(source, apiSource.name, false, elapsed, quality)\n          errors.push(apiSource.name + ': ' + (e.message || e))\n          onSettled()\n        })\n      })(candidates[i])\n    }\n  })\n}\n\n// TX 平台延迟并发：优先层立即启动，备用层延迟500ms加入竞速\n// 避免串行等待（原方案最坏12s），最坏情况仅需5s超时\nvar _0x6b03 = function(tier1, tier2, source, musicInfo, quality) {\n  if (tier1.length === 0 && tier2.length === 0) {\n    return Promise.reject(new Error(_g(65)))\n  }\n  if (tier2.length === 0) return _0x6b02(tier1, source, musicInfo, quality)\n  if (tier1.length === 0) return _0x6b02(tier2, source, musicInfo, quality)\n\n  var errors = []\n  var resolved = false\n  var pending = 0\n  var allTier = tier1.concat(tier2)\n\n  return new Promise(function(resolve, reject) {\n    var onSettled = function() {\n      pending--\n      if (pending === 0 && !resolved) {\n        _0x6b05(source, quality, allTier)\n        reject(new Error(_g(80) + errors.join('\\n')))\n      }\n    }\n    var launch = function(apiSource) {\n      pending++\n      var t0 = Date.now()\n      _0x6a03(apiSource.fetch(source, musicInfo, quality), RACE_TIMEOUT).then(function(url) {\n        if (resolved) return\n        var elapsed = Date.now() - t0\n        if (url && _0x6a04(url)) {\n          _0x6b04(source, apiSource.name, true, elapsed, quality)\n          resolved = true\n          resolve(url)\n        } else {\n          _0x6b04(source, apiSource.name, false, elapsed, quality)\n          errors.push(apiSource.name + ': 无效URL')\n          onSettled()\n        }\n      }).catch(function(e) {\n        if (resolved) return\n        var elapsed = Date.now() - t0\n        _0x6b04(source, apiSource.name, false, elapsed, quality)\n        errors.push(apiSource.name + ': ' + (e.message || e))\n        onSettled()\n      })\n    }\n\n    // 优先层立即启动\n    for (var i = 0; i < tier1.length; i++) launch(tier1[i])\n    // 备用层延迟300ms启动，给优先层先发优势\n    setTimeout(function() {\n      if (resolved) return\n      for (var j = 0; j < tier2.length; j++) launch(tier2[j])\n    }, 300)\n  })\n}\n\nconst _0x6b01 = function(source, musicInfo, quality) {\n  // 版本被面板停用（精确清单/版本下限）时拒绝所有请求，与面板说明对齐\n  if (_scriptDisabled) {\n    return Promise.reject(new Error(_g(66)))\n  }\n  // 应用面板的最大音质限制：超出档位自动降级到允许的最高音质\n  quality = _0x6b09(quality)\n  // 筛选支持该平台的源\n  var candidates = []\n  for (var i = 0; i < _0x6b00.length; i++) {\n    if (_0x6b00[i].sources.indexOf(source) !== -1) {\n      candidates.push(_0x6b00[i])\n    }\n  }\n  if (candidates.length === 0) {\n    return Promise.reject(new Error(_g(81) + source))\n  }\n  // 按面板统计的请求速度（平均响应时间）重排优先级：快者先发\n  candidates = _0x6b0a(candidates, source)\n  // TX 平台使用延迟并发：优先层立即启动，备用层延迟300ms加入\n  // 优先层为真实音质源（念心TX、vkeys腾讯/v2），备用层为玉宁熙、aa.cab 等\n  if (source === _g(100)) {\n    var tier1 = []\n    var tier2 = []\n    for (var j = 0; j < candidates.length; j++) {\n      if (candidates[j].txTier === 1) tier1.push(candidates[j])\n      else tier2.push(candidates[j])\n    }\n    return _0x6b03(tier1, tier2, source, musicInfo, quality)\n  }\n  return _0x6b02(candidates, source, musicInfo, quality)\n}\n\n// ========== _0x6b10 对象（对齐官方示例结构）==========\nconst _0x6b10 = {\n  [_g(103)]: {\n    [_g(98)]: function(musicInfo, quality) {\n      return _0x6b01('kw', musicInfo, quality)\n    },\n  },\n  [_g(99)]: {\n    [_g(98)]: function(musicInfo, quality) {\n      return _0x6b01('kg', musicInfo, quality)\n    },\n  },\n  [_g(100)]: {\n    [_g(98)]: function(musicInfo, quality) {\n      return _0x6b01('tx', musicInfo, quality)\n    },\n  },\n  [_g(102)]: {\n    [_g(98)]: function(musicInfo, quality) {\n      return _0x6b01('wy', musicInfo, quality)\n    },\n  },\n  [_g(101)]: {\n    [_g(98)]: function(musicInfo, quality) {\n      return _0x6b01('mg', musicInfo, quality)\n    },\n  },\n}\n\n// 注册应用 API 请求事件\n// 官方约定：回调必须返回 Promise；此处对平台缺失/参数缺失/同步异常全部兜底为 Promise.reject，\n// 避免同步抛错掩盖真实原因（初始化与请求阶段的异常在部分宿主中会导致脚本判定失败）\non(EVENT_NAMES.request, function(params) {\n  try {\n    var source = params ? params.source : ''\n    var action = params ? params.action : ''\n    var info = (params && params.info) || {}\n    switch (action) {\n      case _g(98): {\n        var api = _0x6b10[source]\n        if (!api || typeof api[_g(98)] !== 'function') {\n          return Promise.reject(new Error(_g(82) + source))\n        }\n        if (!info.musicInfo) {\n          return Promise.reject(new Error(_g(67)))\n        }\n        return api[_g(98)](info.musicInfo, info.type).catch(function(err) {\n          _0x6b0f(err)\n          return Promise.reject(err)\n        })\n      }\n      default:\n        _0x6b0e('action(' + action + ') not support')\n        return Promise.reject(new Error(_g(68)))\n    }\n  } catch (e) {\n    return Promise.reject(e)\n  }\n})\n\n// ========== 更新检查 ==========\n// 脚本初始化时异步检查面板是否有新版本，若有则发送 updateAlert 事件\n// 参考文档: https://www.lxmusic.cn/docs/music-source/\nvar SCRIPT_VERSION = 'v2.2.1-fix'\n\nvar _compareVersion = function(v1, v2) {\n  var a = String(v1).replace(/^v/i, '').split('.')\n  var b = String(v2).replace(/^v/i, '').split('.')\n  var len = Math.max(a.length, b.length)\n  for (var i = 0; i < len; i++) {\n    var na = parseInt(a[i] || '0', 10)\n    var nb = parseInt(b[i] || '0', 10)\n    if (na > nb) return 1\n    if (na < nb) return -1\n  }\n  return 0\n}\n\n// ========== 消息收集器 ==========\n// LX 文档硬性限制：updateAlert 每次运行脚本只能调用一次（官方 preload 再次调用直接 reject）。\n// 因此广播/定向通知/停用提示/更新日志/用户ID 全部先入队，最后合并为唯一一条弹窗。\nvar _pendingMsgs = []\nvar _0x6b0b = function(text) {\n  if (!text) return\n  _pendingMsgs.push(String(text))\n}\n// 合并收集到的全部消息并只发送一次 updateAlert（总量截断 1024 字符）\nvar _0x6b0c = function(updateUrl) {\n  if (_pendingMsgs.length === 0) return\n  var log = _pendingMsgs.join('\\n\\n')\n  if (log.length > 1024) log = log.substring(0, 1024)\n  _pendingMsgs = []\n  try {\n    var ret = send(EVENT_NAMES.updateAlert, { log: log, updateUrl: updateUrl || '' })\n    // send 返回 Promise；官方环境重复调用等异常在此兜底，避免未处理 rejection\n    if (ret && typeof ret.catch === 'function') ret.catch(function() {})\n  } catch (e) {}\n}\n\n// ========== 最大音质限制（面板 check_update 下发，用户规则优先于全局规则）==========\nvar _maxQuality = ''\n// 档位高低：standard <= 128k <= 320k <= flac <= flac24bit\nvar _qualityRank = { standard: 0, '128k': 1, '320k': 2, 'flac': 3, 'flac24bit': 4 }\nvar _0x6b09 = function(quality) {\n  if (!_maxQuality) return quality\n  var q = String(quality || '128k').toLowerCase()\n  var cap = String(_maxQuality).toLowerCase()\n  var rq = _qualityRank[q]\n  var rc = _qualityRank[cap]\n  // 未知档位不做降级，避免误伤应用新增的音质\n  if (rq === undefined || rc === undefined || rq <= rc) return quality\n  return cap\n}\n\n// ========== 版本停用 / 请求速度优先级（面板 check_update 下发）==========\n// 停用标志：命中精确停用清单或版本低于下限时置真，后续所有请求直接拒绝\nvar _scriptDisabled = false\n// 请求速度优先级：平台 => 按平均响应时间升序的接口名数组\nvar _sourcePriority = {}\n// 按面板下发的速度优先级排序候选源（未记录的接口排尾；无数据保持原顺序）\nvar _0x6b0a = function(candidates, source) {\n  var order = _sourcePriority ? _sourcePriority[source] : null\n  if (!order || order.length === 0) return candidates\n  var idx = {}\n  for (var i = 0; i < order.length; i++) idx[order[i]] = i\n  return candidates.slice().sort(function(a, b) {\n    var ia = idx[a.name] !== undefined ? idx[a.name] : 9999\n    var ib = idx[b.name] !== undefined ? idx[b.name] : 9999\n    return ia - ib\n  })\n}\n\nvar _0x6b0d = function() {\n  if (!PANEL_REPORT_URL) return\n  // 从 report.php 地址推导出 api.php 地址\n  var apiUrl = PANEL_REPORT_URL.replace(/\\/report\\.php.*$/, _g(83))\n  if (apiUrl === PANEL_REPORT_URL) return\n  // 附带用户标识，便于面板统计与定向下发\n  apiUrl += _g(88) + encodeURIComponent(_userId || '')\n  _0x6a02(apiUrl, { method: 'GET', timeout: 5000 }).then(function(body) {\n    if (!body) return\n    // 面板公告（广播）与定向通知 —— 先入队，最后统一弹出\n    _0x6b0b(body.broadcast)\n    _0x6b0b(body.notify)\n    // 面板下发的最大音质限制，后续播放请求按此降级\n    if (body.max_quality !== undefined) _maxQuality = String(body.max_quality || '')\n    // 按请求速度排序的接口优先级（v2.2.1+）\n    if (body.source_priority && typeof body.source_priority === 'object') {\n      _sourcePriority = body.source_priority\n    }\n    // 版本停用判断：精确停用清单 + 版本下限（一键停用旧版本下发）\n    var disabled = body.disabled_versions\n    var isDisabled = Object.prototype.toString.call(disabled) === '[object Array]' && disabled.indexOf(SCRIPT_VERSION) !== -1\n    var below = body.disabled_below ? String(body.disabled_below) : ''\n    if (!isDisabled && below && _compareVersion(SCRIPT_VERSION, below) < 0) isDisabled = true\n    if (isDisabled) {\n      _scriptDisabled = true\n      _0x6b0b('您当前使用的版本 ' + SCRIPT_VERSION + ' 已被停用，请升级到最新版本。')\n    }\n    // 更新日志（停用状态下不再提示更新，只提示升级）\n    var updateUrl = ''\n    if (!isDisabled && body.version && _compareVersion(body.version, SCRIPT_VERSION) > 0) {\n      _0x6b0b(body.log || ('发现新版本 ' + body.version))\n      updateUrl = body.updateUrl || ''\n    }\n    // 推送用户ID：随更新提示/公告内容一起弹出（v2.2.1+）\n    if (body.push_user_id && _userId) {\n      _0x6b0b('你的用户ID：' + _userId + '\\n（可向管理员报备此ID，用于换取定向通知/白名单/音质权限，请勿泄露）')\n    }\n    // 唯一一次 updateAlert：合并广播/通知/停用/更新/用户ID\n    _0x6b0c(updateUrl)\n  }).catch(function(e) {\n    // 更新检查失败不影响正常使用\n  })\n}\n\n// 脚本初始化完成后发送 inited 事件告知应用\n// 官方约定：send(inited) 之前任何异常都会导致脚本初始化失败，\n// 因此将 inited 放在最前，用户标识/IP 检测与面板检查等非关键初始化放在其后并各自兜底\nsend(EVENT_NAMES.inited, {\n  sources: {\n    [_g(103)]: {\n      name: '酷我音乐',\n      type: 'music',\n      actions: [_g(98)],\n      qualitys: ['128k', '320k', 'flac', 'flac24bit'],\n    },\n    [_g(99)]: {\n      name: '酷狗音乐',\n      type: 'music',\n      actions: [_g(98)],\n      qualitys: ['128k', '320k', 'flac', 'flac24bit'],\n    },\n    [_g(100)]: {\n      name: 'QQ音乐',\n      type: 'music',\n      actions: [_g(98)],\n      // 仅声明文档有效音质（128k/320k/flac/flac24bit），非法值会被官方过滤且可能导致严格端校验失败\n      qualitys: ['128k', '320k', 'flac', 'flac24bit'],\n    },\n    [_g(102)]: {\n      name: '网易云音乐',\n      type: 'music',\n      actions: [_g(98)],\n      qualitys: ['128k', '320k', 'flac', 'flac24bit'],\n    },\n    [_g(101)]: {\n      name: '咪咕音乐',\n      type: 'music',\n      actions: [_g(98)],\n      qualitys: ['128k', '320k', 'flac', 'flac24bit'],\n    },\n  },\n})\ntry { _0x6b06() } catch (e) {}\ntry { _0x6b07() } catch (e) {}\ntry { _0x6b08() } catch (e) {}\ntry { _0x6b0d() } catch (e) {}\n\n// ===== 测试钩子（仅沙箱回归测试显式开启；LX 环境不定义 __HM_TEST__，自动跳过） =====\nif (typeof globalThis !== 'undefined' && globalThis.__HM_TEST__) {\n  globalThis.__hm_test = {\n    version: SCRIPT_VERSION,\n    API_SOURCES: _0x6b00,\n    isValidUrl: _0x6a04,\n    handleGetMusicUrl: _0x6b01,\n    fetchHywFree: _0x6c10,\n    fetchVkeysV2: _0x6c05,\n    fetchAaCabTx: _0x6c11,\n    fetchOiapiMigu: _0x6c12,\n    fetchKwMobi: _0x6c13,\n    sortByPriority: function(c, s) { return _0x6b0a(c, s) },\n    setPriority: function(p) { _sourcePriority = p },\n    isDisabled: function() { return _scriptDisabled },\n  }\n}\n})()\n";
+  var BUILTIN_LX_YUXI = "/*!\n * @name         星海音乐源\n * @description  GDAPI | 聚合 | ChKSz API | 全平台支持 24bit FLAC，网易、酷狗、QQ 最高支持母带｜建议与反馈：https://yy.zddyr.top/survey.php?k=192ee708d4721bc9077f8f1738296c1b\n * @version      v3.2.18\n * @author       万去了了 / 科学大魔王\n * @homepage     https://zddyr.top/\n * @see          http://gc.kxwa.top/\n * @lastUpdate   2026-11-08\n * @update       优化酷我：修复部分歌曲取链接失败\n * @update       使用体验反馈：https://yy.zddyr.top/survey.php?k=192ee708d4721bc9077f8f1738296c1b\n * @license      仅供学习交流，请支持正版\n */\n\nconst { EVENT_NAMES, request, on, send, env } = globalThis.lx;\n\n// ==================== 用户配置区域 ====================\nconst KW_DECRYPT_PROXY = {\n    url: '',\n    allowEncryptedLossless: false,\n    urlParamName: 'url',\n    ekeyParamName: 'ekey',\n};\n\nconst CHKSZ_CONFIG = {\n    apikey: '',\n    enableNetease: true,\n    enableQQ: true,\n};\n\n// 卡密（可选）：填了就能用 QQ 等「仅认证用户」音源，不填只能走基础音源\nconst LICENSE_CONFIG = {\n    code: '',\n};\n// ====================================================\n\nconst URL_CONFIG = {\n    domains: {\n        primary: 'yy.zddyr.top',\n        gdStudio: 'music-api.gdstudio.xyz',\n        chkszNew: 'api.chksz.com'\n    },\n    paths: {\n        backend: '/lx/api/',\n        version: '/lx/versionh2.php',\n        update: '/lx/vers.php',\n        ip: '/ip.php',\n        gdApi: '/api.php',\n        chkszNetease: '/api/163_music',\n        chkszQQ: '/api/qq_music'\n    },\n    gdParams: 'use_xbridge3=true&loader_name=forest&need_sec_link=1&sec_link_scene=im&theme=light'\n};\n\nconst buildUrl = (domainKey, pathKey, extraQuery = '') => {\n    const domain = URL_CONFIG.domains[domainKey];\n    const path = URL_CONFIG.paths[pathKey];\n    if (!domain || !path) throw new Error(`URL配置错误: ${domainKey} / ${pathKey}`);\n    let url = `https://${domain}${path}`;\n    if (extraQuery) {\n        if (extraQuery.startsWith('&') && !path.includes('?')) {\n            url += '?' + extraQuery.substring(1);\n        } else {\n            url += extraQuery;\n        }\n    }\n    return url;\n};\n\nconst SCRIPT_VERSION = 'v3.2.18';\nconst SCRIPT_NAME = 'XingHaiMusicSource';\nconst SOURCE_MAP = { tx: 'qq', mg: 'migu', kw: 'kw', kg: 'kg', qs: 'qs' };\nconst PLATFORM_NAMES = { wy: '网易云音乐', tx: 'QQ音乐', kw: '酷我音乐', kg: '酷狗音乐', mg: '咪咕音乐', qs: '汽水音乐' };\nconst MUSIC_QUALITIES = {\n    wy: ['128k','320k','flac','hires','atmos','master'],\n    tx: ['128k','192k','320k','flac','hires','atmos','atmos_plus','master'],\n    // 上游没有真母带：master / hires 与 flac 拿到的是同一个文件（16bit/44.1kHz），\n    // 有全景声资源的曲子还会给 4 声道有损 Ogg，兼容性反而更差。最高只留无损。\n    kw: ['128k','320k','flac'],\n    kg: ['128k','320k','flac','hires','atmos','master'],\n    mg: ['128k','320k','flac'],\n    qs: ['128k','320k','flac','spatial','hires']\n};\n\nconst CHKSZ_NETEASE_LEVEL_MAP = {\n    '128k': 'standard', '320k': 'exhigh', 'flac': 'lossless',\n    'hires': 'hires', 'atmos': 'jymaster', 'master': 'jymaster'\n};\n\nconst CHKSZ_QQ_SIZE_MAP = {\n    '128k': '128k', '192k': '320k', '320k': '320k',\n    'flac': 'flac', 'hires': 'hires',\n    'atmos': 'master', 'atmos_plus': 'master', 'master': 'master'\n};\n\nconst GD_BR_MAP = { '128k':'128', '320k':'320', 'flac':'740', 'hires':'999' };\nconst GD_SUPPORTED_QUALITIES = new Set(['128k','320k','flac','hires']);\n\nconst TOKEN_TTL = 4 * 60 * 1000;   // 服务端有效期 5 分钟，本地提前 1 分钟换新，避开边界过期\n\nlet userIp = null;\nlet userToken = '';\nlet tokenTimestamp = 0;\nlet clientHeader = '';\nlet deviceId = '';\nlet availablePlatforms = [];\nlet backendAggBlocked = false;\nconst extraCache = new Map();\n\n// -------------------- 工具函数 --------------------\nfunction isBuffer(obj) {\n    return obj && typeof obj === 'object' &&\n        ((typeof Buffer !== 'undefined' && Buffer.isBuffer(obj)) ||\n        (typeof obj.constructor === 'function' && obj.constructor.name === 'Buffer'));\n}\n\nfunction safeParseBody(body) {\n    if (typeof body === 'string') {\n        const trimmed = body.trim();\n        if (/^[{[\"]/.test(trimmed)) { try { return JSON.parse(trimmed); } catch (e) {} }\n        return body;\n    }\n    if (typeof body === 'object' && body !== null) {\n        try { if (typeof body.toString === 'function' && body.toString() !== '[object Object]') body = body.toString('utf-8'); } catch (e) {}\n        if (typeof body === 'object' && !isBuffer(body)) return body;\n    }\n    try {\n        if (isBuffer(body)) {\n            if (globalThis.lx?.utils?.buffer?.bufToString) body = globalThis.lx.utils.buffer.bufToString(body, 'utf-8');\n            else if (typeof Buffer !== 'undefined') body = Buffer.from(body).toString('utf-8');\n            else body = String(body);\n        }\n    } catch (e) {}\n    if (typeof body === 'string') {\n        const trimmed = body.trim();\n        if (/^[{[\"]/.test(trimmed)) { try { return JSON.parse(trimmed); } catch (e) {} }\n    }\n    return body;\n}\n\nfunction safeBase64Encode(str) {\n    try {\n        if (globalThis.lx?.utils?.buffer?.from) {\n            const buf = globalThis.lx.utils.buffer.from(str, 'utf-8');\n            return globalThis.lx.utils.buffer.bufToString(buf, 'base64');\n        }\n        if (typeof Buffer !== 'undefined') return Buffer.from(str, 'utf-8').toString('base64');\n        return btoa(unescape(encodeURIComponent(str)));\n    } catch (e) {\n        return str;\n    }\n}\n\nfunction simpleGetQueryParam(url, key) {\n    if (typeof url !== 'string' || !url) return null;\n    const qIdx = url.indexOf('?');\n    if (qIdx < 0) return null;\n    let query = url.substring(qIdx + 1);\n    const hashIdx = query.indexOf('#');\n    if (hashIdx >= 0) query = query.substring(0, hashIdx);\n    const pairs = query.split('&');\n    for (const p of pairs) {\n        const eq = p.indexOf('=');\n        if (eq < 0) continue;\n        if (p.substring(0, eq) === key) {\n            try { return decodeURIComponent(p.substring(eq + 1)); } catch (e) { return p.substring(eq + 1); }\n        }\n    }\n    return null;\n}\n\nfunction generateDeviceId() {\n    return 'lx-online-' + Math.random().toString(36).substring(2, 8) + Date.now().toString(36).slice(-4);\n}\n\nfunction buildClientHeader() {\n    let deviceType = 'unknown';\n    try {\n        const p = (env?.platform || '').toLowerCase();\n        if (p.includes('android')) deviceType = 'Android';\n        else if (p.includes('ios')) deviceType = 'iOS';\n        else if (p.includes('win')) deviceType = 'Windows';\n        else if (p.includes('mac')) deviceType = 'macOS';\n        else if (p.includes('linux')) deviceType = 'Linux';\n    } catch (e) {}\n    return `${SCRIPT_NAME}/${SCRIPT_VERSION} (${deviceType})`;\n}\n\n// 令牌只能由服务器签发（/lx/api/token.php）。\n// 以前是本地拼一段 base64 就当令牌，服务端从 2026-11 起不再承认这种自签令牌，\n// 必须拿服务器用私有密钥签出的 xh3. 令牌，否则一律 403。\nlet tokenPromise = null;\n\nfunction fetchServerToken() {\n    if (!deviceId) deviceId = generateDeviceId();\n    const url = `${buildUrl('primary', 'backend')}token.php?device_id=${encodeURIComponent(deviceId)}`;\n    return new Promise((resolve) => {\n        request(url, {\n            method: 'GET',\n            timeout: 6000,\n            headers: { 'User-Agent': 'lx-music', 'X-Client': clientHeader || 'LX-Music-Mobile' }\n        }, (err, resp) => {\n            if (err) return resolve('');\n            try {\n                const b = safeParseBody(resp.body);\n                const tk = b && b.data && b.data.token;\n                resolve(typeof tk === 'string' ? tk : '');\n            } catch (e) { resolve(''); }\n        });\n    });\n}\n\nasync function ensureTokenFresh(force = false) {\n    if (!force && userToken && (Date.now() - tokenTimestamp) <= TOKEN_TTL) return;\n    if (!tokenPromise) tokenPromise = fetchServerToken();\n    let tk = '';\n    try { tk = await tokenPromise; } catch (e) { tk = ''; }\n    tokenPromise = null;\n    if (tk) {\n        userToken = tk;\n        tokenTimestamp = Date.now();\n    }\n}\n\n// 服务端判定令牌不可用（过期 / 换网导致 IP 不符 / 非服务器签发）时刷新一次重试\nfunction needRefreshToken(resp) {\n    const a = resp && resp.body && resp.body.auth;\n    if (!a) return false;\n    if (a.tk_mismatch === true) return true;\n    if (a.device_id === 'untrusted-token' || a.tk_error) return true;\n    return false;\n}\n\n// 所有请求都必须带服务器签发的令牌。\n// 拿不到令牌就不发请求 —— 没有令牌的请求服务端一律按未授权处理，\n// 与其发出去被拒，不如把原因直接抛给上层。\nconst httpFetch = async (url, options = {}, retried = false) => {\n    await ensureTokenFresh();\n    if (!userToken) throw new Error('获取服务器令牌失败，请检查网络后重试');\n    const headers = { ...(options.headers || {}) };\n    headers['X-Token'] = userToken;\n    if (clientHeader) headers['X-Client'] = clientHeader;\n    const code = (LICENSE_CONFIG.code || '').trim();\n    if (code) headers['X-License'] = code;\n    if (!headers['User-Agent']) headers['User-Agent'] = 'lx-music';\n    const out = await new Promise((resolve, reject) => {\n        request(url, { ...options, headers }, (err, resp) => {\n            if (err) return reject(err);\n            resolve({ body: safeParseBody(resp.body), statusCode: resp.statusCode, headers: resp.headers || {} });\n        });\n    });\n    if (!retried && needRefreshToken(out)) {\n        userToken = '';\n        tokenTimestamp = 0;\n        tokenPromise = null;\n        await ensureTokenFresh(true);\n        return httpFetch(url, options, true);\n    }\n    return out;\n};\n\nfunction mapQuality(target, avail) {\n    const pm = {\n        '臻品母带': 'jymaster', '臻品音质2.0': 'sky', '臻品音质AI': 'jyeffect',\n        '臻品音质': 'jyeffect', 'Hires 无损24-Bit': 'hires', 'Hi-Res': 'hires',\n        'FLAC': 'flac', '320k': '320k', '192k': '192k', '128k': '128k',\n        '空间音频': 'spatial', 'Spatial': 'spatial'\n    };\n    if (avail.includes(target)) return target;\n    const m = pm[target]; if (m && avail.includes(m)) return m;\n    const order = ['jymaster', 'sky', 'jyeffect', 'hires', 'flac24bit', 'spatial', 'master', 'flac', '320k', '192k', '128k'];\n    for (const q of order) if (avail.includes(q)) return q;\n    return avail[0] || '128k';\n}\n\n// -------------------- 酷我加密链接处理 --------------------\nfunction processKwEncryptedUrl(data, source) {\n    if (source !== 'kw' || !KW_DECRYPT_PROXY.allowEncryptedLossless) {\n        return data?.url || '';\n    }\n    let ekey = null;\n    if (data?.ekey) {\n        ekey = typeof data.ekey === 'string' ? data.ekey.trim() : String(data.ekey).trim();\n    }\n    if (!ekey && data?.url && typeof data.url === 'string') {\n        ekey = simpleGetQueryParam(data.url, 'ekey');\n    }\n    if (!ekey || !KW_DECRYPT_PROXY.url) {\n        return data?.url || '';\n    }\n    const rawUrl = typeof data.url === 'string' ? data.url : String(data.url);\n    try {\n        return `${KW_DECRYPT_PROXY.url}?${KW_DECRYPT_PROXY.urlParamName}=${encodeURIComponent(rawUrl)}&${KW_DECRYPT_PROXY.ekeyParamName}=${encodeURIComponent(ekey)}`;\n    } catch (e) {\n        return rawUrl;\n    }\n}\n\n// -------------------- 网络接口 --------------------\nasync function fetchIp() {\n    try {\n        const r = await httpFetch(buildUrl('primary', 'ip'), { timeout: 3000 });\n        if (r.body?.ip) {\n            userIp = r.body.ip;\n        }\n    } catch (e) {}\n}\n\nasync function getWyChkszUrl(id, quality) {\n    const level = CHKSZ_NETEASE_LEVEL_MAP[quality];\n    if (!level) throw new Error('chksz不支持该品质');\n    const url = `https://${URL_CONFIG.domains.chkszNew}${URL_CONFIG.paths.chkszNetease}?id=${id}&level=${level}&apikey=${encodeURIComponent(CHKSZ_CONFIG.apikey)}`;\n    const resp = await httpFetch(url, { headers: { 'User-Agent': 'LX-Music-Mobile' }, timeout: 8000 });\n    if (resp.statusCode !== 200 || resp.body.code !== 200 || !resp.body.data?.url) {\n        throw new Error(`chksz网易失败(${resp.statusCode}): ${resp.body?.msg || '未返回url'}`);\n    }\n    return { url: resp.body.data.url, lyric: null, cover: resp.body.data.picUrl || null };\n}\n\nasync function getTxChkszUrl(musicInfo, quality) {\n    const size = CHKSZ_QQ_SIZE_MAP[quality];\n    if (!size) throw new Error('chksz不支持该品质');\n    const mid = musicInfo.songmid || musicInfo.id;\n    if (!mid) throw new Error('缺少QQ mid');\n    const url = `https://${URL_CONFIG.domains.chkszNew}${URL_CONFIG.paths.chkszQQ}?mid=${mid}&size=${size}&type=json&apikey=${encodeURIComponent(CHKSZ_CONFIG.apikey)}`;\n    const resp = await httpFetch(url, { headers: { 'User-Agent': 'LX-Music-Mobile' }, timeout: 8000 });\n    if (resp.statusCode !== 200 || resp.body.code !== 200 || !resp.body.url) {\n        throw new Error(`chksz QQ失败(${resp.statusCode}): ${resp.body?.msg || '未返回url'}`);\n    }\n    return { url: resp.body.url, lyric: resp.body.lrc || null, cover: resp.body.cover || null };\n}\n\nasync function getWyGDUrl(id, q) {\n    const br = GD_BR_MAP[q] || '320';\n    const url = buildUrl('gdStudio', 'gdApi', `&${URL_CONFIG.gdParams}&types=url&source=netease&id=${id}&br=${br}`);\n    let resp = await httpFetch(url, { headers: { 'User-Agent': 'LX-Music-Mobile' }, timeout: 8000 });\n    if (q === 'hires' && (resp.statusCode !== 200 || !resp.body.url)) {\n        const fallbackUrl = buildUrl('gdStudio', 'gdApi', `&${URL_CONFIG.gdParams}&types=url&source=netease&id=${id}&br=740`);\n        resp = await httpFetch(fallbackUrl, { headers: { 'User-Agent': 'LX-Music-Mobile' }, timeout: 8000 });\n    }\n    if (resp.statusCode !== 200 || !resp.body.url) {\n        throw new Error(`GD接口状态${resp.statusCode}，未返回音频`);\n    }\n    return { url: resp.body.url, lyric: null, cover: null };\n}\n\n// 自建后端接口（通用）\nasync function getUrlFromBackend(source, musicInfo, quality) {\n    const backendSource = SOURCE_MAP[source] || source;\n    const baseUrl = buildUrl('primary', 'backend');\n    const params = {};\n    if (backendSource === 'kg') {\n        const types = musicInfo._types || {};\n        params.source = 'kg';\n        params.quality = quality || '';\n        params.songmid = musicInfo.songmid || musicInfo.id || '';\n        params.albumId = musicInfo.albumId || '';\n        params.mainHash = musicInfo.hash || '';\n        if (types[quality]?.hash) params.hash = types[quality].hash;\n    } else {\n        params.source = backendSource;\n        params.name = musicInfo.name || '';\n        params.singer = musicInfo.singer || '';\n        params.songmid = musicInfo.songmid || musicInfo.id || '';\n        params.interval = musicInfo.interval || '';\n        params.albumName = musicInfo.albumName || musicInfo.album || '';\n        params.quality = quality || '';\n    }\n    const query = Object.keys(params).map(k => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`).join('&');\n    const url = `${baseUrl}?${query}`;\n    const resp = await httpFetch(url, { method: 'GET', timeout: 8000 });\n\n    if (resp.statusCode === 403) {\n        backendAggBlocked = true;\n        throw new Error('后端聚合接口返回403，已屏蔽');\n    }\n\n    if (resp.statusCode !== 200) throw new Error(`后端接口状态${resp.statusCode}`);\n\n    const data = resp.body;\n    if (data.code !== 200) throw new Error(data.msg || '后端无可用链接');\n\n    // 汽水音乐专用分支 —— 抖音加密流\n    if (backendSource === 'qs') {\n        const d = data.data || {};\n        let streamUrl = d.url || '';\n\n        if (streamUrl && d.key && !/[?&]key=/.test(streamUrl)) {\n            streamUrl += (streamUrl.includes('?') ? '&' : '?') + 'key=' + encodeURIComponent(d.key);\n        }\n\n        if (!streamUrl) streamUrl = d.source_url || '';\n        if (!streamUrl) throw new Error('汽水后端未返回流媒体链接');\n\n        return {\n            url: streamUrl,\n            lyric: d.lyric || d.lrc || null,\n            cover: d.cover || d.picture || d.album_pic || null,\n        };\n    }\n\n    if (!data.url) throw new Error(data.msg || '后端无可用链接');\n    const finalUrl = processKwEncryptedUrl(data, backendSource);\n    return { url: finalUrl, lyric: data.lrc || null, cover: data.picture || null };\n}\n\n// -------------------- 核心：获取音乐URL --------------------\nasync function fetchMusicUrl(source, musicInfo, quality) {\n    const id = musicInfo.hash ?? musicInfo.songmid ?? musicInfo.id;\n    if (!id) throw new Error('缺少 songId');\n    let actualQuality = mapQuality(quality, MUSIC_QUALITIES[source] || ['128k','320k','flac']);\n\n    if (source === 'kw' && !KW_DECRYPT_PROXY.allowEncryptedLossless) {\n        actualQuality = mapQuality(quality, ['128k','320k','flac']);\n    }\n\n    let result = { url: '', lyric: null, cover: null };\n    let lastError = '';\n    const chkszEnabled = !!(CHKSZ_CONFIG.apikey && CHKSZ_CONFIG.apikey.trim());\n\n    // --- 酷我音乐 ---\n    if (source === 'kw') {\n        // 统一走本站取链：音质兜底、短链签名、加密解密都在服务端完成，\n        // 插件里不再直连酷我，避免本地链路失效时整首放不出来。\n        try {\n            result = await getUrlFromBackend('kw', musicInfo, actualQuality);\n        } catch (e) {\n            lastError = `酷我取链失败: ${e.message}`;\n        }\n    }\n    // --- 网易云音乐 ---\n    else if (source === 'wy') {\n        if (chkszEnabled && CHKSZ_CONFIG.enableNetease) {\n            try {\n                result = await getWyChkszUrl(id, actualQuality);\n            } catch (e) {\n                lastError = `chksz网易失败: ${e.message}`;\n            }\n        }\n\n        if (!result.url && !backendAggBlocked) {\n            try {\n                result = await getUrlFromBackend('wy', musicInfo, actualQuality);\n            } catch (e) {\n                lastError = `后端聚合失败: ${e.message}`;\n            }\n        }\n\n        if (!result.url && GD_SUPPORTED_QUALITIES.has(actualQuality)) {\n            try {\n                result = await getWyGDUrl(id, actualQuality);\n            } catch (e) {\n                lastError = `GD接口失败: ${e.message}`;\n            }\n        }\n    }\n    // --- QQ 音乐 ---\n    else if (source === 'tx') {\n        if (chkszEnabled && CHKSZ_CONFIG.enableQQ) {\n            try {\n                result = await getTxChkszUrl(musicInfo, actualQuality);\n            } catch (e) { lastError = `chksz QQ失败: ${e.message}`; }\n        }\n\n        if (!result.url) {\n            try {\n                result = await getUrlFromBackend(source, musicInfo, actualQuality);\n            } catch (e) { lastError = `后端失败: ${e.message}`; }\n        }\n    }\n    // --- 汽水音乐 ---\n    else if (source === 'qs') {\n        try {\n            result = await getUrlFromBackend('qs', musicInfo, actualQuality);\n        } catch (e) {\n            lastError = `汽水后端失败: ${e.message}`;\n        }\n    }\n    // --- 其他平台 ---\n    else {\n        try {\n            result = await getUrlFromBackend(source, musicInfo, actualQuality);\n        } catch (e) { lastError = `后端失败: ${e.message}`; }\n    }\n\n    extraCache.set(id, { lyric: result.lyric, cover: result.cover });\n\n    const trimmedUrl = typeof result.url === 'string' ? result.url.trim() : '';\n    if (typeof result.url !== 'string' || trimmedUrl.length < 1 || !trimmedUrl.match(/^https?:\\/\\//i)) {\n        throw new Error(lastError || '获取播放链接失败');\n    }\n\n    return trimmedUrl;\n}\n\n// -------------------- 更新检查 --------------------\nasync function checkUpdate() {\n    try {\n        const resp = await httpFetch(\n            buildUrl('primary', 'version') + '?ver=' + encodeURIComponent(SCRIPT_VERSION),\n            { timeout: 5000 }\n        );\n        if (resp.statusCode === 200 && resp.body && resp.body.update_url) {\n            send(EVENT_NAMES.updateAlert, {\n                log: resp.body.changelog || resp.body.message || `发现新版本 ${resp.body.version || ''}`,\n                updateUrl: resp.body.update_url\n            });\n        }\n    } catch (e) {}\n}\n\n// -------------------- 事件处理 --------------------\non(EVENT_NAMES.request, async ({ action, source, info }) => {\n    if (!source || !MUSIC_QUALITIES[source]) throw new Error(`不支持的音乐源: ${source}`);\n\n    if (action === 'musicUrl') {\n        if (!info?.musicInfo || !info.type) throw new Error('参数不完整');\n        return fetchMusicUrl(source, info.musicInfo, info.type);\n    }\n\n    const id = info?.musicInfo?.hash ?? info?.musicInfo?.songmid ?? info?.musicInfo?.id;\n    const cached = extraCache.get(id);\n    if (action === 'lyric') return cached?.lyric ? { lyric: cached.lyric, tlyric: '' } : null;\n    if (action === 'pic') return cached?.cover || null;\n    throw new Error(`不支持的操作: ${action}`);\n});\n\n// -------------------- 启动 --------------------\n(async () => {\n    deviceId = generateDeviceId();\n    clientHeader = buildClientHeader();\n    ensureTokenFresh();\n    availablePlatforms = ['wy', 'tx', 'kg', 'kw', 'mg', 'qs'];\n    const sources = {};\n    availablePlatforms.forEach(p => { sources[p] = { name: PLATFORM_NAMES[p], type: 'music', actions: ['musicUrl', 'lyric', 'pic'], qualitys: MUSIC_QUALITIES[p] }; });\n    send(EVENT_NAMES.inited, { openDevMode: false, status: true, sources });\n    fetchIp();\n    checkUpdate();\n})();";
   // 内置音源（默认可开关）
   if (!S.sources || !S.sources.length) {
     S.sources = [
@@ -6952,10 +6971,10 @@ try{var t=localStorage.getItem("aq_theme")||"light";function _aqIsNight(){var h=
       { id: "cx", name: "星河入梦", platform: "qq", platforms: ["qq", "netease", "kugou", "kuwo", "migu"], type: "js", enabled: true, builtin: true, lxScript: "/*!\n * @name \u5c7f\u6eaa \u00b7 \u6c89\u97f3\n * @description \u4e91\u8bb0\u8f9e\u5c18\u5f80\uff0c\u665a\u6f6e\u8d77\u6c89\u97f3\ud83c\udf27\ufe0f\n * @version 26.10.11\n * @author \u5c7f\u6eaa\u5927\u738b\u2728\n * @homepage \u4ea4\u6d41\u7fa4https://qm.qq.com/q/FDrwb37XqM\u66f4\u65b0\u5730\u5740https://gitee.com/Myn_1/Mao_Yuna/raw/MYN_update/lx-music/YuXi.js\n * @deploy \u5355\u8bbe\u59073\u6b21/\u79d2\n * @group https://qm.qq.com/q/FDrwb37XqM\n * @link https://gitee.com/Myn_1/Mao_Yuna/raw/MYN_update/lx-music/YuXi.js\n */\n\nconst CIRCUIT = true;//false/true\n//\u7ebf\u8def\u8c03\u8bd5 \u5f00\u542f\u4f1a\u68c0\u67e5\u4e24\u4e2a\u53ef\u7528\u7ebf\u8def \u4f18\u5148\u4e3b\u7ebf\u8def \u4e3b\u7ebf\u8def\u4e0d\u53ef\u7528\u542f\u7528\u5907\u7528\u7ebf\u8def\nconst CACHE_TTL = 20 * 60 * 1000;//\u7f13\u5b58URL\u65f6\u95f4\nconst LOG_DEBUG = false;//log\u8c03\u8bd5\n\n\n\n//---------\u4e91\u8bb0\u8f9e\u5c18\u5f80\uff0c\u665a\u6f6e\u8d77\u6c89\u97f3\ud83c\udf27\ufe0f\nvar i\uff49l='jsjiami.com.v7';const iIiIllIl=liII1lil;(function(i1l1ilIi,IIiIilI,I1i11ilI,l1li11ll,iI1ll1lI,Il11i1ll,I11II1i1){return i1l1ilIi=i1l1ilIi>>0x5,Il11i1ll='hs',I11II1i1='hs',function(I1IlIIII,I11l1ilI,lliI1ilI,iiilI1i1,llIllI){const lI1i11l=liII1lil;iiilI1i1='tfi',Il11i1ll=iiilI1i1+Il11i1ll,llIllI='up',I11II1i1+=llIllI,Il11i1ll=lliI1ilI(Il11i1ll),I11II1i1=lliI1ilI(I11II1i1),lliI1ilI=0x0;const iIliIlI=I1IlIIII();while(!![]&&--l1li11ll+I11l1ilI){try{iiilI1i1=-parseInt(lI1i11l(0x229,'E&M$'))/0x1+parseInt(lI1i11l(0x21e,'JLVT'))/0x2*(parseInt(lI1i11l(0x241,'rD(0'))/0x3)+parseInt(lI1i11l(0x2cd,'K*nC'))/0x4*(parseInt(lI1i11l(0x2a5,'x34w'))/0x5)+parseInt(lI1i11l(0x223,']7Ay'))/0x6+-parseInt(lI1i11l(0x2cc,'YQus'))/0x7*(-parseInt(lI1i11l(0x22e,'LYpf'))/0x8)+-parseInt(lI1i11l(0x384,'1t92'))/0x9+parseInt(lI1i11l(0x36d,'E])B'))/0xa*(-parseInt(lI1i11l(0x1fb,'E&M$'))/0xb);}catch(iIIiiI1l){iiilI1i1=lliI1ilI;}finally{llIllI=iIliIlI[Il11i1ll]();if(i1l1ilIi<=l1li11ll)lliI1ilI?iI1ll1lI?iiilI1i1=llIllI:iI1ll1lI=llIllI:lliI1ilI=llIllI;else{if(lliI1ilI==iI1ll1lI['replace'](/[lkfdBAgbSCVnqMELNhODP=]/g,'')){if(iiilI1i1===I11l1ilI){iIliIlI['un'+Il11i1ll](llIllI);break;}iIliIlI[I11II1i1](llIllI);}}}}}(I1i11ilI,IIiIilI,function(IiilI,lII1ilI,iIiiil11,I1iI11Il,iil1IIi1,lI1Ii1il,IIIiil1I){return lII1ilI='\\x73\\x70\\x6c\\x69\\x74',IiilI=arguments[0x0],IiilI=IiilI[lII1ilI](''),iIiiil11='\\x72\\x65\\x76\\x65\\x72\\x73\\x65',IiilI=IiilI[iIiiil11]('\\x76'),I1iI11Il='\\x6a\\x6f\\x69\\x6e',(0x6fcd11,IiilI[I1iI11Il](''));});}(0x1980,0x4afe5,iIllIlIi,0xce),iIllIlIi)&&(i\uff49l=iIiIllIl(0x382,'xK@o'));function liII1lil(_0x12463f,_0x4d071c){const _0x154b5f=iIllIlIi();return liII1lil=function(_0x4f7f27,_0x3b739b){_0x4f7f27=_0x4f7f27-0x1d9;let _0x528845=_0x154b5f[_0x4f7f27];if(liII1lil['GmSpFr']===undefined){var _0x824ce1=function(_0x334324){const _0x5b5ed0='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x55fccd='',_0x1d58f0='',_0x480a73=_0x55fccd+_0x824ce1;for(let _0x1e87e2=0x0,_0x20fe5a,_0x2c6c43,_0x17184a=0x0;_0x2c6c43=_0x334324['charAt'](_0x17184a++);~_0x2c6c43&&(_0x20fe5a=_0x1e87e2%0x4?_0x20fe5a*0x40+_0x2c6c43:_0x2c6c43,_0x1e87e2++%0x4)?_0x55fccd+=_0x480a73['charCodeAt'](_0x17184a+0xa)-0xa!==0x0?String['fromCharCode'](0xff&_0x20fe5a>>(-0x2*_0x1e87e2&0x6)):_0x1e87e2:0x0){_0x2c6c43=_0x5b5ed0['indexOf'](_0x2c6c43);}for(let _0x354c69=0x0,_0x50da97=_0x55fccd['length'];_0x354c69<_0x50da97;_0x354c69++){_0x1d58f0+='%'+('00'+_0x55fccd['charCodeAt'](_0x354c69)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x1d58f0);};const _0x23cc8c=function(_0x1d9f51,_0x43ae90){let _0x5a4bdc=[],_0x3acd04=0x0,_0x1c1d43,_0x18dd4c='';_0x1d9f51=_0x824ce1(_0x1d9f51);let _0x400372;for(_0x400372=0x0;_0x400372<0x100;_0x400372++){_0x5a4bdc[_0x400372]=_0x400372;}for(_0x400372=0x0;_0x400372<0x100;_0x400372++){_0x3acd04=(_0x3acd04+_0x5a4bdc[_0x400372]+_0x43ae90['charCodeAt'](_0x400372%_0x43ae90['length']))%0x100,_0x1c1d43=_0x5a4bdc[_0x400372],_0x5a4bdc[_0x400372]=_0x5a4bdc[_0x3acd04],_0x5a4bdc[_0x3acd04]=_0x1c1d43;}_0x400372=0x0,_0x3acd04=0x0;for(let _0x3d4906=0x0;_0x3d4906<_0x1d9f51['length'];_0x3d4906++){_0x400372=(_0x400372+0x1)%0x100,_0x3acd04=(_0x3acd04+_0x5a4bdc[_0x400372])%0x100,_0x1c1d43=_0x5a4bdc[_0x400372],_0x5a4bdc[_0x400372]=_0x5a4bdc[_0x3acd04],_0x5a4bdc[_0x3acd04]=_0x1c1d43,_0x18dd4c+=String['fromCharCode'](_0x1d9f51['charCodeAt'](_0x3d4906)^_0x5a4bdc[(_0x5a4bdc[_0x400372]+_0x5a4bdc[_0x3acd04])%0x100]);}return _0x18dd4c;};liII1lil['qxAgzm']=_0x23cc8c,_0x12463f=arguments,liII1lil['GmSpFr']=!![];}const _0x1c090a=_0x154b5f[0x0],_0x15be6b=_0x4f7f27+_0x1c090a,_0x1da0c7=_0x12463f[_0x15be6b];if(!_0x1da0c7){if(liII1lil['aotRJG']===undefined){const _0x46a41e=function(_0x4972e6){this['nhcoHK']=_0x4972e6,this['FceSTg']=[0x1,0x0,0x0],this['UsWPuL']=function(){return'newState';},this['sQXnbk']='\\x5cw+\\x20*\\x5c(\\x5c)\\x20*{\\x5cw+\\x20*',this['kAgoSk']='[\\x27|\\x22].+[\\x27|\\x22];?\\x20*}';};_0x46a41e['prototype']['uSBJao']=function(){const _0x139a76=new RegExp(this['sQXnbk']+this['kAgoSk']),_0x5db5fd=_0x139a76['test'](this['UsWPuL']['toString']())?--this['FceSTg'][0x1]:--this['FceSTg'][0x0];return this['ZodzHd'](_0x5db5fd);},_0x46a41e['prototype']['ZodzHd']=function(_0x3aa4a0){if(!Boolean(~_0x3aa4a0))return _0x3aa4a0;return this['VIVRUy'](this['nhcoHK']);},_0x46a41e['prototype']['VIVRUy']=function(_0x43fa83){for(let _0x225238=0x0,_0x107f58=this['FceSTg']['length'];_0x225238<_0x107f58;_0x225238++){this['FceSTg']['push'](Math['round'](Math['random']())),_0x107f58=this['FceSTg']['length'];}return _0x43fa83(this['FceSTg'][0x0]);},new _0x46a41e(liII1lil)['uSBJao'](),liII1lil['aotRJG']=!![];}_0x528845=liII1lil['qxAgzm'](_0x528845,_0x3b739b),_0x12463f[_0x15be6b]=_0x528845;}else _0x528845=_0x1da0c7;return _0x528845;},liII1lil(_0x12463f,_0x4d071c);}function iIllIlIi(){const lI11IiiI=(function(){return[i\uff49l,'dSjEfsNjiqdakmMgBiV.EcbonOmPMd.lnvhC7LAD==','W4pdO8ohtmkkW4K','iSkkW7yTW7GuW5qD','6k6q5RoX6lwf5PslWPW','6yA654Qi6z2o5lQt','W5WIBmoMW74','D10WW7GVCYDq','576C5PI+5lQM6z6N5lMB','w8k7WQFdGa','zh5Xebe','nrGNW7qoCZfUgHe','FNuAW5O0F0q','WQFcSJNcJSox','ANFdINSAmSkfW4q','W4PeWR5rka','nZJcJmkuEa','weubW5OR','sCo8D0HE','WP5+W5rgW53cSSoU','ESoSDNW','AmoWgN0','E8oQb2zYq8k+shevWQK','W4RdTmoCvSkbW4rgdG','6ysp5OMc6zY75lQv6kEq5PYR5AAQ6lsK','W6ldI1iuWPy','W4P0W7bavW','W6FdV8kiWQ5eWRW8sq','lmoRWOXSWOq','W7vRW5GkW6jtW4m','W7dcGvq','WO5RAmkMda','lZtcN23cHCk8kYO','6z205P2V6z6i6lAwAW','tmkUWRZdGr4','W5azWPf8tq','WPTUW4nbW6e','W75HW50l','W74LiCoEyq4Aj8opW6iyea','AepcSha','hmkTW57dOW','kCkdW7qMW4O','W4GFeY4I','W7RcGgzoW6i','WRbHAmkt','WORcR8oZW7/cVa','WRRdLmknhSo5','WRCyW4FcUtK','WO/dLCkfbCkAWQpdMMba','BCoIBhPIWPRcGW','5Q6b5PQM5lQC6l+chgKKs2rrWRddO251','W6ddOSklWQbB','fKVcOSovbSkS','WQNcGmoMW7FcOG','y2j3tG','BeK9W60a','W5hdVSkbkSoKW57dQq','WOHiz3Hspmk+l8oIxZredq','qSo7W6hdGCod','jZlcHG','pCoPW7LqWOq','WQH/tcaA','W5KxeveN','d8ohWRtcJCopWOxcNMVdSGxdUtrWh1TxWRJcLmoxW4ihW4pdPSoCtJRdV8kfj1ddU2tcMxxdLSo6W4PvW4PLDM5yd8k7tJFcJrhcSmk1WRxcTCohj8ozD8kOWPagW59qWQjYC8kNWQtdJCkfWOVcOCkpW4afWO/dJmk1WP7cVKJdTCkgW5iUW40fWOFcQXfuACoxWQ1bWQT4WORdShnkq8orwhDxWPGCW7eKxrhcQ8oW','W4CHkSo5dq','hsFcUgRcSW','dLdcUSokmW','hSkLW4W/W44','ittcG2NcMG','W7ShnmoLhW','nqqVW6yp','W7TNW5CpW6T0W4lcPa','zSkYWRTE','t0r1dYq','WPfMsq','zMhdLv8ijCki','W7yCWQT5Ca','WPBOP4VLJ6BPMjNNUQZdKKpNMzpMOiBMOkFKV4RKUidLJ7VNLzRVVyNPM5/NU5ROH7y7','WQCSW5FcQJi8p8oEWQaDW7ixWR1f','poE+OowUMowsGos6KCoIWPeVW7KrWQW','WRlcOmoFW74AW5H7Dmk5omkhwdy','ad/cHZBdHW','W6lcKe1lW4DPaGxcPSoM','haldRaJdHG','W7/dUmobxCke','tmksWPBdItW','WRtdVxS0','6k6H5Rcb6lsT5PAUWOm','WOldK8kGmSoc','WQPFWRVcNvldJ8kdvSofuCokWR1gWQldGCkREmkWWPHDpSkPdb7cM2xdJ8ktWOJdGvHNjmkGmuldTYKwE8oSWO7dO8otWRqgASoHWRjbWOyHWQvUr8o9WQtdMmkBl8o1W6PNu8ogleTdWPtcMSkEqs9SWRVcISkmomonW5hdUaGlECk5z8ooE8kwW67dOmkuWOlcQSkIW7NcI3BcTSk+kSojg8kBFJJcTmk7WRS','WRuIbcfRWR7cIJlcPairWQLMwrZdV8kWW6/cPw/cTqhcI2HZWP3cHNhcVSk7gq','lbz4W7W3WONdQ8oXW5m','FCoZwNZdJa','W50fjIagwSo8bW','eYJdRqddLq','WOP4vSkwda','W6LJW5OOW4e','W6e5aIuW','W6C5bZek','pIBdItZdHSo3ia','5Qg/5RMw6AIq5RUahmo2W4SYtvRcHCklW7yTW6/dQ8kSkmkKkIq','WOf2FXqV','WQW6WOTDWRyzWOJcJuBcShudoW','eXL3W6DS','6yEK5OMr6z6f5lMm','jSotWOvZWO/dVW','EM/dGwC','yx7dL3yajCkbW4lcRXvqW407W4r+W7C','d8oAWRlcMmop','d8oiW69sWQy','WQpdUmkGnSon','W4tcISk1vSkQWPC','gH/cNSkKzG','pIldV1tcUG','o8o0WQz9WQm','e8oAWQ3cMmotW4RdHq','vmo7vuldTq','W6VdGSoTBmka','oaxdPxtcSW','eCoVorxcGa','xmovW6ldH8ouWOy','56EJ77646k2M56Q+5zk/6ys56k+H','W4hdUmoGCSk9','EmkkW4e2W53dVLP5W7Wtla','BxVdLhmk','zmk0WQJdMYq','yNKwW5S+Eem','jXGRW68i','W6ufd8onduddPa','5PAM5y6d55wU5PcT5Pwf6zo+5O+x','WQrVFZmD','W69gWPbfoq','6k2Q5Rgm6l2+5lUG6Acw57MG77686zQy5yI0','g8kAW63dKmkp','rSoEBMldH389WO4','W7hcHu5aW5TB','W6C/mCkB','W4NdKSkaWQjX','yCoUtvBdMG','fSkTW5FdV8ksWP7cI1a','Cwz/cXBdNWFcMSoHua','WQ9QAdCC','mhZdGq3cU1z1hmoH','dmoLW77dIa','W4NcN8kYaa','5QgP5RQv6AUa5RIAD8oAWPpcJCk/FI7cKCkgyMb0W7KcWPtdGa0','pa5FW75K','ESkaW45S','iHnRW7P2','W4u0jYue','hJ/cQCkMaCkpW7LOzG','fCoMib7cKW','WP54W6PxW4dcRSo0xq','eSonW69tWQm','m3OfW5K','pMegW5JcPW','oxWtW4xcGW','WQNcUCofW7xcTW','lNpcUCoCyYddTW'].concat((function(){return['amkfW6FdI8oLWODHtq','W5xdOv4tWPa','oINcKhJcNmkAgINdHmkv','WQv2wSkpiq','xSoyW57dGCoa','oaxdPxtcS8o1wXitW5G','AmofW7VdVCoA','hCoKExe8W7BcSCoA','jbFcRIldRZir','5yMm5AEE5y235AAr6lEv776f6k+M5yUz57YxWR3cLSogECo8WRldQYFdP+wnOoMLJq','W7GsaG','W4LqW7j1tG','n2tdJqhdUG','dmogWP9fWOi','AgT7gqxdIsFcGq','kGm1W7mxzqfY','cCoBdslcPWZcKW','W4dcHmk2ESkP','W65RW5GCW6rj','dJ4GW4mq','WQXzwJT4','WRH/Ftm','BUE4LEI3OoAoRUA3QenV5O2i5RE85AsQ6lwCsW','5A286zMw6z+i6lE1qq','W6ahnmoyoW','W7ddUxaRWRPfW5JcJfHVW4/cT8o7WRq','5lQL57Uw6lEY5lQr5y2D55A+776k5BcH6k245AEg55EU57UV6lAJ','d3xcUCo6tG','W5i/WQzBqq','DhFdL38','5zo85zkf6z2t5lI+','oH3dRxRcSG','pdRdHtNdKmoXnL8','WQdcMCoKW77cQa','r8kqWRZdMsC','WQVcUY92WPvFW5tdO1fk','uCkaW7lcVmoqW47dPtBdSG','WQvmrdW','etxcGxZcIW','C8oMw3BdKq','mYyStflcLhZcSmobqNxcUM0','W4qjjsW','W6TUW6DDrq','umoaW7ZdNmoc','lSkFW7OV','u0pPN63KUk8','cmknWQFcHSoJWQb/FColWRq','iSoCWPvRWP/dQvrp','ANnT','teJdKNi+','W4q8WQ0A','W5/cISowj8oeW6BdRhTA','W7zJWQnAmq','W7C9ms8X','r8orW7NdOmoM','W7OUfxaQW6RdN3e','WOX7W5PGW6G','WOhdKmkwa8oB','jSo0W6PBWPnbWQpcSG','gbldJMJcJq','D15+W6S','W7NcK1ndW5m','tCoGA2vE','o3hdKXRdRba','cUwXQUA7I8knWRtdGvmSW7tdMa','amkgWQNdMa','WQe4W6NcJJW','ECoXbhP1','g2JdIG/dGa','W7K5e3O5W6VdMxy','WPz9W7eyFcdcNZldO8o8','oXpcI0RcJq','WOxdLSkxfCoeW7ldI3O','pIPaW712','W67cL0C','bmogbc/cPry','umosz2xdHhy','W6Wua8oggW','poAqNUAxVUwALEITI+AZVCoSzoMDR+A7UmkS','e0pcTSoBkG','WRSGW5hdNLi','FNSwW7uM','WQLEWPxcGKy','iSoiofiTW6tcQSoDW4dNJ6dLOP/MNOpLS6JNURK','WR5wv8kywGpcOSoUlmk3WPWCjG','fCoxaspcRqVcLa','5lUZ5Rs5572KlCo2lWvjCv9jWOG+W4BdImk2vCkXW407v8oAWQT2WOj6ccVcS2zrW7bY5PQO5PAh5z6J5z6sWOzaW5JdQa/cOSklW6mFfCkfjhKvuIHQW5pcRCohWObQW4WBWQz/xmkKkLdcIwdcISo4W4nqW4WqbSkvBvxdIberW73cRmkWWPBdTCoMWQepWQaeqmoIWPH7lXrKWQ/dUW','iH94W7TGW4/dUG','aCoJW759WRq','WQRcKWJcHmo5','W7noWPjNgSkqzG','W4/cHuH1W4a','WOT1W5PhW5FcOCo9uJT0WPmRxcGNbWddNCoJEmoqwa7dR8kck0i0W5NdOea8ECkMWOG+','mmoGCI4','WQ7cQZVcH8oD','WQv9zCkzpG','WQdcNCo5W73cOG','WQFcSIddKa','DSoKChH8','vSoRsgFdIG','W41QW4nhCa','DmowkKjl','WP5hW7PtW5q','W4ddT8oorSoFWPvxfmkj','WQGSW7/dLLr2','jaJcRcZdTG','W5eHc8k2','WQtcKCo8W7VcTSoV','frKFW5iH','W6NdS8khWQTnWPS9','5QYe5PIb5lQq6lYXWQqgW50osW','ef4mW4hcOG','mZZcL3e','W7FdTCkbWOPa','l8kGW6WdW7e','xSkkW7BdImoUW6VdUIxdTJ8','W79HW50x','oq54W6TWW47dISo3W4md','WQbPFIucW4ZdNCkX','gsJcSWRdKq','6k+P5Rop6lAh5PERlW','W6FcL0XwW6i','kXK1W6KysrXNeq','W5yKWQ1nBq','WOP6sCk4ca','W4SMf0Oz','vCk+WRtdHJ4','W44PWR1y','l8oGDLat','ECofW4ddVSoO','dSoGWRj2WR8','5lUK5PAw5O+L5yUo5l+0WQ0','lCkXW5BdOSke','6zYC5P696ykZ5OMZ6zYr6lExW5y','W7xdHSkLWR9o','W6NdV8kuWQPB','5QY35PUy5lUA6l+CtmkPuhL0W589','W7/cOCkZySkm','W7pdS8kwWQnjWOOR','ihRcUCoB','WQbmrcbUW70','W6KEECofW5a','D2asWO8','WQ1NWPFcMg8','W7W9WR1JuG','EmkaW4zS','uCkYWQJdHdNcHW','WO3NVj7LRzhLKO3KUAD6ewxcGCkYcq','aCoFWQhcNG','6z+e5P+K6z2C6lsnW5C','W6hcI0rD','W4rbW6H5wSo8','C8oOCw5UWPtcGG','WQxdQSkXkSoP','c2BcQSo6rW','WQe7W6tdJf97nK4','xCkIkhq','hmkfW6RdGmko','W6ujcCotiq'].concat((function(){return['CL7dK04k','efpdOt3dVG','WRnOW5upW6q','uCkNWPFdHtC','6k6/5RkX6lsE5PA6WQS','abldPMpcQq','zNDYgHFdIq','W6VcG8kWxCkD','vCopm2nT','z33dGxuN','WP8eW7xdJhO','CKGRWQ49WO3dP8ovW7CEdSoC','WQdcRIJcGq','lapdPa','k8oNDLSP','a10KW5xcMa','rmogW70','WQ4/WOXDW6jYW7lcPvdcQa','WOTFWRlcH1ldHSkrcG','W7Kdg3Gw','owevW5dcG8k+pLBdNSoWW5FcNsNcVSoGWQ5JWRFdN8oRWQldILZdJGqOWRNdTmk8ngRcSmkYkrG','ddZcM8kXqCosW7vM','W47dSSoDqmkE','ow/cG8oQkq','WQW/WOXAW4LwW5xcIwJcJq','WODIW4PkW5hcKSoOvG','W5y4WQvfFrlcRZS','5QYe5PIb5lQq6lYXWQqgW50os8kkamkNzYhcMG','o8kxW6ZdG8kM','xCodFwNdKa','WODYW4PqW5pcOmo/','WO18qCkmga','q8orW6ddHSouWODa','d8oKDxaR','kSoIWQVcR8o2','W50fjIagimo8dSoiDX9bbmoiW7hcTfi','WQ3cMCofW7tcQW','ce/cSmotamk2','hCoAWRrYWQa','pWH1','W4apfmoabf7dTSkqESoOW5X5v8owuKKcr8kYWRhcH8oDshhcSSkiW5WWtmo0h1tdRCkJamkFjN7cPtddSCoCFcShjCkVW4ekW7RcUf/cLaLjfmknWR4vo8kssCowWRRdO8kNW5u5W5ddSCoXWQCVB8kbuZH8W6ldKmomcwRdTmkwW5lcS017WPddP8k/gSokkSoZFuCUDq93W5hcQZVdLSkGW4JdGq','WQ47W7pdMG','5lMf5PEC5O6A6z6/5RIBwG','oINcKglcJCkikYi','W6ddPSkpW74','aSkhW54TW4K','W7ldOSkhWRTDWPO','x8k4WQldMG','sN7dRgSh','WPfNwSkZh1mmWRK','WRddNbCvWOnfgsZcP8ozWOe','W5PuxSkrn3SV','WO52W41c','W7BdPwKXWRDnW4ldKq','W4VdRSoCtmkoWO5DgmkCovJdIW','57MY6lA75Qgx5RE05Asc6ls7772F57Qc6lEu5zYL5lQp5y2U55sV77Yn5yEi5BM75l+j55E3W6hcLCkshq','ChWAW51JovxcH8op','nrFcPdW','imkhW688W7HAWP5awCkHhmo7zchcMSkEzZ3cPSoDWP55W4lcP8oOvGS','44kt6zYx5RQW5yI55Aw/5yYG44gJ5zQt5A2j5l+Q55EE5lM957Mx6lAV','kCkKW4SvW6i','WRGTW5e','nmoWW6ie','5A2i6zMi6z+66lEyCa','57UU6lE65O+d5RER5yYH55AB5BYt5BMb776P','W4NcOvzXW5u','rejRdqe','W7TIW5Gn','W6eZlCo+jq','W7NcQ3DLW7i','W7vSWQxcJGqTDxLIjCofW7jR','WOhdJCkqfSoBWQ3cLYzdf8kfW6G6bs9trrybebFdMCkdW4y3lgldSf/dVGfZu8o9zujYuKFdHNxcSCoiW5TUEuXMW4i','jCoJWRtcLSoM','nsldNdVdIW','WRrIBCkj','W4tcImkpFmkX','W5yPWRa','xCopBMJdHMW8','b8ovvMC5','pLRdPrRdHG','57635Awr5QYI5PMB5QgV6k+0WRFdJcdcQmklnbBdSXWcuehcV8o1WOJdJbmRW6hcRq','gspcOCo3','iq8jW5CR','lZhcKg8','WQpcHSoWW6S','gJZcRmk8','ih/cTSozAGFdTIm','a8osWRtcNa','pSkuW4eaW7W','W78DCmoZW4e','ovS7W6hcQG','vmkbW7dcLG','WRTOESkdk0bu','W4j4W4D7va','bSo1ExS9W6xcSa','C3RdHNqnj8ksW5i','WPhcPSohW4y','wmkVWQ7dIIRcHW','fJZcVW','dHhcS1xcOG','eYn0W7nJ','f0/cV8ogf8k2','W47cG8k6uSoSW4VcVCkGnW','aedcOmoRvq','mN7cOmonvW','5P+N6i+O5y2R5yUZ5P2A5Psz5Po75PEo6zc95O+x','W54dagOf','44ow6zYX5RUz5yU/5AwL5y2E44o95Qkp5REr57Q66lEK5A6y5OIh','WRP1wSklpq','i8o/yNy0W7VcOSkrW5vHlmkjW7esoe/dMbNcMmowqNL/W4rDW5r5W54Xn8oBWORcVgSLW7LxhLTDW4dcL8o+WOXophTFWRT8cv9TW7DtW7VdTYPsgweJW7CqW5TtBfldICoMDmkuBCkeWQhcVWLDW4RdRCktWPTMfmoVFmo6WQmFW7tdNmoFWOtcLKhcKSkfW6ldL8kZhmopW45TW7bIqYnI','W4KFu8ovW6m','WRL5BSkihq','5BoI5RQKWPNdMCkN5RkO6z2dW6JPN7hMUzFLIlNLPOtLJBNLRyBMIle','W7ZdO1WhWP8','W4pdK8k0WOrI','BSkzWQhdIrS','aqKNW5iH','WPjvA8kNmG','oHBcMSkoEq','W7qfWPnhta','WQWKW77cJq','W7vMWQxcJGSUk3bRgSopW4y','lmo+WQDbWPS','W7FdQ2K2WR5A','W7FdQvGyWQi','kSkCW781','iColWPTMWPNdUvro','phqsW5tcLCo2','W4OXhfi0','C3RdHM4CnCkJW5NcOH8','W7jfWPP3gSkg','gMiVW4/cOa','W5/cNSkQqmkn','wSkYWRi','rh4oW7qb','WQPQBdvCWP3dJmkRWQ8','qSoBW7/dLmoCWP1q','q8orW6hdN8oqWPDr','W7uHoSoipW','WQVcOqVcUmox','W50rjJ0aFq','W5OndCoohq','zwqAW5a1BexcIG','W7vNW4SlW7q','WQ48WOKf','W7/dSNiRWRXa','WO9vWQdcKfVdKCkr','WOfzWQ/cLvldTSkqfq','lSokWOzUWPJdQa','s8oldN9q','DmooW4tdTmoI','odddNghcNmkEodlcKmkFWQxdUW','WQpcKHZcKSok','WOfCWQdcLWZcL8kaemke','cf/cOW','W4q4WQLeAIZcRtpdHmoG'];}()));}()));}());iIllIlIi=function(){return lI11IiiI;};return iIllIlIi();};const II1lIi1I=(function(){const i1Ill1l1=iIiIllIl,iII1IiI1={'ApnOK':function(I1llliI,iIiIli1I){return I1llliI===iIiIli1I;},'lpQfz':i1Ill1l1(0x1e1,'^1fi')};let I1iI1lII=!![];return function(lll11IiI,ii1IliiI){const iliilllI=i1Ill1l1;if(iII1IiI1[iliilllI(0x27b,'HUxK')](iII1IiI1[iliilllI(0x2be,'DI0z')],iII1IiI1[iliilllI(0x29d,'FXeT')])){const IiilI11l=I1iI1lII?function(){const iiliiil1=iliilllI;if(ii1IliiI){const iiIiilI1=ii1IliiI[iiliiil1(0x341,'XZH6')](lll11IiI,arguments);return ii1IliiI=null,iiIiilI1;}}:function(){};return I1iI1lII=![],IiilI11l;}else lIiliIl1[iliilllI(0x276,'rD(0')]();};}()),I11iil1=II1lIi1I(this,function(){const I1II1il1=iIiIllIl,i1iIl1={'cAGki':I1II1il1(0x35a,'5xNv')};return I11iil1[I1II1il1(0x2af,'Tl)b')]()[I1II1il1(0x20d,'@Zig')](i1iIl1[I1II1il1(0x2f7,'9Dmd')])[I1II1il1(0x1f4,'7)j&')]()[I1II1il1(0x34a,'^3dl')](I11iil1)[I1II1il1(0x2bf,'QcM(')](i1iIl1[I1II1il1(0x25e,'54&O')]);});I11iil1();let IIi1IlII=null;const I1l1l1i=new Map(),i11iilIl=0x3,I11iiiiI=0x3e8,lI1l111l=[];if(!globalThis['lx'])throw new Error(iIiIllIl(0x24e,'HUxK'));const {EVENT_NAMES:IlIii1ii,request:ll1ll11I,on:i11Ilili,send:I1Iii11I,currentScriptInfo:iiI1lIII}=globalThis['lx'],iII1illi=iiI1lIII;if(iII1illi[iIiIllIl(0x1e7,'^1fi')]!==iIiIllIl(0x251,'ff4x'))throw new Error(iIiIllIl(0x204,'Kbne'));const IIIi1iIl=(...ilii1li)=>{const IIlIiII1=iIiIllIl,lIl1IIli={'vcgEh':function(i1il11i1,ll11Il,...Il1iil1i){return i1il11i1(ll11Il,...Il1iil1i);},'SPoRi':IIlIiII1(0x23b,'Kbne')};if(LOG_DEBUG)lIl1IIli[IIlIiII1(0x26c,'1t92')](IIIi1iIl,lIl1IIli[IIlIiII1(0x380,'rD(0')],...ilii1li);};function Ii1Il1Il(){const Ii1iili=iIiIllIl,IlIl1ii={'Sslxf':Ii1iili(0x257,'7)j&'),'JpKqn':function(IIi1lliI,lI11I1l1){return IIi1lliI<lI11I1l1;},'hJEtO':function(IilIIll,IiIill1l){return IilIIll*IiIill1l;}},i1i1i=IlIl1ii[Ii1iili(0x27f,'^1fi')];let I11i11II='';for(let II1iIl1=0x0;IlIl1ii[Ii1iili(0x2ca,'!sJN')](II1iIl1,0xa);II1iIl1++){const lIlill1=Math[Ii1iili(0x33e,']7Ay')](IlIl1ii[Ii1iili(0x2e9,'Nv]k')](Math[Ii1iili(0x1e3,'YQus')](),i1i1i[Ii1iili(0x2ff,'QcM(')]));I11i11II+=i1i1i[lIlill1];}return I11i11II;}function Il1i11ii(){const lIIi1Iii=iIiIllIl,Ill1Ii1i={'KwNoP':function(I11l1ii){return I11l1ii();}},iIIil=Ill1Ii1i[lIIi1Iii(0x31d,'Kbne')](Ii1Il1Il);return lIIi1Iii(0x331,'SRN1')+iIIil;}function lliliIii(){const llIIIII1=iIiIllIl,I11IlIII={'uUUWT':function(i1li1IlI,I11Iiiii,IiiIliII,l11illil,IIIlil,I1IIill,i1IIii1){return i1li1IlI(I11Iiiii,IiiIliII,l11illil,IIIlil,I1IIill,i1IIii1);},'MCvvZ':llIIIII1(0x383,'36dr'),'AKmaR':llIIIII1(0x355,'63TH'),'gsfoN':llIIIII1(0x212,'K*nC'),'tmcFF':function(iI11llii,lI1iI1Ii){return iI11llii>lI1iI1Ii;},'MYBIm':function(I11iIIl,l1llIIll){return I11iIIl-l1llIIll;},'oozQc':function(iI1iii1,illlIli){return iI1iii1!==illlIli;},'xATaW':llIIIII1(0x2d6,'bfe['),'hNZAZ':llIIIII1(0x1e5,'1t92'),'EkEXv':function(lI1liiil,II1i1111){return lI1liiil>=II1i1111;},'RPbsI':function(IiIIliI1,i1il1l11){return IiIIliI1!==i1il1l11;},'pFPzI':llIIIII1(0x33a,'aiVs'),'VVWsE':function(iIllIII,ill11iil){return iIllIII/ ill11iil;}},lIlilI1l=Date[llIIIII1(0x2fc,'Tl)b')]();while(I11IlIII[llIIIII1(0x394,'@Zig')](lI1l111l[llIIIII1(0x28d,'FXeT')],0x0)&&I11IlIII[llIIIII1(0x1df,'CMVJ')](I11IlIII[llIIIII1(0x3a9,'Ho6H')](lIlilI1l,lI1l111l[0x0]),I11iiiiI)){if(I11IlIII[llIIIII1(0x2b9,'K*nC')](I11IlIII[llIIIII1(0x324,'*U($')],I11IlIII[llIIIII1(0x2f4,'Kbne')]))lI1l111l[llIIIII1(0x37a,'wIl6')]();else return I11IlIII[llIIIII1(0x357,'rD(0')](l1lli11l,I11IlIII[llIIIII1(0x304,'^#6Z')],iill1iII,I11IlIII[llIIIII1(0x26a,'Kbne')],II11IlIi,I11IlIII[llIIIII1(0x2a3,'!sJN')],lII1II1l),iiiIili[llIIIII1(0x2d7,'xK@o')];}if(I11IlIII[llIIIII1(0x392,'j*um')](lI1l111l[llIIIII1(0x3a3,'XZXI')],i11iilIl)){if(I11IlIII[llIIIII1(0x2a4,'18!x')](I11IlIII[llIIIII1(0x3a6,'9QRz')],I11IlIII[llIIIII1(0x30f,'K*nC')]))I1ill11i=lIiiIIlI[llIIIII1(0x2eb,'Tl)b')];else throw new Error(llIIIII1(0x1e0,'@Zig')+i11iilIl+'\u6b21/'+I11IlIII[llIIIII1(0x377,'bfe[')](I11iiiiI,0x3e8)+llIIIII1(0x3ad,'E&M$'));}lI1l111l[llIIIII1(0x349,'^3dl')](lIlilI1l);}const iiIlIlll={'api1':iIiIllIl(0x2ae,'Kbne'),'api2':iIiIllIl(0x2d4,'bfe[')},liIIIllI={'kg':{'128k':iIiIllIl(0x328,'63TH'),'320k':iIiIllIl(0x247,'54&O'),'flac':iIiIllIl(0x34b,'Ho6H'),'flac24bit':iIiIllIl(0x370,'IH4Y'),'hires':iIiIllIl(0x329,'@Zig'),'atmos':iIiIllIl(0x3aa,'vSIt'),'master':iIiIllIl(0x1e9,'g5CI')},'tx':{'128k':iIiIllIl(0x2f9,'!sJN'),'320k':iIiIllIl(0x292,'9Dmd'),'flac':iIiIllIl(0x243,'LYpf'),'flac24bit':iIiIllIl(0x1f8,'Kbne'),'hires':iIiIllIl(0x25d,'KB77'),'atmos':iIiIllIl(0x378,'SRN1'),'atmos_plus':iIiIllIl(0x37e,'K*nC'),'master':iIiIllIl(0x337,'bfe[')},'wy':{'128k':iIiIllIl(0x2cb,'K*nC'),'320k':iIiIllIl(0x336,'Ho6H'),'flac':iIiIllIl(0x296,'18!x'),'flac24bit':iIiIllIl(0x1f0,'x34w'),'hires':iIiIllIl(0x277,'K*nC'),'atmos':iIiIllIl(0x240,'^#6Z'),'master':iIiIllIl(0x318,'9QRz')},'kw':{'128k':iIiIllIl(0x202,'HUxK'),'320k':iIiIllIl(0x263,'18!x'),'flac':iIiIllIl(0x20a,'wIl6'),'flac24bit':iIiIllIl(0x3a0,'36dr'),'hires':iIiIllIl(0x1de,'g5CI'),'atmos':iIiIllIl(0x2bb,'HUxK'),'atmos_plus':iIiIllIl(0x386,'YQus'),'master':iIiIllIl(0x23a,'Nv]k')},'mg':{'128k':iIiIllIl(0x1e4,'5xNv'),'320k':iIiIllIl(0x297,'HUxK'),'flac':iIiIllIl(0x33d,'FXeT'),'flac24bit':iIiIllIl(0x38f,'x34w'),'hires':iIiIllIl(0x2d2,'63TH'),'atmos':iIiIllIl(0x25b,'DI0z'),'master':iIiIllIl(0x315,'JLVT')}},l1lIIilI={'kg':[iIiIllIl(0x21a,'vSIt'),iIiIllIl(0x248,'*U($'),iIiIllIl(0x206,'9Dmd'),iIiIllIl(0x271,'g5CI'),iIiIllIl(0x246,'xU$1'),iIiIllIl(0x1e2,'54&O')],'tx':[iIiIllIl(0x342,'!sJN'),iIiIllIl(0x334,'QcM('),iIiIllIl(0x259,'XZH6'),iIiIllIl(0x2ac,'48o@'),iIiIllIl(0x2fb,'FXeT'),iIiIllIl(0x2b4,'rD(0')],'wy':[iIiIllIl(0x21b,'j*um'),iIiIllIl(0x209,']7Ay'),iIiIllIl(0x282,'1t92'),iIiIllIl(0x2cf,'JLVT'),iIiIllIl(0x32b,'JLVT'),iIiIllIl(0x2cb,'K*nC')],'kw':[iIiIllIl(0x315,'JLVT'),iIiIllIl(0x200,'vSIt'),iIiIllIl(0x1db,'wIl6'),iIiIllIl(0x1f8,'Kbne'),iIiIllIl(0x20a,'wIl6'),iIiIllIl(0x266,'DI0z'),iIiIllIl(0x235,'IH4Y')],'mg':[iIiIllIl(0x326,'E])B'),iIiIllIl(0x1db,'wIl6'),iIiIllIl(0x262,'Ho6H'),iIiIllIl(0x286,'SonW'),iIiIllIl(0x28c,'9QRz'),iIiIllIl(0x237,'wIl6')]},lilllilI={'kg':[iIiIllIl(0x35b,'vSIt'),iIiIllIl(0x2f5,'36dr'),iIiIllIl(0x2ed,'SRN1'),iIiIllIl(0x321,'g5CI'),iIiIllIl(0x2b0,'Ho6H'),iIiIllIl(0x226,'E&M$'),iIiIllIl(0x287,'nZkX')],'tx':[iIiIllIl(0x23c,'E&M$'),iIiIllIl(0x32a,'@Zig'),iIiIllIl(0x227,'bfe['),iIiIllIl(0x1f2,'Tl)b'),iIiIllIl(0x279,'FXeT'),iIiIllIl(0x23e,'^3dl'),iIiIllIl(0x386,'YQus'),iIiIllIl(0x3ac,'E&M$')],'wy':[iIiIllIl(0x23c,'E&M$'),iIiIllIl(0x26b,'!sJN'),iIiIllIl(0x2a6,'XZH6'),iIiIllIl(0x333,'48o@'),iIiIllIl(0x369,'DI0z'),iIiIllIl(0x20f,'nZkX'),iIiIllIl(0x368,'QcM(')],'kw':[iIiIllIl(0x1ef,'9QRz'),iIiIllIl(0x265,'K*nC'),iIiIllIl(0x360,'5xNv'),iIiIllIl(0x300,'XZXI'),iIiIllIl(0x234,'LYpf'),iIiIllIl(0x367,'1t92'),iIiIllIl(0x335,'rD(0'),iIiIllIl(0x319,'Kbne')],'mg':[iIiIllIl(0x1eb,'FXeT'),iIiIllIl(0x39e,'SRN1'),iIiIllIl(0x2dd,'@Zig'),iIiIllIl(0x364,'LYpf'),iIiIllIl(0x2b7,'54&O'),iIiIllIl(0x2f3,'aiVs'),iIiIllIl(0x326,'E])B')]},i11lIlil={'kg':iIiIllIl(0x339,'xK@o'),'tx':iIiIllIl(0x228,']7Ay'),'wy':iIiIllIl(0x33c,'nZkX'),'kw':iIiIllIl(0x39c,'^#6Z'),'mg':iIiIllIl(0x219,'Nv]k')},lliIi1Ii=(ililil1I,IIiiIl11={})=>new Promise((IIIl11ll,I11iIi1i)=>{const i11iIl=iIiIllIl,liiIIIII={'BERKJ':function(I11ll1l1,IiIII1Il){return I11ll1l1(IiIII1Il);},'vehSW':function(i1iiil1,lll1lIiI){return i1iiil1(lll1lIiI);},'MprBA':function(lIllliI){return lIllliI();},'ydFjV':function(iIlIiI1l,i11i1iIi,iiIII1iI){return iIlIiI1l(i11i1iIi,iiIII1iI);},'FCASw':i11iIl(0x38d,'48o@'),'VhBuJ':function(llilI1lI,l1Iili1i){return llilI1lI!=l1Iili1i;},'NPsOS':function(liIiiiIi,IiiIlIIi,IIllIl1i,iiI1iiiI){return liIiiiIi(IiiIlIIi,IIllIl1i,iiI1iiiI);}};liiIIIII[i11iIl(0x295,'SonW')](lliliIii);const lliIIil1=IIiiIl11[i11iIl(0x3a7,'36dr')]||0x1f40,i1lilIil=liiIIIII[i11iIl(0x35f,'YQus')](setTimeout,()=>{const lIl1111I=i11iIl;liiIIIII[lIl1111I(0x310,'Tl)b')](I11iIi1i,new Error(lIl1111I(0x29e,'bfe[')+lliIIil1+'ms'));},lliIIil1),IlI1l1II={'User-Agent':liiIIIII[i11iIl(0x29b,'Nv]k')],'x-request-id':liiIIIII[i11iIl(0x399,'g5CI')](Il1i11ii),...liiIIIII[i11iIl(0x2c0,'9QRz')](IIiiIl11[i11iIl(0x1dc,'*U($')],null)?IIiiIl11[i11iIl(0x20b,'xU$1')]:{}},lI11III={...IIiiIl11,'headers':IlI1l1II};liiIIIII[i11iIl(0x272,'ff4x')](ll1ll11I,ililil1I,lI11III,(Iii11ill,Il11IiIl)=>{const lllilIl1=i11iIl;liiIIIII[lllilIl1(0x2b1,'QcM(')](clearTimeout,i1lilIil);if(Iii11ill)return liiIIIII[lllilIl1(0x30c,'1t92')](I11iIi1i,Iii11ill);liiIIIII[lllilIl1(0x231,'E&M$')](IIIl11ll,{'body':Il11IiIl[lllilIl1(0x2e4,'5xNv')],'statusCode':Il11IiIl[lllilIl1(0x31b,'!sJN')],'headers':Il11IiIl[lllilIl1(0x2e7,'54&O')]||{},'finalUrl':Il11IiIl[lllilIl1(0x37b,'@Zig')]||ililil1I});});}),iil1Illi=(Ii1lilI1,IiiliIi={})=>new Promise((iiII1iIi,Il11i1li)=>{const I111lll1=iIiIllIl,li111l1I={'TzIfZ':function(lI1llI1i,llII1l1i){return lI1llI1i(llII1l1i);},'zOWAF':function(IllIIlll,iIliiI1i){return IllIIlll(iIliiI1i);},'JWVlQ':function(IiilIi1,l1Ii1lii){return IiilIi1(l1Ii1lii);},'tPYbs':function(liII11li,IiIll1I){return liII11li(IiIll1I);},'sOprr':function(iiil1III,IilIIIiI,IIl1l1Il){return iiil1III(IilIIIiI,IIl1l1Il);},'GLBYK':I111lll1(0x2c2,'*U($'),'BPtkZ':function(I1iii11I,IlIlil1){return I1iii11I!=IlIlil1;},'wwdYb':function(lll1Ii11,illi1lll,i1iIii,iI1iilIl){return lll1Ii11(illi1lll,i1iIii,iI1iilIl);}},lIIlIl11=IiiliIi[I111lll1(0x1da,'63TH')]||0x1f40,l1l11Ili=li111l1I[I111lll1(0x36e,'E&M$')](setTimeout,()=>{const lIll1lll=I111lll1;li111l1I[lIll1lll(0x375,'SRN1')](Il11i1li,new Error(lIll1lll(0x273,'KB77')+lIIlIl11+'ms'));},lIIlIl11),iiIi1I1I={'User-Agent':li111l1I[I111lll1(0x2fd,'SRN1')],...li111l1I[I111lll1(0x2e2,'36dr')](IiiliIi[I111lll1(0x1fa,'SonW')],null)?IiiliIi[I111lll1(0x252,'x34w')]:{}},iIlI1lI1={...IiiliIi,'headers':iiIi1I1I};li111l1I[I111lll1(0x288,'aiVs')](ll1ll11I,Ii1lilI1,iIlI1lI1,(llII1ilI,lIi1lI)=>{const l1iili1=I111lll1;li111l1I[l1iili1(0x2df,'YQus')](clearTimeout,l1l11Ili);if(llII1ilI)return li111l1I[l1iili1(0x28a,'48o@')](Il11i1li,llII1ilI);li111l1I[l1iili1(0x244,'x34w')](iiII1iIi,{'body':lIi1lI[l1iili1(0x26f,'@Zig')],'statusCode':lIi1lI[l1iili1(0x1e8,']7Ay')],'headers':lIi1lI[l1iili1(0x2f8,'HUxK')]||{},'finalUrl':lIi1lI[l1iili1(0x34f,'1t92')]||Ii1lilI1});});});function iil1iIii(Ili1I1l1){const iIIlllI=iIiIllIl,i1IliI1i={'LahQt':function(lliiIl,Il111l1I){return lliiIl+Il111l1I;},'JtEaB':iIIlllI(0x2d0,'Ho6H')};return i1IliI1i[iIIlllI(0x256,'YQus')](Ili1I1l1,i1IliI1i[iIIlllI(0x2c7,'bfe[')]);}function IiIiIii(II1IIiIl){const lIIilIiI=iIiIllIl,il1l11II={'rNzFd':function(lllil1ii,i1i1iIII){return lllil1ii+i1i1iIII;},'WvNIQ':lIIilIiI(0x2bd,'E])B')};return il1l11II[lIIilIiI(0x242,'SRN1')](II1IIiIl,il1l11II[lIIilIiI(0x308,'aiVs')]);}async function I1I1li1i(liiIIil){const lIl1IlIl=iIiIllIl,I1i111I={'GMdfT':function(lIIllili,ili1IiI){return lIIllili(ili1IiI);},'FVxSS':function(l1lli1,liiIlIi){return l1lli1(liiIlIi);},'bGPZl':function(iiIlIiIi,lIIIIiII){return iiIlIiIi(lIIIIiII);},'GtiBh':function(Iil1i1il,ii1iIIlI,IlIlil1I){return Iil1i1il(ii1iIIlI,IlIlil1I);},'vtFaa':function(i111ilil,Ii1i11II){return i111ilil===Ii1i11II;},'dyAvt':function(IIllII11,lli1ilI1){return IIllII11!==lli1ilI1;},'gcOWP':lIl1IlIl(0x216,'SonW'),'MQkRJ':lIl1IlIl(0x253,'IH4Y'),'olOrq':lIl1IlIl(0x345,'63TH'),'fiFED':function(l1II1ili,lIliiI,Iiiil1II){return l1II1ili(lIliiI,Iiiil1II);}},illlili=I1i111I[lIl1IlIl(0x298,'^1fi')](iil1iIii,liiIIil);try{const li1li1li=await I1i111I[lIl1IlIl(0x208,'9QRz')](iil1Illi,illlili,{'timeout':0x1388});if(li1li1li[lIl1IlIl(0x2ef,'Tl)b')]&&I1i111I[lIl1IlIl(0x24b,'18!x')](li1li1li[lIl1IlIl(0x317,'bfe[')][lIl1IlIl(0x2c8,'1t92')],'ok')){if(I1i111I[lIl1IlIl(0x371,'g5CI')](I1i111I[lIl1IlIl(0x2ec,'wIl6')],I1i111I[lIl1IlIl(0x3ae,'Ho6H')])){I1i111I[lIl1IlIl(0x1f5,'IH4Y')](ii1lli,liIlil);if(liilI1i)return I1i111I[lIl1IlIl(0x301,'SonW')](ll1lIl1l,i1I11i1);I1i111I[lIl1IlIl(0x230,'E])B')](li1ll1i1,{'body':illI11iI[lIl1IlIl(0x2d3,'ff4x')],'statusCode':ili111I1[lIl1IlIl(0x1fd,'SRN1')],'headers':liiIIili[lIl1IlIl(0x397,'j*um')]||{},'finalUrl':ii1iI1I1[lIl1IlIl(0x2f0,'SonW')]||IllIII11});}else return!![];}return![];}catch(iliIl1il){if(I1i111I[lIl1IlIl(0x1ee,'x34w')](I1i111I[lIl1IlIl(0x2bc,'36dr')],I1i111I[lIl1IlIl(0x1ff,'E&M$')])){if(iiIIl111){const II1l11iI=Iili1I11[lIl1IlIl(0x21c,'DI0z')](i11lIiIi,arguments);return lIII1i1l=null,II1l11iI;}}else return I1i111I[lIl1IlIl(0x30b,'JLVT')](IIIi1iIl,lIl1IlIl(0x211,'54&O'),iliIl1il[lIl1IlIl(0x2f6,'5xNv')]),![];}}function I1liIll(lI1lIli,lli1II1l){const IIlllil1=iIiIllIl,llI1lill={'flcCZ':function(liIiIll,l1I1l11,IlIIii1l){return liIiIll(l1I1l11,IlIIii1l);},'Wmcgu':IIlllil1(0x381,'nZkX')},i1i111i1=l1lIIilI[lI1lIli];if(i1i111i1[IIlllil1(0x22a,'9QRz')](lli1II1l))return lli1II1l;const i1ili1Il=i1i111i1[0x0];return llI1lill[IIlllil1(0x233,'7)j&')](IIIi1iIl,llI1lill[IIlllil1(0x327,'*U($')],i1ili1Il),i1ili1Il;}async function IIiIiIli(lIIiI1i1,l1IlI1ii,Iil1ll1I,iiill1lI){const IIli1i1I=iIiIllIl,Iiiili1l={'JADPe':function(Iii1iili,l1lll1iI){return Iii1iili(l1lll1iI);},'EUVYD':function(i1I1l1,I1l1iII1){return i1I1l1(I1l1iII1);},'otgxW':function(Ill1IIli,II1iI1Il){return Ill1IIli(II1iI1Il);},'wqqqS':function(lilIlIIl,lII1IIi1){return lilIlIIl(lII1IIi1);},'zGzzj':function(IlI111lI,ll1111l,lI1i1Il){return IlI111lI(ll1111l,lI1i1Il);},'JWgMx':IIli1i1I(0x307,'HUxK'),'QIWlU':function(i1iIlI,iIll111i){return i1iIlI!=iIll111i;},'gSwOz':function(IiII1IIi,illIl1l1,Ii1iiil1,IlIIlil1){return IiII1IIi(illIl1l1,Ii1iiil1,IlIIlil1);},'tPCpf':function(i1iIl11,IIiliIi1){return i1iIl11(IIiliIi1);},'SmixQ':function(IIiiIlii){return IIiiIlii();},'hkmKw':function(lI1iIIiI,ll11Iii1,lIlilill){return lI1iIIiI(ll11Iii1,lIlilill);},'Ycnxi':function(IIiIIIIl,Il1I1li1){return IIiIIIIl===Il1I1li1;},'tXLXQ':IIli1i1I(0x2ea,'*U($'),'HYUpo':function(iil1iI1,i1iIi1Il){return iil1iI1>i1iIi1Il;},'xoFgG':function(I1lIlilI,liIl11Ii){return I1lIlilI!==liIl11Ii;},'lgTMo':IIli1i1I(0x389,'FXeT'),'apojA':function(i1ii11Il,Il111IiI,il1l1iiI,ilii11ii,ll1I1lli,l1li1lII,iIii1i1l){return i1ii11Il(Il111IiI,il1l1iiI,ilii11ii,ll1I1lli,l1li1lII,iIii1i1l);},'RnuJP':IIli1i1I(0x28e,'5xNv'),'FPurb':IIli1i1I(0x290,'Ho6H'),'uDrla':IIli1i1I(0x2d9,'5xNv'),'higzI':IIli1i1I(0x330,'E&M$'),'RHEuh':function(l111Iii){return l111Iii();},'GeaRZ':IIli1i1I(0x378,'SRN1'),'vgZLw':function(I1IiI1l1,liIli11){return I1IiI1l1===liIli11;},'FLTzr':IIli1i1I(0x24d,'48o@'),'hPQgf':IIli1i1I(0x1e6,'54&O'),'aQZNV':function(l1llliIi,i11Iii){return l1llliIi!==i11Iii;},'mgZqS':IIli1i1I(0x34c,'Tl)b'),'gYzkn':IIli1i1I(0x303,'xK@o'),'MxjaI':function(ii1iIiIi,IlIl){return ii1iIiIi+IlIl;},'WIRxo':function(i11i1ii1,iIil1ll1){return i11i1ii1(iIil1ll1);},'thxuQ':IIli1i1I(0x2c5,'SRN1'),'WNhSR':IIli1i1I(0x2fa,'DI0z'),'ClklC':IIli1i1I(0x39f,'!sJN'),'jCmdI':function(ii1iiiIi,liI1I11l){return ii1iiiIi!==liI1I11l;},'bLVaU':IIli1i1I(0x1dd,'wIl6'),'MJZvk':function(l11IlIIl,iIlIl1II){return l11IlIIl===iIlIl1II;},'WGGsE':IIli1i1I(0x1ed,'HUxK'),'lSCWM':IIli1i1I(0x258,'KB77'),'AcFsM':IIli1i1I(0x37c,'IH4Y'),'Xhppb':IIli1i1I(0x398,'Tl)b'),'HRfCk':IIli1i1I(0x28f,'36dr'),'YYmlf':IIli1i1I(0x269,'bfe['),'mcBZy':IIli1i1I(0x29c,'@Zig'),'lQAfW':IIli1i1I(0x1ea,'Nv]k'),'LSULA':IIli1i1I(0x2b5,'bfe['),'gLQFq':IIli1i1I(0x207,'Nv]k'),'rPtTc':IIli1i1I(0x283,'QcM('),'SNgjV':IIli1i1I(0x38a,'JLVT'),'YqyHK':IIli1i1I(0x39d,'9QRz'),'pQUSB':IIli1i1I(0x366,'18!x'),'JEvUa':function(iiIIi1i,Ii1IIllI){return iiIIi1i+Ii1IIllI;}};let I1il1Ill;Iiiili1l[IIli1i1I(0x39b,'x34w')](lIIiI1i1,'kg')?I1il1Ill=l1IlI1ii[IIli1i1I(0x220,'nZkX')]||l1IlI1ii[IIli1i1I(0x365,'KB77')]||l1IlI1ii['id']||'':I1il1Ill=l1IlI1ii[IIli1i1I(0x203,'ff4x')]||l1IlI1ii['id']||'';const IilI11I=Iiiili1l[IIli1i1I(0x3a2,'LYpf')](String,I1il1Ill);if(!IilI11I)throw new Error(Iiiili1l[IIli1i1I(0x1f3,'xU$1')]);let iIIl1llI=Iiiili1l[IIli1i1I(0x393,'K*nC')](I1liIll,lIIiI1i1,Iil1ll1I);const Ili1I11l=lIIiI1i1+'-'+IilI11I+'-'+iIIl1llI,lli1iI1I=Date[IIli1i1I(0x36f,'SRN1')]();if(I1l1l1i[IIli1i1I(0x22b,']7Ay')](Ili1I11l)){const ll1IlIi1=I1l1l1i[IIli1i1I(0x31f,'FXeT')](Ili1I11l);if(Iiiili1l[IIli1i1I(0x390,'54&O')](ll1IlIi1[IIli1i1I(0x32e,'9QRz')],lli1iI1I)){if(Iiiili1l[IIli1i1I(0x35e,'E])B')](Iiiili1l[IIli1i1I(0x2e5,'XZXI')],Iiiili1l[IIli1i1I(0x23d,'xK@o')]))IiIIIIl=IIill1ll[IIli1i1I(0x1ec,'XZXI')];else return Iiiili1l[IIli1i1I(0x35d,'bfe[')](IIIi1iIl,Iiiili1l[IIli1i1I(0x320,'63TH')],Ili1I11l,Iiiili1l[IIli1i1I(0x2dc,']7Ay')],iiill1lI,Iiiili1l[IIli1i1I(0x1f1,'E])B')],iIIl1llI),ll1IlIi1[IIli1i1I(0x2a7,'vSIt')];}else{if(Iiiili1l[IIli1i1I(0x29f,'vSIt')](Iiiili1l[IIli1i1I(0x299,'*U($')],Iiiili1l[IIli1i1I(0x24a,'QcM(')]))I1l1l1i[IIli1i1I(0x2a0,']7Ay')](Ili1I11l);else{const Ilii1I=lliliiil[IIli1i1I(0x250,'xU$1')]||0x1f40,l1ll11l=Iiiili1l[IIli1i1I(0x21d,'FXeT')](lI1II1I1,()=>{const lIiIIiiI=IIli1i1I;Iiiili1l[lIiIIiiI(0x374,'*U($')](I1illi,new li1i1i(lIiIIiiI(0x38b,'j*um')+Ilii1I+'ms'));},Ilii1I),l1lIii={'User-Agent':Iiiili1l[IIli1i1I(0x225,'9Dmd')],...Iiiili1l[IIli1i1I(0x311,'rD(0')](i1i1Ii[IIli1i1I(0x20b,'xU$1')],null)?I1I111ii[IIli1i1I(0x340,'63TH')]:{}},IIIil1li={...iIIlIiI1,'headers':l1lIii};Iiiili1l[IIli1i1I(0x26d,'bfe[')](I1iliI1l,IllI1Iii,IIIil1li,(lli1iI,ilIi1li)=>{const iii1lIii=IIli1i1I;Iiiili1l[iii1lIii(0x2b6,'^1fi')](i111II1,l1ll11l);if(lli1iI)return Iiiili1l[iii1lIii(0x309,'5xNv')](ii1IiI,lli1iI);Iiiili1l[iii1lIii(0x31e,'XZXI')](Ii11Illl,{'body':ilIi1li[iii1lIii(0x2c9,'FXeT')],'statusCode':ilIi1li[iii1lIii(0x270,'x34w')],'headers':ilIi1li[iii1lIii(0x268,'1t92')]||{},'finalUrl':ilIi1li[iii1lIii(0x32d,'48o@')]||IiiiI1i});});}}}Iiiili1l[IIli1i1I(0x2a9,'Kbne')](lliliIii);if(Iiiili1l[IIli1i1I(0x388,'Ho6H')](lIIiI1i1,'kw')&&Iiiili1l[IIli1i1I(0x1d9,'FXeT')](iIIl1llI,Iiiili1l[IIli1i1I(0x1fe,'K*nC')])){if(Iiiili1l[IIli1i1I(0x2f2,'bfe[')](Iiiili1l[IIli1i1I(0x222,'54&O')],Iiiili1l[IIli1i1I(0x1f9,'DI0z')])){const IiIIl11I={'YqjNk':function(Il1lliI,iIlIIiil){const IIIiI1i1=IIli1i1I;return Iiiili1l[IIIiI1i1(0x281,'1t92')](Il1lliI,iIlIIiil);},'kMpPj':function(i1ilIIii,Iii1iI){const lli111I1=IIli1i1I;return Iiiili1l[lli111I1(0x261,'7)j&')](i1ilIIii,Iii1iI);}};Iiiili1l[IIli1i1I(0x239,'KB77')](li11ll1I);const llIii1i=lIiii11l[IIli1i1I(0x347,'7)j&')]||0x1f40,I1liIilI=Iiiili1l[IIli1i1I(0x24c,'63TH')](ilIlllIi,()=>{const Ill1IiI=IIli1i1I;IiIIl11I[Ill1IiI(0x201,'E&M$')](IiIiiiii,new il1lIIIl(Ill1IiI(0x338,'36dr')+llIii1i+'ms'));},llIii1i),iiIlIl1l={'User-Agent':Iiiili1l[IIli1i1I(0x372,'^#6Z')],'x-request-id':Iiiili1l[IIli1i1I(0x362,'LYpf')](I1Iil1I),...Iiiili1l[IIli1i1I(0x395,'E])B')](illIil11[IIli1i1I(0x32c,'48o@')],null)?lIl1lII[IIli1i1I(0x255,'CMVJ')]:{}},I1I1111l={...l1l1IIiI,'headers':iiIlIl1l};Iiiili1l[IIli1i1I(0x3a5,'vSIt')](II1llIl,lI11l1I,I1I1111l,(i1l1i1lI,llili1l)=>{const l1i1lii1=IIli1i1I;IiIIl11I[l1i1lii1(0x31a,'^#6Z')](i111IlI,I1liIilI);if(i1l1i1lI)return IiIIl11I[l1i1lii1(0x34e,'9Dmd')](il1i1ll1,i1l1i1lI);IiIIl11I[l1i1lii1(0x201,'E&M$')](illIli1l,{'body':llili1l[l1i1lii1(0x35c,'^1fi')],'statusCode':llili1l[l1i1lii1(0x33f,'wIl6')],'headers':llili1l[l1i1lii1(0x351,'@Zig')]||{},'finalUrl':llili1l[l1i1lii1(0x354,'SRN1')]||iIl1lII1});});}else{const iIii1III=IIli1i1I(0x373,'36dr')+IilI11I+IIli1i1I(0x38e,'^#6Z'),lIl1iil=await Iiiili1l[IIli1i1I(0x363,'xK@o')](iil1Illi,iIii1III,{'timeout':0x1f40});if(Iiiili1l[IIli1i1I(0x3a8,'54&O')](lIl1iil?.[IIli1i1I(0x1f6,'Kbne')]?.[IIli1i1I(0x359,'@Zig')],0xc8))throw new Error(lIl1iil?.[IIli1i1I(0x2ee,'DI0z')]?.[IIli1i1I(0x245,'YQus')]||Iiiili1l[IIli1i1I(0x213,'*U($')]);const I11iI1ii=lIl1iil?.[IIli1i1I(0x291,'YQus')]?.[IIli1i1I(0x2ce,'7)j&')]?.[IIli1i1I(0x2c1,'x34w')];if(!I11iI1ii)throw new Error(Iiiili1l[IIli1i1I(0x350,'9QRz')]);const liiiIi1I=I11iI1ii[IIli1i1I(0x232,'^#6Z')]('?')?I11iI1ii[IIli1i1I(0x264,'ff4x')]('?')[0x0]:I11iI1ii;return I1l1l1i[IIli1i1I(0x2e6,'rD(0')](Ili1I11l,{'url':liiiIi1I,'expire':Iiiili1l[IIli1i1I(0x23f,'Nv]k')](lli1iI1I,CACHE_TTL)}),liiiIi1I;}}const l11I1II1=Iiiili1l[IIli1i1I(0x396,'E])B')](IiIiIii,IIi1IlII),IIliiili={'source':lIIiI1i1,'rid':IilI11I,'level':Iiiili1l[IIli1i1I(0x379,'*U($')](lIIiI1i1,'mg')?Iiiili1l[IIli1i1I(0x302,'SonW')]:iIIl1llI},l11IIll1=await Iiiili1l[IIli1i1I(0x20c,'XZXI')](lliIi1Ii,l11I1II1,{'method':Iiiili1l[IIli1i1I(0x284,'XZXI')],'headers':{'Content-Type':Iiiili1l[IIli1i1I(0x2a1,'XZXI')]},'body':IIliiili,'timeout':0x1f40}),Il1IiIiI=l11IIll1[IIli1i1I(0x2c9,'FXeT')];if(Iiiili1l[IIli1i1I(0x2ad,'^#6Z')](Il1IiIiI[IIli1i1I(0x2c3,'18!x')],0x0)||!Il1IiIiI[IIli1i1I(0x348,'KB77')]?.[IIli1i1I(0x205,'*U($')])throw new Error(Il1IiIiI[IIli1i1I(0x2b8,'7)j&')]||Iiiili1l[IIli1i1I(0x3a4,'Tl)b')]);let Ii1III=Il1IiIiI[IIli1i1I(0x2f1,'36dr')][IIli1i1I(0x2aa,'E&M$')];if(Iiiili1l[IIli1i1I(0x2a2,'^3dl')](lIIiI1i1,'mg')){const iilIliI=Iiiili1l[IIli1i1I(0x385,'ff4x')];let Illii1I,Illiiii=Iiiili1l[IIli1i1I(0x25f,'9Dmd')];switch(iiill1lI){case Iiiili1l[IIli1i1I(0x236,'vSIt')]:Illii1I=Iiiili1l[IIli1i1I(0x221,'SRN1')],Illiiii=Iiiili1l[IIli1i1I(0x260,'^3dl')];break;case Iiiili1l[IIli1i1I(0x20e,'wIl6')]:Illii1I=Iiiili1l[IIli1i1I(0x2fe,'x34w')],Illiiii=Iiiili1l[IIli1i1I(0x316,'JLVT')];break;case Iiiili1l[IIli1i1I(0x254,'XZH6')]:case Iiiili1l[IIli1i1I(0x30e,'wIl6')]:Illii1I=Iiiili1l[IIli1i1I(0x294,'LYpf')],Illiiii=Iiiili1l[IIli1i1I(0x325,'XZH6')];break;case Iiiili1l[IIli1i1I(0x314,'9QRz')]:Illii1I=Iiiili1l[IIli1i1I(0x29a,'!sJN')],Illiiii=Iiiili1l[IIli1i1I(0x32f,'^3dl')];break;case Iiiili1l[IIli1i1I(0x28b,'rD(0')]:Illii1I=Iiiili1l[IIli1i1I(0x3ab,'xU$1')],Illiiii=Iiiili1l[IIli1i1I(0x30d,'FXeT')];break;default:Illii1I=iilIliI,Illiiii=Iiiili1l[IIli1i1I(0x2de,'*U($')];}let l111IIiI=Iiiili1l[IIli1i1I(0x1f7,'Kbne')](decodeURIComponent,Ii1III);l111IIiI=l111IIiI[IIli1i1I(0x25a,'5xNv')]('?')[0x0],l111IIiI=l111IIiI[IIli1i1I(0x323,'E&M$')](iilIliI,Illii1I),l111IIiI=l111IIiI[IIli1i1I(0x285,'1t92')](/\\.mp3$/,Illiiii),Ii1III=Iiiili1l[IIli1i1I(0x387,'j*um')](encodeURI,l111IIiI);}return I1l1l1i[IIli1i1I(0x352,'YQus')](Ili1I11l,{'url':Ii1III,'expire':Iiiili1l[IIli1i1I(0x2db,'YQus')](lli1iI1I,CACHE_TTL)}),Ii1III;}i11Ilili(IlIii1ii[iIiIllIl(0x2ba,'E&M$')],async({action:ilil1llI,source:iliIlil1,info:I1Iii111})=>{const Il1illi1=iIiIllIl,II11Ill1={'WquUQ':Il1illi1(0x391,'E])B'),'uzkkP':function(IillliIl,I1ll1iI1){return IillliIl(I1ll1iI1);},'LFuhW':Il1illi1(0x2e1,'LYpf'),'wsbpX':function(liIIiiil,II1llIIi,iiil1i,i1I111I1,Il11ll1i){return liIIiiil(II1llIIi,iiil1i,i1I111I1,Il11ll1i);},'kjDTj':Il1illi1(0x249,'36dr'),'zwsgg':Il1illi1(0x280,'^1fi'),'ERDqU':function(l11iii1l,I1iil1Ii,iIl11llI,lilililI,l11liiI1){return l11iii1l(I1iil1Ii,iIl11llI,lilililI,l11liiI1);}};if(!liIIIllI[iliIlil1])throw new Error(Il1illi1(0x2c4,'bfe[')+iliIlil1);const IIIii=I1Iii111[Il1illi1(0x275,'wIl6')];switch(ilil1llI){case II11Ill1[Il1illi1(0x346,'KB77')]:{II11Ill1[Il1illi1(0x376,'QcM(')](iil1Illi,II11Ill1[Il1illi1(0x22c,'!sJN')])[Il1illi1(0x2e3,'j*um')](()=>{}),II11Ill1[Il1illi1(0x217,'rD(0')](IIIi1iIl,II11Ill1[Il1illi1(0x38c,'LYpf')],iliIlil1,II11Ill1[Il1illi1(0x238,'YQus')],I1Iii111[Il1illi1(0x224,'E])B')]);const liiiIIll=liIIIllI[iliIlil1][I1Iii111[Il1illi1(0x210,'g5CI')]],IIIl1iil=await II11Ill1[Il1illi1(0x27d,'9QRz')](IIiIiIli,iliIlil1,IIIii,liiiIIll,I1Iii111[Il1illi1(0x218,'!sJN')]);return IIIl1iil;}default:throw new Error(Il1illi1(0x27e,'LYpf')+ilil1llI);}}),((async()=>{const lII1II=iIiIllIl,IIIlIlil={'dslrV':lII1II(0x3b0,'!sJN'),'ZHdgQ':lII1II(0x2b3,'7)j&'),'XfaVF':function(i1iiII1I,ii11iI){return i1iiII1I(ii11iI);},'xAHVM':lII1II(0x2d5,'YQus'),'qyzbS':function(I11I11,II11Il){return I11I11(II11Il);},'OkDQK':function(l1I1II1l,iiiiiII1){return l1I1II1l(iiiiiII1);},'QoMRW':lII1II(0x215,'aiVs'),'iENxa':function(liliI1il,Ii1I111i){return liliI1il!==Ii1I111i;},'MVkpG':lII1II(0x27c,'E&M$'),'EwnDq':lII1II(0x2d1,'18!x'),'mHPYN':lII1II(0x305,'XZH6'),'zYFSQ':function(l11l1lI1,Iilili,iiilIl1){return l11l1lI1(Iilili,iiilIl1);},'SuYRZ':lII1II(0x2da,'Kbne'),'KFgmm':function(Iil1lii,lill1l1I,lllIll1i){return Iil1lii(lill1l1I,lllIll1i);},'ePUpd':lII1II(0x30a,'@Zig')};if(!CIRCUIT)IIi1IlII=iiIlIlll[lII1II(0x289,'63TH')],IIIlIlil[lII1II(0x306,'K*nC')](IIIi1iIl,IIIlIlil[lII1II(0x34d,'JLVT')]);else try{const lII1i1il=await IIIlIlil[lII1II(0x356,'FXeT')](I1I1li1i,iiIlIlll[lII1II(0x22d,'rD(0')]);if(lII1i1il)IIi1IlII=iiIlIlll[lII1II(0x2c6,'1t92')];else{IIIlIlil[lII1II(0x344,'Tl)b')](IIIi1iIl,IIIlIlil[lII1II(0x343,'CMVJ')]);const i11l1l1=await IIIlIlil[lII1II(0x358,'7)j&')](I1I1li1i,iiIlIlll[lII1II(0x312,'18!x')]);i11l1l1?IIi1IlII=iiIlIlll[lII1II(0x25c,'XZH6')]:IIIlIlil[lII1II(0x2e8,'HUxK')](IIIlIlil[lII1II(0x37d,']7Ay')],IIIlIlil[lII1II(0x37d,']7Ay')])?i1iIl1I=lIiiiIIl[lII1II(0x322,'E&M$')]||ll1IIIll['id']||'':(IIIlIlil[lII1II(0x1fc,'JLVT')](IIIi1iIl,IIIlIlil[lII1II(0x2a8,'HUxK')]),IIi1IlII=iiIlIlll[lII1II(0x2d8,'IH4Y')]);}IIIlIlil[lII1II(0x353,'5xNv')](IIIi1iIl,IIIlIlil[lII1II(0x22f,'CMVJ')]);}catch(iil1ll1l){IIIlIlil[lII1II(0x36b,'63TH')](IIIi1iIl,IIIlIlil[lII1II(0x267,'wIl6')],iil1ll1l[lII1II(0x293,'KB77')]),IIi1IlII=iiIlIlll[lII1II(0x36a,']7Ay')];}const iIlli1I={};Object[lII1II(0x27a,'rD(0')](lilllilI)[lII1II(0x37f,'!sJN')](ilIIi1Il=>{const lilIi11I=lII1II;iIlli1I[ilIIi1Il]={'name':i11lIlil[ilIIi1Il],'type':IIIlIlil[lilIi11I(0x274,'YQus')],'actions':[IIIlIlil[lilIi11I(0x3a1,'IH4Y')]],'qualitys':lilllilI[ilIIi1Il]};}),IIIlIlil[lII1II(0x361,'DI0z')](I1Iii11I,IlIii1ii[lII1II(0x31c,'CMVJ')],{'status':!![],'sources':iIlli1I}),IIIlIlil[lII1II(0x278,'^#6Z')](IIIi1iIl,IIIlIlil[lII1II(0x332,'XZH6')]);})());var version_ = 'jsjiami.com.v7';" },
       // 念心支持多平台解析：搜酷我/网易等时走对应 php
       { id: "nianxin", name: "松间听雨", platform: "qq", platforms: ["qq", "netease", "kugou", "kuwo", "migu"], type: "api", url: "https://mcp.nianxinxz.com", enabled: true, builtin: true },
-      // 长青 SVIP：haitangw 多平台直链（HTTPS），不走混淆 LX 脚本
-      { id: "changqing", name: "淡月疏星", platform: "qq", platforms: ["qq", "netease", "kugou", "kuwo", "migu"], type: "api", url: "https://yinyue.haitangw.net", enabled: true, builtin: true },
-      // 屿溪-终章：musicserver.haitangw.cc 统一 resolve-url（支持母带档）
-      { id: "yuxi", name: "雾隐青山", platform: "qq", platforms: ["qq", "netease", "kugou", "kuwo", "migu"], type: "api", url: "https://musicserver.haitangw.cc", enabled: true, builtin: true },
+      // 淡月疏星：Hei Music 聚合源（LX 脚本）
+      { id: "changqing", name: "淡月疏星", platform: "qq", platforms: ["qq", "netease", "kugou", "kuwo", "migu"], type: "js", enabled: true, builtin: true, lxScript: BUILTIN_LX_CHANGQING },
+      // 雾隐青山：星海音乐源（LX 脚本）
+      { id: "yuxi", name: "雾隐青山", platform: "qq", platforms: ["qq", "netease", "kugou", "kuwo", "migu"], type: "js", enabled: true, builtin: true, lxScript: BUILTIN_LX_YUXI, script: BUILTIN_LX_YUXI },
     ];
     saveJSON("aq_sources", S.sources);
   } else {
@@ -6987,29 +7006,40 @@ try{var t=localStorage.getItem("aq_theme")||"light";function _aqIsNight(){var h=
           if (isNx && s.name !== "松间听雨") { s.name = "松间听雨"; changed = true; }
           if (isCq && !isYuxi && s.name !== "淡月疏星") { s.name = "淡月疏星"; changed = true; }
           if (isCq && !isYuxi) {
-            if (!s.url || /yinyue\.haitangw\.net/i.test(String(s.url)) || !s.url) {
-              if (s.url !== "https://yinyue.haitangw.net") { s.url = "https://yinyue.haitangw.net"; changed = true; }
+            if (s.id !== "changqing") { s.id = "changqing"; changed = true; }
+            if (s.name !== "淡月疏星") { s.name = "淡月疏星"; changed = true; }
+            // 淡月疏星：Hei Music 聚合 LX 脚本，替代失效 haitangw
+            if (s.type !== "js") { s.type = "js"; changed = true; }
+            if (s.url) { try { delete s.url; } catch (eU) { s.url = ""; } changed = true; }
+            if (!s.lxScript || String(s.lxScript).length < 100) {
+              s.lxScript = BUILTIN_LX_CHANGQING;
+              changed = true;
             }
-            // 导入的混淆 JS 不要再走 LX 运行时，改走内置 HTTPS 直链
-            if (s.type === "js" && /长青|淡月疏星|changqing|元力菌|yinyue\.haitangw/i.test(String(s.name || "") + (s.url || "") + (s.fromFile || ""))) {
-              s.type = "api"; changed = true;
-            }
-            if (s.id !== "changqing" && /长青|淡月疏星|changqing|元力菌/i.test(String(s.name || ""))) { s.id = "changqing"; changed = true; }
           }
           if (isYuxi) {
-            if (s.url !== "https://musicserver.haitangw.cc") { s.url = "https://musicserver.haitangw.cc"; changed = true; }
-            if (s.type === "js") { s.type = "api"; changed = true; }
             if (s.id !== "yuxi") { s.id = "yuxi"; changed = true; }
             if (s.name !== "雾隐青山") { s.name = "雾隐青山"; changed = true; }
+            // 雾隐青山：星海音乐源 LX 脚本，替代失效 musicserver
+            if (s.type !== "js") { s.type = "js"; changed = true; }
+            if (s.url) { try { delete s.url; } catch (eU2) { s.url = ""; } changed = true; }
+            // 始终与内置星海脚本对齐（避免旧缓存残缺/损坏）；script 同步一份兼容导入逻辑
+            if (!s.lxScript || String(s.lxScript).length < 500 || String(s.lxScript).indexOf("yy.zddyr.top") < 0) {
+              s.lxScript = BUILTIN_LX_YUXI;
+              changed = true;
+            }
+            if (!s.script || String(s.script).length < 500) {
+              s.script = s.lxScript || BUILTIN_LX_YUXI;
+              changed = true;
+            }
           }
         }
       });
       if (!hasCq) {
-        S.sources.push({ id: "changqing", name: "淡月疏星", platform: "qq", platforms: ["qq", "netease", "kugou", "kuwo", "migu"], type: "api", url: "https://yinyue.haitangw.net", enabled: true, builtin: true });
+        S.sources.push({ id: "changqing", name: "淡月疏星", platform: "qq", platforms: ["qq", "netease", "kugou", "kuwo", "migu"], type: "js", enabled: true, builtin: true, lxScript: BUILTIN_LX_CHANGQING });
         changed = true;
       }
       if (!hasYuxi) {
-        S.sources.push({ id: "yuxi", name: "雾隐青山", platform: "qq", platforms: ["qq", "netease", "kugou", "kuwo", "migu"], type: "api", url: "https://musicserver.haitangw.cc", enabled: true, builtin: true });
+        S.sources.push({ id: "yuxi", name: "雾隐青山", platform: "qq", platforms: ["qq", "netease", "kugou", "kuwo", "migu"], type: "js", enabled: true, builtin: true, lxScript: BUILTIN_LX_YUXI, script: BUILTIN_LX_YUXI });
         changed = true;
       }
       if (!hasCx) {
@@ -7285,6 +7315,8 @@ try{var t=localStorage.getItem("aq_theme")||"light";function _aqIsNight(){var h=
     if (/m6[0-9]{2}|192k/.test(u)) return "192k";
     if (/m500|m400|128k|standard/.test(u)) return "128k";
     if (/m200|64k/.test(u)) return "64k";
+    // QQ 试听链 RS02… 几乎都是低码率
+    if (/\/rs02|rs02[0-9a-z]|试听/.test(u)) return "128k";
     if (/\.flac(\?|$)/.test(u)) return "flac";
     if (/\.mp3(\?|$)/.test(u)) return "128k";
     return null;
@@ -11909,13 +11941,27 @@ try{var t=localStorage.getItem("aq_theme")||"light";function _aqIsNight(){var h=
 
   /** 在指定音质下解析播放地址（不自动降级）；校验 CDN 真实档位 */
   function cleanPlayMid(song, mid) {
-    mid = String(mid || song.songmid || song.mid || song.id || "").trim();
+    mid = String(mid || (song && (song.songmid || song.mid || song.id)) || "").trim();
     // 去掉平台前缀，音源接口要纯 ID
     mid = mid.replace(/^(kw_|kg_|ne_|mg_|qq_|tx_|wy_)/i, "");
     if (song) {
-      if (song.rid) mid = String(song.rid).replace(/^MUSIC_/i, "");
-      if (song.hash) mid = String(song.hash).toLowerCase();
-      if (song.neteaseId) mid = String(song.neteaseId);
+      var plat = "";
+      try { plat = normPlat(song.source || (typeof S !== "undefined" && S.platform) || ""); } catch (e0) {}
+      // 酷我：必须用数字 rid（MUSIC_xxx / rid / musicrid），不要用其它站的 mid 格式
+      if (plat === "kuwo") {
+        var rid = song.rid || song.musicrid || song.musicRid || song.kwId || "";
+        if (!rid && /^MUSIC_/i.test(String(song.id || ""))) rid = song.id;
+        if (!rid && /^\d+$/.test(String(mid || ""))) rid = mid;
+        if (rid) mid = String(rid).replace(/^MUSIC_/i, "").replace(/^kw_/i, "");
+      } else if (song.rid && !plat) {
+        mid = String(song.rid).replace(/^MUSIC_/i, "");
+      }
+      // 酷狗才用 hash 覆盖 id（其它站 hash 会把 songmid 弄坏）
+      if (plat === "kugou" || (!plat && (song.hash || song.FileHash))) {
+        var h = song.hash || song.FileHash || song.kgHash;
+        if (h && (plat === "kugou" || String(h).length >= 32)) mid = String(h).toLowerCase();
+      }
+      if (song.neteaseId && (plat === "netease" || !plat)) mid = String(song.neteaseId);
       if (song.bvid) mid = String(song.bvid);
     }
     return mid;
@@ -11941,7 +11987,7 @@ try{var t=localStorage.getItem("aq_theme")||"light";function _aqIsNight(){var h=
 
     var mid = cleanPlayMid(song);
     if (!mid) return null;
-    var songPlat = normPlat((song && song.source) || "qq");
+    var songPlat = normPlat((song && song.source) || (S && S.platform) || "qq");
 
     // —— 1) 同平台：所有「已启用且声明支持该平台」的音源，按列表顺序试 ——
     // 例：网易曲 + 勾了玉宁熙&念心 → 先玉宁熙网易，失败再念心网易
@@ -12358,38 +12404,25 @@ try{var t=localStorage.getItem("aq_theme")||"light";function _aqIsNight(){var h=
         var method = String(options.method || "GET").toUpperCase();
         var headers = Object.assign({}, options.headers || {});
         var body = options.body;
-        var opt = { method: method, headers: headers, timeout: options.timeout ? Math.min(30, options.timeout / 1000 || 8) : 8 };
-        if (body != null) {
-          if (typeof body === "object" && !(typeof FormData !== "undefined" && body instanceof FormData)) {
-            if (!headers["Content-Type"] && !headers["content-type"]) {
-              opt.headers["Content-Type"] = "application/json";
-            }
-            opt.body = body;
-          } else {
-            opt.body = body;
-          }
+        // LX 脚本 timeout 多为毫秒（6000/8000）；统一成秒给 adapter/reqFetch
+        var rawT = options.timeout;
+        var sec = 8;
+        if (rawT != null) {
+          var n = Number(rawT) || 0;
+          sec = n > 100 ? Math.min(30, Math.round(n / 1000)) : Math.min(30, Math.max(3, n || 8));
         }
-        reqFetch(String(url), opt).then(function (data) {
-          var bodyStr = "";
-          var status = 200;
-          if (data == null) {
-            bodyStr = "";
-            status = 0;
-          } else if (typeof data === "string") {
-            bodyStr = data;
-          } else if (data._text != null) {
-            bodyStr = String(data._text);
-            status = data._http || 200;
-          } else {
-            status = data._http || 200;
-            try { bodyStr = JSON.stringify(data); } catch (e) { bodyStr = String(data); }
+        if (body != null && typeof body === "object" && !(typeof FormData !== "undefined" && body instanceof FormData)) {
+          if (!headers["Content-Type"] && !headers["content-type"]) {
+            headers["Content-Type"] = "application/json";
           }
-          // 兼容两类 LX 脚本：
-          // 1) JSON.parse(resp.body)  —— body 为字符串
-          // 2) resp.body?.data?.url   —— body 为已解析对象（瓜子等）
-          // 能 parse 成对象就给对象；同时挂 bodyText 供需要原文的脚本
+          body = typeof body === "string" ? body : JSON.stringify(body);
+        }
+        // 优先 adapterRequest（FongMi 原生桥无 CORS）；失败再 reqFetch
+        function finish(bodyStr, status) {
+          bodyStr = bodyStr == null ? "" : String(bodyStr);
+          status = status || (bodyStr ? 200 : 0);
           var bodyVal = bodyStr;
-          if (typeof bodyStr === "string" && bodyStr.length > 1) {
+          if (bodyStr.length > 1) {
             var t0 = bodyStr.charAt(0);
             if (t0 === "{" || t0 === "[") {
               try { bodyVal = JSON.parse(bodyStr); } catch (eP) { bodyVal = bodyStr; }
@@ -12399,6 +12432,38 @@ try{var t=localStorage.getItem("aq_theme")||"light";function _aqIsNight(){var h=
           if (typeof callback === "function") {
             try { callback(status ? null : new Error("empty"), resp); } catch (eCb) {}
           }
+        }
+        var p = null;
+        try {
+          if (typeof adapterRequest === "function") {
+            p = adapterRequest(String(url), { method: method, headers: headers, body: body, timeout: sec });
+          }
+        } catch (eAd) { p = null; }
+        if (!p || typeof p.then !== "function") {
+          p = reqFetch(String(url), { method: method, headers: headers, body: body, timeout: sec }).then(function (data) {
+            if (data == null) return { text: "", status: 0 };
+            if (typeof data === "string") return { text: data, status: 200 };
+            if (data._text != null) return { text: String(data._text), status: data._http || 200 };
+            var st = data._http || 200;
+            try { return { text: JSON.stringify(data), status: st }; } catch (eJ) { return { text: String(data), status: st }; }
+          });
+        } else {
+          p = p.then(function (txt) {
+            // adapterRequest 通常返回文本；原生桥失败时可能空串
+            if (txt != null && String(txt).length > 0) return { text: String(txt), status: 200 };
+            // 空结果再试 reqFetch（含 corsproxy）
+            return reqFetch(String(url), { method: method, headers: headers, body: body, timeout: sec }).then(function (data) {
+              if (data == null) return { text: "", status: 0 };
+              if (typeof data === "string") return { text: data, status: 200 };
+              if (data._text != null) return { text: String(data._text), status: data._http || 200 };
+              var st = data._http || 200;
+              try { return { text: JSON.stringify(data), status: st }; } catch (eJ2) { return { text: String(data), status: st }; }
+            });
+          });
+        }
+        Promise.resolve(p).then(function (pack) {
+          pack = pack || { text: "", status: 0 };
+          finish(pack.text, pack.status);
         }).catch(function (err) {
           if (typeof callback === "function") {
             try { callback(err || new Error("network"), { body: "", bodyText: "", statusCode: 0, headers: {} }); } catch (e2) {}
@@ -12496,7 +12561,7 @@ try{var t=localStorage.getItem("aq_theme")||"light";function _aqIsNight(){var h=
 
   async function runLxPluginMusicUrl(scriptText, song, quality) {
     if (!scriptText || scriptText.length < 30) return null;
-    var songPlat = (song && song.source) || "qq";
+    var songPlat = normPlat((song && song.source) || (S && S.platform) || "qq");
     var code = platToLxCode(songPlat);
     var mid = cleanPlayMid(song);
     if (!mid) return null;
@@ -12513,7 +12578,8 @@ try{var t=localStorage.getItem("aq_theme")||"light";function _aqIsNight(){var h=
       songmid: mid,
       mid: mid,
       id: mid,
-      hash: String((song && (song.hash || song.FileHash)) || mid).toLowerCase(),
+      rid: (song && (song.rid || song.musicrid || song.songmid)) || mid,
+      hash: String((song && (song.hash || song.FileHash || song.kgHash)) || mid).toLowerCase(),
       name: (song && song.name) || "",
       songname: (song && song.name) || "",
       singer: (song && song.artist) || "",
@@ -12523,8 +12589,9 @@ try{var t=localStorage.getItem("aq_theme")||"light";function _aqIsNight(){var h=
       albumId: (song && (song.albummid || song.albumId || song.album_id)) || "",
       albummid: (song && (song.albummid || song.albumId)) || "",
       strMediaMid: mid,
-      interval: (song && song.interval) || "",
+      interval: (song && (song.interval || song.duration || song.dt)) || "",
       img: (song && song.cover) || "",
+      _types: (song && song._types) || undefined,
     };
 
     var payload = {
@@ -12541,7 +12608,11 @@ try{var t=localStorage.getItem("aq_theme")||"light";function _aqIsNight(){var h=
       var p = { action: "musicUrl", source: code, info: { musicInfo: musicInfo, type: typeQ } };
       var u = await Promise.resolve(pack.handler(p));
       if (u && typeof u === "object" && u.url) u = u.url;
-      if (u && /^https?:\/\//i.test(String(u))) return String(u).trim().replace(/^http:\/\//i, "https://");
+      if (u && /^https?:\/\//i.test(String(u))) {
+        u = String(u).trim();
+        if (/haitangw\.(net|cc)|yy\.zddyr\.top/i.test(u)) u = u.replace(/^http:\/\//i, "https://");
+        return u;
+      }
       return null;
     }
     try {
@@ -12578,12 +12649,276 @@ try{var t=localStorage.getItem("aq_theme")||"light";function _aqIsNight(){var h=
     }
   }
 
-async function resolveBySource(src, song, mid, forceQ) {
+
+  /* —— 雾隐青山 / 星海直连（FongMi adapterRequest，绕过 LX 沙箱 CORS） —— */
+  var _xhToken = "";
+  var _xhTokenAt = 0;
+  var _xhDeviceId = "";
+  function xhDeviceId() {
+    if (_xhDeviceId) return _xhDeviceId;
+    try {
+      _xhDeviceId = localStorage.getItem("aq_xh_did") || "";
+    } catch (e) {}
+    if (!_xhDeviceId) {
+      _xhDeviceId = "aq" + Math.random().toString(16).slice(2) + Date.now().toString(16).slice(-6);
+      try { localStorage.setItem("aq_xh_did", _xhDeviceId); } catch (e2) {}
+    }
+    return _xhDeviceId;
+  }
+  async function xhFetchText(url, headers, timeoutSec) {
+    headers = headers || {};
+    timeoutSec = timeoutSec || 10;
+    var txt = "";
+    // 1) 原生桥（FongMi）
+    try {
+      if (typeof adapterRequest === "function") {
+        txt = await adapterRequest(String(url), { method: "GET", headers: headers, timeout: timeoutSec });
+      }
+    } catch (eA) { txt = ""; }
+    if (txt && String(txt).length > 2) return String(txt);
+    // 2) 原生直调
+    try {
+      if (typeof nativeHttpRequest === "function" && typeof hasNativeHttpBridge === "function" && hasNativeHttpBridge()) {
+        txt = await nativeHttpRequest(String(url), { method: "GET", headers: headers, timeout: timeoutSec });
+      }
+    } catch (eN) { txt = ""; }
+    if (txt && String(txt).length > 2) return String(txt);
+    // 3) reqFetch（含 corsproxy）
+    try {
+      var data = await reqFetch(String(url), { method: "GET", headers: headers, timeout: timeoutSec, noProxy: false });
+      if (data == null) return "";
+      if (typeof data === "string") return data;
+      if (data._text != null) return String(data._text);
+      try { return JSON.stringify(data); } catch (eJ) { return String(data); }
+    } catch (eR) { return ""; }
+  }
+  async function xhEnsureToken() {
+    if (_xhToken && Date.now() - _xhTokenAt < 4 * 60 * 1000) return _xhToken;
+    var did = xhDeviceId();
+    var urls = [
+      "https://yy.zddyr.top/lx/api/token.php?device_id=" + encodeURIComponent(did),
+      "https://yy.zddyr.top/lx/api/token.php?device_id=" + encodeURIComponent(did) + "&t=" + Date.now()
+    ];
+    var hdrs = [
+      { "User-Agent": "lx-music", "X-Client": "LX-Music-Mobile", "Accept": "application/json" },
+      { "User-Agent": "Mozilla/5.0", "Accept": "application/json" },
+      { "Accept": "*/*" }
+    ];
+    for (var ui = 0; ui < urls.length; ui++) {
+      for (var hi = 0; hi < hdrs.length; hi++) {
+        try {
+          var txt = await xhFetchText(urls[ui], hdrs[hi], 10);
+          if (!txt) continue;
+          var d = typeof txt === "string" ? JSON.parse(txt) : txt;
+          var tk = d && d.data && d.data.token;
+          if (tk) {
+            _xhToken = String(tk);
+            _xhTokenAt = Date.now();
+            return _xhToken;
+          }
+        } catch (e) {}
+      }
+    }
+    return "";
+  }
+  function xhMapQuality(q) {
+    q = String(q || "128k");
+    if (q === "master" || q === "hires" || q === "flac24bit" || q === "atmos") return q === "flac24bit" ? "hires" : q;
+    if (q === "flac") return "flac";
+    if (q === "320k" || q === "192k") return "320k";
+    return "128k";
+  }
+  async function resolveYuxiXinghaiDirect(song, mid, forceQ, songPlat) {
+    // 平台：歌曲 source → 当前站 → qq（避免缺 source 时误走 QQ 403）
+    var plat = normPlat(songPlat || (song && song.source) || (S && S.platform) || "qq");
+    var srcMap = { qq: "tx", netease: "wy", kugou: "kg", kuwo: "kw", migu: "mg" };
+    var xhSrc = srcMap[plat] || "wy";
+    var q = xhMapQuality(forceQ || "128k");
+    var id = String(mid || "").trim();
+    var hash = "";
+    if (plat === "kugou") {
+      hash = String((song && (song.hash || song.FileHash || song.kgHash)) || id).toLowerCase();
+      id = hash || id;
+    }
+    if (plat === "kuwo" && song) {
+      var rid2 = song.rid || song.musicrid || song.musicRid || song.kwId || "";
+      if (!rid2 && /^MUSIC_/i.test(String(song.id || ""))) rid2 = song.id;
+      if (rid2) id = String(rid2).replace(/^MUSIC_/i, "").replace(/^kw_/i, "");
+    }
+    if (!id) return null;
+
+    // —— 1) 星海 token + API ——
+    try {
+      var tk = await xhEnsureToken();
+      if (tk) {
+        // 酷我 flac 与 320 上游常同源；优先请求目标档，失败只再试一档，避免串行拖很久
+        var tryQs = [q];
+        if (plat === "kuwo") {
+          if (q === "flac" || q === "hires" || q === "master") tryQs = ["flac", "320k"];
+          else if (q === "320k") tryQs = ["320k", "128k"];
+          else tryQs = [q];
+        } else if (q !== "128k") {
+          ["320k", "128k"].forEach(function (x) { if (tryQs.indexOf(x) < 0) tryQs.push(x); });
+        }
+        var hdr = { "User-Agent": "lx-music", "X-Token": tk, "X-Client": "LX-Music-Mobile", "Accept": "application/json" };
+        var xhTimeout = plat === "kuwo" ? 6 : 8;
+        for (var i = 0; i < tryQs.length && i < 3; i++) {
+          var qq = tryQs[i];
+          var params = "source=" + encodeURIComponent(xhSrc) +
+            "&songmid=" + encodeURIComponent(id) +
+            "&quality=" + encodeURIComponent(qq);
+          if (hash) params += "&hash=" + encodeURIComponent(hash) + "&mainHash=" + encodeURIComponent(hash);
+          var url = "https://yy.zddyr.top/lx/api/?" + params;
+          var txt = await xhFetchText(url, hdr, xhTimeout);
+          if (!txt) continue;
+          try {
+            var d = typeof txt === "string" ? JSON.parse(txt) : txt;
+            if (d && (d.code === 200 || d.code === "200") && d.url && /^https?:/i.test(String(d.url))) {
+              // 保留原协议：网易 CDN 强改 https 可能 403
+              var out = String(d.url).trim();
+              var got = d.quality || qq || "128k";
+              if (got === "flac24bit") got = "hires";
+              return tagPlayUrl(out, got);
+            }
+            if (d && (d.code === 403 || d.code === "403") && xhSrc === "tx") break;
+          } catch (eP) {}
+        }
+      }
+    } catch (eXh) { console.warn("[yuxi-xh]", eXh); }
+
+    // —— 2) 星海挂了时：雾隐青山仍要能播 → HYW / GD 兜底（网易/酷我） ——
+    try {
+      var hywKey = "6C1F-53W0-GRKI-EVFG";
+      var hywSource = { qq: "tx", netease: "wy", kugou: "kg", kuwo: "kw", migu: "mg" }[plat] || "wy";
+      var hywQ = { "128k": "128k", "192k": "320k", "320k": "320k", "flac": "flac", "flac24bit": "flac24bit", "hires": "flac24bit", "master": "flac24bit" }[String(forceQ || q)] || "320k";
+      var hywList = (plat === "kuwo") ? ((hywQ === "128k") ? ["128k"] : ["320k", "128k"]) : [hywQ, "320k"];
+      for (var hi = 0; hi < hywList.length; hi++) {
+        var hu = "http://103.79.184.97/api/music/url?source=" + encodeURIComponent(hywSource) +
+          "&songId=" + encodeURIComponent(id) +
+          "&quality=" + encodeURIComponent(hywList[hi]) +
+          "&key=" + encodeURIComponent(hywKey);
+        var ht = await xhFetchText(hu, { "User-Agent": "Mozilla/5.0", "X-Card-Key": hywKey }, plat === "kuwo" ? 5 : 6);
+        if (!ht) continue;
+        try {
+          var hd = JSON.parse(ht);
+          var hurl = hd && (hd.url || (hd.data && hd.data.url));
+          if (hurl && /^https?:/i.test(String(hurl))) {
+            return tagPlayUrl(String(hurl).trim(), hywList[hi]);
+          }
+        } catch (eH) {}
+      }
+    } catch (eHyw) {}
+
+    if (plat === "netease") {
+      try {
+        var br = (String(forceQ || q).indexOf("flac") >= 0 || forceQ === "master" || forceQ === "hires") ? "740" : (forceQ === "128k" ? "128" : "320");
+        var gd = "https://music-api.gdstudio.xyz/api.php?types=url&source=netease&id=" + encodeURIComponent(id) + "&br=" + br;
+        var gt = await xhFetchText(gd, { "User-Agent": "Mozilla/5.0" }, 8);
+        if (gt) {
+          var gdo = JSON.parse(gt);
+          if (gdo && gdo.url && /^https?:/i.test(String(gdo.url))) {
+            return tagPlayUrl(String(gdo.url).trim(), br === "740" ? "flac" : (br === "320" ? "320k" : "128k"));
+          }
+        }
+      } catch (eGd) {}
+    }
+    return null;
+  }
+
+  /* —— 淡月疏星直连：GDStudio + HYW（网易/酷我已验证） —— */
+  async function resolveChangqingDirect(song, mid, forceQ, songPlat) {
+    songPlat = normPlat(songPlat || (song && song.source) || (S && S.platform) || "qq");
+    var id = String(mid || "").trim();
+    if (!id) return null;
+    var q = String(forceQ || "128k");
+    // br for gdstudio
+    var br = "128";
+    if (q === "320k" || q === "192k") br = "320";
+    else if (q === "flac" || q === "flac24bit" || q === "hires" || q === "master") br = "flac" === q || q.indexOf("flac") >= 0 || q === "hires" || q === "master" || q === "flac24bit" ? (q === "hires" || q === "flac24bit" || q === "master" ? "999" : "740") : "320";
+    if (q === "flac") br = "740";
+    if (q === "hires" || q === "flac24bit" || q === "master") br = "999";
+    if (q === "320k" || q === "192k") br = "320";
+    if (q === "128k" || q === "64k") br = "128";
+
+    var gdSource = { qq: "tencent", netease: "netease", kugou: "kugou", kuwo: "kuwo", migu: "migu" }[songPlat] || "tencent";
+    var hywSource = { qq: "tx", netease: "wy", kugou: "kg", kuwo: "kw", migu: "mg" }[songPlat] || "tx";
+    var hywQ = { "128k": "128k", "192k": "320k", "320k": "320k", "flac": "flac", "flac24bit": "flac24bit", "hires": "flac24bit", "master": "flac24bit" }[q] || "320k";
+
+    // 1) HYW 公益
+    try {
+      var hywKey = "6C1F-53W0-GRKI-EVFG";
+      // 酷我优先 320k（出链快且稳定）；最多再试一档，避免 3×2 串行拖到几十秒
+      var hywQs = [hywQ];
+      if (songPlat === "kuwo") {
+        hywQs = (hywQ === "128k") ? ["128k"] : ["320k", "128k"];
+      } else if (hywQ !== "128k") {
+        hywQs = [hywQ, "320k"];
+      }
+      var hywTxt = "";
+      var hywBase = "http://103.79.184.97/api/music/url";
+      for (var hi = 0; hi < hywQs.length && !hywTxt; hi++) {
+        var hywUrl = hywBase + "?source=" + encodeURIComponent(hywSource) +
+          "&songId=" + encodeURIComponent(id) +
+          "&quality=" + encodeURIComponent(hywQs[hi]) +
+          "&key=" + encodeURIComponent(hywKey);
+        hywTxt = await xhFetchText(hywUrl, { "User-Agent": "Mozilla/5.0", "X-Card-Key": hywKey }, songPlat === "kuwo" ? 5 : 6);
+        if (hywTxt && hywTxt.indexOf('"url"') < 0 && hywTxt.indexOf('"code":200') < 0) hywTxt = "";
+      }
+      if (hywTxt) {
+        var hd = JSON.parse(hywTxt);
+        var hu = hd && (hd.url || (hd.data && hd.data.url));
+        if (hu && /^https?:/i.test(String(hu))) {
+          hu = String(hu).trim();
+          var detH = detectQualityFromUrl(hu);
+          if (!(forceQ && detH && !qualityMeets(detH, forceQ) && (forceQ === "flac" || forceQ === "master" || forceQ === "hires" || forceQ === "flac24bit"))) {
+            return tagPlayUrl(hu, detH || hywQ);
+          }
+        }
+      }
+    } catch (eH) {}
+
+    // 2) GDStudio
+    try {
+      var gdUrl = "https://music-api.gdstudio.xyz/api.php?types=url&source=" + encodeURIComponent(gdSource) +
+        "&id=" + encodeURIComponent(id) + "&br=" + encodeURIComponent(br);
+      var gdTxt = await xhFetchText(gdUrl, { "User-Agent": "Mozilla/5.0" }, 8);
+      if (gdTxt) {
+        var gd = JSON.parse(gdTxt);
+        var gu = gd && gd.url;
+        if (gu && /^https?:/i.test(String(gu))) {
+          gu = String(gu).trim();
+          var detG = detectQualityFromUrl(gu);
+          return tagPlayUrl(gu, detG || (br === "740" || br === "999" ? "flac" : (br === "320" ? "320k" : "128k")));
+        }
+      }
+    } catch (eG) {}
+
+    // 3) 酷我官方 mobi（仅 kw）
+    if (songPlat === "kuwo") {
+      try {
+        var kwBr = (q === "128k") ? "128kmp3" : "320kmp3";
+        var kwUrl = "http://nmobi.kuwo.cn/mobi.s?f=web&user=0&source=kwplayerhd_ar_6.6.6.6_tianbao_T1A_qirui.apk&type=convert_url_with_sign&rid=" +
+          encodeURIComponent(id) + "&br=" + kwBr;
+        var kwTxt = await xhFetchText(kwUrl, { "User-Agent": "Mozilla/5.0 (Linux; Android) AppleWebKit/537.36" }, 6);
+        if (kwTxt) {
+          var kd = JSON.parse(kwTxt);
+          var ku = kd && kd.data && kd.data.url;
+          if (ku && /^https?:/i.test(String(ku)) && String(ku).indexOf("None") < 0) {
+            return tagPlayUrl(String(ku).trim(), q === "128k" ? "128k" : "320k");
+          }
+        }
+      } catch (eK) {}
+    }
+    return null;
+  }
+
+  async function resolveBySource(src, song, mid, forceQ) {
+
     if (!src) return null;
     var q = forceQ || S.quality || "flac";
     mid = cleanPlayMid(song, mid);
     if (!mid) return null;
-    var songPlat = (song && song.source) || "qq";
+    var songPlat = normPlat((song && song.source) || (S && S.platform) || "qq");
     var srcPlats = srcPlatforms(src);
     // 源未声明支持该平台时跳过（避免用 QQ mid 接口硬套酷我 ID）
     if (srcPlats.length && srcPlats.indexOf("all") < 0 && srcPlats.indexOf(songPlat) < 0) {
@@ -12592,15 +12927,35 @@ async function resolveBySource(src, song, mid, forceQ) {
     }
 
     // 屿溪优先于长青（两者域名都含 haitangw，避免误匹配）；沉音走 JS 运行时，不归入 API 屿溪
+    // JS 脚本源优先走 LX 运行时，不再短路到已失效的 haitangw API
+    var _srcIsJs = !!(src && (src.type === "js" || src.lxScript || src.script || src._script));
     var isYuxiSrc =
-      src.id === "yuxi" ||
-      (/屿溪|雾隐青山|yuxi|新裤子|终章|musicserver\.haitangw\.cc/i.test(String(src.name || "") + (src.url || "") + (src.jsUrl || "") + (src.fromFile || "")) && !/沉音|chenyin|星河入梦|cx/i.test(String(src.name || "") + (src.id || "")));
-    // 长青：仅 yinyue.haitangw.net 路径，排除 musicserver
+      !_srcIsJs && (
+        src.id === "yuxi" ||
+        (/屿溪|雾隐青山|yuxi|新裤子|终章|musicserver\.haitangw\.cc/i.test(String(src.name || "") + (src.url || "") + (src.jsUrl || "") + (src.fromFile || "")) && !/沉音|chenyin|星河入梦|cx/i.test(String(src.name || "") + (src.id || "")))
+      );
+    // 长青：仅 API 路径；JS 源不走此短路
     var isChangqing =
-      !isYuxiSrc && (
+      !_srcIsJs && !isYuxiSrc && (
         src.id === "changqing" ||
         /长青|淡月疏星|changqing|元力菌|yinyue\.haitangw\.net/i.test(String(src.name || "") + (src.url || "") + (src.jsUrl || "") + (src.fromFile || ""))
       );
+    
+    // —— 淡月疏星（Hei 聚合）：FongMi 下直连可用上游，不依赖 LX 沙箱 ——
+    if (src.id === "changqing" || (src.name === "淡月疏星" && (src.lxScript || src.script))) {
+      try {
+        var cqDirect = await resolveChangqingDirect(song, mid, q, songPlat);
+        if (cqDirect) return cqDirect;
+      } catch (eCqD) { console.warn("[changqing-direct]", eCqD); }
+    }
+    // —— 雾隐青山（星海）：直连 yy.zddyr.top（token + 取链），酷我/网易已验证 ——
+    if (src.id === "yuxi" || (src.name === "雾隐青山" && (src.lxScript || src.script))) {
+      try {
+        var yxDirect = await resolveYuxiXinghaiDirect(song, mid, q, songPlat);
+        if (yxDirect) return yxDirect;
+      } catch (eYxD) { console.warn("[yuxi-direct]", eYxD); }
+    }
+
     if (isChangqing) {
       var cqPlat = "qq";
       if (songPlat === "netease") cqPlat = "wy";
@@ -12704,20 +13059,25 @@ async function resolveBySource(src, song, mid, forceQ) {
           lxUrl = lxPack;
         }
         if (lxUrl) {
-          lxUrl = String(lxUrl).replace(/^http:\/\//i, "https://");
-          if (/yinyue\.haitangw\.net/i.test(lxUrl)) {
+          lxUrl = String(lxUrl).trim();
+          // 仅对已知需 HTTPS 的域名强制升级；网易/酷我 CDN 强改 https 可能 403
+          if (/^http:\/\//i.test(lxUrl) && /haitangw\.(net|cc)|yy\.zddyr\.top/i.test(lxUrl)) {
             lxUrl = lxUrl.replace(/^http:\/\//i, "https://");
           }
           // 优先信 CDN 真实档；仅当认不出时用脚本回报档；绝不把降级链结果标成母带
           var det = detectQualityFromUrl(lxUrl);
           var tagQ = det || lxGotQ || null;
           if (tagQ === "flac24bit") tagQ = "hires";
-          // 若请求母带/Hi-Res 但实际明显是 mp3/128，拒绝（交给外层换源/降级）
-          if (forceQ && (forceQ === "master" || forceQ === "hires" || forceQ === "flac24bit")) {
-            if (det && !qualityMeets(det, forceQ)) {
-              console.warn("[lx] reject low real q", forceQ, "got", det);
+          // 请求中高音质时：若 CDN 实际明显更低（试听/128k 冒充），拒绝交给外层换源/降级
+          // 覆盖 flac/320k/母带（仅 master/hires 不够，淡月疏星常见 RS02 试听链）
+          if (forceQ && det) {
+            var needStrict = (forceQ === "master" || forceQ === "hires" || forceQ === "flac24bit" || forceQ === "flac" || forceQ === "320k" || forceQ === "192k");
+            if (needStrict && !qualityMeets(det, forceQ)) {
+              console.warn("[lx] reject low real q", forceQ, "got", det, String(lxUrl).slice(0, 80));
               return null;
             }
+          }
+          if (forceQ && (forceQ === "master" || forceQ === "hires" || forceQ === "flac24bit" || forceQ === "flac")) {
             // 无 CDN 特征时，仅当脚本明确以该 type 成功才标记
             if (!det && lxGotQ && qualityMeets(lxGotQ === "flac24bit" ? "hires" : lxGotQ, forceQ)) {
               lxUrl = tagPlayUrl(lxUrl, forceQ === "flac24bit" ? "hires" : forceQ);
@@ -12735,7 +13095,13 @@ async function resolveBySource(src, song, mid, forceQ) {
       try {
         var lxUrl2 = await runLxPluginMusicUrl(S.lxScript, song, forceQ);
         if (lxUrl2 && typeof lxUrl2 === "object") lxUrl2 = lxUrl2.url;
-        if (lxUrl2) return String(lxUrl2).replace(/^http:\/\//i, "https://");
+        if (lxUrl2) {
+          lxUrl2 = String(lxUrl2).trim();
+          if (/^http:\/\//i.test(lxUrl2) && /haitangw\.(net|cc)|yy\.zddyr\.top/i.test(lxUrl2)) {
+            lxUrl2 = lxUrl2.replace(/^http:\/\//i, "https://");
+          }
+          return lxUrl2;
+        }
       } catch (eLx2) {}
     }
 
@@ -15399,7 +15765,9 @@ function paintNow(song) {
       var payload = line.replace(/\[\d{1,2}:\d{1,2}(?:\.\d{1,3})?\]/g, "").trim();
       if (!payload) return;
       var words = [];
-      var reWord = /<(\d{1,2}):(\d{1,2})(?:\.(\d{1,3}))?>([^<]*)|<(\d+(?:\.\d+)?)>([^<]*)/g;
+      // 支持 <mm:ss.xx>字  /  <mm:ss.xx,dur>字  /  <sec>字  /  <sec,dur>字
+      // dur 为真实唱长（秒），长音必须保留，不能被后续估唱抹平
+      var reWord = /<(\d{1,2}):(\d{1,2})(?:\.(\d{1,3}))?(?:,(\d+(?:\.\d+)?))?>([^<]*)|<(\d+(?:\.\d+)?)(?:,(\d+(?:\.\d+)?))?>([^<]*)/g;
       var wm;
       var plain = "";
       var hasWord = false;
@@ -15407,14 +15775,32 @@ function paintNow(song) {
         hasWord = true;
         if (wm[1] != null) {
           var wt = parseLrcTimeToken(wm[1], wm[2], wm[3]);
-          var wtxt = wm[4] || "";
+          var wdur = wm[4] != null ? parseFloat(wm[4]) : 0;
+          var wtxt = wm[5] || "";
           plain += wtxt;
-          if (wtxt) words.push({ t: wt, text: wtxt });
-        } else if (wm[5] != null) {
-          var wt2 = parseFloat(wm[5]);
-          var wtxt2 = wm[6] || "";
+          if (wtxt) {
+            var itemW = { t: wt, text: wtxt };
+            if (wdur > 0.02) {
+              itemW.end = wt + wdur;
+              itemW.dur = wdur;
+              itemW.realDur = true;
+            }
+            words.push(itemW);
+          }
+        } else if (wm[6] != null) {
+          var wt2 = parseFloat(wm[6]);
+          var wdur2 = wm[7] != null ? parseFloat(wm[7]) : 0;
+          var wtxt2 = wm[8] || "";
           plain += wtxt2;
-          if (wtxt2) words.push({ t: wt2, text: wtxt2 });
+          if (wtxt2) {
+            var itemW2 = { t: wt2, text: wtxt2 };
+            if (wdur2 > 0.02) {
+              itemW2.end = wt2 + wdur2;
+              itemW2.dur = wdur2;
+              itemW2.realDur = true;
+            }
+            words.push(itemW2);
+          }
         }
       }
       if (!hasWord) {
@@ -15461,15 +15847,25 @@ function paintNow(song) {
 
   function getLyricOffset() {
     // 正数=扫字相对人声提前。有用户设置用用户值。
-    // 默认：有逐字时间戳 → 0（严格跟轴）；无逐字 → 0（估唱也不再人为抢拍）
+    // 默认 +0.09s：跟唱时略提前一点，贴合感更好（不再偏慢）
     try {
       var raw = localStorage.getItem("aq_ly_offset");
       if (raw != null && raw !== "") {
         var v = parseFloat(raw);
-        return isNaN(v) ? 0 : Math.max(-3, Math.min(3, v));
+        return isNaN(v) ? 0.02 : Math.max(-3, Math.min(3, v));
       }
     } catch (e) {}
-    return 0;
+    return 0.02;
+  }
+  /** 扫字局部进度：几乎线性，跟唱贴时间轴 */
+  function _lyEaseOutCubic(p) {
+    p = Math.max(0, Math.min(1, p));
+    // 极轻缓出，基本贴时间
+    return 1 - Math.pow(1 - p, 1.35);
+  }
+  function _lyEaseInOutSoft(p) {
+    p = Math.max(0, Math.min(1, p));
+    return p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
   }
   /** 拖进度期间用目标时间当歌词时钟，避免 currentTime 未落地导致唱/扫错位 */
   function getLyricClock() {
@@ -15496,11 +15892,13 @@ function paintNow(song) {
     }
   }
   function _ktvCharWeight(ch) {
-    if (!ch) return 0.15;
+    if (!ch) return 0.12;
+    // 汉字满权；标点更短，留气口；英文按音节感略轻
     if (/[\u4e00-\u9fff\u3400-\u4dbf]/.test(ch)) return 1;
-    if (/[，。！？、；：…—·\s]/.test(ch)) return 0.22;
-    if (/[A-Za-z0-9]/.test(ch)) return 0.45;
-    return 0.35;
+    if (/[，。！？、；：…—·]/.test(ch)) return 0.18;
+    if (/\s/.test(ch)) return 0.12;
+    if (/[A-Za-z0-9]/.test(ch)) return 0.42;
+    return 0.32;
   }
   function _ktvSplitUnits(plain) {
     var chars = Array.from(String(plain || ""));
@@ -15527,9 +15925,10 @@ function paintNow(song) {
   }
   /**
    * Baka 对齐时间轴：
-   * - 有真实逐字轴：几乎不改绝对时间，只补 end，禁止整体前移/压缩（避免节奏被我们规则拧歪）
+   * - 有真实逐字轴 + duration（QRC/YRC）：完整保留每个字的唱长，长音会拉长扫字
+   * - 有逐字 start 无 duration：只补 end，禁止整体前移/压缩
    * - 无逐字轴：estSing 估唱后按字权均分
-   * - 贴拍只靠唯一 getLyricOffset()（默认 0.15s），不再叠 sweepLead/switchLead/首字抢拍
+   * - 贴拍只靠唯一 getLyricOffset()，不再叠 sweepLead/switchLead/首字抢拍
    */
   function attachKtvWords(lines) {
     if (!lines || !lines.length) return lines;
@@ -15541,7 +15940,8 @@ function paintNow(song) {
         : (start0 + Math.max(2.8, String(L.text || "").length * 0.32));
       var gap = Math.max(0.35, nextT - start0);
       var txtLen = Math.max(1, Array.from(String(L.text || "")).length);
-      var estSing = Math.min(gap * 0.92, Math.max(0.7, 0.42 * txtLen));
+      // 估唱略留气口：中文约 0.38s/字，长句不顶满到下一句，跟唱更松弛
+      var estSing = Math.min(gap * 0.88, Math.max(0.75, 0.38 * txtLen + 0.15));
 
       if (L.words && L.words.length) {
         var hasReal = 0, minT = Infinity, maxT = -Infinity;
@@ -15575,16 +15975,38 @@ function paintNow(song) {
             L.words[wi2].t = wt2;
           }
         }
+        // 有真实 duration（长音）时绝不能被下一字 start 或 endLimit 压扁
+        var maxRealEnd = maxT;
         for (var wj = 0; wj < L.words.length; wj++) {
-          var nT = (wj + 1 < L.words.length) ? L.words[wj + 1].t : endLimit;
-          L.words[wj].end = Math.max(L.words[wj].t + 0.04, Math.min(nT, endLimit));
-          if (L.words[wj].w == null) {
-            L.words[wj].w = _ktvCharWeight(L.words[wj].text);
+          var nT = (wj + 1 < L.words.length) ? Number(L.words[wj + 1].t) : endLimit;
+          if (!isFinite(nT)) nT = endLimit;
+          var cur = L.words[wj];
+          var wt0 = Number(cur.t);
+          if (!isFinite(wt0)) wt0 = start0;
+          if (cur.realDur && cur.end != null && isFinite(Number(cur.end)) && Number(cur.end) > wt0 + 0.02) {
+            // 信任源站时长：长音完整保留，仅防止越界到下一句过远
+            var realEnd = Number(cur.end);
+            // 允许长音略越过下一字 start（叠字/拖腔常见），但不超过下一句
+            var hardCap = Math.max(nT + 0.05, endLimit);
+            cur.end = Math.min(realEnd, hardCap);
+            cur.dur = Math.max(0.04, cur.end - wt0);
+          } else if (cur.end != null && isFinite(Number(cur.end)) && Number(cur.end) > wt0 + 0.02) {
+            cur.end = Math.min(Number(cur.end), Math.max(nT, endLimit));
+            cur.dur = Math.max(0.04, cur.end - wt0);
+          } else {
+            // 无真实时长：用下一字 start 补 end（短 hold）
+            cur.end = Math.max(wt0 + 0.04, Math.min(nT, endLimit));
+            cur.dur = Math.max(0.04, cur.end - wt0);
+          }
+          if (cur.end > maxRealEnd) maxRealEnd = cur.end;
+          if (cur.w == null) {
+            cur.w = _ktvCharWeight(cur.text);
           }
         }
         L.ktv = true;
         L.ktvStart = wordedOk ? minT : start0;
-        L.ktvEnd = endLimit;
+        // 句末以真实最长 end 为准，长音不会被截断
+        L.ktvEnd = Math.max(endLimit, maxRealEnd);
         L.worded = !!wordedOk;
         continue;
       }
@@ -15628,54 +16050,8 @@ function paintNow(song) {
   }
 
   function calcLineSweepProg(line, nextLine, t) {
-    if (!line) return 0;
-    // t 已是 audioTime + offset（默认 0，严格跟时间戳）
-    var tUse = t; // offset 已在 syncLyrics 的 tAdj 里
-    if (!line.words || !line.words.length) {
-      var t0b = (line.ktvStart != null) ? Number(line.ktvStart) : (line.t || 0);
-      var t1b = (line.ktvEnd != null)
-        ? Number(line.ktvEnd)
-        : (nextLine ? nextLine.t : (t0b + 3));
-      var gapb = Math.max(0.35, t1b - t0b);
-      return Math.max(0, Math.min(1, (tUse - t0b) / gapb));
-    }
-    var words = line.words;
-    var n = words.length;
-    var tStart = (line.ktvStart != null) ? Number(line.ktvStart) : Number(words[0].t);
-    var tEnd = (line.ktvEnd != null)
-      ? Number(line.ktvEnd)
-      : (words[n - 1].end != null ? Number(words[n - 1].end) : Number(words[n - 1].t));
-    if (!(tEnd > tStart)) tEnd = tStart + Math.max(0.8, n * 0.22);
-    if (tUse <= tStart) return 0;
-    if (tUse >= tEnd) return 1;
-
-    var idxW = 0;
-    for (var iw = 0; iw < n; iw++) {
-      var aw = words[iw].t;
-      var bw = (words[iw].end != null) ? words[iw].end : ((iw + 1 < n) ? words[iw + 1].t : tEnd);
-      if (tUse >= aw) idxW = iw;
-      if (tUse < bw && tUse >= aw) { idxW = iw; break; }
-      if (tUse < aw) { idxW = Math.max(0, iw - 1); break; }
-    }
-    if (tUse < tStart) idxW = 0;
-    if (tUse >= tEnd) idxW = n - 1;
-
-    var totalWw = 0, doneWw = 0;
-    for (var kw = 0; kw < n; kw++) {
-      var ww0 = (words[kw].w != null) ? words[kw].w : _ktvCharWeight(words[kw].text);
-      totalWw += ww0;
-      if (kw < idxW) doneWw += ww0;
-      else if (kw === idxW) {
-        var a2 = words[kw].t;
-        var b2 = (words[kw].end != null) ? words[kw].end : ((kw + 1 < n) ? words[kw + 1].t : tEnd);
-        var loc = b2 > a2 ? (tUse - a2) / (b2 - a2) : 1;
-        if (loc < 0) loc = 0;
-        if (loc > 1) loc = 1;
-        doneWw += ww0 * loc;
-      }
-    }
-    if (totalWw < 0.01) totalWw = n;
-    return Math.max(0, Math.min(1, doneWw / totalWw));
+    // 统一走连续加权进度，避免逐字跳变带来的机械感
+    return calcContinuousSweepProg(line, t);
   }
 
 
@@ -15772,15 +16148,23 @@ function paintNow(song) {
     return "[" + (mm < 10 ? "0" : "") + mm + ":" + (sInt < 10 ? "0" : "") + sInt + "." +
       (sFrac < 10 ? "00" : sFrac < 100 ? "0" : "") + sFrac + "]";
   }
-  function _fmtLrcWord(sec, text) {
+  function _fmtLrcWord(sec, text, durOrEnd) {
     if (!(sec >= 0)) sec = 0;
     var mm = Math.floor(sec / 60);
     var ss = sec - mm * 60;
     var ms = Math.round(ss * 1000);
     var sInt = Math.floor(ms / 1000);
     var sFrac = ms % 1000;
-    return "<" + (mm < 10 ? "0" : "") + mm + ":" + (sInt < 10 ? "0" : "") + sInt + "." +
-      (sFrac < 10 ? "00" : sFrac < 100 ? "0" : "") + sFrac + ">" + (text || "");
+    var head = "<" + (mm < 10 ? "0" : "") + mm + ":" + (sInt < 10 ? "0" : "") + sInt + "." +
+      (sFrac < 10 ? "00" : sFrac < 100 ? "0" : "") + sFrac;
+    // 有真实时长时写成 <start,dur>字，parseLrc 会读成 end = start + dur
+    if (durOrEnd != null && isFinite(durOrEnd) && Number(durOrEnd) > 0.02) {
+      var d = Number(durOrEnd);
+      // 若传入的是绝对 end，则换成 dur
+      if (d > sec + 0.01) d = d - sec;
+      head += "," + d.toFixed(3);
+    }
+    return head + ">" + (text || "");
   }
   /** 网易 YRC → 增强 LRC。格式 [startMs,dur](startMs,dur,0)字 */
   function yrcToEnhancedLrc(yrc) {
@@ -15794,19 +16178,23 @@ function paintNow(song) {
       var lineStart = parseInt(hm[1], 10) / 1000;
       var rest = hm[3] || "";
       var words = [];
+      // 网易 YRC: (startMs, durationMs, ...)字  —— 第二段是真实唱长，长音必须保留
       var re = /\(\s*(\d+)\s*,\s*(\d+)\s*,?\s*\d*\s*\)([^\()]*)/g;
       var wm;
       while ((wm = re.exec(rest))) {
         var wt = parseInt(wm[1], 10) / 1000;
+        var dur = parseInt(wm[2], 10) / 1000;
         var txt = wm[3] || "";
-        if (txt) words.push({ t: wt, text: txt });
+        if (txt) words.push({ t: wt, dur: dur > 0.02 ? dur : 0, text: txt });
       }
       if (!words.length) {
         var plain = rest.replace(/\([^)]*\)/g, "").trim();
         if (plain) out.push(_fmtLrcTag(lineStart) + plain);
         return;
       }
-      out.push(_fmtLrcTag(lineStart) + words.map(function (w) { return _fmtLrcWord(w.t, w.text); }).join(""));
+      out.push(_fmtLrcTag(lineStart) + words.map(function (w) {
+        return _fmtLrcWord(w.t, w.text, w.dur || 0);
+      }).join(""));
     });
     return out.join("\n");
   }
@@ -15829,35 +16217,44 @@ function paintNow(song) {
       var lineStartMs = parseInt(hm[1], 10);
       var lineStart = lineStartMs / 1000;
       var rest = hm[3] || "";
+      // QQ QRC: (startMs, durationMs [,0])字 —— 第二段是真实唱长，长音必须保留
       var absWords = [];
       var reAbs = /\(\s*(\d+)\s*,\s*(\d+)\s*,?\s*\d*\s*\)([^\()]*)/g;
       var am;
       while ((am = reAbs.exec(rest))) {
         var atxt = am[3] || "";
-        if (atxt) absWords.push({ t: parseInt(am[1], 10) / 1000, text: atxt });
+        var adur = parseInt(am[2], 10) / 1000;
+        if (atxt) absWords.push({ t: parseInt(am[1], 10) / 1000, dur: adur > 0.02 ? adur : 0, text: atxt });
       }
       if (absWords.length >= 2 && absWords[0].t >= lineStart - 0.08) {
-        out.push(_fmtLrcTag(lineStart) + absWords.map(function (w) { return _fmtLrcWord(w.t, w.text); }).join(""));
+        out.push(_fmtLrcTag(lineStart) + absWords.map(function (w) {
+          return _fmtLrcWord(w.t, w.text, w.dur || 0);
+        }).join(""));
         return;
       }
       var relWords = [];
+      // 字(relMs,dur) 形式
       var re2 = /([^\(\)\[]*?)\((\d+)\s*,\s*(\d+)\s*(?:,\s*\d+)?\)/g;
       var rm;
       while ((rm = re2.exec(rest))) {
         var pre = rm[1] || "";
         var rel = parseInt(rm[2], 10) / 1000;
-        if (pre) relWords.push({ t: lineStart + rel, text: pre });
+        var rd = parseInt(rm[3], 10) / 1000;
+        if (pre) relWords.push({ t: lineStart + rel, dur: rd > 0.02 ? rd : 0, text: pre });
       }
       if (!relWords.length) {
         var re3 = /\((\d+)\s*,\s*(\d+)\s*(?:,\s*\d+)?\)([^\(\)\[]*)/g;
         var rm3;
         while ((rm3 = re3.exec(rest))) {
           var tx3 = rm3[3] || "";
-          if (tx3) relWords.push({ t: lineStart + parseInt(rm3[1], 10) / 1000, text: tx3 });
+          var d3 = parseInt(rm3[2], 10) / 1000;
+          if (tx3) relWords.push({ t: lineStart + parseInt(rm3[1], 10) / 1000, dur: d3 > 0.02 ? d3 : 0, text: tx3 });
         }
       }
       if (relWords.length) {
-        out.push(_fmtLrcTag(lineStart) + relWords.map(function (w) { return _fmtLrcWord(w.t, w.text); }).join(""));
+        out.push(_fmtLrcTag(lineStart) + relWords.map(function (w) {
+          return _fmtLrcWord(w.t, w.text, w.dur || 0);
+        }).join(""));
         return;
       }
       var plain = rest.replace(/\([^)]*\)/g, "").trim();
@@ -15869,6 +16266,52 @@ function paintNow(song) {
     if (!s) return false;
     return (/\[\d{2,},\d{2,}\]/.test(s) && /\(\d+\s*,\s*\d+/.test(s)) || /<\d{1,2}:\d{1,2}(?:\.\d+)?>/.test(s);
   }
+
+  /**
+   * 统一歌词载荷：优先用插件/API 返回的逐字字段 (lxlyric / yrc / qrc)
+   * 转成增强 LRC 后再 parseLrc，与 APK 扫字同源
+   */
+  function normalizeLyricPayload(res) {
+    if (!res || typeof res !== "object") return { lyric: "", trans: "", roma: "", worded: false };
+    var lyric = res.lyric || res.lrc || res.rawLrc || "";
+    var trans = res.trans || res.tlyric || res.translation || "";
+    var roma = res.roma || res.rlyric || "";
+    var wordRaw = res.lxlyric || res.yrc || res.qrc || res.wordLyric || "";
+    if (typeof wordRaw === "object" && wordRaw) wordRaw = wordRaw.lyric || wordRaw.lrc || "";
+    if (typeof lyric === "object" && lyric) lyric = lyric.lyric || lyric.lrc || "";
+    if (typeof trans === "object" && trans) trans = trans.lyric || trans.lrc || "";
+    if (typeof roma === "object" && roma) roma = roma.lyric || roma.lrc || "";
+    lyric = String(lyric || "");
+    wordRaw = String(wordRaw || "").trim();
+    var worded = false;
+    if (wordRaw.length > 8) {
+      try {
+        var enh = "";
+        if (/\[\d+,\d+\]/.test(wordRaw) && /\(\d+,\d+/.test(wordRaw)) {
+          enh = yrcToEnhancedLrc(wordRaw);
+        } else if (/\[\d+:\d+/.test(wordRaw) && wordRaw.indexOf("),") >= 0) {
+          enh = qrcToEnhancedLrc(wordRaw);
+        } else if (looksLikeWordTimedLyric(wordRaw)) {
+          enh = yrcToEnhancedLrc(wordRaw) || qrcToEnhancedLrc(wordRaw) || wordRaw;
+        } else {
+          enh = yrcToEnhancedLrc(wordRaw) || qrcToEnhancedLrc(wordRaw) || "";
+        }
+        if (enh && (enh.indexOf("<") >= 0 || looksLikeWordTimedLyric(enh))) {
+          lyric = enh;
+          worded = true;
+        }
+      } catch (eN) {}
+    }
+    if (!worded && lyric && looksLikeWordTimedLyric(lyric)) {
+      try {
+        var e2 = yrcToEnhancedLrc(lyric) || qrcToEnhancedLrc(lyric);
+        if (e2 && e2.indexOf("<") >= 0) { lyric = e2; worded = true; }
+      } catch (e2) {}
+    }
+    if (!worded) worded = lyric.indexOf("<") >= 0;
+    return { lyric: lyric, trans: String(trans || ""), roma: String(roma || ""), worded: !!worded };
+  }
+
 
   async function API_lyricNetease(id) {
     if (!id) return { lyric: "", trans: "" };
@@ -16388,6 +16831,7 @@ function paintNow(song) {
 
     if (gen !== _lyricGen) return;
 
+    if (res) res = normalizeLyricPayload(res);
     var lrc = (res && res.lyric) || "";
     var transLrc = (res && res.trans) || "";
     lyricsLines = parseLrc(lrc);
@@ -16549,6 +16993,7 @@ function paintNow(song) {
         toast("未找到匹配歌词");
         return;
       }
+      res = normalizeLyricPayload(res);
       lyricsLines = parseLrc(res.lyric || "");
       try { attachLyricTranslations(lyricsLines, res.trans || "", res.roma || ""); } catch (eT) {}
       try { attachKtvWords(lyricsLines); } catch (eK) {}
@@ -16950,26 +17395,74 @@ function paintNow(song) {
     }, 180);
   }
   /**
-   * BakaMusic 风格：word_frames(t) → 每字 0..1 进度
-   * 有 words[] 时间轴时严格按字起止；否则按字权均分整句
+   * 连续扫字进度（0~1）：严格按真实时间轴
+   * 已唱时长 / 本句总唱时长；长音自然占更长时间，与人声同步
    */
+  function calcContinuousSweepProg(line, tUse) {
+    if (!line) return 0;
+    var words = line.words;
+    var t0 = (line.ktvStart != null) ? Number(line.ktvStart) : (line.t || 0);
+    var t1 = (line.ktvEnd != null) ? Number(line.ktvEnd) : (t0 + 2.5);
+    if (!isFinite(t0)) t0 = 0;
+    if (!isFinite(t1) || t1 <= t0) t1 = t0 + 2.5;
+
+    if (!words || !words.length) {
+      if (tUse <= t0) return 0;
+      if (tUse >= t1) return 1;
+      return Math.max(0, Math.min(1, (tUse - t0) / (t1 - t0)));
+    }
+
+    // 纯时间：累加真实 duration，不按字数
+    var totalDur = 0;
+    var doneDur = 0;
+    var segs = [];
+    for (var i = 0; i < words.length; i++) {
+      var w = words[i];
+      var wt = Number(w.t);
+      var we = (w.end != null && isFinite(Number(w.end))) ? Number(w.end)
+        : ((i + 1 < words.length && isFinite(Number(words[i + 1].t)))
+            ? Number(words[i + 1].t)
+            : t1);
+      if (!isFinite(wt)) wt = (segs.length ? segs[segs.length - 1].end : t0);
+      if (!(we > wt)) we = wt + 0.06;
+      var dur = we - wt;
+      segs.push({ t: wt, end: we, dur: dur });
+      totalDur += dur;
+    }
+    if (totalDur < 0.05) totalDur = Math.max(0.2, t1 - t0);
+
+    for (var j = 0; j < segs.length; j++) {
+      var s = segs[j];
+      if (tUse >= s.end) {
+        doneDur += s.dur;
+      } else if (tUse > s.t) {
+        doneDur += (tUse - s.t);
+        break;
+      } else {
+        break;
+      }
+    }
+    return Math.max(0, Math.min(1, doneDur / totalDur));
+  }
+
+  /** 兼容旧调用：仍返回 frames，但进度改为服务连续扫 */
   function buildWordFrames(line, tUse) {
     var frames = [];
     if (!line) return frames;
     var words = line.words;
     if (!words || !words.length) {
       var plain = String(line.text || "").replace(/\s*\n+\s*/g, " ").replace(/\s+/g, " ").trim();
-      var units = plain ? Array.from(plain) : [];
-      var t0 = (line.ktvStart != null) ? Number(line.ktvStart) : (line.t || 0);
-      var t1 = (line.ktvEnd != null) ? Number(line.ktvEnd) : (t0 + Math.max(1.2, units.length * 0.28));
-      var span = Math.max(0.2, t1 - t0);
-      for (var i = 0; i < units.length; i++) {
-        var a = t0 + (i / units.length) * span;
-        var b = t0 + ((i + 1) / units.length) * span;
+      var chars = plain ? Array.from(plain) : [];
+      var t0b = (line.ktvStart != null) ? Number(line.ktvStart) : (line.t || 0);
+      var t1b = (line.ktvEnd != null) ? Number(line.ktvEnd) : (t0b + Math.max(1.2, chars.length * 0.28));
+      var span = Math.max(0.2, t1b - t0b);
+      for (var i = 0; i < chars.length; i++) {
+        var a = t0b + (i / chars.length) * span;
+        var b = t0b + ((i + 1) / chars.length) * span;
         var loc = 0;
         if (tUse >= b) loc = 1;
         else if (tUse > a) loc = (tUse - a) / Math.max(0.001, b - a);
-        frames.push({ text: units[i], t: a, end: b, prog: Math.max(0, Math.min(1, loc)) });
+        frames.push({ text: chars[i], t: a, end: b, prog: Math.max(0, Math.min(1, loc)) });
       }
       return frames;
     }
@@ -16980,7 +17473,7 @@ function paintNow(song) {
       if (!(we > wt)) we = wt + 0.08;
       var loc2 = 0;
       if (tUse >= we) loc2 = 1;
-      else if (tUse > wt) loc2 = (tUse - wt) / (we - wt);
+      else if (tUse > wt) loc2 = (tUse - wt) / Math.max(0.001, we - wt);
       frames.push({
         text: words[w].text != null ? String(words[w].text) : "",
         t: wt,
@@ -16990,13 +17483,28 @@ function paintNow(song) {
     }
     return frames;
   }
-  /** 当前句渲染为逐字 span（Baka mask），并按字进度上色 */
+
+  /**
+   * 逐字扫：每个字独立 span，按真实 start/end 填色
+   * 长音 = 该字 prog 慢慢从 0→1，跟唱贴合
+   */
   function applyKtvWordMasks(el, line, tUse) {
     if (!el || !line) return 0;
     var frames = buildWordFrames(line, tUse);
-    if (!frames.length) return 0;
+    if (!frames.length) {
+      // 无逐字轴：整句渐变兜底
+      var p0 = calcContinuousSweepProg(line, tUse);
+      el.classList.remove("ly-ktv");
+      el.style.setProperty("--ly-prog", p0.toFixed(4));
+      el.style.setProperty("color", "transparent");
+      el.style.setProperty("-webkit-text-fill-color", "transparent");
+      return p0;
+    }
     el.classList.add("ly-ktv");
-    // 重建字节点（句切换或结构变化时）
+    el.style.removeProperty("--ly-prog");
+    el.style.removeProperty("color");
+    el.style.removeProperty("-webkit-text-fill-color");
+
     var needRebuild = !el.dataset.ktvBuilt || el.dataset.ktvN !== String(frames.length);
     if (needRebuild) {
       el.textContent = "";
@@ -17010,23 +17518,22 @@ function paintNow(song) {
       el.dataset.ktvN = String(frames.length);
     }
     var spans = el.querySelectorAll(".ly-w");
-    var doneW = 0, totalW = 0, activeIdx = 0;
+    var doneW = 0, totalW = 0;
     for (var j = 0; j < frames.length; j++) {
-      totalW += 1;
+      var visW = Math.max(0.35, Array.from(String(frames[j].text || "")).length || 1);
+      totalW += visW;
       var spn = spans[j];
       if (!spn) continue;
       var p = frames[j].prog;
       spn.classList.remove("sung", "cur");
       spn.style.removeProperty("--w-prog");
-      if (p >= 0.999) {
+      if (p >= 0.998) {
         spn.classList.add("sung");
-        doneW += 1;
-        activeIdx = j;
-      } else if (p > 0.001) {
+        doneW += visW;
+      } else if (p > 0.002) {
         spn.classList.add("cur");
         spn.style.setProperty("--w-prog", p.toFixed(4));
-        doneW += p;
-        activeIdx = j;
+        doneW += visW * p;
       }
     }
     return totalW > 0 ? doneW / totalW : 0;
@@ -17174,19 +17681,33 @@ function paintNow(song) {
 
     if (!cur || box.dataset.lock === "1") return;
     if (!(changed || force)) return;
-    // 当前句丝滑滚到正中（自下而上推进）
+    // 当前句滚到视觉中心：force 瞬移；常态用短阻尼动画，贴合更紧、少机械惯性
     try {
       var boxRect = box.getBoundingClientRect();
       var curRect = cur.getBoundingClientRect();
-      var boxMid = boxRect.top + boxRect.height / 2;
+      var boxMid = boxRect.top + boxRect.height * 0.42; // 略偏上，跟唱视线更自然
       var curMid = curRect.top + curRect.height / 2;
       var delta = curMid - boxMid;
-      if (Math.abs(delta) > 2) {
+      if (Math.abs(delta) > 3) {
         var target = Math.max(0, box.scrollTop + delta);
-        if (typeof box.scrollTo === "function") {
-          box.scrollTo({ top: target, behavior: force ? "auto" : "smooth" });
-        } else {
+        if (force) {
           box.scrollTop = target;
+        } else {
+          // 简易弹簧：约 280ms 收敛，避免 CSS smooth 的拖沓感
+          var start = box.scrollTop;
+          var dist = target - start;
+          var t0 = performance.now();
+          var dur = Math.min(340, 180 + Math.abs(dist) * 0.35);
+          if (box._lyScrollRaf) cancelAnimationFrame(box._lyScrollRaf);
+          function step(now) {
+            var p = Math.min(1, (now - t0) / dur);
+            // easeOutQuint
+            var e = 1 - Math.pow(1 - p, 5);
+            box.scrollTop = start + dist * e;
+            if (p < 1) box._lyScrollRaf = requestAnimationFrame(step);
+            else box._lyScrollRaf = 0;
+          }
+          box._lyScrollRaf = requestAnimationFrame(step);
         }
       }
     } catch (e) {}

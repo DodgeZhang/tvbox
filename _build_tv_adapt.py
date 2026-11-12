@@ -424,6 +424,67 @@ html.dark .tab-now { color: rgba(235, 235, 245, 0.72); }
   }
   html.tv-mode .dock .tab-now.is-off { opacity: .35; }
 }
+
+/* ============================================================
+   TV 适配 v3 兜底（2026-11-12 官方 5.9 同步）
+   新增 color-mix()（Chromium 111+）：老 TV 内核（51-87）整条
+   background-image 声明会被丢弃 → 歌词扫字渐变失效、句子变纯色。
+   这里给不支持的内核覆盖为「无渐变 + 实色」，保证歌词可读。
+   ============================================================ */
+@supports not (color: color-mix(in srgb, #000 50%, #fff)) {
+  /* 经典/沉浸歌词：当前句不用扫字渐变，改高亮实色 */
+  html.tv-mode .np-lyrics .ly.on,
+  html.tv-mode .np-lyrics .ly.on.ly-ktv,
+  html.tv-mode .np-lyrics .ly.on.ly-ktv .ly-w.cur,
+  html.tv-mode .np.immersive .np-lyrics .ly.on,
+  html.tv-mode .np.immersive .np-lyrics .ly.on.ly-ktv .ly-w.cur,
+  html.tv-mode .np.lyrics-full .np-lyrics .ly.on,
+  html.tv-mode .np.np-ui-dark .np-lyrics .ly.on {
+    background-image: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    -webkit-text-fill-color: var(--ly-hl, #b83a4e) !important;
+    color: var(--ly-hl, #b83a4e) !important;
+  }
+  /* 平台按钮/角标在 color-mix 失效时的实色兜底（否则白底上看不见） */
+  html.tv-mode .hot-card-src,
+  html.tv-mode .song-src {
+    background: rgba(250, 45, 72, 0.14) !important;
+    color: var(--pink) !important;
+  }
+  html.dark.tv-mode .hot-card-src,
+  html.dark.tv-mode .song-src {
+    background: rgba(255, 255, 255, 0.18) !important;
+    color: #fff !important;
+  }
+  /* 播放按钮开合状态的外发光退化为纯色描边 */
+  html.tv-mode .plat-wrap.open .plat-btn,
+  html.tv-mode .plat-btn .plat-dot,
+  html.tv-mode .plat-btn .plat-dot.on {
+    box-shadow: 0 0 0 2px rgba(250, 45, 72, 0.28) !important;
+  }
+}
+
+/* :has()（Chromium 105+）兜底：设置页 «标签 + 分段按钮» 的上下排布。
+   老内核对 :has 无支持 → 该行退化为默认 flex-row，按钮与文字挤一行。
+   这里按 .set-row 内是否含 .seg 给等效样式（用属性/子选择器近似）。 */
+html.tv-mode .set-row .seg {
+  flex-shrink: 0;
+}
+@supports not selector(:has(a)) {
+  html.tv-mode .set-row {
+    flex-wrap: wrap;
+  }
+  html.tv-mode .set-row > div:first-child {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+  html.tv-mode .set-row > .seg {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 10px;
+  }
+}
 </style>'''
 
 TABNOW = r'''<button class="tab-now" id="tabNow" type="button" aria-label="当前播放" title="当前播放">
@@ -494,7 +555,9 @@ JS = r'''<script>
       backdropFilter: supports("backdrop-filter: blur(1px)"),
       flexGap: supports("gap: 1px") && supports("display: flex"),
       grid: supports("display: grid"),
-      customProperties: supports("--x: 0")
+      customProperties: supports("--x: 0"),
+      colorMix: supports("color: color-mix(in srgb, #000 50%, #fff)"),
+      hasSelector: !!(window.CSS && CSS.supports && CSS.supports("selector(:has(a))"))
     };
     try { console.info("[AQ TV] browser capability:", JSON.stringify(info)); } catch (e) {}
     window.__aqDiag = info;
