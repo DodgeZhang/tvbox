@@ -50,6 +50,24 @@
             }
         },
         {
+            "key": "米诺",
+            "name": "米诺 • APP",
+            "type": 3,
+            "api": "csp_AppMN",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 0
+        },
+        {
+            "key": "下饭",
+            "name": "下饭 • APP",
+            "type": 3,
+            "api": "csp_JuXiaFan",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
             "key": "快映fox",
             "name": "快映 • APP",
             "type": 3,
@@ -100,7 +118,7 @@
             "type": 3,
             "api": "csp_App3Q",
             "ext": {
-                "host": "https://45.150.167.18:8000",
+                "host": "https://skykb.com",
                 "finger": "SF-A962FEC75DA28D7514F2A16580334272A78AC0A8429F10C94F47C1BAFC876E3F",
                 "updateId": "43c1ef69-3748-aaeb-317f-c621c77653ee",
                 "deviceBrand": "vivo",
@@ -179,7 +197,7 @@
                 "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
                 "pkg": "com.asjdhjhd.mgd.p3",
                 "host": "",
-                "site": "https://123-1349250429.cos.ap-shanghai.myqcloud.com/app.txt",
+                "site": "https://1848463092.cdn.123clouddisk.com/1848463092/cct/az.txt",
                 "version": "3.0.7.0",
                 "decrypt": "1"
             }
@@ -669,6 +687,18 @@
             "genre": "shortdrama"
         },
         {
+            "key": "看剧",
+            "name": "看剧 • 影视",
+            "type": 3,
+            "api": "csp_KanJuAI"
+        },
+        {
+            "key": "懂片",
+            "name": "懂片 • 影视",
+            "type": 3,
+            "api": "csp_DongPian"
+        },
+        {
             "key": "星辰影视",
             "name": "星辰 • 影视",
             "type": 3,
@@ -740,13 +770,6 @@
             "filterable": 1
         },
         {
-            "key": "剧圈影视",
-            "name": "剧圈 • 影视",
-            "type": 3,
-            "api": "csp_XYQHiker",
-            "ext": "./XYQHiker/剧圈影视.json"
-        },
-        {
             "key": "1905",
             "name": "1905 • 影视",
             "type": 3,
@@ -781,6 +804,12 @@
             "style": {
                 "type": "list"
             }
+        },
+        {
+            "key": "赏月",
+            "name": "赏月 • 动漫",
+            "type": 3,
+            "api": "csp_AnimeTsukimi"
         },
         {
             "key": "稀饭",

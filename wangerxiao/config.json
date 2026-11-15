@@ -1,6 +1,6 @@
 {
-    "spider": "./jar/1.jpg;md5;53e039fb19875d5cfec02a0910399ffd",
-    "wallpaper": "./img/5.jpg",
+    "spider": "./jar/1.jpg;md5;541366f5860ceb66e1c3005f5a299afe",
+    "wallpaper": "https://www.loliapi.com/acg/",
     "logo": "./img/6.gif",
     "sites": [
         {
@@ -16,7 +16,7 @@
         },
         {
             "key": "Doubanaaaa",
-            "name": "🐮【更新日期:20261106】🐮",
+            "name": "🐮【更新日期:20261112】🐮",
             "type": 3,
             "api": "csp_NewDouBanGuard",
             "indexs": 1,

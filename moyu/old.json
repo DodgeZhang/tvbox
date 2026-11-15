@@ -1,5 +1,5 @@
 {
-    "spider": "./jar/1.jar;md5;c78599dab489dae65c893e121df0de2f",
+  "spider": "./jar/1.jar;md5;53b51f8c239b727ce4cd18dc2c3b7a99",
   "logo": "./img/10.gif",
   "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
   "danmaku": "http://127.0.0.1:5266/danmu/webhtv?name={name}&episode={episode}",
@@ -106,36 +106,86 @@
         ]
       }
     },
-        {
-            "key": "bl",
-            "name": "🤪┆摆烂┆4K",
-            "type": 3,
-            "api": "csp_App88",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "Acf4n+FgSJlps29HFqyt+ECG19M+iLto9fxzwikME3YOnRFfaIWR3C9CZF+/o2jh4T6D4bOxYn8j775k1TLOsSHsG7tlKBqeENs8VhcKgZS5u7Gb8/LXYDutl7a21jsXLw=="
-        },
-        {
-            "key": "jz",
-            "name": "🍵┆煮雪┆4K",
-            "type": 3,
-            "api": "csp_App88",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "AUeoWDxT/Sza6llGoZlPCelc2ZgSZNx8QBoJAONichQm4mIf8nslnxOIU1wrq2vvzWouK156R9sXK/CRGs6G6fc="
-        },
-        {
-            "key": "hy",
-            "name": "🌸┆棠梨┆4K",
-            "type": 3,
-            "api": "csp_App88",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "Ae8DpdkJGH5s9XIrvlLd8DvpiYdkSSaoIDmmvofda4Gpr9yX8k0a4w1wNmnu4CZ4Nnh03XkYIwooJ+psbf6P8ZY="
-        },
+    {
+      "key": "bl",
+      "name": "🤪┆摆烂┆4K",
+      "type": 3,
+      "api": "csp_App88",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "Acf4n+FgSJlps29HFqyt+ECG19M+iLto9fxzwikME3YOnRFfaIWR3C9CZF+/o2jh4T6D4bOxYn8j775k1TLOsSHsG7tlKBqeENs8VhcKgZS5u7Gb8/LXYDutl7a21jsXLw=="
+    },
+    {
+      "key": "AppZy_wanqing",
+      "name": "🌇┆晚晴┆4K",
+      "type": 3,
+      "api": "csp_AppZy",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "ARO+hB5vdFdHClVkrLOIgsdq6Ox6dBaesfwPqkaGkkI/kFSRmoG2vqoBgQJ4rQUfq9S/OqwEWkP8qRb4VM8DrYnl2UGeGnTvJjwdn+dbV8Nh"
+    },
+    {
+      "key": "AppZy_qiushui",
+      "name": "🪷┆秋水┆4K",
+      "type": 3,
+      "api": "csp_AppZy",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "AXYmhdoG4mVUI1O/8DD7P+twDiSLZh1j9iNOR/xHURJp2Aw4rTsWEymW/RcJqLNohr1iR09cYEj6cCGDSNc95aBhNQfelqiC0gTqRSXniGO3"
+    },
+    {
+      "key": "jz",
+      "name": "🍵┆煮雪┆4K",
+      "type": 3,
+      "api": "csp_App88",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "AUeoWDxT/Sza6llGoZlPCelc2ZgSZNx8QBoJAONichQm4mIf8nslnxOIU1wrq2vvzWouK156R9sXK/CRGs6G6fc="
+    },
+    {
+      "key": "hy",
+      "name": "🌼┆棠梨┆4K",
+      "type": 3,
+      "api": "csp_App88",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "Ae8DpdkJGH5s9XIrvlLd8DvpiYdkSSaoIDmmvofda4Gpr9yX8k0a4w1wNmnu4CZ4Nnh03XkYIwooJ+psbf6P8ZY="
+    },
+    {
+      "key": "FourK",
+      "name": "🌔┆望舒┆4K",
+      "type": 3,
+      "api": "csp_App88",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "AV3cDzESDsTIWJ1e0GZQUmOQKfNDMpFhWqSa4cvJKZlVZDKPOBzRbNq+YsDIeVJfxJIlcvy9/9MMJLQR9Yn4P+ABIUU4LXEL+WXhRFcPEDBpGlxkMDqSvKpFJvmPoKC/IA=="
+    },
+    {
+      "key": "SanJiaoZhou",
+      "name": "🌥️┆云归┆4K",
+      "type": 3,
+      "api": "csp_App88",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0,
+      "ext": "AYw+57aVirMpHulq+pwyxEX1UGkmWBETcX32Yp6ZkkvTAnu06xitsJuZdymTwZ70YgSiX+Ga4XisFPKK2Pv4ERJ/y0iGIy9FkpAAVFLF8ltrlb/FEg6CdBcfjWgMUXsibWacZGVzOWczRslQaFUHS2M="
+    },
+    {
+      "key": "Luck",
+      "name": "🍀┆青禾┆4K",
+      "type": 3,
+      "api": "csp_Luck",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "AU/L2JHZ0SsU94LbxPA3emscXG7f5FFdKYn8MSdt/5Uktri/nmW4Z3nNYavRogzuAlOkPfPVG27z4OAdO+fyFhc="
+    },
     {
       "key": "KaiFan",
       "name": "🍚┆开饭┆4K",
@@ -146,79 +196,79 @@
       "filterable": 1,
       "ext": "AfLGR2SW/7tjQA3K8Qgg5u7AG1NNWsCVAVxfMv/V44kP5aqzon5weT9IvX2w2KtBeMpAxc+Y0yRLN0eXf6oiuLw="
     },
-        {
-            "key": "shangtou",
-            "name": "🫠┆上头┆4K",
-            "type": 3,
-            "api": "csp_ShangTou",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "Ab723PUSGcnjpXT6567J5El7ZP+7lqBKJnQzkeqdAaVU29VedG35Y36vvAZWXOyL7tUL38RB0IWmvwZj4wWtuwyEOmAg2Nbpi1z46QBiBTmY"
-        },
-        {
-            "key": "XieHui",
-            "name": "🫖┆歇会┆4K",
-            "type": 3,
-            "api": "csp_XieHui",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "AWevGJ+A/nEjquOh7v58lbo8oaOgHdJkEu7/lzGApb2ngqWSO16XNPqrmqkozIxiLHvjDaaxs61fWZUIYBZBGgQ="
-        },
-        {
-            "key": "FaDai",
-            "name": "☁️┆发呆┆4K",
-            "type": 3,
-            "api": "csp_FaDai",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "AbjGNiFc0jaPCvOXj2edU7/DIRsvVxb1/2tyMFgaoT8L4eZNchAll5NXn7xBXvEwQvvJ55Odg+IugUeNvfYtPT0="
-        },
-        {
-            "key": "HuangYou",
-            "name": "🍃┆晃悠┆4K",
-            "type": 3,
-            "api": "csp_HuangYou",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "AVVlrRajtr+i42Q1MBwsMRSoNuckBLnPEocZVkZik+88465w0JZsKWJodTFxYL+RSsAVU8X8lJ4M8E2Xfw0GLYA="
-        },
-        {
-            "key": "SuiYuan",
-            "name": "🍂┆随缘┆4K",
-            "type": 3,
-            "api": "csp_SuiYuan",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "AVjYSEtEaHF+eS3NOrCubcE3f755psW6EFCg2THWgHt0uWkH1CXlE/UJ2zqohcEULrn/AlZOVuzN4V4Wt0EY3bY="
-        },
     {
-      "key": "TangPing",
-            "name": "🛋️┆躺平┆4K",
+      "key": "XieHui",
+      "name": "🫖┆歇会┆4K",
       "type": 3,
-            "api": "csp_TangPing",
+      "api": "csp_XieHui",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-            "ext": "AUVdS2Q3l8yS7JhOkMXYE1ntTJ/61k8MzQmaQMqSZBbUKDBy/udxVLxvXhNDvifvbkVTEawL3m2p9hhwbTibxnA="
-        },
-        {
-            "key": "LaiChuang",
-            "name": "🛏️┆赖床┆4K",
-            "type": 3,
-            "api": "csp_LaiChuang",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "AVlJ4J+D/3DMzdKAQnig/9ckDSQU7H+PyPyOE/q+m7eGkaZ9YjDkVXgq17TjYCHuvJa0UinsvgwPiAVd51fKuA0="
+      "ext": "AWevGJ+A/nEjquOh7v58lbo8oaOgHdJkEu7/lzGApb2ngqWSO16XNPqrmqkozIxiLHvjDaaxs61fWZUIYBZBGgQ="
+    },
+    {
+      "key": "shangtou",
+      "name": "🫠┆上头┆4K",
+      "type": 3,
+      "api": "csp_ShangTou",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "Ab723PUSGcnjpXT6567J5El7ZP+7lqBKJnQzkeqdAaVU29VedG35Y36vvAZWXOyL7tUL38RB0IWmvwZj4wWtuwyEOmAg2Nbpi1z46QBiBTmY"
+    },
+    {
+      "key": "FaDai",
+      "name": "😶┆发呆┆4K",
+      "type": 3,
+      "api": "csp_FaDai",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "AbjGNiFc0jaPCvOXj2edU7/DIRsvVxb1/2tyMFgaoT8L4eZNchAll5NXn7xBXvEwQvvJ55Odg+IugUeNvfYtPT0="
+    },
+    {
+      "key": "HuangYou",
+      "name": "🚶┆晃悠┆4K",
+      "type": 3,
+      "api": "csp_HuangYou",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "AVVlrRajtr+i42Q1MBwsMRSoNuckBLnPEocZVkZik+88465w0JZsKWJodTFxYL+RSsAVU8X8lJ4M8E2Xfw0GLYA="
+    },
+    {
+      "key": "SuiYuan",
+      "name": "🍂┆随缘┆4K",
+      "type": 3,
+      "api": "csp_SuiYuan",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "AVjYSEtEaHF+eS3NOrCubcE3f755psW6EFCg2THWgHt0uWkH1CXlE/UJ2zqohcEULrn/AlZOVuzN4V4Wt0EY3bY="
+    },
+    {
+      "key": "TangPing",
+      "name": "🛋️┆躺平┆4K",
+      "type": 3,
+      "api": "csp_TangPing",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "AUVdS2Q3l8yS7JhOkMXYE1ntTJ/61k8MzQmaQMqSZBbUKDBy/udxVLxvXhNDvifvbkVTEawL3m2p9hhwbTibxnA="
+    },
+    {
+      "key": "LaiChuang",
+      "name": "🛏️┆赖床┆4K",
+      "type": 3,
+      "api": "csp_LaiChuang",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "AVlJ4J+D/3DMzdKAQnig/9ckDSQU7H+PyPyOE/q+m7eGkaZ9YjDkVXgq17TjYCHuvJa0UinsvgwPiAVd51fKuA0="
     },
     {
       "key": "bandeng",
-      "name": "🌾┆板凳┆4K",
+      "name": "🪑┆板凳┆4K",
       "type": 3,
       "api": "csp_BanDeng",
       "searchable": 1,
@@ -227,35 +277,15 @@
       "ext": "ASH3HkV5cxNhNR9+uQe0sWYxUWHzEywHT3rcYOx+wsK4Jx+sBd0qMO9kFic1Rc1osAMsAsTlMgabd1Ky2kmzQ/Y="
     },
     {
-      "key": "mandian",
-      "name": "🐢┆慢点┆4K",
+      "key": "xiaozuo",
+      "name": "🍃┆等风┆4K",
       "type": 3,
-      "api": "csp_ManDian",
+      "api": "csp_DengFeng",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "AU08qHcswQQ9GUNUYMdLgyq8HzPCy1gUxku0nrQgOwfSJrT0LgwdrXoWPVK+x4n+QQ8KbuVPdzA5/U2YL7fQmH8="
+      "ext": "ARRavWPOi7W2Usqhe54R+NW2sQ6CCBOYajU9bIz/WVyF75mrlP6UsAbts+o//eKOpDWbngYFUGIJGTa56hr3Hk0="
     },
-    {
-            "key": "ZhiWo",
-            "name": "🌙┆知我┆4K",
-            "type": 3,
-            "api": "csp_ZhiWo",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "AX1Vvf8Pdib7pGaiG52YtJfoH7J54wUt+/pfCo7QJrhIKMK6XXxVbbJG3pw3yHdOUVcBrTyo1EmM8M91pY30AUE="
-        },
-        {
-            "key": "xiaozuo",
-            "name": "🍃┆等风┆4K",
-            "type": 3,
-            "api": "csp_DengFeng",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "ARRavWPOi7W2Usqhe54R+NW2sQ6CCBOYajU9bIz/WVyF75mrlP6UsAbts+o//eKOpDWbngYFUGIJGTa56hr3Hk0="
-        },
     {
       "key": "KanJu",
       "name": "🎬┆流映┆4K",
@@ -270,27 +300,60 @@
         "playname": "ly"
       }
     },
-        {
-            "key": "嗑剧",
-            "name": "🍿┆嗑剧┆4K",
-            "type": 3,
-            "api": "csp_NiuLai",
-            "searchable": 1,
-            "filterable": 1,
-            "changeable": 0,
-            "ext": "Ab6RU4ow2BTC3y169gXHkoGyOzagKI89ksf5hxcm0/J5a7/pusSapfK8Oy6MtmlqAq8DsECmgbQ377MzwhHsU61D51ptVLqXXNu87y1TOl17"
-        },
-        {
-            "key": "凝光",
-            "name": "✨┆凝光┆4K",
-            "type": 3,
-            "api": "csp_NiuLai",
-            "searchable": 1,
-            "filterable": 1,
-            "changeable": 0,
-            "ext": "AbHckdJkP3IQGfQAetQhutxB3VjOrW67VMoOo8mAdc9grkAgbVv7bUgWbHKHHabksz8nJklfQrFKo56OYXkhQ936PGDo/33ZU4cnkGGALgUlbfxoJoT/TJ/KZwRlYHiajg=="
-        },
-        {
+    {
+      "key": "余温",
+      "name": "🧣┆余温┆4K",
+      "type": 3,
+      "api": "csp_App88",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 0,
+      "ext": "AQ97WpArbhKNw60bLglQNeYUtD0UDI1f65KexQmYfUaCO+V3+a8GbSmYodUtb12Q0LQHfv6KdocBICzIhrySNikxI0hWUixd5n/optwTcVcU"
+    },
+    {
+      "key": "夜猫",
+      "name": "🦉┆夜猫┆4K",
+      "type": 3,
+      "api": "csp_App88",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 0,
+      "ext": "AR/RtwIvqcmx6ZGW8sbi7eFkPpUl48Y1f1lgZfeNDxJrNKwGVF/fADYHz0psPEF7KvDaccyt60bwK9lzVNUIhPUxyKFOo7u9iPyZxUTbxyAZ"
+    },
+    {
+      "key": "拼图",
+      "name": "🧩┆拼图┆4K",
+      "type": 3,
+      "api": "csp_NiuLai",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 0,
+      "ext": "Ad2ohQzN3yKRQEHDYDkK1JK8CL3Se9zIBI5Q4VBRKeR6pIWjoaXOktd6l4RWPQi46M/xcnQCEN8R1PIqXGBDZPds5tolkQ4pUoWAaOKxXmPk"
+    },
+    {
+      "key": "嗑剧",
+      "name": "🍿┆嗑剧┆4K",
+      "type": 3,
+      "api": "csp_NiuLai",
+      "searchable": 1,
+      "filterable": 1,
+      "changeable": 0,
+      "ext": "Ab6RU4ow2BTC3y169gXHkoGyOzagKI89ksf5hxcm0/J5a7/pusSapfK8Oy6MtmlqAq8DsECmgbQ377MzwhHsU61D51ptVLqXXNu87y1TOl17"
+    },
+    {
+      "key": "凝光",
+      "name": "✨┆凝光┆4K",
+      "type": 3,
+      "api": "csp_NiuLai",
+      "searchable": 1,
+      "filterable": 1,
+      "changeable": 0,
+      "ext": "AbHckdJkP3IQGfQAetQhutxB3VjOrW67VMoOo8mAdc9grkAgbVv7bUgWbHKHHabksz8nJklfQrFKo56OYXkhQ936PGDo/33ZU4cnkGGALgUlbfxoJoT/TJ/KZwRlYHiajg=="
+    },
+    {
       "key": "素笺",
       "name": "📜┆素笺┆4K",
       "type": 3,
@@ -302,14 +365,14 @@
     },
     {
       "key": "长泽",
-      "name": "😗┆长泽┆4K",
+      "name": "🏞️┆长泽┆4K",
       "type": 3,
       "api": "csp_App88",
       "ext": "AbUqYzi9KxmcqEBrph2PStNUDPxq/XlzxDHJ/Ho29gXr8NgMOEJGFKBsrdYb5xNb+w+Xaj3203DI9YWo5wBv6zGULMNZneW1yESyfC1/S1BM"
     },
     {
       "key": "云岫",
-      "name": "☁️┆云岫┆4K",
+      "name": "⛰️┆云岫┆4K",
       "type": 3,
       "api": "csp_NiuLai",
       "searchable": 1,
@@ -359,7 +422,7 @@
         "url": "http://v.rbotv.cn"
       }
     },
-        {
+    {
       "key": "竹隐",
       "name": "🎋┆竹隐┆APP",
       "type": 3,
@@ -391,7 +454,7 @@
     },
     {
       "key": "兰芷",
-      "name": "🌸┆兰芷┆APP",
+      "name": "🌷┆兰芷┆APP",
       "api": "csp_AppUn",
       "type": 3,
       "ext": "AZd2zeWnJd10mMjpA2gpKlWDq7ggxf6XDxDuTaoinynvJ3eEi1bZPxC2qgkkAiACxISnMdRC37ODaT/tTEd9foyUox+SNWIsGzujicg5VFm7"
@@ -412,7 +475,7 @@
     },
     {
       "key": "观澜",
-      "name": "🎞️┆观澜┆APP",
+      "name": "🌊┆观澜┆APP",
       "api": "csp_AppUn",
       "type": 3,
       "ext": "AVV1qWzQBjKvN7CKup9rpdodlSeTxhlrSJPwshkidi4LdlbDt81YkaxBlOnImlhpaCXFZ3rlaVHkoA57wMFZIEUb0eGUhm8upw9Vw/Qq5sdr"
@@ -426,14 +489,14 @@
     },
     {
       "key": "南枝",
-      "name": "🌱┆南枝┆APP",
+      "name": "🌳┆南枝┆APP",
       "api": "csp_AppUn",
       "type": 3,
       "ext": "AUj9LzI2v0nALIaWIMvrw0mqpqAfYqjLEaEdBg2Kpjpynjba5tcMRsocodhKWXuxaxWXNQhmHVm/5ch0t87+Ck3kUcf8gS3HStDFKx/zWH77"
     },
     {
       "key": "沐辞",
-      "name": "🍃┆沐辞┆APP",
+      "name": "💧┆沐辞┆APP",
       "api": "csp_AppUn",
       "type": 3,
       "ext": "AYdXH70UMM8plqsXPmZuN9zEJQV/2vpn2nM5OAeVwvV966SO86n0qc/65IvyNOY7I8FscuN2i4tnXSoa2eVVhCbvIzsK+OAWQcMwpKHy1zZg"
@@ -760,8 +823,8 @@
       "genre": "shortdrama",
       "filterable": 1,
       "ext": {
-                "host": "https://honhon.wya6.com",
-                "quality": "1080p"
+        "host": "https://honhon.wya6.com",
+        "quality": "1080p"
       }
     },
     {
@@ -775,19 +838,29 @@
       "filterable": 1,
       "changeable": 1
     },
-        {
-            "key": "dadun",
-            "name": "😴┆打盹┆动漫",
-            "type": 3,
-            "api": "csp_DaDun",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "AfCX4sFyDgfHnSLJWpjt1MhGM5IXEedNZfnttre6SML2iKsHtTs9bImgNSCyhOVdiFfFQEtkTtLKBE1jHKB54K5If+HC5ogqbIKmQp/pC3aY"
-        },
+    {
+      "key": "AppGhg_ghg",
+      "name": "🪁┆纸鸢┆动漫",
+      "type": 3,
+      "api": "csp_AppGhg",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "AYr9F7AdUNpxxaMgCJt9gAPT8QvrTqyZsZ/xpbyT3J0nHUzUdZ2B+yBSi22lsd4bvtxMgZD1L6+vSvAGsQknqmmjJrYKpVx/HEqmS1KsH554"
+    },
+    {
+      "key": "dadun",
+      "name": "😴┆打盹┆动漫",
+      "type": 3,
+      "api": "csp_DaDun",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "AfCX4sFyDgfHnSLJWpjt1MhGM5IXEedNZfnttre6SML2iKsHtTs9bImgNSCyhOVdiFfFQEtkTtLKBE1jHKB54K5If+HC5ogqbIKmQp/pC3aY"
+    },
     {
       "key": "XingHui",
-      "name": "✨┆星绘┆动漫",
+      "name": "🌠┆星绘┆动漫",
       "type": 3,
       "api": "csp_XingHui",
       "searchable": 1,
@@ -1111,7 +1184,7 @@
         "type": "list"
       }
     },
-        {
+    {
       "key": "TingYou",
       "name": "🎧┆听友┆有声",
       "type": 3,
